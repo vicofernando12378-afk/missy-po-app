@@ -1,0 +1,53 @@
+# ============================================================
+# MISSY & PO — .gitignore
+# ============================================================
+
+# ── Archivos WordPress legacy (se quedan en local, NO van a GitHub) ──
+database.sql
+uploads/
+
+# ── Dependencias ──
+node_modules/
+functions/node_modules/
+
+# ── Variables de entorno (NUNCA commitear) ──
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ── Build output ──
+dist/
+build/
+.vite/
+
+# ── Firebase ──
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+functions/lib/
+
+# ── Logs ──
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDEs ──
+.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ── Cache ──
+.cache/
+.parcel-cache/
+.eslintcache
