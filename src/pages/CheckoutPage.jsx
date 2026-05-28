@@ -75,7 +75,7 @@ export default function CheckoutPage() {
   const [referencia, setReferencia] = useState('')
 
   // Comprobante Estados
-  const [incluirImpuesto, setIncluirImpuesto] = useState(true) // con o sin IGV
+  const [incluirImpuesto, setIncluirImpuesto] = useState(false) // con o sin IGV
   const [tipoDocumento, setTipoDocumento] = useState('DNI') // DNI o RUC
   const [numeroDocumento, setNumeroDocumento] = useState('')
 
@@ -398,29 +398,7 @@ export default function CheckoutPage() {
                 🧾 Comprobante de Pago
               </h2>
 
-              <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between pb-2">
-                <span className="text-xs font-ui font-semibold text-gray-500">Impuestos (IGV 18%):</span>
-                <div className="flex items-center gap-4">
-                  <label className="flex items-center gap-2 text-xs font-ui font-bold text-gray-700 cursor-pointer">
-                    <input
-                      type="radio"
-                      checked={incluirImpuesto}
-                      onChange={() => setIncluirImpuesto(true)}
-                      className="text-coral focus:ring-coral"
-                    />
-                    Con Impuesto (IGV 18%)
-                  </label>
-                  <label className="flex items-center gap-2 text-xs font-ui font-bold text-gray-700 cursor-pointer">
-                    <input
-                      type="radio"
-                      checked={!incluirImpuesto}
-                      onChange={() => setIncluirImpuesto(false)}
-                      className="text-coral focus:ring-coral"
-                    />
-                    Sin Impuesto (No emitir)
-                  </label>
-                </div>
-              </div>
+              {/* Impuesto (IGV) deshabilitado temporalmente */}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div>

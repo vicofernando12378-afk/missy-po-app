@@ -192,7 +192,7 @@ Por favor confírmenme la recepción del pedido.`
                 <span className="font-semibold">{envioSoles === 0 ? 'Gratis' : `S/ ${envioSoles.toFixed(2)}`}</span>
               </div>
 
-              {comprobante.con_impuesto ? (
+              {comprobante.con_impuesto && (
                 <>
                   <div className="flex justify-between text-gray-400 text-[10px]">
                     <span>Base Imponible</span>
@@ -203,11 +203,6 @@ Por favor confírmenme la recepción del pedido.`
                     <span>S/ {igvSoles.toFixed(2)}</span>
                   </div>
                 </>
-              ) : (
-                <div className="flex justify-between text-gray-400 text-[10px] pb-2 border-b border-gray-50">
-                  <span>IGV (Exonerado)</span>
-                  <span>S/ 0.00</span>
-                </div>
               )}
 
               <div className="flex justify-between text-sm font-bold text-gray-800 pt-1">

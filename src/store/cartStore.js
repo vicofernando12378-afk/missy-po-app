@@ -6,6 +6,13 @@ import { persist } from 'zustand/middleware'
 // Missy & Po Pet Shop
 // ============================================================
 
+const recalculateTotals = (items, couponDiscount) => {
+  const itemCount = items.reduce((sum, item) => sum + item.cantidad, 0)
+  const subtotal = items.reduce((sum, item) => sum + item.precio_unitario * item.cantidad, 0)
+  const total = subtotal - (subtotal * couponDiscount) / 100
+  return { itemCount, subtotal, total }
+}
+
 const useCartStore = create(
   persist(
     (set, get) => ({
@@ -13,69 +20,59 @@ const useCartStore = create(
       items: [],          // [{ id, slug, nombre, precio_unitario, imagen, cantidad, variante }]
       couponCode: '',
       couponDiscount: 0,  // porcentaje (ej: 10 = 10%)
+      subtotal: 0,
+      total: 0,
+      itemCount: 0,
       isDrawerOpen: false,
-
-      // ─── GETTERS ───────────────────────────────────────────
-
-      get itemCount() {
-        return get().items.reduce((sum, item) => sum + item.cantidad, 0)
-      },
-
-      get subtotal() {
-        return get().items.reduce(
-          (sum, item) => sum + item.precio_unitario * item.cantidad,
-          0
-        )
-      },
-
-      get total() {
-        const { subtotal, couponDiscount } = get()
-        return subtotal - (subtotal * couponDiscount) / 100
-      },
 
       // ─── ACCIONES ──────────────────────────────────────────
 
       addItem: (product) => {
-        const { items } = get()
+        const { items, couponDiscount } = get()
         const key = `${product.id}-${product.variante || 'default'}`
         const existing = items.find(
           (i) => i.id === product.id && i.variante === (product.variante || 'default')
         )
 
+        let newItems
         if (existing) {
-          set({
-            items: items.map((i) =>
-              i._key === key
-                ? { ...i, cantidad: i.cantidad + (product.cantidad || 1) }
-                : i
-            ),
-          })
+          newItems = items.map((i) =>
+            i._key === key
+              ? { ...i, cantidad: i.cantidad + (product.cantidad || 1) }
+              : i
+          )
         } else {
-          set({
-            items: [
-              ...items,
-              {
-                _key: key,
-                id: product.id,
-                sku: product.sku || '',
-                slug: product.slug || '',
-                nombre: product.nombre,
-                precio_unitario: Math.round((product.precio_oferta || product.precio_regular || 0) * 100),
-                imagen: product.imagen || '',
-                ean: product.ean || '',
-                variante: product.variante || 'default',
-                cantidad: product.cantidad || 1,
-              },
-            ],
-          })
+          newItems = [
+            ...items,
+            {
+              _key: key,
+              id: product.id,
+              sku: product.sku || '',
+              slug: product.slug || '',
+              nombre: product.nombre,
+              precio_unitario: Math.round((product.precio_oferta || product.precio_regular || 0) * 100),
+              imagen: product.imagen || '',
+              ean: product.ean || '',
+              variante: product.variante || 'default',
+              cantidad: product.cantidad || 1,
+            },
+          ]
         }
+
+        set({
+          items: newItems,
+          ...recalculateTotals(newItems, couponDiscount)
+        })
       },
 
       removeItem: (id, variante = 'default') => {
+        const { items, couponDiscount } = get()
+        const newItems = items.filter(
+          (i) => !(i.id === id && i.variante === variante)
+        )
         set({
-          items: get().items.filter(
-            (i) => !(i.id === id && i.variante === variante)
-          ),
+          items: newItems,
+          ...recalculateTotals(newItems, couponDiscount)
         })
       },
 
@@ -84,16 +81,19 @@ const useCartStore = create(
           get().removeItem(id, variante)
           return
         }
+        const { items, couponDiscount } = get()
+        const newItems = items.map((i) =>
+          i.id === id && i.variante === variante
+            ? { ...i, cantidad }
+            : i
+        )
         set({
-          items: get().items.map((i) =>
-            i.id === id && i.variante === variante
-              ? { ...i, cantidad }
-              : i
-          ),
+          items: newItems,
+          ...recalculateTotals(newItems, couponDiscount)
         })
       },
 
-      clearCart: () => set({ items: [], couponCode: '', couponDiscount: 0 }),
+      clearCart: () => set({ items: [], couponCode: '', couponDiscount: 0, subtotal: 0, total: 0, itemCount: 0 }),
 
       // ─── CUPÓN ─────────────────────────────────────────────
 
@@ -114,8 +114,13 @@ const useCartStore = create(
             if (data.expiracion && new Date(data.expiracion) < new Date()) {
               return { success: false, message: 'Este cupón ha expirado' }
             }
-            set({ couponCode: uppercaseCode, couponDiscount: data.descuento || 0 })
-            return { success: true, discount: data.descuento }
+            const discount = data.descuento || 0
+            set({
+              couponCode: uppercaseCode,
+              couponDiscount: discount,
+              ...recalculateTotals(get().items, discount)
+            })
+            return { success: true, discount }
           }
         } catch (e) {
           console.warn('⚠️ Error al consultar cupón en Firestore. Usando fallback local:', e)
@@ -129,13 +134,23 @@ const useCartStore = create(
         }
         const discount = mockCoupons[uppercaseCode]
         if (discount) {
-          set({ couponCode: uppercaseCode, couponDiscount: discount })
+          set({
+            couponCode: uppercaseCode,
+            couponDiscount: discount,
+            ...recalculateTotals(get().items, discount)
+          })
           return { success: true, discount }
         }
         return { success: false, message: 'Cupón no válido' }
       },
 
-      removeCoupon: () => set({ couponCode: '', couponDiscount: 0 }),
+      removeCoupon: () => {
+        set({
+          couponCode: '',
+          couponDiscount: 0,
+          ...recalculateTotals(get().items, 0)
+        })
+      },
 
       // ─── UI ────────────────────────────────────────────────
 
@@ -149,6 +164,9 @@ const useCartStore = create(
         items: state.items,
         couponCode: state.couponCode,
         couponDiscount: state.couponDiscount,
+        subtotal: state.subtotal,
+        total: state.total,
+        itemCount: state.itemCount,
       }),
     }
   )
