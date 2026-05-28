@@ -100,6 +100,26 @@ Por favor confírmenme la recepción del pedido.`
           </p>
         </div>
 
+        {/* BANNER LLAMATIVO "Aquí está tu boleta" */}
+        <div className="mb-8 p-6 bg-gradient-to-r from-coral to-amber-500 rounded-3xl shadow-xl text-white text-center no-print animate-[fade-in-up_0.4s_ease-out] relative overflow-hidden group">
+          <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-all duration-500" />
+          <div className="relative z-10 space-y-4">
+            <span className="text-4xl block">📄</span>
+            <h3 className="font-ui font-bold text-xl md:text-2xl">¡Tu comprobante de pago está listo!</h3>
+            <p className="text-white/85 text-xs max-w-md mx-auto font-body">
+              Haz clic abajo para ver y guardar o imprimir tu boleta de venta en formato PDF de inmediato.
+            </p>
+            <button
+              onClick={handlePrint}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-ui font-bold text-sm rounded-full shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 animate-pulse hover:animate-none"
+              id="accent-print-btn"
+            >
+              <span>🖨️</span>
+              Aquí está tu boleta
+            </button>
+          </div>
+        </div>
+
         {/* COMPROBANTE / TICKET (Listo para Imprimir A4 o Térmico) */}
         <div className="bg-white rounded-3xl border border-gray-250 p-6 sm:p-8 shadow-md relative overflow-hidden print-full print:border-0 print:shadow-none">
           {/* Decoración de ondas en cabecera */}
@@ -230,11 +250,11 @@ Por favor confírmenme la recepción del pedido.`
           {/* Botón Imprimir */}
           <button
             onClick={handlePrint}
-            className="flex-1 max-w-xs py-4 border border-gray-300 text-gray-700 rounded-full font-ui font-semibold text-sm hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+            className="flex-1 max-w-xs py-4 border-2 border-coral text-coral bg-coral-50/10 rounded-full font-ui font-bold text-sm hover:bg-coral hover:text-white transition-all flex items-center justify-center gap-2 shadow-sm"
             id="print-invoice-btn"
           >
             <span>🖨️</span>
-            Imprimir / Guardar PDF
+            Aquí está tu boleta
           </button>
 
           {/* Botón Volver */}

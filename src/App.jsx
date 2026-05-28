@@ -9,10 +9,18 @@ import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
 
+// Vistas del Panel Administrativo
+import AdminLayout from './pages/admin/AdminLayout'
+import PedidosDashboard from './pages/admin/PedidosDashboard'
+import CajaDiaria from './pages/admin/CajaDiaria'
+import InventarioStock from './pages/admin/InventarioStock'
+import ConfiguracionEnviosCupones from './pages/admin/ConfiguracionEnviosCupones'
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Rutas de la Tienda Pública */}
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="tienda" element={<StorePage />} />
@@ -22,6 +30,14 @@ function App() {
           <Route path="orden-confirmada/:orderId" element={<OrderConfirmationPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="*" element={<NotFoundPage />} />
+        </Route>
+
+        {/* Rutas del Panel de Administración */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<PedidosDashboard />} />
+          <Route path="caja" element={<CajaDiaria />} />
+          <Route path="inventario" element={<InventarioStock />} />
+          <Route path="configuracion" element={<ConfiguracionEnviosCupones />} />
         </Route>
       </Routes>
     </BrowserRouter>

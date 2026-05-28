@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import useCartStore from '../store/cartStore'
@@ -84,6 +84,8 @@ export default function CheckoutPage() {
   const [activePaymentModal, setActivePaymentModal] = useState(null) // 'yape', 'tarjeta'
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
+  const [orderCompleted, setOrderCompleted] = useState(false)
+  const orderCompletedRef = useRef(false)
 
   // Validaciones
   const totalSoles = total / 100
@@ -109,7 +111,7 @@ export default function CheckoutPage() {
   const igvCalculadoSoles = incluirImpuesto ? (totalFinalSoles - baseImponibleSoles) : 0
 
   useEffect(() => {
-    if (items.length === 0) {
+    if (items.length === 0 && !orderCompletedRef.current) {
       navigate('/carrito')
     }
   }, [items, navigate])
@@ -204,6 +206,7 @@ export default function CheckoutPage() {
         variante: i.variante,
         imagen: i.imagen || ''
       })),
+      estado: 'recibido',
       estado_pedido: 'recibido',
       cupon: couponCode || null,
       descuento_porcentaje: couponDiscount
@@ -235,6 +238,8 @@ export default function CheckoutPage() {
       }
 
       // 3. Limpiar carrito y redireccionar al éxito
+      orderCompletedRef.current = true
+      setOrderCompleted(true)
       clearCart()
       navigate(`/orden-confirmada/${orderId}`)
     } catch (err) {
