@@ -70,13 +70,13 @@ export default function Navbar() {
         id="main-navbar"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-4 h-[72px]">
+          <div className="flex items-center gap-4 h-[88px] md:h-28">
 
             {/* LOGO */}
-            <div className="flex-shrink-0 w-[88px] h-[72px] md:w-32 md:h-[72px] relative z-20">
+            <div className="flex-shrink-0 w-[88px] h-[88px] md:w-32 md:h-28 relative z-20">
               <Link
                 to="/"
-                className="absolute top-1 left-0"
+                className="absolute top-0 left-0"
                 id="nav-logo"
               >
                 <img
@@ -158,12 +158,12 @@ export default function Navbar() {
           </div>
 
           {/* CATEGORÍAS — Fila inferior (desktop) */}
-          <div className="hidden md:flex items-center justify-center gap-6 pb-2 overflow-x-auto scrollbar-hide">
+          <div className="hidden md:flex items-center justify-center gap-8 pt-2 pb-4 overflow-x-auto scrollbar-hide">
             {NAV_CATEGORIES.map((cat) => (
               <Link
                 key={cat.label}
                 to={cat.href}
-                className="navbar-link text-xs font-semibold whitespace-nowrap pb-1"
+                className="navbar-link text-sm font-bold whitespace-nowrap pb-1 uppercase tracking-wide"
                 id={`nav-cat-${cat.label.toLowerCase()}`}
               >
                 {cat.label}
