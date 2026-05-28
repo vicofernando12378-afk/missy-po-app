@@ -62,20 +62,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-navbar print:hidden">
-      {/* === TOP BAR — Segunda fila de navegación === */}
-      <div className="hidden md:block bg-gray-100 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-9 text-xs text-gray-600">
-          <span>🐾 Envíos a todo el Perú · Courier Shalom y Olva Express</span>
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="hover:text-coral transition-colors" id="nav-login-top">
-              Mi Cuenta
-            </Link>
-            <Link to="/tienda" className="hover:text-coral transition-colors" id="nav-store-top">
-              Tienda
-            </Link>
-          </div>
-        </div>
-      </div>
 
       {/* === NAVBAR PRINCIPAL === */}
       <nav
