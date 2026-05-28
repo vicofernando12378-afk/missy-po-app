@@ -36,19 +36,12 @@ export default function Footer() {
 
           {/* COLUMNA BRAND */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4" id="footer-logo">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center text-white"
-                   style={{ backgroundColor: 'var(--color-coral)' }}>
-                <PawIcon />
-              </div>
-              <div>
-                <div className="font-brand text-xl" style={{ color: 'var(--color-coral)' }}>
-                  Missy & Po
-                </div>
-                <div className="font-ui text-[10px] text-gray-400 uppercase tracking-widest">
-                  Pet Shop
-                </div>
-              </div>
+            <Link to="/" className="inline-block mb-4" id="footer-logo">
+              <img
+                src="/assets/logoheader.png"
+                alt="Missy & Po Logo"
+                className="w-20 h-20 object-contain rounded-xl border border-gray-200 shadow-sm bg-white"
+              />
             </Link>
             <p className="text-sm text-gray-600 font-body leading-relaxed mb-4">
               Tu tienda online de confianza para los engreídos de la familia. 

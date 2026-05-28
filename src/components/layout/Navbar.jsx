@@ -70,25 +70,19 @@ export default function Navbar() {
         id="main-navbar"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-4 h-[72px]">
+          <div className="flex items-center gap-4 min-h-[72px] py-1.5">
 
             {/* LOGO */}
             <Link
               to="/"
-              className="flex-shrink-0 flex items-center gap-2"
+              className="flex-shrink-0 flex items-center"
               id="nav-logo"
             >
               <img
                 src="/assets/logoheader.png"
                 alt="Missy & Po Logo"
-                className="w-14 h-14 object-cover rounded-full border-2 border-white/45 bg-white/10"
+                className="w-16 h-16 md:w-24 md:h-24 object-contain rounded-xl border border-white/20 shadow-md"
               />
-              <div className="hidden sm:block">
-                <div className="font-brand text-white text-2xl leading-none" style={{ fontWeight: 700 }}>Missy & Po</div>
-                <div className="font-ui text-white/70 text-[10px] uppercase tracking-widest leading-none mt-0.5">
-                  Pet Shop
-                </div>
-              </div>
             </Link>
 
             {/* BARRA DE BÚSQUEDA — LiveSearch predictivo */}
@@ -162,7 +156,7 @@ export default function Navbar() {
           </div>
 
           {/* CATEGORÍAS — Fila inferior (desktop) */}
-          <div className="hidden md:flex items-center gap-6 pb-2 overflow-x-auto scrollbar-hide">
+          <div className="hidden md:flex items-center justify-center gap-6 pb-2 overflow-x-auto scrollbar-hide">
             {NAV_CATEGORIES.map((cat) => (
               <Link
                 key={cat.label}
