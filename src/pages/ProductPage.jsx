@@ -153,7 +153,6 @@ export default function ProductPage() {
 
     setTimeout(() => {
       setIsAdding(false)
-      openDrawer()
     }, 800)
   }
 

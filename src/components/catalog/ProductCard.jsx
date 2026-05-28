@@ -43,6 +43,7 @@ export default function ProductCard({ product }) {
 
   const {
     id,
+    sku,
     slug,
     nombre,
     precio_regular,
@@ -55,23 +56,23 @@ export default function ProductCard({ product }) {
     stock = 10,
   } = product
 
+  const displayImagen = imagen || (product.imagenes && product.imagenes[0]) || '/assets/placeholder-pet.jpg'
+
   const hasSale = precio_oferta && precio_oferta < precio_regular
   const discountPct = hasSale
     ? Math.round(((precio_regular - precio_oferta) / precio_regular) * 100)
     : null
 
   const addItem = useCartStore(s => s.addItem)
-  const openDrawer = useCartStore(s => s.openDrawer)
 
   const handleAddToCart = (e) => {
     e.preventDefault()
     e.stopPropagation()
     if (isAdding || stock === 0) return
     setIsAdding(true)
-    addItem({ id, sku, slug, nombre, precio_regular, precio_oferta, imagen, ean })
+    addItem({ id, sku, slug, nombre, precio_regular, precio_oferta, imagen: displayImagen, ean })
     setTimeout(() => {
       setIsAdding(false)
-      openDrawer()
     }, 800)
   }
 
@@ -96,7 +97,7 @@ export default function ProductCard({ product }) {
         )}
 
         <img
-          src={imageError || !imagen ? '/assets/placeholder-pet.jpg' : imagen}
+          src={imageError || !displayImagen ? '/assets/placeholder-pet.jpg' : displayImagen}
           alt={nombre}
           className="w-full h-full object-cover transition-transform duration-500
                      group-hover:scale-105"
