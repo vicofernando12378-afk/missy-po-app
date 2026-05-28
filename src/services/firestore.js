@@ -159,57 +159,86 @@ export async function crearPedidoConTransaccion(datosPedido) {
   const pedidoRef = doc(collection(db, 'myp_pedidos')) // Genera un ID automático
   
   await runTransaction(db, async (transaction) => {
-    // 1. Validar y restar stock para cada item
+    // Agrupar items por documento único de producto para evitar lecturas duplicadas
+    // y evitar sobrescrituras de stock entre variaciones del mismo producto.
+    const itemsPorProducto = {}
     for (const item of datosPedido.items) {
-      // Intentar buscar el producto principal por su SKU (que es la clave del documento)
-      // Si el item no tiene sku, usamos su ID/SKU de fallback
-      const productSku = item.sku || item.id
-      const prodRef = doc(db, COLECCION, String(productSku))
+      const productSku = String(item.sku || item.id)
+      if (!itemsPorProducto[productSku]) {
+        itemsPorProducto[productSku] = []
+      }
+      itemsPorProducto[productSku].push(item)
+    }
+
+    // 1. Ejecutar todas las lecturas primero (una sola lectura por documento de producto)
+    const productDocs = {}
+    for (const productSku of Object.keys(itemsPorProducto)) {
+      const prodRef = doc(db, COLECCION, productSku)
       const prodSnap = await transaction.get(prodRef)
       
       if (!prodSnap.exists()) {
         throw new Error(`El producto con SKU ${productSku} no existe en el catálogo.`)
       }
       
-      const prodData = prodSnap.data()
-      
-      // Si el producto maneja variaciones, debemos verificar stock en la variación
-      if (item.variante && item.variante !== 'default') {
-        const variantesActualizadas = (prodData.variantes || []).map((v) => {
-          // Buscamos la variación que coincida
-          const keyMatch = Object.entries(v.atributos).map(([k, val]) => `${k.toUpperCase()}: ${val}`).join(', ')
-          // Comparamos de forma flexible el formato de atributos
-          if (keyMatch === item.variante || v.sku === item.sku || String(v.id) === String(item.variante)) {
-            if (v.stock < item.cantidad) {
-              throw new Error(`El producto "${item.nombre} (${item.variante})" no tiene stock suficiente. Disponible: ${v.stock}, Solicitado: ${item.cantidad}`)
-            }
-            return { ...v, stock: v.stock - item.cantidad }
-          }
-          return v
-        })
-        
-        // Sumamos el stock restante de todas las variantes para actualizar el total general
-        const nuevoStockGeneral = variantesActualizadas.reduce((sum, v) => sum + v.stock, 0)
-        
-        transaction.update(prodRef, {
-          variantes: variantesActualizadas,
-          stock: nuevoStockGeneral,
-          actualizado_en: serverTimestamp()
-        })
-      } else {
-        // Producto simple
-        if (prodData.stock < item.cantidad) {
-          throw new Error(`El producto "${item.nombre}" no tiene stock suficiente. Disponible: ${prodData.stock}, Solicitado: ${item.cantidad}`)
-        }
-        
-        transaction.update(prodRef, {
-          stock: prodData.stock - item.cantidad,
-          actualizado_en: serverTimestamp()
-        })
+      productDocs[productSku] = {
+        ref: prodRef,
+        data: prodSnap.data()
       }
     }
-    
-    // 2. Guardar la orden de pedido en la colección myp_pedidos
+
+    // 2. Procesar las validaciones y actualizar los datos en memoria
+    for (const [productSku, items] of Object.entries(itemsPorProducto)) {
+      const prodDoc = productDocs[productSku]
+      let currentData = prodDoc.data
+
+      for (const item of items) {
+        if (item.variante && item.variante !== 'default') {
+          // Es una variación del producto
+          const variantesActualizadas = (currentData.variantes || []).map((v) => {
+            const keyMatch = Object.entries(v.atributos).map(([k, val]) => `${k.toUpperCase()}: ${val}`).join(', ')
+            if (keyMatch === item.variante || v.sku === item.sku || String(v.id) === String(item.variante)) {
+              if (v.stock < item.cantidad) {
+                throw new Error(`El producto "${item.nombre} (${item.variante})" no tiene stock suficiente. Disponible: ${v.stock}, Solicitado: ${item.cantidad}`)
+              }
+              return { ...v, stock: v.stock - item.cantidad }
+            }
+            return v
+          })
+          
+          const nuevoStockGeneral = variantesActualizadas.reduce((sum, v) => sum + v.stock, 0)
+          
+          currentData = {
+            ...currentData,
+            variantes: variantesActualizadas,
+            stock: nuevoStockGeneral
+          }
+        } else {
+          // Producto simple
+          if (currentData.stock < item.cantidad) {
+            throw new Error(`El producto "${item.nombre}" no tiene stock suficiente. Disponible: ${currentData.stock}, Solicitado: ${item.cantidad}`)
+          }
+          
+          currentData = {
+            ...currentData,
+            stock: currentData.stock - item.cantidad
+          }
+        }
+      }
+
+      // Guardar la data modificada en el mapa en memoria
+      prodDoc.data = currentData
+    }
+
+    // 3. Ejecutar todas las escrituras después de todas las lecturas
+    for (const [productSku, prodDoc] of Object.entries(productDocs)) {
+      transaction.update(prodDoc.ref, {
+        variantes: prodDoc.data.variantes || null,
+        stock: prodDoc.data.stock,
+        actualizado_en: serverTimestamp()
+      })
+    }
+
+    // 4. Registrar la orden de pedido en la colección myp_pedidos
     transaction.set(pedidoRef, {
       ...datosPedido,
       creado_en: serverTimestamp(),
