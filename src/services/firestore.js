@@ -2,7 +2,7 @@ import {
   collection, doc,
   getDocs, getDoc, addDoc, updateDoc, deleteDoc,
   query, where, orderBy, limit, startAfter,
-  serverTimestamp,
+  serverTimestamp, runTransaction
 } from 'firebase/firestore'
 import { db } from './firebase'
 
@@ -118,4 +118,90 @@ export async function actualizarProducto(id, data) {
 export async function eliminarProducto(id) {
   const ref = doc(db, COLECCION, id)
   await updateDoc(ref, { activo: false, actualizado_en: serverTimestamp() })
+}
+
+// ── CONFIGURACIÓN DE ENVÍOS ──────────────────────────────────
+export async function obtenerConfiguracionEnvio() {
+  try {
+    const docRef = doc(db, 'myp_config', 'shipping')
+    const snap = await getDoc(docRef)
+    if (snap.exists()) {
+      return snap.data()
+    }
+  } catch (e) {
+    console.warn('⚠️ Error al consultar configuración de envío en Firestore, usando defaults:', e)
+  }
+  // Límites por defecto en Soles
+  return {
+    arequipaFreeLimit: 30,
+    nationalFreeLimit: 100,
+    arequipaFee: 10,
+    nationalFee: 15
+  }
+}
+
+// ── CREACIÓN DE PEDIDO TRANSACCIONAL (Control de stock seguro)
+export async function crearPedidoConTransaccion(datosPedido) {
+  const pedidoRef = doc(collection(db, 'myp_pedidos')) // Genera un ID automático
+  
+  await runTransaction(db, async (transaction) => {
+    // 1. Validar y restar stock para cada item
+    for (const item of datosPedido.items) {
+      // Intentar buscar el producto principal por su SKU (que es la clave del documento)
+      // Si el item no tiene sku, usamos su ID/SKU de fallback
+      const productSku = item.sku || item.id
+      const prodRef = doc(db, COLECCION, String(productSku))
+      const prodSnap = await transaction.get(prodRef)
+      
+      if (!prodSnap.exists()) {
+        throw new Error(`El producto con SKU ${productSku} no existe en el catálogo.`)
+      }
+      
+      const prodData = prodSnap.data()
+      
+      // Si el producto maneja variaciones, debemos verificar stock en la variación
+      if (item.variante && item.variante !== 'default') {
+        const variantesActualizadas = (prodData.variantes || []).map((v) => {
+          // Buscamos la variación que coincida
+          const keyMatch = Object.entries(v.atributos).map(([k, val]) => `${k.toUpperCase()}: ${val}`).join(', ')
+          // Comparamos de forma flexible el formato de atributos
+          if (keyMatch === item.variante || v.sku === item.sku || String(v.id) === String(item.variante)) {
+            if (v.stock < item.cantidad) {
+              throw new Error(`El producto "${item.nombre} (${item.variante})" no tiene stock suficiente. Disponible: ${v.stock}, Solicitado: ${item.cantidad}`)
+            }
+            return { ...v, stock: v.stock - item.cantidad }
+          }
+          return v
+        })
+        
+        // Sumamos el stock restante de todas las variantes para actualizar el total general
+        const nuevoStockGeneral = variantesActualizadas.reduce((sum, v) => sum + v.stock, 0)
+        
+        transaction.update(prodRef, {
+          variantes: variantesActualizadas,
+          stock: nuevoStockGeneral,
+          actualizado_en: serverTimestamp()
+        })
+      } else {
+        // Producto simple
+        if (prodData.stock < item.cantidad) {
+          throw new Error(`El producto "${item.nombre}" no tiene stock suficiente. Disponible: ${prodData.stock}, Solicitado: ${item.cantidad}`)
+        }
+        
+        transaction.update(prodRef, {
+          stock: prodData.stock - item.cantidad,
+          actualizado_en: serverTimestamp()
+        })
+      }
+    }
+    
+    // 2. Guardar la orden de pedido en la colección myp_pedidos
+    transaction.set(pedidoRef, {
+      ...datosPedido,
+      creado_en: serverTimestamp(),
+      actualizado_en: serverTimestamp()
+    })
+  })
+  
+  return pedidoRef.id
 }

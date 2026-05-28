@@ -57,6 +57,7 @@ const useCartStore = create(
               {
                 _key: key,
                 id: product.id,
+                sku: product.sku,
                 slug: product.slug,
                 nombre: product.nombre,
                 precio_unitario: product.precio_oferta || product.precio_regular,

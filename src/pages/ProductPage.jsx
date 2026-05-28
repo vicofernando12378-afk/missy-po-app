@@ -140,6 +140,7 @@ export default function ProductPage() {
 
     addItem({
       id,
+      sku: displaySku,
       slug,
       nombre,
       precio_regular: displayPriceRegular,

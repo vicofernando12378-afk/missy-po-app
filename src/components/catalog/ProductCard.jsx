@@ -68,7 +68,7 @@ export default function ProductCard({ product }) {
     e.stopPropagation()
     if (isAdding || stock === 0) return
     setIsAdding(true)
-    addItem({ id, slug, nombre, precio_regular, precio_oferta, imagen, ean })
+    addItem({ id, sku, slug, nombre, precio_regular, precio_oferta, imagen, ean })
     setTimeout(() => {
       setIsAdding(false)
       openDrawer()
