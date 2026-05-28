@@ -8,9 +8,7 @@ import CartDrawer from '../cart/CartDrawer'
 export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <div className="print:hidden">
-        <Navbar />
-      </div>
+      <Navbar />
       <main className="flex-1 print:p-0">
         <Outlet />
       </main>

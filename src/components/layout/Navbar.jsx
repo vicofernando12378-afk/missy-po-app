@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import LiveSearch from '../header/LiveSearch'
 import CartHoverPopup from '../header/CartHoverPopup'
 import useCartStore from '../../store/cartStore'
+import MarqueeBanner from '../hero/MarqueeBanner'
 
 // Íconos inline SVG para evitar dependencia extra
 const SearchIcon = () => (
@@ -60,7 +61,7 @@ export default function Navbar() {
 
 
   return (
-    <header className="sticky top-0 z-navbar">
+    <header className="sticky top-0 z-navbar print:hidden">
       {/* === TOP BAR — Segunda fila de navegación === */}
       <div className="hidden md:block bg-gray-100 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-9 text-xs text-gray-600">
@@ -222,6 +223,7 @@ export default function Navbar() {
           </div>
         )}
       </nav>
+      <MarqueeBanner />
     </header>
   )
 }

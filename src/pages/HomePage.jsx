@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import HeroSlider from '../components/hero/HeroSlider'
-import MarqueeBanner from '../components/hero/MarqueeBanner'
 import AnimatedTitle from '../components/hero/AnimatedTitle'
 import ProductGrid from '../components/catalog/ProductGrid'
 import CTABanner from '../components/cta/CTABanner'
@@ -26,9 +25,6 @@ export default function HomePage() {
 
       {/* Hero Slider */}
       <HeroSlider />
-
-      {/* Marquee de avisos */}
-      <MarqueeBanner />
 
       {/* Título animado "NOVEDADES MISSY & PO!!!!" */}
       <AnimatedTitle />
