@@ -90,7 +90,7 @@ Por favor confírmenme la recepción del pedido.`
         <title>Confirmación de Pedido #{orderId} | Missy & Po</title>
       </Helmet>
 
-      <div className="max-w-3xl mx-auto px-4 py-12">
+      <div className="max-w-3xl mx-auto px-4 py-12 print:py-0 print:px-0 print:my-0 print:max-w-full">
         {/* Banner de Éxito */}
         <div className="text-center mb-10 no-print">
           <span className="text-6xl block mb-4 animate-bounce">🎉</span>
@@ -121,7 +121,7 @@ Por favor confírmenme la recepción del pedido.`
         </div>
 
         {/* COMPROBANTE / TICKET (Listo para Imprimir A4 o Térmico) */}
-        <div className="bg-white rounded-3xl border border-gray-250 p-6 sm:p-8 shadow-md relative overflow-hidden print-full print:border-0 print:shadow-none">
+        <div className="bg-white rounded-3xl border border-gray-250 p-6 sm:p-8 shadow-md relative overflow-hidden print-full print:border-0 print:shadow-none print:p-0 print:rounded-none">
           {/* Decoración de ondas en cabecera */}
           <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-coral to-amber-300 no-print" />
 

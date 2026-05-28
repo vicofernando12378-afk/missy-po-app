@@ -8,16 +8,22 @@ import CartDrawer from '../cart/CartDrawer'
 export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar />
-      <main className="flex-1">
+      <div className="print:hidden">
+        <Navbar />
+      </div>
+      <main className="flex-1 print:p-0">
         <Outlet />
       </main>
-      <Footer />
+      <div className="print:hidden">
+        <Footer />
+      </div>
 
       {/* Flotantes y overlays globales */}
-      <WhatsAppFloat />
-      <CartFloat />
-      <CartDrawer />
+      <div className="print:hidden">
+        <WhatsAppFloat />
+        <CartFloat />
+        <CartDrawer />
+      </div>
     </div>
   )
 }

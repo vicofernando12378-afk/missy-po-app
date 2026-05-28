@@ -326,9 +326,39 @@
    ============================================================ */
 
 @media print {
-  .no-print { display: none !important; }
-  body { background: white !important; }
-  .print-full { width: 100% !important; }
+  .no-print,
+  .print\:hidden,
+  header,
+  footer,
+  nav,
+  button,
+  .whatsapp-float,
+  .cart-float,
+  .cart-drawer,
+  #main-navbar,
+  #main-footer {
+    display: none !important;
+  }
+  
+  html, body {
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+    box-shadow: none !important;
+  }
+
+  .print-full {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+  }
 }
 
 /* ============================================================
