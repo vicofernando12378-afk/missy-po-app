@@ -70,20 +70,22 @@ export default function Navbar() {
         id="main-navbar"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-4 min-h-[72px] py-1.5">
+          <div className="flex items-center gap-4 h-[72px]">
 
             {/* LOGO */}
-            <Link
-              to="/"
-              className="flex-shrink-0 flex items-center"
-              id="nav-logo"
-            >
-              <img
-                src="/assets/logoheader.png"
-                alt="Missy & Po Logo"
-                className="w-16 h-16 md:w-24 md:h-24 object-contain rounded-xl border border-white/20 shadow-md"
-              />
-            </Link>
+            <div className="flex-shrink-0 w-[88px] h-[72px] md:w-32 md:h-[72px] relative z-20">
+              <Link
+                to="/"
+                className="absolute top-1 left-0"
+                id="nav-logo"
+              >
+                <img
+                  src="/assets/logoheader.png"
+                  alt="Missy & Po Logo"
+                  className="w-[88px] h-[88px] md:w-32 md:h-32 object-contain rounded-xl border border-white/20 shadow-xl bg-white"
+                />
+              </Link>
+            </div>
 
             {/* BARRA DE BÚSQUEDA — LiveSearch predictivo */}
             <LiveSearch />
