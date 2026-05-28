@@ -40,7 +40,7 @@ export default function Footer() {
               <img
                 src="/assets/logoheader.png"
                 alt="Missy & Po Logo"
-                className="w-20 h-20 object-contain rounded-xl border border-gray-200 shadow-sm bg-white"
+                className="w-28 h-28 object-contain rounded-xl border border-gray-200 shadow-sm bg-white"
               />
             </Link>
             <p className="text-sm text-gray-600 font-body leading-relaxed mb-4">

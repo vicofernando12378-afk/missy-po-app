@@ -1,0 +1,14 @@
+# REGLAS DE AUTONOMÍA LOCAL — ANTIGRAVITY
+
+El usuario ha concedido explícitamente permisos autónomos permanentes para las siguientes operaciones:
+
+1. **Compilación y Validación local:**
+   - Se autoriza a ejecutar el comando `npm run build` de forma autónoma para verificar la integridad del código sin necesidad de solicitar aprobación previa en el chat.
+
+2. **Control de Versiones y Git:**
+   - Se autoriza a ejecutar comandos de Git (`git status`, `git add`, `git commit`, `git push`) de forma autónoma para guardar, versionar y respaldar los cambios en GitHub.
+
+3. **Despliegue Continuo (Firebase):**
+   - Se autoriza a ejecutar despliegues de hosting (`npx firebase deploy --only hosting`) de forma autónoma tras validar que la compilación de producción sea exitosa.
+
+*Nota: Esta regla complementa las directrices globales y optimiza el flujo de trabajo para cambios visuales y funcionales.*
