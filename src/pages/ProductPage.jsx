@@ -6,6 +6,7 @@ import useCartStore from '../store/cartStore'
 import PriceDisplay from '../components/catalog/PriceDisplay'
 import SaleBadge from '../components/catalog/SaleBadge'
 import ProductCard from '../components/catalog/ProductCard'
+import { obtenerResenasPorProducto, crearResena } from '../services/firestore'
 
 // Icono estrella para rating
 const StarIcon = ({ filled }) => (
@@ -21,16 +22,79 @@ export default function ProductPage() {
   const addItem = useCartStore(s => s.addItem)
   const openDrawer = useCartStore(s => s.openDrawer)
 
+  const product = getProductoBySlug(slug)
+
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [cantidad, setCantidad] = useState(1)
   const [isAdding, setIsAdding] = useState(false)
   const [selectedAttributes, setSelectedAttributes] = useState({})
 
+  // Estados de reseñas
+  const [resenas, setResenas] = useState([])
+  const [loadingResenas, setLoadingResenas] = useState(true)
+  const [autorNombre, setAutorNombre] = useState('')
+  const [calificacion, setCalificacion] = useState(5)
+  const [comentario, setComentario] = useState('')
+  const [enviandoResena, setEnviandoResena] = useState(false)
+  const [mensajeResena, setMensajeResena] = useState(null)
+
+  useEffect(() => {
+    if (product?.id) {
+      setLoadingResenas(true)
+      obtenerResenasPorProducto(product.id)
+        .then(data => {
+          setResenas(data)
+          setLoadingResenas(false)
+        })
+        .catch(err => {
+          console.error(err)
+          setLoadingResenas(false)
+        })
+    }
+  }, [product])
+
+  const handleSubmitResena = async (e) => {
+    e.preventDefault()
+    if (!autorNombre.trim()) {
+      setMensajeResena({ success: false, text: 'Por favor, ingresa tu nombre.' })
+      return
+    }
+    if (!comentario.trim()) {
+      setMensajeResena({ success: false, text: 'Por favor, escribe un comentario.' })
+      return
+    }
+
+    setEnviandoResena(true)
+    setMensajeResena(null)
+
+    try {
+      await crearResena({
+        productoId: product.id,
+        productoNombre: product.nombre,
+        autorNombre: autorNombre.trim(),
+        calificacion,
+        comentario: comentario.trim()
+      })
+
+      setMensajeResena({ success: true, text: '🎉 ¡Gracias! Tu opinión ha sido enviada y está en espera de aprobación por el administrador.' })
+      setAutorNombre('')
+      setComentario('')
+      setCalificacion(5)
+    } catch (err) {
+      console.error(err)
+      setMensajeResena({ success: false, text: 'Hubo un error al enviar tu reseña. Por favor, intenta de nuevo.' })
+    } finally {
+      setEnviandoResena(false)
+    }
+  }
+
+  const ratingPromedio = resenas.length > 0
+    ? (resenas.reduce((sum, r) => sum + (r.calificacion || 0), 0) / resenas.length)
+    : 5.0
+
   useEffect(() => {
     fetchCatalog()
   }, [fetchCatalog])
-
-  const product = getProductoBySlug(slug)
 
   // Auto-seleccionar primer elemento del catálogo al cargar si el slug no coincide
   useEffect(() => {
@@ -245,10 +309,11 @@ export default function ProductPage() {
               <div className="flex items-center gap-1">
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <StarIcon key={star} filled={star <= 5} />
+                    <StarIcon key={star} filled={star <= Math.round(ratingPromedio)} />
                   ))}
                 </div>
-                <span className="text-[10px] text-gray-400 font-semibold">(5.0)</span>
+                <span className="text-[10px] text-gray-400 font-semibold">({ratingPromedio.toFixed(1)})</span>
+                <span className="text-[9px] text-gray-400 font-normal">({resenas.length} {resenas.length === 1 ? 'opinión' : 'opiniones'})</span>
               </div>
             </div>
 
@@ -377,6 +442,139 @@ export default function ProductPage() {
             />
           </div>
         )}
+
+        {/* SECCIÓN DE RESEÑAS / OPINIONES */}
+        <div className="border-t border-gray-100 pt-10 mb-16">
+          <h2 className="font-ui font-bold text-xl text-gray-800 mb-6">Opiniones de Clientes</h2>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* Columna Izquierda: Resumen y Formulario */}
+            <div className="space-y-6">
+              <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                <h3 className="font-ui font-bold text-gray-800 text-sm mb-3">Calificación Promedio</h3>
+                <div className="flex items-center gap-3">
+                  <span className="text-4xl font-brand text-gray-800">
+                    {ratingPromedio.toFixed(1)}
+                  </span>
+                  <div>
+                    <div className="flex text-amber-400 text-sm">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span key={star} className={star <= Math.round(ratingPromedio) ? 'text-amber-400' : 'text-gray-200'}>★</span>
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-gray-400 font-semibold mt-0.5">Basado en {resenas.length} opiniones</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Formulario */}
+              <form onSubmit={handleSubmitResena} className="bg-white rounded-2xl p-5 border border-gray-200 space-y-4">
+                <h3 className="font-ui font-bold text-gray-800 text-sm">Escribe una opinión</h3>
+                
+                <div>
+                  <label className="block text-xs font-ui font-semibold text-gray-500 mb-1">Nombre:</label>
+                  <input
+                    type="text"
+                    value={autorNombre}
+                    onChange={(e) => setAutorNombre(e.target.value)}
+                    placeholder="Tu nombre completo"
+                    className="w-full px-3 py-2 text-xs border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/20"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-ui font-semibold text-gray-500 mb-1">Calificación:</label>
+                  <div className="flex gap-1 text-xl">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        onClick={() => setCalificacion(star)}
+                        className={`transition-transform active:scale-95 ${star <= calificacion ? 'text-amber-400' : 'text-gray-200'}`}
+                      >
+                        ★
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-ui font-semibold text-gray-500 mb-1">Comentario:</label>
+                  <textarea
+                    rows="3"
+                    value={comentario}
+                    onChange={(e) => setComentario(e.target.value)}
+                    placeholder="¿Qué te pareció el producto? ¿A tu mascota le encantó?"
+                    className="w-full px-3 py-2 text-xs border border-gray-200 rounded-xl focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/20 font-body resize-none"
+                    required
+                  />
+                </div>
+
+                {mensajeResena && (
+                  <div className={`p-3 rounded-xl text-xs font-body leading-tight ${mensajeResena.success ? 'bg-green-50 text-green-700 border border-green-150' : 'bg-red-50 text-red-700 border border-red-150'}`}>
+                    {mensajeResena.text}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={enviandoResena}
+                  className="w-full py-2 bg-coral hover:bg-coral-dark text-white rounded-xl text-xs font-ui font-semibold transition-all disabled:opacity-50 active:scale-[0.98]"
+                >
+                  {enviandoResena ? 'Enviando...' : 'Enviar Opinión'}
+                </button>
+              </form>
+            </div>
+
+            {/* Columna Derecha: Lista de Reseñas */}
+            <div className="lg:col-span-2 space-y-4">
+              {loadingResenas ? (
+                <div className="py-12 text-center bg-gray-50 rounded-2xl border border-gray-100">
+                  <div className="inline-block w-6 h-6 border-2 border-coral border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-gray-450 text-xs mt-2">Cargando comentarios...</p>
+                </div>
+              ) : resenas.length === 0 ? (
+                <div className="py-12 text-center bg-gray-50 rounded-2xl border border-gray-100 flex flex-col items-center justify-center">
+                  <span className="text-3xl mb-2">🐾</span>
+                  <p className="font-ui font-semibold text-gray-600 text-sm">Sin opiniones todavía</p>
+                  <p className="text-gray-400 text-xs mt-0.5 max-w-xs px-4">Sé el primero en compartir tu experiencia y ayuda a otros dueños de mascotas.</p>
+                </div>
+              ) : (
+                <div className="space-y-3.5 max-h-[500px] overflow-y-auto pr-1 font-body">
+                  {resenas.map((r) => (
+                    <div key={r.id} className="bg-white rounded-2xl border border-gray-100 p-4 shadow-sm flex gap-3">
+                      <div className="w-8 h-8 rounded-full bg-coral/10 text-coral flex items-center justify-center font-bold text-xs shrink-0">
+                        {r.autor_nombre ? r.autor_nombre[0].toUpperCase() : '?'}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
+                          <p className="font-semibold text-gray-800 text-xs">{r.autor_nombre}</p>
+                          <p className="text-[10px] text-gray-400 font-body">
+                            {r.creado_en instanceof Date 
+                              ? r.creado_en.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', year: 'numeric' })
+                              : r.creado_en?.seconds 
+                                ? new Date(r.creado_en.seconds * 1000).toLocaleDateString('es-PE', { day: '2-digit', month: 'short', year: 'numeric' })
+                                : '—'}
+                          </p>
+                        </div>
+                        <div className="flex text-amber-400 text-xs mb-1.5">
+                          {[1, 2, 3, 4, 5].map((star) => (
+                            <span key={star} className={star <= r.calificacion ? 'text-amber-400' : 'text-gray-200'}>★</span>
+                          ))}
+                        </div>
+                        <p className="text-xs text-gray-600 leading-relaxed font-body italic">
+                          "{r.comentario}"
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
 
         {/* PRODUCTOS RELACIONADOS */}
         {relacionados.length > 0 && (

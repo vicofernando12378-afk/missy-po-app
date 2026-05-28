@@ -113,25 +113,40 @@ export async function obtenerRelacionados(categorias = [], excludeId, limite = 6
 
 // ── ADMIN: CREAR PRODUCTO ──────────────────────────────────
 export async function crearProducto(data) {
-  const ref = await addDoc(collection(db, COLECCION), {
-    ...data,
-    activo: true,
-    fecha_creacion: serverTimestamp(),
-    actualizado_en: serverTimestamp(),
-  })
-  return ref.id
+  try {
+    const ref = await addDoc(collection(db, COLECCION), {
+      ...data,
+      activo: data.activo ?? true,
+      fecha_creacion: serverTimestamp(),
+      actualizado_en: serverTimestamp(),
+    })
+    return ref.id
+  } catch (e) {
+    console.error('Error al crear producto:', e)
+    throw e
+  }
 }
 
 // ── ADMIN: ACTUALIZAR PRODUCTO ─────────────────────────────
 export async function actualizarProducto(id, data) {
-  const ref = doc(db, COLECCION, id)
-  await updateDoc(ref, { ...data, actualizado_en: serverTimestamp() })
+  try {
+    const ref = doc(db, COLECCION, id)
+    await updateDoc(ref, { ...data, actualizado_en: serverTimestamp() })
+  } catch (e) {
+    console.error('Error al actualizar producto:', e)
+    throw e
+  }
 }
 
 // ── ADMIN: ELIMINAR PRODUCTO (soft delete) ─────────────────
 export async function eliminarProducto(id) {
-  const ref = doc(db, COLECCION, id)
-  await updateDoc(ref, { activo: false, actualizado_en: serverTimestamp() })
+  try {
+    const ref = doc(db, COLECCION, id)
+    await updateDoc(ref, { activo: false, actualizado_en: serverTimestamp() })
+  } catch (e) {
+    console.error('Error al eliminar producto:', e)
+    throw e
+  }
 }
 
 // ── CONFIGURACIÓN DE ENVÍOS ──────────────────────────────────
@@ -684,4 +699,184 @@ export async function asignarRepartidorPedido(pedidoId, repartidorData) {
 }
 
 
+
+// ============================================================
+// ADMIN: KPIs DE VENTAS (para Dashboard de Ventas)
+// ============================================================
+
+/**
+ * Obtiene pedidos de los últimos N días para calcular KPIs.
+ * @param {number} dias - Rango de días hacia atrás (default 30).
+ * @returns {Array} Pedidos dentro del rango.
+ */
+export async function obtenerPedidosRango(dias = 30) {
+  try {
+    const desde = new Date()
+    desde.setDate(desde.getDate() - dias)
+    const q = query(
+      collection(db, 'myp_pedidos'),
+      where('creado_en', '>=', desde),
+      orderBy('creado_en', 'desc')
+    )
+    const snap = await getDocs(q)
+    return snap.docs.map(d => {
+      const data = d.data()
+      return {
+        id: d.id,
+        ...data,
+        creado_en: data.creado_en?.toDate ? data.creado_en.toDate() : new Date(data.creado_en),
+      }
+    })
+  } catch (e) {
+    console.error('Error al obtener pedidos por rango:', e)
+    throw e
+  }
+}
+
+/**
+ * Obtiene los productos más vendidos basado en los items de todos los pedidos confirmados.
+ * @param {number} limite - Número máximo de resultados.
+ * @returns {Array} Productos ordenados por cantidad vendida.
+ */
+export async function obtenerProductosMasVendidos(limite = 4) {
+  try {
+    // Traer pedidos confirmados (no cancelados)
+    const q = query(
+      collection(db, 'myp_pedidos'),
+      where('estado', '!=', 'cancelado'),
+      limit(100) // acotar para no leer toda la colección
+    )
+    const snap = await getDocs(q)
+    
+    // Agregar ventas por producto
+    const conteo = {}
+    snap.docs.forEach(d => {
+      const items = d.data().items || []
+      items.forEach(item => {
+        const key = item.sku || item.id
+        if (!conteo[key]) {
+          conteo[key] = {
+            sku: item.sku,
+            nombre: item.nombre,
+            imagen: item.imagen,
+            slug: item.slug || null,
+            cantidad: 0,
+          }
+        }
+        conteo[key].cantidad += item.cantidad || 1
+      })
+    })
+
+    return Object.values(conteo)
+      .sort((a, b) => b.cantidad - a.cantidad)
+      .slice(0, limite)
+  } catch (e) {
+    console.error('Error al obtener productos más vendidos:', e)
+    return []
+  }
+}
+
+// ============================================================
+// ADMIN: RESEÑAS (myp_reviews)
+// ============================================================
+
+/**
+ * Obtiene todas las reseñas. Filtrables por estado.
+ * @param {'pendiente'|'aprobada'|'rechazada'|null} estado
+ */
+export async function obtenerResenas(estado = null) {
+  try {
+    let q = query(collection(db, 'myp_reviews'), orderBy('creado_en', 'desc'))
+    if (estado) {
+      q = query(collection(db, 'myp_reviews'), where('estado', '==', estado), orderBy('creado_en', 'desc'))
+    }
+    const snap = await getDocs(q)
+    return snap.docs.map(d => {
+      const data = d.data()
+      return {
+        id: d.id,
+        ...data,
+        creado_en: data.creado_en?.toDate ? data.creado_en.toDate() : new Date(data.creado_en),
+      }
+    })
+  } catch (e) {
+    console.error('Error al obtener reseñas:', e)
+    throw e
+  }
+}
+
+/**
+ * Cambia el estado de una reseña (aprobada/rechazada/pendiente).
+ */
+export async function actualizarEstadoResena(resenaId, nuevoEstado) {
+  try {
+    await updateDoc(doc(db, 'myp_reviews', resenaId), {
+      estado: nuevoEstado,
+      actualizado_en: serverTimestamp(),
+    })
+  } catch (e) {
+    console.error('Error al actualizar estado de reseña:', e)
+    throw e
+  }
+}
+
+/**
+ * Elimina una reseña permanentemente.
+ */
+export async function eliminarResena(resenaId) {
+  try {
+    await deleteDoc(doc(db, 'myp_reviews', resenaId))
+  } catch (e) {
+    console.error('Error al eliminar reseña:', e)
+    throw e
+  }
+}
+
+/**
+ * Crea una nueva reseña desde la página de producto (cliente autenticado o invitado).
+ */
+export async function crearResena({ productoId, productoNombre, autorNombre, calificacion, comentario, userId = null }) {
+  try {
+    await addDoc(collection(db, 'myp_reviews'), {
+      producto_id: productoId,
+      producto_nombre: productoNombre,
+      autor_nombre: autorNombre,
+      calificacion,
+      comentario,
+      userId,
+      estado: 'pendiente', // requiere aprobación del admin
+      creado_en: serverTimestamp(),
+      actualizado_en: serverTimestamp(),
+    })
+  } catch (e) {
+    console.error('Error al crear reseña:', e)
+    throw e
+  }
+}
+
+/**
+ * Obtiene las reseñas aprobadas de un producto (para mostrar en tienda).
+ */
+export async function obtenerResenasPorProducto(productoId) {
+  try {
+    const q = query(
+      collection(db, 'myp_reviews'),
+      where('producto_id', '==', productoId),
+      where('estado', '==', 'aprobada'),
+      orderBy('creado_en', 'desc')
+    )
+    const snap = await getDocs(q)
+    return snap.docs.map(d => {
+      const data = d.data()
+      return {
+        id: d.id,
+        ...data,
+        creado_en: data.creado_en?.toDate ? data.creado_en.toDate() : new Date(),
+      }
+    })
+  } catch (e) {
+    console.error('Error al obtener reseñas del producto:', e)
+    return []
+  }
+}
 

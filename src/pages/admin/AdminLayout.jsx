@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
-import { auth } from '../../services/firebase'
+import { collection, query, where, onSnapshot } from 'firebase/firestore'
+import { auth, db } from '../../services/firebase'
 
 const ADMIN_EMAIL_BYPASS = 'victorchavezd@gmail.com'
 
@@ -11,6 +12,7 @@ export default function AdminLayout() {
   const [isBypass, setIsBypass] = useState(false)
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [pedidosNuevos, setPedidosNuevos] = useState(0) // badge tiempo real
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -57,6 +59,21 @@ export default function AdminLayout() {
 
     return () => unsubscribe()
   }, [navigate])
+
+  // ── BADGE: Escucha pedidos en estado 'recibido' en tiempo real ──
+  useEffect(() => {
+    if (!isAdmin) return
+    const q = query(
+      collection(db, 'myp_pedidos'),
+      where('estado_pedido', '==', 'recibido')
+    )
+    const unsub = onSnapshot(q, (snap) => {
+      setPedidosNuevos(snap.size)
+    }, (err) => {
+      console.error('Error en listener de pedidos:', err)
+    })
+    return () => unsub()
+  }, [isAdmin])
 
   const handleLogout = async () => {
     try {
@@ -106,10 +123,13 @@ export default function AdminLayout() {
   }
 
   const menuItems = [
-    { path: '/admin', label: 'Pedidos / Dashboard', icon: '📦', end: true },
-    { path: '/admin/caja', label: 'Caja Diaria', icon: '💰' },
-    { path: '/admin/inventario', label: 'Inventario de Stock', icon: '🗂️' },
-    { path: '/admin/configuracion', label: 'Configuración de Envíos/Cupones', icon: '⚙️' }
+    { path: '/admin',          label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
+    { path: '/admin/ventas',   label: 'Ventas / KPIs',    icon: '📊' },
+    { path: '/admin/productos',label: 'Catálogo',          icon: '🛍️' },
+    { path: '/admin/caja',     label: 'Caja Diaria',       icon: '💰' },
+    { path: '/admin/inventario', label: 'Inventario',      icon: '🗂️' },
+    { path: '/admin/resenas',  label: 'Reseñas',           icon: '⭐' },
+    { path: '/admin/configuracion', label: 'Configuración', icon: '⚙️' },
   ]
 
   return (
@@ -139,7 +159,12 @@ export default function AdminLayout() {
               }
             >
               <span className="text-xl">{item.icon}</span>
-              <span>{item.label}</span>
+              <span className="flex-1">{item.label}</span>
+              {item.badge > 0 && (
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-coral text-white text-[10px] font-bold animate-pulse">
+                  {item.badge > 9 ? '9+' : item.badge}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -208,7 +233,12 @@ export default function AdminLayout() {
               }
             >
               <span className="text-xl">{item.icon}</span>
-              <span>{item.label}</span>
+              <span className="flex-1">{item.label}</span>
+              {item.badge > 0 && (
+                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-coral text-white text-[10px] font-bold animate-pulse">
+                  {item.badge > 9 ? '9+' : item.badge}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>

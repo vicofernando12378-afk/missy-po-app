@@ -156,13 +156,20 @@ export default function CajaDiaria() {
   const aperturaSoles = caja ? caja.monto_apertura / 100 : 0
 
   // Ventas automáticas desglosadas
+  // FIX: El checkout guarda metodo como 'Yape/Plin'. Cubrir también variantes legacy.
+  const esYapePlin = (metodo) => {
+    if (!metodo) return false
+    const m = metodo.toLowerCase()
+    return m.includes('yape') || m.includes('plin') || m === 'transferencia'
+  }
+
   const ventasYapePlinSoles = ventasDia
-    .filter(v => v.pago?.metodo === 'transferencia' || v.pago?.metodo === 'yape' || v.pago?.metodo === 'plin')
-    .reduce((sum, v) => sum + (v.total_final || 0), 0) / 100
+    .filter(v => esYapePlin(v.pago?.metodo))
+    .reduce((sum, v) => sum + ((v.total_final || v.comprobante?.total || 0)), 0) / 100
 
   const ventasTarjetaSoles = ventasDia
-    .filter(v => v.pago?.metodo !== 'transferencia' && v.pago?.metodo !== 'yape' && v.pago?.metodo !== 'plin')
-    .reduce((sum, v) => sum + (v.total_final || 0), 0) / 100
+    .filter(v => !esYapePlin(v.pago?.metodo))
+    .reduce((sum, v) => sum + ((v.total_final || v.comprobante?.total || 0)), 0) / 100
 
   const totalVentasAutoSoles = ventasYapePlinSoles + ventasTarjetaSoles
 

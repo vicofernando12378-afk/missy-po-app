@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useCartStore from '../../store/cartStore'
+import { obtenerProductosMasVendidos } from '../../services/firestore'
+import useCatalogStore from '../../store/catalogStore'
 
 // ============================================================
 // CART DRAWER — Panel lateral izquierdo (flujo primario mobile)
@@ -95,12 +97,7 @@ function CartDrawerItem({ item }) {
   )
 }
 
-// ─── BEST SELLERS MOCK ─────────────────────────────────────
-const BEST_SELLERS = [
-  { id: 'bs1', slug: 'arnes-lou', nombre: 'Arnés Lou', precio_regular: 3500, precio_oferta: 2500 },
-  { id: 'bs2', slug: 'collar-flores', nombre: 'Collar Flores', precio_regular: 1800, precio_oferta: 1200 },
-  { id: 'bs3', slug: 'correa-retractil', nombre: 'Correa 5m', precio_regular: 3000, precio_oferta: 2200 },
-]
+
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────
 export default function CartDrawer() {
@@ -110,6 +107,51 @@ export default function CartDrawer() {
   const [couponInput, setCouponInput] = useState('')
   const [couponMsg, setCouponMsg] = useState(null)
   const [isApplying, setIsApplying] = useState(false)
+
+  const [bestSellers, setBestSellers] = useState([])
+  const { productos, fetchCatalog } = useCatalogStore()
+
+  useEffect(() => {
+    async function loadBestSellers() {
+      let catalog = productos
+      if (catalog.length === 0) {
+        catalog = await fetchCatalog()
+      }
+
+      try {
+        const mostSold = await obtenerProductosMasVendidos(5)
+        let list = mostSold
+          .map(item => {
+            const prodCompleto = catalog.find(p => p.sku === item.sku || p.id === item.id || p.slug === item.slug)
+            if (prodCompleto && prodCompleto.activo) {
+              return prodCompleto
+            }
+            return null
+          })
+          .filter(Boolean)
+
+        if (list.length < 3) {
+          const ofertas = catalog.filter(p => p.activo && p.precio_oferta && p.stock > 0 && !list.some(item => item.id === p.id))
+          const comunes = catalog.filter(p => p.activo && !p.precio_oferta && p.stock > 0 && !list.some(item => item.id === p.id))
+          const fallbacks = [...ofertas, ...comunes]
+          
+          while (list.length < 3 && fallbacks.length > 0) {
+            list.push(fallbacks.shift())
+          }
+        }
+
+        setBestSellers(list.slice(0, 4))
+      } catch (err) {
+        console.error('Error cargando best sellers:', err)
+        const fallbackList = catalog.filter(p => p.activo && p.stock > 0).slice(0, 3)
+        setBestSellers(fallbackList)
+      }
+    }
+
+    if (isDrawerOpen) {
+      loadBestSellers()
+    }
+  }, [isDrawerOpen, productos, fetchCatalog])
 
   const handleApplyCoupon = async () => {
     if (!couponInput.trim()) return
@@ -280,31 +322,43 @@ export default function CartDrawer() {
         )}
 
         {/* ── BEST SELLING PRODUCTS ─────────────────────────── */}
-        <div className="border-t border-gray-100 px-4 py-3 bg-gray-50">
-          <p className="text-[10px] font-ui font-bold text-gray-400 uppercase tracking-widest mb-2">
-            Más Vendidos
-          </p>
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-            {BEST_SELLERS.map((p) => (
-              <Link
-                key={p.id}
-                to={`/producto/${p.slug}`}
-                onClick={closeDrawer}
-                className="flex-shrink-0 w-20 text-center"
-                id={`cart-bestseller-${p.id}`}
-              >
-                <div className="w-20 h-20 rounded-xl bg-gray-200 mb-1 flex items-center justify-center text-2xl">
-                  🐾
-                </div>
-                <p className="text-[10px] font-ui font-semibold text-gray-700 line-clamp-2 leading-tight mb-0.5">
-                  {p.nombre}
-                </p>
-                <p className="text-[10px] text-gray-400 line-through">S/ {(p.precio_regular / 100).toFixed(2)}</p>
-                <p className="text-[10px] font-bold text-green-600">S/ {(p.precio_oferta / 100).toFixed(2)}</p>
-              </Link>
-            ))}
+        {bestSellers.length > 0 && (
+          <div className="border-t border-gray-100 px-4 py-3 bg-gray-50">
+            <p className="text-[10px] font-ui font-bold text-gray-400 uppercase tracking-widest mb-2">
+              Más Vendidos
+            </p>
+            <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
+              {bestSellers.map((p) => (
+                <Link
+                  key={p.id}
+                  to={`/producto/${p.slug}`}
+                  onClick={closeDrawer}
+                  className="flex-shrink-0 w-20 text-center"
+                  id={`cart-bestseller-${p.id}`}
+                >
+                  <div className="w-20 h-20 rounded-xl bg-white border border-gray-100 mb-1 overflow-hidden flex items-center justify-center">
+                    {p.imagenes?.[0] ? (
+                      <img src={p.imagenes[0]} alt={p.nombre} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-2xl">🐾</span>
+                    )}
+                  </div>
+                  <p className="text-[10px] font-ui font-semibold text-gray-700 line-clamp-2 leading-tight mb-0.5">
+                    {p.nombre}
+                  </p>
+                  {p.precio_oferta ? (
+                    <>
+                      <p className="text-[10px] text-gray-400 line-through font-body">S/ {(p.precio_regular / 100).toFixed(2)}</p>
+                      <p className="text-[10px] font-bold text-green-600 font-body">S/ {(p.precio_oferta / 100).toFixed(2)}</p>
+                    </>
+                  ) : (
+                    <p className="text-[10px] font-bold text-gray-700 font-body">S/ {(p.precio_regular / 100).toFixed(2)}</p>
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   )

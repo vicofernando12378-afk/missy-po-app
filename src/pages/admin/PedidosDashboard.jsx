@@ -66,8 +66,8 @@ export default function PedidosDashboard() {
     const texto = filtroTexto.toLowerCase().trim()
     const nombreCliente = (p.cliente?.nombre || '').toLowerCase()
     const emailCliente = (p.cliente?.email || '').toLowerCase()
-    const telefonoCliente = (p.cliente?.telefono || '').toLowerCase()
-    const docCliente = (p.cliente?.documento || '').toLowerCase()
+    const telefonoCliente = (p.cliente?.celular || '').toLowerCase()     // FIX: celular (no telefono)
+    const docCliente = (p.cliente?.documento_numero || '').toLowerCase() // FIX: documento_numero (no documento)
     const idPedido = p.id.toLowerCase()
 
     const cumpleTexto = !texto || 
@@ -184,6 +184,70 @@ export default function PedidosDashboard() {
     window.print()
   }
 
+  const handleExportarCSV = () => {
+    if (pedidosFiltrados.length === 0) return
+
+    // 1. Cabeceras del CSV
+    const cabeceras = [
+      'ID Pedido',
+      'Fecha',
+      'Cliente',
+      'Celular',
+      'DNI/RUC',
+      'Direccion',
+      'Distrito',
+      'Metodo Pago',
+      'Estado Pago',
+      'Monto Total (S/)',
+      'Estado Pedido',
+      'Courier / Repartidor'
+    ]
+
+    // 2. Filas de datos
+    const filas = pedidosFiltrados.map(p => {
+      const fecha = p.creado_en ? p.creado_en.toLocaleString('es-PE') : ''
+      const total = p.total_final 
+        ? (p.total_final / 100).toFixed(2) 
+        : (p.comprobante?.total ? (p.comprobante.total / 100).toFixed(2) : '0.00')
+      
+      const repartidor = p.envio?.repartidor?.nombre
+        ? `${p.envio.repartidor.nombre} (${p.envio.repartidor.compania || 'Propio'})`
+        : (p.envio?.courier || '—')
+
+      return [
+        p.id,
+        fecha,
+        p.cliente?.nombre || '—',
+        p.cliente?.celular || '—',
+        p.cliente?.documento_numero || '—',
+        p.cliente?.direccion || '—',
+        p.cliente?.distrito || '—',
+        p.pago?.metodo || '—',
+        p.pago?.estado || 'pendiente',
+        total,
+        p.estado || 'recibido',
+        repartidor
+      ]
+    })
+
+    // 3. Crear el contenido CSV
+    const csvContent = [
+      cabeceras.join(','),
+      ...filas.map(fila => fila.map(valor => `"${String(valor).replace(/"/g, '""')}"`).join(','))
+    ].join('\n')
+
+    // UTF-8 BOM para que Excel abra bien las tildes y caracteres hispanos
+    const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.setAttribute('href', url)
+    link.setAttribute('download', `pedidos_missy_po_${new Date().toISOString().split('T')[0]}.csv`)
+    link.style.visibility = 'hidden'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   // Clases CSS para badges de estados
   const getBadgeClass = (estado) => {
     switch (estado) {
@@ -244,6 +308,14 @@ export default function PedidosDashboard() {
               <option value="entregado">Entregados</option>
               <option value="cancelado">Cancelados</option>
             </select>
+            {/* Botón Exportar CSV */}
+            <button
+              onClick={handleExportarCSV}
+              disabled={pedidosFiltrados.length === 0}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 disabled:opacity-50 disabled:bg-gray-50 disabled:text-gray-400 rounded-xl border border-emerald-100 text-sm font-semibold transition-all active:scale-[0.98] shrink-0"
+            >
+              📥 Exportar CSV
+            </button>
           </div>
         </div>
 
@@ -281,10 +353,10 @@ export default function PedidosDashboard() {
                     </td>
                     <td className="px-6 py-4">
                       <p className="text-sm font-semibold text-gray-800 leading-tight">{pedido.cliente?.nombre}</p>
-                      <p className="text-xs text-gray-400 leading-tight mt-0.5">{pedido.cliente?.telefono}</p>
+                      <p className="text-xs text-gray-400 leading-tight mt-0.5">{pedido.cliente?.celular}</p>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-sm text-gray-600 capitalize">{pedido.pago?.metodo === 'transferencia' ? 'Yape/Plin' : pedido.pago?.metodo}</p>
+                      <p className="text-sm text-gray-600 capitalize">{pedido.pago?.metodo?.toLowerCase() === 'transferencia' ? 'Yape/Plin' : (pedido.pago?.metodo || '—')}</p>
                       <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase ${
                         pedido.pago?.estado === 'confirmado' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
                       }`}>
@@ -292,7 +364,7 @@ export default function PedidosDashboard() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-right font-semibold text-gray-800">
-                      S/ {(pedido.total_final || 0) / 100}
+                      S/ {((pedido.total_final || pedido.comprobante?.total || 0) / 100).toFixed(2)}
                     </td>
                     <td className="px-6 py-4 text-center">
                       <span className={`inline-block text-xs font-semibold px-3 py-1 rounded-full capitalize ${getBadgeClass(pedido.estado)}`}>
@@ -337,14 +409,15 @@ export default function PedidosDashboard() {
               </button>
 
               {/* COLUMNA IZQUIERDA: Comprobante de Pago Yape/Plin (Oculto en impresión y solo si aplica) */}
-              {pedidoSeleccionado.pago?.metodo === 'transferencia' && (
+              {(pedidoSeleccionado.pago?.metodo === 'Yape/Plin' || pedidoSeleccionado.pago?.metodo === 'transferencia') && (
                 <div className="w-full md:w-2/5 bg-gray-50 border-r border-gray-100 p-6 flex flex-col items-center justify-center gap-4 print:hidden">
                   <h3 className="font-semibold text-gray-800 text-sm self-start">Comprobante de Transferencia:</h3>
                   
-                  {pedidoSeleccionado.comprobante?.url ? (
+                  {/* FIX: URL guardada en pago.recibo_url, no en comprobante.url */}
+                  {(pedidoSeleccionado.pago?.recibo_url || pedidoSeleccionado.comprobante?.url) ? (
                     <div className="relative w-full max-w-[280px] h-[400px] bg-white rounded-2xl border border-gray-200 shadow-inner overflow-hidden flex items-center justify-center">
                       <img
-                        src={pedidoSeleccionado.comprobante.url}
+                        src={pedidoSeleccionado.pago?.recibo_url || pedidoSeleccionado.comprobante?.url}
                         alt="Comprobante de transferencia"
                         style={{
                           transform: `scale(${zoom}) rotate(${rotation}deg)`,
@@ -360,7 +433,7 @@ export default function PedidosDashboard() {
                     </div>
                   )}
 
-                  {pedidoSeleccionado.comprobante?.url && (
+                  {(pedidoSeleccionado.pago?.recibo_url || pedidoSeleccionado.comprobante?.url) && (
                     <div className="flex gap-2 bg-white px-3 py-2 rounded-xl shadow-sm border border-gray-200">
                       <button 
                         onClick={() => setZoom(z => Math.max(0.5, z - 0.25))}
@@ -420,12 +493,12 @@ export default function PedidosDashboard() {
                   <div>
                     <h4 className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-2">Datos del Cliente:</h4>
                     <p className="text-sm font-semibold text-gray-800">{pedidoSeleccionado.cliente?.nombre}</p>
-                    <p className="text-xs text-gray-500 mt-1"><strong>DNI/RUC:</strong> {pedidoSeleccionado.cliente?.documento || 'No provisto'}</p>
+                    <p className="text-xs text-gray-500 mt-1"><strong>DNI/RUC:</strong> {pedidoSeleccionado.cliente?.documento_numero || 'No provisto'}</p>
                     <p className="text-xs text-gray-500"><strong>Email:</strong> {pedidoSeleccionado.cliente?.email}</p>
                     <p className="text-xs text-gray-500">
-                      <strong>Teléfono:</strong> {pedidoSeleccionado.cliente?.telefono} 
+                      <strong>Celular:</strong> {pedidoSeleccionado.cliente?.celular}
                       <a 
-                        href={`https://wa.me/51${pedidoSeleccionado.cliente?.telefono.replace(/\s+/g, '')}`} 
+                        href={`https://wa.me/51${(pedidoSeleccionado.cliente?.celular || '').replace(/\s+/g, '')}`} 
                         target="_blank" 
                         rel="noreferrer"
                         className="ml-2 text-emerald-600 hover:text-emerald-800 font-semibold print:hidden"
@@ -487,10 +560,10 @@ export default function PedidosDashboard() {
                           {item.variante && item.variante !== 'default' && (
                             <p className="text-xs text-gray-400 capitalize">{item.variante}</p>
                           )}
-                          <p className="text-xs text-gray-450 mt-0.5">Cant: {item.cantidad} x S/ {(item.precio || 0) / 100}</p>
+                          <p className="text-xs text-gray-450 mt-0.5">Cant: {item.cantidad} x S/ {(item.precio_unitario || 0) / 100}</p>
                         </div>
                         <span className="font-semibold text-gray-800">
-                          S/ {((item.precio || 0) * item.cantidad) / 100}
+                          S/ {((item.precio_unitario || 0) * item.cantidad) / 100}
                         </span>
                       </div>
                     ))}
@@ -501,7 +574,8 @@ export default function PedidosDashboard() {
                 <div className="py-6 border-b border-gray-100 flex flex-col items-end gap-1.5">
                   <div className="flex justify-between w-64 text-sm text-gray-500">
                     <span>Subtotal:</span>
-                    <span>S/ {(pedidoSeleccionado.total_final - (pedidoSeleccionado.envio?.costo_envio || 0) + (pedidoSeleccionado.descuento || 0)) / 100}</span>
+                    {/* FIX: Leer total desde comprobante.total o total_final, descontar envío y sumar descuento */}
+                    <span>S/ {((pedidoSeleccionado.total_final || pedidoSeleccionado.comprobante?.total || 0) / 100 - (pedidoSeleccionado.envio?.costo_envio || 0) / 100 + (pedidoSeleccionado.descuento || 0) / 100).toFixed(2)}</span>
                   </div>
                   
                   {pedidoSeleccionado.descuento > 0 && (
@@ -518,7 +592,7 @@ export default function PedidosDashboard() {
 
                   <div className="flex justify-between w-64 text-base font-bold text-gray-850 border-t border-gray-100 pt-2 mt-1">
                     <span>Total Cancelado:</span>
-                    <span>S/ {(pedidoSeleccionado.total_final || 0) / 100}</span>
+                    <span>S/ {((pedidoSeleccionado.total_final || pedidoSeleccionado.comprobante?.total || 0) / 100).toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -736,7 +810,7 @@ export default function PedidosDashboard() {
 
                   <div className="border-b border-dashed border-gray-400 pb-3 mb-3">
                     <p><strong>CLIENTE:</strong> {pedidoSeleccionado.cliente?.nombre}</p>
-                    <p><strong>CELULAR:</strong> {pedidoSeleccionado.cliente?.telefono}</p>
+                    <p><strong>CELULAR:</strong> {pedidoSeleccionado.cliente?.celular}</p>
                     <p><strong>CIUDAD:</strong> {pedidoSeleccionado.envio?.departamento} - {pedidoSeleccionado.envio?.distrito}</p>
                     <p className="whitespace-normal"><strong>DIRECCIÓN:</strong> {pedidoSeleccionado.envio?.direccion}</p>
                     {pedidoSeleccionado.envio?.referencia && <p><strong>REF:</strong> {pedidoSeleccionado.envio.referencia}</p>}
@@ -768,7 +842,7 @@ export default function PedidosDashboard() {
                   <div className="text-right">
                     <div className="flex justify-between">
                       <span>Subtotal:</span>
-                      <span>S/ {(pedidoSeleccionado.total_final - (pedidoSeleccionado.envio?.costo_envio || 0) + (pedidoSeleccionado.descuento || 0)) / 100}</span>
+                      <span>S/ {((pedidoSeleccionado.total_final || pedidoSeleccionado.comprobante?.total || 0) / 100 - (pedidoSeleccionado.envio?.costo_envio || 0) / 100 + (pedidoSeleccionado.descuento || 0) / 100).toFixed(2)}</span>
                     </div>
                     {pedidoSeleccionado.descuento > 0 && (
                       <div className="flex justify-between text-coral">
@@ -782,7 +856,7 @@ export default function PedidosDashboard() {
                     </div>
                     <div className="flex justify-between font-bold text-sm border-t border-dashed border-gray-400 pt-1 mt-1">
                       <span>TOTAL:</span>
-                      <span>S/ {(pedidoSeleccionado.total_final || 0) / 100}</span>
+                      <span>S/ {((pedidoSeleccionado.total_final || pedidoSeleccionado.comprobante?.total || 0) / 100).toFixed(2)}</span>
                     </div>
                   </div>
 

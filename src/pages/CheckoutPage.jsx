@@ -208,6 +208,7 @@ export default function CheckoutPage() {
       })),
       estado: 'recibido',
       estado_pedido: 'recibido',
+      total_final: totalFinalCents,      // Campo raíz para acceso rápido desde el admin
       cupon: couponCode || null,
       descuento_porcentaje: couponDiscount
     }

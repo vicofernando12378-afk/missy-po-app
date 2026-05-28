@@ -36,8 +36,10 @@ const useCartStore = create(
 
         let newItems
         if (existing) {
+          // FIX: Usar la misma lógica de búsqueda (id + variante) y NO _key,
+          // para evitar duplicados cuando hay items persistidos sin _key
           newItems = items.map((i) =>
-            i._key === key
+            i.id === product.id && i.variante === (product.variante || 'default')
               ? { ...i, cantidad: i.cantidad + (product.cantidad || 1) }
               : i
           )

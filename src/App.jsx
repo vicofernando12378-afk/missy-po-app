@@ -15,6 +15,9 @@ import PedidosDashboard from './pages/admin/PedidosDashboard'
 import CajaDiaria from './pages/admin/CajaDiaria'
 import InventarioStock from './pages/admin/InventarioStock'
 import ConfiguracionEnviosCupones from './pages/admin/ConfiguracionEnviosCupones'
+import ProductosCRUD from './pages/admin/ProductosCRUD'
+import VentasDashboard from './pages/admin/VentasDashboard'
+import ResenasDashboard from './pages/admin/ResenasDashboard'
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
           <Route path="caja" element={<CajaDiaria />} />
           <Route path="inventario" element={<InventarioStock />} />
           <Route path="configuracion" element={<ConfiguracionEnviosCupones />} />
+          <Route path="productos" element={<ProductosCRUD />} />
+          <Route path="ventas" element={<VentasDashboard />} />
+          <Route path="resenas" element={<ResenasDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
