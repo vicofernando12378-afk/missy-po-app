@@ -25,38 +25,52 @@ export async function buscarProductos(termino, limite = 10) {
   return snap.docs.map(d => ({ id: d.id, ...d.data() }))
 }
 
-// ── OBTENER CATÁLOGO PAGINADO ───────────────────────────────
 export async function obtenerProductos({
   categoria = null,
   soloOfertas = false,
-  orden = 'creado_en',
+  orden = 'fecha_creacion',
   paginaSize = 12,
   cursor = null,
 } = {}) {
+  // Consulta simple de activos para evitar requerir índices compuestos en Firestore
   let q = query(
     collection(db, COLECCION),
-    where('activo', '==', true),
-    orderBy(orden, 'desc'),
-    limit(paginaSize)
+    where('activo', '==', true)
   )
 
   if (categoria) {
     q = query(q, where('categorias', 'array-contains', categoria))
   }
 
-  if (soloOfertas) {
-    q = query(q, where('precio_oferta', '!=', null))
-  }
-
-  if (cursor) {
-    q = query(q, startAfter(cursor))
-  }
-
   const snap = await getDocs(q)
-  const productos = snap.docs.map(d => ({ id: d.id, ...d.data() }))
-  const lastDoc = snap.docs[snap.docs.length - 1] || null
+  let productos = snap.docs.map(d => ({ id: d.id, ...d.data() }))
 
-  return { productos, lastDoc, hasMore: snap.docs.length === paginaSize }
+  // Ordenar en memoria
+  productos.sort((a, b) => {
+    const valA = a[orden] || 0
+    const valB = b[orden] || 0
+    if (typeof valA === 'string') {
+      return valB.localeCompare(valA)
+    }
+    return valB - valA
+  })
+
+  // Filtrar ofertas en memoria si aplica
+  if (soloOfertas) {
+    productos = productos.filter(p => p.precio_oferta !== null)
+  }
+
+  // Paginación en memoria
+  let startIndex = 0
+  if (cursor) {
+    const idx = productos.findIndex(p => p.id === (cursor.id || cursor))
+    if (idx !== -1) startIndex = idx + 1
+  }
+
+  const paginated = productos.slice(startIndex, startIndex + paginaSize)
+  const lastDoc = paginated[paginated.length - 1] || null
+
+  return { productos: paginated, lastDoc, hasMore: (startIndex + paginaSize) < productos.length }
 }
 
 // ── OBTENER UN PRODUCTO POR SLUG ───────────────────────────
@@ -102,7 +116,7 @@ export async function crearProducto(data) {
   const ref = await addDoc(collection(db, COLECCION), {
     ...data,
     activo: true,
-    creado_en: serverTimestamp(),
+    fecha_creacion: serverTimestamp(),
     actualizado_en: serverTimestamp(),
   })
   return ref.id

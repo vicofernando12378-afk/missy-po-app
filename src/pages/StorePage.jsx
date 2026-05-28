@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import ProductGrid from '../components/catalog/ProductGrid'
@@ -18,9 +18,25 @@ export default function StorePage() {
 
   // Obtener query de búsqueda de la URL (si viene del buscador predictivo o de navegación)
   const searchQuery = searchParams.get('q') || ''
+  const catParam = searchParams.get('cat') || ''
 
   // Categorías dinámicas a partir de los productos reales cargados en memoria
-  const categorias = ['Todos', ...new Set(productos.flatMap(p => p.categorias || []))]
+  const categorias = useMemo(() => ['Todos', ...new Set(productos.flatMap(p => p.categorias || []))], [productos])
+
+  // Sincronizar el parámetro 'cat' de la URL con el estado de la categoría seleccionada
+  useEffect(() => {
+    if (catParam) {
+      const matchedCat = categorias.find(c => c.toLowerCase() === catParam.toLowerCase())
+      if (matchedCat) {
+        setSelectedCategory(matchedCat)
+      } else {
+        // Capitalizar la primera letra si no se encuentra en las categorías dinámicas aún
+        setSelectedCategory(catParam.charAt(0).toUpperCase() + catParam.slice(1))
+      }
+    } else {
+      setSelectedCategory('Todos')
+    }
+  }, [catParam, productos, categorias])
 
   // Filtrar productos
   let filtered = [...productos]
@@ -35,9 +51,11 @@ export default function StorePage() {
     )
   }
 
-  // 2. Filtrar por categoría seleccionada
+  // 2. Filtrar por categoría seleccionada (usando coincidencia insensible a mayúsculas/minúsculas)
   if (selectedCategory !== 'Todos') {
-    filtered = filtered.filter(p => p.categorias?.includes(selectedCategory))
+    filtered = filtered.filter(p => 
+      p.categorias?.some(c => c.toLowerCase() === selectedCategory.toLowerCase())
+    )
   }
 
   // 3. Ordenar
@@ -60,9 +78,10 @@ export default function StorePage() {
 
   const handleCategorySelect = (cat) => {
     setSelectedCategory(cat)
-    // Limpiar búsqueda si se cambia de categoría para una mejor experiencia de navegación
-    if (searchQuery) {
+    if (cat === 'Todos') {
       setSearchParams({})
+    } else {
+      setSearchParams({ cat: cat.toLowerCase() })
     }
   }
 
