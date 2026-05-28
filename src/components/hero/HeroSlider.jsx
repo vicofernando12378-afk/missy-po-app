@@ -10,6 +10,7 @@ const SLIDES = [
     subtitle: 'Accesorios premium para tu mascota',
     cta: 'Ver Colección',
     href: '/tienda',
+    videoSrc: '/assets/hero-video.mp4',
     bgFrom: '#E56A6A',
     bgTo: '#F4A0A0',
     emoji: '🐕',
@@ -92,8 +93,22 @@ export default function HeroSlider() {
           }}
           aria-hidden={idx !== current}
         >
+          {s.videoSrc && (
+            <>
+              <video
+                src={s.videoSrc}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/35" />
+            </>
+          )}
+
           {/* CONTENIDO DEL SLIDE */}
-          <div className="max-w-7xl mx-auto px-4 h-full flex items-center">
+          <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center z-10">
             <div className="flex-1 py-16">
 
               {/* Badge */}

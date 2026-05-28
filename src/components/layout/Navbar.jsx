@@ -78,10 +78,11 @@ export default function Navbar() {
               className="flex-shrink-0 flex items-center gap-2"
               id="nav-logo"
             >
-              <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center
-                              border-2 border-white/40 backdrop-blur-sm overflow-hidden">
-                <span className="text-white font-brand text-lg leading-none">M&P</span>
-              </div>
+              <img
+                src="/assets/logoheader.png"
+                alt="Missy & Po Logo"
+                className="w-14 h-14 object-cover rounded-full border-2 border-white/45 bg-white/10"
+              />
               <div className="hidden sm:block">
                 <div className="font-brand text-white text-2xl leading-none" style={{ fontWeight: 700 }}>Missy & Po</div>
                 <div className="font-ui text-white/70 text-[10px] uppercase tracking-widest leading-none mt-0.5">
