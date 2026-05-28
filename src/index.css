@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   MISSY & PO — DESIGN SYSTEM CSS
+   Variables, animaciones y componentes base
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* === PALETA DE COLOR === */
+    --color-coral:        #E56A6A;
+    --color-coral-dark:   #C85A5A;
+    --color-coral-light:  #F08080;
+    --color-salmon-bg:    #F4A0A0;
+    --color-salmon-light: #F9C0C0;
+
+    /* Gradiente catálogo */
+    --grad-catalog-from:  #F4A0A0;
+    --grad-catalog-to:    #F5A623;
+
+    /* Acentos */
+    --color-sale-green:   #22C55E;
+    --color-price-green:  #16A34A;
+    --color-yellow-cta:   #FBBF24;
+    --color-whatsapp:     #25D366;
+    --color-gold:         #F5A623;
+
+    /* Neutrales */
+    --color-text-dark:    #1F2937;
+    --color-text-gray:    #6B7280;
+    --color-text-light:   #9CA3AF;
+    --color-footer-bg:    #FFFFFF;
+    --color-border:       #E5E7EB;
+
+    /* Tipografía */
+    --font-brand:  'Dancing Script', cursive;
+    --font-hero:   'Pacifico', cursive;
+    --font-body:   'Inter', sans-serif;
+    --font-ui:     'Poppins', sans-serif;
+
+    /* Espaciado */
+    --navbar-height: 72px;
+    --marquee-height: 40px;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text-dark);
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  button, input, select, textarea {
+    font-family: 'Inter', sans-serif;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: var(--font-ui);
+  }
+
+  input, textarea, select {
+    font-family: var(--font-body);
+    outline: none;
+  }
+}
+
+/* ============================================================
+   FONT UTILITIES — Fallback directo (complementa Tailwind JIT)
+   ============================================================ */
+
+.font-brand  { font-family: 'Dancing Script', cursive !important; }
+.font-hero   { font-family: 'Pacifico', cursive !important; }
+.font-body   { font-family: 'Inter', sans-serif !important; }
+.font-ui     { font-family: 'Poppins', sans-serif !important; }
+
+/* ============================================================
+   ANIMACIONES CORE
+   ============================================================ */
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes crossfade {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes bounce-letter {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  30%  { transform: translateY(-20px) scale(1.15); }
+  60%  { transform: translateY(4px) scale(0.95); }
+  80%  { transform: translateY(-5px) scale(1.03); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes slide-out-left {
+  from { transform: translateX(0);     opacity: 1; }
+  to   { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.2); }
+}
+
+/* ============================================================
+   COMPONENTES REUTILIZABLES
+   ============================================================ */
+
+@layer components {
+
+  /* --- BOTONES --- */
+  .btn-coral {
+    @apply bg-coral text-white font-ui font-semibold px-6 py-2.5 rounded-full 
+           transition-all duration-200 hover:bg-coral-dark hover:shadow-coral 
+           active:scale-95 select-none;
+  }
+
+  .btn-coral-outline {
+    @apply border-2 border-coral text-coral font-ui font-semibold px-6 py-2.5 
+           rounded-full transition-all duration-200 hover:bg-coral hover:text-white 
+           active:scale-95 select-none;
+  }
+
+  .btn-black {
+    @apply bg-gray-900 text-white font-ui font-semibold px-6 py-2.5 rounded-full 
+           transition-all duration-200 hover:bg-gray-700 active:scale-95 select-none;
+  }
+
+  .btn-whatsapp {
+    @apply text-white font-ui font-semibold px-6 py-2.5 rounded-full 
+           transition-all duration-200 active:scale-95 select-none;
+    background-color: var(--color-whatsapp);
+  }
+
+  /* --- CARDS --- */
+  .product-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-card 
+           transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1
+           cursor-pointer relative;
+  }
+
+  /* --- BADGES --- */
+  .badge-sale {
+    @apply absolute top-3 right-3 w-11 h-11 rounded-full flex items-center 
+           justify-center text-white text-xs font-ui font-bold z-10
+           shadow-md;
+    background-color: var(--color-sale-green);
+  }
+
+  .badge-cart {
+    @apply absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-red-500 
+           text-white text-[10px] font-bold flex items-center justify-center
+           animate-pulse-badge;
+  }
+
+  /* --- PRECIOS --- */
+  .price-regular {
+    @apply text-sm line-through;
+    color: var(--color-text-gray);
+  }
+
+  .price-sale {
+    @apply text-base font-bold;
+    color: var(--color-price-green);
+  }
+
+  /* --- INPUTS --- */
+  .input-search {
+    @apply w-full h-10 pl-10 pr-4 rounded-full border border-amber-300 
+           bg-white text-sm font-body placeholder:text-gray-400
+           focus:border-coral focus:ring-2 focus:ring-coral/20
+           transition-all duration-200;
+  }
+
+  .input-base {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white 
+           text-sm font-body placeholder:text-gray-400
+           focus:border-coral focus:ring-2 focus:ring-coral/20
+           transition-all duration-200;
+  }
+
+  /* --- SECTION HEADERS --- */
+  .section-title {
+    @apply font-ui font-bold text-2xl md:text-3xl text-gray-800 mb-2;
+  }
+
+  .section-subtitle {
+    @apply font-body text-gray-500 text-sm md:text-base;
+  }
+
+  /* --- OVERLAY --- */
+  .drawer-overlay {
+    @apply fixed inset-0 bg-black/50 z-overlay transition-opacity duration-300;
+  }
+
+  /* --- STAR RATING --- */
+  .star-filled { color: #FBBF24; }
+  .star-empty  { color: #D1D5DB; }
+
+  /* --- FLOAT BUTTONS --- */
+  .float-btn {
+    @apply fixed bottom-6 w-14 h-14 rounded-full shadow-lg 
+           flex items-center justify-center z-float
+           transition-all duration-200 hover:scale-110 active:scale-95;
+  }
+
+  /* --- NAVBAR --- */
+  .navbar-link {
+    @apply font-ui text-sm font-medium text-white/90 hover:text-white 
+           transition-colors duration-150 relative after:absolute after:bottom-0 
+           after:left-0 after:w-0 after:h-0.5 after:bg-white 
+           hover:after:w-full after:transition-all after:duration-200;
+  }
+
+  /* --- MARQUEE WRAPPER --- */
+  .marquee-wrapper {
+    @apply overflow-hidden whitespace-nowrap;
+  }
+
+  .marquee-track {
+    @apply inline-block;
+    animation: marquee 20s linear infinite;
+  }
+
+  /* --- ANIMATED TITLE LETTERS --- */
+  .animated-letter {
+    @apply inline-block;
+  }
+
+  .animated-letter:hover {
+    animation: bounce-letter 0.6s ease-out;
+  }
+}
+
+/* ============================================================
+   UTILIDADES ADICIONALES
+   ============================================================ */
+
+@layer utilities {
+  .text-coral  { color: var(--color-coral); }
+  .bg-coral-custom { background-color: var(--color-coral); }
+  .border-coral-custom { border-color: var(--color-coral); }
+
+  .gradient-text-brand {
+    background: linear-gradient(135deg, #9333EA 0%, #DB2777 50%, #E56A6A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-catalog {
+    background: linear-gradient(to bottom, var(--grad-catalog-from), var(--grad-catalog-to));
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animation-delay-100 { animation-delay: 0.1s; }
+  .animation-delay-200 { animation-delay: 0.2s; }
+  .animation-delay-300 { animation-delay: 0.3s; }
+  .animation-delay-500 { animation-delay: 0.5s; }
+}
+
+/* ============================================================
+   PRINT STYLES (para boletas PDF)
+   ============================================================ */
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; }
+  .print-full { width: 100% !important; }
+}
