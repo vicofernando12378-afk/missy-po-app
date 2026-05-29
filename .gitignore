@@ -51,3 +51,7 @@ desktop.ini
 .cache/
 .parcel-cache/
 .eslintcache
+
+# ── Backups Locales ──
+backups/
+
