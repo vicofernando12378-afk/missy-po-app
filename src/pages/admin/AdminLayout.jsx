@@ -123,14 +123,15 @@ export default function AdminLayout() {
   }
 
   const menuItems = [
-    { path: '/admin',          label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
-    { path: '/admin/ventas',   label: 'Ventas / KPIs',    icon: '📊' },
-    { path: '/admin/productos',label: 'Catálogo',          icon: '🛍️' },
-    { path: '/admin/caja',     label: 'Caja Diaria',       icon: '💰' },
-    { path: '/admin/inventario', label: 'Inventario',      icon: '🗂️' },
-    { path: '/admin/resenas',  label: 'Reseñas',           icon: '⭐' },
-    { path: '/admin/configuracion', label: 'Configuración', icon: '⚙️' },
+    { path: '/',               label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
+    { path: '/ventas',         label: 'Ventas / KPIs',    icon: '📊' },
+    { path: '/productos',      label: 'Catálogo',          icon: '🛍️' },
+    { path: '/caja',           label: 'Caja Diaria',       icon: '💰' },
+    { path: '/inventario',     label: 'Inventario',      icon: '🗂️' },
+    { path: '/resenas',        label: 'Reseñas',           icon: '⭐' },
+    { path: '/configuracion',  label: 'Configuración', icon: '⚙️' },
   ]
+
 
   return (
     <div className="min-h-screen flex bg-gray-50 font-body text-gray-700">

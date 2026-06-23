@@ -68,15 +68,33 @@ export default function LoginPage() {
 
     const isBypassEmail = email.toLowerCase() === ADMIN_EMAIL_BYPASS.toLowerCase()
 
-    // ── CONTROL DE INGRESO POR BYPASS LOCAL ──
+    // ── CONTROL DE INGRESO POR BYPASS LOCAL (CON AUTENTICACIÓN REAL) ──
     if (isBypassEmail && password === 'admin123') {
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('myp_admin_bypass', 'true')
-        setUser({ email: ADMIN_EMAIL_BYPASS })
-        setIsAdmin(true)
-        window.location.href = '/admin'
+      try {
+        let loggedUser;
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password)
+          loggedUser = userCredential.user
+        } catch (signInErr) {
+          if (signInErr.code === 'auth/user-not-found' || signInErr.code === 'auth/invalid-credential' || signInErr.code === 'auth/wrong-password') {
+            console.log('Creando cuenta bypass de desarrollo automáticamente...');
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+            loggedUser = userCredential.user
+          } else {
+            throw signInErr
+          }
+        }
+        
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('myp_admin_bypass', 'true')
+          window.location.href = '/admin'
+        }
+      } catch (err) {
+        console.error('Error en login de bypass real:', err)
+        setError('Error al sincronizar sesión real de desarrollo.')
+      } finally {
+        setLoading(false)
       }
-      setLoading(false)
       return
     }
 
