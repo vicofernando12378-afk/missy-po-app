@@ -3,8 +3,8 @@
 # ============================================================
 
 # ── Archivos WordPress legacy (se quedan en local, NO van a GitHub) ──
-database.sql
-uploads/
+legacy/database.sql
+legacy/uploads/
 
 # ── Dependencias ──
 node_modules/

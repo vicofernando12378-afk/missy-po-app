@@ -51,8 +51,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-const UPLOADS_DIR = 'C:\\MIS PROYECTOS\\missy-po\\uploads';
-const DATABASE_SQL = 'c:\\MIS PROYECTOS\\missy-po\\database.sql';
+const UPLOADS_DIR = path.resolve('legacy/uploads');
+const DATABASE_SQL = path.resolve('legacy/database.sql');
 
 // ============================================================
 // PARSER DE PHP SERIALIZE (ATRIBUTOS WOOCOMMERCE)
