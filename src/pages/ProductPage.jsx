@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import useCatalogStore from '../store/catalogStore'
 import useCartStore from '../store/cartStore'
 import PriceDisplay from '../components/catalog/PriceDisplay'
@@ -15,9 +13,7 @@ const StarIcon = ({ filled }) => (
   </svg>
 )
 
-export default function ProductPage() {
-  const { slug } = useParams()
-  const navigate = useNavigate()
+export default function ProductPage({ slug }) {
   const { productos, fetchCatalog, getProductoBySlug, isLoading } = useCatalogStore()
   const addItem = useCartStore(s => s.addItem)
   const openDrawer = useCartStore(s => s.openDrawer)
@@ -136,9 +132,9 @@ export default function ProductPage() {
         <div className="text-6xl mb-4">🐾</div>
         <h1 className="font-brand text-3xl text-coral mb-2">Producto no encontrado</h1>
         <p className="text-gray-500 font-body mb-6">El producto que buscas no existe o ha sido retirado.</p>
-        <Link to="/tienda" className="bg-coral text-white font-ui font-semibold px-6 py-3 rounded-full hover:bg-coral-dark transition-colors">
+        <a href="/tienda" className="bg-coral text-white font-ui font-semibold px-6 py-3 rounded-full hover:bg-coral-dark transition-colors">
           Volver a la Tienda
-        </Link>
+        </a>
       </div>
     )
   }
@@ -234,17 +230,12 @@ export default function ProductPage() {
 
   return (
     <>
-      <Helmet>
-        <title>{nombre} | Missy & Po Pet Shop</title>
-        <meta name="description" content={descripcion_corta || descripcion?.substring(0, 150)} />
-      </Helmet>
-
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumbs */}
         <nav className="text-xs font-body text-gray-400 mb-6 flex items-center gap-1.5" aria-label="Breadcrumb">
-          <Link to="/" className="hover:text-coral transition-colors">Inicio</Link>
+          <a href="/" className="hover:text-coral transition-colors">Inicio</a>
           <span>/</span>
-          <Link to="/tienda" className="hover:text-coral transition-colors">Tienda</Link>
+          <a href="/tienda" className="hover:text-coral transition-colors">Tienda</a>
           {categorias.length > 0 && (
             <>
               <span>/</span>

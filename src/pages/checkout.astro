@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CheckoutPage from './CheckoutPage.jsx';
+---
+
+<Layout 
+  title="Checkout — Finalizar Compra | Missy & Po"
+  description="Finaliza tu pedido en Missy & Po Pet Shop. Realiza tu pago seguro contra entrega, mediante Yape/Plin o tarjeta de crédito."
+>
+  <CheckoutPage client:only="react" />
+</Layout>

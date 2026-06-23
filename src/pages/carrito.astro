@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartPage from './CartPage.jsx';
+---
+
+<Layout 
+  title="Mi Carrito | Missy & Po Pet Shop"
+  description="Revisa los productos en tu carrito de compras de Missy & Po Pet Shop. Gestiona las cantidades de ropa, juguetes y accesorios para tus mascotas antes de finalizar tu compra."
+>
+  <CartPage client:load />
+</Layout>

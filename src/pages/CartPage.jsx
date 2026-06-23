@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import useCartStore from '../store/cartStore'
 
 const TrashIcon = () => (
@@ -11,7 +9,6 @@ const TrashIcon = () => (
 )
 
 export default function CartPage() {
-  const navigate = useNavigate()
   const { items, subtotal, total, couponCode, couponDiscount, applyCoupon, removeCoupon, updateQuantity, removeItem } = useCartStore()
   
   const [couponInput, setCouponInput] = useState('')
@@ -30,9 +27,6 @@ export default function CartPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Mi Carrito | Missy & Po Pet Shop</title>
-      </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h1 className="font-ui font-bold text-3xl text-gray-800 mb-8">Tu Carrito de Compras</h1>
@@ -44,12 +38,12 @@ export default function CartPage() {
             <p className="text-gray-500 font-body text-sm mb-8">
               Aún no has agregado productos a tu carrito. ¡Explora nuestra tienda y regálale algo especial a tu engreído!
             </p>
-            <Link
-              to="/tienda"
+            <a
+              href="/tienda"
               className="inline-block bg-coral text-white font-ui font-semibold px-8 py-3.5 rounded-full hover:bg-coral-dark shadow-md transition-all hover:scale-105 active:scale-95"
             >
               Ir a la Tienda
-            </Link>
+            </a>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
@@ -70,9 +64,9 @@ export default function CartPage() {
 
                     {/* Info */}
                     <div className="flex-1 min-w-0">
-                      <Link to={`/producto/${item.slug}`} className="font-ui font-bold text-sm sm:text-base text-gray-800 hover:text-coral transition-colors line-clamp-2">
+                      <a href={`/producto/${item.slug}`} className="font-ui font-bold text-sm sm:text-base text-gray-800 hover:text-coral transition-colors line-clamp-2">
                         {item.nombre}
-                      </Link>
+                      </a>
                       {item.variante !== 'default' && (
                         <p className="text-xs text-coral font-ui font-semibold mt-1 bg-coral/5 px-2.5 py-0.5 rounded-md w-fit">
                           {item.variante}
@@ -198,18 +192,18 @@ export default function CartPage() {
 
               {/* CTAs */}
               <div className="space-y-3 pt-2">
-                <Link
-                  to="/checkout"
+                <a
+                  href="/checkout"
                   className="block w-full py-4 bg-coral text-white text-center font-ui font-bold text-sm rounded-full hover:bg-coral-dark shadow-lg shadow-coral/10 hover:shadow-coral/20 hover:scale-[1.01] active:scale-95 transition-all"
                 >
                   PROCEDER AL PAGO →
-                </Link>
-                <Link
-                  to="/tienda"
+                </a>
+                <a
+                  href="/tienda"
                   className="block w-full py-3 border border-gray-200 text-gray-600 text-center font-ui font-semibold text-xs rounded-full hover:bg-gray-50 transition-colors"
                 >
                   Seguir Comprando
-                </Link>
+                </a>
               </div>
             </div>
 

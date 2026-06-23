@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 
 const PawIcon = () => (
   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -54,13 +53,13 @@ export default function Footer() {
 
           {/* COLUMNA BRAND */}
           <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-4" id="footer-logo">
+            <a href="/" className="inline-block mb-4" id="footer-logo">
               <img
                 src="/assets/logoheader.png"
                 alt="Missy & Po Logo"
                 className="w-28 h-28 object-contain rounded-xl border border-gray-200 shadow-sm bg-white"
               />
-            </Link>
+            </a>
             <p className="text-sm text-gray-600 font-body leading-relaxed mb-4">
               Tu tienda online de confianza para los engreídos de la familia. 
               Accesorios, ropa y juguetes de calidad para mascotas.
@@ -126,13 +125,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {FOOTER_LINKS.info.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
+                  <a
+                    href={link.href}
                     className="text-sm text-gray-600 hover:text-coral transition-colors font-body"
                     id={`footer-info-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -146,13 +145,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {FOOTER_LINKS.shop.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
+                  <a
+                    href={link.href}
                     className="text-sm text-gray-600 hover:text-coral transition-colors font-body"
                     id={`footer-shop-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -166,13 +165,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {FOOTER_LINKS.legal.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
+                  <a
+                    href={link.href}
                     className="text-sm text-gray-600 hover:text-coral transition-colors font-body"
                     id={`footer-legal-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {link.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

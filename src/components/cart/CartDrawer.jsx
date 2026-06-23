@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import useCartStore from '../../store/cartStore'
 import { obtenerProductosMasVendidos } from '../../services/firestore'
 import useCatalogStore from '../../store/catalogStore'
@@ -254,14 +253,14 @@ export default function CartDrawer() {
               <p className="text-sm font-body text-gray-400 mb-6">
                 ¡Agrega productos para comenzar!
               </p>
-              <Link
-                to="/tienda"
+              <a
+                href="/tienda"
                 onClick={closeDrawer}
                 className="btn-coral text-sm px-6 py-2"
                 id="cart-drawer-go-shop"
               >
                 Ir a la Tienda
-              </Link>
+              </a>
             </div>
           ) : (
             items.map((item) => <CartDrawerItem key={item._key} item={item} />)
@@ -298,8 +297,8 @@ export default function CartDrawer() {
             </div>
 
             {/* Botón checkout */}
-            <Link
-              to="/checkout"
+            <a
+              href="/checkout"
               onClick={closeDrawer}
               className="block w-full py-3.5 rounded-full text-center font-ui font-bold text-sm
                          bg-coral text-white hover:bg-coral-dark shadow-coral
@@ -307,17 +306,17 @@ export default function CartDrawer() {
               id="cart-drawer-checkout"
             >
               FINALIZAR COMPRA →
-            </Link>
+            </a>
 
-            <Link
-              to="/carrito"
+            <a
+              href="/carrito"
               onClick={closeDrawer}
               className="block w-full py-2.5 rounded-full text-center font-ui font-semibold text-sm
                          border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors"
               id="cart-drawer-view-cart"
             >
               Ver carrito completo
-            </Link>
+            </a>
           </div>
         )}
 
@@ -329,9 +328,9 @@ export default function CartDrawer() {
             </p>
             <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
               {bestSellers.map((p) => (
-                <Link
+                <a
                   key={p.id}
-                  to={`/producto/${p.slug}`}
+                  href={`/producto/${p.slug}`}
                   onClick={closeDrawer}
                   className="flex-shrink-0 w-20 text-center"
                   id={`cart-bestseller-${p.id}`}
@@ -354,7 +353,7 @@ export default function CartDrawer() {
                   ) : (
                     <p className="text-[10px] font-bold text-gray-700 font-body">S/ {(p.precio_regular / 100).toFixed(2)}</p>
                   )}
-                </Link>
+                </a>
               ))}
             </div>
           </div>

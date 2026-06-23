@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import useSearchStore from '../../store/searchStore'
 import useCatalogStore from '../../store/catalogStore'
 import useDebounce from '../../hooks/useDebounce'
@@ -34,7 +33,6 @@ function Highlight({ text = '', query = '' }) {
 }
 
 export default function LiveSearch({ inputRef: externalInputRef }) {
-  const navigate = useNavigate()
   const panelRef = useRef(null)
   const internalRef = useRef(null)
   const inputRef = externalInputRef || internalRef
@@ -94,10 +92,10 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
         e.preventDefault()
         const selected = getSelectedResult()
         if (selected) {
-          navigate(`/producto/${selected.slug}`)
+          window.location.href = `/producto/${selected.slug}`
           closeSearch()
         } else if (query.trim()) {
-          navigate(`/tienda?q=${encodeURIComponent(query.trim())}`)
+          window.location.href = `/tienda?q=${encodeURIComponent(query.trim())}`
           closeSearch()
         }
         break
@@ -193,9 +191,9 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                   const precio = item.precio_oferta || item.precio_regular
                   const isSelected = idx === selectedIndex
                   return (
-                    <Link
+                    <a
                       key={item.id}
-                      to={`/producto/${item.slug}`}
+                      href={`/producto/${item.slug}`}
                       onClick={closeSearch}
                       className={`flex items-start gap-2.5 px-3 py-2.5 transition-colors
                                   ${isSelected ? 'bg-salmon/30' : 'hover:bg-gray-50'}`}
@@ -232,20 +230,20 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                           </span>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   )
                 })}
 
                 {/* Ver todos */}
-                <Link
-                  to={`/tienda?q=${encodeURIComponent(query)}`}
+                <a
+                  href={`/tienda?q=${encodeURIComponent(query)}`}
                   onClick={closeSearch}
                   className="block px-3 py-3 text-center text-xs font-ui font-semibold
                              text-coral hover:bg-coral/5 border-t border-gray-100 transition-colors"
                   id="search-view-all"
                 >
                   Ver todos los resultados →
-                </Link>
+                </a>
               </div>
 
               {/* ─ COLUMNA DERECHA — Preview ─────────────── */}
@@ -290,8 +288,8 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                     </p>
 
                     {/* Botón */}
-                    <Link
-                      to={`/producto/${previewItem.slug}`}
+                    <a
+                      href={`/producto/${previewItem.slug}`}
                       onClick={closeSearch}
                       className="mt-auto w-full py-2.5 rounded-full bg-coral text-white
                                  font-ui font-semibold text-sm text-center
@@ -299,7 +297,7 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                       id="search-preview-cta"
                     >
                       Ver Producto
-                    </Link>
+                    </a>
                   </div>
                 ) : (
                   <div className="h-full flex items-center justify-center text-gray-300">

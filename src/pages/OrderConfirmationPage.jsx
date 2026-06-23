@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../services/firebase'
 
-export default function OrderConfirmationPage() {
-  const { orderId } = useParams()
+export default function OrderConfirmationPage({ orderId }) {
+  const resolvedOrderId = orderId || (typeof window !== 'undefined' ? window.location.pathname.split('/').filter(Boolean).pop() : '')
   const [order, setOrder] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function fetchOrder() {
       try {
-        const docRef = doc(db, 'myp_pedidos', orderId)
+        const docRef = doc(db, 'myp_pedidos', resolvedOrderId)
         const snap = await getDoc(docRef)
         if (snap.exists()) {
           setOrder(snap.data())
@@ -23,10 +21,10 @@ export default function OrderConfirmationPage() {
         setIsLoading(false)
       }
     }
-    if (orderId) {
+    if (resolvedOrderId) {
       fetchOrder()
     }
-  }, [orderId])
+  }, [resolvedOrderId])
 
   if (isLoading) {
     return (
@@ -43,11 +41,11 @@ export default function OrderConfirmationPage() {
         <span className="text-6xl block mb-4">💔</span>
         <h1 className="font-ui font-bold text-2xl text-gray-800 mb-2">Pedido no encontrado</h1>
         <p className="text-gray-500 font-body mb-8 text-sm">
-          No pudimos localizar los datos del pedido <strong>#{orderId}</strong>. Verifica el enlace o contacta con soporte.
+          No pudimos localizar los datos del pedido <strong>#{resolvedOrderId}</strong>. Verifica el enlace o contacta con soporte.
         </p>
-        <Link to="/tienda" className="bg-coral text-white px-6 py-2.5 rounded-full font-ui font-semibold text-xs hover:bg-coral-dark">
+        <a href="/tienda" className="bg-coral text-white px-6 py-2.5 rounded-full font-ui font-semibold text-xs hover:bg-coral-dark">
           Volver a la tienda
-        </Link>
+        </a>
       </div>
     )
   }
@@ -55,12 +53,13 @@ export default function OrderConfirmationPage() {
   const { cliente, envio, comprobante, pago, items, cupon, descuento_porcentaje } = order
 
   // WhatsApp pre-llenado enlace
-  const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '51999999999'
+  const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || import.meta.env.VITE_WHATSAPP_NUMBER || '51999999999'
   const itemsText = items.map(i => `- ${i.nombre} x${i.cantidad} (${i.variante !== 'default' ? i.variante : 'Base'})`).join('\n')
+
   
   const rawMessage = `¡Hola Missy & Po! 👋 Acabo de realizar un pedido en la web:
   
-*ID del Pedido:* #${orderId}
+*ID del Pedido:* #${resolvedOrderId}
 *Cliente:* ${cliente.nombre} ${cliente.apellido} (${cliente.celular})
 *Método de Pago:* ${pago.metodo} ${pago.operacion ? `(Op: ${pago.operacion})` : ''}
 *Total de la Compra:* S/ ${(comprobante.total / 100).toFixed(2)}
@@ -86,9 +85,6 @@ Por favor confírmenme la recepción del pedido.`
 
   return (
     <>
-      <Helmet>
-        <title>Confirmación de Pedido #{orderId} | Missy & Po</title>
-      </Helmet>
 
       <div className="max-w-3xl mx-auto px-4 py-12 print:py-0 print:px-0 print:my-0 print:max-w-full">
         {/* Banner de Éxito */}
@@ -258,13 +254,13 @@ Por favor confírmenme la recepción del pedido.`
           </button>
 
           {/* Botón Volver */}
-          <Link
-            to="/tienda"
+          <a
+            href="/tienda"
             className="flex-1 max-w-xs py-4 bg-gray-900 text-white rounded-full font-ui font-semibold text-sm text-center hover:bg-gray-800 transition-colors flex items-center justify-center"
             id="back-shop-btn"
           >
             Volver a la Tienda
-          </Link>
+          </a>
         </div>
       </div>
     </>

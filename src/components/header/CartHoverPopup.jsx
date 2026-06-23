@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import useCartStore from '../../store/cartStore'
 
 // ============================================================
@@ -95,24 +94,24 @@ export default function CartHoverPopup({ onClose }) {
 
       {/* BOTONES */}
       <div className="p-3 space-y-2">
-        <Link
-          to="/carrito"
+        <a
+          href="/carrito"
           onClick={onClose}
           className="block w-full py-2.5 rounded-full text-center font-ui font-semibold text-sm
                      bg-coral text-white hover:bg-coral-dark transition-colors"
           id="cart-popup-view"
         >
           Ver carrito
-        </Link>
-        <Link
-          to="/checkout"
+        </a>
+        <a
+          href="/checkout"
           onClick={onClose}
           className="block w-full py-2.5 rounded-full text-center font-ui font-semibold text-sm
                      bg-gray-800 text-white hover:bg-gray-900 transition-colors"
           id="cart-popup-checkout"
         >
           Finalizar compra
-        </Link>
+        </a>
       </div>
     </div>
   )

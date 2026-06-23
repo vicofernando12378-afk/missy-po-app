@@ -8,6 +8,7 @@
   },
   "hosting": {
     "public": "dist",
+    "cleanUrls": true,
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,8 +16,12 @@
     ],
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/admin/**",
+        "destination": "/admin/index.html"
+      },
+      {
+        "source": "/orden-confirmada/**",
+        "destination": "/orden-confirmada/index.html"
       }
     ]
   }

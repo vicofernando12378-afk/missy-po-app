@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import LiveSearch from '../header/LiveSearch'
 import CartHoverPopup from '../header/CartHoverPopup'
 import useCartStore from '../../store/cartStore'
@@ -74,8 +73,8 @@ export default function Navbar() {
 
             {/* LOGO */}
             <div className="flex-shrink-0 w-[88px] h-[88px] md:w-32 md:h-28 relative z-20">
-              <Link
-                to="/"
+              <a
+                href="/"
                 className="absolute top-0 left-0"
                 id="nav-logo"
               >
@@ -84,7 +83,7 @@ export default function Navbar() {
                   alt="Missy & Po Logo"
                   className="w-[88px] h-[88px] md:w-32 md:h-32 object-contain rounded-xl border border-white/20 shadow-xl bg-white"
                 />
-              </Link>
+              </a>
             </div>
 
             {/* BARRA DE BÚSQUEDA — LiveSearch predictivo */}
@@ -103,15 +102,15 @@ export default function Navbar() {
               </div>
 
               {/* Mi Cuenta */}
-              <Link
-                to="/login"
+              <a
+                href="/login"
                 className="hidden md:flex items-center gap-1.5 text-white/90 hover:text-white
                            transition-colors text-xs font-ui"
                 id="nav-account"
               >
                 <UserIcon />
                 <span>Mi Cuenta</span>
-              </Link>
+              </a>
 
               {/* Carrito — con hover popup */}
               <div
@@ -160,14 +159,14 @@ export default function Navbar() {
           {/* CATEGORÍAS — Fila inferior (desktop) */}
           <div className="hidden md:flex items-center justify-center gap-8 pt-2 pb-4 overflow-x-auto scrollbar-hide">
             {NAV_CATEGORIES.map((cat) => (
-              <Link
+              <a
                 key={cat.label}
-                to={cat.href}
+                href={cat.href}
                 className="navbar-link text-sm font-bold whitespace-nowrap pb-1 uppercase tracking-wide"
                 id={`nav-cat-${cat.label.toLowerCase()}`}
               >
                 {cat.label}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
@@ -181,26 +180,26 @@ export default function Navbar() {
           >
             <div className="px-4 py-3 flex flex-col gap-1">
               {NAV_CATEGORIES.map((cat) => (
-                <Link
+                <a
                   key={cat.label}
-                  to={cat.href}
+                  href={cat.href}
                   className="py-2.5 px-3 rounded-lg text-white font-ui text-sm font-medium
                              hover:bg-white/10 transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {cat.label}
-                </Link>
+                </a>
               ))}
               <div className="border-t border-white/20 mt-2 pt-2">
-                <Link
-                  to="/login"
+                <a
+                  href="/login"
                   className="py-2.5 px-3 rounded-lg text-white font-ui text-sm font-medium
                              hover:bg-white/10 transition-colors flex items-center gap-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <UserIcon />
                   Mi Cuenta
-                </Link>
+                </a>
               </div>
             </div>
           </div>

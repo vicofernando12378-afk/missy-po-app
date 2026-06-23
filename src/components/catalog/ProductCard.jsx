@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import SaleBadge from './SaleBadge'
 import PriceDisplay from './PriceDisplay'
 import useCartStore from '../../store/cartStore'
@@ -77,8 +76,8 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <Link
-      to={`/producto/${slug || id}`}
+    <a
+      href={`/producto/${slug || id}`}
       className="product-card group block"
       id={`product-card-${id}`}
       aria-label={`Ver ${nombre}`}
@@ -188,6 +187,6 @@ export default function ProductCard({ product }) {
           )}
         </button>
       </div>
-    </Link>
+    </a>
   )
 }

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 
 // Banner amarillo pre-footer extraído del brief
 // Equivalente al CTA de Missy & Po con la imagen del Yorkie
@@ -32,8 +31,8 @@ export default function CTABanner() {
             Envíos a todo el Perú 🇵🇪
           </p>
 
-          <Link
-            to="/tienda"
+          <a
+            href="/tienda"
             className="inline-flex items-center gap-2 bg-gray-700 text-white
                        font-ui font-bold px-8 py-3.5 rounded-full shadow-md
                        hover:bg-gray-800 hover:shadow-lg hover:scale-105
@@ -45,7 +44,7 @@ export default function CTABanner() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
                 d="M9 5l7 7-7 7" />
             </svg>
-          </Link>
+          </a>
         </div>
 
         {/* IMAGEN YORKIE / MASCOTA */}

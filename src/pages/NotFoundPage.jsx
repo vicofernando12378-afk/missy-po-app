@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 
 export default function NotFoundPage() {
   return (
@@ -9,13 +8,13 @@ export default function NotFoundPage() {
         Parece que esta página se fue a pasear con su dueño. 
         No te preocupes, volvemos al inicio 🐕
       </p>
-      <Link
-        to="/"
+      <a
+        href="/"
         className="btn-coral text-base px-10 py-3"
         id="not-found-home-link"
       >
         Volver al Inicio
-      </Link>
+      </a>
     </div>
   )
 }

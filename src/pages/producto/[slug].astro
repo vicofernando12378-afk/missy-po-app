@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductPage from '../../pages/ProductPage.jsx';
+import { obtenerProductoPorSlug, obtenerTodosProductosAdmin } from '../../services/firestore';
+
+export async function getStaticPaths() {
+  try {
+    const productos = await obtenerTodosProductosAdmin();
+    // Devolver paths válidos filtrando slugs vacíos
+    return productos
+      .filter(p => p.slug)
+      .map(p => ({
+        params: { slug: p.slug },
+      }));
+  } catch (err) {
+    console.error('Error al generar getStaticPaths en producto:', err);
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+
+// Consultar Firestore en tiempo de compilación para pre-renderizar metatags SEO
+let product = null;
+if (slug) {
+  product = await obtenerProductoPorSlug(slug);
+}
+
+const title = product 
+  ? `${product.nombre} | Missy & Po Pet Shop`
+  : "Producto no encontrado | Missy & Po Pet Shop";
+
+const description = product 
+  ? (product.descripcion_corta || product.descripcion?.replace(/<[^>]*>/g, '').substring(0, 155) || `Compra ${product.nombre} al mejor precio en Missy & Po Pet Shop. Accesorios premium para mascotas en Perú.`)
+  : "El producto que buscas no existe o ha sido retirado de Missy & Po Pet Shop.";
+---
+
+<Layout title={title} description={description}>
+  <ProductPage slug={slug} client:load />
+</Layout>

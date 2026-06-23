@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Helmet } from 'react-helmet-async'
 import HeroSlider from '../components/hero/HeroSlider'
 import AnimatedTitle from '../components/hero/AnimatedTitle'
 import ProductGrid from '../components/catalog/ProductGrid'
@@ -19,9 +18,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Helmet>
-        <title>Novedades y Productos Destacados | Missy & Po Pet Shop</title>
-      </Helmet>
 
       {/* Hero Slider */}
       <HeroSlider />

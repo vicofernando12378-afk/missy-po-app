@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import OrderConfirmationPage from '../../pages/OrderConfirmationPage.jsx';
+
+export function getStaticPaths() {
+  return [
+    { params: { orderId: undefined } }
+  ];
+}
+---
+
+<Layout 
+  title="Confirmación de Pedido | Missy & Po"
+  description="Gracias por tu compra en Missy & Po Pet Shop. Aquí puedes revisar el detalle de tu pedido y comprobante de pago."
+>
+  <OrderConfirmationPage client:only="react" />
+</Layout>

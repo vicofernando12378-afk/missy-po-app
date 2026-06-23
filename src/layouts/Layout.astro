@@ -1,0 +1,66 @@
+---
+import '../index.css';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import WhatsAppFloat from '../components/shared/WhatsAppFloat';
+import CartFloat from '../components/shared/CartFloat';
+import CartDrawer from '../components/cart/CartDrawer';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Missy & Po — Pet Shop | Accesorios y Ropa para Mascotas en Perú", 
+  description = "Missy & Po, la tienda online #1 de accesorios, ropa y juguetes para mascotas en Perú. Envíos a todo el país con Courier Shalom y Olva Express. ¡Consiéntelos como se merecen!" 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="pet shop, tienda mascotas, accesorios mascotas, ropa perros, Perú, envío nacional" />
+    <meta name="author" content="Missy & Po Pet Shop" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/assets/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-white">
+    <!-- Navbar Interactivo (React Island) -->
+    <Navbar client:load />
+
+    <main class="flex-1 print:p-0">
+      <slot />
+    </main>
+
+    <!-- Footer Estático (Sin JS) -->
+    <div class="print:hidden">
+      <Footer />
+    </div>
+
+    <!-- Flotantes y Overlays globales -->
+    <div class="print:hidden">
+      <WhatsAppFloat />
+      <CartFloat client:load />
+      <CartDrawer client:load />
+    </div>
+  </body>
+</html>

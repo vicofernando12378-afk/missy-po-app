@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../services/firebase'
 
@@ -14,16 +13,17 @@ export default function LoginPage() {
   const [user, setUser] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [checkingRole, setCheckingRole] = useState(true)
-  const navigate = useNavigate()
 
   useEffect(() => {
     // ── BYPASS LOCAL PERSISTENTE ──
-    const bypassActive = localStorage.getItem('myp_admin_bypass') === 'true'
+    const bypassActive = typeof window !== 'undefined' ? localStorage.getItem('myp_admin_bypass') === 'true' : false
     if (bypassActive) {
       setUser({ email: ADMIN_EMAIL_BYPASS })
       setIsAdmin(true)
       setCheckingRole(false)
-      navigate('/admin')
+      if (typeof window !== 'undefined') {
+        window.location.href = '/admin'
+      }
       return
     }
 
@@ -40,7 +40,9 @@ export default function LoginPage() {
           
           if (hasAdminClaim || isBypassEmail) {
             setIsAdmin(true)
-            navigate('/admin')
+            if (typeof window !== 'undefined') {
+              window.location.href = '/admin'
+            }
           } else {
             setIsAdmin(false)
           }
@@ -57,7 +59,7 @@ export default function LoginPage() {
     })
 
     return () => unsubscribe()
-  }, [navigate])
+  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -68,10 +70,12 @@ export default function LoginPage() {
 
     // ── CONTROL DE INGRESO POR BYPASS LOCAL ──
     if (isBypassEmail && password === 'admin123') {
-      localStorage.setItem('myp_admin_bypass', 'true')
-      setUser({ email: ADMIN_EMAIL_BYPASS })
-      setIsAdmin(true)
-      navigate('/admin')
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('myp_admin_bypass', 'true')
+        setUser({ email: ADMIN_EMAIL_BYPASS })
+        setIsAdmin(true)
+        window.location.href = '/admin'
+      }
       setLoading(false)
       return
     }
@@ -100,7 +104,9 @@ export default function LoginPage() {
       const isBypassMail = loggedUser.email?.toLowerCase() === ADMIN_EMAIL_BYPASS.toLowerCase()
 
       if (hasAdminClaim || isBypassMail) {
-        navigate('/admin')
+        if (typeof window !== 'undefined') {
+          window.location.href = '/admin'
+        }
       } else {
         setError('Acceso denegado. Esta cuenta no tiene permisos de administrador.')
       }
@@ -118,7 +124,9 @@ export default function LoginPage() {
 
   const handleLogout = async () => {
     try {
-      localStorage.removeItem('myp_admin_bypass')
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('myp_admin_bypass')
+      }
       await signOut(auth)
       setUser(null)
       setIsAdmin(false)
@@ -162,7 +170,11 @@ export default function LoginPage() {
 
             {isAdmin ? (
               <button
-                onClick={() => navigate('/admin')}
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    window.location.href = '/admin'
+                  }
+                }}
                 className="w-full py-3.5 px-4 bg-coral hover:bg-coral-dark text-white rounded-2xl font-semibold shadow-md shadow-coral/20 transition-all active:scale-[0.98]"
               >
                 Ir al Panel de Control
@@ -238,10 +250,12 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => {
-                localStorage.setItem('myp_admin_bypass', 'true')
-                setUser({ email: ADMIN_EMAIL_BYPASS })
-                setIsAdmin(true)
-                navigate('/admin')
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem('myp_admin_bypass', 'true')
+                  setUser({ email: ADMIN_EMAIL_BYPASS })
+                  setIsAdmin(true)
+                  window.location.href = '/admin'
+                }
               }}
               className="w-full mt-3 py-3 px-4 border border-dashed border-amber-300 text-amber-700 bg-amber-50/20 hover:bg-amber-50 hover:text-amber-800 rounded-2xl font-semibold text-xs transition-all active:scale-[0.98] text-center"
             >

@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import useCartStore from '../store/cartStore'
 import { crearPedidoConTransaccion, obtenerConfiguracionEnvio } from '../services/firestore'
 import PaymentQrCulqi from '../components/checkout/PaymentQrCulqi'
@@ -45,7 +43,6 @@ const AREQUIPA_DISTRICTS = [
 ]
 
 export default function CheckoutPage() {
-  const navigate = useNavigate()
   const { items, subtotal, total, couponCode, couponDiscount, clearCart } = useCartStore()
 
   // Envío Config
@@ -112,9 +109,11 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (items.length === 0 && !orderCompletedRef.current) {
-      navigate('/carrito')
+      if (typeof window !== 'undefined') {
+        window.location.href = '/carrito'
+      }
     }
-  }, [items, navigate])
+  }, [items])
 
   const handleDocumentoChange = (e) => {
     const val = e.target.value.replace(/\D/g, '')
@@ -242,7 +241,9 @@ export default function CheckoutPage() {
       orderCompletedRef.current = true
       setOrderCompleted(true)
       clearCart()
-      navigate(`/orden-confirmada/${orderId}`)
+      if (typeof window !== 'undefined') {
+        window.location.href = `/orden-confirmada/${orderId}`
+      }
     } catch (err) {
       console.error('❌ Error en el procesamiento del pedido:', err)
       setErrorMsg(err.message || 'Ocurrió un error inesperado al procesar el pedido.')
@@ -254,9 +255,6 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Checkout | Missy & Po Pet Shop</title>
-      </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h1 className="font-ui font-bold text-3xl text-gray-800 mb-8 text-center md:text-left">Finalizar Compra</h1>

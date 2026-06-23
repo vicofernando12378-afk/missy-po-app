@@ -1,24 +1,36 @@
 import { useEffect, useState, useMemo } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import ProductGrid from '../components/catalog/ProductGrid'
 import useCatalogStore from '../store/catalogStore'
 
 export default function StorePage() {
-  const [searchParams, setSearchParams] = useSearchParams()
   const { productos, fetchCatalog, isLoading } = useCatalogStore()
   
   // Estados de filtros
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   const [sortBy, setSortBy] = useState('creacion') // 'creacion', 'price-asc', 'price-desc', 'name-asc'
+  const [searchQuery, setSearchQuery] = useState('')
+  const [catParam, setCatParam] = useState('')
 
   useEffect(() => {
     fetchCatalog()
   }, [fetchCatalog])
 
-  // Obtener query de búsqueda de la URL (si viene del buscador predictivo o de navegación)
-  const searchQuery = searchParams.get('q') || ''
-  const catParam = searchParams.get('cat') || ''
+  // Sincronizar parámetros de búsqueda de la URL en el cliente
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      setSearchQuery(params.get('q') || '')
+      setCatParam(params.get('cat') || '')
+
+      const handlePopState = () => {
+        const p = new URLSearchParams(window.location.search)
+        setSearchQuery(p.get('q') || '')
+        setCatParam(p.get('cat') || '')
+      }
+      window.addEventListener('popstate', handlePopState)
+      return () => window.removeEventListener('popstate', handlePopState)
+    }
+  }, [])
 
   // Categorías dinámicas a partir de los productos reales cargados en memoria
   const categorias = useMemo(() => ['Todos', ...new Set(productos.flatMap(p => p.categorias || []))], [productos])
@@ -78,18 +90,21 @@ export default function StorePage() {
 
   const handleCategorySelect = (cat) => {
     setSelectedCategory(cat)
-    if (cat === 'Todos') {
-      setSearchParams({})
-    } else {
-      setSearchParams({ cat: cat.toLowerCase() })
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location)
+      if (cat === 'Todos') {
+        url.search = ''
+      } else {
+        url.search = `?cat=${encodeURIComponent(cat.toLowerCase())}`
+      }
+      window.history.pushState({}, '', url)
+      setSearchQuery('')
+      setCatParam(cat === 'Todos' ? '' : cat.toLowerCase())
     }
   }
 
   return (
     <>
-      <Helmet>
-        <title>Tienda | Missy & Po Pet Shop</title>
-      </Helmet>
 
       <div>
         {/* ENCABEZADO DE LA TIENDA */}
@@ -119,7 +134,16 @@ export default function StorePage() {
               ))}
               {searchQuery && (
                 <button
-                  onClick={() => setSearchParams({})}
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      const url = new URL(window.location)
+                      url.search = ''
+                      window.history.pushState({}, '', url)
+                      setSearchQuery('')
+                      setCatParam('')
+                      setSelectedCategory('Todos')
+                    }
+                  }}
                   className="px-4 py-1.5 rounded-full text-xs font-ui font-semibold bg-amber-100 text-amber-800 flex items-center gap-1 hover:bg-amber-200 transition-colors"
                 >
                   Búsqueda: "{searchQuery}" ✕

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 
 // Datos mock del slider — se reemplazarán con imágenes reales en Fase 2
 // Los colores de fondo simulan las paletas de las fotos originales de Missy & Po
@@ -141,8 +140,8 @@ export default function HeroSlider() {
               </p>
 
               {/* CTA */}
-              <Link
-                to={s.href}
+              <a
+                href={s.href}
                 className="inline-flex items-center gap-2 bg-white text-gray-800
                            font-ui font-bold px-8 py-3 rounded-full shadow-lg
                            hover:shadow-xl hover:scale-105 active:scale-95
@@ -155,7 +154,7 @@ export default function HeroSlider() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
                     d="M9 5l7 7-7 7" />
                 </svg>
-              </Link>
+              </a>
             </div>
 
             {/* DECORACIÓN DERECHA — Círculo con emoji grande */}
