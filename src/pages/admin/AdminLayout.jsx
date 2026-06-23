@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { collection, query, where, onSnapshot } from 'firebase/firestore'
 import { auth, db } from '../../services/firebase'
 
@@ -17,18 +17,11 @@ export default function AdminLayout() {
   const location = useLocation()
 
   useEffect(() => {
-    // ── BYPASS LOCAL PERSISTENTE ──
-    const bypassActive = localStorage.getItem('myp_admin_bypass') === 'true'
-    if (bypassActive) {
-      setUser({ email: ADMIN_EMAIL_BYPASS })
-      setIsAdmin(true)
-      setIsBypass(true)
-      setLoading(false)
-      return
-    }
+    let isMounted = true
 
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
+        if (!isMounted) return
         setUser(currentUser)
         try {
           const idTokenResult = await currentUser.getIdTokenResult(true)
@@ -46,18 +39,51 @@ export default function AdminLayout() {
           console.error('Error al verificar roles:', err)
           setIsAdmin(false)
         } finally {
-          setLoading(false)
+          if (isMounted) setLoading(false)
         }
       } else {
-        setUser(null)
-        setIsAdmin(false)
-        setIsBypass(false)
-        setLoading(false)
-        navigate('/login')
+        // Si no hay sesión activa de Auth pero el bypass local está activado
+        const bypassActive = localStorage.getItem('myp_admin_bypass') === 'true'
+        if (bypassActive) {
+          try {
+            console.log('Bypass de desarrollo activo sin sesión real. Auto-logueando en background...');
+            try {
+              await signInWithEmailAndPassword(auth, ADMIN_EMAIL_BYPASS, 'admin123')
+            } catch (signInErr) {
+              if (signInErr.code === 'auth/user-not-found' || signInErr.code === 'auth/invalid-credential' || signInErr.code === 'auth/wrong-password') {
+                console.log('Creando cuenta bypass de desarrollo automáticamente...');
+                await createUserWithEmailAndPassword(auth, ADMIN_EMAIL_BYPASS, 'admin123')
+              } else {
+                throw signInErr
+              }
+            }
+          } catch (err) {
+            console.error('Fallo en el auto-login de bypass:', err)
+            if (isMounted) {
+              localStorage.removeItem('myp_admin_bypass')
+              setUser(null)
+              setIsAdmin(false)
+              setIsBypass(false)
+              setLoading(false)
+              navigate('/login')
+            }
+          }
+        } else {
+          if (isMounted) {
+            setUser(null)
+            setIsAdmin(false)
+            setIsBypass(false)
+            setLoading(false)
+            navigate('/login')
+          }
+        }
       }
     })
 
-    return () => unsubscribe()
+    return () => {
+      isMounted = false
+      unsubscribe()
+    }
   }, [navigate])
 
   // ── BADGE: Escucha pedidos en estado 'recibido' en tiempo real ──
@@ -104,12 +130,12 @@ export default function AdminLayout() {
             No tienes permisos de administrador para acceder a esta sección comercial.
           </p>
           <div className="space-y-3">
-            <button
-              onClick={() => navigate('/')}
-              className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold transition-all"
+            <a
+              href="/"
+              className="w-full block py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold transition-all text-center"
             >
               Ir a la Tienda Pública
-            </button>
+            </a>
             <button
               onClick={handleLogout}
               className="w-full py-3 bg-red-50 hover:bg-red-100 text-red-700 rounded-2xl font-semibold transition-all"
@@ -175,12 +201,12 @@ export default function AdminLayout() {
             <p className="text-gray-400">Usuario:</p>
             <p className="font-semibold text-gray-800 truncate" title={user.email}>{user.email}</p>
           </div>
-          <button
-            onClick={() => navigate('/')}
+          <a
+            href="/"
             className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-50 text-gray-500 hover:text-gray-850 text-sm font-semibold transition-all"
           >
             🏠 Ir a la Tienda
-          </button>
+          </a>
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-red-50 text-red-500 text-sm font-semibold transition-all"
@@ -249,12 +275,13 @@ export default function AdminLayout() {
             <p className="text-gray-400">Usuario:</p>
             <p className="font-semibold text-gray-800 truncate">{user.email}</p>
           </div>
-          <button
-            onClick={() => { setSidebarOpen(false); navigate('/') }}
+          <a
+            href="/"
+            onClick={() => setSidebarOpen(false)}
             className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-50 text-gray-500 hover:text-gray-850 text-sm font-semibold transition-all"
           >
             🏠 Ir a la Tienda
-          </button>
+          </a>
           <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-red-50 text-red-500 text-sm font-semibold transition-all"

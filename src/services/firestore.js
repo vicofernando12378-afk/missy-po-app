@@ -22,7 +22,10 @@ export async function buscarProductos(termino, limite = 10) {
     limit(limite)
   )
   const snap = await getDocs(q)
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }))
+  return snap.docs.map(d => {
+    const data = d.data()
+    return { ...data, id: d.id, wpId: data.id }
+  })
 }
 
 export async function obtenerProductos({
@@ -43,7 +46,10 @@ export async function obtenerProductos({
   }
 
   const snap = await getDocs(q)
-  let productos = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+  let productos = snap.docs.map(d => {
+    const data = d.data()
+    return { ...data, id: d.id, wpId: data.id }
+  })
 
   // Ordenar en memoria
   productos.sort((a, b) => {
@@ -84,7 +90,8 @@ export async function obtenerProductoPorSlug(slug) {
   const snap = await getDocs(q)
   if (snap.empty) return null
   const d = snap.docs[0]
-  return { id: d.id, ...d.data() }
+  const data = d.data()
+  return { ...data, id: d.id, wpId: data.id }
 }
 
 // ── OBTENER UN PRODUCTO POR ID ─────────────────────────────
@@ -92,7 +99,8 @@ export async function obtenerProductoPorId(id) {
   const ref = doc(db, COLECCION, id)
   const snap = await getDoc(ref)
   if (!snap.exists()) return null
-  return { id: snap.id, ...snap.data() }
+  const data = snap.data()
+  return { ...data, id: snap.id, wpId: data.id }
 }
 
 // ── PRODUCTOS RELACIONADOS (misma categoría) ───────────────
@@ -106,7 +114,10 @@ export async function obtenerRelacionados(categorias = [], excludeId, limite = 6
   )
   const snap = await getDocs(q)
   return snap.docs
-    .map(d => ({ id: d.id, ...d.data() }))
+    .map(d => {
+      const data = d.data()
+      return { ...data, id: d.id, wpId: data.id }
+    })
     .filter(p => p.id !== excludeId)
     .slice(0, limite)
 }
@@ -579,13 +590,16 @@ export async function obtenerVentasConfirmadasDia(fechaIdStr) {
 // ── ADMIN: ACTUALIZAR STOCK Y VARIANTES DE PRODUCTO ──────────
 export async function actualizarStockProductoAdmin(productId, stock, variantes = null) {
   try {
-    const ref = doc(db, 'myp_productos', productId)
+    const ref = doc(db, 'myp_productos', String(productId))
     const updates = {
-      stock: stock,
+      stock: Number(stock),
       actualizado_en: serverTimestamp()
     }
     if (variantes !== null) {
-      updates.variantes = variantes
+      updates.variantes = variantes.map(v => ({
+        ...v,
+        stock: Number(v.stock)
+      }))
     }
     await updateDoc(ref, updates)
   } catch (e) {
@@ -600,7 +614,10 @@ export async function obtenerTodosProductosAdmin() {
     // Obtenemos todos los productos (incluso si tienen stock 0 o inactivos si quisiéramos auditarlos)
     const q = query(collection(db, 'myp_productos'), where('activo', '==', true))
     const snap = await getDocs(q)
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }))
+    return snap.docs.map(d => {
+      const data = d.data()
+      return { ...data, id: d.id, wpId: data.id }
+    })
   } catch (e) {
     console.error('Error al obtener productos para admin:', e)
     throw e

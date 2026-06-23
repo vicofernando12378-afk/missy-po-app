@@ -225,7 +225,7 @@ export default function InventarioStock() {
                           )}
                           <div>
                             <p className="font-semibold text-gray-800 leading-snug">{product.nombre}</p>
-                            <span className="text-[10px] text-gray-400">ID: {product.id}</span>
+                            <span className="text-[10px] text-gray-450">ID: {product.wpId || product.id}</span>
                             {product.stock < 5 && (
                               <span className="block mt-1.5 px-2 py-0.5 w-max rounded-full text-[9px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
                                 ⚠️ Stock Crítico

@@ -267,17 +267,35 @@ export default function LoginPage() {
             {/* Botón de Bypass de Desarrollo */}
             <button
               type="button"
-              onClick={() => {
+              disabled={loading}
+              onClick={async () => {
                 if (typeof window !== 'undefined') {
-                  localStorage.setItem('myp_admin_bypass', 'true')
-                  setUser({ email: ADMIN_EMAIL_BYPASS })
-                  setIsAdmin(true)
-                  window.location.href = '/admin'
+                  setLoading(true)
+                  setError('')
+                  try {
+                    try {
+                      await signInWithEmailAndPassword(auth, ADMIN_EMAIL_BYPASS, 'admin123')
+                    } catch (signInErr) {
+                      if (signInErr.code === 'auth/user-not-found' || signInErr.code === 'auth/invalid-credential' || signInErr.code === 'auth/wrong-password') {
+                        console.log('Creando cuenta bypass de desarrollo automáticamente...');
+                        await createUserWithEmailAndPassword(auth, ADMIN_EMAIL_BYPASS, 'admin123')
+                      } else {
+                        throw signInErr
+                      }
+                    }
+                    localStorage.setItem('myp_admin_bypass', 'true')
+                    window.location.href = '/admin'
+                  } catch (err) {
+                    console.error('Error al iniciar bypass:', err)
+                    setError('Error al sincronizar sesión de desarrollo.')
+                  } finally {
+                    setLoading(false)
+                  }
                 }
               }}
-              className="w-full mt-3 py-3 px-4 border border-dashed border-amber-300 text-amber-700 bg-amber-50/20 hover:bg-amber-50 hover:text-amber-800 rounded-2xl font-semibold text-xs transition-all active:scale-[0.98] text-center"
+              className="w-full mt-3 py-3 px-4 border border-dashed border-amber-300 text-amber-700 bg-amber-50/20 hover:bg-amber-50 hover:text-amber-800 rounded-2xl font-semibold text-xs transition-all active:scale-[0.98] text-center disabled:bg-gray-100 disabled:text-gray-400"
             >
-              🛠️ Entrar con Bypass de Desarrollo (Sin Firebase Auth)
+              🛠️ Entrar con Bypass de Desarrollo (Con Firebase Auth Real)
             </button>
           </form>
         )}
