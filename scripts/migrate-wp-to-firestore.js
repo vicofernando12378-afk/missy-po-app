@@ -270,6 +270,20 @@ async function runMigration() {
   console.log(`   - Posts totales cargados: ${Object.keys(posts).length}`);
   console.log(`   - Relaciones de taxonomía: ${termRelationships.length}`);
 
+  // Helper to decode HTML entities in terms
+  const decodeHtml = (str) => {
+    if (!str) return '';
+    return str
+      .replace(/&amp;/g, '&')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&apos;/g, "'")
+      .trim();
+  };
+
   // 3. Agrupar categorías y etiquetas por producto
   const productTerms = {};
   termRelationships.forEach(rel => {
@@ -281,10 +295,11 @@ async function runMigration() {
         if (!productTerms[object_id]) {
           productTerms[object_id] = { categories: [], tags: [] };
         }
+        const cleanName = decodeHtml(term.name);
         if (taxInfo.taxonomy === 'product_cat') {
-          productTerms[object_id].categories.push(term.name);
+          productTerms[object_id].categories.push(cleanName);
         } else if (taxInfo.taxonomy === 'product_tag') {
-          productTerms[object_id].tags.push(term.name);
+          productTerms[object_id].tags.push(cleanName);
         }
       }
     }

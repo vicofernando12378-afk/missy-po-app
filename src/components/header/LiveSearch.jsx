@@ -222,11 +222,11 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                         <div className="flex items-center gap-1 mt-1">
                           {item.precio_oferta && (
                             <span className="text-[10px] text-gray-400 line-through">
-                              S/ {(item.precio_regular / 100).toFixed(2)}
+                              S/ {parseFloat(item.precio_regular).toFixed(2)}
                             </span>
                           )}
                           <span className="text-xs font-bold text-green-600">
-                            S/ {(precio / 100).toFixed(2)}
+                            S/ {parseFloat(precio).toFixed(2)}
                           </span>
                         </div>
                       </div>
@@ -267,11 +267,11 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                     <div className="flex items-center gap-2 mb-2">
                       {previewItem.precio_oferta && (
                         <span className="text-xs text-gray-400 line-through">
-                          S/ {(previewItem.precio_regular / 100).toFixed(2)}
+                          S/ {parseFloat(previewItem.precio_regular).toFixed(2)}
                         </span>
                       )}
                       <span className="text-base font-bold text-green-600">
-                        S/ {((previewItem.precio_oferta || previewItem.precio_regular) / 100).toFixed(2)}
+                        S/ {parseFloat(previewItem.precio_oferta || previewItem.precio_regular).toFixed(2)}
                       </span>
                     </div>
 

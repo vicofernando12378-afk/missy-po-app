@@ -229,10 +229,10 @@ export default function ProductosCRUD() {
 
                       {/* Precio */}
                       <td className="px-6 py-4">
-                        <p className="font-semibold text-gray-800">S/ {(precioFinal / 100).toFixed(2)}</p>
+                        <p className="font-semibold text-gray-800">S/ {parseFloat(precioFinal).toFixed(2)}</p>
                         {tieneOferta && (
                           <p className="text-[11px] text-gray-400 line-through">
-                            S/ {(producto.precio_regular / 100).toFixed(2)}
+                            S/ {parseFloat(producto.precio_regular).toFixed(2)}
                           </p>
                         )}
                       </td>

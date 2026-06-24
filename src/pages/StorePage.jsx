@@ -4,51 +4,68 @@ import useCatalogStore from '../store/catalogStore'
 
 export default function StorePage() {
   const { productos, fetchCatalog, isLoading } = useCatalogStore()
-  
-  // Estados de filtros
-  const [selectedCategory, setSelectedCategory] = useState('Todos')
-  const [sortBy, setSortBy] = useState('creacion') // 'creacion', 'price-asc', 'price-desc', 'name-asc'
-  const [searchQuery, setSearchQuery] = useState('')
-  const [catParam, setCatParam] = useState('')
+
+  // Maps URL slugs from Navbar/Footer to the real Firestore category names
+  const CAT_SLUG_MAP = {
+    'collares':   'Collares y Articulos',
+    'ropa':       'Ropitas Missy & Po',
+    'ropitas':    'Ropitas Missy & Po',
+    'juguetes':   'Juguetes',
+    'accesorios': 'Accesorios',
+    'ofertas':    'Ofertas',
+  }
+
+  // Helper: resolves a URL slug to its real category name
+  const resolveSlug = (slug, cats = []) => {
+    if (!slug) return 'Todos'
+    const lower = slug.toLowerCase()
+    if (CAT_SLUG_MAP[lower]) return CAT_SLUG_MAP[lower]
+    const exact = cats.find(c => c.toLowerCase() === lower)
+    if (exact) return exact
+    const starts = cats.find(c => c.toLowerCase().startsWith(lower))
+    return starts || (slug.charAt(0).toUpperCase() + slug.slice(1))
+  }
+
+  // Read URL params SYNCHRONOUSLY (runs before first render, avoids Astro hydration race)
+  const getInitialParam = (key) => {
+    if (typeof window === 'undefined') return ''
+    return new URLSearchParams(window.location.search).get(key) || ''
+  }
+
+  const [catParam, setCatParam] = useState(() => getInitialParam('cat'))
+  const [searchQuery, setSearchQuery] = useState(() => getInitialParam('q'))
+  const [selectedCategory, setSelectedCategory] = useState(
+    () => resolveSlug(getInitialParam('cat'))
+  )
+  const [sortBy, setSortBy] = useState('creacion')
 
   useEffect(() => {
     fetchCatalog()
   }, [fetchCatalog])
 
-  // Sincronizar parámetros de búsqueda de la URL en el cliente
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search)
-      setSearchQuery(params.get('q') || '')
-      setCatParam(params.get('cat') || '')
-
-      const handlePopState = () => {
-        const p = new URLSearchParams(window.location.search)
-        setSearchQuery(p.get('q') || '')
-        setCatParam(p.get('cat') || '')
-      }
-      window.addEventListener('popstate', handlePopState)
-      return () => window.removeEventListener('popstate', handlePopState)
-    }
-  }, [])
-
   // Categorías dinámicas a partir de los productos reales cargados en memoria
   const categorias = useMemo(() => ['Todos', ...new Set(productos.flatMap(p => p.categorias || []))], [productos])
 
-  // Sincronizar el parámetro 'cat' de la URL con el estado de la categoría seleccionada
+  // Re-resolve selectedCategory when categorias loads (products may have loaded after mount)
   useEffect(() => {
     if (catParam) {
-      const matchedCat = categorias.find(c => c.toLowerCase() === catParam.toLowerCase())
-      if (matchedCat) {
-        setSelectedCategory(matchedCat)
-      } else {
-        // Capitalizar la primera letra si no se encuentra en las categorías dinámicas aún
-        setSelectedCategory(catParam.charAt(0).toUpperCase() + catParam.slice(1))
-      }
-    } else {
-      setSelectedCategory('Todos')
+      setSelectedCategory(resolveSlug(catParam, categorias))
     }
-  }, [catParam, productos, categorias])
+  }, [catParam, categorias])
+
+  // Listen for browser back/forward navigation (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const p = new URLSearchParams(window.location.search)
+      const cat = p.get('cat') || ''
+      const q   = p.get('q')   || ''
+      setSearchQuery(q)
+      setCatParam(cat)
+      setSelectedCategory(resolveSlug(cat, categorias))
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [categorias])
 
   // Filtrar productos
   let filtered = [...productos]

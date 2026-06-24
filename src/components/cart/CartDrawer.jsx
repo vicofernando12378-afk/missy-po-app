@@ -347,11 +347,11 @@ export default function CartDrawer() {
                   </p>
                   {p.precio_oferta ? (
                     <>
-                      <p className="text-[10px] text-gray-400 line-through font-body">S/ {(p.precio_regular / 100).toFixed(2)}</p>
-                      <p className="text-[10px] font-bold text-green-600 font-body">S/ {(p.precio_oferta / 100).toFixed(2)}</p>
+                      <p className="text-[10px] text-gray-400 line-through font-body">S/ {parseFloat(p.precio_regular).toFixed(2)}</p>
+                      <p className="text-[10px] font-bold text-green-600 font-body">S/ {parseFloat(p.precio_oferta).toFixed(2)}</p>
                     </>
                   ) : (
-                    <p className="text-[10px] font-bold text-gray-700 font-body">S/ {(p.precio_regular / 100).toFixed(2)}</p>
+                    <p className="text-[10px] font-bold text-gray-700 font-body">S/ {parseFloat(p.precio_regular).toFixed(2)}</p>
                   )}
                 </a>
               ))}

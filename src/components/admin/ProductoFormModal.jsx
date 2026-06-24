@@ -45,8 +45,8 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
       ? {
           ...productoVacio,
           ...producto,
-          precio_regular: producto.precio_regular ? (producto.precio_regular / 100).toFixed(2) : '',
-          precio_oferta: producto.precio_oferta ? (producto.precio_oferta / 100).toFixed(2) : '',
+          precio_regular: producto.precio_regular ? parseFloat(producto.precio_regular).toFixed(2) : '',
+          precio_oferta: producto.precio_oferta ? parseFloat(producto.precio_oferta).toFixed(2) : '',
           stock: producto.stock ?? '',
           imagenes: producto.imagenes || [],
           variantes: producto.variantes || [],
@@ -178,10 +178,10 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
         ? form.variantes.reduce((sum, v) => sum + (parseInt(v.stock) || 0), 0)
         : parseInt(form.stock) || 0
 
-      // 5. Preparar variantes con precios en centavos
+      // 5. Prepare variante prices as plain floats (stored in soles)
       const variantesFinales = form.variantes.map(v => ({
         ...v,
-        precio_unitario: v.precio_unitario ? Math.round(parseFloat(v.precio_unitario) * 100) : null,
+        precio_unitario: v.precio_unitario ? parseFloat(v.precio_unitario) : null,
         stock: parseInt(v.stock) || 0,
       }))
 
@@ -190,8 +190,8 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
         slug: form.slug.trim() || generarSlug(form.nombre),
         sku: form.sku.trim().toUpperCase(),
         descripcion: form.descripcion.trim(),
-        precio_regular: Math.round(parseFloat(form.precio_regular) * 100),
-        precio_oferta: form.precio_oferta ? Math.round(parseFloat(form.precio_oferta) * 100) : null,
+        precio_regular: parseFloat(form.precio_regular),
+        precio_oferta: form.precio_oferta ? parseFloat(form.precio_oferta) : null,
         categorias: form.categorias,
         stock: stockFinal,
         activo: form.activo,

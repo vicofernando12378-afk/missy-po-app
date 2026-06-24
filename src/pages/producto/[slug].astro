@@ -26,6 +26,8 @@ if (slug) {
   product = await obtenerProductoPorSlug(slug);
 }
 
+const serializedProduct = product ? JSON.parse(JSON.stringify(product)) : null;
+
 const title = product 
   ? `${product.nombre} | Missy & Po Pet Shop`
   : "Producto no encontrado | Missy & Po Pet Shop";
@@ -36,5 +38,5 @@ const description = product
 ---
 
 <Layout title={title} description={description}>
-  <ProductPage slug={slug} client:load />
+  <ProductPage slug={slug} initialProduct={serializedProduct} client:load />
 </Layout>

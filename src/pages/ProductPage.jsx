@@ -6,6 +6,47 @@ import SaleBadge from '../components/catalog/SaleBadge'
 import ProductCard from '../components/catalog/ProductCard'
 import { obtenerResenasPorProducto, crearResena } from '../services/firestore'
 
+// ─── Strip HTML/Facebook noise from product descriptions ─────────
+// Some descriptions are stored as encoded HTML (e.g. &lt;div&gt;) from
+// WordPress/Facebook imports. Decode entities first, then strip tags.
+function cleanDescription(raw) {
+  if (!raw) return ''
+  let text = raw
+
+  // Step 1: clean up literal 'rn' strings (\r\n stored as text during WP import)
+  text = text.replace(/(?<=\>)rn(?=\<)/g, '\n')
+  text = text.replace(/^rn|rn$/gm, '')
+
+  // Step 2: decode HTML entities FIRST — this is critical because
+  // attribute values may contain &amp; which breaks tag-matching regex
+  text = text
+    .replace(/&amp;/g, '&')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+
+  // Step 2: remove <img> tags entirely (Facebook/WhatsApp emojis)
+  text = text.replace(/<img[^>]*\/?>/gi, '')
+
+  // Step 3: convert block-level tags to newlines (preserves paragraphs)
+  text = text.replace(/<\/?\s*(?:div|p|br|li|ul|ol|h[1-6])[^>]*>/gi, '\n')
+
+  // Step 4: strip all remaining HTML tags
+  text = text.replace(/<[^>]+>/g, '')
+
+  // Step 5: build clean <p> blocks
+  const blocks = text
+    .split(/\n+/)
+    .map(line => line.trim())
+    .filter(Boolean)
+
+  if (!blocks.length) return ''
+  return blocks.map(b => `<p>${b}</p>`).join('')
+}
+
 // Icono estrella para rating
 const StarIcon = ({ filled }) => (
   <svg className={`w-4 h-4 ${filled ? 'text-amber-400' : 'text-gray-200'}`} viewBox="0 0 20 20" fill="currentColor">
@@ -13,12 +54,12 @@ const StarIcon = ({ filled }) => (
   </svg>
 )
 
-export default function ProductPage({ slug }) {
+export default function ProductPage({ slug, initialProduct }) {
   const { productos, fetchCatalog, getProductoBySlug, isLoading } = useCatalogStore()
   const addItem = useCartStore(s => s.addItem)
   const openDrawer = useCartStore(s => s.openDrawer)
 
-  const product = getProductoBySlug(slug)
+  const product = initialProduct || getProductoBySlug(slug)
 
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [cantidad, setCantidad] = useState(1)
@@ -117,7 +158,8 @@ export default function ProductPage({ slug }) {
     }
   }, [product])
 
-  if (isLoading) {
+  const showLoader = !product && isLoading
+  if (showLoader) {
     return (
       <div className="py-32 text-center">
         <div className="inline-block w-10 h-10 border-4 border-coral border-t-transparent rounded-full animate-spin"></div>
@@ -263,6 +305,8 @@ export default function ProductPage({ slug }) {
                 src={imagenes[activeImageIndex] || '/assets/placeholder-pet.jpg'}
                 alt={nombre}
                 className="w-full h-full object-cover"
+                fetchpriority="high"
+                decoding="sync"
               />
             </div>
 
@@ -313,11 +357,12 @@ export default function ProductPage({ slug }) {
               <PriceDisplay regular={displayPriceRegular} sale={displayPriceOferta} size="large" />
             </div>
 
-            {/* Descripción corta */}
+            {/* Short description */}
             {descripcion_corta && (
-              <p className="text-sm font-body text-gray-600 mb-6 bg-gray-50 p-4 rounded-2xl border-l-4 border-amber-300">
-                {descripcion_corta}
-              </p>
+              <div
+                className="text-sm font-body text-gray-600 mb-6 bg-gray-50 p-4 rounded-2xl border-l-4 border-amber-300 [&_p]:mb-1"
+                dangerouslySetInnerHTML={{ __html: cleanDescription(descripcion_corta) }}
+              />
             )}
 
             {/* SELECTOR DE VARIACIONES (Si aplica) */}
@@ -427,9 +472,9 @@ export default function ProductPage({ slug }) {
         {descripcion && (
           <div className="border-t border-gray-100 pt-10 mb-16">
             <h2 className="font-ui font-bold text-lg text-gray-800 mb-4">Descripción del Producto</h2>
-            <div 
-              className="prose prose-sm max-w-none font-body text-gray-600 space-y-4"
-              dangerouslySetInnerHTML={{ __html: descripcion }}
+            <div
+              className="prose prose-sm max-w-none font-body text-gray-600 space-y-4 [&_div]:mb-2"
+              dangerouslySetInnerHTML={{ __html: cleanDescription(descripcion) }}
             />
           </div>
         )}
