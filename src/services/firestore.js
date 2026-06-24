@@ -189,32 +189,32 @@ export async function crearPedidoConTransaccion(datosPedido) {
     // y evitar sobrescrituras de stock entre variaciones del mismo producto.
     const itemsPorProducto = {}
     for (const item of datosPedido.items) {
-      const productSku = String(item.sku || item.id)
-      if (!itemsPorProducto[productSku]) {
-        itemsPorProducto[productSku] = []
+      const productId = String(item.id)
+      if (!itemsPorProducto[productId]) {
+        itemsPorProducto[productId] = []
       }
-      itemsPorProducto[productSku].push(item)
+      itemsPorProducto[productId].push(item)
     }
 
     // 1. Ejecutar todas las lecturas primero (una sola lectura por documento de producto)
     const productDocs = {}
-    for (const productSku of Object.keys(itemsPorProducto)) {
-      const prodRef = doc(db, COLECCION, productSku)
+    for (const productId of Object.keys(itemsPorProducto)) {
+      const prodRef = doc(db, COLECCION, productId)
       const prodSnap = await transaction.get(prodRef)
       
       if (!prodSnap.exists()) {
-        throw new Error(`El producto con SKU ${productSku} no existe en el catálogo.`)
+        throw new Error(`El producto con SKU ${productId} no existe en el catálogo.`)
       }
       
-      productDocs[productSku] = {
+      productDocs[productId] = {
         ref: prodRef,
         data: prodSnap.data()
       }
     }
 
     // 2. Procesar las validaciones y actualizar los datos en memoria
-    for (const [productSku, items] of Object.entries(itemsPorProducto)) {
-      const prodDoc = productDocs[productSku]
+    for (const [productId, items] of Object.entries(itemsPorProducto)) {
+      const prodDoc = productDocs[productId]
       let currentData = prodDoc.data
 
       for (const item of items) {
@@ -256,7 +256,7 @@ export async function crearPedidoConTransaccion(datosPedido) {
     }
 
     // 3. Ejecutar todas las escrituras después de todas las lecturas
-    for (const [productSku, prodDoc] of Object.entries(productDocs)) {
+    for (const [productId, prodDoc] of Object.entries(productDocs)) {
       transaction.update(prodDoc.ref, {
         variantes: prodDoc.data.variantes || null,
         stock: prodDoc.data.stock,
@@ -354,27 +354,27 @@ export async function reestablecerStockPedidoConTransaccion(items) {
   await runTransaction(db, async (transaction) => {
     const itemsPorProducto = {}
     for (const item of items) {
-      const productSku = String(item.sku || item.id)
-      if (!itemsPorProducto[productSku]) {
-        itemsPorProducto[productSku] = []
+      const productId = String(item.id)
+      if (!itemsPorProducto[productId]) {
+        itemsPorProducto[productId] = []
       }
-      itemsPorProducto[productSku].push(item)
+      itemsPorProducto[productId].push(item)
     }
 
     const productDocs = {}
-    for (const productSku of Object.keys(itemsPorProducto)) {
-      const prodRef = doc(db, 'myp_productos', productSku)
+    for (const productId of Object.keys(itemsPorProducto)) {
+      const prodRef = doc(db, 'myp_productos', productId)
       const prodSnap = await transaction.get(prodRef)
       if (prodSnap.exists()) {
-        productDocs[productSku] = {
+        productDocs[productId] = {
           ref: prodRef,
           data: prodSnap.data()
         }
       }
     }
 
-    for (const [productSku, prodItems] of Object.entries(itemsPorProducto)) {
-      const prodDoc = productDocs[productSku]
+    for (const [productId, prodItems] of Object.entries(itemsPorProducto)) {
+      const prodDoc = productDocs[productId]
       if (!prodDoc) continue // Si el producto fue eliminado del catálogo, omitimos
 
       let currentData = prodDoc.data
@@ -406,7 +406,7 @@ export async function reestablecerStockPedidoConTransaccion(items) {
       prodDoc.data = currentData
     }
 
-    for (const [productSku, prodDoc] of Object.entries(productDocs)) {
+    for (const [productId, prodDoc] of Object.entries(productDocs)) {
       transaction.update(prodDoc.ref, {
         variantes: prodDoc.data.variantes || null,
         stock: prodDoc.data.stock,
