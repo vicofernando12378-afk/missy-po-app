@@ -55,3 +55,13 @@ desktop.ini
 # ── Backups Locales ──
 backups/
 
+# ── Astro ──
+.astro/
+
+# ── Agent & IDE Configs ──
+.clinerules
+.cursor/
+.opencode/
+.windsurf/
+AGENTS.md
+
