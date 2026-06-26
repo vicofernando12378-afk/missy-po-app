@@ -18,6 +18,7 @@ const productoVacio = {
   slug: '',
   sku: '',
   descripcion: '',
+  precio_compra: '',
   precio_regular: '',
   precio_oferta: '',
   categorias: [],
@@ -45,6 +46,7 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
       ? {
           ...productoVacio,
           ...producto,
+          precio_compra: producto.precio_compra ? parseFloat(producto.precio_compra).toFixed(2) : '',
           precio_regular: producto.precio_regular ? parseFloat(producto.precio_regular).toFixed(2) : '',
           precio_oferta: producto.precio_oferta ? parseFloat(producto.precio_oferta).toFixed(2) : '',
           stock: producto.stock ?? '',
@@ -154,6 +156,7 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
 
     if (!form.nombre.trim()) return setError('El nombre es requerido.')
     if (!form.sku.trim()) return setError('El SKU es requerido.')
+    if (!form.precio_compra || isNaN(parseFloat(form.precio_compra))) return setError('El precio de compra es requerido.')
     if (!form.precio_regular || isNaN(parseFloat(form.precio_regular))) return setError('El precio regular es requerido.')
     if (form.imagenes.length === 0 && imagenFiles.length === 0) return setError('Debes subir al menos 1 imagen.')
 
@@ -190,6 +193,7 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
         slug: form.slug.trim() || generarSlug(form.nombre),
         sku: form.sku.trim().toUpperCase(),
         descripcion: form.descripcion.trim(),
+        precio_compra: parseFloat(form.precio_compra),
         precio_regular: parseFloat(form.precio_regular),
         precio_oferta: form.precio_oferta ? parseFloat(form.precio_oferta) : null,
         categorias: form.categorias,
@@ -313,7 +317,23 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-700 mb-1.5">Precio de Compra (S/) *</label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs font-bold">S/</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={form.precio_compra}
+                        onChange={e => setField('precio_compra', e.target.value)}
+                        placeholder="0.00"
+                        className="w-full pl-8 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-coral bg-white"
+                        required
+                      />
+                    </div>
+                  </div>
                   <div>
                     <label className="block text-xs font-bold text-gray-700 mb-1.5">Precio Regular (S/) *</label>
                     <div className="relative">

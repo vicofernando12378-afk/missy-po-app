@@ -235,6 +235,11 @@ export default function ProductosCRUD() {
                             S/ {parseFloat(producto.precio_regular).toFixed(2)}
                           </p>
                         )}
+                        {producto.precio_compra !== undefined && producto.precio_compra !== null && (
+                          <p className="text-[11px] text-emerald-600 font-semibold mt-0.5">
+                            Costo: S/ {parseFloat(producto.precio_compra).toFixed(2)}
+                          </p>
+                        )}
                       </td>
 
                       {/* Stock */}
