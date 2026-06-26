@@ -3128,17 +3128,6 @@
       "id": "admin_productoscrud_productoscrud"
     },
     {
-      "label": "club-missypo.astro",
-      "file_type": "code",
-      "source_file": "src/pages/club-missypo.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "club-missypo.astro",
-      "community_name": "Community 4",
-      "id": "pages_club_missypo"
-    },
-    {
       "label": "envios.astro",
       "file_type": "code",
       "source_file": "src/pages/envios.astro",
@@ -3201,8 +3190,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "blog-posts.js",
-      "id": "data_blog_posts",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "data_blog_posts"
     },
     {
       "label": "articulosBlog",
@@ -3212,8 +3201,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "articulosblog",
-      "id": "data_blog_posts_articulosblog",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "data_blog_posts_articulosblog"
     },
     {
       "label": "blog.astro",
@@ -3223,8 +3212,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "blog.astro",
-      "id": "pages_blog",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "pages_blog"
     },
     {
       "label": "categorias",
@@ -3234,8 +3223,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "categorias",
-      "id": "pages_blog_categorias",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "pages_blog_categorias"
     },
     {
       "label": "articulos",
@@ -3245,8 +3234,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "articulos",
-      "id": "pages_blog_articulos",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "pages_blog_articulos"
     },
     {
       "label": "emptyState",
@@ -3256,8 +3245,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "emptystate",
-      "id": "pages_blog_emptystate",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "pages_blog_emptystate"
     },
     {
       "label": "applyFilters()",
@@ -3267,8 +3256,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "applyfilters()",
-      "id": "pages_blog_applyfilters",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "pages_blog_applyfilters"
     },
     {
       "label": "searchInput",
@@ -3278,8 +3267,8 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "searchinput",
-      "id": "pages_blog_searchinput",
-      "community_name": "Community 4"
+      "community_name": "Community 4",
+      "id": "pages_blog_searchinput"
     },
     {
       "label": "form",
@@ -3289,7 +3278,106 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "form",
-      "id": "pages_blog_form",
+      "community_name": "Community 4",
+      "id": "pages_blog_form"
+    },
+    {
+      "label": "../data/blog-posts.js",
+      "file_type": "code",
+      "source_file": "src/data/blog-posts.ts",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "../data/blog-posts.js",
+      "community_name": "Community 4",
+      "id": "c_mis_proyectos_missy_po_src_data_blog_posts_ts"
+    },
+    {
+      "label": "[slug].astro",
+      "file_type": "code",
+      "source_file": "src/pages/blog/[slug].astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "[slug].astro",
+      "community_name": "Community 4",
+      "id": "blog_slug"
+    },
+    {
+      "label": "getStaticPaths()",
+      "file_type": "code",
+      "source_file": "src/pages/blog/[slug].astro",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "getstaticpaths()",
+      "community_name": "Community 4",
+      "id": "blog_slug_getstaticpaths"
+    },
+    {
+      "label": "../../data/blog-posts",
+      "file_type": "code",
+      "source_file": "src/data/blog-posts",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "../../data/blog-posts",
+      "community_name": "Community 4",
+      "id": "c_mis_proyectos_missy_po_src_data_blog_posts"
+    },
+    {
+      "label": "missypo-tv.astro",
+      "file_type": "code",
+      "source_file": "src/pages/missypo-tv.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "missypo-tv.astro",
+      "community_name": "Community 4",
+      "id": "pages_missypo_tv"
+    },
+    {
+      "label": "featuredVideo",
+      "file_type": "code",
+      "source_file": "src/pages/missypo-tv.astro",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "featuredvideo",
+      "community_name": "Community 4",
+      "id": "pages_missypo_tv_featuredvideo"
+    },
+    {
+      "label": "episodios",
+      "file_type": "code",
+      "source_file": "src/pages/missypo-tv.astro",
+      "source_location": "L13",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "episodios",
+      "community_name": "Community 4",
+      "id": "pages_missypo_tv_episodios"
+    },
+    {
+      "label": "string",
+      "file_type": "code",
+      "source_file": "src/pages/missypo-tv.astro",
+      "source_location": "L72",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "string",
+      "community_name": "Community 4",
+      "id": "pages_missypo_tv_string"
+    },
+    {
+      "label": "club-missypo.astro",
+      "file_type": "code",
+      "source_file": "src/pages/club-missypo.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "club-missypo.astro",
+      "id": "pages_club_missypo",
       "community_name": "Community 4"
     },
     {
@@ -3301,94 +3389,6 @@
       "community": 4,
       "norm_label": "../layouts/layout.astro",
       "id": "c_mis_proyectos_missy_po_src_layouts_layout_astro",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "../data/blog-posts.js",
-      "file_type": "code",
-      "source_file": "src/data/blog-posts.ts",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "../data/blog-posts.js",
-      "id": "c_mis_proyectos_missy_po_src_data_blog_posts_ts",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "[slug].astro",
-      "file_type": "code",
-      "source_file": "src/pages/blog/[slug].astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "[slug].astro",
-      "id": "blog_slug",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "getStaticPaths()",
-      "file_type": "code",
-      "source_file": "src/pages/blog/[slug].astro",
-      "source_location": "L5",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "getstaticpaths()",
-      "id": "blog_slug_getstaticpaths",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "../../data/blog-posts",
-      "file_type": "code",
-      "source_file": "src/data/blog-posts",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "../../data/blog-posts",
-      "id": "c_mis_proyectos_missy_po_src_data_blog_posts",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "missypo-tv.astro",
-      "file_type": "code",
-      "source_file": "src/pages/missypo-tv.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "missypo-tv.astro",
-      "id": "pages_missypo_tv",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "featuredVideo",
-      "file_type": "code",
-      "source_file": "src/pages/missypo-tv.astro",
-      "source_location": "L6",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "featuredvideo",
-      "id": "pages_missypo_tv_featuredvideo",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "episodios",
-      "file_type": "code",
-      "source_file": "src/pages/missypo-tv.astro",
-      "source_location": "L13",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "episodios",
-      "id": "pages_missypo_tv_episodios",
-      "community_name": "Community 4"
-    },
-    {
-      "label": "string",
-      "file_type": "code",
-      "source_file": "src/pages/missypo-tv.astro",
-      "source_location": "L72",
-      "_origin": "ast",
-      "community": 4,
-      "norm_label": "string",
-      "id": "pages_missypo_tv_string",
       "community_name": "Community 4"
     }
   ],
@@ -7739,14 +7739,6 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/club-missypo.astro",
-      "confidence_score": 1.0,
-      "source": "pages_club_missypo",
-      "target": "c_mis_proyectos_missy_po_src_layouts_layout_astro"
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
       "source_file": "src/pages/envios.astro",
       "confidence_score": 1.0,
       "source": "pages_envios",
@@ -7915,22 +7907,6 @@
       "target": "pages_blog_searchinput"
     },
     {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/blog/[slug].astro",
-      "confidence_score": 1.0,
-      "source": "blog_slug",
-      "target": "c_mis_proyectos_missy_po_src_layouts_layout_astro"
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/missypo-tv.astro",
-      "confidence_score": 1.0,
-      "source": "pages_missypo_tv",
-      "target": "c_mis_proyectos_missy_po_src_layouts_layout_astro"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/blog/[slug].astro",
@@ -7947,6 +7923,22 @@
       "confidence_score": 1.0,
       "source": "blog_slug",
       "target": "c_mis_proyectos_missy_po_src_data_blog_posts"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/blog/[slug].astro",
+      "confidence_score": 1.0,
+      "source": "blog_slug",
+      "target": "c_mis_proyectos_missy_po_src_layouts_layout_astro"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/missypo-tv.astro",
+      "confidence_score": 1.0,
+      "source": "pages_missypo_tv",
+      "target": "c_mis_proyectos_missy_po_src_layouts_layout_astro"
     },
     {
       "relation": "contains",
@@ -7977,8 +7969,16 @@
       "confidence_score": 1.0,
       "source": "pages_missypo_tv",
       "target": "pages_missypo_tv_string"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/club-missypo.astro",
+      "confidence_score": 1.0,
+      "source": "pages_club_missypo",
+      "target": "c_mis_proyectos_missy_po_src_layouts_layout_astro"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "24c4de223229bf154cf8c527c7d88230c24df8a9"
+  "built_at_commit": "c7ce52637250d25b4a4727c4717b2ded513c9f79"
 }
