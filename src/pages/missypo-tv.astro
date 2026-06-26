@@ -1,0 +1,349 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@MissyPoPetShop';
+
+const featuredVideo = {
+  youtubeId: 'dQw4w9WgXcQ', // TODO: reemplazar con ID real del video destacado
+  title: 'Cómo elegir la alimentación perfecta para tu perro según su edad',
+  description: 'Aprende con nuestra experta en nutrición animal todo lo que necesitas saber para darle a tu mascota la dieta ideal en cada etapa de su vida. Tips prácticos, errores comunes y recomendaciones reales.',
+  duration: '12:34',
+};
+
+const episodios = [
+  {
+    youtubeId: 'abc123',
+    title: 'El secreto para un pelaje perfecto y brillante',
+    duration: '8:45',
+    category: 'Grooming',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'def456',
+    title: 'Cómo cortar las uñas a tu gato sin estrés',
+    duration: '6:20',
+    category: 'Cuidado',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'ghi789',
+    title: 'Nutrición natural vs. balanceado: ¿cuál es mejor?',
+    duration: '14:10',
+    category: 'Nutrición',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'jkl012',
+    title: 'Señales de que tu perro está estresado',
+    duration: '9:55',
+    category: 'Comportamiento',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'mno345',
+    title: 'Primeros auxilios para mascotas en casa',
+    duration: '11:30',
+    category: 'Salud',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'pqr678',
+    title: '5 juguetes DIY para entretener a tu gato',
+    duration: '7:15',
+    category: 'Entretenimiento',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'stu901',
+    title: 'Cómo socializar a un cachorro paso a paso',
+    duration: '10:40',
+    category: 'Entrenamiento',
+    thumbnail: '',
+  },
+  {
+    youtubeId: 'vwx234',
+    title: 'Baño perfecto para tu mascota en casa',
+    duration: '8:00',
+    category: 'Grooming',
+    thumbnail: '',
+  },
+];
+
+const categoryColors: Record<string, string> = {
+  'Grooming':        'bg-pink-500/20 text-pink-300',
+  'Cuidado':         'bg-teal-500/20 text-teal-300',
+  'Nutrición':       'bg-amber-500/20 text-amber-300',
+  'Comportamiento':  'bg-purple-500/20 text-purple-300',
+  'Salud':           'bg-red-500/20 text-red-300',
+  'Entretenimiento': 'bg-blue-500/20 text-blue-300',
+  'Entrenamiento':   'bg-green-500/20 text-green-300',
+};
+---
+
+<Layout
+  title="Missy & Po TV | Videos y Tutoriales para Mascotas"
+  description="Aprende a cuidar, entender y consentir a tu mascota con los mejores expertos en video. Contenido nuevo todas las semanas en Missy & Po TV."
+>
+
+  {/* ============================================================
+      HERO — Experiencia cine/televisión
+  ============================================================ */}
+  <section class="relative min-h-[70vh] flex items-center overflow-hidden" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);">
+
+    {/* Noise texture overlay */}
+    <div class="absolute inset-0 opacity-30" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+
+    {/* Glow decorativo */}
+    <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(circle, var(--color-coral) 0%, transparent 70%); filter: blur(40px);"></div>
+    <div class="absolute top-0 left-0 w-96 h-96 rounded-full opacity-5 pointer-events-none" style="background: radial-gradient(circle, var(--color-gold) 0%, transparent 70%); filter: blur(60px);"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 py-24 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        {/* Texto */}
+        <div>
+          {/* Badge NUEVOS EPISODIOS */}
+          <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full text-xs font-ui font-bold uppercase tracking-widest" style="background: rgba(229,106,106,0.15); border: 1px solid rgba(229,106,106,0.4); color: var(--color-coral-light);">
+            <span class="w-2 h-2 rounded-full animate-pulse" style="background: var(--color-coral);"></span>
+            Nuevos Episodios
+          </div>
+
+          <h1 class="font-hero text-5xl sm:text-6xl lg:text-7xl text-white mb-6 leading-none">
+            Missy<span style="color: var(--color-coral);">&amp;</span>Po<br/>
+            <span style="color: var(--color-gold);">TV</span>
+          </h1>
+
+          <p class="text-gray-300 font-body text-lg leading-relaxed mb-10 max-w-lg">
+            Aprende a cuidar, entender y consentir a tus mascotas con los mejores expertos en video.
+            <strong class="text-white"> ¡Contenido nuevo todas las semanas!</strong>
+          </p>
+
+          {/* CTA YouTube — rojo oficial */}
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href={YOUTUBE_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="cta-youtube-hero"
+              class="inline-flex items-center justify-center gap-3 font-ui font-bold text-white px-8 py-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-red-500/30 text-base"
+              style="background: linear-gradient(135deg, #FF0000, #cc0000);"
+            >
+              {/* YouTube icon */}
+              <svg class="w-6 h-6 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              Suscríbete y activa la campanita
+            </a>
+
+            <a
+              href="#episodios"
+              class="inline-flex items-center justify-center gap-2 font-ui font-semibold text-gray-300 border border-gray-600 px-8 py-4 rounded-full hover:border-gray-400 hover:text-white transition-all duration-300 text-base"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              Ver episodios
+            </a>
+          </div>
+        </div>
+
+        {/* Stats laterales */}
+        <div class="hidden lg:flex flex-col gap-6 items-end">
+          {[
+            { num: '+10K', label: 'Suscriptores' },
+            { num: '+50', label: 'Videos publicados' },
+            { num: 'Semanal', label: 'Contenido nuevo' },
+          ].map(stat => (
+            <div class="text-right p-6 rounded-2xl backdrop-blur-sm border border-white/10" style="background: rgba(255,255,255,0.05);">
+              <p class="font-hero text-4xl text-white mb-1">{stat.num}</p>
+              <p class="text-gray-400 text-sm font-ui uppercase tracking-wide">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+      VIDEO DESTACADO PRINCIPAL
+  ============================================================ */}
+  <section class="py-20 px-4" style="background: #111;">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="text-center mb-10">
+        <span class="inline-flex items-center gap-2 text-xs font-ui font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4" style="background: rgba(245,166,35,0.15); color: var(--color-gold); border: 1px solid rgba(245,166,35,0.3);">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          Video del Momento
+        </span>
+        <h2 class="font-hero text-3xl sm:text-4xl text-white">
+          El episodio que no puedes perderte
+        </h2>
+      </div>
+
+      {/* Player 16:9 responsivo */}
+      <div class="relative w-full rounded-3xl overflow-hidden shadow-2xl" style="padding-top: 56.25%; background: #000;">
+        <iframe
+          src={`https://www.youtube.com/embed/${featuredVideo.youtubeId}?rel=0&modestbranding=1`}
+          title={featuredVideo.title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          class="absolute inset-0 w-full h-full border-0"
+        ></iframe>
+      </div>
+
+      {/* Info del video */}
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-start gap-6">
+        <div class="flex-1">
+          <h3 class="font-ui font-bold text-white text-xl sm:text-2xl mb-3 leading-snug">
+            {featuredVideo.title}
+          </h3>
+          <p class="text-gray-400 font-body leading-relaxed text-sm sm:text-base">
+            {featuredVideo.description}
+          </p>
+        </div>
+        <a
+          href={`https://www.youtube.com/watch?v=${featuredVideo.youtubeId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-shrink-0 inline-flex items-center gap-2 font-ui font-bold text-white px-6 py-3 rounded-full transition-all hover:scale-105 text-sm"
+          style="background: #FF0000;"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Ver en YouTube
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  {/* ============================================================
+      GRILLA DE EPISODIOS — Estilo Netflix
+  ============================================================ */}
+  <section id="episodios" class="py-20 px-4" style="background: #0d0d0d;">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="flex items-end justify-between mb-12">
+        <div>
+          <h2 class="font-hero text-3xl sm:text-4xl text-white mb-2">
+            Episodios Destacados
+          </h2>
+          <p class="text-gray-500 font-body text-sm">Elige el tema que más te interesa y aprende a tu ritmo.</p>
+        </div>
+        <a
+          href={YOUTUBE_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-2 text-sm font-ui font-semibold text-gray-400 hover:text-white transition-colors duration-200"
+        >
+          Ver todos
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {episodios.map((ep, i) => (
+          <a
+            href={`https://www.youtube.com/watch?v=${ep.youtubeId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            id={`video-card-${i}`}
+            class="group block rounded-2xl overflow-hidden border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-white/20"
+            style="background: #1a1a1a;"
+          >
+            {/* Thumbnail con overlay de play */}
+            <div class="relative w-full" style="padding-top: 56.25%;">
+              {/* Fondo placeholder con gradiente hasta que existan thumbnails reales */}
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center"
+                style={`background: linear-gradient(135deg, hsl(${(i * 47) % 360}, 25%, 18%), hsl(${(i * 47 + 60) % 360}, 20%, 12%));`}
+              >
+                {/* Play icon */}
+                <div class="w-14 h-14 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-300 group-hover:scale-110" style="background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.25);">
+                  <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+
+              {/* Badge duración */}
+              <span class="absolute bottom-2 right-2 text-xs font-ui font-bold text-white px-2 py-0.5 rounded" style="background: rgba(0,0,0,0.8);">
+                {ep.duration}
+              </span>
+
+              {/* Badge categoría */}
+              <span class={`absolute top-2 left-2 text-xs font-ui font-semibold px-2 py-1 rounded-full ${categoryColors[ep.category] || 'bg-gray-500/20 text-gray-300'}`}>
+                {ep.category}
+              </span>
+            </div>
+
+            {/* Info */}
+            <div class="p-4">
+              <h3 class="font-ui font-semibold text-white text-sm leading-snug mb-3 line-clamp-2 group-hover:text-gray-200 transition-colors">
+                {ep.title}
+              </h3>
+              <div class="flex items-center justify-between">
+                <span class="text-gray-600 text-xs font-body">Missy & Po TV</span>
+                <span class="inline-flex items-center gap-1 text-xs font-ui font-bold text-red-400 hover:text-red-300 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  Ver
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* ============================================================
+      BANNER DE CIERRE — Comunidad
+  ============================================================ */}
+  <section class="py-20 px-4 relative overflow-hidden" style="background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);">
+
+    {/* Decoración */}
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-80 h-80 rounded-full opacity-10" style="background: #fff; filter: blur(60px);"></div>
+      <div class="absolute -bottom-20 -left-20 w-80 h-80 rounded-full opacity-10" style="background: #fff; filter: blur(60px);"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+
+      {/* YouTube icon grande */}
+      <div class="inline-flex w-20 h-20 rounded-3xl items-center justify-center mb-8 shadow-2xl" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);">
+        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </div>
+
+      <h2 class="font-hero text-3xl sm:text-4xl lg:text-5xl text-white mb-4 leading-tight">
+        Únete a más de <span class="underline decoration-wavy decoration-white/40">10,000 dueños</span> de mascotas
+        <br class="hidden sm:block"/> que ya aprenden con nosotros
+      </h2>
+
+      <p class="text-red-100 font-body text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+        Suscríbete al canal de Missy & Po en YouTube, activa la campanita y recibe una notificación cada vez que publiquemos un nuevo episodio.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href={YOUTUBE_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          id="cta-youtube-banner"
+          class="inline-flex items-center justify-center gap-3 font-ui font-bold text-red-600 bg-white px-10 py-5 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-white/30 text-base"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          Suscribirse gratis en YouTube
+        </a>
+        <a
+          href="/club-missypo"
+          class="inline-flex items-center justify-center gap-2 font-ui font-semibold text-white border-2 border-white/40 px-10 py-5 rounded-full hover:border-white hover:bg-white/10 transition-all duration-300 text-base"
+        >
+          Ver beneficios del Club
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

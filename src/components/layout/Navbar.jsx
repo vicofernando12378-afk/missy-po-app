@@ -44,10 +44,9 @@ const CloseIcon = () => (
 const NAV_CATEGORIES = [
   { label: 'INICIO', href: '/' },
   { label: 'TIENDA', href: '/tienda' },
-  { label: 'COLLARES', href: '/tienda?cat=collares' },
-  { label: 'ROPA', href: '/tienda?cat=ropa' },
-  { label: 'JUGUETES', href: '/tienda?cat=juguetes' },
-  { label: 'ACCESORIOS', href: '/tienda?cat=accesorios' },
+  { label: 'Beneficios Club Missy & Po', href: '/club-missypo' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Missy & Po TV', href: '/missypo-tv' },
 ]
 
 export default function Navbar() {

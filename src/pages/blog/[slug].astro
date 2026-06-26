@@ -1,0 +1,327 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { articulosBlog } from '../../data/blog-posts';
+
+export async function getStaticPaths() {
+  return articulosBlog.map((art) => ({
+    params: { slug: art.slug },
+    props: { article: art },
+  }));
+}
+
+const { article } = Astro.props;
+
+// Obtener hasta 3 artículos recomendados (excluyendo el actual)
+const recomendados = articulosBlog
+  .filter((a) => a.slug !== article.slug)
+  .slice(0, 3);
+---
+
+<Layout
+  title={`${article.titulo} | Blog Missy & Po`}
+  description={article.metaDescription || article.descripcion}
+>
+  <!-- Barra de progreso de lectura -->
+  <div
+    id="progress-bar"
+    class="fixed top-0 left-0 h-1 z-50 transition-all duration-700"
+    style={`width: 0%; background: ${article.color || 'var(--color-coral)'};`}
+  ></div>
+
+  <main class="bg-gray-50 min-h-screen py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      
+      <!-- Navegación superior / miga de pan -->
+      <nav aria-label="Breadcrumb" class="mb-8 flex items-center justify-between">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-sm font-ui font-semibold text-gray-600 hover:text-gray-900 transition-colors duration-200"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Volver al Blog
+        </a>
+        <a
+          href="/tienda"
+          class="text-xs font-ui font-bold px-4 py-2 rounded-full border transition-all duration-200 hover:bg-gray-100"
+          style="border-color: var(--color-border); color: var(--color-text-dark);"
+        >
+          Visitar Tienda 🛒
+        </a>
+      </nav>
+
+      <!-- Grid Principal: Artículo (Col 8) + Sidebar (Col 4) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        {/* ============================================================
+            COLUMNA DEL ARTÍCULO (LECTURA COMPLETA)
+            ============================================================ */}
+        <article class="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border shadow-sm" style="border-color: var(--color-border);">
+          
+          <!-- Encabezado del artículo -->
+          <header class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span
+                class="text-xs font-ui font-bold px-3 py-1 rounded-full"
+                style={`background: ${article.color}15; color: ${article.color};`}
+              >
+                {article.categoria}
+              </span>
+              <span class="text-xs text-gray-400 font-body">•</span>
+              <span class="text-xs text-gray-500 font-body">{article.fecha}</span>
+              <span class="text-xs text-gray-400 font-body">•</span>
+              <span class="text-xs text-gray-500 font-body">{article.lectura}</span>
+            </div>
+
+            <h1 class="font-ui font-bold text-2xl sm:text-3xl lg:text-4xl text-gray-900 leading-tight mb-4">
+              {article.titulo}
+            </h1>
+
+            <div class="flex items-center gap-3 pt-4 border-t" style="border-color: var(--color-border);">
+              <!-- Avatar default -->
+              <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-ui font-bold text-gray-600 text-sm border">
+                🐾
+              </div>
+              <div>
+                <p class="text-xs font-ui font-bold text-gray-800">{article.autor}</p>
+                <p class="text-[10px] font-body text-gray-400">Especialista Missy & Po</p>
+              </div>
+            </div>
+          </header>
+
+          <!-- Imagen destacada principal -->
+          <div class="relative rounded-2xl overflow-hidden mb-8 max-h-[420px] shadow-sm border border-gray-100">
+            <img
+              src={article.imagen}
+              alt={article.titulo}
+              class="w-full h-full object-cover aspect-[16/9]"
+              loading="eager"
+            />
+          </div>
+
+          <!-- Cuerpo del artículo -->
+          <div class="prose max-w-none text-gray-800 font-body">
+            <Fragment set:html={article.contenidoHtml} />
+          </div>
+
+          <!-- SECCIÓN COMPARTIR -->
+          <div class="mt-12 pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style="border-color: var(--color-border);">
+            <div>
+              <h4 class="font-ui font-bold text-sm text-gray-700 mb-1">¿Te pareció útil este artículo?</h4>
+              <p class="text-xs font-body text-gray-400">Compártelo con otros dueños de mascotas.</p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <!-- WhatsApp -->
+              <a
+                id="share-whatsapp"
+                href={`https://api.whatsapp.com/send?text=Mira%20este%20art%C3%ADculo%20interesante%20de%20Missy%20%26%20Po%3A%20${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-9 h-9 rounded-full bg-green-500 text-white flex items-center justify-center hover:bg-green-600 transition-colors duration-200"
+                title="Compartir en WhatsApp"
+              >
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.248 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.714-1.465L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.97C16.579 1.951 14.108.92 11.479.919c-5.43 0-9.852 4.37-9.857 9.802 0 1.73.488 3.42 1.41 4.908l-.962 3.512 3.577-.945zm11.144-6.49c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.568-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                </svg>
+              </a>
+
+              <!-- Facebook -->
+              <a
+                id="share-facebook"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition-colors duration-200"
+                title="Compartir en Facebook"
+              >
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+
+              <!-- Copiar Enlace -->
+              <button
+                id="share-copy"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-ui font-semibold text-gray-600 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+                style="border-color: var(--color-border);"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                </svg>
+                <span id="copy-text">Copiar enlace</span>
+              </button>
+            </div>
+          </div>
+
+        </article>
+
+        {/* ============================================================
+            COLUMNA SIDEBAR (PRODUCTOS RELACIONADOS Y RECOMENDADOS)
+            ============================================================ */}
+        <aside class="lg:col-span-4 space-y-6">
+
+          <!-- BLOQUE PRODUCTOS RELACIONADOS (TIENDA FÍSICA) -->
+          {article.productosRelacionados && article.productosRelacionados.length > 0 && (
+            <div class="bg-white rounded-3xl p-6 border shadow-sm" style="border-color: var(--color-border);">
+              <h3 class="font-ui font-bold text-gray-900 text-base mb-4 flex items-center gap-2">
+                <span>🛍️</span> Productos Sugeridos
+              </h3>
+              <div class="space-y-4">
+                {article.productosRelacionados.map((prod) => (
+                  <div class="p-4 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col gap-2">
+                    <div>
+                      <h4 class="font-ui font-bold text-sm text-gray-800 leading-tight">
+                        {prod.nombre}
+                      </h4>
+                      <p class="text-xs text-gray-400 font-body mt-0.5">SKU: {prod.SKU}</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-200">
+                      <span class="font-ui font-bold text-sm" style="color: var(--color-coral);">
+                        {prod.precio}
+                      </span>
+                      <a
+                        href={`/tienda?search=${prod.SKU}`}
+                        class="text-xs font-ui font-bold px-3 py-1.5 rounded-full text-white transition-opacity duration-200 hover:opacity-90"
+                        style="background: var(--color-coral);"
+                      >
+                        Ver en Tienda
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- BLOQUE RECOMENDADOS (OTROS POSTS) -->
+          <div class="bg-white rounded-3xl p-6 border shadow-sm" style="border-color: var(--color-border);">
+            <h3 class="font-ui font-bold text-gray-900 text-base mb-4">
+              Lecturas Recomendadas 📚
+            </h3>
+            <div class="divide-y space-y-4 divide-gray-100">
+              {recomendados.map((rec) => (
+                <a
+                  href={`/blog/${rec.slug}`}
+                  class="group block pt-4 first:pt-0"
+                >
+                  <span
+                    class="text-[10px] font-ui font-bold px-2 py-0.5 rounded-full inline-block mb-2"
+                    style={`background: ${rec.color}15; color: ${rec.color};`}
+                  >
+                    {rec.categoria}
+                  </span>
+                  <h4 class="font-ui font-bold text-sm text-gray-800 leading-snug group-hover:text-coral transition-colors duration-200 group-hover:underline">
+                    {rec.titulo}
+                  </h4>
+                  <p class="text-xs font-body text-gray-400 mt-1">{rec.lectura}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- BLOQUE NEWSLETTER SIDEBAR -->
+          <div
+            class="rounded-3xl p-6 border shadow-sm text-center relative overflow-hidden"
+            style="background: linear-gradient(135deg, #fff5f5 0%, #fffbeb 100%); border-color: var(--color-border);"
+          >
+            <h3 class="font-ui font-bold text-gray-900 text-base mb-2">
+              ¿Quieres recibir más consejos? 📬
+            </h3>
+            <p class="text-xs font-body text-gray-500 mb-4 leading-relaxed">
+              Únete gratis a nuestra comunidad de crianza responsable en el Perú y recibe guías de veterinarios.
+            </p>
+            <form id="sidebar-newsletter-form" class="space-y-2">
+              <label for="sidebar-email" class="sr-only">Tu correo electrónico</label>
+              <input
+                id="sidebar-email"
+                type="email"
+                placeholder="Tu correo"
+                required
+                class="w-full px-4 py-2.5 rounded-full border text-xs font-body bg-white focus:outline-none focus:ring-2"
+                style="border-color: var(--color-border); color: var(--color-text-dark);"
+              />
+              <button
+                type="submit"
+                class="w-full py-2.5 rounded-full font-ui font-bold text-white text-xs transition-opacity duration-200 hover:opacity-90 shadow-sm"
+                style="background: var(--color-coral);"
+              >
+                Suscribirme ahora
+              </button>
+            </form>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // ── BARRA DE PROGRESO DE LECTURA ───────────────────────────
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+      if (progressBar) {
+        progressBar.style.width = `${progress}%`;
+      }
+    });
+
+    // ── CONFIGURACIÓN DE ENLACES PARA COMPARTIR ────────────────
+    if (typeof window !== 'undefined') {
+      const currentUrl = window.location.href;
+      
+      const whatsappBtn = document.getElementById('share-whatsapp') as HTMLAnchorElement;
+      if (whatsappBtn) {
+        whatsappBtn.href = `https://api.whatsapp.com/send?text=Mira%20este%20art%C3%ADculo%20interesante%20de%20Missy%20%26%20Po%3A%20${encodeURIComponent(currentUrl)}`;
+      }
+
+      const facebookBtn = document.getElementById('share-facebook') as HTMLAnchorElement;
+      if (facebookBtn) {
+        facebookBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+      }
+
+      // Copiar enlace al portapapeles
+      const copyBtn = document.getElementById('share-copy') as HTMLButtonElement;
+      const copyText = document.getElementById('copy-text');
+
+      copyBtn?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(currentUrl);
+          if (copyText) copyText.textContent = '¡Copiado! 🎉';
+          copyBtn.style.background = '#f0fdf4';
+          copyBtn.style.borderColor = '#bbf7d0';
+          setTimeout(() => {
+            if (copyText) copyText.textContent = 'Copiar enlace';
+            copyBtn.style.background = '';
+            copyBtn.style.borderColor = 'var(--color-border)';
+          }, 3000);
+        } catch (err) {
+          console.error('Error al copiar el enlace:', err);
+        }
+      });
+    }
+
+    // ── FORMULARIO DE NEWSLETTER EN SIDEBAR ────────────────────
+    const sidebarForm = document.getElementById('sidebar-newsletter-form') as HTMLFormElement;
+    sidebarForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('sidebar-email') as HTMLInputElement;
+      if (!input?.value) return;
+      const btn = sidebarForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      
+      btn.textContent = '¡Registrado! 🎉';
+      btn.style.background = 'var(--color-sale-green)';
+      btn.disabled = true;
+      input.value = '';
+
+      setTimeout(() => {
+        btn.textContent = 'Suscribirme ahora';
+        btn.style.background = 'var(--color-coral)';
+        btn.disabled = false;
+      }, 3000);
+    });
+  </script>
+</Layout>

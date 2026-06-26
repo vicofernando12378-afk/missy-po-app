@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ReclamacionesForm from '../components/legal/ReclamacionesForm.jsx';
+---
+
+<Layout 
+  title="Libro de Reclamaciones | Missy & Po Pet Shop"
+  description="Accede a nuestro Libro de Reclamaciones virtual para registrar cualquier queja o reclamo respecto a nuestros productos o servicios de e-commerce."
+>
+  <div class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8 font-body">
+    <div class="max-w-4xl mx-auto">
+      
+      {/* Encabezado Principal de la Página */}
+      <div class="text-center mb-8">
+        <h1 class="font-hero text-3xl sm:text-4xl text-gray-800 mb-2" style="color: var(--color-text-dark)">
+          Libro de Reclamaciones Virtual
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-500 font-body max-w-md mx-auto">
+          Conforme a lo establecido en el Código de Protección y Defensa del Consumidor de la República del Perú.
+        </p>
+      </div>
+
+      {/* Información del Proveedor / Identificación del Establecimiento */}
+      <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm mb-6 text-sm text-gray-600 space-y-2">
+        <h2 class="font-ui font-bold text-gray-800 uppercase text-xs tracking-wider mb-2">
+          Identificación de la Empresa (Proveedor)
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div><strong>Razón Social / Nombre:</strong> Missy & Po Pet Shop (Tifany Chavez)</div>
+          <div><strong>Dirección Fiscal:</strong> Coop. Universitaria i-1 Dpto 3, Arequipa, Perú</div>
+          <div><strong>RUC:</strong> [Completar RUC en admin]</div>
+          <div><strong>Establecimiento:</strong> Tienda Online (www.missy-po.local)</div>
+        </div>
+      </div>
+
+      {/* Formulario Interactivo */}
+      <ReclamacionesForm client:load />
+
+    </div>
+  </div>
+</Layout>

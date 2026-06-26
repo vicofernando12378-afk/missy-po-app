@@ -1,0 +1,348 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Club de Beneficios Missy & Po | Pet Shop Arequipa"
+  description="Únete al Club de Beneficios Missy & Po. Acumula Superpuntos, accede a descuentos exclusivos y protege a tu mascota con seguros de salud. ¡Tu peludo merece lo mejor!"
+>
+
+  {/* === HERO === */}
+  <section class="relative overflow-hidden py-20 px-4" style="background: linear-gradient(135deg, #fff5f5 0%, #fff8ec 50%, #fff5f5 100%);">
+    {/* Decoración de fondo */}
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-20" style="background: var(--color-coral);"></div>
+      <div class="absolute -bottom-16 -left-16 w-96 h-96 rounded-full opacity-10" style="background: var(--color-gold);"></div>
+    </div>
+
+    <div class="relative max-w-5xl mx-auto text-center">
+      {/* Badge */}
+      <div class="inline-flex items-center gap-2 bg-white border text-xs font-ui font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-sm mb-6" style="border-color: var(--color-coral); color: var(--color-coral);">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        Club Exclusivo para Miembros
+      </div>
+
+      <h1 class="font-hero text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight" style="color: var(--color-text-dark);">
+        Club de Beneficios<br/>
+        <span style="color: var(--color-coral);">Missy &amp; Po</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-body" style="color: var(--color-text-gray);">
+        ¡Haz que cada compra cuente! Acumula Missy & Po Puntos, accede a descuentos exclusivos y protege la salud de tu mascota con beneficios únicos diseñados para ti y tu peludo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href="https://wa.me/51999999999?text=Hola!%20quiero%20unirme%20al%20Club%20de%20Beneficios%20Missy%20%26%20Po"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 font-ui font-bold text-white px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl text-sm sm:text-base"
+          style="background: linear-gradient(135deg, var(--color-coral), var(--color-coral-dark));"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Quiero unirme al Club
+        </a>
+        <a
+          href="/tienda"
+          class="inline-flex items-center gap-2 font-ui font-semibold bg-white border-2 px-8 py-4 rounded-full transition-all duration-300 text-sm sm:text-base hover:shadow-md"
+          style="border-color: var(--color-coral); color: var(--color-coral);"
+        >
+          Ver tienda
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* === BENEFICIOS PRINCIPALES === */}
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="font-hero text-3xl sm:text-4xl mb-4" style="color: var(--color-text-dark);">
+          ¿Qué incluye el Club?
+        </h2>
+        <p class="font-body max-w-xl mx-auto" style="color: var(--color-text-gray);">
+          Todos los beneficios diseñados para que tú y tu mascota vivan la mejor experiencia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {/* Benefit 1: Missy & Po Puntos */}
+        <div class="group relative bg-amber-50 border border-amber-200 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, var(--color-gold), #f59e0b);">
+            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">Missy &amp; Po Puntos</h3>
+          <p class="text-gray-600 text-sm font-body leading-relaxed">
+            Acumula puntos en cada compra y canjéalos por descuentos o productos gratis. ¡Cada sol que gastas en tu mascota te premia de vuelta!
+          </p>
+          <div class="mt-5 pt-5 border-t border-amber-200">
+            <span class="text-xs font-ui font-bold uppercase tracking-wider" style="color: var(--color-gold);">1 sol = 10 Missy &amp; Po Puntos</span>
+          </div>
+        </div>
+
+        {/* Benefit 2: Descuentos exclusivos */}
+        <div class="group relative border rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300" style="background: #fff5f5; border-color: var(--color-salmon-light);">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, var(--color-coral), var(--color-coral-dark));">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M17 17h.01M9 12l2 2 4-4m-1.5-7A8.5 8.5 0 115.5 18.5 8.5 8.5 0 0117.5 5z"/></svg>
+          </div>
+          <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">Descuentos Exclusivos</h3>
+          <p class="text-gray-600 text-sm font-body leading-relaxed">
+            Accedé a promociones anticipadas, descuentos especiales en temporadas y ofertas que solo están disponibles para miembros del Club.
+          </p>
+          <div class="mt-5 pt-5" style="border-top: 1px solid var(--color-salmon-light);">
+            <span class="text-xs font-ui font-bold uppercase tracking-wider" style="color: var(--color-coral);">Hasta 20% de descuento</span>
+          </div>
+        </div>
+
+        {/* Benefit 3: Cumpleaños */}
+        <div class="group relative bg-violet-50 border border-violet-200 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0M3 5a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/></svg>
+          </div>
+          <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">Regalo de Cumpleaños</h3>
+          <p class="text-gray-600 text-sm font-body leading-relaxed">
+            El mes del cumpleaños de tu mascota es especial. Te enviamos una sorpresa exclusiva para celebrar juntos ese día tan importante.
+          </p>
+          <div class="mt-5 pt-5 border-t border-violet-200">
+            <span class="text-xs font-ui font-bold text-violet-600 uppercase tracking-wider">Para tu peludito 🐾</span>
+          </div>
+        </div>
+
+        {/* Benefit 4: Acceso anticipado */}
+        <div class="group relative bg-teal-50 border border-teal-200 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, #14b8a6, #34d399);">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">Acceso Anticipado</h3>
+          <p class="text-gray-600 text-sm font-body leading-relaxed">
+            Sé el primero en enterarte de nuevos productos, colecciones y lanzamientos especiales antes que el resto. Los miembros del Club tienen prioridad.
+          </p>
+          <div class="mt-5 pt-5 border-t border-teal-200">
+            <span class="text-xs font-ui font-bold text-teal-600 uppercase tracking-wider">Preventa exclusiva</span>
+          </div>
+        </div>
+
+        {/* Benefit 5: Contenido VIP */}
+        <div class="group relative bg-blue-50 border border-blue-200 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, #3b82f6, #6366f1);">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.069A1 1 0 0121 8.876V15.124a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">Contenido Missy & Po TV</h3>
+          <p class="text-gray-600 text-sm font-body leading-relaxed">
+            Accedé a videos exclusivos, tutoriales de cuidado, tips de nutrición y contenido especial creado por expertos. Solo para miembros del Club.
+          </p>
+          <div class="mt-5 pt-5 border-t border-blue-200">
+            <span class="text-xs font-ui font-bold text-blue-600 uppercase tracking-wider">Videos & tutoriales exclusivos</span>
+          </div>
+        </div>
+
+        {/* Benefit 6: Soporte prioritario */}
+        <div class="group relative bg-orange-50 border border-orange-200 rounded-3xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-md" style="background: linear-gradient(135deg, #f97316, #fb923c);">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">Atención Prioritaria</h3>
+          <p class="text-gray-600 text-sm font-body leading-relaxed">
+            Como miembro del Club, tus consultas y pedidos son atendidos con prioridad. Canal directo con nuestro equipo vía WhatsApp VIP.
+          </p>
+          <div class="mt-5 pt-5 border-t border-orange-200">
+            <span class="text-xs font-ui font-bold text-orange-600 uppercase tracking-wider">WhatsApp VIP disponible</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* === SEGUROS DE SALUD — ALIANZA ESTRATÉGICA === */}
+  <section class="py-24 px-4 relative overflow-hidden" style="background: linear-gradient(135deg, #1F2937, #111827);">
+    {/* Decoración */}
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10" style="background: var(--color-coral); filter: blur(80px);"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-10" style="background: var(--color-gold); filter: blur(80px);"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        {/* Texto */}
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-ui font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6" style="background: rgba(229,106,106,0.15); border: 1px solid rgba(229,106,106,0.3); color: var(--color-coral-light);">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            Próximamente — Seguro para Mascotas
+          </div>
+
+          <h2 class="font-hero text-3xl sm:text-4xl text-white mb-6 leading-tight">
+            Protegé la salud de tu mascota con un
+            <span style="color: var(--color-gold);"> seguro de salud</span>
+          </h2>
+
+          <p class="font-body leading-relaxed mb-6 text-base" style="color: #9CA3AF;">
+            Estamos cerrando alianzas con las mejores aseguradoras peruanas para ofrecerte coberturas de salud veterinaria pensadas para perros y gatos. Como miembro del Club Missy & Po, tendrás acceso a <strong class="text-white">tarifas preferenciales</strong> y beneficios exclusivos que no encontrarás en ningún otro lado.
+          </p>
+
+          <ul class="space-y-4 mb-8">
+            {[
+              'Consultas veterinarias cubiertas',
+              'Emergencias y hospitalización',
+              'Cirugías y procedimientos especializados',
+              'Vacunas y medicina preventiva',
+              'Descuento adicional por ser miembro del Club',
+            ].map(text => (
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5 text-white" style="background: var(--color-coral);">✓</span>
+                <span class="font-body text-sm" style="color: #D1D5DB;">{text}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="https://wa.me/51999999999?text=Hola!%20quiero%20informarme%20sobre%20el%20seguro%20de%20salud%20para%20mi%20mascota"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-ui font-bold text-white px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl text-sm"
+            style="background: linear-gradient(135deg, var(--color-coral), var(--color-coral-dark));"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Quiero más información
+          </a>
+        </div>
+
+        {/* Cards de cobertura */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            {
+              emoji: '🏥',
+              title: 'Plan Básico',
+              desc: 'Consultas y vacunas preventivas. Ideal para mascotas sanas.',
+              tag: 'Desde S/ 29/mes',
+              border: 'rgba(20,184,166,0.3)',
+              bg: 'rgba(20,184,166,0.08)',
+              tagColor: '#2dd4bf',
+            },
+            {
+              emoji: '⚕️',
+              title: 'Plan Completo',
+              desc: 'Todo el Plan Básico + emergencias y hospitalización.',
+              tag: 'Desde S/ 59/mes',
+              border: 'rgba(59,130,246,0.3)',
+              bg: 'rgba(59,130,246,0.08)',
+              tagColor: '#60a5fa',
+            },
+            {
+              emoji: '🔬',
+              title: 'Plan Premium',
+              desc: 'Cobertura total incluyendo cirugías y especialistas.',
+              tag: 'Desde S/ 99/mes',
+              border: 'rgba(139,92,246,0.3)',
+              bg: 'rgba(139,92,246,0.08)',
+              tagColor: '#a78bfa',
+            },
+            {
+              emoji: '🐾',
+              title: 'Club Discount',
+              desc: 'Miembros del Club acceden a descuento especial en todos los planes.',
+              tag: '-15% exclusivo',
+              border: 'rgba(245,166,35,0.3)',
+              bg: 'rgba(245,166,35,0.08)',
+              tagColor: '#F5A623',
+            },
+          ].map(plan => (
+            <div class="rounded-2xl p-5 hover:scale-105 transition-transform duration-300" style={`background: ${plan.bg}; border: 1px solid ${plan.border};`}>
+              <div class="text-3xl mb-3">{plan.emoji}</div>
+              <h4 class="font-ui font-bold text-white text-sm mb-2">{plan.title}</h4>
+              <p class="text-sm font-body leading-relaxed mb-3" style="color: #9CA3AF;">{plan.desc}</p>
+              <span class="text-xs font-ui font-bold uppercase tracking-wide" style={`color: ${plan.tagColor};`}>{plan.tag}</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      {/* Disclaimer */}
+      <p class="text-center text-xs font-body mt-12" style="color: #6B7280;">
+        * Los planes de seguro están sujetos a confirmación de alianzas con aseguradoras peruanas reguladas por la SBS. Los precios son referenciales y pueden variar al momento del lanzamiento oficial.
+      </p>
+    </div>
+  </section>
+
+  {/* === CÓMO FUNCIONA === */}
+  <section class="py-20 px-4 bg-gray-50">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-14">
+        <h2 class="font-hero text-3xl sm:text-4xl mb-4" style="color: var(--color-text-dark);">
+          ¿Cómo funciona el Club?
+        </h2>
+        <p class="font-body" style="color: var(--color-text-gray);">Simple, rápido y lleno de beneficios.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+
+        {/* Línea conectora en desktop */}
+        <div class="hidden md:block absolute top-8 left-1/3 right-1/3 h-0.5" style="background: linear-gradient(to right, var(--color-salmon-light), var(--color-coral));"></div>
+
+        {[
+          {
+            step: '01',
+            title: 'Regístrate',
+            desc: 'Crea tu cuenta en la tienda o escríbenos por WhatsApp para unirte al Club.',
+            color: 'var(--color-coral)',
+            bg: '#fff5f5',
+            border: 'var(--color-salmon-light)',
+          },
+          {
+            step: '02',
+            title: 'Compra y acumula',
+            desc: 'Cada compra suma Missy & Po Puntos automáticamente. Sin complicaciones.',
+            color: 'var(--color-gold)',
+            bg: '#fffbeb',
+            border: '#fde68a',
+          },
+          {
+            step: '03',
+            title: '¡Disfruta!',
+            desc: 'Canjea tus puntos, activa seguros y accede a todos los beneficios exclusivos.',
+            color: '#8b5cf6',
+            bg: '#f5f3ff',
+            border: '#ddd6fe',
+          },
+        ].map(step => (
+          <div class="text-center relative">
+            <div class="inline-flex w-16 h-16 rounded-2xl items-center justify-center font-hero text-2xl font-black border-2 mx-auto mb-5" style={`color: ${step.color}; background: ${step.bg}; border-color: ${step.border};`}>
+              {step.step}
+            </div>
+            <h3 class="font-ui font-bold text-gray-800 text-lg mb-2">{step.title}</h3>
+            <p class="text-sm font-body leading-relaxed" style="color: var(--color-text-gray);">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* === CTA FINAL === */}
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-5xl mb-6">🐾</p>
+      <h2 class="font-hero text-3xl sm:text-4xl mb-4" style="color: var(--color-text-dark);">
+        ¿Listo para darle lo mejor a tu mascota?
+      </h2>
+      <p class="font-body mb-10 leading-relaxed" style="color: var(--color-text-gray);">
+        Unirse al Club Missy & Po es gratis. Solo tienes que escribirnos y empezar a comprar. Los beneficios llegan solos.
+      </p>
+      <a
+        href="https://wa.me/51999999999?text=Hola!%20quiero%20unirme%20al%20Club%20de%20Beneficios%20Missy%20%26%20Po"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 font-ui font-bold text-white px-10 py-5 rounded-full shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl text-base"
+        style="background: linear-gradient(135deg, var(--color-coral), var(--color-coral-dark));"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Unirme al Club ahora — ¡Es gratis!
+      </a>
+    </div>
+  </section>
+
+</Layout>
