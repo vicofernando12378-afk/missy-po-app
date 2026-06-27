@@ -68,5 +68,14 @@ service cloud.firestore {
         request.auth.token.email == 'victorchavezd@gmail.com'
       )) || request.time < timestamp.date(2026, 6, 15);
     }
+
+    // Miembros del Club: Creación pública, lectura/escritura exclusiva de administradores
+    match /myp_club_miembros/{miembroId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
   }
 }

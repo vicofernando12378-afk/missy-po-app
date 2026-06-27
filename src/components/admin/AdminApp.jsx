@@ -7,6 +7,7 @@ import ConfiguracionEnviosCupones from '../../pages/admin/ConfiguracionEnviosCup
 import ProductosCRUD from '../../pages/admin/ProductosCRUD'
 import VentasDashboard from '../../pages/admin/VentasDashboard'
 import ResenasDashboard from '../../pages/admin/ResenasDashboard'
+import CVRMDashboard from '../../pages/admin/CVRMDashboard'
 
 export default function AdminApp() {
   return (
@@ -20,6 +21,7 @@ export default function AdminApp() {
           <Route path="productos" element={<ProductosCRUD />} />
           <Route path="ventas" element={<VentasDashboard />} />
           <Route path="resenas" element={<ResenasDashboard />} />
+          <Route path="cvrm" element={<CVRMDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

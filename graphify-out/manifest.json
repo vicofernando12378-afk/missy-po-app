@@ -60,9 +60,9 @@
     "semantic_hash": "6bc39db7183dcfebbe1d20974e161854"
   },
   "src/components/admin/AdminApp.jsx": {
-    "mtime": 1782189908.2920892,
-    "ast_hash": "89453d275f1ffa625b93d41d973bed06",
-    "semantic_hash": "89453d275f1ffa625b93d41d973bed06"
+    "mtime": 1782602815.087144,
+    "ast_hash": "06a977badfdea269efefa1fd34b6666b",
+    "semantic_hash": ""
   },
   "src/components/admin/ProductoFormModal.jsx": {
     "mtime": 1782438880.72935,
@@ -220,9 +220,9 @@
     "semantic_hash": "8a0429fec5d9ac7109fe7b4f56f7ded7"
   },
   "src/pages/admin/AdminLayout.jsx": {
-    "mtime": 1782218769.4820719,
-    "ast_hash": "4ce19607861ca8e5a468bd11075b4c6a",
-    "semantic_hash": "4ce19607861ca8e5a468bd11075b4c6a"
+    "mtime": 1782602824.19196,
+    "ast_hash": "3192fd574a56ad0845f02d6e56ab5c5c",
+    "semantic_hash": ""
   },
   "src/pages/admin/CajaDiaria.jsx": {
     "mtime": 1779995698.5700417,
@@ -260,9 +260,9 @@
     "semantic_hash": "e4bf1447bc869d883b9ef1070ee4fce2"
   },
   "src/pages/admin/[...all].astro": {
-    "mtime": 1782189908.324093,
-    "ast_hash": "9d13cfcb098f735467d37063dc5ee761",
-    "semantic_hash": "9d13cfcb098f735467d37063dc5ee761"
+    "mtime": 1782602807.8522246,
+    "ast_hash": "1feadaf01061178238d76095bf0c65c5",
+    "semantic_hash": ""
   },
   "src/pages/carrito.astro": {
     "mtime": 1782189908.325095,
@@ -360,9 +360,9 @@
     "semantic_hash": "8e0117a217cea10fc478c0c54b74a9bf"
   },
   "src/pages/club-missypo.astro": {
-    "mtime": 1782492972.380793,
-    "ast_hash": "78cba6020d482d639c44ab0015e677ce",
-    "semantic_hash": "78cba6020d482d639c44ab0015e677ce"
+    "mtime": 1782602157.9848242,
+    "ast_hash": "fa2d1ae47d9100f2261bc6e5f3198e6c",
+    "semantic_hash": ""
   },
   "src/pages/envios.astro": {
     "mtime": 1782486762.7425199,
@@ -398,5 +398,115 @@
     "mtime": 1782492200.151638,
     "ast_hash": "89e5a066dc5c610bab55e9bbc1b17008",
     "semantic_hash": "89e5a066dc5c610bab55e9bbc1b17008"
+  },
+  "legacy/vite.config.js": {
+    "mtime": 1779920975.2405834,
+    "ast_hash": "2abd6d070c9e8a5e3c0ec0096dfac192",
+    "semantic_hash": ""
+  },
+  ".agents/rules/graphify.md": {
+    "mtime": 1782426506.734187,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/graphify.md": {
+    "mtime": 1782426506.735188,
+    "ast_hash": "637776aa6f7496d069afe7520c845c8a",
+    "semantic_hash": ""
+  },
+  ".ai-context.md": {
+    "mtime": 1782602262.3276997,
+    "ast_hash": "bf916f3593df5fd6553c7ba5b4eb7c6b",
+    "semantic_hash": ""
+  },
+  ".github/copilot-instructions.md": {
+    "mtime": 1782226904.079123,
+    "ast_hash": "b1cdbe1b6654ab792a3744966034dcf7",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1779919497.7530193,
+    "ast_hash": "11565ec15fb2973547bf85781ede5eeb",
+    "semantic_hash": ""
+  },
+  "legacy/DIAGNOSTICO_TECNICO.md": {
+    "mtime": 1779995281.7775629,
+    "ast_hash": "b65acdb175431c504d8cf6f713c70e72",
+    "semantic_hash": ""
+  },
+  "legacy/MISSY-PO-CONTEXT.md": {
+    "mtime": 1779917568.8114848,
+    "ast_hash": "6daab228a5f74c1aedc8e8c8cd54da10",
+    "semantic_hash": ""
+  },
+  "legacy/explicamyp.txt": {
+    "mtime": 1779914052.6992636,
+    "ast_hash": "6576dc28c945591367ae9ffa6b3d6fdd",
+    "semantic_hash": ""
+  },
+  "legacy/implementation_plan.md": {
+    "mtime": 1779938574.1743135,
+    "ast_hash": "64c0971383130d46b053cb99ce062fd7",
+    "semantic_hash": ""
+  },
+  "legacy/index.html": {
+    "mtime": 1779923739.5721478,
+    "ast_hash": "c81ea9fd176c8540f321aa37a0dc1ae3",
+    "semantic_hash": ""
+  },
+  "legacy/walkthrough.md": {
+    "mtime": 1779939381.6197038,
+    "ast_hash": "77fdc0cce8a90c91171847efa6c6baf5",
+    "semantic_hash": ""
+  },
+  "src/assets/README.md": {
+    "mtime": 1782534049.7651167,
+    "ast_hash": "2c7bec3b696bb31805fc8b11df41d1a2",
+    "semantic_hash": ""
+  },
+  "public/assets/logoheader.png": {
+    "mtime": 1779887125.3475707,
+    "ast_hash": "24a45121ff4177f839a23e9c20220f16",
+    "semantic_hash": ""
+  },
+  "src/assets/club/Mypo_puntos.jpeg": {
+    "mtime": 1782534159.491674,
+    "ast_hash": "fe4058fefdf50a69916c7c07eb59aba3",
+    "semantic_hash": ""
+  },
+  "src/assets/club/cumple.jpeg": {
+    "mtime": 1782534928.469043,
+    "ast_hash": "d9bae7a07fa3c31b950963c165d5a53a",
+    "semantic_hash": ""
+  },
+  "src/assets/club/descuentos.jpeg": {
+    "mtime": 1782534243.4902916,
+    "ast_hash": "e58b8312010459ac0ab37773847d8b37",
+    "semantic_hash": ""
+  },
+  "src/assets/club/enviorapido.jpeg": {
+    "mtime": 1782537381.2983623,
+    "ast_hash": "e0d36ccc333e2aede62cafb7882a6e05",
+    "semantic_hash": ""
+  },
+  "src/assets/club/exclusivo.jpeg": {
+    "mtime": 1782534991.5633018,
+    "ast_hash": "835adedbf6ca35c5d214b1f0cc6f3031",
+    "semantic_hash": ""
+  },
+  "src/assets/club/youtube.jpeg": {
+    "mtime": 1782534960.7258732,
+    "ast_hash": "13d6d3b6f104866d171139e635c0c0fa",
+    "semantic_hash": ""
+  },
+  "public/assets/hero-video.mp4": {
+    "mtime": 1780005233.4649396,
+    "ast_hash": "ef9b7170ef1e542d343f21346201b91a",
+    "semantic_hash": ""
+  },
+  "src/pages/admin/CVRMDashboard.jsx": {
+    "mtime": 1782602849.5847409,
+    "ast_hash": "8f7f538a0ce524dbafd980eed83cc3e1",
+    "semantic_hash": ""
   }
 }

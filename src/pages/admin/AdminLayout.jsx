@@ -155,6 +155,7 @@ export default function AdminLayout() {
     { path: '/caja',           label: 'Caja Diaria',       icon: '💰' },
     { path: '/inventario',     label: 'Inventario',      icon: '🗂️' },
     { path: '/resenas',        label: 'Reseñas',           icon: '⭐' },
+    { path: '/cvrm',           label: 'Club (CVRM)',       icon: '👥' },
     { path: '/configuracion',  label: 'Configuración', icon: '⚙️' },
   ]
 
