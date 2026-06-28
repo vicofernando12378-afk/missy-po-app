@@ -61,6 +61,11 @@ export default function CheckoutPage() {
   const [verifyingMember, setVerifyingMember] = useState(false)
   const [pointsApplied, setPointsApplied] = useState(false)
 
+  // Verificación manual de Socio
+  const [verifyEmailInput, setVerifyEmailInput] = useState('')
+  const [verifyAliasInput, setVerifyAliasInput] = useState('')
+  const [verifyError, setVerifyError] = useState('')
+
   // Cupón Estados locales
   const [couponInput, setCouponInput] = useState('')
   const [couponMsg, setCouponMsg] = useState(null)
@@ -94,35 +99,41 @@ export default function CheckoutPage() {
   const [email, setEmail] = useState('')
   const [celular, setCelular] = useState('')
 
-  // Verificar socio por email
-  useEffect(() => {
-    const checkClubMember = async () => {
-      if (!email || !email.includes('@')) {
-        setClubMember(null)
-        setPointsApplied(false)
-        return
-      }
-      setVerifyingMember(true)
-      try {
-        const q = query(collection(db, 'myp_club_miembros'), where('email', '==', email.trim().toLowerCase()))
-        const snap = await getDocs(q)
-        if (!snap.empty) {
-          const memberDoc = snap.docs[0]
-          setClubMember({ id: memberDoc.id, ...memberDoc.data() })
-        } else {
-          setClubMember(null)
-          setPointsApplied(false)
-        }
-      } catch (err) {
-        console.warn('Error checking club member:', err)
-      } finally {
-        setVerifyingMember(false)
-      }
+  const handleManualVerify = async () => {
+    if (!verifyEmailInput.trim() || !verifyAliasInput.trim()) {
+      setVerifyError('Ingresa el correo y el alias de tu mascota.')
+      return
     }
-
-    const timer = setTimeout(checkClubMember, 800)
-    return () => clearTimeout(timer)
-  }, [email])
+    setVerifyingMember(true)
+    setVerifyError('')
+    try {
+      const q = query(
+        collection(db, 'myp_club_miembros'),
+        where('email', '==', verifyEmailInput.trim().toLowerCase())
+      )
+      const snap = await getDocs(q)
+      if (!snap.empty) {
+        // Buscar coincidencia de mascota (case insensitive)
+        const matchDoc = snap.docs.find(doc => 
+          (doc.data().nombre_mascota || '').trim().toLowerCase() === verifyAliasInput.trim().toLowerCase()
+        )
+        
+        if (matchDoc) {
+          setClubMember({ id: matchDoc.id, ...matchDoc.data() })
+          setVerifyError('')
+        } else {
+          setVerifyError('El alias de la mascota no coincide.')
+        }
+      } else {
+        setVerifyError('Socio no registrado en el Club.')
+      }
+    } catch (err) {
+      console.warn('Error verifying manual member:', err)
+      setVerifyError('Error al conectar con el servidor.')
+    } finally {
+      setVerifyingMember(false)
+    }
+  }
   
   // Dirección Estados
   const [departamento, setDepartamento] = useState('Arequipa')
@@ -701,9 +712,39 @@ export default function CheckoutPage() {
                     )}
                   </div>
                 ) : (
-                  <p className="text-[10px] text-gray-400 font-body leading-relaxed bg-gray-50 border border-gray-150 rounded-xl px-3 py-2">
-                    Ingresa tu correo de socio del club en tus datos de contacto para ver tus puntos disponibles y canjearlos.
-                  </p>
+                  <div className="space-y-3 p-3 bg-gray-50 rounded-2xl border border-gray-150 shadow-inner">
+                    <span className="text-[10px] text-gray-500 font-semibold block uppercase tracking-wide">
+                      ¿Eres socio del Club? Verifica tus datos:
+                    </span>
+                    <div className="space-y-2">
+                      <input
+                        type="email"
+                        placeholder="Correo registrado del socio"
+                        value={verifyEmailInput}
+                        onChange={(e) => setVerifyEmailInput(e.target.value)}
+                        className="w-full h-9 px-3 rounded-xl border border-gray-200 text-xs font-body focus:outline-none focus:border-coral bg-white"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Nombre de tu mascota (Alias)"
+                        value={verifyAliasInput}
+                        onChange={(e) => setVerifyAliasInput(e.target.value)}
+                        className="w-full h-9 px-3 rounded-xl border border-gray-200 text-xs font-body focus:outline-none focus:border-coral bg-white"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleManualVerify}
+                        className="w-full py-2 bg-gray-900 hover:bg-coral text-white rounded-xl text-[11px] font-ui font-bold transition-all cursor-pointer border-none"
+                      >
+                        Verificar y Cargar Puntos 🐾
+                      </button>
+                    </div>
+                    {verifyError && (
+                      <p className="text-[10px] text-red-500 font-body pl-1">
+                        ⚠️ {verifyError}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
