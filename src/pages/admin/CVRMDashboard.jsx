@@ -26,7 +26,13 @@ export default function CVRMDashboard() {
   })
 
   // Configuración del club y puntos
-  const [configClub, setConfigClub] = useState({ minCompraClub: 50, solesPorDiezPuntos: 10 })
+  const [configClub, setConfigClub] = useState({
+    solesPorDiezPuntos: 10,
+    tipoPremio: 'monto_fijo',
+    valorDescuento: 10,
+    puntosRequeridos: 200,
+    minCompraAplicarCanje: 50
+  })
   const [loadingConfig, setLoadingConfig] = useState(true)
   const [savingConfig, setSavingConfig] = useState(false)
 
@@ -81,7 +87,14 @@ export default function CVRMDashboard() {
       try {
         const snap = await getDoc(doc(db, 'myp_config', 'club'))
         if (snap.exists()) {
-          setConfigClub(snap.data())
+          const data = snap.data()
+          setConfigClub({
+            solesPorDiezPuntos: data.solesPorDiezPuntos ?? 10,
+            tipoPremio: data.tipoPremio ?? 'monto_fijo',
+            valorDescuento: data.valorDescuento ?? 10,
+            puntosRequeridos: data.puntosRequeridos ?? 200,
+            minCompraAplicarCanje: data.minCompraAplicarCanje ?? 50
+          })
         }
       } catch (err) {
         console.error("Error al cargar config del club:", err)
@@ -150,8 +163,11 @@ export default function CVRMDashboard() {
     setSavingConfig(true)
     try {
       await setDoc(doc(db, 'myp_config', 'club'), {
-        minCompraClub: parseFloat(configClub.minCompraClub) || 0,
         solesPorDiezPuntos: parseFloat(configClub.solesPorDiezPuntos) || 0,
+        tipoPremio: configClub.tipoPremio,
+        valorDescuento: parseFloat(configClub.valorDescuento) || 0,
+        puntosRequeridos: parseInt(configClub.puntosRequeridos) || 0,
+        minCompraAplicarCanje: parseFloat(configClub.minCompraAplicarCanje) || 0,
         actualizado_en: serverTimestamp()
       }, { merge: true })
       alert("Configuración de puntos guardada correctamente.")
@@ -460,64 +476,143 @@ export default function CVRMDashboard() {
         <div className="space-y-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            {/* Panel 1: Reglas de Puntos (Configuración) */}
-            <div className="lg:col-span-5 bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
-              <div>
-                <h3 className="font-brand text-lg text-gray-800 mb-2 flex items-center gap-2">
-                  ⚙️ Reglas de Puntos y Club
-                </h3>
-                <p className="text-xs text-gray-400 mb-6">
-                  Establece los montos mínimos y tasas de puntos del club de beneficios.
-                </p>
+            {/* Columna Izquierda: Configuración de Reglas (Acumulación y Canje) */}
+            <div className="lg:col-span-5 space-y-6">
+              
+              {/* Panel 1: Reglas de Puntos y Club */}
+              <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                <div>
+                  <h3 className="font-brand text-lg text-gray-800 mb-2 flex items-center gap-2">
+                    ⚙️ Reglas de Puntos y Club
+                  </h3>
+                  <p className="text-xs text-gray-400 mb-6">
+                    Establece las tasas de acumulación de puntos del club de beneficios.
+                  </p>
 
-                {loadingConfig ? (
-                  <div className="py-8 text-center">
-                    <div className="w-6 h-6 border-2 border-coral border-t-transparent rounded-full animate-spin mx-auto"></div>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSaveConfig} className="space-y-4">
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
-                        Monto Mínimo de Compra para unirse (S/.)
-                      </label>
-                      <input
-                        type="number"
-                        min="0"
-                        step="0.5"
-                        required
-                        value={configClub.minCompraClub}
-                        onChange={(e) => setConfigClub(prev => ({ ...prev, minCompraClub: e.target.value }))}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
-                        placeholder="Ej. 50"
-                      />
+                  {loadingConfig ? (
+                    <div className="py-8 text-center">
+                      <div className="w-6 h-6 border-2 border-coral border-t-transparent rounded-full animate-spin mx-auto"></div>
                     </div>
+                  ) : (
+                    <form onSubmit={handleSaveConfig} className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                          Monto de Compra en Soles por cada 10 puntos ganados
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          step="0.5"
+                          required
+                          value={configClub.solesPorDiezPuntos}
+                          onChange={(e) => setConfigClub(prev => ({ ...prev, solesPorDiezPuntos: e.target.value }))}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                          placeholder="Ej. 10"
+                        />
+                      </div>
 
-                    <div>
-                      <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
-                        Monto de Compra en Soles por cada 10 puntos ganados
-                      </label>
-                      <input
-                        type="number"
-                        min="1"
-                        step="0.5"
-                        required
-                        value={configClub.solesPorDiezPuntos}
-                        onChange={(e) => setConfigClub(prev => ({ ...prev, solesPorDiezPuntos: e.target.value }))}
-                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
-                        placeholder="Ej. 10"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={savingConfig}
-                      className="w-full py-3.5 mt-2 bg-gray-850 hover:bg-gray-900 text-white rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md shadow-gray-850/10 text-sm"
-                    >
-                      {savingConfig ? 'Guardando...' : 'Guardar Configuración 💾'}
-                    </button>
-                  </form>
-                )}
+                      <button
+                        type="submit"
+                        disabled={savingConfig}
+                        className="w-full py-3.5 mt-2 bg-gray-850 hover:bg-gray-900 text-white rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md shadow-gray-850/10 text-sm"
+                      >
+                        {savingConfig ? 'Guardando...' : 'Guardar Configuración 💾'}
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
+
+              {/* Panel 2: Reglas de Canje y Cupones (Nuevo) */}
+              <div className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+                <div>
+                  <h3 className="font-brand text-lg text-gray-800 mb-2 flex items-center gap-2">
+                    🎟️ Reglas de Canje y Cupones
+                  </h3>
+                  <p className="text-xs text-gray-400 mb-6">
+                    Configura los valores de conversión y condiciones para que los clientes canjeen sus puntos.
+                  </p>
+
+                  {loadingConfig ? (
+                    <div className="py-8 text-center">
+                      <div className="w-6 h-6 border-2 border-coral border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSaveConfig} className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                          Tipo de Premio
+                        </label>
+                        <select
+                          value={configClub.tipoPremio}
+                          onChange={(e) => setConfigClub(prev => ({ ...prev, tipoPremio: e.target.value }))}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                        >
+                          <option value="monto_fijo">Monto Fijo (S/.)</option>
+                          <option value="porcentaje">Porcentaje (%)</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                          Valor del Descuento
+                        </label>
+                        <input
+                          type="number"
+                          min="0.1"
+                          step="0.1"
+                          required
+                          value={configClub.valorDescuento}
+                          onChange={(e) => setConfigClub(prev => ({ ...prev, valorDescuento: e.target.value }))}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                          placeholder="Ej. 10"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                          Puntos Requeridos
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          step="1"
+                          required
+                          value={configClub.puntosRequeridos}
+                          onChange={(e) => setConfigClub(prev => ({ ...prev, puntosRequeridos: e.target.value }))}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                          placeholder="Ej. 200"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                          Monto Mínimo de Compra para aplicar canje (S/.)
+                        </label>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.5"
+                          required
+                          value={configClub.minCompraAplicarCanje}
+                          onChange={(e) => setConfigClub(prev => ({ ...prev, minCompraAplicarCanje: e.target.value }))}
+                          className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                          placeholder="Ej. 50"
+                        />
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={savingConfig}
+                        className="w-full py-3.5 mt-2 bg-gray-850 hover:bg-gray-900 text-white rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md shadow-gray-850/10 text-sm"
+                      >
+                        {savingConfig ? 'Guardando...' : 'Guardar Configuración 💾'}
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
+
             </div>
 
             {/* Panel 2: Otorgar Puntos (Campaña, Redes Sociales, Concursos) */}
