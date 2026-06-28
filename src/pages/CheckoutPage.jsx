@@ -129,8 +129,29 @@ export default function CheckoutPage() {
         )
         
         if (matchDoc) {
-          setClubMember({ id: matchDoc.id, ...matchDoc.data() })
+          const mData = matchDoc.data()
+          setClubMember({ id: matchDoc.id, ...mData })
           setVerifyError('')
+          
+          // Autocompletar el formulario de compra con los datos del socio
+          if (mData.nombre_tutor) {
+            const parts = mData.nombre_tutor.split(' ')
+            setNombre(parts[0] || '')
+            setApellido(parts.slice(1).join(' ') || '')
+          }
+          if (mData.email) setEmail(mData.email)
+          if (mData.celular) setCelular(mData.celular)
+          if (mData.direccion) setDireccion(mData.direccion)
+          if (mData.documento_tipo) setTipoDocumento(mData.documento_tipo)
+          if (mData.documento_numero) setNumeroDocumento(mData.documento_numero)
+          if (mData.departamento) setDepartamento(mData.departamento)
+          if (mData.distrito) {
+            if (mData.departamento === 'Arequipa') {
+              setDistritoArequipa(mData.distrito)
+            } else {
+              setDistritoNacional(mData.distrito)
+            }
+          }
         } else {
           setVerifyError('El alias de la mascota no coincide.')
         }
@@ -353,6 +374,10 @@ export default function CheckoutPage() {
           if (!finalMemberData.direccion && direccion) updateData.direccion = direccion
           if (!finalMemberData.documento_tipo && tipoDocumento) updateData.documento_tipo = tipoDocumento
           if (!finalMemberData.documento_numero && numeroDocumento) updateData.documento_numero = numeroDocumento
+          if (!finalMemberData.departamento && departamento) updateData.departamento = departamento
+          if (!finalMemberData.distrito) {
+            updateData.distrito = departamento === 'Arequipa' ? distritoArequipa : distritoNacional
+          }
 
           await updateDoc(doc(db, 'myp_club_miembros', finalMemberId), updateData)
 
@@ -381,6 +406,8 @@ export default function CheckoutPage() {
             direccion: direccion,
             documento_tipo: tipoDocumento,
             documento_numero: numeroDocumento,
+            departamento: departamento,
+            distrito: departamento === 'Arequipa' ? distritoArequipa : distritoNacional,
             benefit_origen: 'Registro Automático Compra',
             puntos: pointsEarned,
             creado_en: serverTimestamp()
