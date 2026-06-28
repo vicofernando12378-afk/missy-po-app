@@ -11,19 +11,7 @@ const TrashIcon = () => (
 export default function CartPage() {
   const { items, subtotal, total, couponCode, couponDiscount, applyCoupon, removeCoupon, updateQuantity, removeItem } = useCartStore()
   
-  const [couponInput, setCouponInput] = useState('')
-  const [couponMsg, setCouponMsg] = useState(null)
-  const [isApplying, setIsApplying] = useState(false)
 
-  const handleApplyCoupon = async () => {
-    if (!couponInput.trim()) return
-    setIsApplying(true)
-    const result = await applyCoupon(couponInput)
-    setCouponMsg(result)
-    if (result.success) setCouponInput('')
-    setIsApplying(false)
-    setTimeout(() => setCouponMsg(null), 3000)
-  }
 
   return (
     <>
@@ -123,47 +111,7 @@ export default function CartPage() {
             <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm space-y-6">
               <h2 className="font-ui font-bold text-lg text-gray-800">Resumen de la orden</h2>
 
-              {/* Sección de Cupón */}
-              <div className="space-y-2">
-                <span className="text-xs font-ui font-semibold text-gray-500 block">¿Tienes un cupón de descuento?</span>
-                {couponCode ? (
-                  <div className="flex items-center justify-between bg-green-50 border border-green-150 rounded-2xl px-4 py-2.5">
-                    <div className="min-w-0">
-                      <span className="text-xs font-ui font-bold text-green-700 block">Cupón: {couponCode}</span>
-                      <span className="text-[10px] font-body text-green-600 block">Ahorraste {couponDiscount}%</span>
-                    </div>
-                    <button
-                      onClick={removeCoupon}
-                      className="text-xs text-red-500 hover:text-red-600 font-ui font-semibold"
-                    >
-                      Quitar
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      value={couponInput}
-                      onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
-                      onKeyDown={(e) => e.key === 'Enter' && handleApplyCoupon()}
-                      placeholder="Ej: BIENVENIDO10"
-                      className="flex-1 h-10 px-4 rounded-full border border-gray-200 text-xs font-body text-gray-700 focus:outline-none focus:border-coral"
-                    />
-                    <button
-                      onClick={handleApplyCoupon}
-                      disabled={isApplying || !couponInput.trim()}
-                      className="px-5 h-10 rounded-full bg-gray-900 text-white text-xs font-ui font-semibold hover:bg-coral transition-colors disabled:opacity-50"
-                    >
-                      {isApplying ? '...' : 'Aplicar'}
-                    </button>
-                  </div>
-                )}
-                {couponMsg && (
-                  <p className={`text-[10px] font-body mt-1 pl-2 ${couponMsg.success ? 'text-green-600' : 'text-red-500'}`}>
-                    {couponMsg.success ? '¡Cupón aplicado con éxito!' : couponMsg.message}
-                  </p>
-                )}
-              </div>
+
 
               {/* Totales */}
               <div className="border-t border-gray-100 pt-4 space-y-3">

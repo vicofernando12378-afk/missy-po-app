@@ -1828,7 +1828,7 @@
       "label": "LIMA_REGIONS",
       "file_type": "code",
       "source_file": "src/pages/CheckoutPage.jsx",
-      "source_location": "L8",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "pages_checkoutpage_lima_regions",
       "community": 9,
@@ -1838,7 +1838,7 @@
       "label": "AREQUIPA_DISTRICTS",
       "file_type": "code",
       "source_file": "src/pages/CheckoutPage.jsx",
-      "source_location": "L26",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "pages_checkoutpage_arequipa_districts",
       "community": 9,
@@ -1848,7 +1848,7 @@
       "label": "CheckoutPage()",
       "file_type": "code",
       "source_file": "src/pages/CheckoutPage.jsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "pages_checkoutpage_checkoutpage",
       "community": 9,
@@ -7366,9 +7366,9 @@
       "source_file": "src/layouts/Layout.astro",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layouts_layout",
-      "target": "astro_assets",
-      "confidence_score": 1.0
+      "target": "astro_assets"
     },
     {
       "relation": "imports_from",
@@ -7377,9 +7377,9 @@
       "source_file": "src/layouts/Layout.astro",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "layouts_layout",
-      "target": "c_mis_proyectos_missy_po_src_assets_logoheader_jpeg",
-      "confidence_score": 1.0
+      "target": "c_mis_proyectos_missy_po_src_assets_logoheader_jpeg"
     },
     {
       "relation": "imports_from",
@@ -7674,6 +7674,17 @@
       "target": "pages_checkoutpage"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/CheckoutPage.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "pages_checkoutpage",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/CheckoutPage.jsx",
@@ -7702,6 +7713,17 @@
       "confidence_score": 1.0,
       "source": "pages_checkoutpage",
       "target": "pages_checkoutpage_lima_regions"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/CheckoutPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "pages_checkoutpage",
+      "target": "services_firebase",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -10554,5 +10576,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "269e810b2e0389ad5b5b72ce0e4232d2909f8a5f"
+  "built_at_commit": "7ec3dda00cabdc196f09fbb844c0fac730deefd9"
 }

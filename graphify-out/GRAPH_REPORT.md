@@ -1,16 +1,16 @@
 # Graph Report - missy-po  (2026-06-27)
 
 ## Corpus Check
-- 92 files · ~244,630 words
+- 92 files · ~246,898 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 433 nodes · 604 edges · 32 communities (29 shown, 3 thin omitted)
+- 433 nodes · 606 edges · 32 communities (29 shown, 3 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `269e810b`
+- Built from commit: `7ec3dda0`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -167,9 +167,9 @@ Nodes (4): ¿Cómo usarlas en páginas Astro?, Estructura de carpetas, Naming co
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 0`, `Community 3`, `Community 6`, `Community 8`, `Community 9`?**
-  _High betweenness centrality (0.126) - this node is a cross-community bridge._
+  _High betweenness centrality (0.121) - this node is a cross-community bridge._
 - **Why does `useCartStore` connect `Community 6` to `Community 1`, `Community 9`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **Why does `useCatalogStore` connect `Community 1` to `Community 6`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**

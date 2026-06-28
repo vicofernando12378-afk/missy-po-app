@@ -4,6 +4,8 @@ import { crearPedidoConTransaccion, obtenerConfiguracionEnvio } from '../service
 import PaymentQrCulqi from '../components/checkout/PaymentQrCulqi'
 import PaymentMpBrick from '../components/checkout/PaymentMpBrick'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { doc, getDoc, getDocs, collection, query, where, updateDoc, addDoc, serverTimestamp } from 'firebase/firestore'
+import { db } from '../services/firebase'
 
 const LIMA_REGIONS = [
   'Arequipa',
@@ -43,7 +45,35 @@ const AREQUIPA_DISTRICTS = [
 ]
 
 export default function CheckoutPage() {
-  const { items, subtotal, total, couponCode, couponDiscount, clearCart } = useCartStore()
+  const { items, subtotal, total, couponCode, couponDiscount, applyCoupon, removeCoupon, clearCart } = useCartStore()
+
+  // Configuración de Canje de Club
+  const [clubConfig, setClubConfig] = useState({
+    solesPorDiezPuntos: 10,
+    tipoPremio: 'monto_fijo',
+    valorDescuento: 10,
+    puntosRequeridos: 200,
+    minCompraAplicarCanje: 50
+  })
+
+  // Socio Miembro
+  const [clubMember, setClubMember] = useState(null)
+  const [verifyingMember, setVerifyingMember] = useState(false)
+  const [pointsApplied, setPointsApplied] = useState(false)
+
+  // Cupón Estados locales
+  const [couponInput, setCouponInput] = useState('')
+  const [couponMsg, setCouponMsg] = useState(null)
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false)
+
+  // Cargar configuración de canje del club
+  useEffect(() => {
+    getDoc(doc(db, 'myp_config', 'club')).then(snap => {
+      if (snap.exists()) {
+        setClubConfig(snap.data())
+      }
+    }).catch(err => console.warn('Error loading club config:', err))
+  }, [])
 
   // Envío Config
   const [shippingConfig, setShippingConfig] = useState({
@@ -63,6 +93,36 @@ export default function CheckoutPage() {
   const [apellido, setApellido] = useState('')
   const [email, setEmail] = useState('')
   const [celular, setCelular] = useState('')
+
+  // Verificar socio por email
+  useEffect(() => {
+    const checkClubMember = async () => {
+      if (!email || !email.includes('@')) {
+        setClubMember(null)
+        setPointsApplied(false)
+        return
+      }
+      setVerifyingMember(true)
+      try {
+        const q = query(collection(db, 'myp_club_miembros'), where('email', '==', email.trim().toLowerCase()))
+        const snap = await getDocs(q)
+        if (!snap.empty) {
+          const memberDoc = snap.docs[0]
+          setClubMember({ id: memberDoc.id, ...memberDoc.data() })
+        } else {
+          setClubMember(null)
+          setPointsApplied(false)
+        }
+      } catch (err) {
+        console.warn('Error checking club member:', err)
+      } finally {
+        setVerifyingMember(false)
+      }
+    }
+
+    const timer = setTimeout(checkClubMember, 800)
+    return () => clearTimeout(timer)
+  }, [email])
   
   // Dirección Estados
   const [departamento, setDepartamento] = useState('Arequipa')
@@ -85,21 +145,32 @@ export default function CheckoutPage() {
   const orderCompletedRef = useRef(false)
 
   // Validaciones
-  const totalSoles = total / 100
   const isArequipa = departamento === 'Arequipa'
+
+  // Calcular descuento de puntos si están aplicados
+  const subtotalSoles = subtotal / 100
+  const pointsDiscountCents = pointsApplied
+    ? (clubConfig.tipoPremio === 'monto_fijo'
+        ? (clubConfig.valorDescuento * 100)
+        : Math.round(subtotal * (clubConfig.valorDescuento / 100)))
+    : 0
+
+  // Total acumulado después de todos los descuentos (cupón y puntos)
+  const totalWithDiscounts = Math.max(0, total - pointsDiscountCents)
+  const totalWithDiscountsSoles = totalWithDiscounts / 100
 
   // Calcular costo de envío dinámico
   const getCostoEnvio = () => {
     if (isArequipa) {
-      return totalSoles >= shippingConfig.arequipaFreeLimit ? 0 : shippingConfig.arequipaFee
+      return totalWithDiscountsSoles >= shippingConfig.arequipaFreeLimit ? 0 : shippingConfig.arequipaFee
     } else {
-      return totalSoles >= shippingConfig.nationalFreeLimit ? 0 : shippingConfig.nationalFee
+      return totalWithDiscountsSoles >= shippingConfig.nationalFreeLimit ? 0 : shippingConfig.nationalFee
     }
   }
 
   const costoEnvio = getCostoEnvio()
   const costoEnvioCents = costoEnvio * 100
-  const totalFinalCents = total + costoEnvioCents
+  const totalFinalCents = totalWithDiscounts + costoEnvioCents
   const totalFinalSoles = totalFinalCents / 100
 
   // Desglosar IGV (18%) si está seleccionado
@@ -122,6 +193,17 @@ export default function CheckoutPage() {
     } else if (tipoDocumento === 'RUC' && val.length <= 11) {
       setNumeroDocumento(val)
     }
+  }
+
+  const handleApplyCoupon = async (e) => {
+    if (e) e.preventDefault()
+    if (!couponInput.trim()) return
+    setIsApplyingCoupon(true)
+    const result = await applyCoupon(couponInput)
+    setCouponMsg(result)
+    if (result.success) setCouponInput('')
+    setIsApplyingCoupon(false)
+    setTimeout(() => setCouponMsg(null), 3000)
   }
 
   // Prevenir envío directo si faltan datos
@@ -209,12 +291,31 @@ export default function CheckoutPage() {
       estado_pedido: 'recibido',
       total_final: totalFinalCents,      // Campo raíz para acceso rápido desde el admin
       cupon: couponCode || null,
-      descuento_porcentaje: couponDiscount
+      descuento_porcentaje: couponDiscount,
+      puntos_canjeados: pointsApplied ? clubConfig.puntosRequeridos : 0,
+      descuento_puntos_monto: pointsDiscountCents
     }
 
     try {
       // 1. Crear el pedido usando transacciones para el stock
       const orderId = await crearPedidoConTransaccion(orderData)
+
+      // 1.5. Si se canjearon puntos, debitar los puntos del perfil del socio
+      if (pointsApplied && clubMember) {
+        const memberRef = doc(db, 'myp_club_miembros', clubMember.id)
+        const newPoints = Math.max(0, (clubMember.puntos || 0) - clubConfig.puntosRequeridos)
+        await updateDoc(memberRef, {
+          puntos: newPoints,
+          actualizado_en: serverTimestamp()
+        })
+        
+        // Registrar log de canje en subcolección puntos_logs
+        await addDoc(collection(db, 'myp_club_miembros', clubMember.id, 'puntos_logs'), {
+          puntos: -clubConfig.puntosRequeridos,
+          motivo: `Canje por descuento en pedido #${orderId}`,
+          creado_en: serverTimestamp()
+        })
+      }
 
       // 2. Si el pago fue con Yape y se subió comprobante físico, subirlo a Firebase Storage
       if (datosPago.metodo === 'Yape/Plin' && datosPago.comprobanteFile) {
@@ -464,8 +565,14 @@ export default function CheckoutPage() {
                 </div>
                 {couponDiscount > 0 && (
                   <div className="flex justify-between text-green-600 font-semibold">
-                    <span>Descuento</span>
+                    <span>Descuento Cupón ({couponDiscount}%)</span>
                     <span>− S/ {((subtotal * couponDiscount) / 10000).toFixed(2)}</span>
+                  </div>
+                )}
+                {pointsDiscountCents > 0 && (
+                  <div className="flex justify-between text-green-600 font-semibold">
+                    <span>Descuento Club ({clubConfig.puntosRequeridos} pts)</span>
+                    <span>− S/ {(pointsDiscountCents / 100).toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-gray-500">
@@ -484,6 +591,120 @@ export default function CheckoutPage() {
                   <span>Total Final</span>
                   <span className="text-lg text-coral">S/ {totalFinalSoles.toFixed(2)}</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Card: Cupones y Club de Lealtad */}
+            <div className="bg-white rounded-3xl border border-gray-100 p-6 shadow-sm space-y-4">
+              <h3 className="font-brand text-base text-gray-800 pb-2 border-b border-gray-50 flex items-center gap-2">
+                🎟️ Descuentos y Club
+              </h3>
+
+              {/* Sección de Cupón de Descuento */}
+              <div className="space-y-2">
+                <span className="text-[11px] font-ui font-semibold text-gray-500 block uppercase tracking-wider">¿Tienes un cupón?</span>
+                {couponCode ? (
+                  <div className="flex items-center justify-between bg-green-50 border border-green-150 rounded-2xl px-4 py-2.5">
+                    <div className="min-w-0">
+                      <span className="text-xs font-ui font-bold text-green-700 block">Cupón: {couponCode}</span>
+                      <span className="text-[10px] font-body text-green-600 block">Descuento de {couponDiscount}%</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={removeCoupon}
+                      className="text-xs text-red-500 hover:text-red-600 font-ui font-semibold cursor-pointer bg-transparent border-none"
+                    >
+                      Quitar
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={couponInput}
+                      onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
+                      placeholder="Ej: BIENVENIDO10"
+                      className="flex-1 h-10 px-4 rounded-xl border border-gray-200 text-xs font-body text-gray-700 focus:outline-none focus:border-coral"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleApplyCoupon}
+                      disabled={isApplyingCoupon || !couponInput.trim()}
+                      className="px-4 h-10 rounded-xl bg-gray-900 text-white text-xs font-ui font-semibold hover:bg-coral transition-colors disabled:opacity-50 cursor-pointer border-none"
+                    >
+                      {isApplyingCoupon ? '...' : 'Aplicar'}
+                    </button>
+                  </div>
+                )}
+                {couponMsg && (
+                  <p className={`text-[10px] font-body mt-1 pl-2 ${couponMsg.success ? 'text-green-600' : 'text-red-500'}`}>
+                    {couponMsg.success ? '¡Cupón aplicado con éxito!' : couponMsg.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Sección de Club de Beneficios (Puntos) */}
+              <div className="border-t border-gray-50 pt-4 space-y-3">
+                <span className="text-[11px] font-ui font-semibold text-gray-500 block uppercase tracking-wider">Club Missy & Po</span>
+                
+                {verifyingMember ? (
+                  <div className="flex items-center gap-2 text-xs text-gray-400">
+                    <div className="w-3.5 h-3.5 border-2 border-coral border-t-transparent rounded-full animate-spin"></div>
+                    <span>Verificando membresía...</span>
+                  </div>
+                ) : clubMember ? (
+                  <div className="space-y-2">
+                    <div className="bg-coral/5 border border-coral/10 rounded-2xl p-3 text-xs">
+                      <span className="block font-bold text-gray-800">🐾 ¡Hola, tutor de {clubMember.nombre_mascota}!</span>
+                      <span className="block text-gray-500 mt-0.5">Tienes <strong className="text-coral">{clubMember.puntos || 0} puntos</strong> disponibles.</span>
+                    </div>
+
+                    {pointsApplied ? (
+                      <div className="flex items-center justify-between bg-green-50 border border-green-150 rounded-2xl px-4 py-2.5">
+                        <div className="min-w-0">
+                          <span className="text-xs font-ui font-bold text-green-700 block">Puntos Canjeados: {clubConfig.puntosRequeridos} pts</span>
+                          <span className="text-[10px] font-body text-green-600 block">
+                            Descuento de {clubConfig.tipoPremio === 'monto_fijo' ? `S/ ${clubConfig.valorDescuento}` : `${clubConfig.valorDescuento}%`} aplicado
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => setPointsApplied(false)}
+                          className="text-xs text-red-500 hover:text-red-600 font-ui font-semibold cursor-pointer bg-transparent border-none"
+                        >
+                          Quitar
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        {subtotalSoles < clubConfig.minCompraAplicarCanje ? (
+                          <p className="text-[10px] text-amber-600 font-body bg-amber-50/50 border border-amber-100 rounded-xl px-2.5 py-1.5 leading-normal">
+                            ⚠️ Monto mínimo de compra para canjear puntos es **S/ {clubConfig.minCompraAplicarCanje.toFixed(2)}** (tu subtotal: S/ {subtotalSoles.toFixed(2)}).
+                          </p>
+                        ) : (clubMember.puntos || 0) < clubConfig.puntosRequeridos ? (
+                          <p className="text-[10px] text-gray-400 font-body bg-gray-50 border border-gray-150 rounded-xl px-2.5 py-1.5 leading-normal">
+                            Necesitas al menos **{clubConfig.puntosRequeridos} puntos** para realizar un canje.
+                          </p>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPointsApplied(true)
+                              alert("¡Puntos canjeados y descuento aplicado a tu pedido! ✨")
+                            }}
+                            className="w-full py-2.5 bg-coral text-white rounded-xl text-xs font-ui font-bold hover:bg-coral-dark shadow-sm transition-all cursor-pointer border-none"
+                          >
+                            Canjear {clubConfig.puntosRequeridos} puntos 🌟
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-[10px] text-gray-400 font-body leading-relaxed bg-gray-50 border border-gray-150 rounded-xl px-3 py-2">
+                    Ingresa tu correo de socio del club en tus datos de contacto para ver tus puntos disponibles y canjearlos.
+                  </p>
+                )}
               </div>
             </div>
 
