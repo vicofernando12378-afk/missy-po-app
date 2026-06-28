@@ -36,6 +36,22 @@ export default function CVRMDashboard() {
   const [awardReason, setAwardReason] = useState('Campaña Redes Sociales')
   const [savingPoints, setSavingPoints] = useState(false)
 
+  // Búsqueda interactiva y ordenamiento alfabético de socio en asignación de puntos
+  const [memberSearchQuery, setMemberSearchQuery] = useState('')
+  const [dropdownOpen, setDropdownOpen] = useState(false)
+
+  const searchFilteredMiembros = miembros
+    .filter(m => {
+      const q = memberSearchQuery.toLowerCase().trim()
+      if (!q) return true
+      return (
+        (m.nombre_tutor || '').toLowerCase().includes(q) ||
+        (m.nombre_mascota || '').toLowerCase().includes(q) ||
+        (m.email || '').toLowerCase().includes(q)
+      )
+    })
+    .sort((a, b) => (a.nombre_tutor || '').localeCompare(b.nombre_tutor || ''))
+
   // 1. Cargar miembros del Club en tiempo real
   useEffect(() => {
     const q = query(
@@ -185,6 +201,7 @@ export default function CVRMDashboard() {
       alert(`Se han asignado ${pointsNum} puntos a ${memberDoc.nombre_tutor} con éxito.`)
       setPointsToAward('')
       setSelectedMemberId('')
+      setMemberSearchQuery('')
       setAwardReason('Campaña Redes Sociales')
     } catch (err) {
       console.error("Error al asignar puntos:", err)
@@ -514,23 +531,85 @@ export default function CVRMDashboard() {
                 </p>
 
                 <form onSubmit={handleAwardPoints} className="space-y-4">
-                  <div>
+                  <div className="relative">
                     <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
                       Seleccionar Socio Miembro
                     </label>
-                    <select
-                      value={selectedMemberId}
-                      required
-                      onChange={(e) => setSelectedMemberId(e.target.value)}
-                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
-                    >
-                      <option value="">-- Elige un socio del Club --</option>
-                      {miembros.map(m => (
-                        <option key={m.id} value={m.id}>
-                          {m.nombre_tutor} (Mascota: {m.nombre_mascota}) - {m.email} [Puntos: {m.puntos || 0}]
-                        </option>
-                      ))}
-                    </select>
+                    
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Escribe para buscar por tutor, mascota o correo..."
+                        value={memberSearchQuery}
+                        onChange={(e) => {
+                          setMemberSearchQuery(e.target.value)
+                          setDropdownOpen(true)
+                          if (selectedMemberId) {
+                            setSelectedMemberId('')
+                          }
+                        }}
+                        onFocus={() => setDropdownOpen(true)}
+                        className="w-full pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                      />
+                      
+                      {/* Icono de estado / limpiar */}
+                      <div className="absolute right-3.5 top-3.5 flex items-center gap-1.5 text-gray-400">
+                        {selectedMemberId ? (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedMemberId('')
+                              setMemberSearchQuery('')
+                            }}
+                            className="text-gray-400 hover:text-gray-600 font-bold bg-transparent border-none cursor-pointer text-xs p-1"
+                          >
+                            ✕
+                          </button>
+                        ) : (
+                          <span className="text-xs">🔍</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Dropdown flotante con resultados */}
+                    {dropdownOpen && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-10" 
+                          onClick={() => setDropdownOpen(false)}
+                        />
+                        
+                        <div className="absolute left-0 right-0 mt-2 max-h-60 overflow-y-auto bg-white border border-gray-150 rounded-2xl shadow-xl z-20 divide-y divide-gray-50 animate-fade-in">
+                          {searchFilteredMiembros.length === 0 ? (
+                            <div className="px-4 py-3.5 text-xs text-gray-400 text-center font-medium">
+                              No se encontraron socios
+                            </div>
+                          ) : (
+                            searchFilteredMiembros.map(m => (
+                              <button
+                                key={m.id}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedMemberId(m.id)
+                                  setMemberSearchQuery(`${m.nombre_tutor} (Mascota: ${m.nombre_mascota}) - ${m.email}`)
+                                  setDropdownOpen(false)
+                                }}
+                                className={`w-full text-left px-4 py-3 text-xs hover:bg-coral/5 transition-colors cursor-pointer border-none block ${
+                                  selectedMemberId === m.id ? 'bg-coral/10 font-semibold text-coral' : 'text-gray-700 bg-white'
+                                }`}
+                              >
+                                <span className="font-semibold text-gray-805 block">
+                                  {m.nombre_tutor} <span className="text-gray-400 font-normal">({m.email})</span>
+                                </span>
+                                <span className="text-[10px] text-gray-400 block mt-0.5">
+                                  🐾 Mascota: <span className="font-semibold text-coral">{m.nombre_mascota}</span> | Saldo: <span className="font-bold text-gray-600">{m.puntos || 0} pts</span>
+                                </span>
+                              </button>
+                            ))
+                          )}
+                        </div>
+                      </>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
