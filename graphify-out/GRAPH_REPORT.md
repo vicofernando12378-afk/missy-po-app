@@ -1,16 +1,16 @@
 # Graph Report - missy-po  (2026-06-27)
 
 ## Corpus Check
-- 94 files · ~247,826 words
+- 92 files · ~247,458 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 445 nodes · 618 edges · 34 communities (31 shown, 3 thin omitted)
+- 434 nodes · 609 edges · 31 communities (28 shown, 3 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `94042562`
+- Built from commit: `2d6dfad1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,6 @@
 - [[_COMMUNITY_Community 13|Community 13]]
 - [[_COMMUNITY_Community 14|Community 14]]
 - [[_COMMUNITY_Community 15|Community 15]]
-- [[_COMMUNITY_Community 16|Community 16]]
 - [[_COMMUNITY_Community 17|Community 17]]
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 20|Community 20]]
@@ -40,8 +39,6 @@
 - [[_COMMUNITY_Community 23|Community 23]]
 - [[_COMMUNITY_Community 24|Community 24]]
 - [[_COMMUNITY_Community 29|Community 29]]
-- [[_COMMUNITY_Community 32|Community 32]]
-- [[_COMMUNITY_Community 33|Community 33]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `../layouts/Layout.astro` - 29 edges
@@ -58,8 +55,8 @@
 ## Surprising Connections (you probably didn't know these)
 - `CartDrawerItem()` --calls--> `useCartStore`  [EXTRACTED]
   src/components/cart/CartDrawer.jsx → src/store/cartStore.js
-- `CartDrawer()` --calls--> `useCartStore`  [EXTRACTED]
-  src/components/cart/CartDrawer.jsx → src/store/cartStore.js
+- `CartDrawer()` --calls--> `useCatalogStore`  [EXTRACTED]
+  src/components/cart/CartDrawer.jsx → src/store/catalogStore.js
 - `ProductCard()` --calls--> `useCartStore`  [EXTRACTED]
   src/components/catalog/ProductCard.jsx → src/store/cartStore.js
 - `CheckoutPage()` --calls--> `useCartStore`  [EXTRACTED]
@@ -70,23 +67,23 @@
 ## Import Cycles
 - None detected.
 
-## Communities (34 total, 3 thin omitted)
+## Communities (31 total, 3 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.14
-Nodes (16): ConfiguracionEnviosCupones(), abrirCajaDiaria(), actualizarEstadoCupon(), actualizarEstadoPedido(), asignarRepartidorPedido(), cerrarCajaDiaria(), crearCupon(), eliminarCupon() (+8 more)
+Cohesion: 0.05
+Nodes (49): AdminLayout(), CajaDiaria(), ConfiguracionEnviosCupones(), CVRMDashboard(), TABS, InventarioStock(), PedidosDashboard(), CATEGORIAS (+41 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.11
-Nodes (15): CartDrawer(), MOCK_PRODUCTS, ProductGrid(), CTABanner(), LiveSearch(), AnimatedTitle(), HeroSlider(), SLIDES (+7 more)
+Cohesion: 0.12
+Nodes (15): ./StorePage.jsx, ../services/firestore.js, MOCK_PRODUCTS, ProductGrid(), CTABanner(), LiveSearch(), AnimatedTitle(), HeroSlider() (+7 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.07
 Nodes (29): devDependencies, autoprefixer, eslint, eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-react-refresh, jsdom, postcss (+21 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.16
-Nodes (10): AdminLayout(), ../../components/admin/AdminApp, ../../index.css, LoginPage(), NotFoundPage(), OrderConfirmationPage(), auth, firebaseConfig (+2 more)
+Cohesion: 0.29
+Nodes (3): app, db, firebaseConfig
 
 ### Community 4 - "Community 4"
 Cohesion: 0.06
@@ -98,7 +95,7 @@ Nodes (31): 1. Análisis General de la Aplicación, 2. Mapa de Rutas y Páginas,
 
 ### Community 6 - "Community 6"
 Cohesion: 0.08
-Nodes (14): CartDrawerItem(), CartHoverPopup(), MARQUEE_ITEMS, MarqueeBanner(), Footer(), FOOTER_LINKS, Layout(), NAV_CATEGORIES (+6 more)
+Nodes (16): CartDrawer(), CartDrawerItem(), CartHoverPopup(), MARQUEE_ITEMS, MarqueeBanner(), Footer(), FOOTER_LINKS, Layout() (+8 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.05
@@ -121,24 +118,20 @@ Cohesion: 0.18
 Nodes (11): dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react, react-dom (+3 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.04
-Nodes (23): ../components/legal/ReclamacionesForm.jsx, firebase/firestore, app, db, firebaseConfig, app, db, firebaseConfig (+15 more)
+Cohesion: 0.15
+Nodes (6): app, db, firebaseConfig, app, db, firebaseConfig
 
 ### Community 13 - "Community 13"
-Cohesion: 0.21
-Nodes (7): PriceDisplay(), ProductCard(), SaleBadge(), cleanDescription(), ProductPage(), crearResena(), obtenerResenasPorProducto()
+Cohesion: 0.14
+Nodes (12): ../../pages/ProductPage.jsx, ../../services/firestore, PriceDisplay(), ProductCard(), SaleBadge(), cleanDescription(), ProductPage(), getStaticPaths() (+4 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.24
-Nodes (6): CajaDiaria(), CVRMDashboard(), TABS, InventarioStock(), PedidosDashboard(), actualizarStockProductoAdmin()
+Cohesion: 0.33
+Nodes (3): app, db, firebaseConfig
 
 ### Community 15 - "Community 15"
-Cohesion: 0.22
-Nodes (7): CATEGORIAS, ProductoFormModal(), productoVacio, ProductosCRUD(), actualizarProducto(), crearProducto(), eliminarProducto()
-
-### Community 16 - "Community 16"
-Cohesion: 0.29
-Nodes (5): ESTADO_CFG, ResenasDashboard(), actualizarEstadoResena(), eliminarResena(), obtenerResenas()
+Cohesion: 0.33
+Nodes (3): app, db, firebaseConfig
 
 ### Community 17 - "Community 17"
 Cohesion: 0.40
@@ -160,33 +153,25 @@ Nodes (6): Archivos Creados / Modificados, Decisiones Técnicas Tomadas, Estado 
 Cohesion: 0.40
 Nodes (4): ¿Cómo usarlas en páginas Astro?, Estructura de carpetas, Naming convention, 📁 src/assets — Imágenes Optimizadas por Astro
 
-### Community 32 - "Community 32"
-Cohesion: 0.33
-Nodes (4): ESTADOS_COLOR, RANGOS, VentasDashboard(), obtenerPedidosRango()
-
-### Community 33 - "Community 33"
-Cohesion: 0.40
-Nodes (5): ../../pages/ProductPage.jsx, ../../services/firestore, getStaticPaths(), obtenerProductoPorSlug(), obtenerTodosProductosAdmin()
-
 ## Knowledge Gaps
-- **187 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+182 more)
+- **182 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+177 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 1`, `Community 33`, `Community 3`, `Community 6`, `Community 8`, `Community 9`, `Community 12`?**
+- **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 0`, `Community 1`, `Community 6`, `Community 8`, `Community 9`, `Community 13`?**
   _High betweenness centrality (0.120) - this node is a cross-community bridge._
-- **Why does `useCartStore` connect `Community 6` to `Community 1`, `Community 13`, `Community 9`?**
+- **Why does `useCartStore` connect `Community 6` to `Community 9`, `Community 13`?**
   _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `useCatalogStore` connect `Community 1` to `Community 13`?**
+- **Why does `useCatalogStore` connect `Community 1` to `Community 13`, `Community 6`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _187 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _182 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.13768115942028986 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.10804597701149425 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1164021164021164 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._

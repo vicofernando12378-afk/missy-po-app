@@ -510,7 +510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories",
-      "community": 12,
+      "community": 3,
       "norm_label": "clean-firestore-categories.js"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_loadenv",
-      "community": 12,
+      "community": 3,
       "norm_label": "loadenv()"
     },
     {
@@ -530,7 +530,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_firebaseconfig",
-      "community": 12,
+      "community": 3,
       "norm_label": "firebaseconfig"
     },
     {
@@ -540,7 +540,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_app",
-      "community": 12,
+      "community": 3,
       "norm_label": "app"
     },
     {
@@ -550,7 +550,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_db",
-      "community": 12,
+      "community": 3,
       "norm_label": "db"
     },
     {
@@ -560,7 +560,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_decodehtmlentities",
-      "community": 12,
+      "community": 3,
       "norm_label": "decodehtmlentities()"
     },
     {
@@ -570,68 +570,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_run",
-      "community": 12,
+      "community": 3,
       "norm_label": "run()"
-    },
-    {
-      "label": "create-loki-member.js",
-      "file_type": "code",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "scripts_create_loki_member",
-      "community": 12,
-      "norm_label": "create-loki-member.js"
-    },
-    {
-      "label": "loadEnv()",
-      "file_type": "code",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "scripts_create_loki_member_loadenv",
-      "community": 12,
-      "norm_label": "loadenv()"
-    },
-    {
-      "label": "firebaseConfig",
-      "file_type": "code",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L34",
-      "_origin": "ast",
-      "id": "scripts_create_loki_member_firebaseconfig",
-      "community": 12,
-      "norm_label": "firebaseconfig"
-    },
-    {
-      "label": "app",
-      "file_type": "code",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L43",
-      "_origin": "ast",
-      "id": "scripts_create_loki_member_app",
-      "community": 12,
-      "norm_label": "app"
-    },
-    {
-      "label": "db",
-      "file_type": "code",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L44",
-      "_origin": "ast",
-      "id": "scripts_create_loki_member_db",
-      "community": 12,
-      "norm_label": "db"
-    },
-    {
-      "label": "registerLoki()",
-      "file_type": "code",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "scripts_create_loki_member_registerloki",
-      "community": 12,
-      "norm_label": "registerloki()"
     },
     {
       "label": "inspect-categories.js",
@@ -640,7 +580,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_inspect_categories",
-      "community": 12,
+      "community": 14,
       "norm_label": "inspect-categories.js"
     },
     {
@@ -650,7 +590,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_inspect_categories_loadenv",
-      "community": 12,
+      "community": 14,
       "norm_label": "loadenv()"
     },
     {
@@ -660,7 +600,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "scripts_inspect_categories_firebaseconfig",
-      "community": 12,
+      "community": 14,
       "norm_label": "firebaseconfig"
     },
     {
@@ -670,7 +610,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "scripts_inspect_categories_app",
-      "community": 12,
+      "community": 14,
       "norm_label": "app"
     },
     {
@@ -680,7 +620,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_inspect_categories_db",
-      "community": 12,
+      "community": 14,
       "norm_label": "db"
     },
     {
@@ -690,68 +630,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "scripts_inspect_categories_run",
-      "community": 12,
+      "community": 14,
       "norm_label": "run()"
-    },
-    {
-      "label": "inspect-crm-local.js",
-      "file_type": "code",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "scripts_inspect_crm_local",
-      "community": 12,
-      "norm_label": "inspect-crm-local.js"
-    },
-    {
-      "label": "loadEnv()",
-      "file_type": "code",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "scripts_inspect_crm_local_loadenv",
-      "community": 12,
-      "norm_label": "loadenv()"
-    },
-    {
-      "label": "firebaseConfig",
-      "file_type": "code",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L34",
-      "_origin": "ast",
-      "id": "scripts_inspect_crm_local_firebaseconfig",
-      "community": 12,
-      "norm_label": "firebaseconfig"
-    },
-    {
-      "label": "app",
-      "file_type": "code",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L43",
-      "_origin": "ast",
-      "id": "scripts_inspect_crm_local_app",
-      "community": 12,
-      "norm_label": "app"
-    },
-    {
-      "label": "db",
-      "file_type": "code",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L44",
-      "_origin": "ast",
-      "id": "scripts_inspect_crm_local_db",
-      "community": 12,
-      "norm_label": "db"
-    },
-    {
-      "label": "inspect()",
-      "file_type": "code",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "scripts_inspect_crm_local_inspect",
-      "community": 12,
-      "norm_label": "inspect()"
     },
     {
       "label": "inspect-sku.js",
@@ -760,7 +640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_inspect_sku",
-      "community": 12,
+      "community": 15,
       "norm_label": "inspect-sku.js"
     },
     {
@@ -770,7 +650,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_inspect_sku_loadenv",
-      "community": 12,
+      "community": 15,
       "norm_label": "loadenv()"
     },
     {
@@ -780,7 +660,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "scripts_inspect_sku_firebaseconfig",
-      "community": 12,
+      "community": 15,
       "norm_label": "firebaseconfig"
     },
     {
@@ -790,7 +670,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "scripts_inspect_sku_app",
-      "community": 12,
+      "community": 15,
       "norm_label": "app"
     },
     {
@@ -800,7 +680,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_inspect_sku_db",
-      "community": 12,
+      "community": 15,
       "norm_label": "db"
     },
     {
@@ -810,7 +690,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "scripts_inspect_sku_run",
-      "community": 12,
+      "community": 15,
       "norm_label": "run()"
     },
     {
@@ -1050,7 +930,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 3,
+      "community": 0,
       "norm_label": "app.jsx"
     },
     {
@@ -1060,7 +940,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 3,
+      "community": 0,
       "norm_label": "app()"
     },
     {
@@ -1070,7 +950,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_adminapp",
-      "community": 14,
+      "community": 0,
       "norm_label": "adminapp.jsx"
     },
     {
@@ -1080,7 +960,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "admin_adminapp_adminapp",
-      "community": 14,
+      "community": 0,
       "norm_label": "adminapp()"
     },
     {
@@ -1090,7 +970,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_productoformmodal",
-      "community": 15,
+      "community": 0,
       "norm_label": "productoformmodal.jsx"
     },
     {
@@ -1100,7 +980,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "admin_productoformmodal_categorias",
-      "community": 15,
+      "community": 0,
       "norm_label": "categorias"
     },
     {
@@ -1110,7 +990,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "admin_productoformmodal_productovacio",
-      "community": 15,
+      "community": 0,
       "norm_label": "productovacio"
     },
     {
@@ -1120,7 +1000,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "admin_productoformmodal_generarslug",
-      "community": 15,
+      "community": 0,
       "norm_label": "generarslug()"
     },
     {
@@ -1130,7 +1010,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "admin_productoformmodal_productoformmodal",
-      "community": 15,
+      "community": 0,
       "norm_label": "productoformmodal()"
     },
     {
@@ -1140,7 +1020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "cart_cartdrawer",
-      "community": 1,
+      "community": 6,
       "norm_label": "cartdrawer.jsx"
     },
     {
@@ -1150,7 +1030,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "cart_cartdrawer_closeicon",
-      "community": 1,
+      "community": 6,
       "norm_label": "closeicon()"
     },
     {
@@ -1160,7 +1040,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "cart_cartdrawer_trashicon",
-      "community": 1,
+      "community": 6,
       "norm_label": "trashicon()"
     },
     {
@@ -1180,7 +1060,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "cart_cartdrawer_cartdrawer",
-      "community": 1,
+      "community": 6,
       "norm_label": "cartdrawer()"
     },
     {
@@ -1680,7 +1560,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "legal_reclamacionesform",
-      "community": 12,
+      "community": 0,
       "norm_label": "reclamacionesform.jsx"
     },
     {
@@ -1801,7 +1681,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_index_css",
-      "community": 3,
+      "community": 0,
       "norm_label": "../../index.css"
     },
     {
@@ -1881,7 +1761,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 3,
+      "community": 0,
       "norm_label": "main.jsx"
     },
     {
@@ -2001,7 +1881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_loginpage",
-      "community": 3,
+      "community": 0,
       "norm_label": "loginpage.jsx"
     },
     {
@@ -2011,7 +1891,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "pages_loginpage_loginpage",
-      "community": 3,
+      "community": 0,
       "norm_label": "loginpage()"
     },
     {
@@ -2021,7 +1901,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_notfoundpage",
-      "community": 3,
+      "community": 0,
       "norm_label": "notfoundpage.jsx"
     },
     {
@@ -2031,7 +1911,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "pages_notfoundpage_notfoundpage",
-      "community": 3,
+      "community": 0,
       "norm_label": "notfoundpage()"
     },
     {
@@ -2041,7 +1921,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_orderconfirmationpage",
-      "community": 3,
+      "community": 0,
       "norm_label": "orderconfirmationpage.jsx"
     },
     {
@@ -2051,7 +1931,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "pages_orderconfirmationpage_orderconfirmationpage",
-      "community": 3,
+      "community": 0,
       "norm_label": "orderconfirmationpage()"
     },
     {
@@ -2121,7 +2001,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_adminlayout",
-      "community": 3,
+      "community": 0,
       "norm_label": "adminlayout.jsx"
     },
     {
@@ -2131,7 +2011,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "admin_adminlayout_adminlayout",
-      "community": 3,
+      "community": 0,
       "norm_label": "adminlayout()"
     },
     {
@@ -2141,7 +2021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_cvrmdashboard",
-      "community": 14,
+      "community": 0,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2151,7 +2031,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "admin_cvrmdashboard_tabs",
-      "community": 14,
+      "community": 0,
       "norm_label": "tabs"
     },
     {
@@ -2161,7 +2041,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "admin_cvrmdashboard_cvrmdashboard",
-      "community": 14,
+      "community": 0,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -2181,7 +2061,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "admin_cajadiaria_cajadiaria",
-      "community": 14,
+      "community": 0,
       "norm_label": "cajadiaria()"
     },
     {
@@ -2211,7 +2091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_inventariostock",
-      "community": 14,
+      "community": 0,
       "norm_label": "inventariostock.jsx"
     },
     {
@@ -2221,7 +2101,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "admin_inventariostock_inventariostock",
-      "community": 14,
+      "community": 0,
       "norm_label": "inventariostock()"
     },
     {
@@ -2241,7 +2121,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "admin_pedidosdashboard_pedidosdashboard",
-      "community": 14,
+      "community": 0,
       "norm_label": "pedidosdashboard()"
     },
     {
@@ -2251,7 +2131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_productoscrud",
-      "community": 15,
+      "community": 0,
       "norm_label": "productoscrud.jsx"
     },
     {
@@ -2261,7 +2141,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "admin_productoscrud_productoscrud",
-      "community": 15,
+      "community": 0,
       "norm_label": "productoscrud()"
     },
     {
@@ -2271,7 +2151,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_resenasdashboard",
-      "community": 16,
+      "community": 0,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -2281,7 +2161,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "admin_resenasdashboard_estado_cfg",
-      "community": 16,
+      "community": 0,
       "norm_label": "estado_cfg"
     },
     {
@@ -2291,7 +2171,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "admin_resenasdashboard_estrellas",
-      "community": 16,
+      "community": 0,
       "norm_label": "estrellas()"
     },
     {
@@ -2301,7 +2181,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "admin_resenasdashboard_resenasdashboard",
-      "community": 16,
+      "community": 0,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -2311,7 +2191,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_ventasdashboard",
-      "community": 32,
+      "community": 0,
       "norm_label": "ventasdashboard.jsx"
     },
     {
@@ -2321,7 +2201,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "admin_ventasdashboard_estados_color",
-      "community": 32,
+      "community": 0,
       "norm_label": "estados_color"
     },
     {
@@ -2331,7 +2211,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "admin_ventasdashboard_rangos",
-      "community": 32,
+      "community": 0,
       "norm_label": "rangos"
     },
     {
@@ -2341,7 +2221,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "admin_ventasdashboard_barchart",
-      "community": 32,
+      "community": 0,
       "norm_label": "barchart()"
     },
     {
@@ -2351,7 +2231,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "admin_ventasdashboard_ventasdashboard",
-      "community": 32,
+      "community": 0,
       "norm_label": "ventasdashboard()"
     },
     {
@@ -2361,7 +2241,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_all",
-      "community": 3,
+      "community": 0,
       "norm_label": "[...all].astro"
     },
     {
@@ -2371,7 +2251,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "admin_all_getstaticpaths",
-      "community": 3,
+      "community": 0,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2381,7 +2261,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_admin_adminapp",
-      "community": 3,
+      "community": 0,
       "norm_label": "../../components/admin/adminapp"
     },
     {
@@ -2621,7 +2501,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 12,
+      "community": 0,
       "norm_label": "firebase/firestore"
     },
     {
@@ -2761,7 +2641,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "producto_slug",
-      "community": 33,
+      "community": 13,
       "norm_label": "[slug].astro"
     },
     {
@@ -2771,7 +2651,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "producto_slug_getstaticpaths",
-      "community": 33,
+      "community": 13,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2781,7 +2661,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 33,
+      "community": 13,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -2791,7 +2671,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firestore",
-      "community": 33,
+      "community": 13,
       "norm_label": "../../services/firestore"
     },
     {
@@ -2801,7 +2681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_reclamaciones",
-      "community": 12,
+      "community": 4,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -2811,7 +2691,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 12,
+      "community": 4,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -2831,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tienda",
-      "community": 4,
+      "community": 1,
       "norm_label": "tienda.astro"
     },
     {
@@ -2841,8 +2721,18 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 4,
+      "community": 1,
       "norm_label": "./storepage.jsx"
+    },
+    {
+      "label": "../services/firestore.js",
+      "file_type": "code",
+      "source_file": "src/services/firestore.ts",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_services_firestore_ts",
+      "community": 1,
+      "norm_label": "../services/firestore.js"
     },
     {
       "label": "firebase.js",
@@ -2851,7 +2741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_firebase",
-      "community": 3,
+      "community": 0,
       "norm_label": "firebase.js"
     },
     {
@@ -2861,7 +2751,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "services_firebase_firebaseconfig",
-      "community": 3,
+      "community": 0,
       "norm_label": "firebaseconfig"
     },
     {
@@ -2871,7 +2761,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "services_firebase_storage",
-      "community": 3,
+      "community": 0,
       "norm_label": "storage"
     },
     {
@@ -2881,7 +2771,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "services_firebase_auth",
-      "community": 3,
+      "community": 0,
       "norm_label": "auth"
     },
     {
@@ -2921,7 +2811,7 @@
       "source_location": "L83",
       "_origin": "ast",
       "id": "services_firestore_obtenerproductoporslug",
-      "community": 33,
+      "community": 13,
       "norm_label": "obtenerproductoporslug()"
     },
     {
@@ -2951,7 +2841,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "services_firestore_crearproducto",
-      "community": 15,
+      "community": 0,
       "norm_label": "crearproducto()"
     },
     {
@@ -2961,7 +2851,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "services_firestore_actualizarproducto",
-      "community": 15,
+      "community": 0,
       "norm_label": "actualizarproducto()"
     },
     {
@@ -2971,7 +2861,7 @@
       "source_location": "L153",
       "_origin": "ast",
       "id": "services_firestore_eliminarproducto",
-      "community": 15,
+      "community": 0,
       "norm_label": "eliminarproducto()"
     },
     {
@@ -3091,7 +2981,7 @@
       "source_location": "L591",
       "_origin": "ast",
       "id": "services_firestore_actualizarstockproductoadmin",
-      "community": 14,
+      "community": 0,
       "norm_label": "actualizarstockproductoadmin()"
     },
     {
@@ -3101,7 +2991,7 @@
       "source_location": "L612",
       "_origin": "ast",
       "id": "services_firestore_obtenertodosproductosadmin",
-      "community": 33,
+      "community": 13,
       "norm_label": "obtenertodosproductosadmin()"
     },
     {
@@ -3171,7 +3061,7 @@
       "source_location": "L729",
       "_origin": "ast",
       "id": "services_firestore_obtenerpedidosrango",
-      "community": 32,
+      "community": 0,
       "norm_label": "obtenerpedidosrango()"
     },
     {
@@ -3181,7 +3071,7 @@
       "source_location": "L758",
       "_origin": "ast",
       "id": "services_firestore_obtenerproductosmasvendidos",
-      "community": 1,
+      "community": 6,
       "norm_label": "obtenerproductosmasvendidos()"
     },
     {
@@ -3191,7 +3081,7 @@
       "source_location": "L804",
       "_origin": "ast",
       "id": "services_firestore_obtenerresenas",
-      "community": 16,
+      "community": 0,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -3201,7 +3091,7 @@
       "source_location": "L828",
       "_origin": "ast",
       "id": "services_firestore_actualizarestadoresena",
-      "community": 16,
+      "community": 0,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -3211,7 +3101,7 @@
       "source_location": "L843",
       "_origin": "ast",
       "id": "services_firestore_eliminarresena",
-      "community": 16,
+      "community": 0,
       "norm_label": "eliminarresena()"
     },
     {
@@ -4992,67 +4882,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "scripts_create_loki_member",
-      "target": "firestore",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L43",
-      "weight": 1.0,
-      "source": "scripts_create_loki_member",
-      "target": "scripts_create_loki_member_app",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L44",
-      "weight": 1.0,
-      "source": "scripts_create_loki_member",
-      "target": "scripts_create_loki_member_db",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L34",
-      "weight": 1.0,
-      "source": "scripts_create_loki_member",
-      "target": "scripts_create_loki_member_firebaseconfig",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "scripts_create_loki_member",
-      "target": "scripts_create_loki_member_loadenv",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/create-loki-member.js",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "scripts_create_loki_member",
-      "target": "scripts_create_loki_member_registerloki",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "scripts/inspect-categories.js",
       "source_location": "L4",
       "weight": 1.0,
@@ -5109,67 +4938,6 @@
       "confidence_score": 1.0,
       "source": "scripts_inspect_categories",
       "target": "scripts_inspect_categories_run"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "scripts_inspect_crm_local",
-      "target": "firestore",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L43",
-      "weight": 1.0,
-      "source": "scripts_inspect_crm_local",
-      "target": "scripts_inspect_crm_local_app",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L44",
-      "weight": 1.0,
-      "source": "scripts_inspect_crm_local",
-      "target": "scripts_inspect_crm_local_db",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L34",
-      "weight": 1.0,
-      "source": "scripts_inspect_crm_local",
-      "target": "scripts_inspect_crm_local_firebaseconfig",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "scripts_inspect_crm_local",
-      "target": "scripts_inspect_crm_local_inspect",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/inspect-crm-local.js",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "scripts_inspect_crm_local",
-      "target": "scripts_inspect_crm_local_loadenv",
-      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -9331,6 +9099,36 @@
       "target": "c_mis_proyectos_missy_po_src_pages_storepage_tsx"
     },
     {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/tienda.astro",
+      "source": "pages_tienda",
+      "target": "c_mis_proyectos_missy_po_src_services_firestore_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/tienda.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "pages_tienda",
+      "target": "services_firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/tienda.astro",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "pages_tienda",
+      "target": "services_firestore_obtenerproductos",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/services/firebase.js",
@@ -10818,5 +10616,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "94042562eb181dd6eef97338e6e05faea978ce4c"
+  "built_at_commit": "2d6dfad13a19a2938d887486f97ef2c65503154d"
 }

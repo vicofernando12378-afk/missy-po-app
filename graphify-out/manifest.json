@@ -215,9 +215,9 @@
     "semantic_hash": "dd54a3b071e125ab24cb0a535cf84224"
   },
   "src/pages/StorePage.jsx": {
-    "mtime": 1782274136.122121,
-    "ast_hash": "8a0429fec5d9ac7109fe7b4f56f7ded7",
-    "semantic_hash": "8a0429fec5d9ac7109fe7b4f56f7ded7"
+    "mtime": 1782620476.117087,
+    "ast_hash": "0fa83feb83ba800d46be9e1d9a17a070",
+    "semantic_hash": ""
   },
   "src/pages/admin/AdminLayout.jsx": {
     "mtime": 1782602824.19196,
@@ -295,9 +295,9 @@
     "semantic_hash": "c3e2ed2c389e9a6bd8f8f70fe180c550"
   },
   "src/pages/tienda.astro": {
-    "mtime": 1782189908.3310933,
-    "ast_hash": "0e8ebde536bbe5cf589a127113ee220e",
-    "semantic_hash": "0e8ebde536bbe5cf589a127113ee220e"
+    "mtime": 1782620467.2658756,
+    "ast_hash": "7ded177efe0c20f07774305c92242ca8",
+    "semantic_hash": ""
   },
   "src/services/firebase.js": {
     "mtime": 1782189908.332093,
@@ -512,16 +512,6 @@
   "src/assets/logoheader.jpeg": {
     "mtime": 1782606385.6323664,
     "ast_hash": "d84f7a3b2970ccc649a673db4652c4da",
-    "semantic_hash": ""
-  },
-  "scripts/create-loki-member.js": {
-    "mtime": 1782619555.7930582,
-    "ast_hash": "e63845235837551e55e4f40c52df69d9",
-    "semantic_hash": ""
-  },
-  "scripts/inspect-crm-local.js": {
-    "mtime": 1782619452.9359484,
-    "ast_hash": "88b46d391f2b44cb08705bb2491d7419",
     "semantic_hash": ""
   }
 }

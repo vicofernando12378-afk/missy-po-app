@@ -2,8 +2,9 @@ import { useEffect, useState, useMemo } from 'react'
 import ProductGrid from '../components/catalog/ProductGrid'
 import useCatalogStore from '../store/catalogStore'
 
-export default function StorePage() {
+export default function StorePage({ initialProducts = [] }) {
   const { productos, fetchCatalog, isLoading } = useCatalogStore()
+  const activeProducts = productos.length > 0 ? productos : initialProducts
 
   // Maps URL slugs from Navbar/Footer to the real Firestore category names
   const CAT_SLUG_MAP = {
@@ -44,7 +45,7 @@ export default function StorePage() {
   }, [fetchCatalog])
 
   // Categorías dinámicas a partir de los productos reales cargados en memoria
-  const categorias = useMemo(() => ['Todos', ...new Set(productos.flatMap(p => p.categorias || []))], [productos])
+  const categorias = useMemo(() => ['Todos', ...new Set(activeProducts.flatMap(p => p.categorias || []))], [activeProducts])
 
   // Re-resolve selectedCategory when categorias loads (products may have loaded after mount)
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function StorePage() {
   }, [categorias])
 
   // Filtrar productos
-  let filtered = [...productos]
+  let filtered = [...activeProducts]
 
   // 1. Filtrar por búsqueda de URL (q)
   if (searchQuery) {
@@ -185,7 +186,7 @@ export default function StorePage() {
           </div>
 
           {/* CATALOG GRID */}
-          {isLoading ? (
+          {isLoading && activeProducts.length === 0 ? (
             <div className="py-20 text-center">
               <div className="inline-block w-8 h-8 border-4 border-coral border-t-transparent rounded-full animate-spin"></div>
               <p className="text-gray-500 font-body text-sm mt-3">Cargando productos de Missy & Po...</p>
