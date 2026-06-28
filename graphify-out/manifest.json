@@ -513,5 +513,15 @@
     "mtime": 1782606385.6323664,
     "ast_hash": "d84f7a3b2970ccc649a673db4652c4da",
     "semantic_hash": ""
+  },
+  "scripts/create-loki-member.js": {
+    "mtime": 1782619555.7930582,
+    "ast_hash": "e63845235837551e55e4f40c52df69d9",
+    "semantic_hash": ""
+  },
+  "scripts/inspect-crm-local.js": {
+    "mtime": 1782619452.9359484,
+    "ast_hash": "88b46d391f2b44cb08705bb2491d7419",
+    "semantic_hash": ""
   }
 }

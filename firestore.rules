@@ -69,20 +69,17 @@ service cloud.firestore {
       )) || request.time < timestamp.date(2026, 6, 15);
     }
 
-    // Miembros del Club: Creación pública, lectura/escritura exclusiva de administradores
+    // Miembros del Club: Creación, lectura y actualización públicas para permitir registro y canje en checkout
     match /myp_club_miembros/{miembroId} {
-      allow create: if true;
-      allow read, update, delete: if request.auth != null && (
+      allow read, create, update: if true;
+      allow delete: if request.auth != null && (
         request.auth.token.admin == true || 
         request.auth.token.email == 'victorchavezd@gmail.com'
       );
 
-      // Historial de puntos: Lectura y escritura exclusiva de administradores
+      // Historial de puntos: Lectura y escritura pública para registro transaccional en checkout
       match /puntos_logs/{logId} {
-        allow read, write: if request.auth != null && (
-          request.auth.token.admin == true || 
-          request.auth.token.email == 'victorchavezd@gmail.com'
-        );
+        allow read, write: if true;
       }
     }
 
