@@ -66,6 +66,16 @@ export default function CheckoutPage() {
   const [verifyAliasInput, setVerifyAliasInput] = useState('')
   const [verifyError, setVerifyError] = useState('')
 
+  // Campo de registro para nueva membresía / Alias
+  const [nombreMascota, setNombreMascota] = useState('')
+
+  // Autocompletar alias de mascota si se verificó socio
+  useEffect(() => {
+    if (clubMember && clubMember.nombre_mascota) {
+      setNombreMascota(clubMember.nombre_mascota)
+    }
+  }, [clubMember])
+
   // Cupón Estados locales
   const [couponInput, setCouponInput] = useState('')
   const [couponMsg, setCouponMsg] = useState(null)
@@ -219,7 +229,7 @@ export default function CheckoutPage() {
 
   // Prevenir envío directo si faltan datos
   const validateForm = () => {
-    if (!nombre.trim() || !apellido.trim() || !email.trim() || !celular.trim() || !direccion.trim() || !numeroDocumento.trim()) {
+    if (!nombre.trim() || !apellido.trim() || !email.trim() || !celular.trim() || !direccion.trim() || !numeroDocumento.trim() || !nombreMascota.trim()) {
       setErrorMsg('Por favor completa todos los campos obligatorios (*).')
       return false
     }
@@ -311,21 +321,84 @@ export default function CheckoutPage() {
       // 1. Crear el pedido usando transacciones para el stock
       const orderId = await crearPedidoConTransaccion(orderData)
 
-      // 1.5. Si se canjearon puntos, debitar los puntos del perfil del socio
-      if (pointsApplied && clubMember) {
-        const memberRef = doc(db, 'myp_club_miembros', clubMember.id)
-        const newPoints = Math.max(0, (clubMember.puntos || 0) - clubConfig.puntosRequeridos)
-        await updateDoc(memberRef, {
-          puntos: newPoints,
-          actualizado_en: serverTimestamp()
-        })
-        
-        // Registrar log de canje en subcolección puntos_logs
-        await addDoc(collection(db, 'myp_club_miembros', clubMember.id, 'puntos_logs'), {
-          puntos: -clubConfig.puntosRequeridos,
-          motivo: `Canje por descuento en pedido #${orderId}`,
-          creado_en: serverTimestamp()
-        })
+      // 1.5. Lógica CRM del Club de Beneficios (Registro Automático, Acumulación y Canjes)
+      try {
+        let finalMemberId = clubMember ? clubMember.id : null
+        let finalMemberData = clubMember
+
+        // Buscar si ya existe un socio con este correo (por si no se verificó antes)
+        if (!finalMemberId) {
+          const qCheck = query(collection(db, 'myp_club_miembros'), where('email', '==', email.trim().toLowerCase()))
+          const snapCheck = await getDocs(qCheck)
+          if (!snapCheck.empty) {
+            finalMemberId = snapCheck.docs[0].id
+            finalMemberData = { id: finalMemberId, ...snapCheck.docs[0].data() }
+          }
+        }
+
+        const pointsEarned = Math.floor(totalFinalSoles / clubConfig.solesPorDiezPuntos) * 10
+        const pointsRedeemed = pointsApplied ? clubConfig.puntosRequeridos : 0
+
+        if (finalMemberId) {
+          // El socio existe: actualizar saldo de puntos y enriquecer campos de perfil faltantes
+          const currentPoints = finalMemberData.puntos || 0
+          const newPoints = Math.max(0, currentPoints - pointsRedeemed + pointsEarned)
+
+          const updateData = {
+            puntos: newPoints,
+            actualizado_en: serverTimestamp()
+          }
+          // Enriquecimiento de datos si no existen
+          if (!finalMemberData.celular && celular) updateData.celular = celular
+          if (!finalMemberData.direccion && direccion) updateData.direccion = direccion
+          if (!finalMemberData.documento_tipo && tipoDocumento) updateData.documento_tipo = tipoDocumento
+          if (!finalMemberData.documento_numero && numeroDocumento) updateData.documento_numero = numeroDocumento
+
+          await updateDoc(doc(db, 'myp_club_miembros', finalMemberId), updateData)
+
+          // Registrar logs transaccionales
+          if (pointsRedeemed > 0) {
+            await addDoc(collection(db, 'myp_club_miembros', finalMemberId, 'puntos_logs'), {
+              puntos: -pointsRedeemed,
+              motivo: `Canje por descuento en pedido #${orderId}`,
+              creado_en: serverTimestamp()
+            })
+          }
+          if (pointsEarned > 0) {
+            await addDoc(collection(db, 'myp_club_miembros', finalMemberId, 'puntos_logs'), {
+              puntos: pointsEarned,
+              motivo: `Puntos ganados por compra en pedido #${orderId}`,
+              creado_en: serverTimestamp()
+            })
+          }
+        } else {
+          // El socio NO existe: registrar automáticamente en el Club
+          const newMemberRef = await addDoc(collection(db, 'myp_club_miembros'), {
+            nombre_tutor: `${nombre} ${apellido}`,
+            nombre_mascota: nombreMascota.trim(),
+            email: email.trim().toLowerCase(),
+            celular: celular,
+            direccion: direccion,
+            documento_tipo: tipoDocumento,
+            documento_numero: numeroDocumento,
+            benefit_origen: 'Registro Automático Compra',
+            puntos: pointsEarned,
+            creado_en: serverTimestamp()
+          })
+          
+          finalMemberId = newMemberRef.id
+
+          // Log de bienvenida con sus primeros puntos
+          if (pointsEarned > 0) {
+            await addDoc(collection(db, 'myp_club_miembros', finalMemberId, 'puntos_logs'), {
+              puntos: pointsEarned,
+              motivo: `Puntos acumulados por primera compra en pedido #${orderId}`,
+              creado_en: serverTimestamp()
+            })
+          }
+        }
+      } catch (crmErr) {
+        console.warn('⚠️ Error en la automatización de CRM del Club:', crmErr)
       }
 
       // 2. Si el pago fue con Yape y se subió comprobante físico, subirlo a Firebase Storage
@@ -427,6 +500,21 @@ export default function CheckoutPage() {
                     maxLength={9}
                     value={celular}
                     onChange={(e) => setCelular(e.target.value.replace(/\D/g, ''))}
+                    className="w-full h-11 px-4 rounded-xl border border-gray-200 text-sm focus:border-coral focus:ring-1 focus:ring-coral/25"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="input-nombre-mascota" className="text-xs font-ui font-bold text-gray-600 block mb-1">Nombre de tu mascota (Alias) *</label>
+                  <input
+                    id="input-nombre-mascota"
+                    type="text"
+                    value={nombreMascota}
+                    onChange={(e) => setNombreMascota(e.target.value)}
+                    placeholder="Ej. Missy (Para tu registro en el Club)"
                     className="w-full h-11 px-4 rounded-xl border border-gray-200 text-sm focus:border-coral focus:ring-1 focus:ring-coral/25"
                     required
                   />

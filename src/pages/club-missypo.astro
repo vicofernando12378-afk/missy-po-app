@@ -510,6 +510,17 @@ import imgEnvio from '../assets/club/enviorapido.jpeg';
             />
           </div>
 
+          <div>
+            <label for="tutor-phone" class="block text-xs font-ui font-bold text-gray-600 uppercase mb-1.5">Celular de contacto</label>
+            <input
+              type="tel"
+              id="tutor-phone"
+              required
+              placeholder="Ej. 987654321"
+              class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 focus:border-red-400 text-sm transition-all animate-none"
+            />
+          </div>
+
           <p class="text-[10px] text-gray-400 leading-relaxed font-body pt-1">
             Al unirte, aceptas que tu información sea almacenada de forma segura para gestionar los beneficios de tu mascota y enviarte sorpresas exclusivas.
           </p>
@@ -679,14 +690,16 @@ import imgEnvio from '../assets/club/enviorapido.jpeg';
         const tutorNameInput = document.getElementById('tutor-name') as HTMLInputElement;
         const petNameInput = document.getElementById('pet-name') as HTMLInputElement;
         const emailInput = document.getElementById('tutor-email') as HTMLInputElement;
+        const phoneInput = document.getElementById('tutor-phone') as HTMLInputElement;
 
-        if (!tutorNameInput || !petNameInput || !emailInput) return;
+        if (!tutorNameInput || !petNameInput || !emailInput || !phoneInput) return;
 
         const tutorName = tutorNameInput.value.trim();
         const petName = petNameInput.value.trim();
         const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
 
-        if (!tutorName || !petName || !email) return;
+        if (!tutorName || !petName || !email || !phone) return;
 
         if (submitBtn) {
           (submitBtn as HTMLButtonElement).disabled = true;
@@ -704,7 +717,9 @@ import imgEnvio from '../assets/club/enviorapido.jpeg';
             nombre_tutor: tutorName,
             nombre_mascota: petName,
             email: email,
+            celular: phone,
             benefit_origen: currentBenefit,
+            puntos: 0,
             creado_en: serverTimestamp()
           });
 
