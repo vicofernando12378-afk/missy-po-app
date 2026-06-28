@@ -76,6 +76,21 @@ service cloud.firestore {
         request.auth.token.admin == true || 
         request.auth.token.email == 'victorchavezd@gmail.com'
       );
+
+      // Historial de puntos: Lectura y escritura exclusiva de administradores
+      match /puntos_logs/{logId} {
+        allow read, write: if request.auth != null && (
+          request.auth.token.admin == true || 
+          request.auth.token.email == 'victorchavezd@gmail.com'
+        );
+      }
+    }
+
+    // Configuración general (envíos, club, etc.): Lectura pública, escritura admin
+    match /myp_config/{configId} {
+      allow read: if true;
+      allow write: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
+                    request.time < timestamp.date(2026, 6, 15);
     }
   }
 }

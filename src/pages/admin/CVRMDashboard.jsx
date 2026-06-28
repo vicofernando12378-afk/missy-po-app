@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp } from 'firebase/firestore'
+import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 
 // Configuración de pestañas
@@ -7,7 +7,7 @@ const TABS = [
   { id: 'miembros', label: 'Miembros del Club', icon: '👥', active: true },
   { id: 'leads', label: 'Seguimiento de Leads', icon: '🎯', active: false, tooltip: 'Carrito abandonado, consultas WhatsApp, registros del club' },
   { id: 'campanas', label: 'Campañas & Email', icon: '✉️', active: false },
-  { id: 'puntos', label: 'Puntos & Lealtad', icon: '⭐', active: false },
+  { id: 'puntos', label: 'Puntos & Lealtad', icon: '⭐', active: true },
   { id: 'segmentacion', label: 'Segmentación', icon: '🏷️', active: false },
 ]
 
@@ -25,6 +25,17 @@ export default function CVRMDashboard() {
     benefit: 'Registro Manual Admin'
   })
 
+  // Configuración del club y puntos
+  const [configClub, setConfigClub] = useState({ minCompraClub: 50, solesPorDiezPuntos: 10 })
+  const [loadingConfig, setLoadingConfig] = useState(true)
+  const [savingConfig, setSavingConfig] = useState(false)
+
+  // Asignar puntos
+  const [selectedMemberId, setSelectedMemberId] = useState('')
+  const [pointsToAward, setPointsToAward] = useState('')
+  const [awardReason, setAwardReason] = useState('Campaña Redes Sociales')
+  const [savingPoints, setSavingPoints] = useState(false)
+
   // 1. Cargar miembros del Club en tiempo real
   useEffect(() => {
     const q = query(
@@ -35,6 +46,7 @@ export default function CVRMDashboard() {
     const unsubscribe = onSnapshot(q, (snap) => {
       const docs = snap.docs.map(doc => ({
         id: doc.id,
+        puntos: 0, // default if not present
         ...doc.data()
       }))
       setMiembros(docs)
@@ -47,7 +59,24 @@ export default function CVRMDashboard() {
     return () => unsubscribe()
   }, [])
 
-  // 2. Filtrar miembros por búsqueda
+  // 2. Cargar configuración del club
+  useEffect(() => {
+    const fetchConfig = async () => {
+      try {
+        const snap = await getDoc(doc(db, 'myp_config', 'club'))
+        if (snap.exists()) {
+          setConfigClub(snap.data())
+        }
+      } catch (err) {
+        console.error("Error al cargar config del club:", err)
+      } finally {
+        setLoadingConfig(false)
+      }
+    }
+    fetchConfig()
+  }, [])
+
+  // 3. Filtrar miembros por búsqueda
   const filteredMiembros = miembros.filter(m => {
     const query = searchQuery.toLowerCase().trim()
     if (!query) return true
@@ -59,7 +88,7 @@ export default function CVRMDashboard() {
     )
   })
 
-  // 3. Eliminar miembro
+  // 4. Eliminar miembro
   const handleDelete = async (id, tutor, mascota) => {
     if (!window.confirm(`¿Estás seguro de eliminar a ${tutor} (mascota: ${mascota}) del Club?`)) return
     try {
@@ -70,7 +99,7 @@ export default function CVRMDashboard() {
     }
   }
 
-  // 4. Agregar miembro manualmente
+  // 5. Agregar miembro manualmente
   const handleAddMemberSubmit = async (e) => {
     e.preventDefault()
     if (!newMember.tutor.trim() || !newMember.mascota.trim() || !newMember.email.trim()) {
@@ -85,6 +114,7 @@ export default function CVRMDashboard() {
         nombre_mascota: newMember.mascota.trim(),
         email: newMember.email.trim(),
         benefit_origen: newMember.benefit || 'Registro Manual Admin',
+        puntos: 0,
         creado_en: serverTimestamp()
       })
 
@@ -98,24 +128,91 @@ export default function CVRMDashboard() {
     }
   }
 
-  // 5. Exportar a CSV
+  // 6. Guardar Configuración de Puntos
+  const handleSaveConfig = async (e) => {
+    e.preventDefault()
+    setSavingConfig(true)
+    try {
+      await setDoc(doc(db, 'myp_config', 'club'), {
+        minCompraClub: parseFloat(configClub.minCompraClub) || 0,
+        solesPorDiezPuntos: parseFloat(configClub.solesPorDiezPuntos) || 0,
+        actualizado_en: serverTimestamp()
+      }, { merge: true })
+      alert("Configuración de puntos guardada correctamente.")
+    } catch (err) {
+      console.error("Error al guardar la configuración:", err)
+      alert("Error al guardar la configuración.")
+    } finally {
+      setSavingConfig(false)
+    }
+  }
+
+  // 7. Otorgar Puntos de Regalo / Lealtad
+  const handleAwardPoints = async (e) => {
+    e.preventDefault()
+    if (!selectedMemberId) {
+      alert("Por favor selecciona un miembro.")
+      return
+    }
+    const pointsNum = parseInt(pointsToAward)
+    if (isNaN(pointsNum) || pointsNum === 0) {
+      alert("Por favor ingresa una cantidad de puntos válida (distinta de cero).")
+      return
+    }
+
+    setSavingPoints(true)
+    try {
+      const memberRef = doc(db, 'myp_club_miembros', selectedMemberId)
+      const memberDoc = miembros.find(m => m.id === selectedMemberId)
+      if (!memberDoc) throw new Error("Miembro no encontrado")
+
+      const currentPoints = parseInt(memberDoc.puntos) || 0
+      const newPoints = currentPoints + pointsNum
+
+      // 1. Actualizar puntos acumulados en la ficha del socio
+      await updateDoc(memberRef, {
+        puntos: newPoints,
+        actualizado_en: serverTimestamp()
+      })
+
+      // 2. Guardar registro en el historial de puntos (subcolección puntos_logs)
+      await addDoc(collection(db, 'myp_club_miembros', selectedMemberId, 'puntos_logs'), {
+        puntos: pointsNum,
+        motivo: awardReason.trim(),
+        creado_en: serverTimestamp()
+      })
+
+      alert(`Se han asignado ${pointsNum} puntos a ${memberDoc.nombre_tutor} con éxito.`)
+      setPointsToAward('')
+      setSelectedMemberId('')
+      setAwardReason('Campaña Redes Sociales')
+    } catch (err) {
+      console.error("Error al asignar puntos:", err)
+      alert("Error al asignar puntos al socio.")
+    } finally {
+      setSavingPoints(false)
+    }
+  }
+
+  // 8. Exportar a CSV
   const handleExportCSV = () => {
     if (miembros.length === 0) {
       alert("No hay miembros para exportar.")
       return
     }
 
-    const headers = ['Nombre Tutor', 'Mascota (Alias)', 'Email', 'Beneficio Origen', 'Fecha Registro']
+    const headers = ['Nombre Tutor', 'Mascota (Alias)', 'Email', 'Beneficio Origen', 'Puntos Acumulados', 'Fecha Registro']
     const rows = miembros.map(m => [
       m.nombre_tutor || '',
       m.nombre_mascota || '',
       m.email || '',
       m.benefit_origen || '',
+      m.puntos || 0,
       m.creado_en ? new Date(m.creado_en.seconds * 1000).toLocaleString('es-PE') : 'Sin fecha'
     ])
 
     const csvContent = "data:text/csv;charset=utf-8,\uFEFF"
-      + [headers.join(','), ...rows.map(e => e.map(val => `"${val.replace(/"/g, '""')}"`).join(','))].join('\n')
+      + [headers.join(','), ...rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(','))].join('\n')
 
     const encodedUri = encodeURI(csvContent)
     const link = document.createElement('a')
@@ -137,6 +234,9 @@ export default function CVRMDashboard() {
       date.getFullYear() === today.getFullYear()
     )
   }).length
+
+  // Obtener ranking de socios ordenados por puntos desc
+  const rankingMiembros = [...miembros].sort((a, b) => (parseInt(b.puntos) || 0) - (parseInt(a.puntos) || 0))
 
   return (
     <div className="space-y-8 font-body">
@@ -202,7 +302,7 @@ export default function CVRMDashboard() {
       </div>
 
       {/* Contenido según Pestaña Activa */}
-      {activeTab === 'miembros' ? (
+      {activeTab === 'miembros' && (
         <div className="space-y-6">
           {/* Tarjetas de Métricas Rápidas */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -281,6 +381,7 @@ export default function CVRMDashboard() {
                       <th className="px-6 py-4">Mascota (Alias)</th>
                       <th className="px-6 py-4">Contacto</th>
                       <th className="px-6 py-4">Beneficio de Interés</th>
+                      <th className="px-6 py-4 text-center">Puntos</th>
                       <th className="px-6 py-4">Registro</th>
                       <th className="px-6 py-4 text-right">Acción</th>
                     </tr>
@@ -303,6 +404,9 @@ export default function CVRMDashboard() {
                           <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2.5 py-1 rounded-lg">
                             {miembro.benefit_origen || 'General'}
                           </span>
+                        </td>
+                        <td className="px-6 py-4 text-center font-bold text-gray-700">
+                          {miembro.puntos || 0}
                         </td>
                         <td className="px-6 py-4 text-gray-400 text-xs font-medium">
                           {miembro.creado_en 
@@ -332,7 +436,213 @@ export default function CVRMDashboard() {
             )}
           </div>
         </div>
-      ) : (
+      )}
+
+      {/* Pestaña: Puntos y Lealtad */}
+      {activeTab === 'puntos' && (
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            {/* Panel 1: Reglas de Puntos (Configuración) */}
+            <div className="lg:col-span-5 bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="font-brand text-lg text-gray-800 mb-2 flex items-center gap-2">
+                  ⚙️ Reglas de Puntos y Club
+                </h3>
+                <p className="text-xs text-gray-400 mb-6">
+                  Establece los montos mínimos y tasas de puntos del club de beneficios.
+                </p>
+
+                {loadingConfig ? (
+                  <div className="py-8 text-center">
+                    <div className="w-6 h-6 border-2 border-coral border-t-transparent rounded-full animate-spin mx-auto"></div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSaveConfig} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                        Monto Mínimo de Compra para unirse (S/.)
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        step="0.5"
+                        required
+                        value={configClub.minCompraClub}
+                        onChange={(e) => setConfigClub(prev => ({ ...prev, minCompraClub: e.target.value }))}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                        placeholder="Ej. 50"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                        Monto de Compra en Soles por cada 10 puntos ganados
+                      </label>
+                      <input
+                        type="number"
+                        min="1"
+                        step="0.5"
+                        required
+                        value={configClub.solesPorDiezPuntos}
+                        onChange={(e) => setConfigClub(prev => ({ ...prev, solesPorDiezPuntos: e.target.value }))}
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                        placeholder="Ej. 10"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={savingConfig}
+                      className="w-full py-3.5 mt-2 bg-gray-850 hover:bg-gray-900 text-white rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md shadow-gray-850/10 text-sm"
+                    >
+                      {savingConfig ? 'Guardando...' : 'Guardar Configuración 💾'}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            {/* Panel 2: Otorgar Puntos (Campaña, Redes Sociales, Concursos) */}
+            <div className="lg:col-span-7 bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="font-brand text-lg text-gray-800 mb-2 flex items-center gap-2">
+                  ✨ Otorgar Puntos de Regalo y Lealtad
+                </h3>
+                <p className="text-xs text-gray-400 mb-6">
+                  Premia a tus socios por interactuar en redes, ganar sorteos o campañas específicas.
+                </p>
+
+                <form onSubmit={handleAwardPoints} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                      Seleccionar Socio Miembro
+                    </label>
+                    <select
+                      value={selectedMemberId}
+                      required
+                      onChange={(e) => setSelectedMemberId(e.target.value)}
+                      className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                    >
+                      <option value="">-- Elige un socio del Club --</option>
+                      {miembros.map(m => (
+                        <option key={m.id} value={m.id}>
+                          {m.nombre_tutor} (Mascota: {m.nombre_mascota}) - {m.email} [Puntos: {m.puntos || 0}]
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                        Puntos a Asignar (pueden ser negativos para restar)
+                      </label>
+                      <input
+                        type="number"
+                        required
+                        value={pointsToAward}
+                        onChange={(e) => setPointsToAward(e.target.value)}
+                        placeholder="Ej. 100 o -50"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-gray-500 uppercase mb-1.5">
+                        Motivo / Campaña / Concurso
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={awardReason}
+                        onChange={(e) => setAwardReason(e.target.value)}
+                        placeholder="Ej. Sorteo Instagram Aniversario"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={savingPoints}
+                    className="w-full py-3.5 mt-2 bg-coral hover:bg-coral-dark text-white rounded-2xl font-bold transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer border-none shadow-md shadow-coral/15 text-sm font-ui"
+                  >
+                    {savingPoints ? 'Procesando...' : 'Otorgar Puntos al Socio ✨'}
+                  </button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Ranking de Socios */}
+          <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="p-6 border-b border-gray-50 flex items-center justify-between">
+              <div>
+                <h3 className="font-brand text-lg text-gray-800">🥇 Ranking de Socios Missy & Po</h3>
+                <p className="text-xs text-gray-400">Tabla de clasificación ordenada por los puntos acumulados por lealtad.</p>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-gray-50 border-b border-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-4 text-center w-20">Rango</th>
+                    <th className="px-6 py-4">Tutor</th>
+                    <th className="px-6 py-4">Mascota (Alias)</th>
+                    <th className="px-6 py-4">Email</th>
+                    <th className="px-6 py-4">Origen Club</th>
+                    <th className="px-6 py-4 text-center">Puntos Acumulados</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50 text-sm">
+                  {rankingMiembros.map((miembro, index) => {
+                    const rank = index + 1
+                    let medal = ''
+                    if (rank === 1) medal = '🥇'
+                    else if (rank === 2) medal = '🥈'
+                    else if (rank === 3) medal = '🥉'
+
+                    return (
+                      <tr key={miembro.id} className={`hover:bg-gray-50/50 transition-colors ${rank <= 3 ? 'bg-amber-50/10' : ''}`}>
+                        <td className="px-6 py-4 text-center font-bold text-base">
+                          {medal ? (
+                            <span title={`Rango ${rank}`} className="text-xl">{medal}</span>
+                          ) : (
+                            <span className="text-gray-400 text-sm">{rank}</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 font-semibold text-gray-800">
+                          {miembro.nombre_tutor}
+                        </td>
+                        <td className="px-6 py-4">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-coral/5 text-coral rounded-full text-xs font-bold font-ui">
+                            🐾 {miembro.nombre_mascota}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-gray-500 font-medium">
+                          {miembro.email}
+                        </td>
+                        <td className="px-6 py-4 text-xs font-medium text-gray-400">
+                          {miembro.benefit_origen || 'General'}
+                        </td>
+                        <td className="px-6 py-4 text-center font-black text-coral text-base">
+                          {miembro.puntos || 0}
+                        </td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Otras Pestañas: En Construcción */}
+      {activeTab !== 'miembros' && activeTab !== 'puntos' && (
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-12 text-center max-w-lg mx-auto space-y-4">
           <div className="text-6xl">🚀</div>
           <h3 className="text-xl font-brand text-gray-800">Sección en Construcción</h3>
