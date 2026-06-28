@@ -30,7 +30,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 2,
+      "community": 11,
       "norm_label": "package.json"
     },
     {
@@ -40,7 +40,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 2,
+      "community": 11,
       "norm_label": "name"
     },
     {
@@ -50,7 +50,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_private",
-      "community": 2,
+      "community": 11,
       "norm_label": "private"
     },
     {
@@ -60,7 +60,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_version",
-      "community": 2,
+      "community": 11,
       "norm_label": "version"
     },
     {
@@ -70,7 +70,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_type",
-      "community": 2,
+      "community": 11,
       "norm_label": "type"
     },
     {
@@ -80,7 +80,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 2,
+      "community": 11,
       "norm_label": "scripts"
     },
     {
@@ -90,7 +90,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 2,
+      "community": 11,
       "norm_label": "dev"
     },
     {
@@ -100,7 +100,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 2,
+      "community": 11,
       "norm_label": "start"
     },
     {
@@ -110,7 +110,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 2,
+      "community": 11,
       "norm_label": "build"
     },
     {
@@ -120,7 +120,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_preview",
-      "community": 2,
+      "community": 11,
       "norm_label": "preview"
     },
     {
@@ -130,7 +130,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "package_scripts_astro",
-      "community": 2,
+      "community": 11,
       "norm_label": "astro"
     },
     {
@@ -140,7 +140,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "package_scripts_lint",
-      "community": 2,
+      "community": 11,
       "norm_label": "lint"
     },
     {
@@ -150,7 +150,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "package_scripts_test",
-      "community": 2,
+      "community": 11,
       "norm_label": "test"
     },
     {
@@ -160,7 +160,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_scripts_test_watch",
-      "community": 2,
+      "community": 11,
       "norm_label": "test:watch"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "cart_cartdrawer_cartdrawer",
-      "community": 1,
+      "community": 6,
       "norm_label": "cartdrawer()"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "catalog_pricedisplay",
-      "community": 8,
+      "community": 1,
       "norm_label": "pricedisplay.jsx"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "catalog_pricedisplay_pricedisplay",
-      "community": 8,
+      "community": 1,
       "norm_label": "pricedisplay()"
     },
     {
@@ -1090,7 +1090,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "catalog_productcard",
-      "community": 8,
+      "community": 1,
       "norm_label": "productcard.jsx"
     },
     {
@@ -1100,7 +1100,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "catalog_productcard_staricon",
-      "community": 8,
+      "community": 1,
       "norm_label": "staricon()"
     },
     {
@@ -1110,7 +1110,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "catalog_productcard_carticon",
-      "community": 8,
+      "community": 1,
       "norm_label": "carticon()"
     },
     {
@@ -1120,7 +1120,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "catalog_productcard_eyeicon",
-      "community": 8,
+      "community": 1,
       "norm_label": "eyeicon()"
     },
     {
@@ -1130,7 +1130,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "catalog_productcard_productcard",
-      "community": 8,
+      "community": 1,
       "norm_label": "productcard()"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "catalog_salebadge",
-      "community": 8,
+      "community": 1,
       "norm_label": "salebadge.jsx"
     },
     {
@@ -1180,7 +1180,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "catalog_salebadge_salebadge",
-      "community": 8,
+      "community": 1,
       "norm_label": "salebadge()"
     },
     {
@@ -1630,7 +1630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "data_blog_posts",
-      "community": 4,
+      "community": 8,
       "norm_label": "blog-posts.js"
     },
     {
@@ -1640,7 +1640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "data_blog_posts_articulosblog",
-      "community": 4,
+      "community": 8,
       "norm_label": "articulosblog"
     },
     {
@@ -1733,6 +1733,26 @@
       "id": "c_mis_proyectos_missy_po_src_components_cart_cartdrawer",
       "community": 4,
       "norm_label": "../components/cart/cartdrawer"
+    },
+    {
+      "label": "astro:assets",
+      "file_type": "code",
+      "source_file": "astro:assets",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "astro_assets",
+      "community": 4,
+      "norm_label": "astro:assets"
+    },
+    {
+      "label": "../assets/logoheader.jpeg",
+      "file_type": "code",
+      "source_file": "src/assets/logoheader.jpeg",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_assets_logoheader_jpeg",
+      "community": 4,
+      "norm_label": "../assets/logoheader.jpeg"
     },
     {
       "label": "main.jsx",
@@ -1921,7 +1941,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_productpage",
-      "community": 8,
+      "community": 1,
       "norm_label": "productpage.jsx"
     },
     {
@@ -1931,7 +1951,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "pages_productpage_cleandescription",
-      "community": 8,
+      "community": 1,
       "norm_label": "cleandescription()"
     },
     {
@@ -1941,7 +1961,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "pages_productpage_staricon",
-      "community": 8,
+      "community": 1,
       "norm_label": "staricon()"
     },
     {
@@ -1951,7 +1971,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "pages_productpage_productpage",
-      "community": 8,
+      "community": 1,
       "norm_label": "productpage()"
     },
     {
@@ -2251,7 +2271,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_blog",
-      "community": 4,
+      "community": 8,
       "norm_label": "blog.astro"
     },
     {
@@ -2261,7 +2281,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "pages_blog_categorias",
-      "community": 4,
+      "community": 8,
       "norm_label": "categorias"
     },
     {
@@ -2271,7 +2291,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "pages_blog_articulos",
-      "community": 4,
+      "community": 8,
       "norm_label": "articulos"
     },
     {
@@ -2281,7 +2301,7 @@
       "source_location": "L308",
       "_origin": "ast",
       "id": "pages_blog_emptystate",
-      "community": 4,
+      "community": 8,
       "norm_label": "emptystate"
     },
     {
@@ -2291,7 +2311,7 @@
       "source_location": "L313",
       "_origin": "ast",
       "id": "pages_blog_applyfilters",
-      "community": 4,
+      "community": 8,
       "norm_label": "applyfilters()"
     },
     {
@@ -2301,7 +2321,7 @@
       "source_location": "L350",
       "_origin": "ast",
       "id": "pages_blog_searchinput",
-      "community": 4,
+      "community": 8,
       "norm_label": "searchinput"
     },
     {
@@ -2311,7 +2331,7 @@
       "source_location": "L357",
       "_origin": "ast",
       "id": "pages_blog_form",
-      "community": 4,
+      "community": 8,
       "norm_label": "form"
     },
     {
@@ -2321,7 +2341,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts_ts",
-      "community": 4,
+      "community": 8,
       "norm_label": "../data/blog-posts.js"
     },
     {
@@ -2331,7 +2351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "blog_slug",
-      "community": 4,
+      "community": 8,
       "norm_label": "[slug].astro"
     },
     {
@@ -2341,7 +2361,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "blog_slug_getstaticpaths",
-      "community": 4,
+      "community": 8,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2351,7 +2371,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts",
-      "community": 4,
+      "community": 8,
       "norm_label": "../../data/blog-posts"
     },
     {
@@ -2403,16 +2423,6 @@
       "id": "pages_club_missypo",
       "community": 4,
       "norm_label": "club-missypo.astro"
-    },
-    {
-      "label": "astro:assets",
-      "file_type": "code",
-      "source_file": "astro:assets",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "astro_assets",
-      "community": 4,
-      "norm_label": "astro:assets"
     },
     {
       "label": "../assets/club/Mypo_puntos.jpeg",
@@ -2511,7 +2521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_index",
-      "community": 1,
+      "community": 4,
       "norm_label": "index.astro"
     },
     {
@@ -2521,7 +2531,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 1,
+      "community": 4,
       "norm_label": "../pages/homepage"
     },
     {
@@ -2701,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_tienda",
-      "community": 1,
+      "community": 4,
       "norm_label": "tienda.astro"
     },
     {
@@ -2711,7 +2721,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 1,
+      "community": 4,
       "norm_label": "./storepage.jsx"
     },
     {
@@ -3091,7 +3101,7 @@
       "source_location": "L855",
       "_origin": "ast",
       "id": "services_firestore_crearresena",
-      "community": 8,
+      "community": 1,
       "norm_label": "crearresena()"
     },
     {
@@ -3101,7 +3111,7 @@
       "source_location": "L877",
       "_origin": "ast",
       "id": "services_firestore_obtenerresenasporproducto",
-      "community": 8,
+      "community": 1,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -3318,7 +3328,7 @@
       "label": "Siguientes Pasos",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L37",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "ai_context_siguientes_pasos",
       "community": 21,
@@ -5724,9 +5734,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_cvrmdashboard",
-      "confidence_score": 1.0
+      "target": "admin_cvrmdashboard"
     },
     {
       "relation": "imports",
@@ -5735,9 +5745,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_cvrmdashboard_cvrmdashboard",
-      "confidence_score": 1.0
+      "target": "admin_cvrmdashboard_cvrmdashboard"
     },
     {
       "relation": "imports_from",
@@ -7351,6 +7361,28 @@
     },
     {
       "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/layouts/Layout.astro",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "layouts_layout",
+      "target": "astro_assets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/layouts/Layout.astro",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "layouts_layout",
+      "target": "c_mis_proyectos_missy_po_src_assets_logoheader_jpeg",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/layouts/Layout.astro",
       "confidence_score": 1.0,
@@ -7535,6 +7567,17 @@
       "confidence_score": 1.0,
       "source": "src_main",
       "target": "c_mis_proyectos_missy_po_src_index_css"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/club-missypo.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_club_missypo",
+      "target": "astro_assets"
     },
     {
       "relation": "imports_from",
@@ -8130,9 +8173,9 @@
       "source_file": "src/pages/admin/CVRMDashboard.jsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cvrmdashboard",
-      "target": "admin_cvrmdashboard_cvrmdashboard",
-      "confidence_score": 1.0
+      "target": "admin_cvrmdashboard_cvrmdashboard"
     },
     {
       "relation": "contains",
@@ -8140,9 +8183,9 @@
       "source_file": "src/pages/admin/CVRMDashboard.jsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cvrmdashboard",
-      "target": "admin_cvrmdashboard_tabs",
-      "confidence_score": 1.0
+      "target": "admin_cvrmdashboard_tabs"
     },
     {
       "relation": "imports_from",
@@ -8151,9 +8194,9 @@
       "source_file": "src/pages/admin/CVRMDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cvrmdashboard",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -8162,9 +8205,9 @@
       "source_file": "src/pages/admin/CVRMDashboard.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cvrmdashboard",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "contains",
@@ -8768,17 +8811,6 @@
       "confidence_score": 1.0,
       "source": "pages_checkout",
       "target": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/club-missypo.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_club_missypo",
-      "target": "astro_assets"
     },
     {
       "relation": "imports_from",
@@ -10522,5 +10554,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "dd85d9cb73f3f52ccc83fe3fb58ea4ec046330e0"
+  "built_at_commit": "269e810b2e0389ad5b5b72ce0e4232d2909f8a5f"
 }

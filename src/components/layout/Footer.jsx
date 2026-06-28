@@ -43,7 +43,7 @@ const FOOTER_LINKS = {
   ],
 }
 
-export default function Footer() {
+export default function Footer({ logoUrl }) {
   return (
     <footer className="bg-white border-t border-gray-100" id="main-footer">
 
@@ -55,7 +55,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <a href="/" className="inline-block mb-4" id="footer-logo">
               <img
-                src="/assets/logoheader.png"
+                src={logoUrl || "/assets/logoheader.png"}
                 alt="Missy & Po Logo"
                 className="w-28 h-28 object-contain rounded-xl border border-gray-200 shadow-sm bg-white"
               />

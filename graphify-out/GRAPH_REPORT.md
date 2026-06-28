@@ -1,16 +1,16 @@
 # Graph Report - missy-po  (2026-06-27)
 
 ## Corpus Check
-- 92 files · ~231,707 words
+- 92 files · ~244,630 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 432 nodes · 602 edges · 32 communities (29 shown, 3 thin omitted)
+- 433 nodes · 604 edges · 32 communities (29 shown, 3 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dd85d9cb`
+- Built from commit: `269e810b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -42,7 +42,7 @@
 - [[_COMMUNITY_Community 29|Community 29]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `../layouts/Layout.astro` - 27 edges
+1. `../layouts/Layout.astro` - 29 edges
 2. `useCartStore` - 19 edges
 3. `🧩 COMPONENTES UI — ESPECIFICACIONES EXACTAS` - 17 edges
 4. `3. BUGS CRÍTICOS ENCONTRADOS` - 13 edges
@@ -56,8 +56,8 @@
 ## Surprising Connections (you probably didn't know these)
 - `CartDrawerItem()` --calls--> `useCartStore`  [EXTRACTED]
   src/components/cart/CartDrawer.jsx → src/store/cartStore.js
-- `CartDrawer()` --calls--> `useCartStore`  [EXTRACTED]
-  src/components/cart/CartDrawer.jsx → src/store/cartStore.js
+- `CartDrawer()` --calls--> `useCatalogStore`  [EXTRACTED]
+  src/components/cart/CartDrawer.jsx → src/store/catalogStore.js
 - `ProductCard()` --calls--> `useCartStore`  [EXTRACTED]
   src/components/catalog/ProductCard.jsx → src/store/cartStore.js
 - `CheckoutPage()` --calls--> `useCartStore`  [EXTRACTED]
@@ -75,20 +75,20 @@ Cohesion: 0.05
 Nodes (52): AdminLayout(), CajaDiaria(), ConfiguracionEnviosCupones(), CVRMDashboard(), TABS, InventarioStock(), PedidosDashboard(), CATEGORIAS (+44 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.10
-Nodes (16): ../pages/HomePage, ./StorePage.jsx, CartDrawer(), MOCK_PRODUCTS, ProductGrid(), CTABanner(), LiveSearch(), AnimatedTitle() (+8 more)
+Cohesion: 0.09
+Nodes (20): PriceDisplay(), ProductCard(), MOCK_PRODUCTS, ProductGrid(), SaleBadge(), CTABanner(), LiveSearch(), AnimatedTitle() (+12 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.07
-Nodes (29): devDependencies, autoprefixer, eslint, eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-react-refresh, jsdom, postcss (+21 more)
+Cohesion: 0.12
+Nodes (16): devDependencies, autoprefixer, eslint, eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-react-refresh, jsdom, postcss (+8 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.33
 Nodes (3): ../../components/admin/AdminApp, ../../index.css, App()
 
 ### Community 4 - "Community 4"
-Cohesion: 0.05
-Nodes (28): ../assets/club/cumple.jpeg, ../assets/club/descuentos.jpeg, ../assets/club/enviorapido.jpeg, ../assets/club/exclusivo.jpeg, ../assets/club/Mypo_puntos.jpeg, ../assets/club/youtube.jpeg, ../components/cart/CartDrawer, ../components/layout/Footer (+20 more)
+Cohesion: 0.06
+Nodes (23): ../assets/club/cumple.jpeg, ../assets/club/descuentos.jpeg, ../assets/club/enviorapido.jpeg, ../assets/club/exclusivo.jpeg, ../assets/club/Mypo_puntos.jpeg, ../assets/club/youtube.jpeg, ../assets/logoheader.jpeg, ../components/cart/CartDrawer (+15 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.06
@@ -96,15 +96,15 @@ Nodes (31): 1. Análisis General de la Aplicación, 2. Mapa de Rutas y Páginas,
 
 ### Community 6 - "Community 6"
 Cohesion: 0.08
-Nodes (15): CartDrawerItem(), CartHoverPopup(), MARQUEE_ITEMS, MarqueeBanner(), Footer(), FOOTER_LINKS, Layout(), NAV_CATEGORIES (+7 more)
+Nodes (16): CartDrawer(), CartDrawerItem(), CartHoverPopup(), MARQUEE_ITEMS, MarqueeBanner(), Footer(), FOOTER_LINKS, Layout() (+8 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.05
 Nodes (37): 10. PRODUCT CARD (Tarjeta de producto), 11. PRODUCT DETAIL PAGE (Ficha de Producto), 12. CHECKOUT PAGE, 13. MI CUENTA (Account Dashboard), 14. CTA BANNER (Pre-Footer), 15. FOOTER (3 columnas fijas sobre fondo blanco), 16. ELEMENTOS FLOTANTES PERMANENTES, 1. NAVBAR (Header Sticky) (+29 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.21
-Nodes (7): PriceDisplay(), ProductCard(), SaleBadge(), cleanDescription(), ProductPage(), crearResena(), obtenerResenasPorProducto()
+Cohesion: 0.18
+Nodes (8): ../../data/blog-posts, ../data/blog-posts.js, articulosBlog, articulos, categorias, emptyState, form, searchInput
 
 ### Community 9 - "Community 9"
 Cohesion: 0.22
@@ -115,8 +115,8 @@ Cohesion: 0.21
 Nodes (10): app, cleanVal(), DATABASE_SQL, db, firebaseConfig, parsePHPSerialize(), parseSqlValues(), runMigration() (+2 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.18
-Nodes (11): dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react, react-dom (+3 more)
+Cohesion: 0.08
+Nodes (24): dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react, react-dom (+16 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.29
@@ -159,24 +159,24 @@ Cohesion: 0.40
 Nodes (4): ¿Cómo usarlas en páginas Astro?, Estructura de carpetas, Naming convention, 📁 src/assets — Imágenes Optimizadas por Astro
 
 ## Knowledge Gaps
-- **180 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+175 more)
+- **181 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+176 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 0`, `Community 1`, `Community 3`, `Community 6`, `Community 9`?**
-  _High betweenness centrality (0.124) - this node is a cross-community bridge._
-- **Why does `useCartStore` connect `Community 6` to `Community 8`, `Community 1`, `Community 9`?**
+- **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 0`, `Community 3`, `Community 6`, `Community 8`, `Community 9`?**
+  _High betweenness centrality (0.126) - this node is a cross-community bridge._
+- **Why does `useCartStore` connect `Community 6` to `Community 1`, `Community 9`?**
   _High betweenness centrality (0.016) - this node is a cross-community bridge._
-- **Why does `useCatalogStore` connect `Community 1` to `Community 8`, `Community 6`?**
+- **Why does `useCatalogStore` connect `Community 1` to `Community 6`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _180 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _181 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.05031645569620253 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.10344827586206896 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0858974358974359 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.125 - nodes in this community are weakly interconnected._

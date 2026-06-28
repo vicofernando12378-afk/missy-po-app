@@ -5,6 +5,8 @@ import Footer from '../components/layout/Footer';
 import WhatsAppFloat from '../components/shared/WhatsAppFloat';
 import CartFloat from '../components/shared/CartFloat';
 import CartDrawer from '../components/cart/CartDrawer';
+import { getImage } from 'astro:assets';
+import logoHeaderImg from '../assets/logoheader.jpeg';
 
 interface Props {
   title?: string;
@@ -15,6 +17,10 @@ const {
   title = "Missy & Po — Pet Shop | Accesorios y Ropa para Mascotas en Perú", 
   description = "Missy & Po, la tienda online #1 de accesorios, ropa y juguetes para mascotas en Perú. Envíos a todo el país con Courier Shalom y Olva Express. ¡Consiéntelos como se merecen!" 
 } = Astro.props;
+
+// Optimizar logo a formato WebP conservando las dimensiones originales
+const optimizedLogo = await getImage({ src: logoHeaderImg, format: 'webp' });
+const logoUrl = optimizedLogo.src;
 ---
 
 <!doctype html>
@@ -45,7 +51,7 @@ const {
   </head>
   <body class="min-h-screen flex flex-col bg-white">
     <!-- Navbar Interactivo (React Island) -->
-    <Navbar client:load />
+    <Navbar client:load logoUrl={logoUrl} />
 
     <main class="flex-1 print:p-0">
       <slot />
@@ -53,7 +59,7 @@ const {
 
     <!-- Footer Estático (Sin JS) -->
     <div class="print:hidden">
-      <Footer />
+      <Footer logoUrl={logoUrl} />
     </div>
 
     <!-- Flotantes y Overlays globales -->
@@ -64,3 +70,4 @@ const {
     </div>
   </body>
 </html>
+

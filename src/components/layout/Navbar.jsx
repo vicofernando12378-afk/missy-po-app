@@ -49,7 +49,7 @@ const NAV_CATEGORIES = [
   { label: 'Missy & Po TV', href: '/missypo-tv' },
 ]
 
-export default function Navbar() {
+export default function Navbar({ logoUrl }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [cartHoverOpen, setCartHoverOpen] = useState(false)
 
@@ -78,7 +78,7 @@ export default function Navbar() {
                 id="nav-logo"
               >
                 <img
-                  src="/assets/logoheader.png"
+                  src={logoUrl || "/assets/logoheader.png"}
                   alt="Missy & Po Logo"
                   className="w-[88px] h-[88px] md:w-32 md:h-32 object-contain rounded-xl border border-white/20 shadow-xl bg-white"
                 />

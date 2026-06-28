@@ -135,9 +135,9 @@
     "semantic_hash": "0ffd9963ce138e4fad98ede6342feede"
   },
   "src/components/layout/Footer.jsx": {
-    "mtime": 1782189908.30009,
-    "ast_hash": "a0960748e7ae194bfd6a68cc5591fdfe",
-    "semantic_hash": "a0960748e7ae194bfd6a68cc5591fdfe"
+    "mtime": 1782606958.2807217,
+    "ast_hash": "ba3b3ae11b1cd00e52622a06b8fe1182",
+    "semantic_hash": ""
   },
   "src/components/layout/Layout.jsx": {
     "mtime": 1780001976.97443,
@@ -145,9 +145,9 @@
     "semantic_hash": "729f611fadb9571cca3068cc93822812"
   },
   "src/components/layout/Navbar.jsx": {
-    "mtime": 1782489443.4487915,
-    "ast_hash": "d3f8130ec97c6f39cfca1f1aa8680308",
-    "semantic_hash": "d3f8130ec97c6f39cfca1f1aa8680308"
+    "mtime": 1782606948.6169477,
+    "ast_hash": "849d9b0613656bd59d09f4fec32dde7b",
+    "semantic_hash": ""
   },
   "src/components/shared/CartFloat.jsx": {
     "mtime": 1779924535.3424997,
@@ -165,9 +165,9 @@
     "semantic_hash": "55c34430f7afe5b986c37491ee69c88d"
   },
   "src/layouts/Layout.astro": {
-    "mtime": 1782189908.3020904,
-    "ast_hash": "3b3bd0b477d83615b1820a4a410d0866",
-    "semantic_hash": "3b3bd0b477d83615b1820a4a410d0866"
+    "mtime": 1782606936.0969982,
+    "ast_hash": "6c058a63f4d44d43f900a8a07e3ec686",
+    "semantic_hash": ""
   },
   "src/main.jsx": {
     "mtime": 1779939618.9748244,
@@ -415,8 +415,8 @@
     "semantic_hash": ""
   },
   ".ai-context.md": {
-    "mtime": 1782602262.3276997,
-    "ast_hash": "bf916f3593df5fd6553c7ba5b4eb7c6b",
+    "mtime": 1782602923.8630934,
+    "ast_hash": "07b98425b75233b3a662990f5edb8d2c",
     "semantic_hash": ""
   },
   ".github/copilot-instructions.md": {
@@ -507,6 +507,11 @@
   "src/pages/admin/CVRMDashboard.jsx": {
     "mtime": 1782602849.5847409,
     "ast_hash": "8f7f538a0ce524dbafd980eed83cc3e1",
+    "semantic_hash": ""
+  },
+  "src/assets/logoheader.jpeg": {
+    "mtime": 1782606385.6323664,
+    "ast_hash": "d84f7a3b2970ccc649a673db4652c4da",
     "semantic_hash": ""
   }
 }
