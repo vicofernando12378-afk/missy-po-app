@@ -8,6 +8,8 @@ import {
   obtenerHistorialCajas,
   obtenerVentasConfirmadasDia
 } from '../../services/firestore'
+import { validate, AperturaCajaSchema, MovimientoSchema, CierreCajaSchema } from '../../schemas'
+
 
 export default function CajaDiaria() {
   const [caja, setCaja] = useState(null)
@@ -65,15 +67,15 @@ export default function CajaDiaria() {
     setErrorApertura('')
     setLoadingApertura(true)
 
-    const montoFloat = parseFloat(montoApertura)
-    if (isNaN(montoFloat) || montoFloat < 0) {
-      setErrorApertura('Ingresa un monto inicial válido (mayor o igual a cero).')
+    const validation = validate(AperturaCajaSchema, { monto: montoApertura })
+    if (!validation.ok) {
+      setErrorApertura(validation.error)
       setLoadingApertura(false)
       return
     }
 
     try {
-      const montoCents = Math.round(montoFloat * 100)
+      const montoCents = Math.round(parseFloat(montoApertura) * 100)
       await abrirCajaDiaria(montoCents, adminEmail)
       setMontoApertura('')
       await cargarDatosCaja()
@@ -91,21 +93,19 @@ export default function CajaDiaria() {
     setErrorMovimiento('')
     setLoadingMovimiento(true)
 
-    const montoFloat = parseFloat(montoMovimiento)
-    if (isNaN(montoFloat) || montoFloat <= 0) {
-      setErrorMovimiento('Ingresa un monto válido mayor a cero.')
-      setLoadingMovimiento(false)
-      return
-    }
-
-    if (!conceptoMovimiento.trim()) {
-      setErrorMovimiento('Ingresa el concepto del movimiento.')
+    const validation = validate(MovimientoSchema, {
+      tipo: tipoMovimiento,
+      monto: montoMovimiento,
+      concepto: conceptoMovimiento
+    })
+    if (!validation.ok) {
+      setErrorMovimiento(validation.error)
       setLoadingMovimiento(false)
       return
     }
 
     try {
-      const montoCents = Math.round(montoFloat * 100)
+      const montoCents = Math.round(parseFloat(montoMovimiento) * 100)
       const transaccion = {
         tipo: tipoMovimiento,
         monto: montoCents,
@@ -132,15 +132,15 @@ export default function CajaDiaria() {
     setErrorCierre('')
     setLoadingCierre(true)
 
-    const montoFloat = parseFloat(efectivoRealCierre)
-    if (isNaN(montoFloat) || montoFloat < 0) {
-      setErrorCierre('Ingresa un monto de arqueo físico válido.')
+    const validation = validate(CierreCajaSchema, { monto: efectivoRealCierre })
+    if (!validation.ok) {
+      setErrorCierre(validation.error)
       setLoadingCierre(false)
       return
     }
 
     try {
-      const montoCents = Math.round(montoFloat * 100)
+      const montoCents = Math.round(parseFloat(efectivoRealCierre) * 100)
       await cerrarCajaDiaria(caja.id, montoCents, adminEmail)
       setEfectivoRealCierre('')
       await cargarDatosCaja()

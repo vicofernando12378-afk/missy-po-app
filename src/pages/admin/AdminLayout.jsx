@@ -1,15 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth'
 import { collection, query, where, onSnapshot } from 'firebase/firestore'
-import { auth, db } from '../../services/firebase'
-
-const ADMIN_EMAIL_BYPASS = 'victorchavezd@gmail.com'
+import { db } from '../../services/firebase'
+import { listenAuth, checkIsAdmin, logout } from '../../services/auth'
 
 export default function AdminLayout() {
   const [user, setUser] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
-  const [isBypass, setIsBypass] = useState(false)
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [pedidosNuevos, setPedidosNuevos] = useState(0) // badge tiempo real
@@ -19,21 +16,18 @@ export default function AdminLayout() {
   useEffect(() => {
     let isMounted = true
 
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    const unsubscribe = listenAuth(async (currentUser) => {
       if (currentUser) {
         if (!isMounted) return
         setUser(currentUser)
         try {
-          const idTokenResult = await currentUser.getIdTokenResult(true)
-          const hasAdminClaim = !!idTokenResult.claims.admin
-          const isBypassEmail = currentUser.email?.toLowerCase() === ADMIN_EMAIL_BYPASS.toLowerCase()
-
-          if (hasAdminClaim || isBypassEmail) {
+          const admin = await checkIsAdmin(currentUser)
+          if (admin) {
             setIsAdmin(true)
-            setIsBypass(!hasAdminClaim && isBypassEmail)
           } else {
             setIsAdmin(false)
-            setIsBypass(false)
+            await logout()
+            navigate('/login', { replace: true })
           }
         } catch (err) {
           console.error('Error al verificar roles:', err)
@@ -42,40 +36,11 @@ export default function AdminLayout() {
           if (isMounted) setLoading(false)
         }
       } else {
-        // Si no hay sesión activa de Auth pero el bypass local está activado
-        const bypassActive = localStorage.getItem('myp_admin_bypass') === 'true'
-        if (bypassActive) {
-          try {
-            console.log('Bypass de desarrollo activo sin sesión real. Auto-logueando en background...');
-            try {
-              await signInWithEmailAndPassword(auth, ADMIN_EMAIL_BYPASS, 'admin123')
-            } catch (signInErr) {
-              if (signInErr.code === 'auth/user-not-found' || signInErr.code === 'auth/invalid-credential' || signInErr.code === 'auth/wrong-password') {
-                console.log('Creando cuenta bypass de desarrollo automáticamente...');
-                await createUserWithEmailAndPassword(auth, ADMIN_EMAIL_BYPASS, 'admin123')
-              } else {
-                throw signInErr
-              }
-            }
-          } catch (err) {
-            console.error('Fallo en el auto-login de bypass:', err)
-            if (isMounted) {
-              localStorage.removeItem('myp_admin_bypass')
-              setUser(null)
-              setIsAdmin(false)
-              setIsBypass(false)
-              setLoading(false)
-              navigate('/login')
-            }
-          }
-        } else {
-          if (isMounted) {
-            setUser(null)
-            setIsAdmin(false)
-            setIsBypass(false)
-            setLoading(false)
-            navigate('/login')
-          }
+        if (isMounted) {
+          setUser(null)
+          setIsAdmin(false)
+          setLoading(false)
+          navigate('/login', { replace: true })
         }
       }
     })
@@ -103,9 +68,8 @@ export default function AdminLayout() {
 
   const handleLogout = async () => {
     try {
-      localStorage.removeItem('myp_admin_bypass')
-      await signOut(auth)
-      navigate('/login')
+      await logout()
+      navigate('/login', { replace: true })
     } catch (err) {
       console.error('Error al cerrar sesión:', err)
     }
@@ -308,15 +272,6 @@ export default function AdminLayout() {
           <span className="text-xl">🐶</span>
         </header>
 
-        {/* Banner de Bypass */}
-        {isBypass && (
-          <div className="bg-amber-50 border-b border-amber-100 px-6 py-3 text-amber-800 text-xs md:text-sm font-medium flex items-center gap-2 animate-pulse shrink-0">
-            <span>⚠️</span>
-            <span>
-              <strong>Modo Bypass Activo:</strong> Estás logueado con {user.email}. Has accedido localmente mediante el bypass de desarrollo. Las operaciones de base de datos que requieren roles de administrador (como crear cupones, editar envíos o ver caja) rebotarán en producción a menos que asignes los claims de Firebase Auth mediante el script.
-            </span>
-          </div>
-        )}
 
         {/* Área de contenido del panel */}
         <main className="flex-1 p-6 md:p-8 overflow-y-auto">

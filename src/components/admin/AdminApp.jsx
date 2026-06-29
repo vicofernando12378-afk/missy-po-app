@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../pages/admin/AdminLayout'
+import AdminLoginPage from '../../pages/admin/AdminLoginPage'
 import PedidosDashboard from '../../pages/admin/PedidosDashboard'
 import CajaDiaria from '../../pages/admin/CajaDiaria'
 import InventarioStock from '../../pages/admin/InventarioStock'
@@ -13,6 +14,7 @@ export default function AdminApp() {
   return (
     <BrowserRouter basename="/admin">
       <Routes>
+        <Route path="/login" element={<AdminLoginPage />} />
         <Route path="/" element={<AdminLayout />}>
           <Route index element={<PedidosDashboard />} />
           <Route path="caja" element={<CajaDiaria />} />
@@ -27,3 +29,4 @@ export default function AdminApp() {
     </BrowserRouter>
   )
 }
+

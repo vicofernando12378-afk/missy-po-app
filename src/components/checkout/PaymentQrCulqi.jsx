@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { validate, YapePlinSchema } from '../../schemas'
+
 
 // ============================================================
 // PAYMENT QR CULQI — Modal de Pago interactivo Yape/Plin
@@ -31,12 +33,13 @@ export default function PaymentQrCulqi({ total, onConfirm, onCancel }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!operacion.trim() || operacion.length < 6) {
-      setError('Por favor, ingresa un número de operación válido (mínimo 6 dígitos).')
-      return
-    }
-    if (!file) {
-      setError('Por favor, sube la captura de pantalla de tu transferencia.')
+
+    const validation = validate(YapePlinSchema, {
+      operacion: operacion.trim(),
+      comprobanteFile: file
+    })
+    if (!validation.ok) {
+      setError(validation.error)
       return
     }
 

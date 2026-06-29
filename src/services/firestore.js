@@ -5,6 +5,14 @@ import {
   serverTimestamp, runTransaction
 } from 'firebase/firestore'
 import { db } from './firebase'
+import {
+  ProductSchema,
+  ReviewSchema,
+  MovimientoSchema,
+  CouponSchema,
+  ShippingConfigSchema
+} from '../schemas'
+
 
 // ============================================================
 // FIRESTORE SERVICE — CRUD para myp_productos
@@ -124,10 +132,16 @@ export async function obtenerRelacionados(categorias = [], excludeId, limite = 6
 
 // ── ADMIN: CREAR PRODUCTO ──────────────────────────────────
 export async function crearProducto(data) {
+  const validation = ProductSchema.safeParse(data)
+  if (!validation.success) {
+    throw new Error(`Datos de producto inválidos: ${validation.error.issues.map(i => i.message).join(', ')}`)
+  }
+  const cleanData = validation.data
+
   try {
     const ref = await addDoc(collection(db, COLECCION), {
-      ...data,
-      activo: data.activo ?? true,
+      ...cleanData,
+      activo: cleanData.activo ?? true,
       fecha_creacion: serverTimestamp(),
       actualizado_en: serverTimestamp(),
     })
@@ -140,9 +154,15 @@ export async function crearProducto(data) {
 
 // ── ADMIN: ACTUALIZAR PRODUCTO ─────────────────────────────
 export async function actualizarProducto(id, data) {
+  const validation = ProductSchema.safeParse(data)
+  if (!validation.success) {
+    throw new Error(`Datos de producto inválidos: ${validation.error.issues.map(i => i.message).join(', ')}`)
+  }
+  const cleanData = validation.data
+
   try {
     const ref = doc(db, COLECCION, id)
-    await updateDoc(ref, { ...data, actualizado_en: serverTimestamp() })
+    await updateDoc(ref, { ...cleanData, actualizado_en: serverTimestamp() })
   } catch (e) {
     console.error('Error al actualizar producto:', e)
     throw e
@@ -482,6 +502,18 @@ export async function abrirCajaDiaria(montoAperturaCents, adminEmail) {
 
 // ── CAJA DIARIA: REGISTRAR TRANSACCIÓN MANUAL (INGRESO/EGRESO) ─
 export async function registrarTransaccionManual(cajaId, transaccion) {
+  const validation = MovimientoSchema.safeParse({
+    ...transaccion,
+    monto: transaccion.monto / 100 // validamos en soles
+  })
+  if (!validation.success) {
+    throw new Error(`Transacción inválida: ${validation.error.issues.map(i => i.message).join(', ')}`)
+  }
+  const cleanTransaccion = {
+    ...validation.data,
+    monto: transaccion.monto // mantener en centavos para Firestore
+  }
+
   try {
     const cajaRef = doc(db, 'myp_caja_diaria', cajaId)
     const snap = await getDoc(cajaRef)
@@ -495,7 +527,7 @@ export async function registrarTransaccionManual(cajaId, transaccion) {
     }
 
     const nuevaTransaccion = {
-      ...transaccion,
+      ...cleanTransaccion,
       fecha: new Date() // Registrar fecha local actual
     }
 
@@ -636,8 +668,18 @@ export async function obtenerCupones() {
 }
 
 export async function crearCupon(codigo, descuentoPorcentaje, compraMinimaSoles = 0) {
+  const validation = CouponSchema.safeParse({
+    codigo,
+    descuento: descuentoPorcentaje,
+    compraMinima: compraMinimaSoles
+  })
+  if (!validation.success) {
+    throw new Error(`Datos de cupón inválidos: ${validation.error.issues.map(i => i.message).join(', ')}`)
+  }
+  const cleanData = validation.data
+
   try {
-    const cleanCodigo = codigo.toUpperCase().trim()
+    const cleanCodigo = cleanData.codigo
     const ref = doc(db, 'myp_cupones', cleanCodigo)
     const snap = await getDoc(ref)
     
@@ -646,8 +688,8 @@ export async function crearCupon(codigo, descuentoPorcentaje, compraMinimaSoles 
     }
 
     const nuevoCupon = {
-      descuento: parseInt(descuentoPorcentaje),
-      compra_minima: Math.round(parseFloat(compraMinimaSoles) * 100), // guardar en centavos
+      descuento: cleanData.descuento,
+      compra_minima: Math.round(cleanData.compraMinima * 100), // guardar en centavos
       activo: true,
       creado_en: serverTimestamp()
     }
@@ -681,13 +723,19 @@ export async function eliminarCupon(cuponId) {
 
 // ── ADMIN: GUARDAR CONFIGURACIÓN DE ENVÍO ────────────────────
 export async function guardarConfiguracionEnvio(config) {
+  const validation = ShippingConfigSchema.safeParse(config)
+  if (!validation.success) {
+    throw new Error(`Configuración de envíos inválida: ${validation.error.issues.map(i => i.message).join(', ')}`)
+  }
+  const cleanData = validation.data
+
   try {
     const ref = doc(db, 'myp_config', 'shipping')
     await setDoc(ref, {
-      arequipaFreeLimit: parseFloat(config.arequipaFreeLimit),
-      nationalFreeLimit: parseFloat(config.nationalFreeLimit),
-      arequipaFee: parseFloat(config.arequipaFee),
-      nationalFee: parseFloat(config.nationalFee),
+      arequipaFreeLimit: cleanData.arequipaFreeLimit,
+      nationalFreeLimit: cleanData.nationalFreeLimit,
+      arequipaFee: cleanData.arequipaFee,
+      nationalFee: cleanData.nationalFee,
       actualizado_en: serverTimestamp()
     }, { merge: true })
   } catch (e) {
@@ -853,13 +901,25 @@ export async function eliminarResena(resenaId) {
  * Crea una nueva reseña desde la página de producto (cliente autenticado o invitado).
  */
 export async function crearResena({ productoId, productoNombre, autorNombre, calificacion, comentario, userId = null }) {
+  const validation = ReviewSchema.safeParse({
+    productoId,
+    productoNombre,
+    autorNombre,
+    calificacion,
+    comentario
+  })
+  if (!validation.success) {
+    throw new Error(`Reseña inválida: ${validation.error.issues.map(i => i.message).join(', ')}`)
+  }
+  const cleanData = validation.data
+
   try {
     await addDoc(collection(db, 'myp_reviews'), {
-      producto_id: productoId,
-      producto_nombre: productoNombre,
-      autor_nombre: autorNombre,
-      calificacion,
-      comentario,
+      producto_id: cleanData.productoId,
+      producto_nombre: cleanData.productoNombre,
+      autor_nombre: cleanData.autorNombre,
+      calificacion: cleanData.calificacion,
+      comentario: cleanData.comentario,
       userId,
       estado: 'pendiente', // requiere aprobación del admin
       creado_en: serverTimestamp(),

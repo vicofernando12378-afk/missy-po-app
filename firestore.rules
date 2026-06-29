@@ -9,12 +9,17 @@ service cloud.firestore {
     // Actualización permitida para clientes solo para reducir stock/variantes.
     match /myp_productos/{productId} {
       allow read: if true;
-      allow create, delete: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
-                            request.time < timestamp.date(2026, 6, 15);
-      allow update: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
-                      (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stock', 'variantes', 'actualizado_en']) && 
-                       request.resource.data.stock <= resource.data.stock) ||
-                      request.time < timestamp.date(2026, 6, 15);
+      allow create, delete: if request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+      allow update: if (request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      )) || (
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stock', 'variantes', 'actualizado_en']) && 
+        request.resource.data.stock <= resource.data.stock
+      );
     }
     
     // Pedidos / Órdenes de compra: Cualquiera puede crear (incluido invitados). 
@@ -26,47 +31,52 @@ service cloud.firestore {
         request.auth.token.admin == true || 
         request.auth.token.email == 'victorchavezd@gmail.com'
       );
-      allow update: if (request.auth != null && (
+      allow update: if request.auth != null && (
         request.auth.uid == resource.data.userId || 
         request.auth.token.admin == true || 
         request.auth.token.email == 'victorchavezd@gmail.com'
-      )) || request.time < timestamp.date(2026, 6, 15);
+      );
     }
 
-    
     // Cupones de descuento: Lectura pública (para verificar validez), escritura admin
     match /myp_cupones/{couponId} {
       allow read: if true;
-      allow write: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
-                    request.time < timestamp.date(2026, 6, 15);
+      allow write: if request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
     }
 
     // Control de caja diaria: Acceso exclusivo para administradores
     match /myp_caja_diaria/{cajaId} {
-      allow read, write: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
-                          request.time < timestamp.date(2026, 6, 15);
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
     }
     
     // Comprobantes de pago (Boletas/Facturas): Lectura propia/admin, escritura admin
     match /myp_comprobantes/{comprobanteId} {
-      allow read: if (request.auth != null && (
+      allow read: if request.auth != null && (
         request.auth.uid == resource.data.userId || 
         request.auth.token.admin == true || 
         request.auth.token.email == 'victorchavezd@gmail.com'
-      )) || request.time < timestamp.date(2026, 6, 15);
-      allow write: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
-                    request.time < timestamp.date(2026, 6, 15);
+      );
+      allow write: if request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
     }
     
     // Reseñas de productos: Lectura pública, creación por usuarios autenticados
     match /myp_reviews/{reviewId} {
       allow read: if true;
       allow create: if request.auth != null;
-      allow update, delete: if (request.auth != null && (
+      allow update, delete: if request.auth != null && (
         request.auth.uid == resource.data.userId || 
         request.auth.token.admin == true || 
         request.auth.token.email == 'victorchavezd@gmail.com'
-      )) || request.time < timestamp.date(2026, 6, 15);
+      );
     }
 
     // Miembros del Club: Creación, lectura y actualización públicas para permitir registro y canje en checkout
@@ -86,8 +96,11 @@ service cloud.firestore {
     // Configuración general (envíos, club, etc.): Lectura pública, escritura admin
     match /myp_config/{configId} {
       allow read: if true;
-      allow write: if (request.auth != null && (request.auth.token.admin == true || request.auth.token.email == 'victorchavezd@gmail.com')) ||
-                    request.time < timestamp.date(2026, 6, 15);
+      allow write: if request.auth != null && (
+        request.auth.token.admin == true || 
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
     }
   }
 }
+

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { storage } from '../../services/firebase'
 import { crearProducto, actualizarProducto } from '../../services/firestore'
+import { validate, ProductSchema } from '../../schemas'
+
 
 // ============================================================
 // PRODUCTO FORM MODAL — Crear / Editar Producto
@@ -154,11 +156,38 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
     e.preventDefault()
     setError('')
 
-    if (!form.nombre.trim()) return setError('El nombre es requerido.')
-    if (!form.sku.trim()) return setError('El SKU es requerido.')
-    if (!form.precio_compra || isNaN(parseFloat(form.precio_compra))) return setError('El precio de compra es requerido.')
-    if (!form.precio_regular || isNaN(parseFloat(form.precio_regular))) return setError('El precio regular es requerido.')
-    if (form.imagenes.length === 0 && imagenFiles.length === 0) return setError('Debes subir al menos 1 imagen.')
+    const stockFinalEstimado = form.variantes.length > 0
+      ? form.variantes.reduce((sum, v) => sum + (parseInt(v.stock) || 0), 0)
+      : form.stock === '' ? 0 : parseInt(form.stock)
+
+    // Pre-validar con Zod antes de subir imágenes
+    const payloadParaValidar = {
+      nombre: form.nombre.trim(),
+      slug: form.slug.trim() || generarSlug(form.nombre),
+      sku: form.sku.trim().toUpperCase(),
+      descripcion: form.descripcion.trim(),
+      precio_compra: form.precio_compra === '' ? undefined : parseFloat(form.precio_compra),
+      precio_regular: form.precio_regular === '' ? undefined : parseFloat(form.precio_regular),
+      precio_oferta: form.precio_oferta ? parseFloat(form.precio_oferta) : null,
+      categorias: form.categorias,
+      stock: stockFinalEstimado,
+      activo: form.activo,
+      imagenes: form.imagenes.length > 0 || imagenFiles.length > 0 
+        ? (form.imagenes.length > 0 ? form.imagenes : ['https://placeholder-storage.missypo.com/temp.jpg'])
+        : [],
+      variantes: form.variantes.map(v => ({
+        ...v,
+        precio_unitario: v.precio_unitario ? parseFloat(v.precio_unitario) : null,
+        stock: parseInt(v.stock) || 0
+      })),
+      tags_busqueda: []
+    }
+
+    const validation = validate(ProductSchema, payloadParaValidar)
+    if (!validation.ok) {
+      setError(validation.error)
+      return
+    }
 
     setIsLoading(true)
     try {
@@ -175,13 +204,13 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
         ...(form.categorias || []).map(c => c.toLowerCase()),
       ].filter(Boolean)
 
-      // 4. Calcular stock total de variantes si aplica
+      // 4. Calcular stock total de variantes definitivo
       const tieneVariantes = form.variantes.length > 0
       const stockFinal = tieneVariantes
         ? form.variantes.reduce((sum, v) => sum + (parseInt(v.stock) || 0), 0)
         : parseInt(form.stock) || 0
 
-      // 5. Prepare variante prices as plain floats (stored in soles)
+      // 5. Preparar variantes
       const variantesFinales = form.variantes.map(v => ({
         ...v,
         precio_unitario: v.precio_unitario ? parseFloat(v.precio_unitario) : null,

@@ -5,6 +5,8 @@ import PriceDisplay from '../components/catalog/PriceDisplay'
 import SaleBadge from '../components/catalog/SaleBadge'
 import ProductCard from '../components/catalog/ProductCard'
 import { obtenerResenasPorProducto, crearResena } from '../services/firestore'
+import { validate, ReviewSchema } from '../schemas'
+
 
 // ─── Strip HTML/Facebook noise from product descriptions ─────────
 // Some descriptions are stored as encoded HTML (e.g. &lt;div&gt;) from
@@ -92,12 +94,18 @@ export default function ProductPage({ slug, initialProduct }) {
 
   const handleSubmitResena = async (e) => {
     e.preventDefault()
-    if (!autorNombre.trim()) {
-      setMensajeResena({ success: false, text: 'Por favor, ingresa tu nombre.' })
-      return
+
+    const payload = {
+      productoId: product.id,
+      productoNombre: product.nombre,
+      autorNombre: autorNombre.trim(),
+      calificacion,
+      comentario: comentario.trim()
     }
-    if (!comentario.trim()) {
-      setMensajeResena({ success: false, text: 'Por favor, escribe un comentario.' })
+
+    const validation = validate(ReviewSchema, payload)
+    if (!validation.ok) {
+      setMensajeResena({ success: false, text: validation.error })
       return
     }
 
@@ -105,13 +113,7 @@ export default function ProductPage({ slug, initialProduct }) {
     setMensajeResena(null)
 
     try {
-      await crearResena({
-        productoId: product.id,
-        productoNombre: product.nombre,
-        autorNombre: autorNombre.trim(),
-        calificacion,
-        comentario: comentario.trim()
-      })
+      await crearResena(validation.data)
 
       setMensajeResena({ success: true, text: '🎉 ¡Gracias! Tu opinión ha sido enviada y está en espera de aprobación por el administrador.' })
       setAutorNombre('')

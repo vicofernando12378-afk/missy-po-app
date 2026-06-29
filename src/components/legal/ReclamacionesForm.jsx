@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../services/firebase';
+import { validate, ReclamacionSchema } from '../../schemas';
+
 
 const DEPARTAMENTOS_DATA = {
   Arequipa: {
@@ -118,39 +120,67 @@ export default function ReclamacionesForm() {
     setLoading(true);
     setError(null);
 
+    const finalDep = formData.departamento === 'Otro' ? formData.depOtro : formData.departamento;
+    const finalProv = formData.departamento === 'Otro' ? formData.provOtro : formData.provincia;
+    const finalDist = formData.departamento === 'Otro' ? formData.distOtro : formData.distrito;
+
+    const payloadParaValidar = {
+      nombre: formData.nombre,
+      apellido: formData.apellido,
+      tipoDoc: formData.tipoDoc.toUpperCase(),
+      numDoc: formData.numDoc,
+      telefono: formData.telefono,
+      email: formData.email,
+      departamento: finalDep,
+      provincia: finalProv,
+      distrito: finalDist,
+      tipoBien: formData.tipoBien,
+      montoReclamado: formData.montoReclamado === '' ? 0 : formData.montoReclamado,
+      descripcionBien: formData.descripcionBien,
+      tipoReclamo: formData.tipoReclamo,
+      detalleReclamo: formData.detalleReclamo,
+      pedidoConsumidor: formData.pedidoConsumidor,
+      autorizoNotif: formData.autorizoNotif
+    }
+
+    const validation = validate(ReclamacionSchema, payloadParaValidar)
+    if (!validation.ok) {
+      setError(validation.error);
+      setLoading(false);
+      return;
+    }
+
+    const validatedData = validation.data;
+
     // Generar ID único para el reclamo
     const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     const rand = Math.floor(1000 + Math.random() * 9000);
     const code = `REC-${dateStr}-${rand}`;
 
-    const finalDep = formData.departamento === 'Otro' ? formData.depOtro : formData.departamento;
-    const finalProv = formData.departamento === 'Otro' ? formData.provOtro : formData.provincia;
-    const finalDist = formData.departamento === 'Otro' ? formData.distOtro : formData.distrito;
-
     const payload = {
       codigo: code,
       cliente: {
-        nombre: formData.nombre,
-        apellido: formData.apellido,
-        tipoDoc: formData.tipoDoc,
-        numDoc: formData.numDoc,
-        telefono: formData.telefono,
-        email: formData.email,
+        nombre: validatedData.nombre,
+        apellido: validatedData.apellido,
+        tipoDoc: formData.tipoDoc, // Mantenemos el formato original para persistencia en base de datos
+        numDoc: validatedData.numDoc,
+        telefono: validatedData.telefono,
+        email: validatedData.email,
         ubigeo: {
-          departamento: finalDep,
-          provincia: finalProv,
-          distrito: finalDist
+          departamento: validatedData.departamento,
+          provincia: validatedData.provincia,
+          distrito: validatedData.distrito
         }
       },
       bien: {
-        tipo: formData.tipoBien,
-        monto: parseFloat(formData.montoReclamado) || 0,
-        descripcion: formData.descripcionBien
+        tipo: validatedData.tipoBien,
+        monto: validatedData.montoReclamado,
+        descripcion: validatedData.descripcionBien
       },
       detalle: {
-        tipo: formData.tipoReclamo,
-        descripcion: formData.detalleReclamo,
-        pedido: formData.pedidoConsumidor
+        tipo: validatedData.tipoReclamo,
+        descripcion: validatedData.detalleReclamo,
+        pedido: validatedData.pedidoConsumidor
       },
       estado: 'recibido',
       creado_en: new Date()

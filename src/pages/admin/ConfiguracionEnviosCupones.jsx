@@ -7,6 +7,8 @@ import {
   actualizarEstadoCupon,
   eliminarCupon
 } from '../../services/firestore'
+import { validate, CouponSchema, ShippingConfigSchema } from '../../schemas'
+
 
 export default function ConfiguracionEnviosCupones() {
   // Configuración de envíos
@@ -71,8 +73,14 @@ export default function ConfiguracionEnviosCupones() {
     setErrorShipping('')
     setSuccessShipping(false)
 
+    const validation = validate(ShippingConfigSchema, shippingConfig)
+    if (!validation.ok) {
+      setErrorShipping(validation.error)
+      return
+    }
+
     try {
-      await guardarConfiguracionEnvio(shippingConfig)
+      await guardarConfiguracionEnvio(validation.data)
       setSuccessShipping(true)
       setTimeout(() => setSuccessShipping(false), 3000)
     } catch (err) {
@@ -87,25 +95,21 @@ export default function ConfiguracionEnviosCupones() {
     setErrorCupon('')
     setSuccessCupon(false)
 
-    if (!codigoCupon.trim()) {
-      setErrorCupon('Ingresa un código de cupón.')
-      return
+    const payload = {
+      codigo: codigoCupon,
+      descuento: descuentoPorcentaje,
+      compraMinima: compraMinima === '' ? 0 : compraMinima
     }
 
-    const pct = parseInt(descuentoPorcentaje)
-    if (isNaN(pct) || pct <= 0 || pct > 100) {
-      setErrorCupon('El descuento debe ser un porcentaje válido entre 1% y 100%.')
-      return
-    }
-
-    const minSoles = compraMinima === '' ? 0 : parseFloat(compraMinima)
-    if (isNaN(minSoles) || minSoles < 0) {
-      setErrorCupon('La compra mínima debe ser mayor o igual a cero.')
+    const validation = validate(CouponSchema, payload)
+    if (!validation.ok) {
+      setErrorCupon(validation.error)
       return
     }
 
     try {
-      await crearCupon(codigoCupon, pct, minSoles)
+      const parsedData = validation.data
+      await crearCupon(parsedData.codigo, parsedData.descuento, parsedData.compraMinima)
       setCodigoCupon('')
       setDescuentoPorcentaje('')
       setCompraMinima('')

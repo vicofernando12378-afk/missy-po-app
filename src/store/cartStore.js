@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { CartStateSchema } from '../schemas'
+
 
 // ============================================================
 // CART STORE — Zustand con persistencia en localStorage
@@ -170,6 +172,15 @@ const useCartStore = create(
         total: state.total,
         itemCount: state.itemCount,
       }),
+      merge: (persistedState, currentState) => {
+        if (!persistedState) return currentState
+        const result = CartStateSchema.safeParse(persistedState)
+        if (result.success) {
+          return { ...currentState, ...result.data }
+        }
+        console.warn('Los datos del carrito persistidos están corruptos, usando defaults:', result.error)
+        return currentState
+      }
     }
   )
 )

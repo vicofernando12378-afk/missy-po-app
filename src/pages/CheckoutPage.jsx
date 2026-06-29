@@ -6,6 +6,8 @@ import PaymentMpBrick from '../components/checkout/PaymentMpBrick'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { doc, getDoc, getDocs, collection, query, where, updateDoc, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../services/firebase'
+import { validate, CheckoutSchema } from '../schemas'
+
 
 const LIMA_REGIONS = [
   'Arequipa',
@@ -250,20 +252,25 @@ export default function CheckoutPage() {
 
   // Prevenir envío directo si faltan datos
   const validateForm = () => {
-    if (!nombre.trim() || !apellido.trim() || !email.trim() || !celular.trim() || !direccion.trim() || !numeroDocumento.trim() || !nombreMascota.trim()) {
-      setErrorMsg('Por favor completa todos los campos obligatorios (*).')
-      return false
+    const payload = {
+      nombre,
+      apellido,
+      email,
+      celular,
+      tipoDocumento,
+      numeroDocumento,
+      departamento,
+      distritoArequipa,
+      distritoNacional,
+      direccion,
+      referencia,
+      nombreMascota,
+      metodoPago
     }
-    if (tipoDocumento === 'DNI' && numeroDocumento.length !== 8) {
-      setErrorMsg('El DNI debe tener exactamente 8 dígitos.')
-      return false
-    }
-    if (tipoDocumento === 'RUC' && numeroDocumento.length !== 11) {
-      setErrorMsg('El RUC debe tener exactamente 11 dígitos.')
-      return false
-    }
-    if (!isArequipa && !distritoNacional.trim()) {
-      setErrorMsg('Por favor, indica tu ciudad/distrito.')
+
+    const validation = validate(CheckoutSchema, payload)
+    if (!validation.ok) {
+      setErrorMsg(validation.error)
       return false
     }
     setErrorMsg('')
