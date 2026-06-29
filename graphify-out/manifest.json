@@ -15,9 +15,9 @@
     "semantic_hash": "6c1369bcee45fa3baebaaf77f2dc3ae3"
   },
   "package.json": {
-    "mtime": 1782189908.29109,
-    "ast_hash": "0130c9781206a2423fd89776759c0564",
-    "semantic_hash": "0130c9781206a2423fd89776759c0564"
+    "mtime": 1782756667.9787664,
+    "ast_hash": "21d2d6fbeeef4c0a8f7cce1a24f9db62",
+    "semantic_hash": ""
   },
   "postcss.config.js": {
     "mtime": 1779920996.4416776,
@@ -60,14 +60,14 @@
     "semantic_hash": "6bc39db7183dcfebbe1d20974e161854"
   },
   "src/components/admin/AdminApp.jsx": {
-    "mtime": 1782602815.087144,
-    "ast_hash": "06a977badfdea269efefa1fd34b6666b",
+    "mtime": 1782756148.5163493,
+    "ast_hash": "d3fdb133b4f7989e12f134d56a400632",
     "semantic_hash": ""
   },
   "src/components/admin/ProductoFormModal.jsx": {
-    "mtime": 1782438880.72935,
-    "ast_hash": "30bae816697ae258ca916528ba949bb0",
-    "semantic_hash": "30bae816697ae258ca916528ba949bb0"
+    "mtime": 1782756852.1021316,
+    "ast_hash": "e544d62afb108b3a1d0e31830db8a1ac",
+    "semantic_hash": ""
   },
   "src/components/cart/CartDrawer.jsx": {
     "mtime": 1782270684.8405473,
@@ -100,9 +100,9 @@
     "semantic_hash": "0bf4aee637694265488fc3b12e9222e2"
   },
   "src/components/checkout/PaymentQrCulqi.jsx": {
-    "mtime": 1779939267.686924,
-    "ast_hash": "0c05596875edb0ade7399af99978e2cb",
-    "semantic_hash": "0c05596875edb0ade7399af99978e2cb"
+    "mtime": 1782756925.2509046,
+    "ast_hash": "45e3da7256f139604551e9a2b170cd6b",
+    "semantic_hash": ""
   },
   "src/components/cta/CTABanner.jsx": {
     "mtime": 1782189908.2960894,
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/pages/CheckoutPage.jsx": {
-    "mtime": 1782620877.5355601,
-    "ast_hash": "a679cccf47d01bf3f890e3af2c8b3257",
+    "mtime": 1782756903.4078813,
+    "ast_hash": "62f1e1f50be8e749545573d541a55efa",
     "semantic_hash": ""
   },
   "src/pages/HomePage.jsx": {
@@ -195,9 +195,9 @@
     "semantic_hash": "544e3a3f3663e029cf3705307571eb25"
   },
   "src/pages/LoginPage.jsx": {
-    "mtime": 1782190289.25189,
-    "ast_hash": "595fa364ba997d643bc46c95f95ad0e2",
-    "semantic_hash": "595fa364ba997d643bc46c95f95ad0e2"
+    "mtime": 1782756201.9120245,
+    "ast_hash": "fc7c03c10b437ec1f9c27712a8b3db11",
+    "semantic_hash": ""
   },
   "src/pages/NotFoundPage.jsx": {
     "mtime": 1782189908.315092,
@@ -210,9 +210,9 @@
     "semantic_hash": "8a8906d16136c168758dcc0d53684fa9"
   },
   "src/pages/ProductPage.jsx": {
-    "mtime": 1782274312.7700574,
-    "ast_hash": "dd54a3b071e125ab24cb0a535cf84224",
-    "semantic_hash": "dd54a3b071e125ab24cb0a535cf84224"
+    "mtime": 1782756944.0818424,
+    "ast_hash": "5717687ffbbc581ec9e242c265a5ea2f",
+    "semantic_hash": ""
   },
   "src/pages/StorePage.jsx": {
     "mtime": 1782620476.117087,
@@ -220,19 +220,19 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminLayout.jsx": {
-    "mtime": 1782602824.19196,
-    "ast_hash": "3192fd574a56ad0845f02d6e56ab5c5c",
+    "mtime": 1782756180.6657712,
+    "ast_hash": "e35e416376939de1cceec37234fc5819",
     "semantic_hash": ""
   },
   "src/pages/admin/CajaDiaria.jsx": {
-    "mtime": 1779995698.5700417,
-    "ast_hash": "dd3316f01af62d7b871bd0a46bfd4f12",
-    "semantic_hash": "dd3316f01af62d7b871bd0a46bfd4f12"
+    "mtime": 1782756801.671838,
+    "ast_hash": "03ae14f05a90c24daccbc3485a756fe0",
+    "semantic_hash": ""
   },
   "src/pages/admin/ConfiguracionEnviosCupones.jsx": {
-    "mtime": 1779944124.886124,
-    "ast_hash": "e506ba1231d9923be2920faa3a00884b",
-    "semantic_hash": "e506ba1231d9923be2920faa3a00884b"
+    "mtime": 1782756826.852934,
+    "ast_hash": "54e08c584bbdbf4502be8f1659bbded4",
+    "semantic_hash": ""
   },
   "src/pages/admin/InventarioStock.jsx": {
     "mtime": 1782217872.0209353,
@@ -260,8 +260,8 @@
     "semantic_hash": "e4bf1447bc869d883b9ef1070ee4fce2"
   },
   "src/pages/admin/[...all].astro": {
-    "mtime": 1782602807.8522246,
-    "ast_hash": "1feadaf01061178238d76095bf0c65c5",
+    "mtime": 1782756153.732936,
+    "ast_hash": "d6d444ba14973b6848bfbe9b091c8e2d",
     "semantic_hash": ""
   },
   "src/pages/carrito.astro": {
@@ -305,9 +305,9 @@
     "semantic_hash": "8a099d30b194a2746513edb92a892a92"
   },
   "src/services/firestore.js": {
-    "mtime": 1782274788.0103486,
-    "ast_hash": "dfe5099e5f9f7798539d95dd9ddb160c",
-    "semantic_hash": "dfe5099e5f9f7798539d95dd9ddb160c"
+    "mtime": 1782758589.2750695,
+    "ast_hash": "f147fe109590f8fcb8b35d4a89ec0d24",
+    "semantic_hash": ""
   },
   "src/setupTests.js": {
     "mtime": 1782189908.333647,
@@ -320,9 +320,9 @@
     "semantic_hash": "ed79b37d32323dab178888aaf2614f80"
   },
   "src/store/cartStore.js": {
-    "mtime": 1779995684.2120628,
-    "ast_hash": "a75aa7d3dd416e9cbc619429491794af",
-    "semantic_hash": "a75aa7d3dd416e9cbc619429491794af"
+    "mtime": 1782757020.0282502,
+    "ast_hash": "626c33c78518b68b725aa76883dac48b",
+    "semantic_hash": ""
   },
   "src/store/catalogStore.js": {
     "mtime": 1779928968.6319788,
@@ -350,9 +350,9 @@
     "semantic_hash": "625e5d60acc8bd5b73b7ff19cf9d71ea"
   },
   "src/components/legal/ReclamacionesForm.jsx": {
-    "mtime": 1782487045.9381876,
-    "ast_hash": "afe06487ebb4b43e8f329b4b961fda7a",
-    "semantic_hash": "afe06487ebb4b43e8f329b4b961fda7a"
+    "mtime": 1782756977.9878044,
+    "ast_hash": "eae8ac69d5ff05e411d6eb77bab87c06",
+    "semantic_hash": ""
   },
   "src/pages/blog.astro": {
     "mtime": 1782492246.8230917,
@@ -512,6 +512,86 @@
   "src/assets/logoheader.jpeg": {
     "mtime": 1782606385.6323664,
     "ast_hash": "d84f7a3b2970ccc649a673db4652c4da",
+    "semantic_hash": ""
+  },
+  "src/pages/admin/AdminLoginPage.jsx": {
+    "mtime": 1782756142.992562,
+    "ast_hash": "d3c524900441ac7b81a14cd928951819",
+    "semantic_hash": ""
+  },
+  "src/schemas/__tests__/schemas.test.js": {
+    "mtime": 1782756756.2347057,
+    "ast_hash": "335d738331a63e46ad7b895eb7c9c653",
+    "semantic_hash": ""
+  },
+  "src/schemas/cajaDiaria.js": {
+    "mtime": 1782756724.70596,
+    "ast_hash": "2c7faca98b1f5191fb2c33f4bf05221f",
+    "semantic_hash": ""
+  },
+  "src/schemas/cart.js": {
+    "mtime": 1782756707.5199375,
+    "ast_hash": "a59fb1a494ef49632c5bfc7ce1e28269",
+    "semantic_hash": ""
+  },
+  "src/schemas/checkout.js": {
+    "mtime": 1782756700.5041783,
+    "ast_hash": "50cc5bc64f6c04b847e79666e25526ba",
+    "semantic_hash": ""
+  },
+  "src/schemas/coupon.js": {
+    "mtime": 1782756714.565292,
+    "ast_hash": "6678262747881be13684289b66693ff2",
+    "semantic_hash": ""
+  },
+  "src/schemas/index.js": {
+    "mtime": 1782756749.2190664,
+    "ast_hash": "0f732d145c19d48824e8d77fbc3a15c6",
+    "semantic_hash": ""
+  },
+  "src/schemas/payment.js": {
+    "mtime": 1782756744.2395985,
+    "ast_hash": "c994290c11de2171891f2787ac135884",
+    "semantic_hash": ""
+  },
+  "src/schemas/product.js": {
+    "mtime": 1782756694.2144942,
+    "ast_hash": "9983532a14f17c062659b0487479d557",
+    "semantic_hash": ""
+  },
+  "src/schemas/reclamacion.js": {
+    "mtime": 1782756737.1547952,
+    "ast_hash": "90695f39b4e10e47d8deaf68b9a79ce0",
+    "semantic_hash": ""
+  },
+  "src/schemas/review.js": {
+    "mtime": 1782756730.8136005,
+    "ast_hash": "8399f0cbbf5210958ca04e053b87f057",
+    "semantic_hash": ""
+  },
+  "src/schemas/shippingConfig.js": {
+    "mtime": 1782756719.5058706,
+    "ast_hash": "81bc94f6903fc18bd06950f2495f9c80",
+    "semantic_hash": ""
+  },
+  "src/schemas/validate.js": {
+    "mtime": 1782756686.7967572,
+    "ast_hash": "53043ed3647fd0a8044a66f28be0b393",
+    "semantic_hash": ""
+  },
+  "src/services/auth.js": {
+    "mtime": 1782756127.0591502,
+    "ast_hash": "ccc8d02272fafcf4c8f0bfe63d17c4b1",
+    "semantic_hash": ""
+  },
+  "PLAN-SEGURIDAD-Y-ARQUITECTURA.md": {
+    "mtime": 1782704378.7472775,
+    "ast_hash": "7ca2e6a169a3afd3e13d03ea6547dddc",
+    "semantic_hash": ""
+  },
+  "PLAN-ZOD.md": {
+    "mtime": 1782703287.8692238,
+    "ast_hash": "5771ae8d0e7c688f7d365e749fd21015",
     "semantic_hash": ""
   }
 }

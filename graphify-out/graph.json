@@ -170,7 +170,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "package_dependencies",
-      "community": 11,
+      "community": 2,
       "norm_label": "dependencies"
     },
     {
@@ -180,7 +180,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "package_dependencies_astrojs_react",
-      "community": 11,
+      "community": 2,
       "norm_label": "@astrojs/react"
     },
     {
@@ -190,7 +190,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "package_dependencies_astro",
-      "community": 11,
+      "community": 2,
       "norm_label": "astro"
     },
     {
@@ -200,7 +200,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "package_dependencies_firebase",
-      "community": 11,
+      "community": 2,
       "norm_label": "firebase"
     },
     {
@@ -210,7 +210,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "package_dependencies_html2canvas",
-      "community": 11,
+      "community": 2,
       "norm_label": "html2canvas"
     },
     {
@@ -220,7 +220,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "package_dependencies_jspdf",
-      "community": 11,
+      "community": 2,
       "norm_label": "jspdf"
     },
     {
@@ -230,7 +230,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "package_dependencies_react",
-      "community": 11,
+      "community": 2,
       "norm_label": "react"
     },
     {
@@ -240,7 +240,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "package_dependencies_react_dom",
-      "community": 11,
+      "community": 2,
       "norm_label": "react-dom"
     },
     {
@@ -250,7 +250,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "package_dependencies_react_helmet_async",
-      "community": 11,
+      "community": 2,
       "norm_label": "react-helmet-async"
     },
     {
@@ -260,24 +260,34 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_react_router_dom",
-      "community": 11,
+      "community": 2,
       "norm_label": "react-router-dom"
+    },
+    {
+      "label": "zod",
+      "file_type": "code",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "package_dependencies_zod",
+      "community": 2,
+      "norm_label": "zod"
     },
     {
       "label": "zustand",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L26",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_zustand",
-      "community": 11,
+      "community": 2,
       "norm_label": "zustand"
     },
     {
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "package_devdependencies",
       "community": 2,
@@ -287,7 +297,7 @@
       "label": "@testing-library/jest-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "package_devdependencies_testing_library_jest_dom",
       "community": 2,
@@ -297,7 +307,7 @@
       "label": "@testing-library/react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "package_devdependencies_testing_library_react",
       "community": 2,
@@ -307,7 +317,7 @@
       "label": "@types/react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "package_devdependencies_types_react",
       "community": 2,
@@ -317,7 +327,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "package_devdependencies_types_react_dom",
       "community": 2,
@@ -327,7 +337,7 @@
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "package_devdependencies_vitejs_plugin_react",
       "community": 2,
@@ -337,7 +347,7 @@
       "label": "autoprefixer",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "package_devdependencies_autoprefixer",
       "community": 2,
@@ -347,7 +357,7 @@
       "label": "eslint",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "package_devdependencies_eslint",
       "community": 2,
@@ -357,7 +367,7 @@
       "label": "eslint-plugin-react",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_plugin_react",
       "community": 2,
@@ -367,7 +377,7 @@
       "label": "eslint-plugin-react-hooks",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_plugin_react_hooks",
       "community": 2,
@@ -377,7 +387,7 @@
       "label": "eslint-plugin-react-refresh",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "package_devdependencies_eslint_plugin_react_refresh",
       "community": 2,
@@ -387,7 +397,7 @@
       "label": "jsdom",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L39",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "package_devdependencies_jsdom",
       "community": 2,
@@ -397,7 +407,7 @@
       "label": "postcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "package_devdependencies_postcss",
       "community": 2,
@@ -407,7 +417,7 @@
       "label": "tailwindcss",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "package_devdependencies_tailwindcss",
       "community": 2,
@@ -417,7 +427,7 @@
       "label": "vite",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "package_devdependencies_vite",
       "community": 2,
@@ -427,7 +437,7 @@
       "label": "vitest",
       "file_type": "code",
       "source_file": "package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "package_devdependencies_vitest",
       "community": 2,
@@ -580,7 +590,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_inspect_categories",
-      "community": 14,
+      "community": 3,
       "norm_label": "inspect-categories.js"
     },
     {
@@ -590,7 +600,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_inspect_categories_loadenv",
-      "community": 14,
+      "community": 3,
       "norm_label": "loadenv()"
     },
     {
@@ -600,7 +610,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "scripts_inspect_categories_firebaseconfig",
-      "community": 14,
+      "community": 3,
       "norm_label": "firebaseconfig"
     },
     {
@@ -610,7 +620,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "scripts_inspect_categories_app",
-      "community": 14,
+      "community": 3,
       "norm_label": "app"
     },
     {
@@ -620,7 +630,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_inspect_categories_db",
-      "community": 14,
+      "community": 3,
       "norm_label": "db"
     },
     {
@@ -630,7 +640,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "scripts_inspect_categories_run",
-      "community": 14,
+      "community": 3,
       "norm_label": "run()"
     },
     {
@@ -700,7 +710,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price",
-      "community": 12,
+      "community": 3,
       "norm_label": "migrate-purchase-price.js"
     },
     {
@@ -710,7 +720,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_loadenv",
-      "community": 12,
+      "community": 3,
       "norm_label": "loadenv()"
     },
     {
@@ -720,7 +730,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_firebaseconfig",
-      "community": 12,
+      "community": 3,
       "norm_label": "firebaseconfig"
     },
     {
@@ -730,7 +740,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_app",
-      "community": 12,
+      "community": 3,
       "norm_label": "app"
     },
     {
@@ -740,7 +750,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_db",
-      "community": 12,
+      "community": 3,
       "norm_label": "db"
     },
     {
@@ -750,7 +760,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_run",
-      "community": 12,
+      "community": 3,
       "norm_label": "run()"
     },
     {
@@ -957,7 +967,7 @@
       "label": "AdminApp()",
       "file_type": "code",
       "source_file": "src/components/admin/AdminApp.jsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "admin_adminapp_adminapp",
       "community": 0,
@@ -977,7 +987,7 @@
       "label": "CATEGORIAS",
       "file_type": "code",
       "source_file": "src/components/admin/ProductoFormModal.jsx",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "admin_productoformmodal_categorias",
       "community": 0,
@@ -987,7 +997,7 @@
       "label": "productoVacio",
       "file_type": "code",
       "source_file": "src/components/admin/ProductoFormModal.jsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "admin_productoformmodal_productovacio",
       "community": 0,
@@ -997,7 +1007,7 @@
       "label": "generarSlug()",
       "file_type": "code",
       "source_file": "src/components/admin/ProductoFormModal.jsx",
-      "source_location": "L33",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "admin_productoformmodal_generarslug",
       "community": 0,
@@ -1007,7 +1017,7 @@
       "label": "ProductoFormModal()",
       "file_type": "code",
       "source_file": "src/components/admin/ProductoFormModal.jsx",
-      "source_location": "L42",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "admin_productoformmodal_productoformmodal",
       "community": 0,
@@ -1070,7 +1080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "catalog_pricedisplay",
-      "community": 13,
+      "community": 1,
       "norm_label": "pricedisplay.jsx"
     },
     {
@@ -1080,7 +1090,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "catalog_pricedisplay_pricedisplay",
-      "community": 13,
+      "community": 1,
       "norm_label": "pricedisplay()"
     },
     {
@@ -1090,7 +1100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "catalog_productcard",
-      "community": 13,
+      "community": 1,
       "norm_label": "productcard.jsx"
     },
     {
@@ -1100,7 +1110,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "catalog_productcard_staricon",
-      "community": 13,
+      "community": 1,
       "norm_label": "staricon()"
     },
     {
@@ -1110,7 +1120,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "catalog_productcard_carticon",
-      "community": 13,
+      "community": 1,
       "norm_label": "carticon()"
     },
     {
@@ -1120,7 +1130,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "catalog_productcard_eyeicon",
-      "community": 13,
+      "community": 1,
       "norm_label": "eyeicon()"
     },
     {
@@ -1130,7 +1140,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "catalog_productcard_productcard",
-      "community": 13,
+      "community": 1,
       "norm_label": "productcard()"
     },
     {
@@ -1170,7 +1180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "catalog_salebadge",
-      "community": 13,
+      "community": 1,
       "norm_label": "salebadge.jsx"
     },
     {
@@ -1180,7 +1190,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "catalog_salebadge_salebadge",
-      "community": 13,
+      "community": 1,
       "norm_label": "salebadge()"
     },
     {
@@ -1217,7 +1227,7 @@
       "label": "PaymentQrCulqi()",
       "file_type": "code",
       "source_file": "src/components/checkout/PaymentQrCulqi.jsx",
-      "source_location": "L8",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "checkout_paymentqrculqi_paymentqrculqi",
       "community": 9,
@@ -1560,7 +1570,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "legal_reclamacionesform",
-      "community": 0,
+      "community": 9,
       "norm_label": "reclamacionesform.jsx"
     },
     {
@@ -1741,7 +1751,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "astro_assets",
-      "community": 4,
+      "community": 16,
       "norm_label": "astro:assets"
     },
     {
@@ -1828,7 +1838,7 @@
       "label": "LIMA_REGIONS",
       "file_type": "code",
       "source_file": "src/pages/CheckoutPage.jsx",
-      "source_location": "L10",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "pages_checkoutpage_lima_regions",
       "community": 9,
@@ -1838,7 +1848,7 @@
       "label": "AREQUIPA_DISTRICTS",
       "file_type": "code",
       "source_file": "src/pages/CheckoutPage.jsx",
-      "source_location": "L28",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "pages_checkoutpage_arequipa_districts",
       "community": 9,
@@ -1848,10 +1858,10 @@
       "label": "CheckoutPage()",
       "file_type": "code",
       "source_file": "src/pages/CheckoutPage.jsx",
-      "source_location": "L47",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "pages_checkoutpage_checkoutpage",
-      "community": 9,
+      "community": 6,
       "norm_label": "checkoutpage()"
     },
     {
@@ -1881,17 +1891,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_loginpage",
-      "community": 0,
+      "community": 3,
       "norm_label": "loginpage.jsx"
     },
     {
       "label": "LoginPage()",
       "file_type": "code",
       "source_file": "src/pages/LoginPage.jsx",
-      "source_location": "L8",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "pages_loginpage_loginpage",
-      "community": 0,
+      "community": 3,
       "norm_label": "loginpage()"
     },
     {
@@ -1921,7 +1931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_orderconfirmationpage",
-      "community": 0,
+      "community": 3,
       "norm_label": "orderconfirmationpage.jsx"
     },
     {
@@ -1931,7 +1941,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "pages_orderconfirmationpage_orderconfirmationpage",
-      "community": 0,
+      "community": 3,
       "norm_label": "orderconfirmationpage()"
     },
     {
@@ -1941,37 +1951,37 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_productpage",
-      "community": 13,
+      "community": 1,
       "norm_label": "productpage.jsx"
     },
     {
       "label": "cleanDescription()",
       "file_type": "code",
       "source_file": "src/pages/ProductPage.jsx",
-      "source_location": "L12",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "pages_productpage_cleandescription",
-      "community": 13,
+      "community": 1,
       "norm_label": "cleandescription()"
     },
     {
       "label": "StarIcon()",
       "file_type": "code",
       "source_file": "src/pages/ProductPage.jsx",
-      "source_location": "L51",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "pages_productpage_staricon",
-      "community": 13,
+      "community": 1,
       "norm_label": "staricon()"
     },
     {
       "label": "ProductPage()",
       "file_type": "code",
       "source_file": "src/pages/ProductPage.jsx",
-      "source_location": "L57",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "pages_productpage_productpage",
-      "community": 13,
+      "community": 1,
       "norm_label": "productpage()"
     },
     {
@@ -2001,18 +2011,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_adminlayout",
-      "community": 0,
+      "community": 3,
       "norm_label": "adminlayout.jsx"
     },
     {
       "label": "AdminLayout()",
       "file_type": "code",
       "source_file": "src/pages/admin/AdminLayout.jsx",
-      "source_location": "L9",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "admin_adminlayout_adminlayout",
       "community": 0,
       "norm_label": "adminlayout()"
+    },
+    {
+      "label": "AdminLoginPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "admin_adminloginpage",
+      "community": 3,
+      "norm_label": "adminloginpage.jsx"
+    },
+    {
+      "label": "AdminLoginPage()",
+      "file_type": "code",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "admin_adminloginpage_adminloginpage",
+      "community": 3,
+      "norm_label": "adminloginpage()"
     },
     {
       "label": "CVRMDashboard.jsx",
@@ -2021,7 +2051,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "admin_cvrmdashboard",
-      "community": 0,
+      "community": 3,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2031,7 +2061,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "admin_cvrmdashboard_tabs",
-      "community": 0,
+      "community": 3,
       "norm_label": "tabs"
     },
     {
@@ -2041,7 +2071,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "admin_cvrmdashboard_cvrmdashboard",
-      "community": 0,
+      "community": 3,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -2058,7 +2088,7 @@
       "label": "CajaDiaria()",
       "file_type": "code",
       "source_file": "src/pages/admin/CajaDiaria.jsx",
-      "source_location": "L12",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "admin_cajadiaria_cajadiaria",
       "community": 0,
@@ -2078,7 +2108,7 @@
       "label": "ConfiguracionEnviosCupones()",
       "file_type": "code",
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "admin_configuracionenvioscupones_configuracionenvioscupones",
       "community": 0,
@@ -2401,7 +2431,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_checkout",
-      "community": 9,
+      "community": 35,
       "norm_label": "checkout.astro"
     },
     {
@@ -2411,7 +2441,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 9,
+      "community": 35,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -2421,7 +2451,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_club_missypo",
-      "community": 4,
+      "community": 16,
       "norm_label": "club-missypo.astro"
     },
     {
@@ -2431,7 +2461,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_mypo_puntos_jpeg",
-      "community": 4,
+      "community": 16,
       "norm_label": "../assets/club/mypo_puntos.jpeg"
     },
     {
@@ -2441,7 +2471,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_descuentos_jpeg",
-      "community": 4,
+      "community": 16,
       "norm_label": "../assets/club/descuentos.jpeg"
     },
     {
@@ -2451,7 +2481,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_cumple_jpeg",
-      "community": 4,
+      "community": 16,
       "norm_label": "../assets/club/cumple.jpeg"
     },
     {
@@ -2461,7 +2491,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_exclusivo_jpeg",
-      "community": 4,
+      "community": 16,
       "norm_label": "../assets/club/exclusivo.jpeg"
     },
     {
@@ -2471,7 +2501,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_youtube_jpeg",
-      "community": 4,
+      "community": 16,
       "norm_label": "../assets/club/youtube.jpeg"
     },
     {
@@ -2481,7 +2511,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_enviorapido_jpeg",
-      "community": 4,
+      "community": 16,
       "norm_label": "../assets/club/enviorapido.jpeg"
     },
     {
@@ -2491,7 +2521,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firebase",
-      "community": 4,
+      "community": 16,
       "norm_label": "../services/firebase"
     },
     {
@@ -2501,7 +2531,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 0,
+      "community": 3,
       "norm_label": "firebase/firestore"
     },
     {
@@ -2521,7 +2551,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_index",
-      "community": 4,
+      "community": 36,
       "norm_label": "index.astro"
     },
     {
@@ -2531,7 +2561,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 4,
+      "community": 36,
       "norm_label": "../pages/homepage"
     },
     {
@@ -2541,7 +2571,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_login",
-      "community": 4,
+      "community": 37,
       "norm_label": "login.astro"
     },
     {
@@ -2551,7 +2581,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 4,
+      "community": 37,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -2561,7 +2591,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_missypo_tv",
-      "community": 4,
+      "community": 32,
       "norm_label": "missypo-tv.astro"
     },
     {
@@ -2571,7 +2601,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "pages_missypo_tv_featuredvideo",
-      "community": 4,
+      "community": 32,
       "norm_label": "featuredvideo"
     },
     {
@@ -2581,7 +2611,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "pages_missypo_tv_episodios",
-      "community": 4,
+      "community": 32,
       "norm_label": "episodios"
     },
     {
@@ -2591,7 +2621,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "pages_missypo_tv_string",
-      "community": 4,
+      "community": 32,
       "norm_label": "string"
     },
     {
@@ -2601,7 +2631,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "orden_confirmada_orderid",
-      "community": 4,
+      "community": 33,
       "norm_label": "[...orderid].astro"
     },
     {
@@ -2611,7 +2641,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "orden_confirmada_orderid_getstaticpaths",
-      "community": 4,
+      "community": 33,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2621,7 +2651,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_orderconfirmationpage_tsx",
-      "community": 4,
+      "community": 33,
       "norm_label": "../../pages/orderconfirmationpage.jsx"
     },
     {
@@ -2641,7 +2671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "producto_slug",
-      "community": 13,
+      "community": 0,
       "norm_label": "[slug].astro"
     },
     {
@@ -2651,7 +2681,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "producto_slug_getstaticpaths",
-      "community": 13,
+      "community": 0,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -2661,7 +2691,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 13,
+      "community": 0,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -2671,7 +2701,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firestore",
-      "community": 13,
+      "community": 0,
       "norm_label": "../../services/firestore"
     },
     {
@@ -2681,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "pages_reclamaciones",
-      "community": 4,
+      "community": 34,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -2691,7 +2721,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 4,
+      "community": 34,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -2735,13 +2765,363 @@
       "norm_label": "../services/firestore.js"
     },
     {
+      "label": "schemas.test.js",
+      "file_type": "code",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_schemas_test",
+      "community": 9,
+      "norm_label": "schemas.test.js"
+    },
+    {
+      "label": "cajaDiaria.js",
+      "file_type": "code",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_cajadiaria",
+      "community": 9,
+      "norm_label": "cajadiaria.js"
+    },
+    {
+      "label": "AperturaCajaSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_cajadiaria_aperturacajaschema",
+      "community": 9,
+      "norm_label": "aperturacajaschema"
+    },
+    {
+      "label": "MovimientoSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "schemas_cajadiaria_movimientoschema",
+      "community": 9,
+      "norm_label": "movimientoschema"
+    },
+    {
+      "label": "CierreCajaSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "schemas_cajadiaria_cierrecajaschema",
+      "community": 9,
+      "norm_label": "cierrecajaschema"
+    },
+    {
+      "label": "cart.js",
+      "file_type": "code",
+      "source_file": "src/schemas/cart.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_cart",
+      "community": 9,
+      "norm_label": "cart.js"
+    },
+    {
+      "label": "CartItemSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/cart.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_cart_cartitemschema",
+      "community": 9,
+      "norm_label": "cartitemschema"
+    },
+    {
+      "label": "CartStateSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/cart.js",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "schemas_cart_cartstateschema",
+      "community": 9,
+      "norm_label": "cartstateschema"
+    },
+    {
+      "label": "checkout.js",
+      "file_type": "code",
+      "source_file": "src/schemas/checkout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_checkout",
+      "community": 9,
+      "norm_label": "checkout.js"
+    },
+    {
+      "label": "CheckoutSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/checkout.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_checkout_checkoutschema",
+      "community": 9,
+      "norm_label": "checkoutschema"
+    },
+    {
+      "label": "coupon.js",
+      "file_type": "code",
+      "source_file": "src/schemas/coupon.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_coupon",
+      "community": 9,
+      "norm_label": "coupon.js"
+    },
+    {
+      "label": "CouponSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/coupon.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_coupon_couponschema",
+      "community": 9,
+      "norm_label": "couponschema"
+    },
+    {
+      "label": "index.js",
+      "file_type": "code",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_index",
+      "community": 9,
+      "norm_label": "index.js"
+    },
+    {
+      "label": "payment.js",
+      "file_type": "code",
+      "source_file": "src/schemas/payment.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_payment",
+      "community": 9,
+      "norm_label": "payment.js"
+    },
+    {
+      "label": "YapePlinSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/payment.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_payment_yapeplinschema",
+      "community": 9,
+      "norm_label": "yapeplinschema"
+    },
+    {
+      "label": "product.js",
+      "file_type": "code",
+      "source_file": "src/schemas/product.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_product",
+      "community": 9,
+      "norm_label": "product.js"
+    },
+    {
+      "label": "VarianteSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/product.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_product_varianteschema",
+      "community": 9,
+      "norm_label": "varianteschema"
+    },
+    {
+      "label": "ProductSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/product.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "schemas_product_productschema",
+      "community": 9,
+      "norm_label": "productschema"
+    },
+    {
+      "label": "reclamacion.js",
+      "file_type": "code",
+      "source_file": "src/schemas/reclamacion.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_reclamacion",
+      "community": 9,
+      "norm_label": "reclamacion.js"
+    },
+    {
+      "label": "ReclamacionSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/reclamacion.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_reclamacion_reclamacionschema",
+      "community": 9,
+      "norm_label": "reclamacionschema"
+    },
+    {
+      "label": "review.js",
+      "file_type": "code",
+      "source_file": "src/schemas/review.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_review",
+      "community": 9,
+      "norm_label": "review.js"
+    },
+    {
+      "label": "ReviewSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/review.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_review_reviewschema",
+      "community": 9,
+      "norm_label": "reviewschema"
+    },
+    {
+      "label": "shippingConfig.js",
+      "file_type": "code",
+      "source_file": "src/schemas/shippingConfig.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_shippingconfig",
+      "community": 9,
+      "norm_label": "shippingconfig.js"
+    },
+    {
+      "label": "ShippingConfigSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/shippingConfig.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "schemas_shippingconfig_shippingconfigschema",
+      "community": 9,
+      "norm_label": "shippingconfigschema"
+    },
+    {
+      "label": "validate.js",
+      "file_type": "code",
+      "source_file": "src/schemas/validate.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "schemas_validate",
+      "community": 9,
+      "norm_label": "validate.js"
+    },
+    {
+      "label": "validate()",
+      "file_type": "code",
+      "source_file": "src/schemas/validate.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "schemas_validate_validate",
+      "community": 9,
+      "norm_label": "validate()"
+    },
+    {
+      "label": "auth.js",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_auth",
+      "community": 3,
+      "norm_label": "auth.js"
+    },
+    {
+      "label": "googleProvider",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "services_auth_googleprovider",
+      "community": 3,
+      "norm_label": "googleprovider"
+    },
+    {
+      "label": "signInWithGoogle()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "services_auth_signinwithgoogle",
+      "community": 3,
+      "norm_label": "signinwithgoogle()"
+    },
+    {
+      "label": "checkIsAdmin()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "services_auth_checkisadmin",
+      "community": 3,
+      "norm_label": "checkisadmin()"
+    },
+    {
+      "label": "loginWithEmail()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "services_auth_loginwithemail",
+      "community": 3,
+      "norm_label": "loginwithemail()"
+    },
+    {
+      "label": "registerWithEmail()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "services_auth_registerwithemail",
+      "community": 3,
+      "norm_label": "registerwithemail()"
+    },
+    {
+      "label": "resetPassword()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "services_auth_resetpassword",
+      "community": 3,
+      "norm_label": "resetpassword()"
+    },
+    {
+      "label": "listenAuth()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "services_auth_listenauth",
+      "community": 3,
+      "norm_label": "listenauth()"
+    },
+    {
+      "label": "logout()",
+      "file_type": "code",
+      "source_file": "src/services/auth.js",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "services_auth_logout",
+      "community": 3,
+      "norm_label": "logout()"
+    },
+    {
       "label": "firebase.js",
       "file_type": "code",
       "source_file": "src/services/firebase.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "services_firebase",
-      "community": 0,
+      "community": 3,
       "norm_label": "firebase.js"
     },
     {
@@ -2751,7 +3131,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "services_firebase_firebaseconfig",
-      "community": 0,
+      "community": 3,
       "norm_label": "firebaseconfig"
     },
     {
@@ -2771,7 +3151,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "services_firebase_auth",
-      "community": 0,
+      "community": 3,
       "norm_label": "auth"
     },
     {
@@ -2788,7 +3168,7 @@
       "label": "buscarProductos()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L17",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "services_firestore_buscarproductos",
       "community": 0,
@@ -2798,7 +3178,7 @@
       "label": "obtenerProductos()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L31",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "services_firestore_obtenerproductos",
       "community": 1,
@@ -2808,17 +3188,17 @@
       "label": "obtenerProductoPorSlug()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L83",
+      "source_location": "L91",
       "_origin": "ast",
       "id": "services_firestore_obtenerproductoporslug",
-      "community": 13,
+      "community": 0,
       "norm_label": "obtenerproductoporslug()"
     },
     {
       "label": "obtenerProductoPorId()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L98",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "services_firestore_obtenerproductoporid",
       "community": 0,
@@ -2828,7 +3208,7 @@
       "label": "obtenerRelacionados()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L107",
+      "source_location": "L115",
       "_origin": "ast",
       "id": "services_firestore_obtenerrelacionados",
       "community": 0,
@@ -2838,7 +3218,7 @@
       "label": "crearProducto()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L126",
+      "source_location": "L134",
       "_origin": "ast",
       "id": "services_firestore_crearproducto",
       "community": 0,
@@ -2848,7 +3228,7 @@
       "label": "actualizarProducto()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L142",
+      "source_location": "L156",
       "_origin": "ast",
       "id": "services_firestore_actualizarproducto",
       "community": 0,
@@ -2858,7 +3238,7 @@
       "label": "eliminarProducto()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L153",
+      "source_location": "L173",
       "_origin": "ast",
       "id": "services_firestore_eliminarproducto",
       "community": 0,
@@ -2868,7 +3248,7 @@
       "label": "obtenerConfiguracionEnvio()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L164",
+      "source_location": "L184",
       "_origin": "ast",
       "id": "services_firestore_obtenerconfiguracionenvio",
       "community": 0,
@@ -2878,7 +3258,7 @@
       "label": "crearPedidoConTransaccion()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L184",
+      "source_location": "L204",
       "_origin": "ast",
       "id": "services_firestore_crearpedidocontransaccion",
       "community": 9,
@@ -2888,7 +3268,7 @@
       "label": "obtenerPedidosAdmin()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L279",
+      "source_location": "L299",
       "_origin": "ast",
       "id": "services_firestore_obtenerpedidosadmin",
       "community": 0,
@@ -2898,7 +3278,7 @@
       "label": "actualizarEstadoPedido()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L299",
+      "source_location": "L319",
       "_origin": "ast",
       "id": "services_firestore_actualizarestadopedido",
       "community": 0,
@@ -2908,7 +3288,7 @@
       "label": "reestablecerStockPedidoConTransaccion()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L353",
+      "source_location": "L373",
       "_origin": "ast",
       "id": "services_firestore_reestablecerstockpedidocontransaccion",
       "community": 0,
@@ -2918,7 +3298,7 @@
       "label": "obtenerCajaActiva()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L420",
+      "source_location": "L440",
       "_origin": "ast",
       "id": "services_firestore_obtenercajaactiva",
       "community": 0,
@@ -2928,7 +3308,7 @@
       "label": "abrirCajaDiaria()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L438",
+      "source_location": "L458",
       "_origin": "ast",
       "id": "services_firestore_abrircajadiaria",
       "community": 0,
@@ -2938,7 +3318,7 @@
       "label": "registrarTransaccionManual()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L484",
+      "source_location": "L504",
       "_origin": "ast",
       "id": "services_firestore_registrartransaccionmanual",
       "community": 0,
@@ -2948,7 +3328,7 @@
       "label": "cerrarCajaDiaria()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L517",
+      "source_location": "L549",
       "_origin": "ast",
       "id": "services_firestore_cerrarcajadiaria",
       "community": 0,
@@ -2958,7 +3338,7 @@
       "label": "obtenerHistorialCajas()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L543",
+      "source_location": "L575",
       "_origin": "ast",
       "id": "services_firestore_obtenerhistorialcajas",
       "community": 0,
@@ -2968,7 +3348,7 @@
       "label": "obtenerVentasConfirmadasDia()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L559",
+      "source_location": "L591",
       "_origin": "ast",
       "id": "services_firestore_obtenerventasconfirmadasdia",
       "community": 0,
@@ -2978,7 +3358,7 @@
       "label": "actualizarStockProductoAdmin()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L591",
+      "source_location": "L623",
       "_origin": "ast",
       "id": "services_firestore_actualizarstockproductoadmin",
       "community": 0,
@@ -2988,17 +3368,17 @@
       "label": "obtenerTodosProductosAdmin()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L612",
+      "source_location": "L644",
       "_origin": "ast",
       "id": "services_firestore_obtenertodosproductosadmin",
-      "community": 13,
+      "community": 0,
       "norm_label": "obtenertodosproductosadmin()"
     },
     {
       "label": "obtenerCupones()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L628",
+      "source_location": "L660",
       "_origin": "ast",
       "id": "services_firestore_obtenercupones",
       "community": 0,
@@ -3008,7 +3388,7 @@
       "label": "crearCupon()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L638",
+      "source_location": "L670",
       "_origin": "ast",
       "id": "services_firestore_crearcupon",
       "community": 0,
@@ -3018,7 +3398,7 @@
       "label": "actualizarEstadoCupon()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L663",
+      "source_location": "L705",
       "_origin": "ast",
       "id": "services_firestore_actualizarestadocupon",
       "community": 0,
@@ -3028,7 +3408,7 @@
       "label": "eliminarCupon()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L673",
+      "source_location": "L715",
       "_origin": "ast",
       "id": "services_firestore_eliminarcupon",
       "community": 0,
@@ -3038,7 +3418,7 @@
       "label": "guardarConfiguracionEnvio()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L683",
+      "source_location": "L725",
       "_origin": "ast",
       "id": "services_firestore_guardarconfiguracionenvio",
       "community": 0,
@@ -3048,7 +3428,7 @@
       "label": "asignarRepartidorPedido()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L700",
+      "source_location": "L748",
       "_origin": "ast",
       "id": "services_firestore_asignarrepartidorpedido",
       "community": 0,
@@ -3058,7 +3438,7 @@
       "label": "obtenerPedidosRango()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L729",
+      "source_location": "L777",
       "_origin": "ast",
       "id": "services_firestore_obtenerpedidosrango",
       "community": 0,
@@ -3068,7 +3448,7 @@
       "label": "obtenerProductosMasVendidos()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L758",
+      "source_location": "L806",
       "_origin": "ast",
       "id": "services_firestore_obtenerproductosmasvendidos",
       "community": 6,
@@ -3078,7 +3458,7 @@
       "label": "obtenerResenas()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L804",
+      "source_location": "L852",
       "_origin": "ast",
       "id": "services_firestore_obtenerresenas",
       "community": 0,
@@ -3088,7 +3468,7 @@
       "label": "actualizarEstadoResena()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L828",
+      "source_location": "L876",
       "_origin": "ast",
       "id": "services_firestore_actualizarestadoresena",
       "community": 0,
@@ -3098,7 +3478,7 @@
       "label": "eliminarResena()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L843",
+      "source_location": "L891",
       "_origin": "ast",
       "id": "services_firestore_eliminarresena",
       "community": 0,
@@ -3108,20 +3488,20 @@
       "label": "crearResena()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L855",
+      "source_location": "L903",
       "_origin": "ast",
       "id": "services_firestore_crearresena",
-      "community": 13,
+      "community": 1,
       "norm_label": "crearresena()"
     },
     {
       "label": "obtenerResenasPorProducto()",
       "file_type": "code",
       "source_file": "src/services/firestore.js",
-      "source_location": "L877",
+      "source_location": "L937",
       "_origin": "ast",
       "id": "services_firestore_obtenerresenasporproducto",
-      "community": 13,
+      "community": 1,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -3158,7 +3538,7 @@
       "label": "recalculateTotals()",
       "file_type": "code",
       "source_file": "src/store/cartStore.js",
-      "source_location": "L9",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "store_cartstore_recalculatetotals",
       "community": 6,
@@ -3168,7 +3548,7 @@
       "label": "useCartStore",
       "file_type": "code",
       "source_file": "src/store/cartStore.js",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "store_cartstore_usecartstore",
       "community": 6,
@@ -3353,6 +3733,766 @@
       "id": "github_copilot_instructions",
       "community": 30,
       "norm_label": "copilot-instructions.md"
+    },
+    {
+      "label": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura",
+      "community": 11,
+      "norm_label": "plan-seguridad-y-arquitectura.md"
+    },
+    {
+      "label": "Plan de Acci\u00f3n: Seguridad, Arquitectura y Deuda T\u00e9cnica \u2014 Missy & Po Pet Shop",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "community": 11,
+      "norm_label": "plan de accion: seguridad, arquitectura y deuda tecnica \u2014 missy & po pet shop"
+    },
+    {
+      "label": "Tabla de Hallazgos y Acciones",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_tabla_de_hallazgos_y_acciones",
+      "community": 11,
+      "norm_label": "tabla de hallazgos y acciones"
+    },
+    {
+      "label": "Fase S1 \u2014 Redise\u00f1ar Auth: Admin Google OAuth + Clientes Email/Password (CRITICAL)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "community": 14,
+      "norm_label": "fase s1 \u2014 redisenar auth: admin google oauth + clientes email/password (critical)"
+    },
+    {
+      "label": "Problema actual",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_problema_actual",
+      "community": 14,
+      "norm_label": "problema actual"
+    },
+    {
+      "label": "Arquitectura propuesta: Dos flujos de auth separados",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_arquitectura_propuesta_dos_flujos_de_auth_separados",
+      "community": 14,
+      "norm_label": "arquitectura propuesta: dos flujos de auth separados"
+    },
+    {
+      "label": "Prerequisito: Custom claim `admin`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_prerequisito_custom_claim_admin",
+      "community": 14,
+      "norm_label": "prerequisito: custom claim `admin`"
+    },
+    {
+      "label": "Cambios de c\u00f3digo",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "community": 14,
+      "norm_label": "cambios de codigo"
+    },
+    {
+      "label": "1. Nuevo archivo: `src/services/auth.js`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_1_nuevo_archivo_src_services_auth_js",
+      "community": 14,
+      "norm_label": "1. nuevo archivo: `src/services/auth.js`"
+    },
+    {
+      "label": "2. Nuevo archivo: `src/pages/AdminLoginPage.jsx`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L163",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_2_nuevo_archivo_src_pages_adminloginpage_jsx",
+      "community": 14,
+      "norm_label": "2. nuevo archivo: `src/pages/adminloginpage.jsx`"
+    },
+    {
+      "label": "3. Modificar `src/pages/LoginPage.jsx` \u2014 Solo clientes",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L244",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_3_modificar_src_pages_loginpage_jsx_solo_clientes",
+      "community": 14,
+      "norm_label": "3. modificar `src/pages/loginpage.jsx` \u2014 solo clientes"
+    },
+    {
+      "label": "4. Modificar `src/pages/admin/AdminLayout.jsx`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L256",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_4_modificar_src_pages_admin_adminlayout_jsx",
+      "community": 14,
+      "norm_label": "4. modificar `src/pages/admin/adminlayout.jsx`"
+    },
+    {
+      "label": "5. Actualizar rutas en `src/pages/admin/[...all].astro` y `src/components/admin/AdminApp.jsx`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L294",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_5_actualizar_rutas_en_src_pages_admin_all_astro_y_src_components_admin_adminapp_jsx",
+      "community": 14,
+      "norm_label": "5. actualizar rutas en `src/pages/admin/[...all].astro` y `src/components/admin/adminapp.jsx`"
+    },
+    {
+      "label": "6. Actualizar `src/pages/admin/AdminLayout.jsx`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L310",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_6_actualizar_src_pages_admin_adminlayout_jsx",
+      "community": 14,
+      "norm_label": "6. actualizar `src/pages/admin/adminlayout.jsx`"
+    },
+    {
+      "label": "Archivos modificados/resumidos",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L324",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_archivos_modificados_resumidos",
+      "community": 14,
+      "norm_label": "archivos modificados/resumidos"
+    },
+    {
+      "label": "Orden de ejecuci\u00f3n",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L336",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n",
+      "community": 14,
+      "norm_label": "orden de ejecucion"
+    },
+    {
+      "label": "Fase S2 \u2014 Firestore Rules: Eliminar Bypass Temporal (CRITICAL)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L352",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
+      "community": 11,
+      "norm_label": "fase s2 \u2014 firestore rules: eliminar bypass temporal (critical)"
+    },
+    {
+      "label": "Cambios en `firestore.rules`:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L359",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_cambios_en_firestore_rules",
+      "community": 11,
+      "norm_label": "cambios en `firestore.rules`:"
+    },
+    {
+      "label": "Post-deploy:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L388",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_post_deploy",
+      "community": 11,
+      "norm_label": "post-deploy:"
+    },
+    {
+      "label": "Fase S3 \u2014 Sanitizaci\u00f3n XSS (HIGH)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L394",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
+      "community": 11,
+      "norm_label": "fase s3 \u2014 sanitizacion xss (high)"
+    },
+    {
+      "label": "Instalaci\u00f3n:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L403",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_instalaci\u00f3n",
+      "community": 11,
+      "norm_label": "instalacion:"
+    },
+    {
+      "label": "Archivos a crear: `src/utils/sanitize.js`",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L411",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_archivos_a_crear_src_utils_sanitize_js",
+      "community": 11,
+      "norm_label": "archivos a crear: `src/utils/sanitize.js`"
+    },
+    {
+      "label": "Archivos a modificar:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L429",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_archivos_a_modificar",
+      "community": 11,
+      "norm_label": "archivos a modificar:"
+    },
+    {
+      "label": "Fase S5 \u2014 Refactor de `firestore.js` (MEDIUM)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L443",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "community": 11,
+      "norm_label": "fase s5 \u2014 refactor de `firestore.js` (medium)"
+    },
+    {
+      "label": "Estrategia: Separar por dominio de negocio",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L447",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_estrategia_separar_por_dominio_de_negocio",
+      "community": 11,
+      "norm_label": "estrategia: separar por dominio de negocio"
+    },
+    {
+      "label": "Mapeo de funciones a m\u00f3dulos:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L464",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_mapeo_de_funciones_a_m\u00f3dulos",
+      "community": 11,
+      "norm_label": "mapeo de funciones a modulos:"
+    },
+    {
+      "label": "`firestore.js` como barrel:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L475",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_firestore_js_como_barrel",
+      "community": 11,
+      "norm_label": "`firestore.js` como barrel:"
+    },
+    {
+      "label": "Beneficio: Imports existentes no rompen",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L486",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_beneficio_imports_existentes_no_rompen",
+      "community": 11,
+      "norm_label": "beneficio: imports existentes no rompen"
+    },
+    {
+      "label": "Orden de migraci\u00f3n:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L490",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_orden_de_migraci\u00f3n",
+      "community": 11,
+      "norm_label": "orden de migracion:"
+    },
+    {
+      "label": "Fase S6 \u2014 Eliminar L\u00f3gica Duplicada de Cupones (LOW)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L499",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s6_eliminar_l\u00f3gica_duplicada_de_cupones_low",
+      "community": 11,
+      "norm_label": "fase s6 \u2014 eliminar logica duplicada de cupones (low)"
+    },
+    {
+      "label": "Cambios en `src/store/cartStore.js`:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L513",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_cambios_en_src_store_cartstore_js",
+      "community": 11,
+      "norm_label": "cambios en `src/store/cartstore.js`:"
+    },
+    {
+      "label": "Fase S7 \u2014 \u00cdndices Firestore Compuestos (LOW)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L540",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
+      "community": 11,
+      "norm_label": "fase s7 \u2014 indices firestore compuestos (low)"
+    },
+    {
+      "label": "\u00cdndices a crear en `firestore.indexes.json`:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L544",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_\u00edndices_a_crear_en_firestore_indexes_json",
+      "community": 11,
+      "norm_label": "indices a crear en `firestore.indexes.json`:"
+    },
+    {
+      "label": "Deploy:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L594",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_deploy",
+      "community": 11,
+      "norm_label": "deploy:"
+    },
+    {
+      "label": "Optimizaci\u00f3n posterior (opcional):",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L600",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_optimizaci\u00f3n_posterior_opcional",
+      "community": 11,
+      "norm_label": "optimizacion posterior (opcional):"
+    },
+    {
+      "label": "Fase S8 \u2014 `.env.example` Actualizado (LOW)",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L606",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_fase_s8_env_example_actualizado_low",
+      "community": 11,
+      "norm_label": "fase s8 \u2014 `.env.example` actualizado (low)"
+    },
+    {
+      "label": "Orden de Ejecuci\u00f3n Recomendado",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L623",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n_recomendado",
+      "community": 11,
+      "norm_label": "orden de ejecucion recomendado"
+    },
+    {
+      "label": "Nota de dependencia con PLAN-ZOD:",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L636",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_nota_de_dependencia_con_plan_zod",
+      "community": 11,
+      "norm_label": "nota de dependencia con plan-zod:"
+    },
+    {
+      "label": "Criterios de Aceptaci\u00f3n",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L644",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_criterios_de_aceptaci\u00f3n",
+      "community": 11,
+      "norm_label": "criterios de aceptacion"
+    },
+    {
+      "label": "Relaci\u00f3n con PLAN-ZOD.md",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L663",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_relaci\u00f3n_con_plan_zod_md",
+      "community": 11,
+      "norm_label": "relacion con plan-zod.md"
+    },
+    {
+      "label": "Opini\u00f3n",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L682",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "community": 11,
+      "norm_label": "opinion"
+    },
+    {
+      "label": "\u00bfEs la decisi\u00f3n correcta?",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L684",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_es_la_decisi\u00f3n_correcta",
+      "community": 11,
+      "norm_label": "\u00bfes la decision correcta?"
+    },
+    {
+      "label": "Riesgo a vigilar",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L696",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_riesgo_a_vigilar",
+      "community": 11,
+      "norm_label": "riesgo a vigilar"
+    },
+    {
+      "label": "\u00bfPor qu\u00e9 NO solo email/password para admin?",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L703",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_por_qu\u00e9_no_solo_email_password_para_admin",
+      "community": 11,
+      "norm_label": "\u00bfpor que no solo email/password para admin?"
+    },
+    {
+      "label": "\u00bfPor qu\u00e9 NO Google OAuth para clientes tambi\u00e9n?",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L711",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_por_qu\u00e9_no_google_oauth_para_clientes_tambi\u00e9n",
+      "community": 11,
+      "norm_label": "\u00bfpor que no google oauth para clientes tambien?"
+    },
+    {
+      "label": "Veredicto",
+      "file_type": "document",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L719",
+      "_origin": "ast",
+      "id": "plan_seguridad_y_arquitectura_veredicto",
+      "community": 11,
+      "norm_label": "veredicto"
+    },
+    {
+      "label": "PLAN-ZOD.md",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plan_zod",
+      "community": 13,
+      "norm_label": "plan-zod.md"
+    },
+    {
+      "label": "Plan de Acci\u00f3n: Implementaci\u00f3n de Zod en Missy & Po Pet Shop",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "community": 13,
+      "norm_label": "plan de accion: implementacion de zod en missy & po pet shop"
+    },
+    {
+      "label": "Objetivo",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "plan_zod_objetivo",
+      "community": 13,
+      "norm_label": "objetivo"
+    },
+    {
+      "label": "Fase 0 \u2014 Setup",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "plan_zod_fase_0_setup",
+      "community": 13,
+      "norm_label": "fase 0 \u2014 setup"
+    },
+    {
+      "label": "0.1 Instalar dependencia",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "plan_zod_0_1_instalar_dependencia",
+      "community": 13,
+      "norm_label": "0.1 instalar dependencia"
+    },
+    {
+      "label": "0.2 Crear estructura de schemas",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "plan_zod_0_2_crear_estructura_de_schemas",
+      "community": 13,
+      "norm_label": "0.2 crear estructura de schemas"
+    },
+    {
+      "label": "Fase 1 \u2014 Schemas Base (archivos nuevos)",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "community": 13,
+      "norm_label": "fase 1 \u2014 schemas base (archivos nuevos)"
+    },
+    {
+      "label": "1.1 `src/schemas/product.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "plan_zod_1_1_src_schemas_product_js",
+      "community": 13,
+      "norm_label": "1.1 `src/schemas/product.js`"
+    },
+    {
+      "label": "1.2 `src/schemas/checkout.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "plan_zod_1_2_src_schemas_checkout_js",
+      "community": 13,
+      "norm_label": "1.2 `src/schemas/checkout.js`"
+    },
+    {
+      "label": "1.3 `src/schemas/cart.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L107",
+      "_origin": "ast",
+      "id": "plan_zod_1_3_src_schemas_cart_js",
+      "community": 13,
+      "norm_label": "1.3 `src/schemas/cart.js`"
+    },
+    {
+      "label": "1.4 `src/schemas/coupon.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L161",
+      "_origin": "ast",
+      "id": "plan_zod_1_4_src_schemas_coupon_js",
+      "community": 13,
+      "norm_label": "1.4 `src/schemas/coupon.js`"
+    },
+    {
+      "label": "1.5 `src/schemas/shippingConfig.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L174",
+      "_origin": "ast",
+      "id": "plan_zod_1_5_src_schemas_shippingconfig_js",
+      "community": 13,
+      "norm_label": "1.5 `src/schemas/shippingconfig.js`"
+    },
+    {
+      "label": "1.6 `src/schemas/cajaDiaria.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L189",
+      "_origin": "ast",
+      "id": "plan_zod_1_6_src_schemas_cajadiaria_js",
+      "community": 13,
+      "norm_label": "1.6 `src/schemas/cajadiaria.js`"
+    },
+    {
+      "label": "1.7 `src/schemas/review.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L216",
+      "_origin": "ast",
+      "id": "plan_zod_1_7_src_schemas_review_js",
+      "community": 13,
+      "norm_label": "1.7 `src/schemas/review.js`"
+    },
+    {
+      "label": "1.8 `src/schemas/reclamacion.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L231",
+      "_origin": "ast",
+      "id": "plan_zod_1_8_src_schemas_reclamacion_js",
+      "community": 13,
+      "norm_label": "1.8 `src/schemas/reclamacion.js`"
+    },
+    {
+      "label": "1.9 `src/schemas/payment.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L256",
+      "_origin": "ast",
+      "id": "plan_zod_1_9_src_schemas_payment_js",
+      "community": 13,
+      "norm_label": "1.9 `src/schemas/payment.js`"
+    },
+    {
+      "label": "1.10 `src/schemas/index.js` (barrel)",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L269",
+      "_origin": "ast",
+      "id": "plan_zod_1_10_src_schemas_index_js_barrel",
+      "community": 13,
+      "norm_label": "1.10 `src/schemas/index.js` (barrel)"
+    },
+    {
+      "label": "Fase 2 \u2014 Helper de Utilidad",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L285",
+      "_origin": "ast",
+      "id": "plan_zod_fase_2_helper_de_utilidad",
+      "community": 13,
+      "norm_label": "fase 2 \u2014 helper de utilidad"
+    },
+    {
+      "label": "2.1 `src/schemas/validate.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L287",
+      "_origin": "ast",
+      "id": "plan_zod_2_1_src_schemas_validate_js",
+      "community": 13,
+      "norm_label": "2.1 `src/schemas/validate.js`"
+    },
+    {
+      "label": "Fase 3 \u2014 Integraci\u00f3n por Archivo",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L327",
+      "_origin": "ast",
+      "id": "plan_zod_fase_3_integraci\u00f3n_por_archivo",
+      "community": 13,
+      "norm_label": "fase 3 \u2014 integracion por archivo"
+    },
+    {
+      "label": "Orden de implementaci\u00f3n (de menor a mayor riesgo de regressi\u00f3n):",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L329",
+      "_origin": "ast",
+      "id": "plan_zod_orden_de_implementaci\u00f3n_de_menor_a_mayor_riesgo_de_regressi\u00f3n",
+      "community": 13,
+      "norm_label": "orden de implementacion (de menor a mayor riesgo de regression):"
+    },
+    {
+      "label": "Fase 4 \u2014 Tests",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L345",
+      "_origin": "ast",
+      "id": "plan_zod_fase_4_tests",
+      "community": 13,
+      "norm_label": "fase 4 \u2014 tests"
+    },
+    {
+      "label": "4.1 Archivo: `src/schemas/__tests__/schemas.test.js`",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L347",
+      "_origin": "ast",
+      "id": "plan_zod_4_1_archivo_src_schemas_tests_schemas_test_js",
+      "community": 13,
+      "norm_label": "4.1 archivo: `src/schemas/__tests__/schemas.test.js`"
+    },
+    {
+      "label": "4.2 Verificar que los tests existentes pasan",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L394",
+      "_origin": "ast",
+      "id": "plan_zod_4_2_verificar_que_los_tests_existentes_pasan",
+      "community": 13,
+      "norm_label": "4.2 verificar que los tests existentes pasan"
+    },
+    {
+      "label": "Fase 5 \u2014 Limpieza",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L404",
+      "_origin": "ast",
+      "id": "plan_zod_fase_5_limpieza",
+      "community": 13,
+      "norm_label": "fase 5 \u2014 limpieza"
+    },
+    {
+      "label": "5.1 Eliminar c\u00f3digo de validaci\u00f3n redundante",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L406",
+      "_origin": "ast",
+      "id": "plan_zod_5_1_eliminar_c\u00f3digo_de_validaci\u00f3n_redundante",
+      "community": 13,
+      "norm_label": "5.1 eliminar codigo de validacion redundante"
+    },
+    {
+      "label": "5.2 Opcional: Eliminar fallback local de cupones",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L420",
+      "_origin": "ast",
+      "id": "plan_zod_5_2_opcional_eliminar_fallback_local_de_cupones",
+      "community": 13,
+      "norm_label": "5.2 opcional: eliminar fallback local de cupones"
+    },
+    {
+      "label": "Resumen de Entregables",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L426",
+      "_origin": "ast",
+      "id": "plan_zod_resumen_de_entregables",
+      "community": 13,
+      "norm_label": "resumen de entregables"
+    },
+    {
+      "label": "Criterios de Aceptaci\u00f3n",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L437",
+      "_origin": "ast",
+      "id": "plan_zod_criterios_de_aceptaci\u00f3n",
+      "community": 13,
+      "norm_label": "criterios de aceptacion"
+    },
+    {
+      "label": "Estimaci\u00f3n",
+      "file_type": "document",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L446",
+      "_origin": "ast",
+      "id": "plan_zod_estimaci\u00f3n",
+      "community": 13,
+      "norm_label": "estimacion"
     },
     {
       "label": "README.md",
@@ -4592,6 +5732,16 @@
       "source_file": "package.json",
       "source_location": "L26",
       "weight": 1.0,
+      "source": "package_dependencies",
+      "target": "package_dependencies_zod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "package.json",
+      "source_location": "L26",
+      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "package_dependencies",
       "target": "package_dependencies_zustand"
@@ -5698,6 +6848,28 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/AdminApp.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminapp",
+      "target": "admin_adminloginpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/admin/AdminApp.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminapp",
+      "target": "admin_adminloginpage_adminloginpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L4",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5919,6 +7091,39 @@
       "confidence_score": 1.0,
       "source": "admin_productoformmodal",
       "target": "admin_productoformmodal_productovacio"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/admin/ProductoFormModal.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_productoformmodal",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/admin/ProductoFormModal.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_productoformmodal",
+      "target": "schemas_product_productschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/admin/ProductoFormModal.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_productoformmodal",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -6499,6 +7704,39 @@
       "confidence_score": 1.0,
       "source": "checkout_paymentqrculqi",
       "target": "checkout_paymentqrculqi_paymentqrculqi"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/checkout/PaymentQrCulqi.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "checkout_paymentqrculqi",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/checkout/PaymentQrCulqi.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "checkout_paymentqrculqi",
+      "target": "schemas_payment_yapeplinschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/checkout/PaymentQrCulqi.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "checkout_paymentqrculqi",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -7185,6 +8423,39 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "legal_reclamacionesform",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "legal_reclamacionesform",
+      "target": "schemas_reclamacion_reclamacionschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "legal_reclamacionesform",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
       "source_location": "L3",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7725,6 +8996,39 @@
       "target": "pages_checkoutpage_lima_regions"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/CheckoutPage.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "pages_checkoutpage",
+      "target": "schemas_checkout_checkoutschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/CheckoutPage.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "pages_checkoutpage",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/CheckoutPage.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "pages_checkoutpage",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -7881,6 +9185,61 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "pages_loginpage",
+      "target": "services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "pages_loginpage",
+      "target": "services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "pages_loginpage",
+      "target": "services_auth_loginwithemail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "pages_loginpage",
+      "target": "services_auth_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "pages_loginpage",
+      "target": "services_auth_registerwithemail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/LoginPage.jsx",
       "source_location": "L3",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7980,6 +9339,39 @@
       "confidence_score": 1.0,
       "source": "pages_productpage",
       "target": "pages_productpage_staricon"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/ProductPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "pages_productpage",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/ProductPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "pages_productpage",
+      "target": "schemas_review_reviewschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/ProductPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "pages_productpage",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -8184,6 +9576,50 @@
       "source_file": "src/pages/admin/AdminLayout.jsx",
       "source_location": "L5",
       "weight": 1.0,
+      "source": "admin_adminlayout",
+      "target": "services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLayout.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_adminlayout",
+      "target": "services_auth_checkisadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLayout.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_adminlayout",
+      "target": "services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLayout.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_adminlayout",
+      "target": "services_auth_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLayout.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "admin_adminlayout",
       "target": "services_firebase"
@@ -8198,6 +9634,71 @@
       "confidence_score": 1.0,
       "source": "admin_adminlayout",
       "target": "services_firebase_auth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "admin_adminloginpage",
+      "target": "admin_adminloginpage_adminloginpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminloginpage",
+      "target": "services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminloginpage",
+      "target": "services_auth_checkisadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminloginpage",
+      "target": "services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminloginpage",
+      "target": "services_auth_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/AdminLoginPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "admin_adminloginpage",
+      "target": "services_auth_signinwithgoogle",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8250,6 +9751,61 @@
       "confidence_score": 1.0,
       "source": "admin_cajadiaria",
       "target": "admin_cajadiaria_cajadiaria"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/CajaDiaria.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_cajadiaria",
+      "target": "schemas_cajadiaria_aperturacajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/CajaDiaria.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_cajadiaria",
+      "target": "schemas_cajadiaria_cierrecajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/CajaDiaria.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_cajadiaria",
+      "target": "schemas_cajadiaria_movimientoschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/CajaDiaria.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_cajadiaria",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/CajaDiaria.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "admin_cajadiaria",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -8359,6 +9915,50 @@
       "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
       "target": "admin_configuracionenvioscupones_configuracionenvioscupones"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "admin_configuracionenvioscupones",
+      "target": "schemas_coupon_couponschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "admin_configuracionenvioscupones",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "admin_configuracionenvioscupones",
+      "target": "schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "admin_configuracionenvioscupones",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -9102,9 +10702,9 @@
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/tienda.astro",
+      "confidence_score": 1.0,
       "source": "pages_tienda",
-      "target": "c_mis_proyectos_missy_po_src_services_firestore_ts",
-      "confidence_score": 1.0
+      "target": "c_mis_proyectos_missy_po_src_services_firestore_ts"
     },
     {
       "relation": "imports_from",
@@ -9113,9 +10713,9 @@
       "source_file": "src/pages/tienda.astro",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_tienda",
-      "target": "services_firestore",
-      "confidence_score": 1.0
+      "target": "services_firestore"
     },
     {
       "relation": "imports",
@@ -9124,8 +10724,745 @@
       "source_file": "src/pages/tienda.astro",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_tienda",
-      "target": "services_firestore_obtenerproductos",
+      "target": "services_firestore_obtenerproductos"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_cajadiaria_aperturacajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_cajadiaria_cierrecajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_cajadiaria_movimientoschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_cart_cartitemschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_cart_cartstateschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_checkout_checkoutschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_coupon_couponschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_payment_yapeplinschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_product_productschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_reclamacion_reclamacionschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_review_reviewschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/schemas.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "tests_schemas_test",
+      "target": "schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_cajadiaria",
+      "target": "schemas_cajadiaria_aperturacajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "schemas_cajadiaria",
+      "target": "schemas_cajadiaria_cierrecajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/cajaDiaria.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "schemas_cajadiaria",
+      "target": "schemas_cajadiaria_movimientoschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cajadiaria",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cajadiaria_aperturacajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cajadiaria_movimientoschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/firestore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_firestore",
+      "target": "schemas_cajadiaria_movimientoschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cajadiaria_cierrecajaschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/cart.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_cart",
+      "target": "schemas_cart_cartitemschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/cart.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "schemas_cart",
+      "target": "schemas_cart_cartstateschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cart",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cart_cartitemschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_cart_cartstateschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/cartStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "store_cartstore",
+      "target": "schemas_cart_cartstateschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/checkout.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_checkout",
+      "target": "schemas_checkout_checkoutschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_checkout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_checkout_checkoutschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/coupon.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_coupon",
+      "target": "schemas_coupon_couponschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_coupon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_coupon_couponschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/firestore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_firestore",
+      "target": "schemas_coupon_couponschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_payment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_payment_yapeplinschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_product",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_product_productschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_product_varianteschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_reclamacion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_reclamacion_reclamacionschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_review_reviewschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_shippingconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "schemas_index",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/firestore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_firestore",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/cartStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "store_cartstore",
+      "target": "schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/payment.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_payment",
+      "target": "schemas_payment_yapeplinschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/product.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "schemas_product",
+      "target": "schemas_product_productschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/product.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_product",
+      "target": "schemas_product_varianteschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/firestore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_firestore",
+      "target": "schemas_product_productschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/reclamacion.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_reclamacion",
+      "target": "schemas_reclamacion_reclamacionschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/review.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_review",
+      "target": "schemas_review_reviewschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/firestore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_firestore",
+      "target": "schemas_review_reviewschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/shippingConfig.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "schemas_shippingconfig",
+      "target": "schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/firestore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "services_firestore",
+      "target": "schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/validate.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "schemas_validate",
+      "target": "schemas_validate_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_checkisadmin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_googleprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_loginwithemail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_registerwithemail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_resetpassword",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_auth_signinwithgoogle",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_firebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/auth.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_auth",
+      "target": "services_firebase_auth",
       "confidence_score": 1.0
     },
     {
@@ -9683,6 +12020,746 @@
       "confidence_score": 1.0,
       "source": "ai_context_missy_po_pet_shop_ai_context",
       "target": "ai_context_stack_actual"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura",
+      "target": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L644",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_criterios_de_aceptaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L352",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L394",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L443",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L499",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s6_eliminar_l\u00f3gica_duplicada_de_cupones_low",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L540",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L606",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_fase_s8_env_example_actualizado_low",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L682",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L623",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n_recomendado",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L663",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_relaci\u00f3n_con_plan_zod_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
+      "target": "plan_seguridad_y_arquitectura_tabla_de_hallazgos_y_acciones",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L324",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "target": "plan_seguridad_y_arquitectura_archivos_modificados_resumidos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "target": "plan_seguridad_y_arquitectura_arquitectura_propuesta_dos_flujos_de_auth_separados",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "target": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L336",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "target": "plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "target": "plan_seguridad_y_arquitectura_prerequisito_custom_claim_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
+      "target": "plan_seguridad_y_arquitectura_problema_actual",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "target": "plan_seguridad_y_arquitectura_1_nuevo_archivo_src_services_auth_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L163",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "target": "plan_seguridad_y_arquitectura_2_nuevo_archivo_src_pages_adminloginpage_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L244",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "target": "plan_seguridad_y_arquitectura_3_modificar_src_pages_loginpage_jsx_solo_clientes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L256",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "target": "plan_seguridad_y_arquitectura_4_modificar_src_pages_admin_adminlayout_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L294",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "target": "plan_seguridad_y_arquitectura_5_actualizar_rutas_en_src_pages_admin_all_astro_y_src_components_admin_adminapp_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L310",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
+      "target": "plan_seguridad_y_arquitectura_6_actualizar_src_pages_admin_adminlayout_jsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L359",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
+      "target": "plan_seguridad_y_arquitectura_cambios_en_firestore_rules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L388",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
+      "target": "plan_seguridad_y_arquitectura_post_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L411",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
+      "target": "plan_seguridad_y_arquitectura_archivos_a_crear_src_utils_sanitize_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L429",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
+      "target": "plan_seguridad_y_arquitectura_archivos_a_modificar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L403",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
+      "target": "plan_seguridad_y_arquitectura_instalaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L486",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "target": "plan_seguridad_y_arquitectura_beneficio_imports_existentes_no_rompen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L447",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "target": "plan_seguridad_y_arquitectura_estrategia_separar_por_dominio_de_negocio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L475",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "target": "plan_seguridad_y_arquitectura_firestore_js_como_barrel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L464",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "target": "plan_seguridad_y_arquitectura_mapeo_de_funciones_a_m\u00f3dulos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L490",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
+      "target": "plan_seguridad_y_arquitectura_orden_de_migraci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L513",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s6_eliminar_l\u00f3gica_duplicada_de_cupones_low",
+      "target": "plan_seguridad_y_arquitectura_cambios_en_src_store_cartstore_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L594",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
+      "target": "plan_seguridad_y_arquitectura_deploy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L600",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
+      "target": "plan_seguridad_y_arquitectura_optimizaci\u00f3n_posterior_opcional",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L544",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
+      "target": "plan_seguridad_y_arquitectura_\u00edndices_a_crear_en_firestore_indexes_json",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L636",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n_recomendado",
+      "target": "plan_seguridad_y_arquitectura_nota_de_dependencia_con_plan_zod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L684",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "target": "plan_seguridad_y_arquitectura_es_la_decisi\u00f3n_correcta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L711",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "target": "plan_seguridad_y_arquitectura_por_qu\u00e9_no_google_oauth_para_clientes_tambi\u00e9n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L703",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "target": "plan_seguridad_y_arquitectura_por_qu\u00e9_no_solo_email_password_para_admin",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L696",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "target": "plan_seguridad_y_arquitectura_riesgo_a_vigilar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
+      "source_location": "L719",
+      "weight": 1.0,
+      "source": "plan_seguridad_y_arquitectura_opini\u00f3n",
+      "target": "plan_seguridad_y_arquitectura_veredicto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "plan_zod",
+      "target": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L437",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_criterios_de_aceptaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L446",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_estimaci\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_fase_0_setup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L285",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_fase_2_helper_de_utilidad",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L327",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_fase_3_integraci\u00f3n_por_archivo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L345",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_fase_4_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L404",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_fase_5_limpieza",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_objetivo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L426",
+      "weight": 1.0,
+      "source": "plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
+      "target": "plan_zod_resumen_de_entregables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "plan_zod_fase_0_setup",
+      "target": "plan_zod_0_1_instalar_dependencia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "plan_zod_fase_0_setup",
+      "target": "plan_zod_0_2_crear_estructura_de_schemas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L269",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_10_src_schemas_index_js_barrel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_1_src_schemas_product_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_2_src_schemas_checkout_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L107",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_3_src_schemas_cart_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L161",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_4_src_schemas_coupon_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L174",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_5_src_schemas_shippingconfig_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L189",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_6_src_schemas_cajadiaria_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L216",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_7_src_schemas_review_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L231",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_8_src_schemas_reclamacion_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L256",
+      "weight": 1.0,
+      "source": "plan_zod_fase_1_schemas_base_archivos_nuevos",
+      "target": "plan_zod_1_9_src_schemas_payment_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L287",
+      "weight": 1.0,
+      "source": "plan_zod_fase_2_helper_de_utilidad",
+      "target": "plan_zod_2_1_src_schemas_validate_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L329",
+      "weight": 1.0,
+      "source": "plan_zod_fase_3_integraci\u00f3n_por_archivo",
+      "target": "plan_zod_orden_de_implementaci\u00f3n_de_menor_a_mayor_riesgo_de_regressi\u00f3n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L347",
+      "weight": 1.0,
+      "source": "plan_zod_fase_4_tests",
+      "target": "plan_zod_4_1_archivo_src_schemas_tests_schemas_test_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L394",
+      "weight": 1.0,
+      "source": "plan_zod_fase_4_tests",
+      "target": "plan_zod_4_2_verificar_que_los_tests_existentes_pasan",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L406",
+      "weight": 1.0,
+      "source": "plan_zod_fase_5_limpieza",
+      "target": "plan_zod_5_1_eliminar_c\u00f3digo_de_validaci\u00f3n_redundante",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PLAN-ZOD.md",
+      "source_location": "L420",
+      "weight": 1.0,
+      "source": "plan_zod_fase_5_limpieza",
+      "target": "plan_zod_5_2_opcional_eliminar_fallback_local_de_cupones",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10616,5 +13693,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2d6dfad13a19a2938d887486f97ef2c65503154d"
+  "built_at_commit": "f554b40054c4f96286109f9bfe351d6a691e63b6"
 }

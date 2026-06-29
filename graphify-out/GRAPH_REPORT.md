@@ -1,16 +1,16 @@
-# Graph Report - missy-po  (2026-06-27)
+# Graph Report - missy-po  (2026-06-29)
 
 ## Corpus Check
-- 92 files · ~247,458 words
+- 108 files · ~256,371 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 434 nodes · 609 edges · 31 communities (28 shown, 3 thin omitted)
+- 548 nodes · 794 edges · 38 communities (30 shown, 8 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2d6dfad1`
+- Built from commit: `f554b400`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,6 +31,7 @@
 - [[_COMMUNITY_Community 13|Community 13]]
 - [[_COMMUNITY_Community 14|Community 14]]
 - [[_COMMUNITY_Community 15|Community 15]]
+- [[_COMMUNITY_Community 16|Community 16]]
 - [[_COMMUNITY_Community 17|Community 17]]
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 20|Community 20]]
@@ -39,18 +40,24 @@
 - [[_COMMUNITY_Community 23|Community 23]]
 - [[_COMMUNITY_Community 24|Community 24]]
 - [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 32|Community 32]]
+- [[_COMMUNITY_Community 33|Community 33]]
+- [[_COMMUNITY_Community 34|Community 34]]
+- [[_COMMUNITY_Community 35|Community 35]]
+- [[_COMMUNITY_Community 36|Community 36]]
+- [[_COMMUNITY_Community 37|Community 37]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `../layouts/Layout.astro` - 29 edges
 2. `useCartStore` - 19 edges
 3. `🧩 COMPONENTES UI — ESPECIFICACIONES EXACTAS` - 17 edges
-4. `3. BUGS CRÍTICOS ENCONTRADOS` - 13 edges
-5. `🐾 MISSY & PO PET SHOP — MASTER CONTEXT FILE` - 12 edges
-6. `useCatalogStore` - 11 edges
-7. `scripts` - 9 edges
-8. `🐾 DIAGNÓSTICO TÉCNICO — Missy & Po Pet Shop` - 9 edges
-9. `Plan de Implementación: Checkout y Pasarelas de Pago (Fase 4)` - 7 edges
-10. `Missy & Po Pet Shop — AI Context` - 6 edges
+4. `Plan de Acción: Seguridad, Arquitectura y Deuda Técnica — Missy & Po Pet Shop` - 13 edges
+5. `3. BUGS CRÍTICOS ENCONTRADOS` - 13 edges
+6. `🐾 MISSY & PO PET SHOP — MASTER CONTEXT FILE` - 12 edges
+7. `useCatalogStore` - 11 edges
+8. `Plan de Acción: Implementación de Zod en Missy & Po Pet Shop` - 11 edges
+9. `Fase 1 — Schemas Base (archivos nuevos)` - 11 edges
+10. `scripts` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `CartDrawerItem()` --calls--> `useCartStore`  [EXTRACTED]
@@ -59,43 +66,43 @@
   src/components/cart/CartDrawer.jsx → src/store/catalogStore.js
 - `ProductCard()` --calls--> `useCartStore`  [EXTRACTED]
   src/components/catalog/ProductCard.jsx → src/store/cartStore.js
-- `CheckoutPage()` --calls--> `useCartStore`  [EXTRACTED]
-  src/pages/CheckoutPage.jsx → src/store/cartStore.js
 - `ProductPage()` --calls--> `useCartStore`  [EXTRACTED]
   src/pages/ProductPage.jsx → src/store/cartStore.js
+- `getStaticPaths()` --calls--> `obtenerTodosProductosAdmin()`  [EXTRACTED]
+  src/pages/producto/[slug].astro → src/services/firestore.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (31 total, 3 thin omitted)
+## Communities (38 total, 8 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.05
-Nodes (49): AdminLayout(), CajaDiaria(), ConfiguracionEnviosCupones(), CVRMDashboard(), TABS, InventarioStock(), PedidosDashboard(), CATEGORIAS (+41 more)
+Nodes (47): AdminLayout(), CajaDiaria(), ConfiguracionEnviosCupones(), InventarioStock(), PedidosDashboard(), CATEGORIAS, ProductoFormModal(), productoVacio (+39 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.12
-Nodes (15): ./StorePage.jsx, ../services/firestore.js, MOCK_PRODUCTS, ProductGrid(), CTABanner(), LiveSearch(), AnimatedTitle(), HeroSlider() (+7 more)
+Cohesion: 0.08
+Nodes (22): ./StorePage.jsx, ../services/firestore.js, PriceDisplay(), ProductCard(), MOCK_PRODUCTS, ProductGrid(), SaleBadge(), CTABanner() (+14 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.07
-Nodes (29): devDependencies, autoprefixer, eslint, eslint-plugin-react, eslint-plugin-react-hooks, eslint-plugin-react-refresh, jsdom, postcss (+21 more)
+Cohesion: 0.05
+Nodes (41): dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react, react-dom (+33 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.29
-Nodes (3): app, db, firebaseConfig
+Cohesion: 0.07
+Nodes (24): AdminLoginPage(), CVRMDashboard(), TABS, firebase/firestore, LoginPage(), OrderConfirmationPage(), app, db (+16 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.06
-Nodes (23): ../assets/club/cumple.jpeg, ../assets/club/descuentos.jpeg, ../assets/club/enviorapido.jpeg, ../assets/club/exclusivo.jpeg, ../assets/club/Mypo_puntos.jpeg, ../assets/club/youtube.jpeg, ../assets/logoheader.jpeg, ../components/cart/CartDrawer (+15 more)
+Cohesion: 0.14
+Nodes (9): ../assets/logoheader.jpeg, ../components/cart/CartDrawer, ../components/layout/Footer, ../components/layout/Navbar, ../components/shared/CartFloat, ../components/shared/WhatsAppFloat, ./CartPage.jsx, ./NotFoundPage.jsx (+1 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.06
 Nodes (31): 1. Análisis General de la Aplicación, 2. Mapa de Rutas y Páginas, 3. BUGS CRÍTICOS ENCONTRADOS, 4. Funcionalidades Incompletas / Pendientes en el Admin, 5. Análisis del Flujo de Carrito y Checkout, 6. Análisis de la Calidad del Código, 7. Plan de Corrección Priorizado, 8. Recomendaciones de Arquitectura a Mediano Plazo (+23 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.08
-Nodes (16): CartDrawer(), CartDrawerItem(), CartHoverPopup(), MARQUEE_ITEMS, MarqueeBanner(), Footer(), FOOTER_LINKS, Layout() (+8 more)
+Cohesion: 0.07
+Nodes (17): CartDrawer(), CartDrawerItem(), CartHoverPopup(), MARQUEE_ITEMS, MarqueeBanner(), Footer(), FOOTER_LINKS, Layout() (+9 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.05
@@ -106,32 +113,36 @@ Cohesion: 0.18
 Nodes (8): ../../data/blog-posts, ../data/blog-posts.js, articulosBlog, articulos, categorias, emptyState, form, searchInput
 
 ### Community 9 - "Community 9"
-Cohesion: 0.22
-Nodes (7): ./CheckoutPage.jsx, PaymentMpBrick(), PaymentQrCulqi(), AREQUIPA_DISTRICTS, CheckoutPage(), LIMA_REGIONS, crearPedidoConTransaccion()
+Cohesion: 0.12
+Nodes (19): PaymentMpBrick(), PaymentQrCulqi(), AREQUIPA_DISTRICTS, LIMA_REGIONS, AperturaCajaSchema, CierreCajaSchema, MovimientoSchema, CartItemSchema (+11 more)
 
 ### Community 10 - "Community 10"
 Cohesion: 0.21
 Nodes (10): app, cleanVal(), DATABASE_SQL, db, firebaseConfig, parsePHPSerialize(), parseSqlValues(), runMigration() (+2 more)
 
 ### Community 11 - "Community 11"
-Cohesion: 0.18
-Nodes (11): dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react, react-dom (+3 more)
+Cohesion: 0.06
+Nodes (32): Archivos a crear: `src/utils/sanitize.js`, Archivos a modificar:, Beneficio: Imports existentes no rompen, Cambios en `firestore.rules`:, Cambios en `src/store/cartStore.js`:, Criterios de Aceptación, Deploy:, ¿Es la decisión correcta? (+24 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.15
-Nodes (6): app, db, firebaseConfig, app, db, firebaseConfig
-
-### Community 13 - "Community 13"
-Cohesion: 0.14
-Nodes (12): ../../pages/ProductPage.jsx, ../../services/firestore, PriceDisplay(), ProductCard(), SaleBadge(), cleanDescription(), ProductPage(), getStaticPaths() (+4 more)
-
-### Community 14 - "Community 14"
 Cohesion: 0.33
 Nodes (3): app, db, firebaseConfig
+
+### Community 13 - "Community 13"
+Cohesion: 0.07
+Nodes (29): 0.1 Instalar dependencia, 0.2 Crear estructura de schemas, 1.10 `src/schemas/index.js` (barrel), 1.1 `src/schemas/product.js`, 1.2 `src/schemas/checkout.js`, 1.3 `src/schemas/cart.js`, 1.4 `src/schemas/coupon.js`, 1.5 `src/schemas/shippingConfig.js` (+21 more)
+
+### Community 14 - "Community 14"
+Cohesion: 0.15
+Nodes (13): 1. Nuevo archivo: `src/services/auth.js`, 2. Nuevo archivo: `src/pages/AdminLoginPage.jsx`, 3. Modificar `src/pages/LoginPage.jsx` — Solo clientes, 4. Modificar `src/pages/admin/AdminLayout.jsx`, 5. Actualizar rutas en `src/pages/admin/[...all].astro` y `src/components/admin/AdminApp.jsx`, 6. Actualizar `src/pages/admin/AdminLayout.jsx`, Archivos modificados/resumidos, Arquitectura propuesta: Dos flujos de auth separados (+5 more)
 
 ### Community 15 - "Community 15"
 Cohesion: 0.33
 Nodes (3): app, db, firebaseConfig
+
+### Community 16 - "Community 16"
+Cohesion: 0.22
+Nodes (7): ../assets/club/cumple.jpeg, ../assets/club/descuentos.jpeg, ../assets/club/enviorapido.jpeg, ../assets/club/exclusivo.jpeg, ../assets/club/Mypo_puntos.jpeg, ../assets/club/youtube.jpeg, ../services/firebase
 
 ### Community 17 - "Community 17"
 Cohesion: 0.40
@@ -153,25 +164,29 @@ Nodes (6): Archivos Creados / Modificados, Decisiones Técnicas Tomadas, Estado 
 Cohesion: 0.40
 Nodes (4): ¿Cómo usarlas en páginas Astro?, Estructura de carpetas, Naming convention, 📁 src/assets — Imágenes Optimizadas por Astro
 
+### Community 32 - "Community 32"
+Cohesion: 0.50
+Nodes (3): episodios, featuredVideo, string
+
 ## Knowledge Gaps
-- **182 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+177 more)
+- **241 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+236 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 0`, `Community 1`, `Community 6`, `Community 8`, `Community 9`, `Community 13`?**
-  _High betweenness centrality (0.120) - this node is a cross-community bridge._
-- **Why does `useCartStore` connect `Community 6` to `Community 9`, `Community 13`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `useCatalogStore` connect `Community 1` to `Community 13`, `Community 6`?**
+- **Why does `../layouts/Layout.astro` connect `Community 4` to `Community 0`, `Community 33`, `Community 32`, `Community 35`, `Community 36`, `Community 37`, `Community 6`, `Community 34`, `Community 8`, `Community 1`, `Community 16`?**
+  _High betweenness centrality (0.084) - this node is a cross-community bridge._
+- **Why does `useCartStore` connect `Community 6` to `Community 1`, `Community 9`?**
+  _High betweenness centrality (0.014) - this node is a cross-community bridge._
+- **Why does `Plan de Acción: Seguridad, Arquitectura y Deuda Técnica — Missy & Po Pet Shop` connect `Community 11` to `Community 14`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _182 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _241 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.052313883299798795 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.1164021164021164 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07862679955703211 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.047619047619047616 - nodes in this community are weakly interconnected._
