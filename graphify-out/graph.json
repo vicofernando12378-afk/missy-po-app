@@ -3211,7 +3211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_carrito",
-      "community": 8,
+      "community": 4,
       "norm_label": "carrito.astro"
     },
     {
@@ -3221,7 +3221,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_cartpage_tsx",
-      "community": 8,
+      "community": 4,
       "norm_label": "./cartpage.jsx"
     },
     {
@@ -3231,7 +3231,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkout",
-      "community": 4,
+      "community": 8,
       "norm_label": "checkout.astro"
     },
     {
@@ -3241,7 +3241,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 4,
+      "community": 8,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -3321,7 +3321,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firebase",
-      "community": 35,
+      "community": 2,
       "norm_label": "../services/firebase"
     },
     {
@@ -7315,7 +7315,7 @@
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_firebase",
-      "target": "src_services_firebase",
+      "target": "c_mis_proyectos_missy_po_src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -17929,5 +17929,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "87c0aab25efa4b69e5408aefc2ba9a4b4a8d184b"
+  "built_at_commit": "9a6a277cb9efbd621290d1a7f1d926c1d1c8a9a0"
 }

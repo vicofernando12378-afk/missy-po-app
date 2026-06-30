@@ -835,8 +835,8 @@
     "semantic_hash": ""
   },
   "src/services/userProfile.js": {
-    "mtime": 1782793504.3371272,
-    "ast_hash": "187c4a8555d683b7bcd56dafbc31dee4",
+    "mtime": 1782793949.5845962,
+    "ast_hash": "7ac286b72b91e514c5a18526f6052773",
     "semantic_hash": ""
   },
   "src/store/__tests__/userStore.test.js": {

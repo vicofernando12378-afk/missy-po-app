@@ -1,7 +1,7 @@
 # Graph Report - missy-po  (2026-06-29)
 
 ## Corpus Check
-- 161 files · ~272,229 words
+- 161 files · ~272,344 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `87c0aab2`
+- Built from commit: `9a6a277c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -100,7 +100,7 @@ Nodes (26): firebase/firestore, AddressForm(), OrderTimeline(), TIMELINE_STEPS, 
 
 ### Community 2 - "Community 2"
 Cohesion: 0.05
-Nodes (41): dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react, react-dom (+33 more)
+Nodes (42): ../services/firebase, dependencies, astro, @astrojs/react, firebase, html2canvas, jspdf, react (+34 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.11
@@ -116,7 +116,7 @@ Nodes (37): 10. PRODUCT CARD (Tarjeta de producto), 11. PRODUCT DETAIL PAGE (Fic
 
 ### Community 8 - "Community 8"
 Cohesion: 0.12
-Nodes (10): ../assets/logoheader.jpeg, ../components/cart/CartDrawer, ../components/layout/Footer, ../components/layout/Navbar, ../components/shared/CartFloat, ../components/shared/WhatsAppFloat, ./AccountPage.jsx, ./CartPage.jsx (+2 more)
+Nodes (10): ../assets/logoheader.jpeg, ../components/cart/CartDrawer, ../components/layout/Footer, ../components/layout/Navbar, ../components/shared/CartFloat, ../components/shared/WhatsAppFloat, ./AccountPage.jsx, ./CheckoutPage.jsx (+2 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.07
@@ -175,8 +175,8 @@ Cohesion: 0.12
 Nodes (16): 1.1 — Separar `firestore.js` en módulos domain-oriented, 1.2 — Descomponer `CheckoutPage.jsx` en componentes y hooks, 1.3 — Code splitting con React.lazy para rutas admin, 2.1 — Extraer sidebar admin reutilizable, 2.2 — Limpiar dynamic imports en cartStore, 2.3 — Unificar campo de estado en pedidos, 2.4 — Mapeo de categorías desde Firestore, 3.1 — Extraer constantes hardcodeadas de CheckoutPage (+8 more)
 
 ### Community 35 - "Community 35"
-Cohesion: 0.22
-Nodes (7): ../assets/club/cumple.jpeg, ../assets/club/descuentos.jpeg, ../assets/club/enviorapido.jpeg, ../assets/club/exclusivo.jpeg, ../assets/club/Mypo_puntos.jpeg, ../assets/club/youtube.jpeg, ../services/firebase
+Cohesion: 0.25
+Nodes (6): ../assets/club/cumple.jpeg, ../assets/club/descuentos.jpeg, ../assets/club/enviorapido.jpeg, ../assets/club/exclusivo.jpeg, ../assets/club/Mypo_puntos.jpeg, ../assets/club/youtube.jpeg
 
 ### Community 37 - "Community 37"
 Cohesion: 0.08
@@ -211,9 +211,7 @@ Nodes (24): CATEGORIAS, ProductoFormModal(), productoVacio, TABS, ESTADO_CFG, ES
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `../layouts/Layout.astro` connect `Community 8` to `Community 0`, `Community 33`, `Community 35`, `Community 4`, `Community 37`, `Community 40`, `Community 9`, `Community 41`, `Community 42`, `Community 12`, `Community 19`?**
-  _High betweenness centrality (0.097) - this node is a cross-community bridge._
-- **Why does `firebase` connect `Community 2` to `Community 46`?**
-  _High betweenness centrality (0.074) - this node is a cross-community bridge._
+  _High betweenness centrality (0.120) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
   _284 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
@@ -221,6 +219,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.11794871794871795 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.047619047619047616 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
   _Cohesion score 0.10887096774193548 - nodes in this community are weakly interconnected._
+- **Should `Community 5` be split into smaller, more focused modules?**
+  _Cohesion score 0.0625 - nodes in this community are weakly interconnected._

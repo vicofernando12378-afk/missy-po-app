@@ -209,31 +209,60 @@ export async function removePet(uid, index) {
 // ── OBTENER PEDIDOS POR USUARIO ─────────────────────────────
 export async function getOrdersByUser(uid, email, { limite = 20 } = {}) {
   try {
-    let qFilter
+    let ordersUid = []
+    let ordersEmail = []
+
+    // 1. Consulta por UID
+    const qUid = query(
+      collection(db, 'myp_pedidos'),
+      where('userId', '==', uid)
+    )
+    const snapUid = await getDocs(qUid)
+    ordersUid = snapUid.docs.map(d => ({ id: d.id, ...d.data() }))
+
+    // 2. Consulta por Email (si se proporciona)
     if (email) {
-      qFilter = or(
-        where('userId', '==', uid),
+      const qEmail = query(
+        collection(db, 'myp_pedidos'),
         where('cliente.email', '==', email.trim().toLowerCase())
       )
-    } else {
-      qFilter = where('userId', '==', uid)
+      const snapEmail = await getDocs(qEmail)
+      ordersEmail = snapEmail.docs.map(d => ({ id: d.id, ...d.data() }))
     }
 
-    const q = query(
-      collection(db, 'myp_pedidos'),
-      qFilter,
-      orderBy('creado_en', 'desc'),
-      firestoreLimit(limite)
-    )
-    const snap = await getDocs(q)
-    return snap.docs.map(d => {
-      const data = d.data()
-      return {
-        id: d.id,
-        ...data,
-        creado_en: data.creado_en?.toDate ? data.creado_en.toDate() : new Date(data.creado_en)
-      }
+    // 3. Unificar y deduplicar en memoria
+    const merged = [...ordersUid, ...ordersEmail]
+    const uniqueMap = new Map()
+    merged.forEach(item => {
+      uniqueMap.set(item.id, item)
     })
+
+    const uniqueOrders = Array.from(uniqueMap.values())
+
+    // 4. Ordenar descendente por fecha en el cliente
+    uniqueOrders.sort((a, b) => {
+      const timeA = a.creado_en?.toDate 
+        ? a.creado_en.toDate().getTime() 
+        : a.creado_en?.seconds 
+          ? a.creado_en.seconds * 1000 
+          : new Date(a.creado_en).getTime()
+      const timeB = b.creado_en?.toDate 
+        ? b.creado_en.toDate().getTime() 
+        : b.creado_en?.seconds 
+          ? b.creado_en.seconds * 1000 
+          : new Date(b.creado_en).getTime()
+      return timeB - timeA
+    })
+
+    // 5. Aplicar límite y retornar datos formateados
+    return uniqueOrders.slice(0, limite).map(data => ({
+      ...data,
+      creado_en: data.creado_en?.toDate 
+        ? data.creado_en.toDate() 
+        : data.creado_en?.seconds 
+          ? new Date(data.creado_en.seconds * 1000) 
+          : new Date(data.creado_en)
+    }))
   } catch (e) {
     console.error('Error al obtener pedidos por usuario:', e)
     throw e
