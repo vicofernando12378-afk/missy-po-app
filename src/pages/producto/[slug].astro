@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductPage from '../../pages/ProductPage.jsx';
-import { obtenerProductoPorSlug, obtenerTodosProductosAdmin } from '../../services/firestore';
+import { obtenerProductoPorSlug, obtenerTodosProductosAdmin } from '../../services';
+
 
 export async function getStaticPaths() {
   try {

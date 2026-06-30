@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { storage } from '../../services/firebase'
-import { crearProducto, actualizarProducto } from '../../services/firestore'
+import { crearProducto, actualizarProducto } from '../../services'
 import { validate, ProductSchema } from '../../schemas'
+
 
 
 // ============================================================

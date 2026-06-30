@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import { obtenerProductos } from '../services/firestore'
+import { obtenerProductos } from '../services'
+
 
 // ============================================================
 // CATALOG STORE — Zustand para caché global del catálogo

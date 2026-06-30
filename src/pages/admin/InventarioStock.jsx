@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { obtenerTodosProductosAdmin, actualizarStockProductoAdmin } from '../../services/firestore'
+import { obtenerTodosProductosAdmin, actualizarStockProductoAdmin } from '../../services'
+
 
 export default function InventarioStock() {
   const [productos, setProductos] = useState([])

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
-import { obtenerTodosProductosAdmin, eliminarProducto } from '../../services/firestore'
+import { obtenerTodosProductosAdmin, eliminarProducto } from '../../services'
 import ProductoFormModal from '../../components/admin/ProductoFormModal'
+
 
 // ============================================================
 // PRODUCTOS CRUD — Gestión del Catálogo de Productos

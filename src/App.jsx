@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
@@ -9,15 +10,21 @@ import OrderConfirmationPage from './pages/OrderConfirmationPage'
 import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
 
-// Vistas del Panel Administrativo
-import AdminLayout from './pages/admin/AdminLayout'
-import PedidosDashboard from './pages/admin/PedidosDashboard'
-import CajaDiaria from './pages/admin/CajaDiaria'
-import InventarioStock from './pages/admin/InventarioStock'
-import ConfiguracionEnviosCupones from './pages/admin/ConfiguracionEnviosCupones'
-import ProductosCRUD from './pages/admin/ProductosCRUD'
-import VentasDashboard from './pages/admin/VentasDashboard'
-import ResenasDashboard from './pages/admin/ResenasDashboard'
+// Lazy loads (admin)
+const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'))
+const PedidosDashboard = lazy(() => import('./pages/admin/PedidosDashboard'))
+const CajaDiaria = lazy(() => import('./pages/admin/CajaDiaria'))
+const InventarioStock = lazy(() => import('./pages/admin/InventarioStock'))
+const ConfiguracionEnviosCupones = lazy(() => import('./pages/admin/ConfiguracionEnviosCupones'))
+const ProductosCRUD = lazy(() => import('./pages/admin/ProductosCRUD'))
+const VentasDashboard = lazy(() => import('./pages/admin/VentasDashboard'))
+const ResenasDashboard = lazy(() => import('./pages/admin/ResenasDashboard'))
+
+const AdminLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="w-8 h-8 border-4 border-coral border-t-transparent rounded-full animate-spin" />
+  </div>
+)
 
 function App() {
   return (
@@ -36,14 +43,18 @@ function App() {
         </Route>
 
         {/* Rutas del Panel de Administración */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<PedidosDashboard />} />
-          <Route path="caja" element={<CajaDiaria />} />
-          <Route path="inventario" element={<InventarioStock />} />
-          <Route path="configuracion" element={<ConfiguracionEnviosCupones />} />
-          <Route path="productos" element={<ProductosCRUD />} />
-          <Route path="ventas" element={<VentasDashboard />} />
-          <Route path="resenas" element={<ResenasDashboard />} />
+        <Route path="/admin" element={
+          <Suspense fallback={<AdminLoader />}>
+            <AdminLayout />
+          </Suspense>
+        }>
+          <Route index element={<Suspense fallback={<AdminLoader />}><PedidosDashboard /></Suspense>} />
+          <Route path="caja" element={<Suspense fallback={<AdminLoader />}><CajaDiaria /></Suspense>} />
+          <Route path="inventario" element={<Suspense fallback={<AdminLoader />}><InventarioStock /></Suspense>} />
+          <Route path="configuracion" element={<Suspense fallback={<AdminLoader />}><ConfiguracionEnviosCupones /></Suspense>} />
+          <Route path="productos" element={<Suspense fallback={<AdminLoader />}><ProductosCRUD /></Suspense>} />
+          <Route path="ventas" element={<Suspense fallback={<AdminLoader />}><VentasDashboard /></Suspense>} />
+          <Route path="resenas" element={<Suspense fallback={<AdminLoader />}><ResenasDashboard /></Suspense>} />
         </Route>
       </Routes>
     </BrowserRouter>

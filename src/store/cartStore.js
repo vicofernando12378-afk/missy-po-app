@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { CartStateSchema } from '../schemas'
+import { validarCupon } from '../services'
+
 
 
 // ============================================================
@@ -100,44 +102,13 @@ const useCartStore = create(
       clearCart: () => set({ items: [], couponCode: '', couponDiscount: 0, subtotal: 0, total: 0, itemCount: 0 }),
 
       // ─── CUPÓN ─────────────────────────────────────────────
-
       applyCoupon: async (code) => {
         const uppercaseCode = code.toUpperCase().trim()
-        try {
-          const { doc, getDoc } = await import('firebase/firestore')
-          const { db } = await import('../services/firebase')
-          
-          const docRef = doc(db, 'myp_cupones', uppercaseCode)
-          const snap = await getDoc(docRef)
-          
-          if (snap.exists()) {
-            const data = snap.data()
-            if (data.activo === false) {
-              return { success: false, message: 'Este cupón está inactivo' }
-            }
-            if (data.expiracion && new Date(data.expiracion) < new Date()) {
-              return { success: false, message: 'Este cupón ha expirado' }
-            }
-            const discount = data.descuento || 0
-            set({
-              couponCode: uppercaseCode,
-              couponDiscount: discount,
-              ...recalculateTotals(get().items, discount)
-            })
-            return { success: true, discount }
-          }
-        } catch (e) {
-          console.warn('⚠️ Error al consultar cupón en Firestore. Usando fallback local:', e)
-        }
-
-        // Fallback local
-        const mockCoupons = {
-          'BIENVENIDO10': 10,
-          'MISSY15': 15,
-          'MASCOTA20': 20,
-        }
-        const discount = mockCoupons[uppercaseCode]
-        if (discount) {
+        const montoCompraSoles = get().subtotal / 100
+        const res = await validarCupon(uppercaseCode, montoCompraSoles)
+        
+        if (res.success) {
+          const discount = res.discount
           set({
             couponCode: uppercaseCode,
             couponDiscount: discount,
@@ -145,7 +116,8 @@ const useCartStore = create(
           })
           return { success: true, discount }
         }
-        return { success: false, message: 'Cupón no válido' }
+        
+        return { success: false, message: res.message || 'Cupón no válido' }
       },
 
       removeCoupon: () => {

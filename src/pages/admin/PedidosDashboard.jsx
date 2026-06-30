@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 import { db } from '../../services/firebase'
-import { actualizarEstadoPedido, asignarRepartidorPedido } from '../../services/firestore'
+import { actualizarEstadoPedido, asignarRepartidorPedido } from '../../services'
+
 
 export default function PedidosDashboard() {
   const [pedidos, setPedidos] = useState([])

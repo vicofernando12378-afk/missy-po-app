@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import StorePage from './StorePage.jsx';
-import { obtenerProductos } from '../services/firestore.js';
+import { obtenerProductos } from '../services';
+
 
 // Pre-cargar catálogo completo a nivel de servidor (Build-time)
 const { productos: initialProducts } = await obtenerProductos({ paginaSize: 100 });

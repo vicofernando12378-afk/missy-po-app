@@ -4,8 +4,9 @@ import useCartStore from '../store/cartStore'
 import PriceDisplay from '../components/catalog/PriceDisplay'
 import SaleBadge from '../components/catalog/SaleBadge'
 import ProductCard from '../components/catalog/ProductCard'
-import { obtenerResenasPorProducto, crearResena } from '../services/firestore'
+import { obtenerResenasPorProducto, crearResena } from '../services'
 import { validate, ReviewSchema } from '../schemas'
+
 
 
 // ─── Strip HTML/Facebook noise from product descriptions ─────────

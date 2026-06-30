@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
-import { obtenerPedidosRango } from '../../services/firestore'
+import { obtenerPedidosRango } from '../../services'
+
 
 // ============================================================
 // VENTAS DASHBOARD — KPIs y Gráficas de Ventas

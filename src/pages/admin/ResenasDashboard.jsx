@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { obtenerResenas, actualizarEstadoResena, eliminarResena } from '../../services/firestore'
+import { obtenerResenas, actualizarEstadoResena, eliminarResena } from '../../services'
+
 
 // ============================================================
 // RESEÑAS DASHBOARD — Moderación de Opiniones de Clientes

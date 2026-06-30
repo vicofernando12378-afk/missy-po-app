@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import useCartStore from '../../store/cartStore'
-import { obtenerProductosMasVendidos } from '../../services/firestore'
+import { obtenerProductosMasVendidos } from '../../services'
 import useCatalogStore from '../../store/catalogStore'
+
 
 // ============================================================
 // CART DRAWER — Panel lateral izquierdo (flujo primario mobile)

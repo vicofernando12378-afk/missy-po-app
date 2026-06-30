@@ -1,0 +1,36 @@
+export const LIMA_REGIONS = [
+  'Arequipa',
+  'Lima',
+  'Cusco',
+  'La Libertad',
+  'Piura',
+  'Ancash',
+  'Cajamarca',
+  'Callao',
+  'Ica',
+  'Junín',
+  'Lambayeque',
+  'Loreto',
+  'Puno',
+  'Tacna',
+  'Otros'
+]
+
+export const AREQUIPA_DISTRICTS = [
+  'Arequipa (Cercado)',
+  'Cayma',
+  'Yanahuara',
+  'José Luis Bustamante y Rivero',
+  'Selva Alegre',
+  'Paucarpata',
+  'Miraflores',
+  'Socabaya',
+  'Sachaca',
+  'Tiabaya',
+  'Hunter',
+  'Mariano Melgar',
+  'Sabandía',
+  'Characato',
+  'Chiguata',
+  'Cerro Colorado'
+]

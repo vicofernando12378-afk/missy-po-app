@@ -8,8 +8,9 @@ vi.mock('../../services/firebase', () => ({
 
 vi.mock('firebase/firestore', () => ({
   doc: vi.fn(),
-  getDoc: vi.fn()
+  getDoc: vi.fn(() => Promise.resolve({ exists: () => false }))
 }));
+
 
 describe('Cart Store (myp-cart)', () => {
   beforeEach(() => {

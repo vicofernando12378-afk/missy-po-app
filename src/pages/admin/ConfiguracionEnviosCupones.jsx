@@ -6,7 +6,7 @@ import {
   crearCupon,
   actualizarEstadoCupon,
   eliminarCupon
-} from '../../services/firestore'
+} from '../../services'
 import { validate, CouponSchema, ShippingConfigSchema } from '../../schemas'
 
 

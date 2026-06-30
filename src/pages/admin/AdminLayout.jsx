@@ -1,17 +1,17 @@
-import { useState, useEffect, useCallback } from 'react'
-import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { collection, query, where, onSnapshot } from 'firebase/firestore'
 import { db } from '../../services/firebase'
 import { listenAuth, checkIsAdmin, logout } from '../../services/auth'
+import AdminSidebar from '../../components/admin/AdminSidebar'
 
 export default function AdminLayout() {
   const [user, setUser] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [loading, setLoading] = useState(true)
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [pedidosNuevos, setPedidosNuevos] = useState(0) // badge tiempo real
+  const [pedidosNuevos, setPedidosNuevos] = useState(0)
   const navigate = useNavigate()
-  const location = useLocation()
 
   useEffect(() => {
     let isMounted = true
@@ -52,11 +52,12 @@ export default function AdminLayout() {
   }, [navigate])
 
   // ── BADGE: Escucha pedidos en estado 'recibido' en tiempo real ──
+  // Unificación de campo: estado_pedido -> estado
   useEffect(() => {
     if (!isAdmin) return
     const q = query(
       collection(db, 'myp_pedidos'),
-      where('estado_pedido', '==', 'recibido')
+      where('estado', '==', 'recibido')
     )
     const unsub = onSnapshot(q, (snap) => {
       setPedidosNuevos(snap.size)
@@ -113,148 +114,35 @@ export default function AdminLayout() {
   }
 
   const menuItems = [
-    { path: '/',               label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
-    { path: '/ventas',         label: 'Ventas / KPIs',    icon: '📊' },
-    { path: '/productos',      label: 'Catálogo',          icon: '🛍️' },
-    { path: '/caja',           label: 'Caja Diaria',       icon: '💰' },
-    { path: '/inventario',     label: 'Inventario',      icon: '🗂️' },
-    { path: '/resenas',        label: 'Reseñas',           icon: '⭐' },
-    { path: '/cvrm',           label: 'Club (CVRM)',       icon: '👥' },
-    { path: '/configuracion',  label: 'Configuración', icon: '⚙️' },
+    { path: '/admin',          label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
+    { path: '/admin/ventas',   label: 'Ventas / KPIs',    icon: '📊' },
+    { path: '/admin/productos', label: 'Catálogo',          icon: '🛍️' },
+    { path: '/admin/caja',     label: 'Caja Diaria',       icon: '💰' },
+    { path: '/admin/inventario', label: 'Inventario',      icon: '🗂️' },
+    { path: '/admin/resenas',  label: 'Reseñas',           icon: '⭐' },
+    { path: '/admin/cvrm',     label: 'Club (CVRM)',       icon: '👥' },
+    { path: '/admin/configuracion', label: 'Configuración', icon: '⚙️' },
   ]
-
 
   return (
     <div className="min-h-screen flex bg-gray-50 font-body text-gray-700">
-      {/* Sidebar para pantallas grandes */}
-      <aside className="hidden lg:flex flex-col w-72 bg-white border-r border-gray-100 shadow-sm shrink-0">
-        <div className="p-6 border-b border-gray-50 flex items-center gap-3">
-          <span className="text-3xl">🐶</span>
-          <div>
-            <h2 className="font-brand text-xl text-gray-800 leading-tight">Missy & Po</h2>
-            <span className="text-xs text-coral font-semibold uppercase tracking-wider">Control Panel</span>
-          </div>
-        </div>
-        
-        <nav className="flex-1 p-4 space-y-1">
-          {menuItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.end}
-              className={({ isActive }) =>
-                `flex items-center gap-3.5 px-4 py-3 rounded-2xl font-semibold transition-all duration-250 ${
-                  isActive
-                    ? 'bg-coral/10 text-coral shadow-sm shadow-coral/5'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-                }`
-              }
-            >
-              <span className="text-xl">{item.icon}</span>
-              <span className="flex-1">{item.label}</span>
-              {item.badge > 0 && (
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-coral text-white text-[10px] font-bold animate-pulse">
-                  {item.badge > 9 ? '9+' : item.badge}
-                </span>
-              )}
-            </NavLink>
-          ))}
-        </nav>
+      {/* Sidebar Desktop */}
+      <AdminSidebar
+        user={user}
+        menuItems={menuItems}
+        onLogout={handleLogout}
+        isMobile={false}
+      />
 
-        <div className="p-4 border-t border-gray-50 space-y-2">
-          <div className="p-3 bg-gray-50 rounded-2xl text-xs space-y-1">
-            <p className="text-gray-400">Usuario:</p>
-            <p className="font-semibold text-gray-800 truncate" title={user.email}>{user.email}</p>
-          </div>
-          <a
-            href="/"
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-50 text-gray-500 hover:text-gray-850 text-sm font-semibold transition-all"
-          >
-            🏠 Ir a la Tienda
-          </a>
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-red-50 text-red-500 text-sm font-semibold transition-all"
-          >
-            🚪 Cerrar Sesión
-          </button>
-        </div>
-      </aside>
-
-      {/* Sidebar para pantallas móviles (Overlay) */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-gray-900/40 backdrop-blur-sm lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-      <aside 
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col w-72 bg-white border-r border-gray-100 shadow-xl transition-transform duration-350 ease-out lg:hidden ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="p-6 border-b border-gray-50 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-3xl">🐶</span>
-            <div>
-              <h2 className="font-brand text-xl text-gray-800 leading-tight">Missy & Po</h2>
-              <span className="text-xs text-coral font-semibold uppercase tracking-wider">Control Panel</span>
-            </div>
-          </div>
-          <button 
-            onClick={() => setSidebarOpen(false)} 
-            className="p-1.5 rounded-lg hover:bg-gray-150 text-gray-500"
-          >
-            ✕
-          </button>
-        </div>
-        
-        <nav className="flex-1 p-4 space-y-1">
-          {menuItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.end}
-              onClick={() => setSidebarOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center gap-3.5 px-4 py-3 rounded-2xl font-semibold transition-all duration-250 ${
-                  isActive
-                    ? 'bg-coral/10 text-coral shadow-sm shadow-coral/5'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
-                }`
-              }
-            >
-              <span className="text-xl">{item.icon}</span>
-              <span className="flex-1">{item.label}</span>
-              {item.badge > 0 && (
-                <span className="flex items-center justify-center w-5 h-5 rounded-full bg-coral text-white text-[10px] font-bold animate-pulse">
-                  {item.badge > 9 ? '9+' : item.badge}
-                </span>
-              )}
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="p-4 border-t border-gray-50 space-y-2">
-          <div className="p-3 bg-gray-50 rounded-2xl text-xs space-y-1">
-            <p className="text-gray-400">Usuario:</p>
-            <p className="font-semibold text-gray-800 truncate">{user.email}</p>
-          </div>
-          <a
-            href="/"
-            onClick={() => setSidebarOpen(false)}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-gray-50 text-gray-500 hover:text-gray-850 text-sm font-semibold transition-all"
-          >
-            🏠 Ir a la Tienda
-          </a>
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl hover:bg-red-50 text-red-500 text-sm font-semibold transition-all"
-          >
-            🚪 Cerrar Sesión
-          </button>
-        </div>
-      </aside>
+      {/* Sidebar Mobile */}
+      <AdminSidebar
+        user={user}
+        menuItems={menuItems}
+        onLogout={handleLogout}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        isMobile={true}
+      />
 
       {/* Contenedor de contenido principal */}
       <div className="flex-1 flex flex-col min-w-0 overflow-x-hidden">
@@ -271,7 +159,6 @@ export default function AdminLayout() {
           </div>
           <span className="text-xl">🐶</span>
         </header>
-
 
         {/* Área de contenido del panel */}
         <main className="flex-1 p-6 md:p-8 overflow-y-auto">

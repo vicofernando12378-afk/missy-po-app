@@ -7,7 +7,7 @@ import {
   cerrarCajaDiaria,
   obtenerHistorialCajas,
   obtenerVentasConfirmadasDia
-} from '../../services/firestore'
+} from '../../services'
 import { validate, AperturaCajaSchema, MovimientoSchema, CierreCajaSchema } from '../../schemas'
 
 
