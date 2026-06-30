@@ -6,12 +6,34 @@ import useOrdersByUser from '../hooks/useOrdersByUser'
 import AccountLayout from '../components/account/AccountLayout'
 import AccountDashboard from '../components/account/AccountDashboard'
 
+// Imports de subpáginas
+import OrdersPage from './mi-cuenta/pedidos/OrdersPage.jsx'
+import OrderDetailPage from './mi-cuenta/pedidos/OrderDetailPage.jsx'
+import ClubPage from './mi-cuenta/club/ClubPage.jsx'
+import PetsPage from './mi-cuenta/mascotas/PetsPage.jsx'
+import AddressesPage from './mi-cuenta/direcciones/AddressesPage.jsx'
+import ProfilePage from './mi-cuenta/perfil/ProfilePage.jsx'
+
 export default function AccountPage() {
   const [authUser, setAuthUser] = useState(null)
   const [checkingAuth, setCheckingAuth] = useState(true)
+  const [currentHash, setCurrentHash] = useState('')
 
   const { profile, isLoading: profileLoading, fetchProfile } = useUserStore()
-  const { orders, isLoading: ordersLoading, refresh: refreshOrders } = useOrdersByUser(authUser?.uid)
+  const { orders, isLoading: ordersLoading } = useOrdersByUser(authUser?.uid)
+
+  // Sincronizar hash de la URL
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash || '#dashboard')
+    }
+    
+    // Leer al montar
+    handleHashChange()
+    
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   useEffect(() => {
     const unsubscribe = listenAuth((user) => {
@@ -26,8 +48,6 @@ export default function AccountPage() {
       fetchProfile(authUser.uid)
     }
   }, [authUser?.uid])
-
-  const isLoading = checkingAuth || profileLoading || ordersLoading
 
   // Loading state
   if (checkingAuth) {
@@ -64,17 +84,56 @@ export default function AccountPage() {
     )
   }
 
-  // Calculate points from club membership
+  // Parsear hash para obtener la sección y parámetros (ej: #pedido-detalle?id=123)
+  const tab = currentHash.split('?')[0] || '#dashboard'
+  const params = new URLSearchParams(currentHash.split('?')[1] || '')
+  
   const clubPoints = profile?.clubMember?.puntos || 0
 
+  // Renderizar sección activa
+  const renderSectionContent = () => {
+    switch (tab) {
+      case '#pedidos':
+        return <OrdersPage />
+      case '#pedido-detalle':
+        const orderId = params.get('id')
+        return <OrderDetailPage forceOrderId={orderId} />
+      case '#club':
+        return <ClubPage />
+      case '#mascotas':
+        return <PetsPage />
+      case '#direcciones':
+        return <AddressesPage />
+      case '#perfil':
+        return <ProfilePage />
+      case '#dashboard':
+      default:
+        return (
+          <AccountDashboard
+            profile={profile}
+            orders={orders}
+            points={clubPoints}
+            pointsHistory={profile?.clubMember?.puntos_logs || []}
+          />
+        )
+    }
+  }
+
+  // Traducir hash a la sección activa del Sidebar
+  const activeSectionMap = {
+    '#dashboard': 'dashboard',
+    '#pedidos': 'pedidos',
+    '#pedido-detalle': 'pedidos',
+    '#club': 'club',
+    '#mascotas': 'mascotas',
+    '#direcciones': 'direcciones',
+    '#perfil': 'perfil',
+  }
+  const activeSection = activeSectionMap[tab] || 'dashboard'
+
   return (
-    <AccountLayout activeSection="dashboard">
-      <AccountDashboard
-        profile={profile}
-        orders={orders}
-        points={clubPoints}
-        pointsHistory={profile?.clubMember?.puntos_logs || []}
-      />
+    <AccountLayout activeSection={activeSection}>
+      {renderSectionContent()}
     </AccountLayout>
   )
 }

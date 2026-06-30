@@ -75,7 +75,7 @@ export default function OrderCard({ order }) {
             </a>
           )}
           <a
-            href={`/mi-cuenta/pedidos/detalle?id=${order.id}`}
+            href={`#pedido-detalle?id=${order.id}`}
             className="inline-flex items-center gap-1 text-xs font-ui font-bold px-3 py-1.5 rounded-full transition-all hover:opacity-80"
             style={{ color: 'var(--color-coral)', backgroundColor: '#fff5f5' }}
           >

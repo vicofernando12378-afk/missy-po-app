@@ -14,7 +14,7 @@ const STATUS_MAP = {
   cancelado: { label: 'Cancelado', color: '#ef4444', icon: '❌' }
 }
 
-export default function OrderDetailPage() {
+export default function OrderDetailPage({ forceOrderId }) {
   const [authUser, setAuthUser] = useState(null)
   const [checkingAuth, setCheckingAuth] = useState(true)
   const [order, setOrder] = useState(null)
@@ -33,7 +33,7 @@ export default function OrderDetailPage() {
     if (!authUser || checkingAuth) return
 
     const fetchOrder = async () => {
-      const orderId = new URLSearchParams(window.location.search).get('id')
+      const orderId = forceOrderId || new URLSearchParams(window.location.search).get('id')
 
       if (!orderId) {
         setError('ID de pedido no válido')
