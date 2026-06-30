@@ -1,8 +1,4 @@
-import { useState, useEffect } from 'react'
-import { listenAuth } from '../../../services/auth'
-import useOrdersByUser from '../../../hooks/useOrdersByUser'
-
-import AccountLayout from '../../../components/account/AccountLayout'
+import { useState } from 'react'
 import OrderCard from '../../../components/account/OrderCard'
 
 const FILTERS = [
@@ -16,33 +12,16 @@ const ACTIVE_STATES = ['recibido', 'preparando', 'enviado']
 const COMPLETED_STATES = ['entregado']
 const CANCELLED_STATES = ['cancelado']
 
-export default function OrdersPage() {
-  const [authUser, setAuthUser] = useState(null)
-  const [checkingAuth, setCheckingAuth] = useState(true)
+export default function OrdersPage({ authUser, profile, orders = [], ordersLoading = false }) {
   const [activeFilter, setActiveFilter] = useState('todos')
 
-  const { orders, isLoading, refresh } = useOrdersByUser(authUser?.uid)
-
-  useEffect(() => {
-    const unsubscribe = listenAuth((user) => {
-      setAuthUser(user)
-      setCheckingAuth(false)
-    })
-    return () => unsubscribe()
-  }, [])
-
-  if (checkingAuth) {
+  if (ordersLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="w-10 h-10 border-4 rounded-full animate-spin"
              style={{ borderColor: 'var(--color-coral)', borderTopColor: 'transparent' }} />
       </div>
     )
-  }
-
-  if (!authUser) {
-    window.location.href = '/login'
-    return null
   }
 
   const filteredOrders = orders.filter(order => {
@@ -61,79 +40,72 @@ export default function OrdersPage() {
   }
 
   return (
-    <AccountLayout activeSection="pedidos">
-      <div>
-        {/* Header */}
-        <div className="mb-6">
-          <h1 className="font-hero text-2xl sm:text-3xl mb-2" style={{ color: 'var(--color-text-dark)' }}>
-            Mis Pedidos
-          </h1>
-          <p className="text-sm font-body" style={{ color: 'var(--color-text-gray)' }}>
-            Revisa el historial y estado de tus compras.
-          </p>
-        </div>
+    <div>
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="font-hero text-2xl sm:text-3xl mb-2" style={{ color: 'var(--color-text-dark)' }}>
+          Mis Pedidos
+        </h1>
+        <p className="text-sm font-body" style={{ color: 'var(--color-text-gray)' }}>
+          Revisa el historial y estado de tus compras.
+        </p>
+      </div>
 
-        {/* Filtros */}
-        <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
-          {FILTERS.map(filter => (
-            <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id)}
-              className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-ui font-semibold transition-all duration-200 border cursor-pointer ${
-                activeFilter === filter.id
-                  ? 'text-white shadow-md'
-                  : 'bg-white text-gray-600 hover:bg-gray-50'
-              }`}
-              style={activeFilter === filter.id ? {
-                backgroundColor: 'var(--color-coral)',
-                borderColor: 'var(--color-coral)'
-              } : {
-                borderColor: 'var(--color-border)'
-              }}
-            >
-              {filter.label}
-              <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                activeFilter === filter.id ? 'bg-white/20' : 'bg-gray-100'
-              }`}>
-                {filterCounts[filter.id]}
-              </span>
-            </button>
+      {/* Filtros */}
+      <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+        {FILTERS.map(filter => (
+          <button
+            key={filter.id}
+            onClick={() => setActiveFilter(filter.id)}
+            className={`flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-ui font-semibold transition-all duration-200 border cursor-pointer ${
+              activeFilter === filter.id
+                ? 'text-white shadow-md'
+                : 'bg-white text-gray-600 hover:bg-gray-50'
+            }`}
+            style={activeFilter === filter.id ? {
+              backgroundColor: 'var(--color-coral)',
+              borderColor: 'var(--color-coral)'
+            } : {
+              borderColor: 'var(--color-border)'
+            }}
+          >
+            {filter.label}
+            <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+              activeFilter === filter.id ? 'bg-white/20' : 'bg-gray-100'
+            }`}>
+              {filterCounts[filter.id]}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Lista de pedidos */}
+      {filteredOrders.length > 0 ? (
+        <div className="space-y-4">
+          {filteredOrders.map(order => (
+            <OrderCard key={order.id} order={order} />
           ))}
         </div>
-
-        {/* Lista de pedidos */}
-        {isLoading ? (
-          <div className="flex items-center justify-center py-12">
-            <div className="w-8 h-8 border-4 rounded-full animate-spin"
-                 style={{ borderColor: 'var(--color-coral)', borderTopColor: 'transparent' }} />
-          </div>
-        ) : filteredOrders.length > 0 ? (
-          <div className="space-y-4">
-            {filteredOrders.map(order => (
-              <OrderCard key={order.id} order={order} />
-            ))}
-          </div>
-        ) : (
-          <div className="bg-white rounded-2xl border p-12 text-center" style={{ borderColor: 'var(--color-border)' }}>
-            <span className="text-5xl mb-4 block">📦</span>
-            <h3 className="font-ui font-bold text-lg mb-2" style={{ color: 'var(--color-text-dark)' }}>
-              {activeFilter === 'todos' ? 'Aún no tienes pedidos' : 'No hay pedidos en esta categoría'}
-            </h3>
-            <p className="text-sm font-body mb-6" style={{ color: 'var(--color-text-gray)' }}>
-              {activeFilter === 'todos'
-                ? '¡Explora nuestra tienda y encuentra los mejores productos para tu mascota!'
-                : 'Intenta con otro filtro o revisa tu historial completo.'}
-            </p>
-            <a
-              href="/tienda"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-ui font-bold text-white transition-all hover:scale-105"
-              style={{ background: 'linear-gradient(135deg, var(--color-coral), var(--color-coral-dark))' }}
-            >
-              🛒 Ir a la Tienda
-            </a>
-          </div>
-        )}
-      </div>
-    </AccountLayout>
+      ) : (
+        <div className="bg-white rounded-2xl border p-12 text-center" style={{ borderColor: 'var(--color-border)' }}>
+          <span className="text-5xl mb-4 block">📦</span>
+          <h3 className="font-ui font-bold text-lg mb-2" style={{ color: 'var(--color-text-dark)' }}>
+            {activeFilter === 'todos' ? 'Aún no tienes pedidos' : 'No hay pedidos en esta categoría'}
+          </h3>
+          <p className="text-sm font-body mb-6" style={{ color: 'var(--color-text-gray)' }}>
+            {activeFilter === 'todos'
+              ? '¡Explora nuestra tienda y encuentra los mejores productos para tu mascota!'
+              : 'Intenta con otro filtro o revisa tu historial completo.'}
+          </p>
+          <a
+            href="/tienda"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-ui font-bold text-white transition-all hover:scale-105"
+            style={{ background: 'linear-gradient(135deg, var(--color-coral), var(--color-coral-dark))' }}
+          >
+            🛒 Ir a la Tienda
+          </a>
+        </div>
+      )}
+    </div>
   )
 }

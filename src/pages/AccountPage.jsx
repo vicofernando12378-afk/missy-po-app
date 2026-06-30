@@ -94,18 +94,18 @@ export default function AccountPage() {
   const renderSectionContent = () => {
     switch (tab) {
       case '#pedidos':
-        return <OrdersPage />
+        return <OrdersPage authUser={authUser} profile={profile} orders={orders} ordersLoading={ordersLoading} />
       case '#pedido-detalle':
         const orderId = params.get('id')
-        return <OrderDetailPage forceOrderId={orderId} />
+        return <OrderDetailPage forceOrderId={orderId} authUser={authUser} profile={profile} />
       case '#club':
-        return <ClubPage />
+        return <ClubPage authUser={authUser} profile={profile} />
       case '#mascotas':
-        return <PetsPage />
+        return <PetsPage authUser={authUser} profile={profile} />
       case '#direcciones':
-        return <AddressesPage />
+        return <AddressesPage authUser={authUser} profile={profile} />
       case '#perfil':
-        return <ProfilePage />
+        return <ProfilePage authUser={authUser} profile={profile} />
       case '#dashboard':
       default:
         return (
