@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { collection, query, where, getDocs, orderBy, limit as firestoreLimit } from 'firebase/firestore'
+import { db } from '../services/firebase'
 import {
   getUserProfile, upsertUserProfile, updateUserProfile,
   addAddress, removeAddress, addPet, removePet, initializeUserProfile
@@ -26,6 +28,38 @@ const useUserStore = create(
           } else if (!profile) {
             profile = { uid, direcciones: [], mascotas: [], preferencias: {} }
           }
+
+          // Cargar datos de puntos del club por email
+          const userEmail = email || profile.email
+          if (userEmail) {
+            try {
+              const q = query(
+                collection(db, 'myp_club_miembros'),
+                where('email', '==', userEmail.trim().toLowerCase())
+              )
+              const snap = await getDocs(q)
+              if (!snap.empty) {
+                const memberDoc = snap.docs[0]
+                const memberData = { id: memberDoc.id, ...memberDoc.data() }
+
+                const historyQ = query(
+                  collection(db, 'myp_club_miembros', memberDoc.id, 'puntos_logs'),
+                  orderBy('creado_en', 'desc'),
+                  firestoreLimit(20)
+                )
+                const historySnap = await getDocs(historyQ)
+                const logs = historySnap.docs.map(d => ({ id: d.id, ...d.data() }))
+
+                profile.clubMember = {
+                  ...memberData,
+                  puntos_logs: logs
+                }
+              }
+            } catch (clubErr) {
+              console.error('Error fetching club data in store:', clubErr)
+            }
+          }
+
           set({ profile, isLoading: false })
           return profile
         } catch (err) {

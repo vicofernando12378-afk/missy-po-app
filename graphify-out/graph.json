@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 38,
+      "community": 0,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -1510,7 +1510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer",
-      "community": 9,
+      "community": 16,
       "norm_label": "cartdrawer.jsx"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_closeicon",
-      "community": 9,
+      "community": 16,
       "norm_label": "closeicon()"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_trashicon",
-      "community": 9,
+      "community": 16,
       "norm_label": "trashicon()"
     },
     {
@@ -1540,7 +1540,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdraweritem",
-      "community": 9,
+      "community": 16,
       "norm_label": "cartdraweritem()"
     },
     {
@@ -1550,7 +1550,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdrawer",
-      "community": 9,
+      "community": 37,
       "norm_label": "cartdrawer()"
     },
     {
@@ -2220,7 +2220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat",
-      "community": 4,
+      "community": 9,
       "norm_label": "cartfloat.jsx"
     },
     {
@@ -2230,7 +2230,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_carticon",
-      "community": 4,
+      "community": 9,
       "norm_label": "carticon()"
     },
     {
@@ -2240,7 +2240,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_cartfloat",
-      "community": 4,
+      "community": 9,
       "norm_label": "cartfloat()"
     },
     {
@@ -2851,7 +2851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 46,
+      "community": 6,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2861,7 +2861,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 46,
+      "community": 6,
       "norm_label": "tabs"
     },
     {
@@ -2871,7 +2871,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 46,
+      "community": 6,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -2881,7 +2881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cajadiaria",
-      "community": 16,
+      "community": 46,
       "norm_label": "cajadiaria.jsx"
     },
     {
@@ -2891,7 +2891,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_admin_cajadiaria_cajadiaria",
-      "community": 16,
+      "community": 46,
       "norm_label": "cajadiaria()"
     },
     {
@@ -2901,7 +2901,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_configuracionenvioscupones",
-      "community": 19,
+      "community": 0,
       "norm_label": "configuracionenvioscupones.jsx"
     },
     {
@@ -2911,7 +2911,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_pages_admin_configuracionenvioscupones_configuracionenvioscupones",
-      "community": 19,
+      "community": 0,
       "norm_label": "configuracionenvioscupones()"
     },
     {
@@ -2941,7 +2941,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard",
-      "community": 6,
+      "community": 46,
       "norm_label": "pedidosdashboard.jsx"
     },
     {
@@ -2951,7 +2951,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard_pedidosdashboard",
-      "community": 6,
+      "community": 46,
       "norm_label": "pedidosdashboard()"
     },
     {
@@ -2981,7 +2981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard",
-      "community": 24,
+      "community": 46,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -2991,7 +2991,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estado_cfg",
-      "community": 24,
+      "community": 46,
       "norm_label": "estado_cfg"
     },
     {
@@ -3001,7 +3001,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estrellas",
-      "community": 24,
+      "community": 46,
       "norm_label": "estrellas()"
     },
     {
@@ -3011,7 +3011,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_resenasdashboard",
-      "community": 24,
+      "community": 46,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -3021,7 +3021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard",
-      "community": 6,
+      "community": 46,
       "norm_label": "ventasdashboard.jsx"
     },
     {
@@ -3031,7 +3031,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_estados_color",
-      "community": 6,
+      "community": 46,
       "norm_label": "estados_color"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_rangos",
-      "community": 6,
+      "community": 46,
       "norm_label": "rangos"
     },
     {
@@ -3051,7 +3051,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_barchart",
-      "community": 6,
+      "community": 46,
       "norm_label": "barchart()"
     },
     {
@@ -3061,7 +3061,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_ventasdashboard",
-      "community": 6,
+      "community": 46,
       "norm_label": "ventasdashboard()"
     },
     {
@@ -3211,7 +3211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_carrito",
-      "community": 47,
+      "community": 8,
       "norm_label": "carrito.astro"
     },
     {
@@ -3221,7 +3221,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_cartpage_tsx",
-      "community": 47,
+      "community": 8,
       "norm_label": "./cartpage.jsx"
     },
     {
@@ -3351,7 +3351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 48,
+      "community": 37,
       "norm_label": "index.astro"
     },
     {
@@ -3361,7 +3361,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 48,
+      "community": 37,
       "norm_label": "../pages/homepage"
     },
     {
@@ -3371,7 +3371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 8,
+      "community": 19,
       "norm_label": "login.astro"
     },
     {
@@ -3381,7 +3381,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 8,
+      "community": 19,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -3771,7 +3771,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_tests_userprofile_test",
-      "community": 39,
+      "community": 0,
       "norm_label": "userprofile.test.js"
     },
     {
@@ -3871,7 +3871,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_coupon",
-      "community": 19,
+      "community": 0,
       "norm_label": "coupon.js"
     },
     {
@@ -3881,7 +3881,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_coupon_couponschema",
-      "community": 19,
+      "community": 0,
       "norm_label": "couponschema"
     },
     {
@@ -3991,7 +3991,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_shippingconfig",
-      "community": 38,
+      "community": 0,
       "norm_label": "shippingconfig.js"
     },
     {
@@ -4001,7 +4001,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_shippingconfig_shippingconfigschema",
-      "community": 38,
+      "community": 0,
       "norm_label": "shippingconfigschema"
     },
     {
@@ -4011,7 +4011,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_userprofile",
-      "community": 39,
+      "community": 0,
       "norm_label": "userprofile.js"
     },
     {
@@ -4021,7 +4021,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_userprofile_addressschema",
-      "community": 39,
+      "community": 0,
       "norm_label": "addressschema"
     },
     {
@@ -4031,7 +4031,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petschema",
-      "community": 39,
+      "community": 0,
       "norm_label": "petschema"
     },
     {
@@ -4041,7 +4041,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userpreferencesschema",
-      "community": 39,
+      "community": 0,
       "norm_label": "userpreferencesschema"
     },
     {
@@ -4051,7 +4051,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userprofileschema",
-      "community": 39,
+      "community": 0,
       "norm_label": "userprofileschema"
     },
     {
@@ -4061,7 +4061,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petformschema",
-      "community": 39,
+      "community": 0,
       "norm_label": "petformschema"
     },
     {
@@ -4201,7 +4201,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_cashregister",
-      "community": 16,
+      "community": 46,
       "norm_label": "cashregister.js"
     },
     {
@@ -4211,7 +4211,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_cashregister_obtenercajaactiva",
-      "community": 16,
+      "community": 46,
       "norm_label": "obtenercajaactiva()"
     },
     {
@@ -4221,7 +4221,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_services_cashregister_abrircajadiaria",
-      "community": 16,
+      "community": 46,
       "norm_label": "abrircajadiaria()"
     },
     {
@@ -4231,7 +4231,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_services_cashregister_registrartransaccionmanual",
-      "community": 16,
+      "community": 46,
       "norm_label": "registrartransaccionmanual()"
     },
     {
@@ -4241,7 +4241,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "src_services_cashregister_cerrarcajadiaria",
-      "community": 16,
+      "community": 46,
       "norm_label": "cerrarcajadiaria()"
     },
     {
@@ -4251,7 +4251,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "src_services_cashregister_obtenerhistorialcajas",
-      "community": 16,
+      "community": 46,
       "norm_label": "obtenerhistorialcajas()"
     },
     {
@@ -4261,7 +4261,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "src_services_cashregister_obtenerventasconfirmadasdia",
-      "community": 16,
+      "community": 46,
       "norm_label": "obtenerventasconfirmadasdia()"
     },
     {
@@ -4271,7 +4271,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_config",
-      "community": 38,
+      "community": 0,
       "norm_label": "config.js"
     },
     {
@@ -4291,7 +4291,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_services_config_guardarconfiguracionenvio",
-      "community": 38,
+      "community": 0,
       "norm_label": "guardarconfiguracionenvio()"
     },
     {
@@ -4301,7 +4301,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_services_config_obtenercategoryslugmap",
-      "community": 38,
+      "community": 0,
       "norm_label": "obtenercategoryslugmap()"
     },
     {
@@ -4311,7 +4311,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_coupons",
-      "community": 19,
+      "community": 0,
       "norm_label": "coupons.js"
     },
     {
@@ -4321,7 +4321,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_coupons_obtenercupones",
-      "community": 19,
+      "community": 0,
       "norm_label": "obtenercupones()"
     },
     {
@@ -4331,7 +4331,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_services_coupons_crearcupon",
-      "community": 19,
+      "community": 0,
       "norm_label": "crearcupon()"
     },
     {
@@ -4341,7 +4341,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_services_coupons_actualizarestadocupon",
-      "community": 19,
+      "community": 0,
       "norm_label": "actualizarestadocupon()"
     },
     {
@@ -4351,7 +4351,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_services_coupons_eliminarcupon",
-      "community": 19,
+      "community": 0,
       "norm_label": "eliminarcupon()"
     },
     {
@@ -4361,7 +4361,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "src_services_coupons_validarcupon",
-      "community": 19,
+      "community": 0,
       "norm_label": "validarcupon()"
     },
     {
@@ -4411,7 +4411,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 16,
+      "community": 46,
       "norm_label": "index.js"
     },
     {
@@ -4421,7 +4421,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_orders",
-      "community": 6,
+      "community": 46,
       "norm_label": "orders.js"
     },
     {
@@ -4431,7 +4431,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_services_orders_crearpedidocontransaccion",
-      "community": 6,
+      "community": 46,
       "norm_label": "crearpedidocontransaccion()"
     },
     {
@@ -4441,7 +4441,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosadmin",
-      "community": 6,
+      "community": 46,
       "norm_label": "obtenerpedidosadmin()"
     },
     {
@@ -4451,7 +4451,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "src_services_orders_actualizarestadopedido",
-      "community": 6,
+      "community": 46,
       "norm_label": "actualizarestadopedido()"
     },
     {
@@ -4461,7 +4461,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "src_services_orders_reestablecerstockpedidocontransaccion",
-      "community": 6,
+      "community": 46,
       "norm_label": "reestablecerstockpedidocontransaccion()"
     },
     {
@@ -4471,7 +4471,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "src_services_orders_asignarrepartidorpedido",
-      "community": 6,
+      "community": 46,
       "norm_label": "asignarrepartidorpedido()"
     },
     {
@@ -4481,7 +4481,7 @@
       "source_location": "L265",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosrango",
-      "community": 6,
+      "community": 46,
       "norm_label": "obtenerpedidosrango()"
     },
     {
@@ -4521,7 +4521,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductos",
-      "community": 46,
+      "community": 37,
       "norm_label": "obtenerproductos()"
     },
     {
@@ -4611,7 +4611,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductosmasvendidos",
-      "community": 9,
+      "community": 16,
       "norm_label": "obtenerproductosmasvendidos()"
     },
     {
@@ -4621,7 +4621,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 24,
+      "community": 46,
       "norm_label": "reviews.js"
     },
     {
@@ -4631,7 +4631,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenas",
-      "community": 24,
+      "community": 46,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -4641,7 +4641,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_services_reviews_actualizarestadoresena",
-      "community": 24,
+      "community": 46,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -4651,7 +4651,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_services_reviews_eliminarresena",
-      "community": 24,
+      "community": 46,
       "norm_label": "eliminarresena()"
     },
     {
@@ -4661,7 +4661,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_services_reviews_crearresena",
-      "community": 24,
+      "community": 46,
       "norm_label": "crearresena()"
     },
     {
@@ -4671,7 +4671,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenasporproducto",
-      "community": 24,
+      "community": 46,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -4888,7 +4888,7 @@
       "label": "useUserStore",
       "file_type": "code",
       "source_file": "src/store/userStore.js",
-      "source_location": "L8",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "src_store_userstore_useuserstore",
       "community": 1,
@@ -4911,7 +4911,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 38,
+      "community": 0,
       "norm_label": "vitest.config.js"
     },
     {
@@ -13632,6 +13632,17 @@
     },
     {
       "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/index.astro",
       "source": "src_pages_index",
@@ -15468,6 +15479,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_firebase",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "re_exports",
       "context": "export",
       "confidence": "EXTRACTED",
@@ -15880,7 +15902,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile",
@@ -15891,7 +15913,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile",
@@ -15902,7 +15924,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_initializeuserprofile",
@@ -15957,7 +15979,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_getuserprofile",
@@ -15968,7 +15990,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_getuserprofile",
@@ -15979,7 +16001,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_upsertuserprofile",
@@ -15990,7 +16012,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_upsertuserprofile",
@@ -16045,7 +16067,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_updateuserprofile",
@@ -16056,7 +16078,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_updateuserprofile",
@@ -16067,7 +16089,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_addaddress",
@@ -16078,7 +16100,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_addaddress",
@@ -16089,7 +16111,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_removeaddress",
@@ -16100,7 +16122,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_removeaddress",
@@ -16111,7 +16133,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_addpet",
@@ -16122,7 +16144,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_addpet",
@@ -16133,7 +16155,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/__tests__/userStore.test.js",
-      "source_location": "L18",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "src_store_tests_userstore_test",
       "target": "src_services_userprofile_removepet",
@@ -16144,7 +16166,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_services_userprofile_removepet",
@@ -16238,7 +16260,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/store/userStore.js",
-      "source_location": "L8",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_store_userstore",
       "target": "src_store_userstore_useuserstore",
@@ -18206,5 +18228,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3beb5a88f594b5b36d6a75993128d379d387ab29"
+  "built_at_commit": "c6308db89421782aa3cd6f58c00d377fbffac4f1"
 }

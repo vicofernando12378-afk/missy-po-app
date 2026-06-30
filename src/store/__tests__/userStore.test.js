@@ -5,6 +5,15 @@ vi.mock('../../services/firebase', () => ({
   db: {}
 }))
 
+vi.mock('firebase/firestore', () => ({
+  collection: vi.fn(),
+  query: vi.fn(),
+  where: vi.fn(),
+  getDocs: vi.fn(() => Promise.resolve({ empty: true, docs: [] })),
+  orderBy: vi.fn(),
+  limit: vi.fn()
+}))
+
 vi.mock('../../services/userProfile', () => ({
   getUserProfile: vi.fn(),
   upsertUserProfile: vi.fn(),
