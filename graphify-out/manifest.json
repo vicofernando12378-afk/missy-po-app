@@ -195,8 +195,8 @@
     "semantic_hash": "544e3a3f3663e029cf3705307571eb25"
   },
   "src/pages/LoginPage.jsx": {
-    "mtime": 1782756201.9120245,
-    "ast_hash": "fc7c03c10b437ec1f9c27712a8b3db11",
+    "mtime": 1782790734.892251,
+    "ast_hash": "6247a0a3b9fe1976a1fb7ddefbb27a91",
     "semantic_hash": ""
   },
   "src/pages/NotFoundPage.jsx": {
@@ -847,6 +847,11 @@
   "src/store/userStore.js": {
     "mtime": 1782785675.3469596,
     "ast_hash": "83ebc1a45a44ae964e172d26a9194b0b",
+    "semantic_hash": ""
+  },
+  "src/services/__tests__/auth.test.js": {
+    "mtime": 1782790759.6018453,
+    "ast_hash": "dc39c80c16e65886ef6c936ab6d59a05",
     "semantic_hash": ""
   }
 }

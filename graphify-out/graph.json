@@ -1150,7 +1150,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_account_addressform_addressform",
-      "community": 1,
+      "community": 3,
       "norm_label": "addressform()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_cta_ctabanner",
-      "community": 24,
+      "community": 37,
       "norm_label": "ctabanner.jsx"
     },
     {
@@ -1890,7 +1890,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_cta_ctabanner_ctabanner",
-      "community": 24,
+      "community": 37,
       "norm_label": "ctabanner()"
     },
     {
@@ -1920,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_header_livesearch",
-      "community": 38,
+      "community": 37,
       "norm_label": "livesearch.jsx"
     },
     {
@@ -1930,7 +1930,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_header_livesearch_searchspinner",
-      "community": 38,
+      "community": 37,
       "norm_label": "searchspinner()"
     },
     {
@@ -1940,7 +1940,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_header_livesearch_highlight",
-      "community": 38,
+      "community": 37,
       "norm_label": "highlight()"
     },
     {
@@ -1950,7 +1950,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_header_livesearch_livesearch",
-      "community": 38,
+      "community": 37,
       "norm_label": "livesearch()"
     },
     {
@@ -1960,7 +1960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_animatedtitle",
-      "community": 24,
+      "community": 37,
       "norm_label": "animatedtitle.jsx"
     },
     {
@@ -1970,7 +1970,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_hero_animatedtitle_animatedtitle",
-      "community": 24,
+      "community": 37,
       "norm_label": "animatedtitle()"
     },
     {
@@ -1980,7 +1980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_heroslider",
-      "community": 24,
+      "community": 37,
       "norm_label": "heroslider.jsx"
     },
     {
@@ -1990,7 +1990,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_hero_heroslider_slides",
-      "community": 24,
+      "community": 37,
       "norm_label": "slides"
     },
     {
@@ -2000,7 +2000,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_components_hero_heroslider_heroslider",
-      "community": 24,
+      "community": 37,
       "norm_label": "heroslider()"
     },
     {
@@ -2010,7 +2010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner",
-      "community": 42,
+      "community": 9,
       "norm_label": "marqueebanner.jsx"
     },
     {
@@ -2020,7 +2020,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner_marquee_items",
-      "community": 42,
+      "community": 9,
       "norm_label": "marquee_items"
     },
     {
@@ -2030,7 +2030,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner_marqueebanner",
-      "community": 42,
+      "community": 9,
       "norm_label": "marqueebanner()"
     },
     {
@@ -2040,7 +2040,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_footer",
-      "community": 4,
+      "community": 9,
       "norm_label": "footer.jsx"
     },
     {
@@ -2050,7 +2050,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_components_layout_footer_pawicon",
-      "community": 4,
+      "community": 9,
       "norm_label": "pawicon()"
     },
     {
@@ -2060,7 +2060,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_layout_footer_facebookicon",
-      "community": 4,
+      "community": 9,
       "norm_label": "facebookicon()"
     },
     {
@@ -2070,7 +2070,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_components_layout_footer_instagramicon",
-      "community": 4,
+      "community": 9,
       "norm_label": "instagramicon()"
     },
     {
@@ -2080,7 +2080,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_layout_footer_tiktokicon",
-      "community": 4,
+      "community": 9,
       "norm_label": "tiktokicon()"
     },
     {
@@ -2090,7 +2090,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_layout_footer_footer_links",
-      "community": 4,
+      "community": 9,
       "norm_label": "footer_links"
     },
     {
@@ -2100,7 +2100,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_components_layout_footer_footer",
-      "community": 4,
+      "community": 9,
       "norm_label": "footer()"
     },
     {
@@ -2110,7 +2110,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_layout",
-      "community": 4,
+      "community": 9,
       "norm_label": "layout.jsx"
     },
     {
@@ -2120,7 +2120,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_layout_layout_layout",
-      "community": 4,
+      "community": 9,
       "norm_label": "layout()"
     },
     {
@@ -2130,7 +2130,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_navbar",
-      "community": 42,
+      "community": 9,
       "norm_label": "navbar.jsx"
     },
     {
@@ -2140,7 +2140,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_layout_navbar_searchicon",
-      "community": 42,
+      "community": 9,
       "norm_label": "searchicon()"
     },
     {
@@ -2150,7 +2150,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_layout_navbar_carticon",
-      "community": 42,
+      "community": 9,
       "norm_label": "carticon()"
     },
     {
@@ -2160,7 +2160,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_layout_navbar_usericon",
-      "community": 42,
+      "community": 9,
       "norm_label": "usericon()"
     },
     {
@@ -2170,7 +2170,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_layout_navbar_menuicon",
-      "community": 42,
+      "community": 9,
       "norm_label": "menuicon()"
     },
     {
@@ -2180,7 +2180,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_components_layout_navbar_closeicon",
-      "community": 42,
+      "community": 9,
       "norm_label": "closeicon()"
     },
     {
@@ -2190,7 +2190,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_components_layout_navbar_nav_categories",
-      "community": 42,
+      "community": 9,
       "norm_label": "nav_categories"
     },
     {
@@ -2200,7 +2200,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_components_layout_navbar_navbar",
-      "community": 4,
+      "community": 9,
       "norm_label": "navbar()"
     },
     {
@@ -2220,7 +2220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat",
-      "community": 4,
+      "community": 9,
       "norm_label": "cartfloat.jsx"
     },
     {
@@ -2230,7 +2230,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_carticon",
-      "community": 4,
+      "community": 9,
       "norm_label": "carticon()"
     },
     {
@@ -2240,7 +2240,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_cartfloat",
-      "community": 4,
+      "community": 9,
       "norm_label": "cartfloat()"
     },
     {
@@ -2250,7 +2250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat",
-      "community": 4,
+      "community": 9,
       "norm_label": "whatsappfloat.jsx"
     },
     {
@@ -2260,7 +2260,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat_whatsapp_message",
-      "community": 4,
+      "community": 9,
       "norm_label": "whatsapp_message"
     },
     {
@@ -2270,7 +2270,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat_whatsappfloat",
-      "community": 4,
+      "community": 9,
       "norm_label": "whatsappfloat()"
     },
     {
@@ -2280,7 +2280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_blog_posts",
-      "community": 16,
+      "community": 8,
       "norm_label": "blog-posts.js"
     },
     {
@@ -2290,7 +2290,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_blog_posts_articulosblog",
-      "community": 16,
+      "community": 8,
       "norm_label": "articulosblog"
     },
     {
@@ -2400,7 +2400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usedebounce",
-      "community": 38,
+      "community": 37,
       "norm_label": "usedebounce.js"
     },
     {
@@ -2410,7 +2410,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_hooks_usedebounce_usedebounce",
-      "community": 38,
+      "community": 37,
       "norm_label": "usedebounce()"
     },
     {
@@ -2551,7 +2551,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "astro_assets",
-      "community": 36,
+      "community": 8,
       "norm_label": "astro:assets"
     },
     {
@@ -2671,7 +2671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_homepage",
-      "community": 24,
+      "community": 37,
       "norm_label": "homepage.jsx"
     },
     {
@@ -2681,7 +2681,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_homepage_homepage",
-      "community": 24,
+      "community": 37,
       "norm_label": "homepage()"
     },
     {
@@ -2731,7 +2731,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage",
-      "community": 41,
+      "community": 33,
       "norm_label": "orderconfirmationpage.jsx"
     },
     {
@@ -2741,7 +2741,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage_orderconfirmationpage",
-      "community": 41,
+      "community": 33,
       "norm_label": "orderconfirmationpage()"
     },
     {
@@ -2791,7 +2791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_storepage",
-      "community": 38,
+      "community": 37,
       "norm_label": "storepage.jsx"
     },
     {
@@ -2801,7 +2801,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_storepage_storepage",
-      "community": 38,
+      "community": 37,
       "norm_label": "storepage()"
     },
     {
@@ -3101,7 +3101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_blog",
-      "community": 16,
+      "community": 8,
       "norm_label": "blog.astro"
     },
     {
@@ -3111,7 +3111,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_blog_categorias",
-      "community": 16,
+      "community": 8,
       "norm_label": "categorias"
     },
     {
@@ -3121,7 +3121,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_blog_articulos",
-      "community": 16,
+      "community": 8,
       "norm_label": "articulos"
     },
     {
@@ -3131,7 +3131,7 @@
       "source_location": "L308",
       "_origin": "ast",
       "id": "src_pages_blog_emptystate",
-      "community": 16,
+      "community": 8,
       "norm_label": "emptystate"
     },
     {
@@ -3141,7 +3141,7 @@
       "source_location": "L313",
       "_origin": "ast",
       "id": "src_pages_blog_applyfilters",
-      "community": 16,
+      "community": 8,
       "norm_label": "applyfilters()"
     },
     {
@@ -3151,7 +3151,7 @@
       "source_location": "L350",
       "_origin": "ast",
       "id": "src_pages_blog_searchinput",
-      "community": 16,
+      "community": 8,
       "norm_label": "searchinput"
     },
     {
@@ -3161,7 +3161,7 @@
       "source_location": "L357",
       "_origin": "ast",
       "id": "src_pages_blog_form",
-      "community": 16,
+      "community": 8,
       "norm_label": "form"
     },
     {
@@ -3171,7 +3171,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts_ts",
-      "community": 16,
+      "community": 8,
       "norm_label": "../data/blog-posts.js"
     },
     {
@@ -3181,7 +3181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_blog_slug",
-      "community": 16,
+      "community": 8,
       "norm_label": "[slug].astro"
     },
     {
@@ -3191,7 +3191,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_blog_slug_getstaticpaths",
-      "community": 16,
+      "community": 8,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3201,7 +3201,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts",
-      "community": 16,
+      "community": 8,
       "norm_label": "../../data/blog-posts"
     },
     {
@@ -3231,7 +3231,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkout",
-      "community": 44,
+      "community": 9,
       "norm_label": "checkout.astro"
     },
     {
@@ -3241,7 +3241,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 44,
+      "community": 9,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -3251,7 +3251,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_club_missypo",
-      "community": 36,
+      "community": 8,
       "norm_label": "club-missypo.astro"
     },
     {
@@ -3261,7 +3261,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_mypo_puntos_jpeg",
-      "community": 36,
+      "community": 8,
       "norm_label": "../assets/club/mypo_puntos.jpeg"
     },
     {
@@ -3271,7 +3271,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_descuentos_jpeg",
-      "community": 36,
+      "community": 8,
       "norm_label": "../assets/club/descuentos.jpeg"
     },
     {
@@ -3281,7 +3281,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_cumple_jpeg",
-      "community": 36,
+      "community": 8,
       "norm_label": "../assets/club/cumple.jpeg"
     },
     {
@@ -3291,7 +3291,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_exclusivo_jpeg",
-      "community": 36,
+      "community": 8,
       "norm_label": "../assets/club/exclusivo.jpeg"
     },
     {
@@ -3301,7 +3301,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_youtube_jpeg",
-      "community": 36,
+      "community": 8,
       "norm_label": "../assets/club/youtube.jpeg"
     },
     {
@@ -3311,7 +3311,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_enviorapido_jpeg",
-      "community": 36,
+      "community": 8,
       "norm_label": "../assets/club/enviorapido.jpeg"
     },
     {
@@ -3321,7 +3321,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firebase",
-      "community": 36,
+      "community": 2,
       "norm_label": "../services/firebase"
     },
     {
@@ -3351,7 +3351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 24,
+      "community": 37,
       "norm_label": "index.astro"
     },
     {
@@ -3361,7 +3361,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 24,
+      "community": 37,
       "norm_label": "../pages/homepage"
     },
     {
@@ -3371,7 +3371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 49,
+      "community": 8,
       "norm_label": "login.astro"
     },
     {
@@ -3381,7 +3381,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 49,
+      "community": 8,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -3591,7 +3591,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_missypo_tv",
-      "community": 40,
+      "community": 8,
       "norm_label": "missypo-tv.astro"
     },
     {
@@ -3601,7 +3601,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_featuredvideo",
-      "community": 40,
+      "community": 8,
       "norm_label": "featuredvideo"
     },
     {
@@ -3611,7 +3611,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_episodios",
-      "community": 40,
+      "community": 8,
       "norm_label": "episodios"
     },
     {
@@ -3621,7 +3621,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_string",
-      "community": 40,
+      "community": 8,
       "norm_label": "string"
     },
     {
@@ -3631,7 +3631,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_orden_confirmada_orderid",
-      "community": 41,
+      "community": 8,
       "norm_label": "[...orderid].astro"
     },
     {
@@ -3641,7 +3641,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_orden_confirmada_orderid_getstaticpaths",
-      "community": 41,
+      "community": 8,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3651,7 +3651,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_orderconfirmationpage_tsx",
-      "community": 41,
+      "community": 8,
       "norm_label": "../../pages/orderconfirmationpage.jsx"
     },
     {
@@ -3671,7 +3671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_producto_slug",
-      "community": 39,
+      "community": 37,
       "norm_label": "[slug].astro"
     },
     {
@@ -3681,7 +3681,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_producto_slug_getstaticpaths",
-      "community": 39,
+      "community": 37,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3691,7 +3691,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 39,
+      "community": 37,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -3701,7 +3701,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services",
-      "community": 39,
+      "community": 37,
       "norm_label": "../services"
     },
     {
@@ -3741,7 +3741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_tienda",
-      "community": 39,
+      "community": 37,
       "norm_label": "tienda.astro"
     },
     {
@@ -3751,7 +3751,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 39,
+      "community": 37,
       "norm_label": "./storepage.jsx"
     },
     {
@@ -3771,7 +3771,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_tests_userprofile_test",
-      "community": 6,
+      "community": 0,
       "norm_label": "userprofile.test.js"
     },
     {
@@ -4011,7 +4011,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_userprofile",
-      "community": 6,
+      "community": 0,
       "norm_label": "userprofile.js"
     },
     {
@@ -4021,7 +4021,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_userprofile_addressschema",
-      "community": 6,
+      "community": 0,
       "norm_label": "addressschema"
     },
     {
@@ -4031,7 +4031,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petschema",
-      "community": 6,
+      "community": 0,
       "norm_label": "petschema"
     },
     {
@@ -4041,7 +4041,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userpreferencesschema",
-      "community": 6,
+      "community": 0,
       "norm_label": "userpreferencesschema"
     },
     {
@@ -4051,7 +4051,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userprofileschema",
-      "community": 6,
+      "community": 0,
       "norm_label": "userprofileschema"
     },
     {
@@ -4061,7 +4061,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petformschema",
-      "community": 6,
+      "community": 0,
       "norm_label": "petformschema"
     },
     {
@@ -4083,6 +4083,16 @@
       "id": "src_schemas_validate_validate",
       "community": 0,
       "norm_label": "validate()"
+    },
+    {
+      "label": "auth.test.js",
+      "file_type": "code",
+      "source_file": "src/services/__tests__/auth.test.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_services_tests_auth_test",
+      "community": 1,
+      "norm_label": "auth.test.js"
     },
     {
       "label": "auth.js",
@@ -4501,7 +4511,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductos",
-      "community": 38,
+      "community": 37,
       "norm_label": "obtenerproductos()"
     },
     {
@@ -4741,7 +4751,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_services_userprofile_getordersbyuser",
-      "community": 1,
+      "community": 6,
       "norm_label": "getordersbyuser()"
     },
     {
@@ -4811,7 +4821,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_catalogstore",
-      "community": 38,
+      "community": 37,
       "norm_label": "catalogstore.js"
     },
     {
@@ -4821,7 +4831,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_store_catalogstore_usecatalogstore",
-      "community": 38,
+      "community": 37,
       "norm_label": "usecatalogstore"
     },
     {
@@ -4831,7 +4841,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_searchstore",
-      "community": 38,
+      "community": 37,
       "norm_label": "searchstore.js"
     },
     {
@@ -4841,7 +4851,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_store_searchstore_usesearchstore",
-      "community": 38,
+      "community": 37,
       "norm_label": "usesearchstore"
     },
     {
@@ -7275,7 +7285,7 @@
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_firebase",
-      "target": "src_services_firebase",
+      "target": "c_mis_proyectos_missy_po_src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -12211,6 +12221,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/LoginPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_loginpage",
+      "target": "src_services_auth_resetpassword",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/NotFoundPage.jsx",
@@ -14954,6 +14975,28 @@
       "weight": 1.0,
       "source": "src_schemas_validate",
       "target": "src_schemas_validate_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/__tests__/auth.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_services_tests_auth_test",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/__tests__/auth.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_services_tests_auth_test",
+      "target": "src_services_auth_resetpassword",
       "confidence_score": 1.0
     },
     {
@@ -18089,5 +18132,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "41484af3b1429b2634007e9020a8f4e3259ca390"
+  "built_at_commit": "ea8ea9a7ac3d558b66774d8ca4abba8866fe751e"
 }
