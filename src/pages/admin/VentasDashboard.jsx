@@ -191,7 +191,7 @@ export default function VentasDashboard() {
                 label: 'Pedidos Activos',
                 value: kpis.pedidosCount,
                 icon: '🛒',
-                sub: `${pedidos.filter(p => p.estado_pedido === 'cancelado').length} cancelados`,
+                sub: `${pedidos.filter(p => p.estado === 'cancelado').length} cancelados`,
                 color: 'from-amber-50/30 to-white border-amber-100',
                 textColor: 'text-amber-700',
               },
