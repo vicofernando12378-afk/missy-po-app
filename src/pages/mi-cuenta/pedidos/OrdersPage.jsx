@@ -1,19 +1,20 @@
-import { useState } from 'react'
-import OrderCard from '../../../components/account/OrderCard'
+import { useState } from 'react';
+
+import OrderCard from '../../../components/account/OrderCard';
 
 const FILTERS = [
   { id: 'todos', label: 'Todos' },
   { id: 'activos', label: 'Activos' },
   { id: 'completados', label: 'Completados' },
-  { id: 'cancelados', label: 'Cancelados' }
-]
+  { id: 'cancelados', label: 'Cancelados' },
+];
 
-const ACTIVE_STATES = ['recibido', 'preparando', 'enviado']
-const COMPLETED_STATES = ['entregado']
-const CANCELLED_STATES = ['cancelado']
+const ACTIVE_STATES = ['recibido', 'preparando', 'enviado'];
+const COMPLETED_STATES = ['entregado'];
+const CANCELLED_STATES = ['cancelado'];
 
 export default function OrdersPage({ authUser, profile, orders = [], ordersLoading = false }) {
-  const [activeFilter, setActiveFilter] = useState('todos')
+  const [activeFilter, setActiveFilter] = useState('todos');
 
   if (ordersLoading) {
     return (
@@ -21,23 +22,23 @@ export default function OrdersPage({ authUser, profile, orders = [], ordersLoadi
         <div className="w-10 h-10 border-4 rounded-full animate-spin"
              style={{ borderColor: 'var(--color-coral)', borderTopColor: 'transparent' }} />
       </div>
-    )
+    );
   }
 
   const filteredOrders = orders.filter(order => {
-    if (activeFilter === 'todos') return true
-    if (activeFilter === 'activos') return ACTIVE_STATES.includes(order.estado)
-    if (activeFilter === 'completados') return COMPLETED_STATES.includes(order.estado)
-    if (activeFilter === 'cancelados') return CANCELLED_STATES.includes(order.estado)
-    return true
-  })
+    if (activeFilter === 'todos') return true;
+    if (activeFilter === 'activos') return ACTIVE_STATES.includes(order.estado);
+    if (activeFilter === 'completados') return COMPLETED_STATES.includes(order.estado);
+    if (activeFilter === 'cancelados') return CANCELLED_STATES.includes(order.estado);
+    return true;
+  });
 
   const filterCounts = {
     todos: orders.length,
     activos: orders.filter(o => ACTIVE_STATES.includes(o.estado)).length,
     completados: orders.filter(o => COMPLETED_STATES.includes(o.estado)).length,
-    cancelados: orders.filter(o => CANCELLED_STATES.includes(o.estado)).length
-  }
+    cancelados: orders.filter(o => CANCELLED_STATES.includes(o.estado)).length,
+  };
 
   return (
     <div>
@@ -64,9 +65,9 @@ export default function OrdersPage({ authUser, profile, orders = [], ordersLoadi
             }`}
             style={activeFilter === filter.id ? {
               backgroundColor: 'var(--color-coral)',
-              borderColor: 'var(--color-coral)'
+              borderColor: 'var(--color-coral)',
             } : {
-              borderColor: 'var(--color-border)'
+              borderColor: 'var(--color-border)',
             }}
           >
             {filter.label}
@@ -107,5 +108,5 @@ export default function OrdersPage({ authUser, profile, orders = [], ordersLoadi
         </div>
       )}
     </div>
-  )
+  );
 }

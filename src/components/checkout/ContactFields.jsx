@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 export default function ContactFields({
   nombre, setNombre,
   apellido, setApellido,
   email, setEmail,
   celular, setCelular,
-  nombreMascota, setNombreMascota
+  nombreMascota, setNombreMascota,
 }) {
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
@@ -74,5 +74,5 @@ export default function ContactFields({
         />
       </div>
     </div>
-  )
+  );
 }

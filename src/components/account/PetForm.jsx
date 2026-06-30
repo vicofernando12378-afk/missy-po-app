@@ -1,25 +1,25 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 export default function PetForm({ initialData, onSave, onCancel }) {
-  const [nombre, setNombre] = useState(initialData?.nombre || '')
-  const [especie, setEspecie] = useState(initialData?.especie || 'perro')
-  const [raza, setRaza] = useState(initialData?.raza || '')
-  const [fechaNacimiento, setFechaNacimiento] = useState(initialData?.fecha_nacimiento || '')
-  const [error, setError] = useState('')
+  const [nombre, setNombre] = useState(initialData?.nombre || '');
+  const [especie, setEspecie] = useState(initialData?.especie || 'perro');
+  const [raza, setRaza] = useState(initialData?.raza || '');
+  const [fechaNacimiento, setFechaNacimiento] = useState(initialData?.fecha_nacimiento || '');
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError('');
 
-    if (!nombre.trim()) { setError('Ingresa el nombre de tu mascota'); return }
+    if (!nombre.trim()) { setError('Ingresa el nombre de tu mascota'); return; }
 
     onSave({
       nombre: nombre.trim(),
       especie,
       raza: raza.trim(),
-      fecha_nacimiento: fechaNacimiento
-    })
-  }
+      fecha_nacimiento: fechaNacimiento,
+    });
+  };
 
   return (
     <div className="bg-white rounded-2xl border p-6" style={{ borderColor: 'var(--color-border)' }}>
@@ -47,7 +47,7 @@ export default function PetForm({ initialData, onSave, onCancel }) {
             {[
               { value: 'perro', label: 'Perro', emoji: '🐕' },
               { value: 'gato', label: 'Gato', emoji: '🐈' },
-              { value: 'otro', label: 'Otro', emoji: '🐾' }
+              { value: 'otro', label: 'Otro', emoji: '🐾' },
             ].map(opt => (
               <button key={opt.value} type="button"
                       onClick={() => setEspecie(opt.value)}
@@ -91,5 +91,5 @@ export default function PetForm({ initialData, onSave, onCancel }) {
         </div>
       </form>
     </div>
-  )
+  );
 }

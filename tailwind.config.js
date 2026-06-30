@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{astro,html,js,jsx,ts,tsx}",
+    './src/**/*.{astro,html,js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -85,8 +85,8 @@ export default {
         'popup': '70',
         'float': '80',
         'overlay': '55',
-      }
+      },
     },
   },
   plugins: [],
-}
+};

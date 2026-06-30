@@ -1,80 +1,81 @@
-import { useState, useEffect } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
-import { collection, query, where, onSnapshot } from 'firebase/firestore'
-import { db } from '../../services/firebase'
-import { listenAuth, checkIsAdmin, logout } from '../../services/auth'
-import AdminSidebar from '../../components/admin/AdminSidebar'
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import AdminSidebar from '../../components/admin/AdminSidebar';
+import { listenAuth, checkIsAdmin, logout } from '../../services/auth';
+import { db } from '../../services/firebase';
 
 export default function AdminLayout() {
-  const [user, setUser] = useState(null)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [loading, setLoading] = useState(true)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [pedidosNuevos, setPedidosNuevos] = useState(0)
-  const navigate = useNavigate()
+  const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [pedidosNuevos, setPedidosNuevos] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    let isMounted = true
+    let isMounted = true;
 
     const unsubscribe = listenAuth(async (currentUser) => {
       if (currentUser) {
-        if (!isMounted) return
-        setUser(currentUser)
+        if (!isMounted) return;
+        setUser(currentUser);
         try {
-          const admin = await checkIsAdmin(currentUser)
+          const admin = await checkIsAdmin(currentUser);
           if (admin) {
-            setIsAdmin(true)
+            setIsAdmin(true);
           } else {
-            setIsAdmin(false)
-            await logout()
-            navigate('/login', { replace: true })
+            setIsAdmin(false);
+            await logout();
+            navigate('/login', { replace: true });
           }
         } catch (err) {
-          console.error('Error al verificar roles:', err)
-          setIsAdmin(false)
+          console.error('Error al verificar roles:', err);
+          setIsAdmin(false);
         } finally {
-          if (isMounted) setLoading(false)
+          if (isMounted) setLoading(false);
         }
       } else {
         if (isMounted) {
-          setUser(null)
-          setIsAdmin(false)
-          setLoading(false)
-          navigate('/login', { replace: true })
+          setUser(null);
+          setIsAdmin(false);
+          setLoading(false);
+          navigate('/login', { replace: true });
         }
       }
-    })
+    });
 
     return () => {
-      isMounted = false
-      unsubscribe()
-    }
-  }, [navigate])
+      isMounted = false;
+      unsubscribe();
+    };
+  }, [navigate]);
 
   // ── BADGE: Escucha pedidos en estado 'recibido' en tiempo real ──
   // Unificación de campo: estado_pedido -> estado
   useEffect(() => {
-    if (!isAdmin) return
+    if (!isAdmin) return;
     const q = query(
       collection(db, 'myp_pedidos'),
-      where('estado', '==', 'recibido')
-    )
+      where('estado', '==', 'recibido'),
+    );
     const unsub = onSnapshot(q, (snap) => {
-      setPedidosNuevos(snap.size)
+      setPedidosNuevos(snap.size);
     }, (err) => {
-      console.error('Error en listener de pedidos:', err)
-    })
-    return () => unsub()
-  }, [isAdmin])
+      console.error('Error en listener de pedidos:', err);
+    });
+    return () => unsub();
+  }, [isAdmin]);
 
   const handleLogout = async () => {
     try {
-      await logout()
-      navigate('/login', { replace: true })
+      await logout();
+      navigate('/login', { replace: true });
     } catch (err) {
-      console.error('Error al cerrar sesión:', err)
+      console.error('Error al cerrar sesión:', err);
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -82,7 +83,7 @@ export default function AdminLayout() {
         <div className="w-12 h-12 border-4 border-coral border-t-transparent rounded-full animate-spin"></div>
         <p className="mt-4 text-gray-500 font-body">Verificando credenciales de acceso...</p>
       </div>
-    )
+    );
   }
 
   if (!isAdmin) {
@@ -110,7 +111,7 @@ export default function AdminLayout() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   const menuItems = [
@@ -122,7 +123,7 @@ export default function AdminLayout() {
     { path: '/resenas',        label: 'Reseñas',           icon: '⭐' },
     { path: '/cvrm',           label: 'Club (CVRM)',       icon: '👥' },
     { path: '/configuracion',  label: 'Configuración', icon: '⚙️' },
-  ]
+  ];
 
   return (
     <div className="min-h-screen flex bg-gray-50 font-body text-gray-700">
@@ -166,5 +167,5 @@ export default function AdminLayout() {
         </main>
       </div>
     </div>
-  )
+  );
 }

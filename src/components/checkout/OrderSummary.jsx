@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function OrderSummary({
   items,
@@ -11,11 +11,11 @@ export default function OrderSummary({
   incluirImpuesto,
   setIncluirImpuesto,
   baseImponibleSoles,
-  igvCalculadoSoles
+  igvCalculadoSoles,
 }) {
-  const subtotalSoles = subtotal / 100
-  const couponDiscountSoles = (subtotalSoles * couponDiscount) / 100
-  const pointsDiscountSoles = pointsDiscountCents / 100
+  const subtotalSoles = subtotal / 100;
+  const couponDiscountSoles = (subtotalSoles * couponDiscount) / 100;
+  const pointsDiscountSoles = pointsDiscountCents / 100;
 
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
@@ -104,5 +104,5 @@ export default function OrderSummary({
         <span className="text-xl font-extrabold text-coral">S/ {totalFinalSoles.toFixed(2)}</span>
       </div>
     </div>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 export default function PointsBalance({ points = 0, history = [] }) {
-  const recentHistory = history.slice(0, 5)
+  const recentHistory = history.slice(0, 5);
 
   return (
     <div className="bg-white rounded-2xl border overflow-hidden" style={{ borderColor: 'var(--color-border)' }}>
@@ -40,10 +40,10 @@ export default function PointsBalance({ points = 0, history = [] }) {
           </p>
           <div className="space-y-2">
             {recentHistory.map((entry, i) => {
-              const isPositive = entry.puntos > 0
+              const isPositive = entry.puntos > 0;
               const fecha = entry.creado_en instanceof Date
                 ? entry.creado_en.toLocaleDateString('es-PE', { day: '2-digit', month: 'short' })
-                : '—'
+                : '—';
               return (
                 <div key={i} className="flex items-center justify-between py-2 border-b last:border-0"
                      style={{ borderColor: 'var(--color-border)' }}>
@@ -59,7 +59,7 @@ export default function PointsBalance({ points = 0, history = [] }) {
                     {isPositive ? '+' : ''}{entry.puntos}
                   </span>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -76,5 +76,5 @@ export default function PointsBalance({ points = 0, history = [] }) {
         </a>
       </div>
     </div>
-  )
+  );
 }

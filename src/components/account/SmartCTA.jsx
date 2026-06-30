@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 function getSmartCTA({ profile, orders, points }) {
-  const totalOrders = orders?.length || 0
-  const lastOrder = orders?.[0]
-  const hasMascota = profile?.mascotas?.length > 0
+  const totalOrders = orders?.length || 0;
+  const lastOrder = orders?.[0];
+  const hasMascota = profile?.mascotas?.length > 0;
 
   // Sin pedidos → invitar a comprar
   if (totalOrders === 0) {
@@ -14,8 +14,8 @@ function getSmartCTA({ profile, orders, points }) {
       href: '/tienda',
       icon: '🛒',
       color: 'var(--color-coral)',
-      bg: '#fff5f5'
-    }
+      bg: '#fff5f5',
+    };
   }
 
   // Puntos acumulados → invitar a canjear
@@ -27,8 +27,8 @@ function getSmartCTA({ profile, orders, points }) {
       href: '/mi-cuenta/club',
       icon: '⭐',
       color: 'var(--color-gold)',
-      bg: '#fffbeb'
-    }
+      bg: '#fffbeb',
+    };
   }
 
   // Sin mascota registrada → invitar a registrar
@@ -40,13 +40,13 @@ function getSmartCTA({ profile, orders, points }) {
       href: '/mi-cuenta/mascotas',
       icon: '🐾',
       color: '#8b5cf6',
-      bg: '#f5f3ff'
-    }
+      bg: '#f5f3ff',
+    };
   }
 
   // Último pedido hace tiempo → invitar a reordenar
   if (lastOrder?.creado_en) {
-    const daysSince = Math.floor((Date.now() - new Date(lastOrder.creado_en).getTime()) / (1000 * 60 * 60 * 24))
+    const daysSince = Math.floor((Date.now() - new Date(lastOrder.creado_en).getTime()) / (1000 * 60 * 60 * 24));
     if (daysSince > 30) {
       return {
         title: '¿Necesitas algo más?',
@@ -55,8 +55,8 @@ function getSmartCTA({ profile, orders, points }) {
         href: '/tienda',
         icon: '🔄',
         color: '#14b8a6',
-        bg: '#f0fdfa'
-      }
+        bg: '#f0fdfa',
+      };
     }
   }
 
@@ -68,18 +68,18 @@ function getSmartCTA({ profile, orders, points }) {
     href: '/blog',
     icon: '📰',
     color: '#3b82f6',
-    bg: '#eff6ff'
-  }
+    bg: '#eff6ff',
+  };
 }
 
 export default function SmartCTA({ profile, orders, points }) {
-  const [cta, setCta] = useState(null)
+  const [cta, setCta] = useState(null);
 
   useEffect(() => {
-    setCta(getSmartCTA({ profile, orders, points }))
-  }, [profile, orders, points])
+    setCta(getSmartCTA({ profile, orders, points }));
+  }, [profile, orders, points]);
 
-  if (!cta) return null
+  if (!cta) return null;
 
   return (
     <div className="rounded-2xl border p-5 transition-all hover:shadow-md" style={{ borderColor: 'var(--color-border)', backgroundColor: cta.bg }}>
@@ -105,5 +105,5 @@ export default function SmartCTA({ profile, orders, points }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -56,8 +56,8 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Comida Natural BARF Pollo 1kg', precio: 'S/ 24.00', SKU: 'BARF-POLLO-1KG' },
-      { nombre: 'Aceite de Salmón Silvestre 250ml', precio: 'S/ 48.00', SKU: 'SALMON-OIL-250' }
-    ]
+      { nombre: 'Aceite de Salmón Silvestre 250ml', precio: 'S/ 48.00', SKU: 'SALMON-OIL-250' },
+    ],
   },
   {
     slug: 'senales-perro-estresado',
@@ -107,8 +107,8 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Juguete Interactivo Lick Mat Classic', precio: 'S/ 35.00', SKU: 'LICK-MAT-CLASSIC' },
-      { nombre: 'Mordedor Natural Traquea Deshidratada', precio: 'S/ 15.00', SKU: 'MORDEDOR-TRAQUEA' }
-    ]
+      { nombre: 'Mordedor Natural Traquea Deshidratada', precio: 'S/ 15.00', SKU: 'MORDEDOR-TRAQUEA' },
+    ],
   },
   {
     slug: 'alimentos-prohibidos-gatos',
@@ -148,8 +148,8 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Snack Húmedo Churu Salmón Gatos', precio: 'S/ 16.50', SKU: 'CHURU-SALMON-F' },
-      { nombre: 'Comida Húmeda Brit Premium Gravy', precio: 'S/ 8.90', SKU: 'BRIT-GRAVY-CAT' }
-    ]
+      { nombre: 'Comida Húmeda Brit Premium Gravy', precio: 'S/ 8.90', SKU: 'BRIT-GRAVY-CAT' },
+    ],
   },
   {
     slug: 'socializar-cachorro-primeros-meses',
@@ -194,8 +194,8 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Arnés H de Nylon Ajustable Canino', precio: 'S/ 42.00', SKU: 'ARNES-H-CAN' },
-      { nombre: 'Snack de Entrenamiento Soft Treats 150g', precio: 'S/ 22.00', SKU: 'TRAINING-TREATS-150' }
-    ]
+      { nombre: 'Snack de Entrenamiento Soft Treats 150g', precio: 'S/ 22.00', SKU: 'TRAINING-TREATS-150' },
+    ],
   },
   {
     slug: 'guia-vacunas-perros-peru',
@@ -281,8 +281,8 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Simparica Pastilla Antipulgas 10-20kg', precio: 'S/ 58.00', SKU: 'SIMPARICA-10-20' },
-      { nombre: 'NexGard Combo Antipulgas Gato', precio: 'S/ 62.00', SKU: 'NEXGARD-COMBO-CAT' }
-    ]
+      { nombre: 'NexGard Combo Antipulgas Gato', precio: 'S/ 62.00', SKU: 'NEXGARD-COMBO-CAT' },
+    ],
   },
   {
     slug: 'nueva-coleccion-invierno-2026',
@@ -326,8 +326,8 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Casaca Cortaviento Impermeable Azul M', precio: 'S/ 59.00', SKU: 'CASACA-BLUE-M' },
-      { nombre: 'Polera Con Capucha Algodón Burdeos L', precio: 'S/ 45.00', SKU: 'POLERA-BURDEOS-L' }
-    ]
+      { nombre: 'Polera Con Capucha Algodón Burdeos L', precio: 'S/ 45.00', SKU: 'POLERA-BURDEOS-L' },
+    ],
   },
   {
     slug: 'gato-destruye-muebles',
@@ -375,7 +375,7 @@ export const articulosBlog = [
     `,
     productosRelacionados: [
       { nombre: 'Rascador Poste Grande Cuerda Sisal', precio: 'S/ 79.00', SKU: 'RASCADOR-POSTE-G' },
-      { nombre: 'Catnip Orgánico Seco Dispensador 20g', precio: 'S/ 18.00', SKU: 'CATNIP-OR-20' }
-    ]
-  }
+      { nombre: 'Catnip Orgánico Seco Dispensador 20g', precio: 'S/ 18.00', SKU: 'CATNIP-OR-20' },
+    ],
+  },
 ];

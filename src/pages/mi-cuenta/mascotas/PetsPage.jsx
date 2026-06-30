@@ -1,50 +1,51 @@
-import { useState } from 'react'
-import useUserStore from '../../../store/userStore'
-import PetForm from '../../../components/account/PetForm'
+import { useState } from 'react';
 
-const ESPECIE_EMOJI = { perro: '🐕', gato: '🐈', otro: '🐾' }
+import PetForm from '../../../components/account/PetForm';
+import useUserStore from '../../../store/userStore';
+
+const ESPECIE_EMOJI = { perro: '🐕', gato: '🐈', otro: '🐾' };
 
 export default function PetsPage({ authUser, profile }) {
-  const [showForm, setShowForm] = useState(false)
-  const [editingIndex, setEditingIndex] = useState(null)
+  const [showForm, setShowForm] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
 
-  const { addPet, removePet, updateProfile } = useUserStore()
+  const { addPet, removePet, updateProfile } = useUserStore();
 
-  const mascotas = profile?.mascotas || []
+  const mascotas = profile?.mascotas || [];
 
   const handleSave = async (pet) => {
     if (editingIndex !== null) {
-      const updated = [...mascotas]
-      updated[editingIndex] = pet
-      await updateProfile(authUser.uid, { mascotas: updated })
+      const updated = [...mascotas];
+      updated[editingIndex] = pet;
+      await updateProfile(authUser.uid, { mascotas: updated });
     } else {
-      await addPet(authUser.uid, pet)
+      await addPet(authUser.uid, pet);
     }
-    setShowForm(false)
-    setEditingIndex(null)
-  }
+    setShowForm(false);
+    setEditingIndex(null);
+  };
 
   const handleDelete = async (index) => {
     if (confirm('¿Eliminar esta mascota?')) {
-      await removePet(authUser.uid, index)
+      await removePet(authUser.uid, index);
     }
-  }
+  };
 
   const handleEdit = (index) => {
-    setEditingIndex(index)
-    setShowForm(true)
-  }
+    setEditingIndex(index);
+    setShowForm(true);
+  };
 
   const getAge = (fechaNacimiento) => {
-    if (!fechaNacimiento) return null
-    const birth = new Date(fechaNacimiento)
-    const now = new Date()
-    const months = (now.getFullYear() - birth.getFullYear()) * 12 + (now.getMonth() - birth.getMonth())
-    if (months < 12) return `${months} meses`
-    const years = Math.floor(months / 12)
-    const remaining = months % 12
-    return remaining > 0 ? `${years} años y ${remaining} meses` : `${years} años`
-  }
+    if (!fechaNacimiento) return null;
+    const birth = new Date(fechaNacimiento);
+    const now = new Date();
+    const months = (now.getFullYear() - birth.getFullYear()) * 12 + (now.getMonth() - birth.getMonth());
+    if (months < 12) return `${months} meses`;
+    const years = Math.floor(months / 12);
+    const remaining = months % 12;
+    return remaining > 0 ? `${years} años y ${remaining} meses` : `${years} años`;
+  };
 
   return (
     <div>
@@ -60,7 +61,7 @@ export default function PetsPage({ authUser, profile }) {
         </div>
         {mascotas.length < 5 && !showForm && (
           <button
-            onClick={() => { setEditingIndex(null); setShowForm(true) }}
+            onClick={() => { setEditingIndex(null); setShowForm(true); }}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-ui font-bold text-white transition-all hover:scale-105 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, var(--color-coral), var(--color-coral-dark))' }}
           >
@@ -75,7 +76,7 @@ export default function PetsPage({ authUser, profile }) {
           <PetForm
             initialData={editingIndex !== null ? mascotas[editingIndex] : null}
             onSave={handleSave}
-            onCancel={() => { setShowForm(false); setEditingIndex(null) }}
+            onCancel={() => { setShowForm(false); setEditingIndex(null); }}
           />
         </div>
       )}
@@ -132,5 +133,5 @@ export default function PetsPage({ authUser, profile }) {
         )
       )}
     </div>
-  )
+  );
 }

@@ -3,16 +3,16 @@ const STATUS_MAP = {
   preparando: { label: 'Preparando', color: '#f59e0b', bg: '#fffbeb' },
   enviado: { label: 'En camino', color: '#8b5cf6', bg: '#f5f3ff' },
   entregado: { label: 'Entregado', color: '#10b981', bg: '#ecfdf5' },
-  cancelado: { label: 'Cancelado', color: '#ef4444', bg: '#fef2f2' }
-}
+  cancelado: { label: 'Cancelado', color: '#ef4444', bg: '#fef2f2' },
+};
 
 export default function OrderCard({ order }) {
-  const status = STATUS_MAP[order.estado] || STATUS_MAP.recibido
+  const status = STATUS_MAP[order.estado] || STATUS_MAP.recibido;
   const fecha = order.creado_en instanceof Date
     ? order.creado_en.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', year: 'numeric' })
-    : '—'
-  const total = order.total_final ? `S/ ${(order.total_final / 100).toFixed(2)}` : '—'
-  const itemCount = order.items?.length || 0
+    : '—';
+  const total = order.total_final ? `S/ ${(order.total_final / 100).toFixed(2)}` : '—';
+  const itemCount = order.items?.length || 0;
 
   return (
     <div className="bg-white rounded-2xl border p-5 hover:shadow-md transition-shadow duration-200"
@@ -84,5 +84,5 @@ export default function OrderCard({ order }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

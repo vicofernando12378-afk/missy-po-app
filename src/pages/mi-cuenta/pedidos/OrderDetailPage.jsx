@@ -1,62 +1,63 @@
-import { useState, useEffect } from 'react'
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../../../services/firebase'
-import OrderTimeline from '../../../components/account/OrderTimeline'
+import { doc, getDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+
+import OrderTimeline from '../../../components/account/OrderTimeline';
+import { db } from '../../../services/firebase';
 
 const STATUS_MAP = {
   recibido: { label: 'Recibido', color: '#3b82f6', icon: '📥' },
   preparando: { label: 'Preparando', color: '#f59e0b', icon: '📦' },
   enviado: { label: 'En camino', color: '#8b5cf6', icon: '🚚' },
   entregado: { label: 'Entregado', color: '#10b981', icon: '✅' },
-  cancelado: { label: 'Cancelado', color: '#ef4444', icon: '❌' }
-}
+  cancelado: { label: 'Cancelado', color: '#ef4444', icon: '❌' },
+};
 
 export default function OrderDetailPage({ forceOrderId, authUser, profile }) {
-  const [order, setOrder] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!authUser) return
+    if (!authUser) return;
 
     const fetchOrder = async () => {
-      const orderId = forceOrderId || new URLSearchParams(window.location.search).get('id')
+      const orderId = forceOrderId || new URLSearchParams(window.location.search).get('id');
 
       if (!orderId) {
-        setError('ID de pedido no válido')
-        setLoading(false)
-        return
+        setError('ID de pedido no válido');
+        setLoading(false);
+        return;
       }
 
       try {
-        const orderRef = doc(db, 'myp_pedidos', orderId)
-        const orderSnap = await getDoc(orderRef)
+        const orderRef = doc(db, 'myp_pedidos', orderId);
+        const orderSnap = await getDoc(orderRef);
 
         if (!orderSnap.exists()) {
-          setError('Pedido no encontrado')
-          setLoading(false)
-          return
+          setError('Pedido no encontrado');
+          setLoading(false);
+          return;
         }
 
-        const orderData = { id: orderSnap.id, ...orderSnap.data() }
+        const orderData = { id: orderSnap.id, ...orderSnap.data() };
 
         if (orderData.userId && orderData.userId !== authUser.uid) {
-          setError('No tienes acceso a este pedido')
-          setLoading(false)
-          return
+          setError('No tienes acceso a este pedido');
+          setLoading(false);
+          return;
         }
 
-        setOrder(orderData)
+        setOrder(orderData);
       } catch (err) {
-        console.error('Error fetching order:', err)
-        setError('Error al cargar el pedido')
+        console.error('Error fetching order:', err);
+        setError('Error al cargar el pedido');
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchOrder()
-  }, [authUser, forceOrderId])
+    fetchOrder();
+  }, [authUser, forceOrderId]);
 
   if (loading) {
     return (
@@ -64,7 +65,7 @@ export default function OrderDetailPage({ forceOrderId, authUser, profile }) {
         <div className="w-10 h-10 border-4 rounded-full animate-spin"
              style={{ borderColor: 'var(--color-coral)', borderTopColor: 'transparent' }} />
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -78,15 +79,15 @@ export default function OrderDetailPage({ forceOrderId, authUser, profile }) {
           ← Volver a Mis Pedidos
         </a>
       </div>
-    )
+    );
   }
 
-  if (!order) return null
+  if (!order) return null;
 
-  const status = STATUS_MAP[order.estado] || STATUS_MAP.recibido
+  const status = STATUS_MAP[order.estado] || STATUS_MAP.recibido;
   const fecha = order.creado_en?.toDate
     ? order.creado_en.toDate().toLocaleDateString('es-PE', { day: '2-digit', month: 'long', year: 'numeric' })
-    : '—'
+    : '—';
 
   return (
     <div>
@@ -242,5 +243,5 @@ export default function OrderDetailPage({ forceOrderId, authUser, profile }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

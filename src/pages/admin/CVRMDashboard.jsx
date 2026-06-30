@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
-import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, getDoc, setDoc, updateDoc } from 'firebase/firestore'
-import { db } from '../../services/firebase'
+import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+
+import { db } from '../../services/firebase';
 
 // Configuración de pestañas
 const TABS = [
@@ -9,25 +10,25 @@ const TABS = [
   { id: 'campanas', label: 'Campañas & Email', icon: '✉️', active: false },
   { id: 'puntos', label: 'Puntos & Lealtad', icon: '⭐', active: true },
   { id: 'segmentacion', label: 'Segmentación', icon: '🏷️', active: false },
-]
+];
 
 export default function CVRMDashboard() {
-  const [activeTab, setActiveTab] = useState('miembros')
-  const [miembros, setMiembros] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [showAddModal, setShowAddModal] = useState(false)
-  const [savingMember, setSavingMember] = useState(false)
+  const [activeTab, setActiveTab] = useState('miembros');
+  const [miembros, setMiembros] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [savingMember, setSavingMember] = useState(false);
   const [newMember, setNewMember] = useState({
     tutor: '',
     mascota: '',
     email: '',
-    benefit: 'Registro Manual Admin'
-  })
+    benefit: 'Registro Manual Admin',
+  });
 
   // Popups/Modales del Socio
-  const [detailMember, setDetailMember] = useState(null)
-  const [editMember, setEditMember] = useState(null)
+  const [detailMember, setDetailMember] = useState(null);
+  const [editMember, setEditMember] = useState(null);
 
   // Configuración del club y puntos
   const [configClub, setConfigClub] = useState({
@@ -35,112 +36,112 @@ export default function CVRMDashboard() {
     tipoPremio: 'monto_fijo',
     valorDescuento: 10,
     puntosRequeridos: 200,
-    minCompraAplicarCanje: 50
-  })
-  const [loadingConfig, setLoadingConfig] = useState(true)
-  const [savingConfig, setSavingConfig] = useState(false)
+    minCompraAplicarCanje: 50,
+  });
+  const [loadingConfig, setLoadingConfig] = useState(true);
+  const [savingConfig, setSavingConfig] = useState(false);
 
   // Asignar puntos
-  const [selectedMemberId, setSelectedMemberId] = useState('')
-  const [pointsToAward, setPointsToAward] = useState('')
-  const [awardReason, setAwardReason] = useState('Campaña Redes Sociales')
-  const [savingPoints, setSavingPoints] = useState(false)
+  const [selectedMemberId, setSelectedMemberId] = useState('');
+  const [pointsToAward, setPointsToAward] = useState('');
+  const [awardReason, setAwardReason] = useState('Campaña Redes Sociales');
+  const [savingPoints, setSavingPoints] = useState(false);
 
   // Búsqueda interactiva y ordenamiento alfabético de socio en asignación de puntos
-  const [memberSearchQuery, setMemberSearchQuery] = useState('')
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [memberSearchQuery, setMemberSearchQuery] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const searchFilteredMiembros = miembros
     .filter(m => {
-      const q = memberSearchQuery.toLowerCase().trim()
-      if (!q) return true
+      const q = memberSearchQuery.toLowerCase().trim();
+      if (!q) return true;
       return (
         (m.nombre_tutor || '').toLowerCase().includes(q) ||
         (m.nombre_mascota || '').toLowerCase().includes(q) ||
         (m.email || '').toLowerCase().includes(q)
-      )
+      );
     })
-    .sort((a, b) => (a.nombre_tutor || '').localeCompare(b.nombre_tutor || ''))
+    .sort((a, b) => (a.nombre_tutor || '').localeCompare(b.nombre_tutor || ''));
 
   // 1. Cargar miembros del Club en tiempo real
   useEffect(() => {
     const q = query(
       collection(db, 'myp_club_miembros'),
-      orderBy('creado_en', 'desc')
-    )
+      orderBy('creado_en', 'desc'),
+    );
 
     const unsubscribe = onSnapshot(q, (snap) => {
       const docs = snap.docs.map(doc => ({
         id: doc.id,
         puntos: 0, // default if not present
-        ...doc.data()
-      }))
-      setMiembros(docs)
-      setLoading(false)
+        ...doc.data(),
+      }));
+      setMiembros(docs);
+      setLoading(false);
     }, (err) => {
-      console.error("Error al obtener miembros del club:", err)
-      setLoading(false)
-    })
+      console.error('Error al obtener miembros del club:', err);
+      setLoading(false);
+    });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   // 2. Cargar configuración del club
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const snap = await getDoc(doc(db, 'myp_config', 'club'))
+        const snap = await getDoc(doc(db, 'myp_config', 'club'));
         if (snap.exists()) {
-          const data = snap.data()
+          const data = snap.data();
           setConfigClub({
             solesPorDiezPuntos: data.solesPorDiezPuntos ?? 10,
             tipoPremio: data.tipoPremio ?? 'monto_fijo',
             valorDescuento: data.valorDescuento ?? 10,
             puntosRequeridos: data.puntosRequeridos ?? 200,
-            minCompraAplicarCanje: data.minCompraAplicarCanje ?? 50
-          })
+            minCompraAplicarCanje: data.minCompraAplicarCanje ?? 50,
+          });
         }
       } catch (err) {
-        console.error("Error al cargar config del club:", err)
+        console.error('Error al cargar config del club:', err);
       } finally {
-        setLoadingConfig(false)
+        setLoadingConfig(false);
       }
-    }
-    fetchConfig()
-  }, [])
+    };
+    fetchConfig();
+  }, []);
 
   // 3. Filtrar miembros por búsqueda
   const filteredMiembros = miembros.filter(m => {
-    const query = searchQuery.toLowerCase().trim()
-    if (!query) return true
+    const query = searchQuery.toLowerCase().trim();
+    if (!query) return true;
     return (
       (m.nombre_tutor || '').toLowerCase().includes(query) ||
       (m.nombre_mascota || '').toLowerCase().includes(query) ||
       (m.email || '').toLowerCase().includes(query) ||
       (m.benefit_origen || '').toLowerCase().includes(query)
-    )
-  })
+    );
+  });
 
   // 4. Eliminar miembro
   const handleDelete = async (id, tutor, mascota) => {
-    if (!window.confirm(`¿Estás seguro de eliminar a ${tutor} (mascota: ${mascota}) del Club?`)) return
+    if (!window.confirm(`¿Estás seguro de eliminar a ${tutor} (mascota: ${mascota}) del Club?`)) return;
     try {
-      await deleteDoc(doc(db, 'myp_club_miembros', id))
+      await deleteDoc(doc(db, 'myp_club_miembros', id));
     } catch (err) {
-      console.error("Error al eliminar miembro:", err)
-      alert("No se pudo eliminar al miembro. Por favor, intenta de nuevo.")
+      console.error('Error al eliminar miembro:', err);
+      alert('No se pudo eliminar al miembro. Por favor, intenta de nuevo.');
     }
-  }
+  };
 
   // 5. Agregar miembro manualmente
   const handleAddMemberSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!newMember.tutor.trim() || !newMember.mascota.trim() || !newMember.email.trim()) {
-      alert("Por favor rellena todos los campos obligatorios.")
-      return
+      alert('Por favor rellena todos los campos obligatorios.');
+      return;
     }
 
-    setSavingMember(true)
+    setSavingMember(true);
     try {
       await addDoc(collection(db, 'myp_club_miembros'), {
         nombre_tutor: newMember.tutor.trim(),
@@ -148,27 +149,27 @@ export default function CVRMDashboard() {
         email: newMember.email.trim(),
         benefit_origen: newMember.benefit || 'Registro Manual Admin',
         puntos: 0,
-        creado_en: serverTimestamp()
-      })
+        creado_en: serverTimestamp(),
+      });
 
-      setShowAddModal(false)
-      setNewMember({ tutor: '', mascota: '', email: '', benefit: 'Registro Manual Admin' })
+      setShowAddModal(false);
+      setNewMember({ tutor: '', mascota: '', email: '', benefit: 'Registro Manual Admin' });
     } catch (err) {
-      console.error("Error al agregar miembro:", err)
-      alert("Error al agregar miembro manualmente.")
+      console.error('Error al agregar miembro:', err);
+      alert('Error al agregar miembro manualmente.');
     } finally {
-      setSavingMember(false)
+      setSavingMember(false);
     }
-  }
+  };
 
   // 5.5 Editar miembro
   const handleEditMemberSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!editMember.nombre_tutor.trim() || !editMember.nombre_mascota.trim() || !editMember.email.trim()) {
-      alert("Por favor rellena los campos obligatorios.")
-      return
+      alert('Por favor rellena los campos obligatorios.');
+      return;
     }
-    setSavingMember(true)
+    setSavingMember(true);
     try {
       await updateDoc(doc(db, 'myp_club_miembros', editMember.id), {
         nombre_tutor: editMember.nombre_tutor.trim(),
@@ -181,22 +182,22 @@ export default function CVRMDashboard() {
         departamento: editMember.departamento || '',
         distrito: editMember.distrito || '',
         benefit_origen: editMember.benefit_origen || 'General',
-        actualizado_en: serverTimestamp()
-      })
-      setEditMember(null)
-      alert("Socio actualizado con éxito.")
+        actualizado_en: serverTimestamp(),
+      });
+      setEditMember(null);
+      alert('Socio actualizado con éxito.');
     } catch (err) {
-      console.error("Error al editar miembro:", err)
-      alert("Error al guardar cambios.")
+      console.error('Error al editar miembro:', err);
+      alert('Error al guardar cambios.');
     } finally {
-      setSavingMember(false)
+      setSavingMember(false);
     }
-  }
+  };
 
   // 6. Guardar Configuración de Puntos
   const handleSaveConfig = async (e) => {
-    e.preventDefault()
-    setSavingConfig(true)
+    e.preventDefault();
+    setSavingConfig(true);
     try {
       await setDoc(doc(db, 'myp_config', 'club'), {
         solesPorDiezPuntos: parseFloat(configClub.solesPorDiezPuntos) || 0,
@@ -204,108 +205,108 @@ export default function CVRMDashboard() {
         valorDescuento: parseFloat(configClub.valorDescuento) || 0,
         puntosRequeridos: parseInt(configClub.puntosRequeridos) || 0,
         minCompraAplicarCanje: parseFloat(configClub.minCompraAplicarCanje) || 0,
-        actualizado_en: serverTimestamp()
-      }, { merge: true })
-      alert("Configuración de puntos guardada correctamente.")
+        actualizado_en: serverTimestamp(),
+      }, { merge: true });
+      alert('Configuración de puntos guardada correctamente.');
     } catch (err) {
-      console.error("Error al guardar la configuración:", err)
-      alert("Error al guardar la configuración.")
+      console.error('Error al guardar la configuración:', err);
+      alert('Error al guardar la configuración.');
     } finally {
-      setSavingConfig(false)
+      setSavingConfig(false);
     }
-  }
+  };
 
   // 7. Otorgar Puntos de Regalo / Lealtad
   const handleAwardPoints = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!selectedMemberId) {
-      alert("Por favor selecciona un miembro.")
-      return
+      alert('Por favor selecciona un miembro.');
+      return;
     }
-    const pointsNum = parseInt(pointsToAward)
+    const pointsNum = parseInt(pointsToAward);
     if (isNaN(pointsNum) || pointsNum === 0) {
-      alert("Por favor ingresa una cantidad de puntos válida (distinta de cero).")
-      return
+      alert('Por favor ingresa una cantidad de puntos válida (distinta de cero).');
+      return;
     }
 
-    setSavingPoints(true)
+    setSavingPoints(true);
     try {
-      const memberRef = doc(db, 'myp_club_miembros', selectedMemberId)
-      const memberDoc = miembros.find(m => m.id === selectedMemberId)
-      if (!memberDoc) throw new Error("Miembro no encontrado")
+      const memberRef = doc(db, 'myp_club_miembros', selectedMemberId);
+      const memberDoc = miembros.find(m => m.id === selectedMemberId);
+      if (!memberDoc) throw new Error('Miembro no encontrado');
 
-      const currentPoints = parseInt(memberDoc.puntos) || 0
-      const newPoints = currentPoints + pointsNum
+      const currentPoints = parseInt(memberDoc.puntos) || 0;
+      const newPoints = currentPoints + pointsNum;
 
       // 1. Actualizar puntos acumulados en la ficha del socio
       await updateDoc(memberRef, {
         puntos: newPoints,
-        actualizado_en: serverTimestamp()
-      })
+        actualizado_en: serverTimestamp(),
+      });
 
       // 2. Guardar registro en el historial de puntos (subcolección puntos_logs)
       await addDoc(collection(db, 'myp_club_miembros', selectedMemberId, 'puntos_logs'), {
         puntos: pointsNum,
         motivo: awardReason.trim(),
-        creado_en: serverTimestamp()
-      })
+        creado_en: serverTimestamp(),
+      });
 
-      alert(`Se han asignado ${pointsNum} puntos a ${memberDoc.nombre_tutor} con éxito.`)
-      setPointsToAward('')
-      setSelectedMemberId('')
-      setMemberSearchQuery('')
-      setAwardReason('Campaña Redes Sociales')
+      alert(`Se han asignado ${pointsNum} puntos a ${memberDoc.nombre_tutor} con éxito.`);
+      setPointsToAward('');
+      setSelectedMemberId('');
+      setMemberSearchQuery('');
+      setAwardReason('Campaña Redes Sociales');
     } catch (err) {
-      console.error("Error al asignar puntos:", err)
-      alert("Error al asignar puntos al socio.")
+      console.error('Error al asignar puntos:', err);
+      alert('Error al asignar puntos al socio.');
     } finally {
-      setSavingPoints(false)
+      setSavingPoints(false);
     }
-  }
+  };
 
   // 8. Exportar a CSV
   const handleExportCSV = () => {
     if (miembros.length === 0) {
-      alert("No hay miembros para exportar.")
-      return
+      alert('No hay miembros para exportar.');
+      return;
     }
 
-    const headers = ['Nombre Tutor', 'Mascota (Alias)', 'Email', 'Beneficio Origen', 'Puntos Acumulados', 'Fecha Registro']
+    const headers = ['Nombre Tutor', 'Mascota (Alias)', 'Email', 'Beneficio Origen', 'Puntos Acumulados', 'Fecha Registro'];
     const rows = miembros.map(m => [
       m.nombre_tutor || '',
       m.nombre_mascota || '',
       m.email || '',
       m.benefit_origen || '',
       m.puntos || 0,
-      m.creado_en ? new Date(m.creado_en.seconds * 1000).toLocaleString('es-PE') : 'Sin fecha'
-    ])
+      m.creado_en ? new Date(m.creado_en.seconds * 1000).toLocaleString('es-PE') : 'Sin fecha',
+    ]);
 
-    const csvContent = "data:text/csv;charset=utf-8,\uFEFF"
-      + [headers.join(','), ...rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(','))].join('\n')
+    const csvContent = 'data:text/csv;charset=utf-8,\uFEFF'
+      + [headers.join(','), ...rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(','))].join('\n');
 
-    const encodedUri = encodeURI(csvContent)
-    const link = document.createElement('a')
-    link.setAttribute('href', encodedUri)
-    link.setAttribute('download', `miembros_club_missypo_${new Date().toISOString().slice(0, 10)}.csv`)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `miembros_club_missypo_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   // Contar registros de hoy
   const registrosHoy = miembros.filter(m => {
-    if (!m.creado_en) return false
-    const date = new Date(m.creado_en.seconds * 1000)
-    const today = new Date()
+    if (!m.creado_en) return false;
+    const date = new Date(m.creado_en.seconds * 1000);
+    const today = new Date();
     return (
       date.getDate() === today.getDate() &&
       date.getMonth() === today.getMonth() &&
       date.getFullYear() === today.getFullYear()
-    )
-  }).length
+    );
+  }).length;
 
   // Obtener ranking de socios ordenados por puntos desc
-  const rankingMiembros = [...miembros].sort((a, b) => (parseInt(b.puntos) || 0) - (parseInt(a.puntos) || 0))
+  const rankingMiembros = [...miembros].sort((a, b) => (parseInt(b.puntos) || 0) - (parseInt(a.puntos) || 0));
 
   return (
     <div className="space-y-8 font-body">
@@ -488,7 +489,7 @@ export default function CVRMDashboard() {
                                 month: 'short',
                                 year: 'numeric',
                                 hour: '2-digit',
-                                minute: '2-digit'
+                                minute: '2-digit',
                               })
                             : 'N/A'}
                         </td>
@@ -505,7 +506,7 @@ export default function CVRMDashboard() {
                               documento_numero: miembro.documento_numero || '',
                               departamento: miembro.departamento || '',
                               distrito: miembro.distrito || '',
-                              benefit_origen: miembro.benefit_origen || 'General'
+                              benefit_origen: miembro.benefit_origen || 'General',
                             })}
                             className="p-2 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded-xl transition-all cursor-pointer border-none bg-transparent"
                             title="Editar socio"
@@ -696,10 +697,10 @@ export default function CVRMDashboard() {
                         placeholder="Escribe para buscar por tutor, mascota o correo..."
                         value={memberSearchQuery}
                         onChange={(e) => {
-                          setMemberSearchQuery(e.target.value)
-                          setDropdownOpen(true)
+                          setMemberSearchQuery(e.target.value);
+                          setDropdownOpen(true);
                           if (selectedMemberId) {
-                            setSelectedMemberId('')
+                            setSelectedMemberId('');
                           }
                         }}
                         onFocus={() => setDropdownOpen(true)}
@@ -712,8 +713,8 @@ export default function CVRMDashboard() {
                           <button
                             type="button"
                             onClick={() => {
-                              setSelectedMemberId('')
-                              setMemberSearchQuery('')
+                              setSelectedMemberId('');
+                              setMemberSearchQuery('');
                             }}
                             className="text-gray-400 hover:text-gray-600 font-bold bg-transparent border-none cursor-pointer text-xs p-1"
                           >
@@ -744,9 +745,9 @@ export default function CVRMDashboard() {
                                 key={m.id}
                                 type="button"
                                 onClick={() => {
-                                  setSelectedMemberId(m.id)
-                                  setMemberSearchQuery(`${m.nombre_tutor} (Mascota: ${m.nombre_mascota}) - ${m.email}`)
-                                  setDropdownOpen(false)
+                                  setSelectedMemberId(m.id);
+                                  setMemberSearchQuery(`${m.nombre_tutor} (Mascota: ${m.nombre_mascota}) - ${m.email}`);
+                                  setDropdownOpen(false);
                                 }}
                                 className={`w-full text-left px-4 py-3 text-xs hover:bg-coral/5 transition-colors cursor-pointer border-none block ${
                                   selectedMemberId === m.id ? 'bg-coral/10 font-semibold text-coral' : 'text-gray-700 bg-white'
@@ -832,11 +833,11 @@ export default function CVRMDashboard() {
                 </thead>
                 <tbody className="divide-y divide-gray-50 text-sm">
                   {rankingMiembros.map((miembro, index) => {
-                    const rank = index + 1
-                    let medal = ''
-                    if (rank === 1) medal = '🥇'
-                    else if (rank === 2) medal = '🥈'
-                    else if (rank === 3) medal = '🥉'
+                    const rank = index + 1;
+                    let medal = '';
+                    if (rank === 1) medal = '🥇';
+                    else if (rank === 2) medal = '🥈';
+                    else if (rank === 3) medal = '🥉';
 
                     return (
                       <tr key={miembro.id} className={`hover:bg-gray-50/50 transition-colors ${rank <= 3 ? 'bg-amber-50/10' : ''}`}>
@@ -865,7 +866,7 @@ export default function CVRMDashboard() {
                           {miembro.puntos || 0}
                         </td>
                       </tr>
-                    )
+                    );
                   })}
                 </tbody>
               </table>
@@ -1234,5 +1235,5 @@ export default function CVRMDashboard() {
         </div>
       )}
     </div>
-  )
+  );
 }

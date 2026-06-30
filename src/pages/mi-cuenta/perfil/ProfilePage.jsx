@@ -1,36 +1,37 @@
-import { useState, useEffect } from 'react'
-import useUserStore from '../../../store/userStore'
+import { useState, useEffect } from 'react';
+
+import useUserStore from '../../../store/userStore';
 
 export default function ProfilePage({ authUser, profile }) {
-  const { updateProfile } = useUserStore()
+  const { updateProfile } = useUserStore();
 
-  const [nombre, setNombre] = useState('')
-  const [apellido, setApellido] = useState('')
-  const [telefono, setTelefono] = useState('')
-  const [documentoTipo, setDocumentoTipo] = useState('')
-  const [documentoNumero, setDocumentoNumero] = useState('')
-  const [notifEmail, setNotifEmail] = useState(true)
-  const [notifWhatsapp, setNotifWhatsapp] = useState(false)
-  const [saving, setSaving] = useState(false)
-  const [saved, setSaved] = useState(false)
-  const [error, setError] = useState('')
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [documentoTipo, setDocumentoTipo] = useState('');
+  const [documentoNumero, setDocumentoNumero] = useState('');
+  const [notifEmail, setNotifEmail] = useState(true);
+  const [notifWhatsapp, setNotifWhatsapp] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (profile) {
-      setNombre(profile.nombre || '')
-      setApellido(profile.apellido || '')
-      setTelefono(profile.telefono || '')
-      setDocumentoTipo(profile.documento_tipo || '')
-      setDocumentoNumero(profile.documento_numero || '')
-      setNotifEmail(profile.preferencias?.notificaciones_email ?? true)
-      setNotifWhatsapp(profile.preferencias?.notificaciones_whatsapp ?? false)
+      setNombre(profile.nombre || '');
+      setApellido(profile.apellido || '');
+      setTelefono(profile.telefono || '');
+      setDocumentoTipo(profile.documento_tipo || '');
+      setDocumentoNumero(profile.documento_numero || '');
+      setNotifEmail(profile.preferencias?.notificaciones_email ?? true);
+      setNotifWhatsapp(profile.preferencias?.notificaciones_whatsapp ?? false);
     }
-  }, [profile])
+  }, [profile]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setSaving(true)
+    e.preventDefault();
+    setError('');
+    setSaving(true);
 
     try {
       await updateProfile(authUser.uid, {
@@ -42,17 +43,17 @@ export default function ProfilePage({ authUser, profile }) {
         preferencias: {
           notificaciones_email: notifEmail,
           notificaciones_whatsapp: notifWhatsapp,
-          idioma: 'es'
-        }
-      })
-      setSaved(true)
-      setTimeout(() => setSaved(false), 3000)
+          idioma: 'es',
+        },
+      });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
     } catch (err) {
-      setError('Error al guardar. Inténtalo de nuevo.')
+      setError('Error al guardar. Inténtalo de nuevo.');
     } finally {
-      setSaving(false)
+      setSaving(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -237,5 +238,5 @@ export default function ProfilePage({ authUser, profile }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

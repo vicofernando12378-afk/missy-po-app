@@ -1,47 +1,48 @@
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { signInWithGoogle, checkIsAdmin, listenAuth, logout } from '../../services/auth'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { signInWithGoogle, checkIsAdmin, listenAuth, logout } from '../../services/auth';
 
 export default function AdminLoginPage() {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsub = listenAuth(async (user) => {
       if (user) {
-        const admin = await checkIsAdmin(user)
+        const admin = await checkIsAdmin(user);
         if (admin) {
-          navigate('/', { replace: true })
+          navigate('/', { replace: true });
         }
       }
-    })
-    return unsub
-  }, [navigate])
+    });
+    return unsub;
+  }, [navigate]);
 
   const handleGoogleLogin = async () => {
-    setLoading(true)
-    setError('')
+    setLoading(true);
+    setError('');
     try {
-      const user = await signInWithGoogle()
-      const admin = await checkIsAdmin(user)
+      const user = await signInWithGoogle();
+      const admin = await checkIsAdmin(user);
       if (!admin) {
-        await logout()
-        setError('Tu cuenta no tiene permisos de administrador.')
-        return
+        await logout();
+        setError('Tu cuenta no tiene permisos de administrador.');
+        return;
       }
-      navigate('/', { replace: true })
+      navigate('/', { replace: true });
     } catch (err) {
-      console.error(err)
+      console.error(err);
       if (err.code === 'auth/popup-closed-by-user') {
-        setError('')
+        setError('');
       } else {
-        setError('Ocurrió un error al iniciar sesión con Google.')
+        setError('Ocurrió un error al iniciar sesión con Google.');
       }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4 font-body">
@@ -84,5 +85,5 @@ export default function AdminLoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

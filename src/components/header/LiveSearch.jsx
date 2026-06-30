@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
-import useSearchStore from '../../store/searchStore'
-import useCatalogStore from '../../store/catalogStore'
-import useDebounce from '../../hooks/useDebounce'
+import { useEffect, useRef } from 'react';
+
+import useDebounce from '../../hooks/useDebounce';
+import useCatalogStore from '../../store/catalogStore';
+import useSearchStore from '../../store/searchStore';
 
 // ============================================================
 // LIVE SEARCH — Buscador predictivo 2 columnas
@@ -14,57 +15,57 @@ const SearchSpinner = () => (
     <path className="opacity-75" fill="currentColor"
       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
   </svg>
-)
+);
 
 // Resalta el fragmento que coincide con la búsqueda
 function Highlight({ text = '', query = '' }) {
-  if (!query.trim()) return <span>{text}</span>
-  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi')
-  const parts = text.split(regex)
+  if (!query.trim()) return <span>{text}</span>;
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  const parts = text.split(regex);
   return (
     <span>
       {parts.map((part, i) =>
         regex.test(part)
           ? <mark key={i} className="bg-transparent text-coral font-bold not-italic">{part}</mark>
-          : <span key={i}>{part}</span>
+          : <span key={i}>{part}</span>,
       )}
     </span>
-  )
+  );
 }
 
 export default function LiveSearch({ inputRef: externalInputRef }) {
-  const panelRef = useRef(null)
-  const internalRef = useRef(null)
-  const inputRef = externalInputRef || internalRef
+  const panelRef = useRef(null);
+  const internalRef = useRef(null);
+  const inputRef = externalInputRef || internalRef;
 
   const {
     query, results, isLoading, isOpen, selectedIndex,
     setQuery, setResults, setLoading, setError,
     openSearch, closeSearch, moveUp, moveDown, getSelectedResult,
-  } = useSearchStore()
+  } = useSearchStore();
 
-  const { fetchCatalog, buscarProductosLocal } = useCatalogStore()
-  const debouncedQuery = useDebounce(query, 300)
+  const { fetchCatalog, buscarProductosLocal } = useCatalogStore();
+  const debouncedQuery = useDebounce(query, 300);
 
   // ── Cargar catálogo al montar el buscador ──────────────────
   useEffect(() => {
-    fetchCatalog()
-  }, [fetchCatalog])
+    fetchCatalog();
+  }, [fetchCatalog]);
 
   // ── Ejecutar búsqueda local en memoria (0 lecturas a Firestore) ──
   useEffect(() => {
     if (!debouncedQuery.trim() || debouncedQuery.length < 2) {
-      setResults([])
-      return
+      setResults([]);
+      return;
     }
-    setLoading(true)
+    setLoading(true);
     try {
-      const locales = buscarProductosLocal(debouncedQuery)
-      setResults(locales)
+      const locales = buscarProductosLocal(debouncedQuery);
+      setResults(locales);
     } catch (err) {
-      setError('Error al buscar')
+      setError('Error al buscar');
     }
-  }, [debouncedQuery, buscarProductosLocal])
+  }, [debouncedQuery, buscarProductosLocal]);
 
   // ── Cerrar al hacer clic fuera ─────────────────────────────
   useEffect(() => {
@@ -73,40 +74,40 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
         panelRef.current && !panelRef.current.contains(e.target) &&
         inputRef.current && !inputRef.current.contains(e.target)
       ) {
-        closeSearch()
+        closeSearch();
       }
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   // ── Navegación por teclado ─────────────────────────────────
   const handleKeyDown = (e) => {
-    if (!isOpen) return
+    if (!isOpen) return;
     switch (e.key) {
       case 'ArrowDown':
-        e.preventDefault(); moveDown(); break
+        e.preventDefault(); moveDown(); break;
       case 'ArrowUp':
-        e.preventDefault(); moveUp(); break
+        e.preventDefault(); moveUp(); break;
       case 'Enter': {
-        e.preventDefault()
-        const selected = getSelectedResult()
+        e.preventDefault();
+        const selected = getSelectedResult();
         if (selected) {
-          window.location.href = `/producto/${selected.slug}`
-          closeSearch()
+          window.location.href = `/producto/${selected.slug}`;
+          closeSearch();
         } else if (query.trim()) {
-          window.location.href = `/tienda?q=${encodeURIComponent(query.trim())}`
-          closeSearch()
+          window.location.href = `/tienda?q=${encodeURIComponent(query.trim())}`;
+          closeSearch();
         }
-        break
+        break;
       }
       case 'Escape':
-        closeSearch(); break
+        closeSearch(); break;
     }
-  }
+  };
 
-  const showPanel = isOpen && query.length >= 2
-  const previewItem = results[selectedIndex >= 0 ? selectedIndex : 0] || null
+  const showPanel = isOpen && query.length >= 2;
+  const previewItem = results[selectedIndex >= 0 ? selectedIndex : 0] || null;
 
   return (
     <div className="relative flex-1 max-w-xl" id="live-search-container">
@@ -135,8 +136,8 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                      bg-white text-sm font-body text-gray-700 placeholder:text-gray-400
                      focus:outline-none focus:border-amber-400 focus:ring-2 focus:ring-amber-200
                      transition-all duration-200"
-          onChange={(e) => { setQuery(e.target.value); if (e.target.value.length >= 2) openSearch() }}
-          onFocus={() => { if (query.length >= 2) openSearch() }}
+          onChange={(e) => { setQuery(e.target.value); if (e.target.value.length >= 2) openSearch(); }}
+          onFocus={() => { if (query.length >= 2) openSearch(); }}
           onKeyDown={handleKeyDown}
           aria-label="Buscar productos"
           aria-expanded={showPanel}
@@ -172,7 +173,7 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
             <div className="p-6 text-center">
               <span className="text-3xl mb-2 block">🐾</span>
               <p className="text-gray-500 font-body text-sm">
-                No encontramos resultados para <strong>"{query}"</strong>
+                No encontramos resultados para <strong>&ldquo;{query}&rdquo;</strong>
               </p>
               <p className="text-gray-400 text-xs mt-1">Intenta con otro término</p>
             </div>
@@ -188,8 +189,8 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                 </div>
 
                 {results.map((item, idx) => {
-                  const precio = item.precio_oferta || item.precio_regular
-                  const isSelected = idx === selectedIndex
+                  const precio = item.precio_oferta || item.precio_regular;
+                  const isSelected = idx === selectedIndex;
                   return (
                     <a
                       key={item.id}
@@ -231,7 +232,7 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
                         </div>
                       </div>
                     </a>
-                  )
+                  );
                 })}
 
                 {/* Ver todos */}
@@ -313,5 +314,5 @@ export default function LiveSearch({ inputRef: externalInputRef }) {
         </div>
       )}
     </div>
-  )
+  );
 }

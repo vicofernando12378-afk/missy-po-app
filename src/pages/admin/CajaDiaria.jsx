@@ -1,194 +1,195 @@
-import { useState, useEffect } from 'react'
-import { auth } from '../../services/firebase'
+import { useState, useEffect } from 'react';
+
+import { validate, AperturaCajaSchema, MovimientoSchema, CierreCajaSchema } from '../../schemas';
 import {
   obtenerCajaActiva,
   abrirCajaDiaria,
   registrarTransaccionManual,
   cerrarCajaDiaria,
   obtenerHistorialCajas,
-  obtenerVentasConfirmadasDia
-} from '../../services'
-import { validate, AperturaCajaSchema, MovimientoSchema, CierreCajaSchema } from '../../schemas'
+  obtenerVentasConfirmadasDia,
+} from '../../services';
+import { auth } from '../../services/firebase';
 
 
 export default function CajaDiaria() {
-  const [caja, setCaja] = useState(null)
-  const [ventasDia, setVentasDia] = useState([])
-  const [historial, setHistorial] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [caja, setCaja] = useState(null);
+  const [ventasDia, setVentasDia] = useState([]);
+  const [historial, setHistorial] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   // Formularios
-  const [montoApertura, setMontoApertura] = useState('')
-  const [errorApertura, setErrorApertura] = useState('')
-  const [loadingApertura, setLoadingApertura] = useState(false)
+  const [montoApertura, setMontoApertura] = useState('');
+  const [errorApertura, setErrorApertura] = useState('');
+  const [loadingApertura, setLoadingApertura] = useState(false);
 
-  const [tipoMovimiento, setTipoMovimiento] = useState('egreso')
-  const [montoMovimiento, setMontoMovimiento] = useState('')
-  const [conceptoMovimiento, setConceptoMovimiento] = useState('')
-  const [errorMovimiento, setErrorMovimiento] = useState('')
-  const [loadingMovimiento, setLoadingMovimiento] = useState(false)
+  const [tipoMovimiento, setTipoMovimiento] = useState('egreso');
+  const [montoMovimiento, setMontoMovimiento] = useState('');
+  const [conceptoMovimiento, setConceptoMovimiento] = useState('');
+  const [errorMovimiento, setErrorMovimiento] = useState('');
+  const [loadingMovimiento, setLoadingMovimiento] = useState(false);
 
-  const [efectivoRealCierre, setEfectivoRealCierre] = useState('')
-  const [errorCierre, setErrorCierre] = useState('')
-  const [loadingCierre, setLoadingCierre] = useState(false)
+  const [efectivoRealCierre, setEfectivoRealCierre] = useState('');
+  const [errorCierre, setErrorCierre] = useState('');
+  const [loadingCierre, setLoadingCierre] = useState(false);
 
-  const adminEmail = auth.currentUser?.email || 'admin'
+  const adminEmail = auth.currentUser?.email || 'admin';
 
   const cargarDatosCaja = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       // 1. Obtener caja activa
-      const cajaActiva = await obtenerCajaActiva()
-      setCaja(cajaActiva)
+      const cajaActiva = await obtenerCajaActiva();
+      setCaja(cajaActiva);
 
       if (cajaActiva) {
         // 2. Obtener ventas automáticas de hoy
-        const ventas = await obtenerVentasConfirmadasDia(cajaActiva.id)
-        setVentasDia(ventas)
+        const ventas = await obtenerVentasConfirmadasDia(cajaActiva.id);
+        setVentasDia(ventas);
       }
 
       // 3. Obtener historial de cajas
-      const hist = await obtenerHistorialCajas(10)
-      setHistorial(hist)
+      const hist = await obtenerHistorialCajas(10);
+      setHistorial(hist);
     } catch (e) {
-      console.error('Error al cargar caja diaria:', e)
+      console.error('Error al cargar caja diaria:', e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    cargarDatosCaja()
-  }, [])
+    cargarDatosCaja();
+  }, []);
 
   // ACCIÓN: ABRIR CAJA
   const handleAbrirCaja = async (e) => {
-    e.preventDefault()
-    setErrorApertura('')
-    setLoadingApertura(true)
+    e.preventDefault();
+    setErrorApertura('');
+    setLoadingApertura(true);
 
-    const validation = validate(AperturaCajaSchema, { monto: montoApertura })
+    const validation = validate(AperturaCajaSchema, { monto: montoApertura });
     if (!validation.ok) {
-      setErrorApertura(validation.error)
-      setLoadingApertura(false)
-      return
+      setErrorApertura(validation.error);
+      setLoadingApertura(false);
+      return;
     }
 
     try {
-      const montoCents = Math.round(parseFloat(montoApertura) * 100)
-      await abrirCajaDiaria(montoCents, adminEmail)
-      setMontoApertura('')
-      await cargarDatosCaja()
+      const montoCents = Math.round(parseFloat(montoApertura) * 100);
+      await abrirCajaDiaria(montoCents, adminEmail);
+      setMontoApertura('');
+      await cargarDatosCaja();
     } catch (err) {
-      console.error(err)
-      setErrorApertura(err.message || 'Error al intentar abrir la caja.')
+      console.error(err);
+      setErrorApertura(err.message || 'Error al intentar abrir la caja.');
     } finally {
-      setLoadingApertura(false)
+      setLoadingApertura(false);
     }
-  }
+  };
 
   // ACCIÓN: REGISTRAR MOVIMIENTO MANUAL
   const handleRegistrarMovimiento = async (e) => {
-    e.preventDefault()
-    setErrorMovimiento('')
-    setLoadingMovimiento(true)
+    e.preventDefault();
+    setErrorMovimiento('');
+    setLoadingMovimiento(true);
 
     const validation = validate(MovimientoSchema, {
       tipo: tipoMovimiento,
       monto: montoMovimiento,
-      concepto: conceptoMovimiento
-    })
+      concepto: conceptoMovimiento,
+    });
     if (!validation.ok) {
-      setErrorMovimiento(validation.error)
-      setLoadingMovimiento(false)
-      return
+      setErrorMovimiento(validation.error);
+      setLoadingMovimiento(false);
+      return;
     }
 
     try {
-      const montoCents = Math.round(parseFloat(montoMovimiento) * 100)
+      const montoCents = Math.round(parseFloat(montoMovimiento) * 100);
       const transaccion = {
         tipo: tipoMovimiento,
         monto: montoCents,
         concepto: conceptoMovimiento,
-        creado_por: adminEmail
-      }
+        creado_por: adminEmail,
+      };
 
-      await registrarTransaccionManual(caja.id, transaccion)
+      await registrarTransaccionManual(caja.id, transaccion);
       
-      setMontoMovimiento('')
-      setConceptoMovimiento('')
-      await cargarDatosCaja()
+      setMontoMovimiento('');
+      setConceptoMovimiento('');
+      await cargarDatosCaja();
     } catch (err) {
-      console.error(err)
-      setErrorMovimiento(err.message || 'Error al registrar el movimiento.')
+      console.error(err);
+      setErrorMovimiento(err.message || 'Error al registrar el movimiento.');
     } finally {
-      setLoadingMovimiento(false)
+      setLoadingMovimiento(false);
     }
-  }
+  };
 
   // ACCIÓN: CERRAR CAJA
   const handleCerrarCaja = async (e) => {
-    e.preventDefault()
-    setErrorCierre('')
-    setLoadingCierre(true)
+    e.preventDefault();
+    setErrorCierre('');
+    setLoadingCierre(true);
 
-    const validation = validate(CierreCajaSchema, { monto: efectivoRealCierre })
+    const validation = validate(CierreCajaSchema, { monto: efectivoRealCierre });
     if (!validation.ok) {
-      setErrorCierre(validation.error)
-      setLoadingCierre(false)
-      return
+      setErrorCierre(validation.error);
+      setLoadingCierre(false);
+      return;
     }
 
     try {
-      const montoCents = Math.round(parseFloat(efectivoRealCierre) * 100)
-      await cerrarCajaDiaria(caja.id, montoCents, adminEmail)
-      setEfectivoRealCierre('')
-      await cargarDatosCaja()
+      const montoCents = Math.round(parseFloat(efectivoRealCierre) * 100);
+      await cerrarCajaDiaria(caja.id, montoCents, adminEmail);
+      setEfectivoRealCierre('');
+      await cargarDatosCaja();
     } catch (err) {
-      console.error(err)
-      setErrorCierre(err.message || 'Error al cerrar la caja.')
+      console.error(err);
+      setErrorCierre(err.message || 'Error al cerrar la caja.');
     } finally {
-      setLoadingCierre(false)
+      setLoadingCierre(false);
     }
-  }
+  };
 
   // CÁLCULOS FINANCIEROS (en Soles)
-  const aperturaSoles = caja ? caja.monto_apertura / 100 : 0
+  const aperturaSoles = caja ? caja.monto_apertura / 100 : 0;
 
   // Ventas automáticas desglosadas
   // FIX: El checkout guarda metodo como 'Yape/Plin'. Cubrir también variantes legacy.
   const esYapePlin = (metodo) => {
-    if (!metodo) return false
-    const m = metodo.toLowerCase()
-    return m.includes('yape') || m.includes('plin') || m === 'transferencia'
-  }
+    if (!metodo) return false;
+    const m = metodo.toLowerCase();
+    return m.includes('yape') || m.includes('plin') || m === 'transferencia';
+  };
 
   const ventasYapePlinSoles = ventasDia
     .filter(v => esYapePlin(v.pago?.metodo))
-    .reduce((sum, v) => sum + ((v.total_final || v.comprobante?.total || 0)), 0) / 100
+    .reduce((sum, v) => sum + ((v.total_final || v.comprobante?.total || 0)), 0) / 100;
 
   const ventasTarjetaSoles = ventasDia
     .filter(v => !esYapePlin(v.pago?.metodo))
-    .reduce((sum, v) => sum + ((v.total_final || v.comprobante?.total || 0)), 0) / 100
+    .reduce((sum, v) => sum + ((v.total_final || v.comprobante?.total || 0)), 0) / 100;
 
-  const totalVentasAutoSoles = ventasYapePlinSoles + ventasTarjetaSoles
+  const totalVentasAutoSoles = ventasYapePlinSoles + ventasTarjetaSoles;
 
   // Transacciones manuales desglosadas
   const ingresosManualesSoles = caja
     ? (caja.transacciones_manuales || [])
         .filter(t => t.tipo === 'ingreso')
         .reduce((sum, t) => sum + t.monto, 0) / 100
-    : 0
+    : 0;
 
   const egresosManualesSoles = caja
     ? (caja.transacciones_manuales || [])
         .filter(t => t.tipo === 'egreso')
         .reduce((sum, t) => sum + t.monto, 0) / 100
-    : 0
+    : 0;
 
   // Proyecciones
-  const efectivoProyectadoSoles = aperturaSoles + ingresosManualesSoles - egresosManualesSoles
-  const balanceNetoTotalSoles = efectivoProyectadoSoles + totalVentasAutoSoles - aperturaSoles
+  const efectivoProyectadoSoles = aperturaSoles + ingresosManualesSoles - egresosManualesSoles;
+  const balanceNetoTotalSoles = efectivoProyectadoSoles + totalVentasAutoSoles - aperturaSoles;
 
   if (loading) {
     return (
@@ -196,7 +197,7 @@ export default function CajaDiaria() {
         <div className="w-12 h-12 border-4 border-coral border-t-transparent rounded-full animate-spin"></div>
         <p className="mt-4 text-gray-500 font-body">Cargando control de flujos de caja...</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -503,19 +504,19 @@ export default function CajaDiaria() {
               </thead>
               <tbody className="divide-y divide-gray-50 text-gray-650">
                 {historial.filter(h => h.estado === 'cerrada').map((h) => {
-                  const apertura = h.monto_apertura / 100
-                  const cierre = h.monto_cierre / 100
+                  const apertura = h.monto_apertura / 100;
+                  const cierre = h.monto_cierre / 100;
                   
                   // Calcular transacciones manuales de esa caja
                   const manualesIng = (h.transacciones_manuales || [])
                     .filter(t => t.tipo === 'ingreso')
-                    .reduce((sum, t) => sum + t.monto, 0) / 100
+                    .reduce((sum, t) => sum + t.monto, 0) / 100;
                   const manualesEgr = (h.transacciones_manuales || [])
                     .filter(t => t.tipo === 'egreso')
-                    .reduce((sum, t) => sum + t.monto, 0) / 100
+                    .reduce((sum, t) => sum + t.monto, 0) / 100;
                   
-                  const proyeccionEfectivo = apertura + manualesIng - manualesEgr
-                  const diferencia = cierre - proyeccionEfectivo
+                  const proyeccionEfectivo = apertura + manualesIng - manualesEgr;
+                  const diferencia = cierre - proyeccionEfectivo;
 
                   return (
                     <tr key={h.id} className="hover:bg-gray-50/50">
@@ -536,7 +537,7 @@ export default function CajaDiaria() {
                         <p><strong>Cierre:</strong> {h.cerrada_por}</p>
                       </td>
                     </tr>
-                  )
+                  );
                 })}
               </tbody>
             </table>
@@ -545,5 +546,5 @@ export default function CajaDiaria() {
       </div>
 
     </div>
-  )
+  );
 }

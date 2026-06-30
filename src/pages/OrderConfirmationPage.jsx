@@ -1,30 +1,31 @@
-import { useEffect, useState } from 'react'
-import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../services/firebase'
+import { doc, getDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+
+import { db } from '../services/firebase';
 
 export default function OrderConfirmationPage({ orderId }) {
-  const resolvedOrderId = orderId || (typeof window !== 'undefined' ? window.location.pathname.split('/').filter(Boolean).pop() : '')
-  const [order, setOrder] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const resolvedOrderId = orderId || (typeof window !== 'undefined' ? window.location.pathname.split('/').filter(Boolean).pop() : '');
+  const [order, setOrder] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchOrder() {
       try {
-        const docRef = doc(db, 'myp_pedidos', resolvedOrderId)
-        const snap = await getDoc(docRef)
+        const docRef = doc(db, 'myp_pedidos', resolvedOrderId);
+        const snap = await getDoc(docRef);
         if (snap.exists()) {
-          setOrder(snap.data())
+          setOrder(snap.data());
         }
       } catch (err) {
-        console.error('❌ Error al obtener pedido confirmación:', err)
+        console.error('❌ Error al obtener pedido confirmación:', err);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
     if (resolvedOrderId) {
-      fetchOrder()
+      fetchOrder();
     }
-  }, [resolvedOrderId])
+  }, [resolvedOrderId]);
 
   if (isLoading) {
     return (
@@ -32,7 +33,7 @@ export default function OrderConfirmationPage({ orderId }) {
         <div className="inline-block w-10 h-10 border-4 border-coral border-t-transparent rounded-full animate-spin"></div>
         <p className="text-gray-500 font-body text-sm mt-4">Confirmando tu pedido en la base de datos...</p>
       </div>
-    )
+    );
   }
 
   if (!order) {
@@ -47,14 +48,14 @@ export default function OrderConfirmationPage({ orderId }) {
           Volver a la tienda
         </a>
       </div>
-    )
+    );
   }
 
-  const { cliente, envio, comprobante, pago, items, cupon, descuento_porcentaje } = order
+  const { cliente, envio, comprobante, pago, items, cupon, descuento_porcentaje } = order;
 
   // WhatsApp pre-llenado enlace
-  const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || import.meta.env.VITE_WHATSAPP_NUMBER || '51999999999'
-  const itemsText = items.map(i => `- ${i.nombre} x${i.cantidad} (${i.variante !== 'default' ? i.variante : 'Base'})`).join('\n')
+  const whatsappNumber = import.meta.env.PUBLIC_WHATSAPP_NUMBER || import.meta.env.VITE_WHATSAPP_NUMBER || '51999999999';
+  const itemsText = items.map(i => `- ${i.nombre} x${i.cantidad} (${i.variante !== 'default' ? i.variante : 'Base'})`).join('\n');
 
   
   const rawMessage = `¡Hola Missy & Po! 👋 Acabo de realizar un pedido en la web:
@@ -68,20 +69,20 @@ export default function OrderConfirmationPage({ orderId }) {
 *Productos:*
 ${itemsText}
 
-Por favor confírmenme la recepción del pedido.`
+Por favor confírmenme la recepción del pedido.`;
 
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(rawMessage)}`
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(rawMessage)}`;
 
   // Base y IGV en Soles
-  const totalSoles = comprobante.total / 100
-  const subtotalSoles = comprobante.subtotal / 100
-  const envioSoles = (envio.costo_envio || 0) / 100
-  const igvSoles = (comprobante.igv || 0) / 100
-  const baseSoles = totalSoles - igvSoles - envioSoles
+  const totalSoles = comprobante.total / 100;
+  const subtotalSoles = comprobante.subtotal / 100;
+  const envioSoles = (envio.costo_envio || 0) / 100;
+  const igvSoles = (comprobante.igv || 0) / 100;
+  const baseSoles = totalSoles - igvSoles - envioSoles;
 
   const handlePrint = () => {
-    window.print()
-  }
+    window.print();
+  };
 
   return (
     <>
@@ -264,5 +265,5 @@ Por favor confírmenme la recepción del pedido.`
         </div>
       </div>
     </>
-  )
+  );
 }

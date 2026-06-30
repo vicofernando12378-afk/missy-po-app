@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react';
 
 // Datos mock del slider — se reemplazarán con imágenes reales en Fase 2
 // Los colores de fondo simulan las paletas de las fotos originales de Missy & Po
@@ -48,30 +48,30 @@ const SLIDES = [
     emoji: '🎾',
     badge: 'Popular',
   },
-]
+];
 
-const INTERVAL_MS = 4500
+const INTERVAL_MS = 4500;
 
 export default function HeroSlider() {
-  const [current, setCurrent] = useState(0)
-  const [isAnimating, setIsAnimating] = useState(false)
+  const [current, setCurrent] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const goTo = useCallback((idx) => {
-    if (isAnimating) return
-    setIsAnimating(true)
-    setCurrent(idx)
-    setTimeout(() => setIsAnimating(false), 800)
-  }, [isAnimating])
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrent(idx);
+    setTimeout(() => setIsAnimating(false), 800);
+  }, [isAnimating]);
 
   // Auto-avance
   useEffect(() => {
     const timer = setInterval(() => {
-      goTo((prev) => (prev + 1) % SLIDES.length)
-    }, INTERVAL_MS)
-    return () => clearInterval(timer)
+      goTo((prev) => (prev + 1) % SLIDES.length);
+    }, INTERVAL_MS);
+    return () => clearInterval(timer);
   }, []) // eslint-disable-line
 
-  const slide = SLIDES[current]
+  const slide = SLIDES[current];
 
   return (
     <div
@@ -225,5 +225,5 @@ export default function HeroSlider() {
         </svg>
       </button>
     </div>
-  )
+  );
 }

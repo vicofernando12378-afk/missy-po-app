@@ -1,4 +1,4 @@
-import ProductCard from './ProductCard'
+import ProductCard from './ProductCard';
 
 // Productos mock para Fase 1 — se reemplazarán con datos de Firestore en Fase 2
 const MOCK_PRODUCTS = [
@@ -58,10 +58,10 @@ const MOCK_PRODUCTS = [
     imagen: null, ean: '7890001234574',
     categoria: 'Collares', rating: 3, reviews_count: 3, stock: 9,
   },
-]
+];
 
 export default function ProductGrid({ products, title, subtitle }) {
-  const displayProducts = products || MOCK_PRODUCTS
+  const displayProducts = products || MOCK_PRODUCTS;
 
   return (
     <section
@@ -129,5 +129,5 @@ export default function ProductGrid({ products, title, subtitle }) {
         </div>
       </div>
     </section>
-  )
+  );
 }

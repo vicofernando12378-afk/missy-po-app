@@ -1,24 +1,28 @@
-import { useEffect, useState } from 'react'
-import useCatalogStore from '../store/catalogStore'
-import useCartStore from '../store/cartStore'
-import PriceDisplay from '../components/catalog/PriceDisplay'
-import SaleBadge from '../components/catalog/SaleBadge'
-import ProductCard from '../components/catalog/ProductCard'
-import { obtenerResenasPorProducto, crearResena } from '../services'
-import { validate, ReviewSchema } from '../schemas'
+import { useEffect, useState } from 'react';
+
+import PriceDisplay from '../components/catalog/PriceDisplay';
+import ProductCard from '../components/catalog/ProductCard';
+import SaleBadge from '../components/catalog/SaleBadge';
+import { validate, ReviewSchema } from '../schemas';
+import { obtenerResenasPorProducto, crearResena } from '../services';
+import useCartStore from '../store/cartStore';
+import useCatalogStore from '../store/catalogStore';
 
 
 
 // ─── Strip HTML/Facebook noise from product descriptions ─────────
 // Some descriptions are stored as encoded HTML (e.g. &lt;div&gt;) from
 // WordPress/Facebook imports. Decode entities first, then strip tags.
+const RN_WRAPPED = 'rn';
+const EMPTY_RN = '';
+const LINE_BREAK = '\n';
 function cleanDescription(raw) {
-  if (!raw) return ''
-  let text = raw
+  if (!raw) return '';
+  let text = raw;
 
-  // Step 1: clean up literal 'rn' strings (\r\n stored as text during WP import)
-  text = text.replace(/(?<=\>)rn(?=\<)/g, '\n')
-  text = text.replace(/^rn|rn$/gm, '')
+  // Step 1: clean up literal 'rn' strings (raw stored without line break during WP import)
+  text = text.replace(new RegExp(`(?<=>)${RN_WRAPPED}(?=<)`, 'g'), LINE_BREAK);
+  text = text.replace(new RegExp(`^${RN_WRAPPED}|${RN_WRAPPED}$`, 'gm'), EMPTY_RN);
 
   // Step 2: decode HTML entities FIRST — this is critical because
   // attribute values may contain &amp; which breaks tag-matching regex
@@ -29,25 +33,25 @@ function cleanDescription(raw) {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'")
+    .replace(/&apos;/g, "'");
 
   // Step 2: remove <img> tags entirely (Facebook/WhatsApp emojis)
-  text = text.replace(/<img[^>]*\/?>/gi, '')
+  text = text.replace(/<img[^>]*\/?>/gi, '');
 
   // Step 3: convert block-level tags to newlines (preserves paragraphs)
-  text = text.replace(/<\/?\s*(?:div|p|br|li|ul|ol|h[1-6])[^>]*>/gi, '\n')
+  text = text.replace(/<\/?\s*(?:div|p|br|li|ul|ol|h[1-6])[^>]*>/gi, '\n');
 
   // Step 4: strip all remaining HTML tags
-  text = text.replace(/<[^>]+>/g, '')
+  text = text.replace(/<[^>]+>/g, '');
 
   // Step 5: build clean <p> blocks
   const blocks = text
     .split(/\n+/)
     .map(line => line.trim())
-    .filter(Boolean)
+    .filter(Boolean);
 
-  if (!blocks.length) return ''
-  return blocks.map(b => `<p>${b}</p>`).join('')
+  if (!blocks.length) return '';
+  return blocks.map(b => `<p>${b}</p>`).join('');
 }
 
 // Icono estrella para rating
@@ -55,120 +59,120 @@ const StarIcon = ({ filled }) => (
   <svg className={`w-4 h-4 ${filled ? 'text-amber-400' : 'text-gray-200'}`} viewBox="0 0 20 20" fill="currentColor">
     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
   </svg>
-)
+);
 
 export default function ProductPage({ slug, initialProduct }) {
-  const { productos, fetchCatalog, getProductoBySlug, isLoading } = useCatalogStore()
-  const addItem = useCartStore(s => s.addItem)
-  const openDrawer = useCartStore(s => s.openDrawer)
+  const { productos, fetchCatalog, getProductoBySlug, isLoading } = useCatalogStore();
+  const addItem = useCartStore(s => s.addItem);
+  const openDrawer = useCartStore(s => s.openDrawer);
 
-  const product = initialProduct || getProductoBySlug(slug)
+  const product = initialProduct || getProductoBySlug(slug);
 
-  const [activeImageIndex, setActiveImageIndex] = useState(0)
-  const [cantidad, setCantidad] = useState(1)
-  const [isAdding, setIsAdding] = useState(false)
-  const [selectedAttributes, setSelectedAttributes] = useState({})
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [cantidad, setCantidad] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
+  const [selectedAttributes, setSelectedAttributes] = useState({});
 
   // Estados de reseñas
-  const [resenas, setResenas] = useState([])
-  const [loadingResenas, setLoadingResenas] = useState(true)
-  const [autorNombre, setAutorNombre] = useState('')
-  const [calificacion, setCalificacion] = useState(5)
-  const [comentario, setComentario] = useState('')
-  const [enviandoResena, setEnviandoResena] = useState(false)
-  const [mensajeResena, setMensajeResena] = useState(null)
+  const [resenas, setResenas] = useState([]);
+  const [loadingResenas, setLoadingResenas] = useState(true);
+  const [autorNombre, setAutorNombre] = useState('');
+  const [calificacion, setCalificacion] = useState(5);
+  const [comentario, setComentario] = useState('');
+  const [enviandoResena, setEnviandoResena] = useState(false);
+  const [mensajeResena, setMensajeResena] = useState(null);
 
   useEffect(() => {
     if (product?.id) {
-      setLoadingResenas(true)
+      setLoadingResenas(true);
       obtenerResenasPorProducto(product.id)
         .then(data => {
-          setResenas(data)
-          setLoadingResenas(false)
+          setResenas(data);
+          setLoadingResenas(false);
         })
         .catch(err => {
-          console.error(err)
-          setLoadingResenas(false)
-        })
+          console.error(err);
+          setLoadingResenas(false);
+        });
     }
-  }, [product])
+  }, [product]);
 
   const handleSubmitResena = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const payload = {
       productoId: product.id,
       productoNombre: product.nombre,
       autorNombre: autorNombre.trim(),
       calificacion,
-      comentario: comentario.trim()
-    }
+      comentario: comentario.trim(),
+    };
 
-    const validation = validate(ReviewSchema, payload)
+    const validation = validate(ReviewSchema, payload);
     if (!validation.ok) {
-      setMensajeResena({ success: false, text: validation.error })
-      return
+      setMensajeResena({ success: false, text: validation.error });
+      return;
     }
 
-    setEnviandoResena(true)
-    setMensajeResena(null)
+    setEnviandoResena(true);
+    setMensajeResena(null);
 
     try {
-      await crearResena(validation.data)
+      await crearResena(validation.data);
 
-      setMensajeResena({ success: true, text: '🎉 ¡Gracias! Tu opinión ha sido enviada y está en espera de aprobación por el administrador.' })
-      setAutorNombre('')
-      setComentario('')
-      setCalificacion(5)
+      setMensajeResena({ success: true, text: '🎉 ¡Gracias! Tu opinión ha sido enviada y está en espera de aprobación por el administrador.' });
+      setAutorNombre('');
+      setComentario('');
+      setCalificacion(5);
     } catch (err) {
-      console.error(err)
-      setMensajeResena({ success: false, text: 'Hubo un error al enviar tu reseña. Por favor, intenta de nuevo.' })
+      console.error(err);
+      setMensajeResena({ success: false, text: 'Hubo un error al enviar tu reseña. Por favor, intenta de nuevo.' });
     } finally {
-      setEnviandoResena(false)
+      setEnviandoResena(false);
     }
-  }
+  };
 
   const ratingPromedio = resenas.length > 0
     ? (resenas.reduce((sum, r) => sum + (r.calificacion || 0), 0) / resenas.length)
-    : 5.0
+    : 5.0;
 
   useEffect(() => {
-    fetchCatalog()
-  }, [fetchCatalog])
+    fetchCatalog();
+  }, [fetchCatalog]);
 
   // Auto-seleccionar primer elemento del catálogo al cargar si el slug no coincide
   useEffect(() => {
     if (product) {
-      setActiveImageIndex(0)
-      setCantidad(1)
-      setIsAdding(false)
+      setActiveImageIndex(0);
+      setCantidad(1);
+      setIsAdding(false);
       
       // Inicializar atributos seleccionados
-      const initialAttrs = {}
+      const initialAttrs = {};
       if (product.atributos) {
         Object.keys(product.atributos).forEach(key => {
-          const attr = product.atributos[key]
+          const attr = product.atributos[key];
           if (attr.is_variation && attr.value) {
             // Dividir los valores (ej: "S|M|L") y tomar el primero
-            const values = attr.value.split('|').map(v => v.trim())
+            const values = attr.value.split('|').map(v => v.trim());
             if (values.length > 0) {
-              initialAttrs[key.toLowerCase()] = values[0]
+              initialAttrs[key.toLowerCase()] = values[0];
             }
           }
-        })
+        });
       }
-      setSelectedAttributes(initialAttrs)
+      setSelectedAttributes(initialAttrs);
     }
-  }, [product])
+  }, [product]);
 
-  const showLoader = !product && isLoading
+  const showLoader = !product && isLoading;
   if (showLoader) {
     return (
       <div className="py-32 text-center">
         <div className="inline-block w-10 h-10 border-4 border-coral border-t-transparent rounded-full animate-spin"></div>
         <p className="text-gray-500 font-body text-sm mt-4">Cargando detalles de tu engreído...</p>
       </div>
-    )
+    );
   }
 
   if (!product) {
@@ -181,7 +185,7 @@ export default function ProductPage({ slug, initialProduct }) {
           Volver a la Tienda
         </a>
       </div>
-    )
+    );
   }
 
   const {
@@ -198,49 +202,49 @@ export default function ProductPage({ slug, initialProduct }) {
     categorias = [],
     imagenes = [],
     atributos = {},
-    variantes = []
-  } = product
+    variantes = [],
+  } = product;
 
   // 1. Resolver variante seleccionada
-  const hasVariations = variantes.length > 0
-  let activeVariation = null
+  const hasVariations = variantes.length > 0;
+  let activeVariation = null;
   if (hasVariations) {
     // Buscar la variante que coincida con los atributos seleccionados
     activeVariation = variantes.find(v => {
       return Object.keys(selectedAttributes).every(key => {
         // En variantes, los atributos tienen nombres como "pa_color-ropa" o similar.
         // Hacemos una comparación flexible (ej: ver si el valor coincide)
-        const matchKey = Object.keys(v.atributos).find(vKey => vKey.toLowerCase().includes(key) || key.includes(vKey.toLowerCase()))
+        const matchKey = Object.keys(v.atributos).find(vKey => vKey.toLowerCase().includes(key) || key.includes(vKey.toLowerCase()));
         if (matchKey) {
-          return v.atributos[matchKey].toLowerCase().trim() === selectedAttributes[key].toLowerCase().trim()
+          return v.atributos[matchKey].toLowerCase().trim() === selectedAttributes[key].toLowerCase().trim();
         }
-        return false
-      })
-    })
+        return false;
+      });
+    });
   }
 
   // Valores dinámicos según la variante seleccionada
-  const displaySku = activeVariation ? activeVariation.sku : sku
-  const displayPriceRegular = activeVariation ? activeVariation.precio : precio_regular
-  const displayPriceOferta = activeVariation ? (precio_oferta ? activeVariation.precio * (precio_oferta / precio_regular) : null) : precio_oferta
-  const displayPrice = activeVariation ? activeVariation.precio : precio
-  const displayStock = activeVariation ? activeVariation.stock : stock
-  const isOutOfStock = displayStock === 0
+  const displaySku = activeVariation ? activeVariation.sku : sku;
+  const displayPriceRegular = activeVariation ? activeVariation.precio : precio_regular;
+  const displayPriceOferta = activeVariation ? (precio_oferta ? activeVariation.precio * (precio_oferta / precio_regular) : null) : precio_oferta;
+  const displayPrice = activeVariation ? activeVariation.precio : precio;
+  const displayStock = activeVariation ? activeVariation.stock : stock;
+  const isOutOfStock = displayStock === 0;
 
-  const hasSale = displayPriceOferta && displayPriceOferta < displayPriceRegular
-  const discountPct = hasSale ? Math.round(((displayPriceRegular - displayPriceOferta) / displayPriceRegular) * 100) : null
+  const hasSale = displayPriceOferta && displayPriceOferta < displayPriceRegular;
+  const discountPct = hasSale ? Math.round(((displayPriceRegular - displayPriceOferta) / displayPriceRegular) * 100) : null;
 
   // Manejador del carrito
   const handleAddToCart = () => {
-    if (isAdding || isOutOfStock) return
-    setIsAdding(true)
+    if (isAdding || isOutOfStock) return;
+    setIsAdding(true);
 
     // Formatear detalle de la variación para el carrito
-    let variationName = 'default'
+    let variationName = 'default';
     if (hasVariations && activeVariation) {
       variationName = Object.entries(selectedAttributes)
         .map(([k, v]) => `${k.toUpperCase()}: ${v}`)
-        .join(', ')
+        .join(', ');
     }
 
     addItem({
@@ -253,25 +257,25 @@ export default function ProductPage({ slug, initialProduct }) {
       imagen: imagenes[activeImageIndex] || imagenes[0],
       ean: product.ean || '',
       variante: variationName,
-      cantidad: cantidad
-    })
+      cantidad,
+    });
 
     setTimeout(() => {
-      setIsAdding(false)
-    }, 800)
-  }
+      setIsAdding(false);
+    }, 800);
+  };
 
   // Filtrar productos relacionados (misma categoría, excluyendo el actual)
   const relacionados = productos
     .filter(p => p.categorias?.some(c => categorias.includes(c)) && p.id !== id)
-    .slice(0, 4)
+    .slice(0, 4);
 
   const handleAttributeChange = (attrName, val) => {
     setSelectedAttributes(prev => ({
       ...prev,
-      [attrName.toLowerCase()]: val
-    }))
-  }
+      [attrName.toLowerCase()]: val,
+    }));
+  };
 
   return (
     <>
@@ -308,7 +312,7 @@ export default function ProductPage({ slug, initialProduct }) {
                 src={imagenes[activeImageIndex] || '/assets/placeholder-pet.jpg'}
                 alt={nombre}
                 className="w-full h-full object-cover"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="sync"
               />
             </div>
@@ -372,10 +376,10 @@ export default function ProductPage({ slug, initialProduct }) {
             {hasVariations && atributos && (
               <div className="mb-6 space-y-4">
                 {Object.keys(atributos).map((key) => {
-                  const attr = atributos[key]
-                  if (!attr.is_variation) return null
-                  const values = attr.value.split('|').map(v => v.trim())
-                  const selectedVal = selectedAttributes[key.toLowerCase()]
+                  const attr = atributos[key];
+                  if (!attr.is_variation) return null;
+                  const values = attr.value.split('|').map(v => v.trim());
+                  const selectedVal = selectedAttributes[key.toLowerCase()];
 
                   return (
                     <div key={key} className="space-y-1.5">
@@ -397,7 +401,7 @@ export default function ProductPage({ slug, initialProduct }) {
                         ))}
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
             )}
@@ -604,7 +608,7 @@ export default function ProductPage({ slug, initialProduct }) {
                           ))}
                         </div>
                         <p className="text-xs text-gray-600 leading-relaxed font-body italic">
-                          "{r.comentario}"
+                          &ldquo;{r.comentario}&rdquo;
                         </p>
                       </div>
                     </div>
@@ -628,5 +632,5 @@ export default function ProductPage({ slug, initialProduct }) {
         )}
       </div>
     </>
-  )
+  );
 }

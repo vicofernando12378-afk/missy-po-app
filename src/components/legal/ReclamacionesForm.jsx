@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../services/firebase';
+import React, { useState, useEffect } from 'react';
+
 import { validate, ReclamacionSchema } from '../../schemas';
+import { db } from '../../services/firebase';
 
 
 const DEPARTAMENTOS_DATA = {
@@ -32,12 +33,12 @@ const DEPARTAMENTOS_DATA = {
         'Vítor',
         'Yanahuara',
         'Yarabamba',
-        'Yura'
+        'Yura',
       ],
       Camaná: ['Camaná', 'José María Quimper', 'Mariano Nicolás Valcárcel', 'Mariscal Cáceres', 'Nicolás de Piérola', 'Ocoña', 'Quilca', 'Samuel Pastor'],
       Caylloma: ['Chivay', 'Achoma', 'Cabanaconde', 'Callalli', 'Coporaque', 'Huambo', 'Huanca', 'Ichupampa', 'Lari', 'Lluta', 'Maca', 'Madrigal', 'Majes', 'San Antonio de Chuca', 'Sibayo', 'Tapay', 'Tuti', 'Yanque'],
-      Islay: ['Mollendo', 'Cocachacra', 'Dean Valdivia', 'Islay', 'Mejía', 'Punta de Bombón']
-    }
+      Islay: ['Mollendo', 'Cocachacra', 'Dean Valdivia', 'Islay', 'Mejía', 'Punta de Bombón'],
+    },
   },
   Lima: {
     provincias: {
@@ -47,11 +48,11 @@ const DEPARTAMENTOS_DATA = {
         'Lurín', 'Magdalena del Mar', 'Miraflores', 'Pachacámac', 'Pucusana', 'Pueblo Libre', 'Puente Piedra', 'Punta Hermosa',
         'Punta Negra', 'Rímac', 'San Bartolo', 'San Borja', 'San Isidro', 'San Juan de Lurigancho', 'San Juan de Miraflores',
         'San Luis', 'San Martín de Porres', 'San Miguel', 'Santa Anita', 'Santa María del Mar', 'Santa Rosa', 'Santiago de Surco',
-        'Surquillo', 'Villa El Salvador', 'Villa María del Triunfo'
+        'Surquillo', 'Villa El Salvador', 'Villa María del Triunfo',
       ],
-      Callao: ['Callao', 'Bellavista', 'Carmen de la Legua', 'La Perla', 'La Punta', 'Mi Perú', 'Ventanilla']
-    }
-  }
+      Callao: ['Callao', 'Bellavista', 'Carmen de la Legua', 'La Perla', 'La Punta', 'Mi Perú', 'Ventanilla'],
+    },
+  },
 };
 
 export default function ReclamacionesForm() {
@@ -74,7 +75,7 @@ export default function ReclamacionesForm() {
     tipoReclamo: 'Reclamo', // Reclamo o Queja
     detalleReclamo: '',
     pedidoConsumidor: '',
-    autorizoNotif: false
+    autorizoNotif: false,
   });
 
   const [provincias, setProvincias] = useState([]);
@@ -111,7 +112,7 @@ export default function ReclamacionesForm() {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -140,10 +141,10 @@ export default function ReclamacionesForm() {
       tipoReclamo: formData.tipoReclamo,
       detalleReclamo: formData.detalleReclamo,
       pedidoConsumidor: formData.pedidoConsumidor,
-      autorizoNotif: formData.autorizoNotif
-    }
+      autorizoNotif: formData.autorizoNotif,
+    };
 
-    const validation = validate(ReclamacionSchema, payloadParaValidar)
+    const validation = validate(ReclamacionSchema, payloadParaValidar);
     if (!validation.ok) {
       setError(validation.error);
       setLoading(false);
@@ -169,27 +170,27 @@ export default function ReclamacionesForm() {
         ubigeo: {
           departamento: validatedData.departamento,
           provincia: validatedData.provincia,
-          distrito: validatedData.distrito
-        }
+          distrito: validatedData.distrito,
+        },
       },
       bien: {
         tipo: validatedData.tipoBien,
         monto: validatedData.montoReclamado,
-        descripcion: validatedData.descripcionBien
+        descripcion: validatedData.descripcionBien,
       },
       detalle: {
         tipo: validatedData.tipoReclamo,
         descripcion: validatedData.detalleReclamo,
-        pedido: validatedData.pedidoConsumidor
+        pedido: validatedData.pedidoConsumidor,
       },
       estado: 'recibido',
-      creado_en: new Date()
+      creado_en: new Date(),
     };
 
     try {
       await addDoc(collection(db, 'myp_reclamaciones'), {
         ...payload,
-        creado_en: serverTimestamp()
+        creado_en: serverTimestamp(),
       });
       setTicketId(code);
     } catch (err) {
@@ -202,20 +203,20 @@ export default function ReclamacionesForm() {
 
   if (ticketId) {
     return (
-      <div class="text-center py-12 px-4 bg-green-50/50 rounded-2xl border border-green-100 max-w-2xl mx-auto">
-        <div class="text-5xl mb-4">✅</div>
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">Reclamo Registrado Exitosamente</h2>
-        <p class="text-gray-600 mb-6">
+      <div className="text-center py-12 px-4 bg-green-50/50 rounded-2xl border border-green-100 max-w-2xl mx-auto">
+        <div className="text-5xl mb-4">✅</div>
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">Reclamo Registrado Exitosamente</h2>
+        <p className="text-gray-600 mb-6">
           Tu reclamación ha sido registrada. De acuerdo a ley peruana, te responderemos en un plazo máximo de 15 días hábiles.
         </p>
-        <div class="bg-white p-4 rounded-xl border border-gray-100 inline-block mb-6 shadow-sm">
-          <p class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Código de Reclamo</p>
-          <p class="text-lg font-mono font-bold text-coral">{ticketId}</p>
+        <div className="bg-white p-4 rounded-xl border border-gray-100 inline-block mb-6 shadow-sm">
+          <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Código de Reclamo</p>
+          <p className="text-lg font-mono font-bold text-coral">{ticketId}</p>
         </div>
         <div>
           <a
             href="/"
-            class="inline-flex items-center gap-2 bg-coral text-white font-ui font-semibold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md"
+            className="inline-flex items-center gap-2 bg-coral text-white font-ui font-semibold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md"
             style="background-color: var(--color-coral)"
           >
             Volver al Inicio
@@ -226,44 +227,44 @@ export default function ReclamacionesForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} class="space-y-8 bg-white p-6 sm:p-10 rounded-2xl border border-gray-100 shadow-sm max-w-3xl mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-8 bg-white p-6 sm:p-10 rounded-2xl border border-gray-100 shadow-sm max-w-3xl mx-auto">
       
       {/* SECCIÓN 1: IDENTIFICACIÓN DEL CONSUMIDOR */}
       <div>
-        <h3 class="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
+        <h3 className="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
           1. Identificación del Consumidor Reclamante
         </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Nombre</label>
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Nombre</label>
             <input
               type="text"
               name="nombre"
               required
               value={formData.nombre}
               onChange={handleChange}
-              class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
             />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Apellidos</label>
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Apellidos</label>
             <input
               type="text"
               name="apellido"
               required
               value={formData.apellido}
               onChange={handleChange}
-              class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
             />
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Documento</label>
-            <div class="flex gap-2">
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Documento</label>
+            <div className="flex gap-2">
               <select
                 name="tipoDoc"
                 value={formData.tipoDoc}
                 onChange={handleChange}
-                class="h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white"
+                className="h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white"
               >
                 <option value="DNI">DNI</option>
                 <option value="CE">C.E.</option>
@@ -276,31 +277,31 @@ export default function ReclamacionesForm() {
                 required
                 value={formData.numDoc}
                 onChange={handleChange}
-                class="flex-1 h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+                className="flex-1 h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
                 placeholder="Número de documento"
               />
             </div>
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Celular / Teléfono</label>
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Celular / Teléfono</label>
             <input
               type="tel"
               name="telefono"
               required
               value={formData.telefono}
               onChange={handleChange}
-              class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
             />
           </div>
-          <div class="sm:col-span-2">
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Correo Electrónico</label>
+          <div className="sm:col-span-2">
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Correo Electrónico</label>
             <input
               type="email"
               name="email"
               required
               value={formData.email}
               onChange={handleChange}
-              class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
             />
           </div>
         </div>
@@ -308,18 +309,18 @@ export default function ReclamacionesForm() {
 
       {/* SECCIÓN 2: DIRECCIÓN / UBIGEO */}
       <div>
-        <h3 class="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
+        <h3 className="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
           2. Ubicación y Dirección
         </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Departamento</label>
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Departamento</label>
             <select
               name="departamento"
               required
               value={formData.departamento}
               onChange={handleChange}
-              class="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white"
+              className="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white"
             >
               <option value="">Selecciona...</option>
               <option value="Arequipa">Arequipa</option>
@@ -331,26 +332,26 @@ export default function ReclamacionesForm() {
           {formData.departamento === 'Otro' ? (
             <>
               <div>
-                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Especificar Dep.</label>
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Especificar Dep.</label>
                 <input
                   type="text"
                   name="depOtro"
                   required
                   value={formData.depOtro}
                   onChange={handleChange}
-                  class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none text-sm"
+                  className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none text-sm"
                   placeholder="Ej: Cusco"
                 />
               </div>
               <div>
-                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Especificar Prov. y Dist.</label>
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Especificar Prov. y Dist.</label>
                 <input
                   type="text"
                   name="provOtro"
                   required
                   value={formData.provOtro}
                   onChange={handleChange}
-                  class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none text-sm"
+                  className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none text-sm"
                   placeholder="Provincia, Distrito"
                 />
               </div>
@@ -358,14 +359,14 @@ export default function ReclamacionesForm() {
           ) : (
             <>
               <div>
-                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Provincia</label>
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Provincia</label>
                 <select
                   name="provincia"
                   required
                   disabled={!formData.departamento}
                   value={formData.provincia}
                   onChange={handleChange}
-                  class="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white disabled:opacity-50"
+                  className="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white disabled:opacity-50"
                 >
                   <option value="">Selecciona...</option>
                   {provincias.map(p => (
@@ -374,14 +375,14 @@ export default function ReclamacionesForm() {
                 </select>
               </div>
               <div>
-                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Distrito</label>
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Distrito</label>
                 <select
                   name="distrito"
                   required
                   disabled={!formData.provincia}
                   value={formData.distrito}
                   onChange={handleChange}
-                  class="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white disabled:opacity-50"
+                  className="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white disabled:opacity-50"
                 >
                   <option value="">Selecciona...</option>
                   {distritos.map(d => (
@@ -396,14 +397,14 @@ export default function ReclamacionesForm() {
 
       {/* SECCIÓN 3: DETALLE DEL BIEN CONTRATADO */}
       <div>
-        <h3 class="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
+        <h3 className="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
           3. Detalle del Bien Contratado
         </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tipo de Bien</label>
-            <div class="flex gap-4 h-10 items-center">
-              <label class="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Tipo de Bien</label>
+            <div className="flex gap-4 h-10 items-center">
+              <label className="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
                 <input
                   type="radio"
                   name="tipoBien"
@@ -413,7 +414,7 @@ export default function ReclamacionesForm() {
                 />
                 Producto
               </label>
-              <label class="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
+              <label className="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
                 <input
                   type="radio"
                   name="tipoBien"
@@ -425,8 +426,8 @@ export default function ReclamacionesForm() {
               </label>
             </div>
           </div>
-          <div class="sm:col-span-2">
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Monto Reclamado (S/.)</label>
+          <div className="sm:col-span-2">
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Monto Reclamado (S/.)</label>
             <input
               type="number"
               step="0.01"
@@ -434,19 +435,19 @@ export default function ReclamacionesForm() {
               required
               value={formData.montoReclamado}
               onChange={handleChange}
-              class="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full h-10 px-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
               placeholder="0.00"
             />
           </div>
-          <div class="sm:col-span-3">
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Descripción del Producto o Servicio</label>
+          <div className="sm:col-span-3">
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Descripción del Producto o Servicio</label>
             <textarea
               name="descripcionBien"
               required
               rows="2"
               value={formData.descripcionBien}
               onChange={handleChange}
-              class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
               placeholder="Especifica el producto (ej: Collar Kiara, Alimento Canbo) o el servicio contratado..."
             ></textarea>
           </div>
@@ -455,14 +456,14 @@ export default function ReclamacionesForm() {
 
       {/* SECCIÓN 4: DETALLE DE LA RECLAMACIÓN */}
       <div>
-        <h3 class="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
+        <h3 className="text-lg font-bold text-gray-800 border-b border-gray-100 pb-2 mb-4">
           4. Detalle de la Reclamación y Pedido
         </h3>
-        <div class="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Tipo de Reclamación</label>
-            <div class="flex gap-6 h-10 items-center">
-              <label class="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Tipo de Reclamación</label>
+            <div className="flex gap-6 h-10 items-center">
+              <label className="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
                 <input
                   type="radio"
                   name="tipoReclamo"
@@ -472,7 +473,7 @@ export default function ReclamacionesForm() {
                 />
                 <strong>Reclamo:</strong> Disconformidad relacionada directamente a los productos o servicios adquiridos.
               </label>
-              <label class="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
+              <label className="flex items-center gap-1.5 text-sm text-gray-700 cursor-pointer">
                 <input
                   type="radio"
                   name="tipoReclamo"
@@ -486,27 +487,27 @@ export default function ReclamacionesForm() {
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Detalle de la Queja o Reclamo</label>
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Detalle de la Queja o Reclamo</label>
             <textarea
               name="detalleReclamo"
               required
               rows="4"
               value={formData.detalleReclamo}
               onChange={handleChange}
-              class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
               placeholder="Describe detalladamente los hechos ocurridos..."
             ></textarea>
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Pedido del Consumidor</label>
+            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Pedido del Consumidor</label>
             <textarea
               name="pedidoConsumidor"
               required
               rows="3"
               value={formData.pedidoConsumidor}
               onChange={handleChange}
-              class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
               placeholder="¿Qué solución solicitas? (Ej: Cambio de producto, devolución del dinero)..."
             ></textarea>
           </div>
@@ -514,34 +515,34 @@ export default function ReclamacionesForm() {
       </div>
 
       {/* TÉRMINOS LEGALES DE PROTECCIÓN */}
-      <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3">
-        <label class="flex gap-2 items-start cursor-pointer">
+      <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3">
+        <label className="flex gap-2 items-start cursor-pointer">
           <input
             type="checkbox"
             name="autorizoNotif"
             required
             checked={formData.autorizoNotif}
             onChange={handleChange}
-            class="mt-1"
+            className="mt-1"
           />
-          <span class="text-xs text-gray-500 leading-relaxed">
+          <span className="text-xs text-gray-500 leading-relaxed">
             Declaro ser el titular del reclamo y autorizo a Missy & Po a utilizar mis datos personales de contacto para notificarme la respuesta a este reclamo mediante correo electrónico, conforme a la Ley N° 29733.
           </span>
         </label>
       </div>
 
       {error && (
-        <div class="p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100 font-semibold text-center">
+        <div className="p-3 bg-red-50 text-red-600 text-sm rounded-lg border border-red-100 font-semibold text-center">
           ⚠️ {error}
         </div>
       )}
 
       {/* BOTÓN SUBMIT */}
-      <div class="text-center sm:text-right border-t border-gray-100 pt-6">
+      <div className="text-center sm:text-right border-t border-gray-100 pt-6">
         <button
           type="submit"
           disabled={loading}
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-800 text-white font-ui font-semibold px-8 py-3 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md disabled:opacity-50"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-800 text-white font-ui font-semibold px-8 py-3 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md disabled:opacity-50"
         >
           {loading ? 'Registrando...' : 'Enviar Reclamación'}
         </button>

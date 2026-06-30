@@ -1,18 +1,18 @@
-import AccountHeader from './AccountHeader'
-import OrderCard from './OrderCard'
-import PointsBalance from './PointsBalance'
-import SmartCTA from './SmartCTA'
-import ContentFeed from './ContentFeed'
+import AccountHeader from './AccountHeader';
+import ContentFeed from './ContentFeed';
+import OrderCard from './OrderCard';
+import PointsBalance from './PointsBalance';
+import SmartCTA from './SmartCTA';
 
 export default function AccountDashboard({ profile, orders = [], points = 0, pointsHistory = [] }) {
-  const activeOrders = orders.filter(o => ['recibido', 'preparando', 'enviado'].includes(o.estado))
-  const recentOrders = orders.slice(0, 3)
+  const activeOrders = orders.filter(o => ['recibido', 'preparando', 'enviado'].includes(o.estado));
+  const recentOrders = orders.slice(0, 3);
 
   const stats = {
     totalOrders: orders.length,
     totalPoints: points,
-    activeOrders: activeOrders.length
-  }
+    activeOrders: activeOrders.length,
+  };
 
   return (
     <div>
@@ -103,5 +103,5 @@ export default function AccountDashboard({ profile, orders = [], points = 0, poi
         </div>
       </div>
     </div>
-  )
+  );
 }

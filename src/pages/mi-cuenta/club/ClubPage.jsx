@@ -2,13 +2,13 @@ const benefits = [
   { icon: '⭐', title: 'Acumula Puntos', desc: 'Gana 10 puntos por cada S/ 10 en compras.' },
   { icon: '🎁', title: 'Canjea Recompensas', desc: '100 puntos = S/ 10 de descuento.' },
   { icon: '🎂', title: 'Regalo de Cumpleaños', desc: 'Sorpresa especial para tu mascota.' },
-  { icon: '🏷️', title: 'Descuentos Exclusivos', desc: 'Ofertas solo para miembros del Club.' }
-]
+  { icon: '🏷️', title: 'Descuentos Exclusivos', desc: 'Ofertas solo para miembros del Club.' },
+];
 
 export default function ClubPage({ authUser, profile }) {
-  const clubMember = profile?.clubMember || null
-  const pointsHistory = profile?.clubMember?.puntos_logs || []
-  const points = clubMember?.puntos || 0
+  const clubMember = profile?.clubMember || null;
+  const pointsHistory = profile?.clubMember?.puntos_logs || [];
+  const points = clubMember?.puntos || 0;
 
   return (
     <div>
@@ -77,10 +77,10 @@ export default function ClubPage({ authUser, profile }) {
             <div className="bg-white rounded-2xl border p-4" style={{ borderColor: 'var(--color-border)' }}>
               <div className="space-y-3">
                 {pointsHistory.map((entry) => {
-                  const isPositive = entry.puntos > 0
+                  const isPositive = entry.puntos > 0;
                   const fecha = entry.creado_en?.toDate
                     ? entry.creado_en.toDate().toLocaleDateString('es-PE', { day: '2-digit', month: 'short', year: 'numeric' })
-                    : '—'
+                    : '—';
                   return (
                     <div key={entry.id} className="flex items-center justify-between py-2 border-b last:border-0"
                          style={{ borderColor: 'var(--color-border)' }}>
@@ -96,7 +96,7 @@ export default function ClubPage({ authUser, profile }) {
                         {isPositive ? '+' : ''}{entry.puntos}
                       </span>
                     </div>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -114,5 +114,5 @@ export default function ClubPage({ authUser, profile }) {
         </div>
       </div>
     </div>
-  )
+  );
 }

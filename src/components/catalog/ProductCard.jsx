@@ -1,7 +1,9 @@
-import { useState } from 'react'
-import SaleBadge from './SaleBadge'
-import PriceDisplay from './PriceDisplay'
-import useCartStore from '../../store/cartStore'
+import { useState } from 'react';
+
+import useCartStore from '../../store/cartStore';
+
+import PriceDisplay from './PriceDisplay';
+import SaleBadge from './SaleBadge';
 
 // Estrella SVG para rating
 const StarIcon = ({ filled }) => (
@@ -17,14 +19,14 @@ const StarIcon = ({ filled }) => (
              -.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81
              .588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
   </svg>
-)
+);
 
 const CartIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 11H4L5 9z" />
   </svg>
-)
+);
 
 const EyeIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,11 +36,11 @@ const EyeIcon = () => (
       d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7
          -1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
   </svg>
-)
+);
 
 export default function ProductCard({ product }) {
-  const [imageError, setImageError] = useState(false)
-  const [isAdding, setIsAdding] = useState(false)
+  const [imageError, setImageError] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
 
   const {
     id,
@@ -53,27 +55,27 @@ export default function ProductCard({ product }) {
     rating = 4,
     reviews_count = 0,
     stock = 10,
-  } = product
+  } = product;
 
-  const displayImagen = imagen || (product.imagenes && product.imagenes[0]) || '/assets/placeholder-pet.jpg'
+  const displayImagen = imagen || (product.imagenes && product.imagenes[0]) || '/assets/placeholder-pet.jpg';
 
-  const hasSale = precio_oferta && precio_oferta < precio_regular
+  const hasSale = precio_oferta && precio_oferta < precio_regular;
   const discountPct = hasSale
     ? Math.round(((precio_regular - precio_oferta) / precio_regular) * 100)
-    : null
+    : null;
 
-  const addItem = useCartStore(s => s.addItem)
+  const addItem = useCartStore(s => s.addItem);
 
   const handleAddToCart = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    if (isAdding || stock === 0) return
-    setIsAdding(true)
-    addItem({ id, sku, slug, nombre, precio_regular, precio_oferta, imagen: displayImagen, ean })
+    e.preventDefault();
+    e.stopPropagation();
+    if (isAdding || stock === 0) return;
+    setIsAdding(true);
+    addItem({ id, sku, slug, nombre, precio_regular, precio_oferta, imagen: displayImagen, ean });
     setTimeout(() => {
-      setIsAdding(false)
-    }, 800)
-  }
+      setIsAdding(false);
+    }, 800);
+  };
 
   return (
     <a
@@ -188,5 +190,5 @@ export default function ProductCard({ product }) {
         </button>
       </div>
     </a>
-  )
+  );
 }

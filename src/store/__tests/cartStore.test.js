@@ -1,14 +1,15 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+
 import useCartStore from '../cartStore';
 
 // Mock de firebase
 vi.mock('../../services/firebase', () => ({
-  db: {}
+  db: {},
 }));
 
 vi.mock('firebase/firestore', () => ({
   doc: vi.fn(),
-  getDoc: vi.fn(() => Promise.resolve({ exists: () => false }))
+  getDoc: vi.fn(() => Promise.resolve({ exists: () => false })),
 }));
 
 

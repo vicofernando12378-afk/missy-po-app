@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from 'react'
-import { obtenerTodosProductosAdmin, eliminarProducto } from '../../services'
-import ProductoFormModal from '../../components/admin/ProductoFormModal'
+import { useState, useEffect, useCallback } from 'react';
+
+import ProductoFormModal from '../../components/admin/ProductoFormModal';
+import { obtenerTodosProductosAdmin, eliminarProducto } from '../../services';
 
 
 // ============================================================
@@ -9,79 +10,79 @@ import ProductoFormModal from '../../components/admin/ProductoFormModal'
 // ============================================================
 
 export default function ProductosCRUD() {
-  const [productos, setProductos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [busqueda, setBusqueda] = useState('')
-  const [filtroCategoria, setFiltroCategoria] = useState('')
-  const [filtroActivo, setFiltroActivo] = useState('todos') // 'todos' | 'activo' | 'inactivo'
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [busqueda, setBusqueda] = useState('');
+  const [filtroCategoria, setFiltroCategoria] = useState('');
+  const [filtroActivo, setFiltroActivo] = useState('todos'); // 'todos' | 'activo' | 'inactivo'
 
-  const [modalOpen, setModalOpen] = useState(false)
-  const [productoEditar, setProductoEditar] = useState(null) // null = crear nuevo
-  const [eliminandoId, setEliminandoId] = useState(null)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [productoEditar, setProductoEditar] = useState(null); // null = crear nuevo
+  const [eliminandoId, setEliminandoId] = useState(null);
 
   const cargarProductos = useCallback(async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const prods = await obtenerTodosProductosAdmin()
-      setProductos(prods)
+      const prods = await obtenerTodosProductosAdmin();
+      setProductos(prods);
     } catch (e) {
-      console.error('Error al cargar productos:', e)
+      console.error('Error al cargar productos:', e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [])
+  }, []);
 
-  useEffect(() => { cargarProductos() }, [cargarProductos])
+  useEffect(() => { cargarProductos(); }, [cargarProductos]);
 
   // Categorías únicas detectadas en el catálogo
-  const categoriasUnicas = [...new Set(productos.flatMap(p => p.categorias || []))].sort()
+  const categoriasUnicas = [...new Set(productos.flatMap(p => p.categorias || []))].sort();
 
   // Filtrado combinado
   const productosFiltrados = productos.filter(p => {
-    const texto = busqueda.toLowerCase().trim()
+    const texto = busqueda.toLowerCase().trim();
     const cumpleTexto = !texto ||
       (p.nombre || '').toLowerCase().includes(texto) ||
-      (p.sku || '').toLowerCase().includes(texto)
-    const cumpleCat = !filtroCategoria || (p.categorias || []).includes(filtroCategoria)
+      (p.sku || '').toLowerCase().includes(texto);
+    const cumpleCat = !filtroCategoria || (p.categorias || []).includes(filtroCategoria);
     const cumpleActivo =
       filtroActivo === 'todos' ||
       (filtroActivo === 'activo' && p.activo) ||
-      (filtroActivo === 'inactivo' && !p.activo)
-    return cumpleTexto && cumpleCat && cumpleActivo
-  })
+      (filtroActivo === 'inactivo' && !p.activo);
+    return cumpleTexto && cumpleCat && cumpleActivo;
+  });
 
   const handleNuevoProducto = () => {
-    setProductoEditar(null)
-    setModalOpen(true)
-  }
+    setProductoEditar(null);
+    setModalOpen(true);
+  };
 
   const handleEditarProducto = (producto) => {
-    setProductoEditar(producto)
-    setModalOpen(true)
-  }
+    setProductoEditar(producto);
+    setModalOpen(true);
+  };
 
   const handleEliminar = async (producto) => {
-    if (!window.confirm(`¿Eliminar permanentemente "${producto.nombre}"?\n\nEsta acción no se puede deshacer.`)) return
-    setEliminandoId(producto.id)
+    if (!window.confirm(`¿Eliminar permanentemente "${producto.nombre}"?\n\nEsta acción no se puede deshacer.`)) return;
+    setEliminandoId(producto.id);
     try {
-      await eliminarProducto(producto.id)
-      setProductos(prev => prev.filter(p => p.id !== producto.id))
+      await eliminarProducto(producto.id);
+      setProductos(prev => prev.filter(p => p.id !== producto.id));
     } catch (e) {
-      console.error(e)
-      alert('Error al eliminar el producto.')
+      console.error(e);
+      alert('Error al eliminar el producto.');
     } finally {
-      setEliminandoId(null)
+      setEliminandoId(null);
     }
-  }
+  };
 
   const handleSaved = () => {
-    setModalOpen(false)
-    setProductoEditar(null)
-    cargarProductos()
-  }
+    setModalOpen(false);
+    setProductoEditar(null);
+    cargarProductos();
+  };
 
-  const statsActivos = productos.filter(p => p.activo).length
-  const statsBajoStock = productos.filter(p => (p.stock || 0) < 5).length
+  const statsActivos = productos.filter(p => p.activo).length;
+  const statsBajoStock = productos.filter(p => (p.stock || 0) < 5).length;
 
   return (
     <div className="space-y-6">
@@ -197,8 +198,8 @@ export default function ProductosCRUD() {
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {productosFiltrados.map(producto => {
-                  const precioFinal = producto.precio_oferta || producto.precio_regular || 0
-                  const tieneOferta = !!producto.precio_oferta
+                  const precioFinal = producto.precio_oferta || producto.precio_regular || 0;
+                  const tieneOferta = !!producto.precio_oferta;
                   return (
                     <tr key={producto.id} className="hover:bg-gray-50/50 transition-colors">
                       {/* Producto */}
@@ -298,7 +299,7 @@ export default function ProductosCRUD() {
                         </div>
                       </td>
                     </tr>
-                  )
+                  );
                 })}
               </tbody>
             </table>
@@ -313,10 +314,10 @@ export default function ProductosCRUD() {
       {modalOpen && (
         <ProductoFormModal
           producto={productoEditar}
-          onClose={() => { setModalOpen(false); setProductoEditar(null) }}
+          onClose={() => { setModalOpen(false); setProductoEditar(null); }}
           onSaved={handleSaved}
         />
       )}
     </div>
-  )
+  );
 }

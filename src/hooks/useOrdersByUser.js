@@ -1,31 +1,32 @@
-import { useState, useEffect, useCallback } from 'react'
-import { getOrdersByUser } from '../services/userProfile'
+import { useState, useEffect, useCallback } from 'react';
+
+import { getOrdersByUser } from '../services/userProfile';
 
 export default function useOrdersByUser(uid, email, { limite = 20 } = {}) {
-  const [orders, setOrders] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchOrders = useCallback(async () => {
-    if (!uid) return
-    setIsLoading(true)
-    setError(null)
+    if (!uid) return;
+    setIsLoading(true);
+    setError(null);
     try {
-      const data = await getOrdersByUser(uid, email, { limite })
-      setOrders(data)
+      const data = await getOrdersByUser(uid, email, { limite });
+      setOrders(data);
     } catch (err) {
-      console.error('Error fetching orders:', err)
-      setError(err.message)
+      console.error('Error fetching orders:', err);
+      setError(err.message);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [uid, email, limite])
+  }, [uid, email, limite]);
 
   useEffect(() => {
-    fetchOrders()
-  }, [fetchOrders])
+    fetchOrders();
+  }, [fetchOrders]);
 
-  const refresh = useCallback(() => fetchOrders(), [fetchOrders])
+  const refresh = useCallback(() => fetchOrders(), [fetchOrders]);
 
-  return { orders, isLoading, error, refresh }
+  return { orders, isLoading, error, refresh };
 }

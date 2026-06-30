@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
+
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, doc, writeBatch, deleteDoc, getDocs, setDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -203,7 +204,7 @@ async function runMigration() {
   const fileStream = fs.createReadStream(DATABASE_SQL);
   const rl = readline.createInterface({
     input: fileStream,
-    crlfDelay: Infinity
+    crlfDelay: Infinity,
   });
 
   const posts = {};
@@ -227,7 +228,7 @@ async function runMigration() {
           post_parent: Number(post_parent), 
           guid, 
           post_type, 
-          post_mime_type 
+          post_mime_type, 
         };
       }
     } else if (line.startsWith('INSERT INTO `SERVMASK_PREFIX_postmeta`')) {
@@ -251,7 +252,7 @@ async function runMigration() {
         termTaxonomy[Number(term_taxonomy_id)] = { 
           term_taxonomy_id: Number(term_taxonomy_id), 
           term_id: Number(term_id), 
-          taxonomy 
+          taxonomy, 
         };
       }
     } else if (line.startsWith('INSERT INTO `SERVMASK_PREFIX_term_relationships`')) {
@@ -260,13 +261,13 @@ async function runMigration() {
         const [object_id, term_taxonomy_id] = values;
         termRelationships.push({ 
           object_id: Number(object_id), 
-          term_taxonomy_id: Number(term_taxonomy_id) 
+          term_taxonomy_id: Number(term_taxonomy_id), 
         });
       }
     }
   }
 
-  console.log(`✅ SQL Parseado.`);
+  console.log('✅ SQL Parseado.');
   console.log(`   - Posts totales cargados: ${Object.keys(posts).length}`);
   console.log(`   - Relaciones de taxonomía: ${termRelationships.length}`);
 
@@ -326,7 +327,7 @@ async function runMigration() {
     const pTerms = productTerms[pId] || { categories: [], tags: [] };
 
     // Decodificar atributos
-    let rawAttributes = {};
+    const rawAttributes = {};
     if (meta['_product_attributes']) {
       const parsedAttr = parsePHPSerialize(meta['_product_attributes']);
       if (parsedAttr && typeof parsedAttr === 'object') {
@@ -336,7 +337,7 @@ async function runMigration() {
             rawAttributes[attrInfo.name] = {
               name: attrInfo.name,
               value: attrInfo.value,
-              is_variation: attrInfo.is_variation === 1 || attrInfo.is_variation === true
+              is_variation: attrInfo.is_variation === 1 || attrInfo.is_variation === true,
             };
           }
         });
@@ -366,7 +367,7 @@ async function runMigration() {
         sku: vSku,
         precio: vPrice,
         stock: vStock,
-        atributos: vAttributes
+        atributos: vAttributes,
       };
     });
 
@@ -420,7 +421,7 @@ async function runMigration() {
                 const fileRef = ref(storage, storageRefPath);
                 
                 await uploadBytes(fileRef, fileBuffer, {
-                  contentType: imgPost.post_mime_type || 'image/jpeg'
+                  contentType: imgPost.post_mime_type || 'image/jpeg',
                 });
                 
                 const downloadUrl = await getDownloadURL(fileRef);
@@ -489,7 +490,7 @@ async function runMigration() {
       activo: true,
       tags_busqueda: tagsBusqueda,
       destacado: pTerms.categories.some(cat => cat.toLowerCase().includes('destacado')) || false,
-      fecha_creacion: new Date().toISOString()
+      fecha_creacion: new Date().toISOString(),
     };
 
     // Guardar en Firestore
@@ -503,7 +504,7 @@ async function runMigration() {
     }
   }
 
-  console.log(`\n🎉 MIGRACIÓN COMPLETADA CON ÉXITO!`);
+  console.log('\n🎉 MIGRACIÓN COMPLETADA CON ÉXITO!');
   console.log(`   - Productos migrados a Firestore: ${successCount}`);
   if (skippedImages.length > 0) {
     console.log(`\n⚠️ IMÁGENES NO OPTIMIZADAS OMITIDAS (> 1.0 MB) (TOTAL: ${skippedImages.length}):`);
@@ -511,7 +512,7 @@ async function runMigration() {
       console.log(`   - [${img.sizeInMB.toFixed(2)} MB] ${img.relPath}`);
     });
   } else {
-    console.log(`\n✅ Todas las imágenes estaban por debajo del límite de 1.0 MB y se subieron.`);
+    console.log('\n✅ Todas las imágenes estaban por debajo del límite de 1.0 MB y se subieron.');
   }
 }
 

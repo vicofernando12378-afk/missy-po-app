@@ -1,5 +1,6 @@
-import { useState, useEffect, useMemo } from 'react'
-import { obtenerPedidosRango } from '../../services'
+import { useState, useEffect, useMemo } from 'react';
+
+import { obtenerPedidosRango } from '../../services';
 
 
 // ============================================================
@@ -13,23 +14,23 @@ const ESTADOS_COLOR = {
   enviado:    { bg: 'bg-indigo-100', text: 'text-indigo-800', label: 'Enviado' },
   entregado:  { bg: 'bg-emerald-100', text: 'text-emerald-800', label: 'Entregado' },
   cancelado:  { bg: 'bg-red-100',    text: 'text-red-800',    label: 'Cancelado' },
-}
+};
 
 const RANGOS = [
   { label: 'Últimos 7 días',  dias: 7 },
   { label: 'Últimos 30 días', dias: 30 },
   { label: 'Últimos 90 días', dias: 90 },
-]
+];
 
 // Mini gráfica de barras SVG inline
 function BarChart({ data }) {
-  if (!data || data.length === 0) return null
-  const maxVal = Math.max(...data.map(d => d.valor), 1)
-  const barW = 100 / data.length
+  if (!data || data.length === 0) return null;
+  const maxVal = Math.max(...data.map(d => d.valor), 1);
+  const barW = 100 / data.length;
   return (
     <div className="flex items-end gap-1 h-20 w-full mt-2">
       {data.map((d, i) => {
-        const heightPct = (d.valor / maxVal) * 100
+        const heightPct = (d.valor / maxVal) * 100;
         return (
           <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
             <div
@@ -44,91 +45,91 @@ function BarChart({ data }) {
             </div>
             <span className="text-[8px] text-gray-400 truncate w-full text-center">{d.label}</span>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 export default function VentasDashboard() {
-  const [pedidos, setPedidos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [rango, setRango] = useState(30)
+  const [pedidos, setPedidos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [rango, setRango] = useState(30);
 
   const cargar = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const data = await obtenerPedidosRango(rango)
-      setPedidos(data)
+      const data = await obtenerPedidosRango(rango);
+      setPedidos(data);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  useEffect(() => { cargar() }, [rango])
+  useEffect(() => { cargar(); }, [rango]);
 
   // ── KPIs calculados ──────────────────────────────────────
   const kpis = useMemo(() => {
-    const activos = pedidos.filter(p => p.estado !== 'cancelado')
-    const totalSoles = activos.reduce((s, p) => s + ((p.total_final || p.comprobante?.total || 0)), 0)
-    const ticketProm = activos.length > 0 ? totalSoles / activos.length : 0
-    const totalItems = activos.reduce((s, p) => s + (p.items || []).reduce((si, i) => si + i.cantidad, 0), 0)
+    const activos = pedidos.filter(p => p.estado !== 'cancelado');
+    const totalSoles = activos.reduce((s, p) => s + ((p.total_final || p.comprobante?.total || 0)), 0);
+    const ticketProm = activos.length > 0 ? totalSoles / activos.length : 0;
+    const totalItems = activos.reduce((s, p) => s + (p.items || []).reduce((si, i) => si + i.cantidad, 0), 0);
 
     const porEstado = Object.entries(ESTADOS_COLOR).map(([key, cfg]) => ({
       estado: key,
       label: cfg.label,
       cantidad: pedidos.filter(p => p.estado === key).length,
-      bg: cfg.bg, text: cfg.text
-    }))
+      bg: cfg.bg, text: cfg.text,
+    }));
 
-    const porMetodo = {}
+    const porMetodo = {};
     activos.forEach(p => {
-      const m = p.pago?.metodo || 'Sin info'
+      const m = p.pago?.metodo || 'Sin info';
       const key = m.toLowerCase().includes('yape') || m.toLowerCase().includes('plin') || m === 'transferencia'
-        ? 'Yape / Plin' : m
-      porMetodo[key] = (porMetodo[key] || 0) + (p.total_final || p.comprobante?.total || 0)
-    })
+        ? 'Yape / Plin' : m;
+      porMetodo[key] = (porMetodo[key] || 0) + (p.total_final || p.comprobante?.total || 0);
+    });
 
-    return { totalSoles, ticketProm, totalItems, pedidosCount: activos.length, porEstado, porMetodo }
-  }, [pedidos])
+    return { totalSoles, ticketProm, totalItems, pedidosCount: activos.length, porEstado, porMetodo };
+  }, [pedidos]);
 
   // ── Gráfica por día ──────────────────────────────────────
   const graficaPorDia = useMemo(() => {
-    const dias = Math.min(rango, 14) // máximo 14 barras
-    const resultado = []
+    const dias = Math.min(rango, 14); // máximo 14 barras
+    const resultado = [];
     for (let i = dias - 1; i >= 0; i--) {
-      const fecha = new Date()
-      fecha.setDate(fecha.getDate() - i)
-      const key = fecha.toISOString().slice(0, 10) // YYYY-MM-DD
-      const label = fecha.toLocaleDateString('es-PE', { day: '2-digit', month: 'short' })
+      const fecha = new Date();
+      fecha.setDate(fecha.getDate() - i);
+      const key = fecha.toISOString().slice(0, 10); // YYYY-MM-DD
+      const label = fecha.toLocaleDateString('es-PE', { day: '2-digit', month: 'short' });
       const valor = pedidos
         .filter(p => {
-          const d = p.creado_en instanceof Date ? p.creado_en : new Date(p.creado_en)
-          return d.toISOString().slice(0, 10) === key && p.estado !== 'cancelado'
+          const d = p.creado_en instanceof Date ? p.creado_en : new Date(p.creado_en);
+          return d.toISOString().slice(0, 10) === key && p.estado !== 'cancelado';
         })
-        .reduce((s, p) => s + (p.total_final || p.comprobante?.total || 0), 0)
-      resultado.push({ label, valor })
+        .reduce((s, p) => s + (p.total_final || p.comprobante?.total || 0), 0);
+      resultado.push({ label, valor });
     }
-    return resultado
-  }, [pedidos, rango])
+    return resultado;
+  }, [pedidos, rango]);
 
   // ── Top Productos ────────────────────────────────────────
   const topProductos = useMemo(() => {
-    const conteo = {}
+    const conteo = {};
     pedidos
       .filter(p => p.estado !== 'cancelado')
       .forEach(p => {
         (p.items || []).forEach(item => {
-          const key = item.sku || item.nombre
-          if (!conteo[key]) conteo[key] = { nombre: item.nombre, sku: item.sku, imagen: item.imagen, cant: 0, total: 0 }
-          conteo[key].cant += item.cantidad
-          conteo[key].total += (item.precio_unitario || 0) * item.cantidad
-        })
-      })
-    return Object.values(conteo).sort((a, b) => b.cant - a.cant).slice(0, 5)
-  }, [pedidos])
+          const key = item.sku || item.nombre;
+          if (!conteo[key]) conteo[key] = { nombre: item.nombre, sku: item.sku, imagen: item.imagen, cant: 0, total: 0 };
+          conteo[key].cant += item.cantidad;
+          conteo[key].total += (item.precio_unitario || 0) * item.cantidad;
+        });
+      });
+    return Object.values(conteo).sort((a, b) => b.cant - a.cant).slice(0, 5);
+  }, [pedidos]);
 
   return (
     <div className="space-y-6">
@@ -232,7 +233,7 @@ export default function VentasDashboard() {
               ) : (
                 <div className="space-y-3">
                   {Object.entries(kpis.porMetodo).map(([metodo, total]) => {
-                    const pct = kpis.totalSoles > 0 ? Math.round((total / kpis.totalSoles) * 100) : 0
+                    const pct = kpis.totalSoles > 0 ? Math.round((total / kpis.totalSoles) * 100) : 0;
                     return (
                       <div key={metodo}>
                         <div className="flex justify-between text-xs mb-1">
@@ -246,7 +247,7 @@ export default function VentasDashboard() {
                           />
                         </div>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               )}
@@ -310,5 +311,5 @@ export default function VentasDashboard() {
         </>
       )}
     </div>
-  )
+  );
 }

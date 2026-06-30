@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
-import { storage } from '../../services/firebase'
-import { crearProducto, actualizarProducto } from '../../services'
-import { validate, ProductSchema } from '../../schemas'
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
+import { useState, useEffect, useRef } from 'react';
+
+import { validate, ProductSchema } from '../../schemas';
+import { crearProducto, actualizarProducto } from '../../services';
+import { storage } from '../../services/firebase';
 
 
 
@@ -13,8 +14,8 @@ import { validate, ProductSchema } from '../../schemas'
 
 const CATEGORIAS = [
   'Arneses', 'Ropa', 'Accesorios', 'Collares', 'Correas',
-  'Juguetes', 'Camas', 'Alimentación', 'Higiene', 'Otros'
-]
+  'Juguetes', 'Camas', 'Alimentación', 'Higiene', 'Otros',
+];
 
 const productoVacio = {
   nombre: '',
@@ -30,7 +31,7 @@ const productoVacio = {
   imagenes: [],
   variantes: [],
   tags_busqueda: [],
-}
+};
 
 // Genera slug desde nombre
 function generarSlug(nombre) {
@@ -39,11 +40,11 @@ function generarSlug(nombre) {
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9\s-]/g, '')
     .trim()
-    .replace(/\s+/g, '-')
+    .replace(/\s+/g, '-');
 }
 
 export default function ProductoFormModal({ producto = null, onClose, onSaved }) {
-  const isEditing = !!producto
+  const isEditing = !!producto;
   const [form, setForm] = useState(
     producto
       ? {
@@ -56,110 +57,110 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
           imagenes: producto.imagenes || [],
           variantes: producto.variantes || [],
         }
-      : { ...productoVacio }
-  )
+      : { ...productoVacio },
+  );
 
-  const [imagenFiles, setImagenFiles] = useState([]) // { file, preview }
-  const [uploadProgress, setUploadProgress] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
-  const [activeTab, setActiveTab] = useState('info') // 'info' | 'imagenes' | 'variantes'
-  const fileInputRef = useRef()
+  const [imagenFiles, setImagenFiles] = useState([]); // { file, preview }
+  const [uploadProgress, setUploadProgress] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('info'); // 'info' | 'imagenes' | 'variantes'
+  const fileInputRef = useRef();
 
   // Variante template vacía
-  const varianteVacia = { sku: '', atributos: { talla: '' }, precio_unitario: '', stock: '' }
+  const varianteVacia = { sku: '', atributos: { talla: '' }, precio_unitario: '', stock: '' };
 
-  const setField = (campo, valor) => setForm(f => ({ ...f, [campo]: valor }))
+  const setField = (campo, valor) => setForm(f => ({ ...f, [campo]: valor }));
 
   const handleNombreChange = (val) => {
-    setField('nombre', val)
+    setField('nombre', val);
     if (!isEditing || !form.slug) {
-      setField('slug', generarSlug(val))
+      setField('slug', generarSlug(val));
     }
-  }
+  };
 
   // ── Imágenes ────────────────────────────────────────────────
   const handleImagenesChange = (e) => {
-    const files = Array.from(e.target.files)
-    const total = form.imagenes.length + imagenFiles.length + files.length
+    const files = Array.from(e.target.files);
+    const total = form.imagenes.length + imagenFiles.length + files.length;
     if (total > 5) {
-      setError('Máximo 5 imágenes por producto.')
-      return
+      setError('Máximo 5 imágenes por producto.');
+      return;
     }
     const nuevas = files.map(file => ({
       file,
       preview: URL.createObjectURL(file),
       nombre: file.name,
-    }))
-    setImagenFiles(prev => [...prev, ...nuevas])
-    setError('')
-  }
+    }));
+    setImagenFiles(prev => [...prev, ...nuevas]);
+    setError('');
+  };
 
   const eliminarImagenExistente = (idx) => {
-    setForm(f => ({ ...f, imagenes: f.imagenes.filter((_, i) => i !== idx) }))
-  }
+    setForm(f => ({ ...f, imagenes: f.imagenes.filter((_, i) => i !== idx) }));
+  };
 
   const eliminarImagenNueva = (idx) => {
-    setImagenFiles(prev => prev.filter((_, i) => i !== idx))
-  }
+    setImagenFiles(prev => prev.filter((_, i) => i !== idx));
+  };
 
   // ── Variantes ──────────────────────────────────────────────
   const agregarVariante = () => {
-    setForm(f => ({ ...f, variantes: [...f.variantes, { ...varianteVacia }] }))
-  }
+    setForm(f => ({ ...f, variantes: [...f.variantes, { ...varianteVacia }] }));
+  };
 
   const eliminarVariante = (idx) => {
-    setForm(f => ({ ...f, variantes: f.variantes.filter((_, i) => i !== idx) }))
-  }
+    setForm(f => ({ ...f, variantes: f.variantes.filter((_, i) => i !== idx) }));
+  };
 
   const setVarianteCampo = (idx, campo, valor) => {
     setForm(f => {
-      const vars = [...f.variantes]
+      const vars = [...f.variantes];
       if (campo.startsWith('attr_')) {
-        const attrKey = campo.replace('attr_', '')
-        vars[idx] = { ...vars[idx], atributos: { ...vars[idx].atributos, [attrKey]: valor } }
+        const attrKey = campo.replace('attr_', '');
+        vars[idx] = { ...vars[idx], atributos: { ...vars[idx].atributos, [attrKey]: valor } };
       } else {
-        vars[idx] = { ...vars[idx], [campo]: valor }
+        vars[idx] = { ...vars[idx], [campo]: valor };
       }
-      return { ...f, variantes: vars }
-    })
-  }
+      return { ...f, variantes: vars };
+    });
+  };
 
   // ── Upload de imágenes a Firebase Storage ──────────────────
   const subirImagenes = async (productoId) => {
-    const urls = [...form.imagenes] // URLs ya existentes
+    const urls = [...form.imagenes]; // URLs ya existentes
     for (let i = 0; i < imagenFiles.length; i++) {
-      const { file } = imagenFiles[i]
-      const ext = file.name.split('.').pop()
-      const storageRef = ref(storage, `myp/productos/${form.sku || productoId}/${Date.now()}_${i}.${ext}`)
+      const { file } = imagenFiles[i];
+      const ext = file.name.split('.').pop();
+      const storageRef = ref(storage, `myp/productos/${form.sku || productoId}/${Date.now()}_${i}.${ext}`);
       await new Promise((resolve, reject) => {
-        const task = uploadBytesResumable(storageRef, file)
+        const task = uploadBytesResumable(storageRef, file);
         task.on(
           'state_changed',
           (snap) => {
-            const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100)
-            setUploadProgress(prev => ({ ...prev, [i]: pct }))
+            const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+            setUploadProgress(prev => ({ ...prev, [i]: pct }));
           },
           reject,
           async () => {
-            const url = await getDownloadURL(task.snapshot.ref)
-            urls.push(url)
-            resolve()
-          }
-        )
-      })
+            const url = await getDownloadURL(task.snapshot.ref);
+            urls.push(url);
+            resolve();
+          },
+        );
+      });
     }
-    return urls
-  }
+    return urls;
+  };
 
   // ── SUBMIT ─────────────────────────────────────────────────
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError('');
 
     const stockFinalEstimado = form.variantes.length > 0
       ? form.variantes.reduce((sum, v) => sum + (parseInt(v.stock) || 0), 0)
-      : form.stock === '' ? 0 : parseInt(form.stock)
+      : form.stock === '' ? 0 : parseInt(form.stock);
 
     // Pre-validar con Zod antes de subir imágenes
     const payloadParaValidar = {
@@ -179,44 +180,44 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
       variantes: form.variantes.map(v => ({
         ...v,
         precio_unitario: v.precio_unitario ? parseFloat(v.precio_unitario) : null,
-        stock: parseInt(v.stock) || 0
+        stock: parseInt(v.stock) || 0,
       })),
-      tags_busqueda: []
-    }
+      tags_busqueda: [],
+    };
 
-    const validation = validate(ProductSchema, payloadParaValidar)
+    const validation = validate(ProductSchema, payloadParaValidar);
     if (!validation.ok) {
-      setError(validation.error)
-      return
+      setError(validation.error);
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       // 1. Determinar ID para la ruta de Storage
-      const tempId = isEditing ? producto.id : `${form.sku}-${Date.now()}`
+      const tempId = isEditing ? producto.id : `${form.sku}-${Date.now()}`;
 
       // 2. Subir imágenes nuevas
-      const imagenesFinales = await subirImagenes(tempId)
+      const imagenesFinales = await subirImagenes(tempId);
 
       // 3. Preparar tags de búsqueda
       const tags = [
         ...form.nombre.toLowerCase().split(/\s+/),
         form.sku.toLowerCase(),
         ...(form.categorias || []).map(c => c.toLowerCase()),
-      ].filter(Boolean)
+      ].filter(Boolean);
 
       // 4. Calcular stock total de variantes definitivo
-      const tieneVariantes = form.variantes.length > 0
+      const tieneVariantes = form.variantes.length > 0;
       const stockFinal = tieneVariantes
         ? form.variantes.reduce((sum, v) => sum + (parseInt(v.stock) || 0), 0)
-        : parseInt(form.stock) || 0
+        : parseInt(form.stock) || 0;
 
       // 5. Preparar variantes
       const variantesFinales = form.variantes.map(v => ({
         ...v,
         precio_unitario: v.precio_unitario ? parseFloat(v.precio_unitario) : null,
         stock: parseInt(v.stock) || 0,
-      }))
+      }));
 
       const datos = {
         nombre: form.nombre.trim(),
@@ -232,28 +233,28 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
         imagenes: imagenesFinales,
         variantes: variantesFinales,
         tags_busqueda: [...new Set(tags)],
-      }
+      };
 
       if (isEditing) {
-        await actualizarProducto(producto.id, datos)
+        await actualizarProducto(producto.id, datos);
       } else {
-        await crearProducto(datos)
+        await crearProducto(datos);
       }
 
-      onSaved()
+      onSaved();
     } catch (err) {
-      console.error(err)
-      setError(err.message || 'Error al guardar el producto.')
+      console.error(err);
+      setError(err.message || 'Error al guardar el producto.');
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const tabs = [
     { id: 'info', label: '📋 Información' },
     { id: 'imagenes', label: `🖼️ Imágenes (${form.imagenes.length + imagenFiles.length})` },
     { id: 'variantes', label: `🎨 Variantes (${form.variantes.length})` },
-  ]
+  ];
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -420,11 +421,11 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
                         key={cat}
                         type="button"
                         onClick={() => {
-                          const curr = form.categorias || []
+                          const curr = form.categorias || [];
                           setField('categorias', curr.includes(cat)
                             ? curr.filter(c => c !== cat)
-                            : [...curr, cat]
-                          )
+                            : [...curr, cat],
+                          );
                         }}
                         className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                           (form.categorias || []).includes(cat)
@@ -651,5 +652,5 @@ export default function ProductoFormModal({ producto = null, onClose, onSaved })
         </div>
       </div>
     </div>
-  )
+  );
 }

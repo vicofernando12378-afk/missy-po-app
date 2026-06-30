@@ -13,8 +13,8 @@ export const LIMA_REGIONS = [
   'Loreto',
   'Puno',
   'Tacna',
-  'Otros'
-]
+  'Otros',
+];
 
 export const AREQUIPA_DISTRICTS = [
   'Arequipa (Cercado)',
@@ -32,5 +32,5 @@ export const AREQUIPA_DISTRICTS = [
   'Sabandía',
   'Characato',
   'Chiguata',
-  'Cerro Colorado'
-]
+  'Cerro Colorado',
+];

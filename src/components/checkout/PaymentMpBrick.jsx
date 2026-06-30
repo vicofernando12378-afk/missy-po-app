@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 // ============================================================
 // PAYMENT MP BRICK — Formulario de Tarjeta Interactivo
@@ -6,73 +6,73 @@ import { useState } from 'react'
 // ============================================================
 
 export default function PaymentMpBrick({ total, onConfirm, onCancel }) {
-  const [cardNumber, setCardNumber] = useState('')
-  const [cardName, setCardName] = useState('')
-  const [cardExpiry, setCardExpiry] = useState('')
-  const [cardCvv, setCardCvv] = useState('')
-  const [installments, setInstallments] = useState('1')
-  const [isFlipped, setIsFlipped] = useState(false)
-  const [error, setError] = useState('')
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [cardExpiry, setCardExpiry] = useState('');
+  const [cardCvv, setCardCvv] = useState('');
+  const [installments, setInstallments] = useState('1');
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [error, setError] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   // Detectar marca de tarjeta basado en los primeros dígitos
   const getCardType = () => {
-    const cleanNumber = cardNumber.replace(/\s?/g, '')
-    if (cleanNumber.startsWith('4')) return 'VISA'
-    if (cleanNumber.startsWith('5')) return 'MASTERCARD'
-    if (cleanNumber.startsWith('37') || cleanNumber.startsWith('34')) return 'AMEX'
-    if (cleanNumber.startsWith('36')) return 'DINERS'
-    return 'CREDIT'
+    const cleanNumber = cardNumber.replace(/\s?/g, '');
+    if (cleanNumber.startsWith('4')) return 'VISA';
+    if (cleanNumber.startsWith('5')) return 'MASTERCARD';
+    if (cleanNumber.startsWith('37') || cleanNumber.startsWith('34')) return 'AMEX';
+    if (cleanNumber.startsWith('36')) return 'DINERS';
+    return 'CREDIT';
   };
 
   const formatCardNumber = (value) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-    const matches = v.match(/\d{4,16}/g)
-    const match = (matches && matches[0]) || ''
-    const parts = []
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const matches = v.match(/\d{4,16}/g);
+    const match = (matches && matches[0]) || '';
+    const parts = [];
 
     for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4))
+      parts.push(match.substring(i, i + 4));
     }
 
     if (parts.length > 0) {
-      return parts.join(' ')
+      return parts.join(' ');
     } else {
-      return v
+      return v;
     }
-  }
+  };
 
   const formatExpiry = (value) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
     if (v.length >= 2) {
-      return `${v.slice(0, 2)}/${v.slice(2, 4)}`
+      return `${v.slice(0, 2)}/${v.slice(2, 4)}`;
     }
-    return v
-  }
+    return v;
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError('');
 
-    const cleanNum = cardNumber.replace(/\s/g, '')
+    const cleanNum = cardNumber.replace(/\s/g, '');
     if (cleanNum.length < 16) {
-      setError('Número de tarjeta incompleto (requiere 16 dígitos)')
-      return
+      setError('Número de tarjeta incompleto (requiere 16 dígitos)');
+      return;
     }
     if (!cardName.trim()) {
-      setError('Por favor, ingresa el nombre del titular')
-      return
+      setError('Por favor, ingresa el nombre del titular');
+      return;
     }
     if (cardExpiry.length < 5) {
-      setError('Fecha de expiración incompleta (MM/AA)')
-      return
+      setError('Fecha de expiración incompleta (MM/AA)');
+      return;
     }
     if (cardCvv.length < 3) {
-      setError('Código CVV incompleto')
-      return
+      setError('Código CVV incompleto');
+      return;
     }
 
-    setIsProcessing(true)
+    setIsProcessing(true);
 
     // Simular retraso de procesamiento del banco (sandbox Mercado Pago)
     setTimeout(() => {
@@ -80,10 +80,10 @@ export default function PaymentMpBrick({ total, onConfirm, onCancel }) {
         metodo: 'Mercado Pago',
         marca: getCardType(),
         ultimosDigitos: cleanNum.slice(-4),
-        cuotas: installments
-      })
-    }, 2000)
-  }
+        cuotas: installments,
+      });
+    }, 2000);
+  };
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-modal flex items-center justify-center p-4">
@@ -288,5 +288,5 @@ export default function PaymentMpBrick({ total, onConfirm, onCancel }) {
         </form>
       </div>
     </div>
-  )
+  );
 }

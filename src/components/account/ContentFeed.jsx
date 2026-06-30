@@ -1,7 +1,7 @@
 export default function ContentFeed() {
-  const blogUrl = '/blog'
-  const youtubeUrl = 'https://www.youtube.com/@MissyPoPetShop'
-  const tvUrl = '/missypo-tv'
+  const blogUrl = '/blog';
+  const youtubeUrl = 'https://www.youtube.com/@MissyPoPetShop';
+  const tvUrl = '/missypo-tv';
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -68,5 +68,5 @@ export default function ContentFeed() {
         </div>
       </a>
     </div>
-  )
+  );
 }

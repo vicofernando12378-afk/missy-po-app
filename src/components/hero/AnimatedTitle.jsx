@@ -1,34 +1,34 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 
 // Efecto Textillate letra a letra con gradiente púrpura/magenta (equivalente al plugin easy-textillate)
 // El texto se anima al cargar y al hacer hover sobre cada letra
 
-const TITLE_TEXT = 'NOVEDADES MISSY & PO!!!!'
+const TITLE_TEXT = 'NOVEDADES MISSY & PO!!!!';
 
 export default function AnimatedTitle() {
-  const lettersRef = useRef([])
+  const lettersRef = useRef([]);
 
   useEffect(() => {
     // Anima cada letra con un delay escalonado al montar
     lettersRef.current.forEach((el, i) => {
-      if (!el) return
+      if (!el) return;
       setTimeout(() => {
-        el.style.animation = 'bounce-letter 0.6s ease-out both'
+        el.style.animation = 'bounce-letter 0.6s ease-out both';
         // Limpia la animación para poder re-triggearla en hover
         setTimeout(() => {
-          el.style.animation = ''
-        }, 700)
-      }, i * 60)
-    })
-  }, [])
+          el.style.animation = '';
+        }, 700);
+      }, i * 60);
+    });
+  }, []);
 
   const handleLetterHover = (el) => {
-    if (!el) return
-    el.style.animation = 'none'
+    if (!el) return;
+    el.style.animation = 'none';
     // Fuerza reflow para reiniciar
-    void el.offsetWidth
-    el.style.animation = 'bounce-letter 0.5s ease-out'
-  }
+    void el.offsetWidth;
+    el.style.animation = 'bounce-letter 0.5s ease-out';
+  };
 
   return (
     <div className="text-center py-8 px-4" id="animated-title-section">
@@ -61,5 +61,5 @@ export default function AnimatedTitle() {
         Descubre las últimas novedades para tu mascota favorita 🐾
       </p>
     </div>
-  )
+  );
 }

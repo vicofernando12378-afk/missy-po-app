@@ -1,9 +1,10 @@
-import React from 'react'
-import useCartStore from '../store/cartStore'
-import CheckoutForm from '../components/checkout/CheckoutForm'
+import React from 'react';
+
+import CheckoutForm from '../components/checkout/CheckoutForm';
+import useCartStore from '../store/cartStore';
 
 export default function CheckoutPage() {
-  const cart = useCartStore()
+  const cart = useCartStore();
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -22,5 +23,5 @@ export default function CheckoutPage() {
         clearCart={cart.clearCart}
       />
     </div>
-  )
+  );
 }

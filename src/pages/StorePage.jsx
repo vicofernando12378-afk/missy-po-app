@@ -1,10 +1,11 @@
-import { useEffect, useState, useMemo } from 'react'
-import ProductGrid from '../components/catalog/ProductGrid'
-import useCatalogStore from '../store/catalogStore'
+import { useEffect, useState, useMemo } from 'react';
+
+import ProductGrid from '../components/catalog/ProductGrid';
+import useCatalogStore from '../store/catalogStore';
 
 export default function StorePage({ initialProducts = [] }) {
-  const { productos, fetchCatalog, isLoading } = useCatalogStore()
-  const activeProducts = productos.length > 0 ? productos : initialProducts
+  const { productos, fetchCatalog, isLoading } = useCatalogStore();
+  const activeProducts = productos.length > 0 ? productos : initialProducts;
 
   // Maps URL slugs from Navbar/Footer to the real Firestore category names
   const CAT_SLUG_MAP = {
@@ -14,112 +15,112 @@ export default function StorePage({ initialProducts = [] }) {
     'juguetes':   'Juguetes',
     'accesorios': 'Accesorios',
     'ofertas':    'Ofertas',
-  }
+  };
 
   // Helper: resolves a URL slug to its real category name
   const resolveSlug = (slug, cats = []) => {
-    if (!slug) return 'Todos'
-    const lower = slug.toLowerCase()
-    if (CAT_SLUG_MAP[lower]) return CAT_SLUG_MAP[lower]
-    const exact = cats.find(c => c.toLowerCase() === lower)
-    if (exact) return exact
-    const starts = cats.find(c => c.toLowerCase().startsWith(lower))
-    return starts || (slug.charAt(0).toUpperCase() + slug.slice(1))
-  }
+    if (!slug) return 'Todos';
+    const lower = slug.toLowerCase();
+    if (CAT_SLUG_MAP[lower]) return CAT_SLUG_MAP[lower];
+    const exact = cats.find(c => c.toLowerCase() === lower);
+    if (exact) return exact;
+    const starts = cats.find(c => c.toLowerCase().startsWith(lower));
+    return starts || (slug.charAt(0).toUpperCase() + slug.slice(1));
+  };
 
   // Read URL params SYNCHRONOUSLY (runs before first render, avoids Astro hydration race)
   const getInitialParam = (key) => {
-    if (typeof window === 'undefined') return ''
-    return new URLSearchParams(window.location.search).get(key) || ''
-  }
+    if (typeof window === 'undefined') return '';
+    return new URLSearchParams(window.location.search).get(key) || '';
+  };
 
-  const [catParam, setCatParam] = useState(() => getInitialParam('cat'))
-  const [searchQuery, setSearchQuery] = useState(() => getInitialParam('q'))
+  const [catParam, setCatParam] = useState(() => getInitialParam('cat'));
+  const [searchQuery, setSearchQuery] = useState(() => getInitialParam('q'));
   const [selectedCategory, setSelectedCategory] = useState(
-    () => resolveSlug(getInitialParam('cat'))
-  )
-  const [sortBy, setSortBy] = useState('creacion')
+    () => resolveSlug(getInitialParam('cat')),
+  );
+  const [sortBy, setSortBy] = useState('creacion');
 
   useEffect(() => {
-    fetchCatalog()
-  }, [fetchCatalog])
+    fetchCatalog();
+  }, [fetchCatalog]);
 
   // Categorías dinámicas a partir de los productos reales cargados en memoria
-  const categorias = useMemo(() => ['Todos', ...new Set(activeProducts.flatMap(p => p.categorias || []))], [activeProducts])
+  const categorias = useMemo(() => ['Todos', ...new Set(activeProducts.flatMap(p => p.categorias || []))], [activeProducts]);
 
   // Re-resolve selectedCategory when categorias loads (products may have loaded after mount)
   useEffect(() => {
     if (catParam) {
-      setSelectedCategory(resolveSlug(catParam, categorias))
+      setSelectedCategory(resolveSlug(catParam, categorias));
     }
-  }, [catParam, categorias])
+  }, [catParam, categorias]);
 
   // Listen for browser back/forward navigation (popstate)
   useEffect(() => {
     const handlePopState = () => {
-      const p = new URLSearchParams(window.location.search)
-      const cat = p.get('cat') || ''
-      const q   = p.get('q')   || ''
-      setSearchQuery(q)
-      setCatParam(cat)
-      setSelectedCategory(resolveSlug(cat, categorias))
-    }
-    window.addEventListener('popstate', handlePopState)
-    return () => window.removeEventListener('popstate', handlePopState)
-  }, [categorias])
+      const p = new URLSearchParams(window.location.search);
+      const cat = p.get('cat') || '';
+      const q   = p.get('q')   || '';
+      setSearchQuery(q);
+      setCatParam(cat);
+      setSelectedCategory(resolveSlug(cat, categorias));
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [categorias]);
 
   // Filtrar productos
-  let filtered = [...activeProducts]
+  let filtered = [...activeProducts];
 
   // 1. Filtrar por búsqueda de URL (q)
   if (searchQuery) {
-    const q = searchQuery.toLowerCase().trim()
+    const q = searchQuery.toLowerCase().trim();
     filtered = filtered.filter(p => 
       p.nombre?.toLowerCase().includes(q) || 
       p.sku?.toLowerCase().includes(q) ||
-      p.categorias?.some(c => c.toLowerCase().includes(q))
-    )
+      p.categorias?.some(c => c.toLowerCase().includes(q)),
+    );
   }
 
   // 2. Filtrar por categoría seleccionada (usando coincidencia insensible a mayúsculas/minúsculas)
   if (selectedCategory !== 'Todos') {
     filtered = filtered.filter(p => 
-      p.categorias?.some(c => c.toLowerCase() === selectedCategory.toLowerCase())
-    )
+      p.categorias?.some(c => c.toLowerCase() === selectedCategory.toLowerCase()),
+    );
   }
 
   // 3. Ordenar
   filtered.sort((a, b) => {
-    const precioA = a.precio_oferta || a.precio_regular || 0
-    const precioB = b.precio_oferta || b.precio_regular || 0
+    const precioA = a.precio_oferta || a.precio_regular || 0;
+    const precioB = b.precio_oferta || b.precio_regular || 0;
 
     if (sortBy === 'price-asc') {
-      return precioA - precioB
+      return precioA - precioB;
     }
     if (sortBy === 'price-desc') {
-      return precioB - precioA
+      return precioB - precioA;
     }
     if (sortBy === 'name-asc') {
-      return a.nombre.localeCompare(b.nombre)
+      return a.nombre.localeCompare(b.nombre);
     }
     // Por defecto por fecha de creación (los más recientes primero)
-    return new Date(b.fecha_creacion || 0) - new Date(a.fecha_creacion || 0)
-  })
+    return new Date(b.fecha_creacion || 0) - new Date(a.fecha_creacion || 0);
+  });
 
   const handleCategorySelect = (cat) => {
-    setSelectedCategory(cat)
+    setSelectedCategory(cat);
     if (typeof window !== 'undefined') {
-      const url = new URL(window.location)
+      const url = new URL(window.location);
       if (cat === 'Todos') {
-        url.search = ''
+        url.search = '';
       } else {
-        url.search = `?cat=${encodeURIComponent(cat.toLowerCase())}`
+        url.search = `?cat=${encodeURIComponent(cat.toLowerCase())}`;
       }
-      window.history.pushState({}, '', url)
-      setSearchQuery('')
-      setCatParam(cat === 'Todos' ? '' : cat.toLowerCase())
+      window.history.pushState({}, '', url);
+      setSearchQuery('');
+      setCatParam(cat === 'Todos' ? '' : cat.toLowerCase());
     }
-  }
+  };
 
   return (
     <>
@@ -154,17 +155,17 @@ export default function StorePage({ initialProducts = [] }) {
                 <button
                   onClick={() => {
                     if (typeof window !== 'undefined') {
-                      const url = new URL(window.location)
-                      url.search = ''
-                      window.history.pushState({}, '', url)
-                      setSearchQuery('')
-                      setCatParam('')
-                      setSelectedCategory('Todos')
+                      const url = new URL(window.location);
+                      url.search = '';
+                      window.history.pushState({}, '', url);
+                      setSearchQuery('');
+                      setCatParam('');
+                      setSelectedCategory('Todos');
                     }
                   }}
                   className="px-4 py-1.5 rounded-full text-xs font-ui font-semibold bg-amber-100 text-amber-800 flex items-center gap-1 hover:bg-amber-200 transition-colors"
                 >
-                  Búsqueda: "{searchQuery}" ✕
+                  B&uacute;squeda: &ldquo;{searchQuery}&rdquo; &times;
                 </button>
               )}
             </div>
@@ -197,5 +198,5 @@ export default function StorePage({ initialProducts = [] }) {
         </div>
       </div>
     </>
-  )
+  );
 }

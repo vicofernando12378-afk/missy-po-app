@@ -1,5 +1,6 @@
-import { useRef, useEffect } from 'react'
-import useCartStore from '../../store/cartStore'
+import { useRef, useEffect } from 'react';
+
+import useCartStore from '../../store/cartStore';
 
 // ============================================================
 // CART HOVER POPUP — Aparece al hover sobre el carrito en Navbar
@@ -7,19 +8,19 @@ import useCartStore from '../../store/cartStore'
 // ============================================================
 
 export default function CartHoverPopup({ onClose }) {
-  const popupRef = useRef(null)
-  const { items, total, itemCount } = useCartStore()
+  const popupRef = useRef(null);
+  const { items, total, itemCount } = useCartStore();
 
   // Cerrar al mover el ratón fuera
   useEffect(() => {
     const handler = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
-        onClose?.()
+        onClose?.();
       }
-    }
-    document.addEventListener('mousemove', handler)
-    return () => document.removeEventListener('mousemove', handler)
-  }, [onClose])
+    };
+    document.addEventListener('mousemove', handler);
+    return () => document.removeEventListener('mousemove', handler);
+  }, [onClose]);
 
   return (
     <div
@@ -114,5 +115,5 @@ export default function CartHoverPopup({ onClose }) {
         </a>
       </div>
     </div>
-  )
+  );
 }

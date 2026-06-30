@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import useCartStore from '../../store/cartStore'
-import { obtenerProductosMasVendidos } from '../../services'
-import useCatalogStore from '../../store/catalogStore'
+import { useState, useEffect } from 'react';
+
+import { obtenerProductosMasVendidos } from '../../services';
+import useCartStore from '../../store/cartStore';
+import useCatalogStore from '../../store/catalogStore';
 
 
 // ============================================================
@@ -13,18 +14,18 @@ const CloseIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
   </svg>
-)
+);
 
 const TrashIcon = () => (
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
   </svg>
-)
+);
 
 // ─── ÍTEM DEL CARRITO ──────────────────────────────────────
 function CartDrawerItem({ item }) {
-  const { updateQuantity, removeItem } = useCartStore()
+  const { updateQuantity, removeItem } = useCartStore();
 
   return (
     <div className="flex items-start gap-3 py-3 border-b border-gray-100 last:border-0">
@@ -94,7 +95,7 @@ function CartDrawerItem({ item }) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 
@@ -102,68 +103,68 @@ function CartDrawerItem({ item }) {
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────
 export default function CartDrawer() {
   const { items, isDrawerOpen, closeDrawer, subtotal, total, couponCode,
-          couponDiscount, applyCoupon, removeCoupon } = useCartStore()
+          couponDiscount, applyCoupon, removeCoupon } = useCartStore();
 
-  const [couponInput, setCouponInput] = useState('')
-  const [couponMsg, setCouponMsg] = useState(null)
-  const [isApplying, setIsApplying] = useState(false)
+  const [couponInput, setCouponInput] = useState('');
+  const [couponMsg, setCouponMsg] = useState(null);
+  const [isApplying, setIsApplying] = useState(false);
 
-  const [bestSellers, setBestSellers] = useState([])
-  const { productos, fetchCatalog } = useCatalogStore()
+  const [bestSellers, setBestSellers] = useState([]);
+  const { productos, fetchCatalog } = useCatalogStore();
 
   useEffect(() => {
     async function loadBestSellers() {
-      let catalog = productos
+      let catalog = productos;
       if (catalog.length === 0) {
-        catalog = await fetchCatalog()
+        catalog = await fetchCatalog();
       }
 
       try {
-        const mostSold = await obtenerProductosMasVendidos(5)
-        let list = mostSold
+        const mostSold = await obtenerProductosMasVendidos(5);
+        const list = mostSold
           .map(item => {
-            const prodCompleto = catalog.find(p => p.sku === item.sku || p.id === item.id || p.slug === item.slug)
+            const prodCompleto = catalog.find(p => p.sku === item.sku || p.id === item.id || p.slug === item.slug);
             if (prodCompleto && prodCompleto.activo) {
-              return prodCompleto
+              return prodCompleto;
             }
-            return null
+            return null;
           })
-          .filter(Boolean)
+          .filter(Boolean);
 
         if (list.length < 3) {
-          const ofertas = catalog.filter(p => p.activo && p.precio_oferta && p.stock > 0 && !list.some(item => item.id === p.id))
-          const comunes = catalog.filter(p => p.activo && !p.precio_oferta && p.stock > 0 && !list.some(item => item.id === p.id))
-          const fallbacks = [...ofertas, ...comunes]
+          const ofertas = catalog.filter(p => p.activo && p.precio_oferta && p.stock > 0 && !list.some(item => item.id === p.id));
+          const comunes = catalog.filter(p => p.activo && !p.precio_oferta && p.stock > 0 && !list.some(item => item.id === p.id));
+          const fallbacks = [...ofertas, ...comunes];
           
           while (list.length < 3 && fallbacks.length > 0) {
-            list.push(fallbacks.shift())
+            list.push(fallbacks.shift());
           }
         }
 
-        setBestSellers(list.slice(0, 4))
+        setBestSellers(list.slice(0, 4));
       } catch (err) {
-        console.error('Error cargando best sellers:', err)
-        const fallbackList = catalog.filter(p => p.activo && p.stock > 0).slice(0, 3)
-        setBestSellers(fallbackList)
+        console.error('Error cargando best sellers:', err);
+        const fallbackList = catalog.filter(p => p.activo && p.stock > 0).slice(0, 3);
+        setBestSellers(fallbackList);
       }
     }
 
     if (isDrawerOpen) {
-      loadBestSellers()
+      loadBestSellers();
     }
-  }, [isDrawerOpen, productos, fetchCatalog])
+  }, [isDrawerOpen, productos, fetchCatalog]);
 
   const handleApplyCoupon = async () => {
-    if (!couponInput.trim()) return
-    setIsApplying(true)
-    const result = await applyCoupon(couponInput)
-    setCouponMsg(result)
-    if (result.success) setCouponInput('')
-    setIsApplying(false)
-    setTimeout(() => setCouponMsg(null), 3000)
-  }
+    if (!couponInput.trim()) return;
+    setIsApplying(true);
+    const result = await applyCoupon(couponInput);
+    setCouponMsg(result);
+    if (result.success) setCouponInput('');
+    setIsApplying(false);
+    setTimeout(() => setCouponMsg(null), 3000);
+  };
 
-  if (!isDrawerOpen) return null
+  if (!isDrawerOpen) return null;
 
   return (
     <>
@@ -361,5 +362,5 @@ export default function CartDrawer() {
         )}
       </div>
     </>
-  )
+  );
 }

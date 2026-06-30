@@ -1,53 +1,54 @@
-import { useState, useEffect } from 'react'
-import { listenAuth } from '../services/auth'
-import useUserStore from '../store/userStore'
-import useOrdersByUser from '../hooks/useOrdersByUser'
+import { useState, useEffect } from 'react';
 
-import AccountLayout from '../components/account/AccountLayout'
-import AccountDashboard from '../components/account/AccountDashboard'
+import AccountDashboard from '../components/account/AccountDashboard';
+import AccountLayout from '../components/account/AccountLayout';
+import useOrdersByUser from '../hooks/useOrdersByUser';
+import { listenAuth } from '../services/auth';
+import useUserStore from '../store/userStore';
+
 
 // Imports de subpáginas
-import OrdersPage from './mi-cuenta/pedidos/OrdersPage.jsx'
-import OrderDetailPage from './mi-cuenta/pedidos/OrderDetailPage.jsx'
-import ClubPage from './mi-cuenta/club/ClubPage.jsx'
-import PetsPage from './mi-cuenta/mascotas/PetsPage.jsx'
-import AddressesPage from './mi-cuenta/direcciones/AddressesPage.jsx'
-import ProfilePage from './mi-cuenta/perfil/ProfilePage.jsx'
+import ClubPage from './mi-cuenta/club/ClubPage.jsx';
+import AddressesPage from './mi-cuenta/direcciones/AddressesPage.jsx';
+import PetsPage from './mi-cuenta/mascotas/PetsPage.jsx';
+import OrderDetailPage from './mi-cuenta/pedidos/OrderDetailPage.jsx';
+import OrdersPage from './mi-cuenta/pedidos/OrdersPage.jsx';
+import ProfilePage from './mi-cuenta/perfil/ProfilePage.jsx';
 
 export default function AccountPage() {
-  const [authUser, setAuthUser] = useState(null)
-  const [checkingAuth, setCheckingAuth] = useState(true)
-  const [currentHash, setCurrentHash] = useState('')
+  const [authUser, setAuthUser] = useState(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [currentHash, setCurrentHash] = useState('');
 
-  const { profile, isLoading: profileLoading, fetchProfile } = useUserStore()
-  const { orders, isLoading: ordersLoading } = useOrdersByUser(authUser?.uid, authUser?.email)
+  const { profile, isLoading: profileLoading, fetchProfile } = useUserStore();
+  const { orders, isLoading: ordersLoading } = useOrdersByUser(authUser?.uid, authUser?.email);
 
   // Sincronizar hash de la URL
   useEffect(() => {
     const handleHashChange = () => {
-      setCurrentHash(window.location.hash || '#dashboard')
-    }
+      setCurrentHash(window.location.hash || '#dashboard');
+    };
     
     // Leer al montar
-    handleHashChange()
+    handleHashChange();
     
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = listenAuth((user) => {
-      setAuthUser(user)
-      setCheckingAuth(false)
-    })
-    return () => unsubscribe()
-  }, [])
+      setAuthUser(user);
+      setCheckingAuth(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     if (authUser?.uid) {
-      fetchProfile(authUser.uid, authUser.email)
+      fetchProfile(authUser.uid, authUser.email);
     }
-  }, [authUser?.uid])
+  }, [authUser?.uid]);
 
   // Loading state
   if (checkingAuth) {
@@ -59,7 +60,7 @@ export default function AccountPage() {
           Verificando tu sesión...
         </p>
       </div>
-    )
+    );
   }
 
   // Not logged in
@@ -81,31 +82,32 @@ export default function AccountPage() {
           Iniciar Sesión
         </a>
       </div>
-    )
+    );
   }
 
   // Parsear hash para obtener la sección y parámetros (ej: #pedido-detalle?id=123)
-  const tab = currentHash.split('?')[0] || '#dashboard'
-  const params = new URLSearchParams(currentHash.split('?')[1] || '')
+  const tab = currentHash.split('?')[0] || '#dashboard';
+  const params = new URLSearchParams(currentHash.split('?')[1] || '');
   
-  const clubPoints = profile?.clubMember?.puntos || 0
+  const clubPoints = profile?.clubMember?.puntos || 0;
 
   // Renderizar sección activa
   const renderSectionContent = () => {
     switch (tab) {
       case '#pedidos':
-        return <OrdersPage authUser={authUser} profile={profile} orders={orders} ordersLoading={ordersLoading} />
-      case '#pedido-detalle':
-        const orderId = params.get('id')
-        return <OrderDetailPage forceOrderId={orderId} authUser={authUser} profile={profile} />
+        return <OrdersPage authUser={authUser} profile={profile} orders={orders} ordersLoading={ordersLoading} />;
+      case '#pedido-detalle': {
+        const orderId = params.get('id');
+        return <OrderDetailPage forceOrderId={orderId} authUser={authUser} profile={profile} />;
+      }
       case '#club':
-        return <ClubPage authUser={authUser} profile={profile} />
+        return <ClubPage authUser={authUser} profile={profile} />;
       case '#mascotas':
-        return <PetsPage authUser={authUser} profile={profile} />
+        return <PetsPage authUser={authUser} profile={profile} />;
       case '#direcciones':
-        return <AddressesPage authUser={authUser} profile={profile} />
+        return <AddressesPage authUser={authUser} profile={profile} />;
       case '#perfil':
-        return <ProfilePage authUser={authUser} profile={profile} />
+        return <ProfilePage authUser={authUser} profile={profile} />;
       case '#dashboard':
       default:
         return (
@@ -115,9 +117,9 @@ export default function AccountPage() {
             points={clubPoints}
             pointsHistory={profile?.clubMember?.puntos_logs || []}
           />
-        )
+        );
     }
-  }
+  };
 
   // Traducir hash a la sección activa del Sidebar
   const activeSectionMap = {
@@ -128,12 +130,12 @@ export default function AccountPage() {
     '#mascotas': 'mascotas',
     '#direcciones': 'direcciones',
     '#perfil': 'perfil',
-  }
-  const activeSection = activeSectionMap[tab] || 'dashboard'
+  };
+  const activeSection = activeSectionMap[tab] || 'dashboard';
 
   return (
     <AccountLayout activeSection={activeSection}>
       {renderSectionContent()}
     </AccountLayout>
-  )
+  );
 }

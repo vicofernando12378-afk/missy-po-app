@@ -1,22 +1,23 @@
-import { useState } from 'react'
-import { LIMA_REGIONS, AREQUIPA_DISTRICTS } from '../../data/locations'
+import { useState } from 'react';
+
+import { LIMA_REGIONS, AREQUIPA_DISTRICTS } from '../../data/locations';
 
 export default function AddressForm({ initialData, onSave, onCancel }) {
-  const [alias, setAlias] = useState(initialData?.alias || '')
-  const [departamento, setDepartamento] = useState(initialData?.departamento || 'Arequipa')
-  const [distrito, setDistrito] = useState(initialData?.distrito || '')
-  const [direccion, setDireccion] = useState(initialData?.direccion || '')
-  const [referencia, setReferencia] = useState(initialData?.referencia || '')
-  const [esDefault, setEsDefault] = useState(initialData?.es_default || false)
-  const [error, setError] = useState('')
+  const [alias, setAlias] = useState(initialData?.alias || '');
+  const [departamento, setDepartamento] = useState(initialData?.departamento || 'Arequipa');
+  const [distrito, setDistrito] = useState(initialData?.distrito || '');
+  const [direccion, setDireccion] = useState(initialData?.direccion || '');
+  const [referencia, setReferencia] = useState(initialData?.referencia || '');
+  const [esDefault, setEsDefault] = useState(initialData?.es_default || false);
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError('');
 
-    if (!alias.trim()) { setError('Ingresa un alias para la dirección'); return }
-    if (!distrito.trim()) { setError('Selecciona un distrito'); return }
-    if (!direccion.trim() || direccion.trim().length < 5) { setError('La dirección debe tener al menos 5 caracteres'); return }
+    if (!alias.trim()) { setError('Ingresa un alias para la dirección'); return; }
+    if (!distrito.trim()) { setError('Selecciona un distrito'); return; }
+    if (!direccion.trim() || direccion.trim().length < 5) { setError('La dirección debe tener al menos 5 caracteres'); return; }
 
     onSave({
       alias: alias.trim(),
@@ -24,9 +25,9 @@ export default function AddressForm({ initialData, onSave, onCancel }) {
       distrito: distrito.trim(),
       direccion: direccion.trim(),
       referencia: referencia.trim(),
-      es_default: esDefault
-    })
-  }
+      es_default: esDefault,
+    });
+  };
 
   return (
     <div className="bg-white rounded-2xl border p-6" style={{ borderColor: 'var(--color-border)' }}>
@@ -51,7 +52,7 @@ export default function AddressForm({ initialData, onSave, onCancel }) {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-xs font-ui font-bold text-gray-600 uppercase mb-1.5">Departamento</label>
-            <select value={departamento} onChange={e => { setDepartamento(e.target.value); setDistrito('') }}
+            <select value={departamento} onChange={e => { setDepartamento(e.target.value); setDistrito(''); }}
                     className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-red-200 text-sm">
               {LIMA_REGIONS.map(reg => (
                 <option key={reg} value={reg}>{reg}</option>
@@ -110,5 +111,5 @@ export default function AddressForm({ initialData, onSave, onCancel }) {
         </div>
       </form>
     </div>
-  )
+  );
 }

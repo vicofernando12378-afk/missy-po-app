@@ -17,5 +17,5 @@ export default function SaleBadge({ percentage }) {
         <span className="text-[10px] font-ui">Sale!</span>
       )}
     </div>
-  )
+  );
 }

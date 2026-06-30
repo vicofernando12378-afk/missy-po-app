@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const CartItemSchema = z.object({
   id: z.union([z.string(), z.number()]),
@@ -10,8 +10,8 @@ export const CartItemSchema = z.object({
   ean: z.string().trim().default(''),
   variante: z.string().trim().default('default'),
   cantidad: z.coerce.number().int().min(1, 'La cantidad mínima es 1').max(999, 'Cantidad excedida'),
-  _key: z.string().trim().optional()
-})
+  _key: z.string().trim().optional(),
+});
 
 export const CartStateSchema = z.object({
   items: z.array(CartItemSchema).default([]),
@@ -19,5 +19,5 @@ export const CartStateSchema = z.object({
   couponDiscount: z.coerce.number().min(0).max(100).default(0),
   subtotal: z.coerce.number().min(0).default(0),
   total: z.coerce.number().min(0).default(0),
-  itemCount: z.coerce.number().int().min(0).default(0)
-})
+  itemCount: z.coerce.number().int().min(0).default(0),
+});

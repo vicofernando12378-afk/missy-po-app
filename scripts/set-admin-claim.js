@@ -3,10 +3,11 @@
 // Uso: node scripts/set-admin-claim.js <email>
 // ============================================================
 
-import admin from 'firebase-admin';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+
+import admin from 'firebase-admin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,7 +35,7 @@ if (!fs.existsSync(SERVICE_ACCOUNT_PATH)) {
 try {
   const serviceAccount = JSON.parse(fs.readFileSync(SERVICE_ACCOUNT_PATH, 'utf8'));
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+    credential: admin.credential.cert(serviceAccount),
   });
   console.log('\x1b[32m%s\x1b[0m', '✓ Firebase Admin inicializado correctamente.');
 } catch (error) {

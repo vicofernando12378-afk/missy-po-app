@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const ReclamacionSchema = z.object({
   nombre: z.string().min(1, 'El nombre es requerido').max(100, 'Nombre demasiado largo').trim(),
@@ -17,23 +17,23 @@ export const ReclamacionSchema = z.object({
   detalleReclamo: z.string().min(10, 'El detalle del reclamo debe tener al menos 10 caracteres').max(1000, 'El detalle no puede superar los 1000 caracteres').trim(),
   pedidoConsumidor: z.string().max(200, 'El campo de pedido no puede superar los 200 caracteres').default('').optional(),
   autorizoNotif: z.literal(true, {
-    errorMap: () => ({ message: 'Debes autorizar el envío de notificaciones para proceder' })
-  })
+    errorMap: () => ({ message: 'Debes autorizar el envío de notificaciones para proceder' }),
+  }),
 }).refine(data => {
   if (data.tipoDoc === 'DNI') {
-    return /^\d{8}$/.test(data.numDoc)
+    return /^\d{8}$/.test(data.numDoc);
   }
   if (data.tipoDoc === 'RUC') {
-    return /^\d{11}$/.test(data.numDoc)
+    return /^\d{11}$/.test(data.numDoc);
   }
   if (data.tipoDoc === 'CE') {
-    return /^[a-zA-Z0-9]{9,12}$/.test(data.numDoc)
+    return /^[a-zA-Z0-9]{9,12}$/.test(data.numDoc);
   }
   if (data.tipoDoc === 'PASAPORTE') {
-    return /^[a-zA-Z0-9]{5,12}$/.test(data.numDoc)
+    return /^[a-zA-Z0-9]{5,12}$/.test(data.numDoc);
   }
-  return true
+  return true;
 }, {
   message: 'El número de documento es inválido para el tipo seleccionado',
-  path: ['numDoc']
-})
+  path: ['numDoc'],
+});

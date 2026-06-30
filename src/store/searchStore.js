@@ -1,4 +1,4 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 // ============================================================
 // SEARCH STORE — Zustand para LiveSearch
@@ -36,19 +36,19 @@ const useSearchStore = create((set, get) => ({
 
   // Navegación con teclado
   moveUp: () => {
-    const { selectedIndex, results } = get()
-    set({ selectedIndex: Math.max(-1, selectedIndex - 1) })
+    const { selectedIndex, results } = get();
+    set({ selectedIndex: Math.max(-1, selectedIndex - 1) });
   },
 
   moveDown: () => {
-    const { selectedIndex, results } = get()
-    set({ selectedIndex: Math.min(results.length - 1, selectedIndex + 1) })
+    const { selectedIndex, results } = get();
+    set({ selectedIndex: Math.min(results.length - 1, selectedIndex + 1) });
   },
 
   getSelectedResult: () => {
-    const { results, selectedIndex } = get()
-    return selectedIndex >= 0 ? results[selectedIndex] : null
+    const { results, selectedIndex } = get();
+    return selectedIndex >= 0 ? results[selectedIndex] : null;
   },
-}))
+}));
 
-export default useSearchStore
+export default useSearchStore;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 export default function CouponSection({
   couponInput, setCouponInput,
   couponMsg, isApplyingCoupon,
   handleApplyCoupon, couponCode,
-  removeCoupon, couponDiscount
+  removeCoupon, couponDiscount,
 }) {
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
@@ -52,9 +52,9 @@ export default function CouponSection({
             ? 'bg-emerald-50 border border-emerald-100 text-emerald-700' 
             : 'bg-red-50 border border-red-100 text-red-700'
         }`}>
-          {couponMsg.success ? `¡Felicidades! Cupón aplicado correctamente.` : couponMsg.message}
+          {couponMsg.success ? '¡Felicidades! Cupón aplicado correctamente.' : couponMsg.message}
         </div>
       )}
     </div>
-  )
+  );
 }

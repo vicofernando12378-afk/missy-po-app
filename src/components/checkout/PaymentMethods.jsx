@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function PaymentMethods({ metodoPago, setMetodoPago }) {
   return (
@@ -63,5 +63,5 @@ export default function PaymentMethods({ metodoPago, setMetodoPago }) {
         </label>
       </div>
     </div>
-  )
+  );
 }

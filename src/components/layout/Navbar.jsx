@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
-import LiveSearch from '../header/LiveSearch'
-import CartHoverPopup from '../header/CartHoverPopup'
-import useCartStore from '../../store/cartStore'
-import MarqueeBanner from '../hero/MarqueeBanner'
-import { listenAuth } from '../../services/auth'
+import { useState, useEffect } from 'react';
+
+import { listenAuth } from '../../services/auth';
+import useCartStore from '../../store/cartStore';
+import CartHoverPopup from '../header/CartHoverPopup';
+import LiveSearch from '../header/LiveSearch';
+import MarqueeBanner from '../hero/MarqueeBanner';
 
 // Íconos inline SVG para evitar dependencia extra
 const SearchIcon = () => (
@@ -11,35 +12,35 @@ const SearchIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
   </svg>
-)
+);
 
 const CartIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 11H4L5 9z" />
   </svg>
-)
+);
 
 const UserIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
   </svg>
-)
+);
 
 const MenuIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M4 6h16M4 12h16M4 18h16" />
   </svg>
-)
+);
 
 const CloseIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
       d="M6 18L18 6M6 6l12 12" />
   </svg>
-)
+);
 
 // Categorías de navegación extraídas del plan
 const NAV_CATEGORIES = [
@@ -48,23 +49,23 @@ const NAV_CATEGORIES = [
   { label: 'Beneficios Club Missy & Po', href: '/club-missypo' },
   { label: 'Blog', href: '/blog' },
   { label: 'Missy & Po TV', href: '/missypo-tv' },
-]
+];
 
 export default function Navbar({ logoUrl }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [cartHoverOpen, setCartHoverOpen] = useState(false)
-  const [authUser, setAuthUser] = useState(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartHoverOpen, setCartHoverOpen] = useState(false);
+  const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = listenAuth((user) => {
-      setAuthUser(user)
-    })
-    return () => unsubscribe()
-  }, [])
+      setAuthUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  const cartCount = useCartStore(s => s.items.reduce((sum, i) => sum + i.cantidad, 0))
-  const cartTotal = useCartStore(s => s.items.reduce((sum, i) => sum + i.precio_unitario * i.cantidad, 0))
-  const openDrawer = useCartStore(s => s.openDrawer)
+  const cartCount = useCartStore(s => s.items.reduce((sum, i) => sum + i.cantidad, 0));
+  const cartTotal = useCartStore(s => s.items.reduce((sum, i) => sum + i.precio_unitario * i.cantidad, 0));
+  const openDrawer = useCartStore(s => s.openDrawer);
 
 
   return (
@@ -87,7 +88,7 @@ export default function Navbar({ logoUrl }) {
                 id="nav-logo"
               >
                 <img
-                  src={logoUrl || "/assets/logoheader.png"}
+                  src={logoUrl || '/assets/logoheader.png'}
                   alt="Missy & Po Logo"
                   className="w-[88px] h-[88px] md:w-32 md:h-32 object-contain rounded-xl border border-white/20 shadow-xl bg-white"
                 />
@@ -215,5 +216,5 @@ export default function Navbar({ logoUrl }) {
       </nav>
       <MarqueeBanner />
     </header>
-  )
+  );
 }

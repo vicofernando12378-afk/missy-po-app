@@ -1,5 +1,5 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default function AdminSidebar({
   user,
@@ -7,13 +7,13 @@ export default function AdminSidebar({
   onLogout,
   isOpen,
   onClose,
-  isMobile = false
+  isMobile = false,
 }) {
   const containerClasses = isMobile
     ? `fixed inset-y-0 left-0 z-50 flex flex-col w-72 bg-white border-r border-gray-100 shadow-xl transition-transform duration-350 ease-out lg:hidden ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`
-    : `hidden lg:flex flex-col w-72 bg-white border-r border-gray-100 shadow-sm shrink-0`
+    : 'hidden lg:flex flex-col w-72 bg-white border-r border-gray-100 shadow-sm shrink-0';
 
   return (
     <>
@@ -94,5 +94,5 @@ export default function AdminSidebar({
         </div>
       </aside>
     </>
-  )
+  );
 }

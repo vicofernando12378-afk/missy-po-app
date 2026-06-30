@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+
+import { validate, CouponSchema, ShippingConfigSchema } from '../../schemas';
 import {
   obtenerConfiguracionEnvio,
   guardarConfiguracionEnvio,
   obtenerCupones,
   crearCupon,
   actualizarEstadoCupon,
-  eliminarCupon
-} from '../../services'
-import { validate, CouponSchema, ShippingConfigSchema } from '../../schemas'
+  eliminarCupon,
+} from '../../services';
 
 
 export default function ConfiguracionEnviosCupones() {
@@ -16,132 +17,132 @@ export default function ConfiguracionEnviosCupones() {
     arequipaFee: '',
     arequipaFreeLimit: '',
     nationalFee: '',
-    nationalFreeLimit: ''
-  })
-  const [loadingShipping, setLoadingShipping] = useState(true)
-  const [errorShipping, setErrorShipping] = useState('')
-  const [successShipping, setSuccessShipping] = useState(false)
+    nationalFreeLimit: '',
+  });
+  const [loadingShipping, setLoadingShipping] = useState(true);
+  const [errorShipping, setErrorShipping] = useState('');
+  const [successShipping, setSuccessShipping] = useState(false);
 
   // Cupones
-  const [cupones, setCupones] = useState([])
-  const [loadingCupones, setLoadingCupones] = useState(true)
+  const [cupones, setCupones] = useState([]);
+  const [loadingCupones, setLoadingCupones] = useState(true);
   
   // Formulario Cupones
-  const [codigoCupon, setCodigoCupon] = useState('')
-  const [descuentoPorcentaje, setDescuentoPorcentaje] = useState('')
-  const [compraMinima, setCompraMinima] = useState('')
-  const [errorCupon, setErrorCupon] = useState('')
-  const [successCupon, setSuccessCupon] = useState(false)
+  const [codigoCupon, setCodigoCupon] = useState('');
+  const [descuentoPorcentaje, setDescuentoPorcentaje] = useState('');
+  const [compraMinima, setCompraMinima] = useState('');
+  const [errorCupon, setErrorCupon] = useState('');
+  const [successCupon, setSuccessCupon] = useState(false);
 
   const cargarConfiguracion = async () => {
-    setLoadingShipping(true)
+    setLoadingShipping(true);
     try {
-      const config = await obtenerConfiguracionEnvio()
+      const config = await obtenerConfiguracionEnvio();
       setShippingConfig({
         arequipaFee: config.arequipaFee,
         arequipaFreeLimit: config.arequipaFreeLimit,
         nationalFee: config.nationalFee,
-        nationalFreeLimit: config.nationalFreeLimit
-      })
+        nationalFreeLimit: config.nationalFreeLimit,
+      });
     } catch (e) {
-      console.error('Error al cargar configuración de envíos:', e)
+      console.error('Error al cargar configuración de envíos:', e);
     } finally {
-      setLoadingShipping(false)
+      setLoadingShipping(false);
     }
-  }
+  };
 
   const cargarCupones = async () => {
-    setLoadingCupones(true)
+    setLoadingCupones(true);
     try {
-      const lista = await obtenerCupones()
-      setCupones(lista)
+      const lista = await obtenerCupones();
+      setCupones(lista);
     } catch (e) {
-      console.error('Error al cargar cupones:', e)
+      console.error('Error al cargar cupones:', e);
     } finally {
-      setLoadingCupones(false)
+      setLoadingCupones(false);
     }
-  }
+  };
 
   useEffect(() => {
-    cargarConfiguracion()
-    cargarCupones()
-  }, [])
+    cargarConfiguracion();
+    cargarCupones();
+  }, []);
 
   // GUARDAR CONFIGURACIÓN DE ENVÍOS
   const handleGuardarShipping = async (e) => {
-    e.preventDefault()
-    setErrorShipping('')
-    setSuccessShipping(false)
+    e.preventDefault();
+    setErrorShipping('');
+    setSuccessShipping(false);
 
-    const validation = validate(ShippingConfigSchema, shippingConfig)
+    const validation = validate(ShippingConfigSchema, shippingConfig);
     if (!validation.ok) {
-      setErrorShipping(validation.error)
-      return
+      setErrorShipping(validation.error);
+      return;
     }
 
     try {
-      await guardarConfiguracionEnvio(validation.data)
-      setSuccessShipping(true)
-      setTimeout(() => setSuccessShipping(false), 3000)
+      await guardarConfiguracionEnvio(validation.data);
+      setSuccessShipping(true);
+      setTimeout(() => setSuccessShipping(false), 3000);
     } catch (err) {
-      console.error(err)
-      setErrorShipping('Error al intentar guardar las tarifas de envío.')
+      console.error(err);
+      setErrorShipping('Error al intentar guardar las tarifas de envío.');
     }
-  }
+  };
 
   // CREAR NUEVO CUPÓN
   const handleCrearCupon = async (e) => {
-    e.preventDefault()
-    setErrorCupon('')
-    setSuccessCupon(false)
+    e.preventDefault();
+    setErrorCupon('');
+    setSuccessCupon(false);
 
     const payload = {
       codigo: codigoCupon,
       descuento: descuentoPorcentaje,
-      compraMinima: compraMinima === '' ? 0 : compraMinima
-    }
+      compraMinima: compraMinima === '' ? 0 : compraMinima,
+    };
 
-    const validation = validate(CouponSchema, payload)
+    const validation = validate(CouponSchema, payload);
     if (!validation.ok) {
-      setErrorCupon(validation.error)
-      return
+      setErrorCupon(validation.error);
+      return;
     }
 
     try {
-      const parsedData = validation.data
-      await crearCupon(parsedData.codigo, parsedData.descuento, parsedData.compraMinima)
-      setCodigoCupon('')
-      setDescuentoPorcentaje('')
-      setCompraMinima('')
-      setSuccessCupon(true)
-      setTimeout(() => setSuccessCupon(false), 3000)
-      await cargarCupones()
+      const parsedData = validation.data;
+      await crearCupon(parsedData.codigo, parsedData.descuento, parsedData.compraMinima);
+      setCodigoCupon('');
+      setDescuentoPorcentaje('');
+      setCompraMinima('');
+      setSuccessCupon(true);
+      setTimeout(() => setSuccessCupon(false), 3000);
+      await cargarCupones();
     } catch (err) {
-      console.error(err)
-      setErrorCupon(err.message || 'Error al intentar crear el cupón.')
+      console.error(err);
+      setErrorCupon(err.message || 'Error al intentar crear el cupón.');
     }
-  }
+  };
 
   // CAMBIAR ESTADO CUPÓN
   const handleToggleCupon = async (cuponId, estadoActual) => {
     try {
-      await actualizarEstadoCupon(cuponId, !estadoActual)
-      setCupones(prev => prev.map(c => c.id === cuponId ? { ...c, activo: !estadoActual } : c))
+      await actualizarEstadoCupon(cuponId, !estadoActual);
+      setCupones(prev => prev.map(c => c.id === cuponId ? { ...c, activo: !estadoActual } : c));
     } catch (e) {
-      console.error('Error al cambiar estado del cupón:', e)
+      console.error('Error al cambiar estado del cupón:', e);
     }
-  }
+  };
 
   // ELIMINAR CUPÓN
   const handleEliminarCupon = async (cuponId) => {
-    if (!window.confirm(`¿Estás seguro de eliminar permanentemente el cupón "${cuponId}"?`)) return
+    if (!window.confirm(`¿Estás seguro de eliminar permanentemente el cupón "${cuponId}"?`)) return;
     try {
-      await eliminarCupon(cuponId)
-      setCupones(prev => prev.filter(c => c.id !== cuponId))
+      await eliminarCupon(cuponId);
+      setCupones(prev => prev.filter(c => c.id !== cuponId));
     } catch (e) {
-      console.error('Error al eliminar cupón:', e)
+      console.error('Error al eliminar cupón:', e);
     }
-  }
+  };
 
   return (
     <div className="space-y-8">
@@ -401,5 +402,5 @@ export default function ConfiguracionEnviosCupones() {
 
       </div>
     </div>
-  )
+  );
 }

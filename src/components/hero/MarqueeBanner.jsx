@@ -10,11 +10,11 @@ const MARQUEE_ITEMS = [
   '📞 Atención al cliente: WhatsApp +51 999 999 999',
   '🐕 Ropa, accesorios y juguetes para tus mascotas',
   '💝 Contra reembolso disponible en todo el Perú',
-]
+];
 
 export default function MarqueeBanner() {
   // Duplicamos el array para el efecto de loop infinito sin saltos
-  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS]
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
 
   return (
     <div
@@ -42,5 +42,5 @@ export default function MarqueeBanner() {
         ))}
       </div>
     </div>
-  )
+  );
 }

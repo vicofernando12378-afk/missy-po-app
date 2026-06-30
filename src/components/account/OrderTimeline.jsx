@@ -2,19 +2,19 @@ const TIMELINE_STEPS = [
   { key: 'recibido', label: 'Recibido', icon: '📥', color: '#3b82f6' },
   { key: 'preparando', label: 'Preparando', icon: '📦', color: '#f59e0b' },
   { key: 'enviado', label: 'En camino', icon: '🚚', color: '#8b5cf6' },
-  { key: 'entregado', label: 'Entregado', icon: '✅', color: '#10b981' }
-]
+  { key: 'entregado', label: 'Entregado', icon: '✅', color: '#10b981' },
+];
 
 export default function OrderTimeline({ history = [], currentStatus }) {
-  const statusOrder = ['recibido', 'preparando', 'enviado', 'entregado']
-  const currentIdx = statusOrder.indexOf(currentStatus)
+  const statusOrder = ['recibido', 'preparando', 'enviado', 'entregado'];
+  const currentIdx = statusOrder.indexOf(currentStatus);
 
   const getStatusDate = (statusKey) => {
-    const entry = history.find(h => h.estado === statusKey)
-    if (!entry?.fecha) return null
-    const date = entry.fecha instanceof Date ? entry.fecha : new Date(entry.fecha)
-    return date.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
-  }
+    const entry = history.find(h => h.estado === statusKey);
+    if (!entry?.fecha) return null;
+    const date = entry.fecha instanceof Date ? entry.fecha : new Date(entry.fecha);
+    return date.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+  };
 
   if (currentStatus === 'cancelado') {
     return (
@@ -27,15 +27,15 @@ export default function OrderTimeline({ history = [], currentStatus }) {
           )}
         </div>
       </div>
-    )
+    );
   }
 
   return (
     <div className="space-y-0">
       {TIMELINE_STEPS.map((step, i) => {
-        const isCompleted = i <= currentIdx
-        const isCurrent = i === currentIdx
-        const date = getStatusDate(step.key)
+        const isCompleted = i <= currentIdx;
+        const isCurrent = i === currentIdx;
+        const date = getStatusDate(step.key);
 
         return (
           <div key={step.key} className="flex gap-4">
@@ -68,8 +68,8 @@ export default function OrderTimeline({ history = [], currentStatus }) {
               )}
             </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const VarianteSchema = z.object({
   id: z.coerce.number().int(),
   sku: z.string().min(1, 'El SKU de la variante es requerido').trim(),
   atributos: z.record(z.string(), z.string()),
   precio_unitario: z.coerce.number().min(0, 'El precio de variante no puede ser negativo').nullable().default(null),
-  stock: z.coerce.number().int().min(0, 'El stock de variante no puede ser negativo')
-})
+  stock: z.coerce.number().int().min(0, 'El stock de variante no puede ser negativo'),
+});
 
 export const ProductSchema = z.object({
   nombre: z.string().min(1, 'El nombre del producto es requerido').max(200, 'Nombre demasiado largo').trim(),
@@ -21,13 +21,13 @@ export const ProductSchema = z.object({
   activo: z.boolean().default(true),
   imagenes: z.array(z.string().url('URL de imagen inválida')).min(1, 'Debe incluir al menos una imagen'),
   variantes: z.array(VarianteSchema).default([]),
-  tags_busqueda: z.array(z.string()).default([])
+  tags_busqueda: z.array(z.string()).default([]),
 }).refine(data => {
   if (data.precio_oferta !== null && data.precio_oferta !== undefined) {
-    return data.precio_oferta < data.precio_regular
+    return data.precio_oferta < data.precio_regular;
   }
-  return true
+  return true;
 }, {
   message: 'El precio de oferta debe ser menor al precio regular',
-  path: ['precio_oferta']
-})
+  path: ['precio_oferta'],
+});

@@ -1,37 +1,38 @@
-import { useState } from 'react'
-import useUserStore from '../../../store/userStore'
-import AddressForm from '../../../components/account/AddressForm'
+import { useState } from 'react';
+
+import AddressForm from '../../../components/account/AddressForm';
+import useUserStore from '../../../store/userStore';
 
 export default function AddressesPage({ authUser, profile }) {
-  const [showForm, setShowForm] = useState(false)
-  const [editingIndex, setEditingIndex] = useState(null)
+  const [showForm, setShowForm] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
 
-  const { addAddress, removeAddress, updateProfile } = useUserStore()
+  const { addAddress, removeAddress, updateProfile } = useUserStore();
 
-  const direcciones = profile?.direcciones || []
+  const direcciones = profile?.direcciones || [];
 
   const handleSave = async (address) => {
     if (editingIndex !== null) {
-      const updated = [...direcciones]
-      updated[editingIndex] = address
-      await updateProfile(authUser.uid, { direcciones: updated })
+      const updated = [...direcciones];
+      updated[editingIndex] = address;
+      await updateProfile(authUser.uid, { direcciones: updated });
     } else {
-      await addAddress(authUser.uid, address)
+      await addAddress(authUser.uid, address);
     }
-    setShowForm(false)
-    setEditingIndex(null)
-  }
+    setShowForm(false);
+    setEditingIndex(null);
+  };
 
   const handleDelete = async (index) => {
     if (confirm('¿Eliminar esta dirección?')) {
-      await removeAddress(authUser.uid, index)
+      await removeAddress(authUser.uid, index);
     }
-  }
+  };
 
   const handleEdit = (index) => {
-    setEditingIndex(index)
-    setShowForm(true)
-  }
+    setEditingIndex(index);
+    setShowForm(true);
+  };
 
   return (
     <div>
@@ -47,7 +48,7 @@ export default function AddressesPage({ authUser, profile }) {
         </div>
         {direcciones.length < 5 && !showForm && (
           <button
-            onClick={() => { setEditingIndex(null); setShowForm(true) }}
+            onClick={() => { setEditingIndex(null); setShowForm(true); }}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-ui font-bold text-white transition-all hover:scale-105 cursor-pointer"
             style={{ background: 'linear-gradient(135deg, var(--color-coral), var(--color-coral-dark))' }}
           >
@@ -62,7 +63,7 @@ export default function AddressesPage({ authUser, profile }) {
           <AddressForm
             initialData={editingIndex !== null ? direcciones[editingIndex] : null}
             onSave={handleSave}
-            onCancel={() => { setShowForm(false); setEditingIndex(null) }}
+            onCancel={() => { setShowForm(false); setEditingIndex(null); }}
           />
         </div>
       )}
@@ -127,5 +128,5 @@ export default function AddressesPage({ authUser, profile }) {
         )
       )}
     </div>
-  )
+  );
 }

@@ -1,9 +1,11 @@
-import { Outlet } from 'react-router-dom'
-import Navbar from './Navbar'
-import Footer from './Footer'
-import WhatsAppFloat from '../shared/WhatsAppFloat'
-import CartFloat from '../shared/CartFloat'
-import CartDrawer from '../cart/CartDrawer'
+import { Outlet } from 'react-router-dom';
+
+import CartDrawer from '../cart/CartDrawer';
+import CartFloat from '../shared/CartFloat';
+import WhatsAppFloat from '../shared/WhatsAppFloat';
+
+import Footer from './Footer';
+import Navbar from './Navbar';
 
 export default function Layout() {
   return (
@@ -23,5 +25,5 @@ export default function Layout() {
         <CartDrawer />
       </div>
     </div>
-  )
+  );
 }

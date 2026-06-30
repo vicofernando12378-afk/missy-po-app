@@ -1,37 +1,38 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { resetPassword } from '../auth'
-import { sendPasswordResetEmail } from 'firebase/auth'
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
+import { resetPassword } from '../auth';
 
 vi.mock('firebase/auth', () => ({
   getAuth: vi.fn(),
   sendPasswordResetEmail: vi.fn(() => Promise.resolve()),
-  GoogleAuthProvider: vi.fn()
-}))
+  GoogleAuthProvider: vi.fn(),
+}));
 
 vi.mock('../firebase', () => ({
   db: {},
-  auth: {}
-}))
+  auth: {},
+}));
 
 describe('resetPassword service', () => {
   beforeEach(() => {
-    vi.clearAllMocks()
-  })
+    vi.clearAllMocks();
+  });
 
   it('debe invocar sendPasswordResetEmail de Firebase con el email correcto', async () => {
-    const email = 'test@example.com'
-    await resetPassword(email)
+    const email = 'test@example.com';
+    await resetPassword(email);
     
-    expect(sendPasswordResetEmail).toHaveBeenCalledTimes(1)
-    expect(sendPasswordResetEmail).toHaveBeenCalledWith(expect.any(Object), email)
-  })
+    expect(sendPasswordResetEmail).toHaveBeenCalledTimes(1);
+    expect(sendPasswordResetEmail).toHaveBeenCalledWith(expect.any(Object), email);
+  });
 
   it('debe propagar errores de Firebase Auth si el envío falla', async () => {
-    const fakeError = new Error('Auth error')
-    fakeError.code = 'auth/user-not-found'
-    vi.mocked(sendPasswordResetEmail).mockRejectedValueOnce(fakeError)
+    const fakeError = new Error('Auth error');
+    fakeError.code = 'auth/user-not-found';
+    vi.mocked(sendPasswordResetEmail).mockRejectedValueOnce(fakeError);
 
-    const email = 'nonexistent@example.com'
-    await expect(resetPassword(email)).rejects.toThrow('Auth error')
-  })
-})
+    const email = 'nonexistent@example.com';
+    await expect(resetPassword(email)).rejects.toThrow('Auth error');
+  });
+});

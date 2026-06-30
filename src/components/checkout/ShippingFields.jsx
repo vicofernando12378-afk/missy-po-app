@@ -1,14 +1,15 @@
-import React from 'react'
-import { LIMA_REGIONS, AREQUIPA_DISTRICTS } from '../../data/locations'
+import React from 'react';
+
+import { LIMA_REGIONS, AREQUIPA_DISTRICTS } from '../../data/locations';
 
 export default function ShippingFields({
   departamento, setDepartamento,
   distritoArequipa, setDistritoArequipa,
   distritoNacional, setDistritoNacional,
   direccion, setDireccion,
-  referencia, setReferencia
+  referencia, setReferencia,
 }) {
-  const isArequipa = departamento === 'Arequipa'
+  const isArequipa = departamento === 'Arequipa';
 
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
@@ -23,9 +24,9 @@ export default function ShippingFields({
             className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition"
             value={departamento}
             onChange={(e) => {
-              setDepartamento(e.target.value)
+              setDepartamento(e.target.value);
               if (e.target.value !== 'Arequipa') {
-                setDistritoNacional('')
+                setDistritoNacional('');
               }
             }}
           >
@@ -81,5 +82,5 @@ export default function ShippingFields({
         />
       </div>
     </div>
-  )
+  );
 }

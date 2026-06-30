@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function ClubSection({
   clubConfig,
@@ -15,10 +15,10 @@ export default function ClubSection({
   applyPoints,
   removePoints,
   total,
-  onAutocompleteCallback
+  onAutocompleteCallback,
 }) {
-  const totalSoles = total / 100
-  const canApplyPoints = totalSoles >= clubConfig.minCompraAplicarCanje
+  const totalSoles = total / 100;
+  const canApplyPoints = totalSoles >= clubConfig.minCompraAplicarCanje;
 
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
@@ -38,8 +38,8 @@ export default function ClubSection({
               type="button"
               className="text-xs font-semibold text-gray-500 hover:text-gray-700 transition"
               onClick={() => {
-                setClubMember(null)
-                removePoints()
+                setClubMember(null);
+                removePoints();
               }}
             >
               Cerrar Sesión
@@ -132,5 +132,5 @@ export default function ClubSection({
         </div>
       )}
     </div>
-  )
+  );
 }

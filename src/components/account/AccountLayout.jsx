@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import AccountSidebar from './AccountSidebar'
+import { useState } from 'react';
+
+import AccountSidebar from './AccountSidebar';
 
 export default function AccountLayout({ children, activeSection = 'dashboard' }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -66,5 +67,5 @@ export default function AccountLayout({ children, activeSection = 'dashboard' })
         </div>
       </div>
     </div>
-  )
+  );
 }

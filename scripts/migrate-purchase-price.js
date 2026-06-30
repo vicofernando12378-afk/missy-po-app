@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 

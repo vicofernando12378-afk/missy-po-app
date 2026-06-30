@@ -1,93 +1,94 @@
-import { useState, useEffect } from 'react'
-import { loginWithEmail, registerWithEmail, listenAuth, logout, resetPassword } from '../services/auth'
+import { useState, useEffect } from 'react';
+
+import { loginWithEmail, registerWithEmail, listenAuth, logout, resetPassword } from '../services/auth';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isRegister, setIsRegister] = useState(false)
-  const [isForgotPassword, setIsForgotPassword] = useState(false)
-  const [resetEmailSent, setResetEmailSent] = useState(false)
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [user, setUser] = useState(null)
-  const [checkingAuth, setCheckingAuth] = useState(true)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isRegister, setIsRegister] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
     const unsubscribe = listenAuth((currentUser) => {
-      setUser(currentUser)
-      setCheckingAuth(false)
-    })
-    return () => unsubscribe()
-  }, [])
+      setUser(currentUser);
+      setCheckingAuth(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-    setLoading(true)
+    e.preventDefault();
+    setError('');
+    setLoading(true);
 
     try {
       if (isRegister) {
         // Registro de usuario nuevo
-        await registerWithEmail(email, password)
-        window.location.href = '/'
+        await registerWithEmail(email, password);
+        window.location.href = '/';
       } else {
         // Inicio de sesión normal
-        await loginWithEmail(email, password)
-        window.location.href = '/'
+        await loginWithEmail(email, password);
+        window.location.href = '/';
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
       if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
-        setError('Credenciales inválidas. Verifica tu correo y contraseña.')
+        setError('Credenciales inválidas. Verifica tu correo y contraseña.');
       } else if (err.code === 'auth/email-already-in-use') {
-        setError('Este correo electrónico ya está registrado.')
+        setError('Este correo electrónico ya está registrado.');
       } else if (err.code === 'auth/weak-password') {
-        setError('La contraseña debe tener al menos 6 caracteres.')
+        setError('La contraseña debe tener al menos 6 caracteres.');
       } else {
-        setError('Ocurrió un error. Inténtalo de nuevo más tarde.')
+        setError('Ocurrió un error. Inténtalo de nuevo más tarde.');
       }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleResetPassword = async (e) => {
-    e.preventDefault()
-    setError('')
-    setResetEmailSent(false)
+    e.preventDefault();
+    setError('');
+    setResetEmailSent(false);
 
     if (!email.trim()) {
-      setError('Por favor, ingresa tu correo electrónico.')
-      return
+      setError('Por favor, ingresa tu correo electrónico.');
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
     try {
-      await resetPassword(email.trim())
-      setResetEmailSent(true)
+      await resetPassword(email.trim());
+      setResetEmailSent(true);
     } catch (err) {
-      console.error(err)
+      console.error(err);
       if (err.code === 'auth/user-not-found') {
-        setError('El correo electrónico ingresado no está registrado en el Club.')
+        setError('El correo electrónico ingresado no está registrado en el Club.');
       } else if (err.code === 'auth/invalid-email') {
-        setError('El formato del correo electrónico es incorrecto.')
+        setError('El formato del correo electrónico es incorrecto.');
       } else {
-        setError('Ocurrió un error al enviar el correo. Inténtalo de nuevo más tarde.')
+        setError('Ocurrió un error al enviar el correo. Inténtalo de nuevo más tarde.');
       }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleLogout = async () => {
     try {
-      await logout()
-      setUser(null)
-      setError('')
+      await logout();
+      setUser(null);
+      setError('');
     } catch (err) {
-      console.error('Error al cerrar sesión:', err)
+      console.error('Error al cerrar sesión:', err);
     }
-  }
+  };
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12 bg-gradient-to-br from-coral-50/20 via-white to-mint-50/20 font-body">
@@ -199,9 +200,9 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => {
-                  setIsForgotPassword(false)
-                  setError('')
-                  setResetEmailSent(false)
+                  setIsForgotPassword(false);
+                  setError('');
+                  setResetEmailSent(false);
                 }}
                 className="text-sm font-semibold text-coral hover:text-coral-dark transition-colors duration-200"
               >
@@ -252,9 +253,9 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => {
-                  setIsForgotPassword(true)
-                  setError('')
-                  setResetEmailSent(false)
+                  setIsForgotPassword(true);
+                  setError('');
+                  setResetEmailSent(false);
                 }}
                 className="text-xs font-semibold text-coral hover:text-coral-dark transition-colors"
               >
@@ -281,8 +282,8 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => {
-                  setIsRegister(!isRegister)
-                  setError('')
+                  setIsRegister(!isRegister);
+                  setError('');
                 }}
                 className="text-sm font-semibold text-coral hover:text-coral-dark transition-colors duration-200"
               >
@@ -295,5 +296,5 @@ export default function LoginPage() {
         )}
       </div>
     </div>
-  )
+  );
 }

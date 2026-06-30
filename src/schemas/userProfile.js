@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const AddressSchema = z.object({
   alias: z.string().min(1, 'El alias es requerido').max(30, 'Alias demasiado largo').trim(),
@@ -6,22 +6,22 @@ export const AddressSchema = z.object({
   distrito: z.string().min(1, 'El distrito es requerido').trim(),
   direccion: z.string().min(5, 'La dirección debe tener al menos 5 caracteres').max(300, 'Dirección demasiado larga').trim(),
   referencia: z.string().max(200, 'Referencia demasiado larga').default('').optional(),
-  es_default: z.boolean().default(false)
-})
+  es_default: z.boolean().default(false),
+});
 
 export const PetSchema = z.object({
   nombre: z.string().min(1, 'El nombre de la mascota es requerido').max(50, 'Nombre demasiado largo').trim(),
   especie: z.enum(['perro', 'gato', 'otro'], { required_error: 'Selecciona una especie' }),
   raza: z.string().max(50, 'Raza demasiado larga').default('').optional(),
   fecha_nacimiento: z.string().default('').optional(),
-  foto_url: z.string().url('URL inválida').or(z.literal('')).default('').optional()
-})
+  foto_url: z.string().url('URL inválida').or(z.literal('')).default('').optional(),
+});
 
 export const UserPreferencesSchema = z.object({
   notificaciones_email: z.boolean().default(true),
   notificaciones_whatsapp: z.boolean().default(false),
-  idioma: z.enum(['es', 'en']).default('es')
-})
+  idioma: z.enum(['es', 'en']).default('es'),
+});
 
 export const UserProfileSchema = z.object({
   uid: z.string().min(1, 'El UID es requerido'),
@@ -33,8 +33,8 @@ export const UserProfileSchema = z.object({
   documento_numero: z.string().max(15).trim().optional(),
   direcciones: z.array(AddressSchema).max(5, 'Máximo 5 direcciones').default([]),
   mascotas: z.array(PetSchema).max(5, 'Máximo 5 mascotas').default([]),
-  preferencias: UserPreferencesSchema.default({})
-})
+  preferencias: UserPreferencesSchema.default({}),
+});
 
-export const AddressFormSchema = AddressSchema
-export const PetFormSchema = PetSchema.omit({ foto_url: true })
+export const AddressFormSchema = AddressSchema;
+export const PetFormSchema = PetSchema.omit({ foto_url: true });

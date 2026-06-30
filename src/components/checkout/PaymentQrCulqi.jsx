@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { validate, YapePlinSchema } from '../../schemas'
+import { useState } from 'react';
+
+import { validate, YapePlinSchema } from '../../schemas';
 
 
 // ============================================================
@@ -8,61 +9,61 @@ import { validate, YapePlinSchema } from '../../schemas'
 // ============================================================
 
 export default function PaymentQrCulqi({ total, onConfirm, onCancel }) {
-  const [operacion, setOperacion] = useState('')
-  const [file, setFile] = useState(null)
-  const [preview, setPreview] = useState(null)
-  const [error, setError] = useState('')
-  const [isProcessing, setIsProcessing] = useState(false)
+  const [operacion, setOperacion] = useState('');
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [error, setError] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0]
+    const selectedFile = e.target.files[0];
     if (selectedFile) {
       if (selectedFile.size > 2 * 1024 * 1024) {
-        setError('El archivo es demasiado grande (máx 2MB)')
-        return
+        setError('El archivo es demasiado grande (máx 2MB)');
+        return;
       }
-      setFile(selectedFile)
-      setError('')
-      const reader = new FileReader()
+      setFile(selectedFile);
+      setError('');
+      const reader = new FileReader();
       reader.onloadend = () => {
-        setPreview(reader.result)
-      }
-      reader.readAsDataURL(selectedFile)
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(selectedFile);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const validation = validate(YapePlinSchema, {
       operacion: operacion.trim(),
-      comprobanteFile: file
-    })
+      comprobanteFile: file,
+    });
     if (!validation.ok) {
-      setError(validation.error)
-      return
+      setError(validation.error);
+      return;
     }
 
-    setIsProcessing(true)
-    setError('')
+    setIsProcessing(true);
+    setError('');
     try {
       // Retornar los datos del pago al componente principal
       await onConfirm({
         metodo: 'Yape/Plin',
         operacion: operacion.trim(),
         comprobanteFile: file,
-        comprobantePreview: preview
-      })
+        comprobantePreview: preview,
+      });
     } catch (err) {
-      setError(err.message || 'Error al procesar el pago')
-      setIsProcessing(false)
+      setError(err.message || 'Error al procesar el pago');
+      setIsProcessing(false);
     }
-  }
+  };
 
   // Generamos un QR dinámico con la API de QR Server apuntando a un pago simulado
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=2e0854&data=${encodeURIComponent(
-    `yape://pay?to=999999999&amount=${(total / 100).toFixed(2)}&concept=MissyPoOrder`
-  )}`
+    `yape://pay?to=999999999&amount=${(total / 100).toFixed(2)}&concept=MissyPoOrder`,
+  )}`;
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-modal flex items-center justify-center p-4">
@@ -121,7 +122,7 @@ export default function PaymentQrCulqi({ total, onConfirm, onCancel }) {
                   <img src={preview} alt="Vista previa del recibo" className="max-h-36 object-contain" />
                   <button
                     type="button"
-                    onClick={() => { setFile(null); setPreview(null) }}
+                    onClick={() => { setFile(null); setPreview(null); }}
                     className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 shadow-md hover:bg-red-600 transition-colors"
                   >
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -183,5 +184,5 @@ export default function PaymentQrCulqi({ total, onConfirm, onCancel }) {
         </form>
       </div>
     </div>
-  )
+  );
 }

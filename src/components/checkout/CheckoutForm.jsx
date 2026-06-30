@@ -1,24 +1,24 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { collection, doc, addDoc, updateDoc, query, where, getDocs, serverTimestamp } from 'firebase/firestore'
-import { db } from '../../services/firebase'
-import { auth } from '../../services/firebase'
-import { crearPedidoConTransaccion } from '../../services'
+import { collection, doc, addDoc, updateDoc, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import React, { useState, useRef, useEffect } from 'react';
 
-import useCheckoutForm from '../../hooks/useCheckoutForm'
-import useClubMembership from '../../hooks/useClubMembership'
-import useShippingCalc from '../../hooks/useShippingCalc'
 
-import ContactFields from './ContactFields'
-import ShippingFields from './ShippingFields'
-import DocumentFields from './DocumentFields'
-import OrderSummary from './OrderSummary'
-import CouponSection from './CouponSection'
-import ClubSection from './ClubSection'
-import PaymentMethods from './PaymentMethods'
+import useCheckoutForm from '../../hooks/useCheckoutForm';
+import useClubMembership from '../../hooks/useClubMembership';
+import useShippingCalc from '../../hooks/useShippingCalc';
+import { crearPedidoConTransaccion } from '../../services';
+import { db } from '../../services/firebase';
+import { auth } from '../../services/firebase';
 
-import PaymentQrCulqi from './PaymentQrCulqi'
-import PaymentMpBrick from './PaymentMpBrick'
+import ClubSection from './ClubSection';
+import ContactFields from './ContactFields';
+import CouponSection from './CouponSection';
+import DocumentFields from './DocumentFields';
+import OrderSummary from './OrderSummary';
+import PaymentMethods from './PaymentMethods';
+import PaymentMpBrick from './PaymentMpBrick';
+import PaymentQrCulqi from './PaymentQrCulqi';
+import ShippingFields from './ShippingFields';
 
 export default function CheckoutForm({
   items,
@@ -28,110 +28,110 @@ export default function CheckoutForm({
   couponDiscount,
   applyCoupon,
   removeCoupon,
-  clearCart
+  clearCart,
 }) {
-  const form = useCheckoutForm()
-  const club = useClubMembership()
-  const [currentUser, setCurrentUser] = useState(null)
+  const form = useCheckoutForm();
+  const club = useClubMembership();
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      setCurrentUser(user)
-    })
-    return () => unsubscribe()
-  }, [])
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  const subtotalSoles = subtotal / 100
+  const subtotalSoles = subtotal / 100;
   const pointsDiscountCents = club.pointsApplied
     ? (club.clubConfig.tipoPremio === 'monto_fijo'
         ? (club.clubConfig.valorDescuento * 100)
         : Math.round(subtotal * (club.clubConfig.valorDescuento / 100)))
-    : 0
+    : 0;
 
-  const totalWithDiscounts = Math.max(0, total - pointsDiscountCents)
-  const totalWithDiscountsSoles = totalWithDiscounts / 100
+  const totalWithDiscounts = Math.max(0, total - pointsDiscountCents);
+  const totalWithDiscountsSoles = totalWithDiscounts / 100;
 
-  const { shippingConfig, costoEnvio, isArequipa } = useShippingCalc(form.departamento, totalWithDiscountsSoles)
-  const costoEnvioCents = costoEnvio * 100
-  const totalFinalCents = totalWithDiscounts + costoEnvioCents
-  const totalFinalSoles = totalFinalCents / 100
+  const { shippingConfig, costoEnvio, isArequipa } = useShippingCalc(form.departamento, totalWithDiscountsSoles);
+  const costoEnvioCents = costoEnvio * 100;
+  const totalFinalCents = totalWithDiscounts + costoEnvioCents;
+  const totalFinalSoles = totalFinalCents / 100;
 
   // Desglosar IGV (18%)
-  const igvRate = 0.18
-  const baseImponibleSoles = form.incluirImpuesto ? (totalFinalSoles / (1 + igvRate)) : totalFinalSoles
-  const igvCalculadoSoles = form.incluirImpuesto ? (totalFinalSoles - baseImponibleSoles) : 0
+  const igvRate = 0.18;
+  const baseImponibleSoles = form.incluirImpuesto ? (totalFinalSoles / (1 + igvRate)) : totalFinalSoles;
+  const igvCalculadoSoles = form.incluirImpuesto ? (totalFinalSoles - baseImponibleSoles) : 0;
 
-  const [activePaymentModal, setActivePaymentModal] = useState(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const orderCompletedRef = useRef(false)
+  const [activePaymentModal, setActivePaymentModal] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const orderCompletedRef = useRef(false);
 
   // Estados locales para manejo de cupones
-  const [couponInput, setCouponInput] = useState('')
-  const [couponMsg, setCouponMsg] = useState(null)
-  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false)
+  const [couponInput, setCouponInput] = useState('');
+  const [couponMsg, setCouponMsg] = useState(null);
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
 
   const handleApplyCoupon = async () => {
-    if (!couponInput.trim()) return
-    setIsApplyingCoupon(true)
-    setCouponMsg(null)
+    if (!couponInput.trim()) return;
+    setIsApplyingCoupon(true);
+    setCouponMsg(null);
     try {
-      const res = await applyCoupon(couponInput)
+      const res = await applyCoupon(couponInput);
       if (res.success) {
-        setCouponMsg({ success: true })
+        setCouponMsg({ success: true });
       } else {
-        setCouponMsg({ success: false, message: res.message })
+        setCouponMsg({ success: false, message: res.message });
       }
     } catch (err) {
-      setCouponMsg({ success: false, message: 'Error al aplicar cupón' })
+      setCouponMsg({ success: false, message: 'Error al aplicar cupón' });
     } finally {
-      setIsApplyingCoupon(false)
+      setIsApplyingCoupon(false);
     }
-  }
+  };
 
   // Autocompletar alias de mascota si se verificó socio
   useEffect(() => {
     if (club.clubMember && club.clubMember.nombre_mascota) {
-      form.setNombreMascota(club.clubMember.nombre_mascota)
+      form.setNombreMascota(club.clubMember.nombre_mascota);
     }
-  }, [club.clubMember])
+  }, [club.clubMember]);
 
   const handleAutocomplete = (mData) => {
     if (mData.nombre_tutor) {
-      const parts = mData.nombre_tutor.split(' ')
-      form.setNombre(parts[0] || '')
-      form.setApellido(parts.slice(1).join(' ') || '')
+      const parts = mData.nombre_tutor.split(' ');
+      form.setNombre(parts[0] || '');
+      form.setApellido(parts.slice(1).join(' ') || '');
     }
-    if (mData.email) form.setEmail(mData.email)
-    if (mData.celular) form.setCelular(mData.celular)
-    if (mData.direccion) form.setDireccion(mData.direccion)
-    if (mData.documento_tipo) form.setTipoDocumento(mData.documento_tipo)
-    if (mData.documento_numero) form.setNumeroDocumento(mData.documento_numero)
-    if (mData.departamento) form.setDepartamento(mData.departamento)
+    if (mData.email) form.setEmail(mData.email);
+    if (mData.celular) form.setCelular(mData.celular);
+    if (mData.direccion) form.setDireccion(mData.direccion);
+    if (mData.documento_tipo) form.setTipoDocumento(mData.documento_tipo);
+    if (mData.documento_numero) form.setNumeroDocumento(mData.documento_numero);
+    if (mData.departamento) form.setDepartamento(mData.departamento);
     if (mData.distrito) {
       if (mData.departamento === 'Arequipa') {
-        form.setDistritoArequipa(mData.distrito)
+        form.setDistritoArequipa(mData.distrito);
       } else {
-        form.setDistritoNacional(mData.distrito)
+        form.setDistritoNacional(mData.distrito);
       }
     }
-  }
+  };
 
   const handleCheckoutSubmit = async (e) => {
-    if (e) e.preventDefault()
-    if (!form.validateForm()) return
+    if (e) e.preventDefault();
+    if (!form.validateForm()) return;
 
     if (form.metodoPago === 'yape') {
-      setActivePaymentModal('yape')
+      setActivePaymentModal('yape');
     } else if (form.metodoPago === 'tarjeta') {
-      setActivePaymentModal('tarjeta')
+      setActivePaymentModal('tarjeta');
     } else {
-      await procesarCompraFinal({ metodo: 'Contra Entrega' })
+      await procesarCompraFinal({ metodo: 'Contra Entrega' });
     }
-  }
+  };
 
   const procesarCompraFinal = async (datosPago) => {
-    setIsSubmitting(true)
-    form.setErrorMsg('')
+    setIsSubmitting(true);
+    form.setErrorMsg('');
     
     const orderData = {
       userId: currentUser?.uid || null,
@@ -141,27 +141,27 @@ export default function CheckoutForm({
         email: form.email,
         celular: form.celular,
         documento_tipo: form.tipoDocumento,
-        documento_numero: form.numeroDocumento
+        documento_numero: form.numeroDocumento,
       },
       envio: {
         departamento: form.departamento,
         distrito: isArequipa ? form.distritoArequipa : form.distritoNacional,
         direccion: form.direccion,
         referencia: form.referencia,
-        costo_envio: costoEnvioCents
+        costo_envio: costoEnvioCents,
       },
       comprobante: {
         con_impuesto: form.incluirImpuesto,
         igv: Math.round(igvCalculadoSoles * 100),
         subtotal: total,
-        total: totalFinalCents
+        total: totalFinalCents,
       },
       pago: {
         metodo: datosPago.metodo,
         operacion: datosPago.operacion || '',
         estado: datosPago.metodo === 'Contra Entrega' ? 'Pendiente' : 'Pagado',
         marca_tarjeta: datosPago.marca || '',
-        ultimos_digitos_tarjeta: datosPago.ultimosDigitos || ''
+        ultimos_digitos_tarjeta: datosPago.ultimosDigitos || '',
       },
       items: items.map(i => ({
         id: i.id,
@@ -170,68 +170,68 @@ export default function CheckoutForm({
         precio_unitario: i.precio_unitario,
         cantidad: i.cantidad,
         variante: i.variante,
-        imagen: i.imagen || ''
+        imagen: i.imagen || '',
       })),
       estado: 'recibido',
       total_final: totalFinalCents,
       cupon: couponCode || null,
       descuento_porcentaje: couponDiscount,
       puntos_canjeados: club.pointsApplied ? club.clubConfig.puntosRequeridos : 0,
-      descuento_puntos_monto: pointsDiscountCents
-    }
+      descuento_puntos_monto: pointsDiscountCents,
+    };
 
     try {
-      const orderId = await crearPedidoConTransaccion(orderData)
+      const orderId = await crearPedidoConTransaccion(orderData);
 
       // CRM Club de Beneficios
       try {
-        let finalMemberId = club.clubMember ? club.clubMember.id : null
-        let finalMemberData = club.clubMember
+        let finalMemberId = club.clubMember ? club.clubMember.id : null;
+        let finalMemberData = club.clubMember;
 
         if (!finalMemberId) {
-          const qCheck = query(collection(db, 'myp_club_miembros'), where('email', '==', form.email.trim().toLowerCase()))
-          const snapCheck = await getDocs(qCheck)
+          const qCheck = query(collection(db, 'myp_club_miembros'), where('email', '==', form.email.trim().toLowerCase()));
+          const snapCheck = await getDocs(qCheck);
           if (!snapCheck.empty) {
-            finalMemberId = snapCheck.docs[0].id
-            finalMemberData = { id: finalMemberId, ...snapCheck.docs[0].data() }
+            finalMemberId = snapCheck.docs[0].id;
+            finalMemberData = { id: finalMemberId, ...snapCheck.docs[0].data() };
           }
         }
 
-        const pointsEarned = Math.floor(totalFinalSoles / club.clubConfig.solesPorDiezPuntos) * 10
-        const pointsRedeemed = club.pointsApplied ? club.clubConfig.puntosRequeridos : 0
+        const pointsEarned = Math.floor(totalFinalSoles / club.clubConfig.solesPorDiezPuntos) * 10;
+        const pointsRedeemed = club.pointsApplied ? club.clubConfig.puntosRequeridos : 0;
 
         if (finalMemberId) {
-          const currentPoints = finalMemberData.puntos || 0
-          const newPoints = Math.max(0, currentPoints - pointsRedeemed + pointsEarned)
+          const currentPoints = finalMemberData.puntos || 0;
+          const newPoints = Math.max(0, currentPoints - pointsRedeemed + pointsEarned);
 
           const updateData = {
             puntos: newPoints,
-            actualizado_en: serverTimestamp()
-          }
-          if (!finalMemberData.celular && form.celular) updateData.celular = form.celular
-          if (!finalMemberData.direccion && form.direccion) updateData.direccion = form.direccion
-          if (!finalMemberData.documento_tipo && form.tipoDocumento) updateData.documento_tipo = form.tipoDocumento
-          if (!finalMemberData.documento_numero && form.numeroDocumento) updateData.documento_numero = form.numeroDocumento
-          if (!finalMemberData.departamento && form.departamento) updateData.departamento = form.departamento
+            actualizado_en: serverTimestamp(),
+          };
+          if (!finalMemberData.celular && form.celular) updateData.celular = form.celular;
+          if (!finalMemberData.direccion && form.direccion) updateData.direccion = form.direccion;
+          if (!finalMemberData.documento_tipo && form.tipoDocumento) updateData.documento_tipo = form.tipoDocumento;
+          if (!finalMemberData.documento_numero && form.numeroDocumento) updateData.documento_numero = form.numeroDocumento;
+          if (!finalMemberData.departamento && form.departamento) updateData.departamento = form.departamento;
           if (!finalMemberData.distrito) {
-            updateData.distrito = form.departamento === 'Arequipa' ? form.distritoArequipa : form.distritoNacional
+            updateData.distrito = form.departamento === 'Arequipa' ? form.distritoArequipa : form.distritoNacional;
           }
 
-          await updateDoc(doc(db, 'myp_club_miembros', finalMemberId), updateData)
+          await updateDoc(doc(db, 'myp_club_miembros', finalMemberId), updateData);
 
           if (pointsRedeemed > 0) {
             await addDoc(collection(db, 'myp_club_miembros', finalMemberId, 'puntos_logs'), {
               puntos: -pointsRedeemed,
               motivo: `Canje por descuento en pedido #${orderId}`,
-              creado_en: serverTimestamp()
-            })
+              creado_en: serverTimestamp(),
+            });
           }
           if (pointsEarned > 0) {
             await addDoc(collection(db, 'myp_club_miembros', finalMemberId, 'puntos_logs'), {
               puntos: pointsEarned,
               motivo: `Puntos ganados por compra en pedido #${orderId}`,
-              creado_en: serverTimestamp()
-            })
+              creado_en: serverTimestamp(),
+            });
           }
         } else {
           // Registrar automáticamente en el Club
@@ -247,54 +247,54 @@ export default function CheckoutForm({
             distrito: form.departamento === 'Arequipa' ? form.distritoArequipa : form.distritoNacional,
             benefit_origen: 'Registro Automático Compra',
             puntos: pointsEarned,
-            creado_en: serverTimestamp()
-          })
+            creado_en: serverTimestamp(),
+          });
           
-          finalMemberId = newMemberRef.id
+          finalMemberId = newMemberRef.id;
 
           if (pointsEarned > 0) {
             await addDoc(collection(db, 'myp_club_miembros', finalMemberId, 'puntos_logs'), {
               puntos: pointsEarned,
               motivo: `Puntos acumulados por primera compra en pedido #${orderId}`,
-              creado_en: serverTimestamp()
-            })
+              creado_en: serverTimestamp(),
+            });
           }
         }
       } catch (crmErr) {
-        console.warn('⚠️ Error en la automatización de CRM del Club:', crmErr)
+        console.warn('⚠️ Error en la automatización de CRM del Club:', crmErr);
       }
 
       // Subida de comprobante Yape/Plin
       if (datosPago.metodo === 'Yape/Plin' && datosPago.comprobanteFile) {
         try {
-          const storage = getStorage()
-          const storageRefPath = `myp/comprobantes/${orderId}_recibo.jpg`
-          const fileRef = ref(storage, storageRefPath)
+          const storage = getStorage();
+          const storageRefPath = `myp/comprobantes/${orderId}_recibo.jpg`;
+          const fileRef = ref(storage, storageRefPath);
           
-          await uploadBytes(fileRef, datosPago.comprobanteFile)
-          const downloadUrl = await getDownloadURL(fileRef)
+          await uploadBytes(fileRef, datosPago.comprobanteFile);
+          const downloadUrl = await getDownloadURL(fileRef);
           
           await updateDoc(doc(db, 'myp_pedidos', orderId), {
-            'pago.recibo_url': downloadUrl
-          })
+            'pago.recibo_url': downloadUrl,
+          });
         } catch (storageErr) {
-          console.warn('⚠️ Error al subir comprobante a Storage:', storageErr)
+          console.warn('⚠️ Error al subir comprobante a Storage:', storageErr);
         }
       }
 
-      orderCompletedRef.current = true
-      clearCart()
+      orderCompletedRef.current = true;
+      clearCart();
       if (typeof window !== 'undefined') {
-        window.location.href = `/orden-confirmada/${orderId}`
+        window.location.href = `/orden-confirmada/${orderId}`;
       }
     } catch (err) {
-      console.error('❌ Error en el procesamiento del pedido:', err)
-      form.setErrorMsg(err.message || 'Ocurrió un error inesperado al procesar el pedido.')
+      console.error('❌ Error en el procesamiento del pedido:', err);
+      form.setErrorMsg(err.message || 'Ocurrió un error inesperado al procesar el pedido.');
     } finally {
-      setIsSubmitting(false)
-      setActivePaymentModal(null)
+      setIsSubmitting(false);
+      setActivePaymentModal(null);
     }
-  }
+  };
 
   return (
     <>
@@ -411,5 +411,5 @@ export default function CheckoutForm({
         />
       )}
     </>
-  )
+  );
 }

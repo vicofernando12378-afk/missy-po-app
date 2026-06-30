@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export default function DocumentFields({
   tipoDocumento, setTipoDocumento,
   numeroDocumento, handleDocumentoChange,
-  setNumeroDocumento
+  setNumeroDocumento,
 }) {
   return (
     <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-4">
@@ -18,8 +18,8 @@ export default function DocumentFields({
             className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition"
             value={tipoDocumento}
             onChange={(e) => {
-              setTipoDocumento(e.target.value)
-              setNumeroDocumento('')
+              setTipoDocumento(e.target.value);
+              setNumeroDocumento('');
             }}
           >
             <option value="DNI">DNI (8 dígitos)</option>
@@ -46,5 +46,5 @@ export default function DocumentFields({
         </div>
       </div>
     </div>
-  )
+  );
 }

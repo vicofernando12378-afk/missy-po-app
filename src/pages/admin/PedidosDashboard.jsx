@@ -1,55 +1,56 @@
-import { useState, useEffect } from 'react'
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
-import { db } from '../../services/firebase'
-import { actualizarEstadoPedido, asignarRepartidorPedido } from '../../services'
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+
+import { actualizarEstadoPedido, asignarRepartidorPedido } from '../../services';
+import { db } from '../../services/firebase';
 
 
 export default function PedidosDashboard() {
-  const [pedidos, setPedidos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [filtroEstado, setFiltroEstado] = useState('todos')
-  const [filtroTexto, setFiltroTexto] = useState('')
-  const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null)
+  const [pedidos, setPedidos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filtroEstado, setFiltroEstado] = useState('todos');
+  const [filtroTexto, setFiltroTexto] = useState('');
+  const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
   
   // Controles del visor de comprobantes
-  const [zoom, setZoom] = useState(1)
-  const [rotation, setRotation] = useState(0)
+  const [zoom, setZoom] = useState(1);
+  const [rotation, setRotation] = useState(0);
 
   // Sub-formulario para registrar Courier
-  const [courier, setCourier] = useState('')
-  const [trackingCode, setTrackingCode] = useState('')
-  const [trackingLink, setTrackingLink] = useState('')
-  const [showCourierForm, setShowCourierForm] = useState(false)
+  const [courier, setCourier] = useState('');
+  const [trackingCode, setTrackingCode] = useState('');
+  const [trackingLink, setTrackingLink] = useState('');
+  const [showCourierForm, setShowCourierForm] = useState(false);
 
   // Sub-formulario para registrar Repartidor
-  const [showRepartidorForm, setShowRepartidorForm] = useState(false)
-  const [repNombre, setRepNombre] = useState('')
-  const [repCelular, setRepCelular] = useState('')
-  const [repCompania, setRepCompania] = useState('')
+  const [showRepartidorForm, setShowRepartidorForm] = useState(false);
+  const [repNombre, setRepNombre] = useState('');
+  const [repCelular, setRepCelular] = useState('');
+  const [repCompania, setRepCompania] = useState('');
 
-  const [errorAccion, setErrorAccion] = useState('')
-  const [loadingAccion, setLoadingAccion] = useState(false)
+  const [errorAccion, setErrorAccion] = useState('');
+  const [loadingAccion, setLoadingAccion] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
-    const q = query(collection(db, 'myp_pedidos'), orderBy('creado_en', 'desc'))
+    setLoading(true);
+    const q = query(collection(db, 'myp_pedidos'), orderBy('creado_en', 'desc'));
     
     // Escuchar cambios en tiempo real
     const unsubscribe = onSnapshot(q, (snap) => {
       const docs = snap.docs.map(d => ({
         id: d.id,
         ...d.data(),
-        creado_en: d.data().creado_en?.toDate() || new Date()
-      }))
-      setPedidos(docs)
-      setLoading(false)
+        creado_en: d.data().creado_en?.toDate() || new Date(),
+      }));
+      setPedidos(docs);
+      setLoading(false);
     }, (err) => {
-      console.error('Error al escuchar pedidos:', err)
-      setLoading(false)
-    })
+      console.error('Error al escuchar pedidos:', err);
+      setLoading(false);
+    });
 
-    return () => unsubscribe()
-  }, [])
+    return () => unsubscribe();
+  }, []);
 
   // Calcular KPIs en tiempo real
   const kpis = {
@@ -58,135 +59,135 @@ export default function PedidosDashboard() {
     preparando: pedidos.filter(p => p.estado === 'preparando').length,
     enviados: pedidos.filter(p => p.estado === 'enviado').length,
     entregados: pedidos.filter(p => p.estado === 'entregado').length,
-  }
+  };
 
   // Filtrar pedidos
   const pedidosFiltrados = pedidos.filter(p => {
-    const cumpleEstado = filtroEstado === 'todos' || p.estado === filtroEstado
+    const cumpleEstado = filtroEstado === 'todos' || p.estado === filtroEstado;
     
-    const texto = filtroTexto.toLowerCase().trim()
-    const nombreCliente = (p.cliente?.nombre || '').toLowerCase()
-    const emailCliente = (p.cliente?.email || '').toLowerCase()
-    const telefonoCliente = (p.cliente?.celular || '').toLowerCase()     // FIX: celular (no telefono)
-    const docCliente = (p.cliente?.documento_numero || '').toLowerCase() // FIX: documento_numero (no documento)
-    const idPedido = p.id.toLowerCase()
+    const texto = filtroTexto.toLowerCase().trim();
+    const nombreCliente = (p.cliente?.nombre || '').toLowerCase();
+    const emailCliente = (p.cliente?.email || '').toLowerCase();
+    const telefonoCliente = (p.cliente?.celular || '').toLowerCase();     // FIX: celular (no telefono)
+    const docCliente = (p.cliente?.documento_numero || '').toLowerCase(); // FIX: documento_numero (no documento)
+    const idPedido = p.id.toLowerCase();
 
     const cumpleTexto = !texto || 
       nombreCliente.includes(texto) || 
       emailCliente.includes(texto) || 
       telefonoCliente.includes(texto) ||
       docCliente.includes(texto) ||
-      idPedido.includes(texto)
+      idPedido.includes(texto);
 
-    return cumpleEstado && cumpleTexto
-  })
+    return cumpleEstado && cumpleTexto;
+  });
 
   const abrirDetalle = (pedido) => {
-    setPedidoSeleccionado(pedido)
-    setZoom(1)
-    setRotation(0)
-    setCourier('')
-    setTrackingCode('')
-    setTrackingLink('')
-    setShowCourierForm(false)
+    setPedidoSeleccionado(pedido);
+    setZoom(1);
+    setRotation(0);
+    setCourier('');
+    setTrackingCode('');
+    setTrackingLink('');
+    setShowCourierForm(false);
 
     // Reset repartidor
-    setRepNombre(pedido.envio?.repartidor?.nombre || '')
-    setRepCelular(pedido.envio?.repartidor?.celular || '')
-    setRepCompania(pedido.envio?.repartidor?.compania || '')
-    setShowRepartidorForm(false)
-    setErrorAccion('')
-  }
+    setRepNombre(pedido.envio?.repartidor?.nombre || '');
+    setRepCelular(pedido.envio?.repartidor?.celular || '');
+    setRepCompania(pedido.envio?.repartidor?.compania || '');
+    setShowRepartidorForm(false);
+    setErrorAccion('');
+  };
 
   const handleCambiarEstado = async (nuevoEstado) => {
-    if (!pedidoSeleccionado) return
-    setLoadingAccion(true)
-    setErrorAccion('')
+    if (!pedidoSeleccionado) return;
+    setLoadingAccion(true);
+    setErrorAccion('');
 
     try {
-      const extraData = {}
+      const extraData = {};
       if (nuevoEstado === 'enviado') {
         if (!courier.trim()) {
-          throw new Error('Debes ingresar al menos el nombre de la empresa de Courier.')
+          throw new Error('Debes ingresar al menos el nombre de la empresa de Courier.');
         }
-        extraData.courier = courier
-        extraData.tracking_code = trackingCode
-        extraData.tracking_link = trackingLink
+        extraData.courier = courier;
+        extraData.tracking_code = trackingCode;
+        extraData.tracking_link = trackingLink;
       }
 
-      await actualizarEstadoPedido(pedidoSeleccionado.id, nuevoEstado, extraData)
+      await actualizarEstadoPedido(pedidoSeleccionado.id, nuevoEstado, extraData);
       
       // Actualizar la selección local con los nuevos datos si es posible
-      const index = pedidos.findIndex(p => p.id === pedidoSeleccionado.id)
+      const index = pedidos.findIndex(p => p.id === pedidoSeleccionado.id);
       if (index !== -1) {
         setPedidoSeleccionado({
           ...pedidos[index],
           estado: nuevoEstado,
           pago: {
             ...pedidos[index].pago,
-            estado: nuevoEstado === 'preparando' ? 'confirmado' : pedidos[index].pago.estado
+            estado: nuevoEstado === 'preparando' ? 'confirmado' : pedidos[index].pago.estado,
           },
           envio: {
             ...pedidos[index].envio,
-            ...extraData
-          }
-        })
+            ...extraData,
+          },
+        });
       }
-      setShowCourierForm(false)
+      setShowCourierForm(false);
     } catch (err) {
-      console.error(err)
-      setErrorAccion(err.message || 'Error al cambiar de estado.')
+      console.error(err);
+      setErrorAccion(err.message || 'Error al cambiar de estado.');
     } finally {
-      setLoadingAccion(false)
+      setLoadingAccion(false);
     }
-  }
+  };
 
   const handleAsignarRepartidor = async (e) => {
-    e.preventDefault()
-    if (!pedidoSeleccionado) return
-    setLoadingAccion(true)
-    setErrorAccion('')
+    e.preventDefault();
+    if (!pedidoSeleccionado) return;
+    setLoadingAccion(true);
+    setErrorAccion('');
 
     try {
       if (!repNombre.trim()) {
-        throw new Error('Debes ingresar al menos el nombre del repartidor.')
+        throw new Error('Debes ingresar al menos el nombre del repartidor.');
       }
 
       const repData = {
         nombre: repNombre.trim(),
         celular: repCelular.trim(),
-        compania: repCompania.trim()
-      }
+        compania: repCompania.trim(),
+      };
 
-      await asignarRepartidorPedido(pedidoSeleccionado.id, repData)
+      await asignarRepartidorPedido(pedidoSeleccionado.id, repData);
 
       // Actualizar la selección local
       setPedidoSeleccionado(prev => ({
         ...prev,
         envio: {
           ...prev.envio,
-          repartidor: repData
-        }
-      }))
+          repartidor: repData,
+        },
+      }));
       
       // También actualizar en la lista de pedidos en memoria para que no se pierda al recargar localmente antes de que se propague Firestore
-      setPedidos(prev => prev.map(p => p.id === pedidoSeleccionado.id ? { ...p, envio: { ...p.envio, repartidor: repData } } : p))
+      setPedidos(prev => prev.map(p => p.id === pedidoSeleccionado.id ? { ...p, envio: { ...p.envio, repartidor: repData } } : p));
       
-      setShowRepartidorForm(false)
+      setShowRepartidorForm(false);
     } catch (err) {
-      console.error(err)
-      setErrorAccion(err.message || 'Error al asignar repartidor.')
+      console.error(err);
+      setErrorAccion(err.message || 'Error al asignar repartidor.');
     } finally {
-      setLoadingAccion(false)
+      setLoadingAccion(false);
     }
-  }
+  };
 
   const handleImprimirTicket = () => {
-    window.print()
-  }
+    window.print();
+  };
 
   const handleExportarCSV = () => {
-    if (pedidosFiltrados.length === 0) return
+    if (pedidosFiltrados.length === 0) return;
 
     // 1. Cabeceras del CSV
     const cabeceras = [
@@ -201,19 +202,19 @@ export default function PedidosDashboard() {
       'Estado Pago',
       'Monto Total (S/)',
       'Estado Pedido',
-      'Courier / Repartidor'
-    ]
+      'Courier / Repartidor',
+    ];
 
     // 2. Filas de datos
     const filas = pedidosFiltrados.map(p => {
-      const fecha = p.creado_en ? p.creado_en.toLocaleString('es-PE') : ''
+      const fecha = p.creado_en ? p.creado_en.toLocaleString('es-PE') : '';
       const total = p.total_final 
         ? (p.total_final / 100).toFixed(2) 
-        : (p.comprobante?.total ? (p.comprobante.total / 100).toFixed(2) : '0.00')
+        : (p.comprobante?.total ? (p.comprobante.total / 100).toFixed(2) : '0.00');
       
       const repartidor = p.envio?.repartidor?.nombre
         ? `${p.envio.repartidor.nombre} (${p.envio.repartidor.compania || 'Propio'})`
-        : (p.envio?.courier || '—')
+        : (p.envio?.courier || '—');
 
       return [
         p.id,
@@ -227,39 +228,39 @@ export default function PedidosDashboard() {
         p.pago?.estado || 'pendiente',
         total,
         p.estado || 'recibido',
-        repartidor
-      ]
-    })
+        repartidor,
+      ];
+    });
 
     // 3. Crear el contenido CSV
     const csvContent = [
       cabeceras.join(','),
-      ...filas.map(fila => fila.map(valor => `"${String(valor).replace(/"/g, '""')}"`).join(','))
-    ].join('\n')
+      ...filas.map(fila => fila.map(valor => `"${String(valor).replace(/"/g, '""')}"`).join(',')),
+    ].join('\n');
 
     // UTF-8 BOM para que Excel abra bien las tildes y caracteres hispanos
-    const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.setAttribute('href', url)
-    link.setAttribute('download', `pedidos_missy_po_${new Date().toISOString().split('T')[0]}.csv`)
-    link.style.visibility = 'hidden'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+    const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `pedidos_missy_po_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   // Clases CSS para badges de estados
   const getBadgeClass = (estado) => {
     switch (estado) {
-      case 'recibido': return 'bg-amber-100 text-amber-800 border border-amber-200'
-      case 'preparando': return 'bg-sky-100 text-sky-800 border border-sky-200'
-      case 'enviado': return 'bg-indigo-100 text-indigo-800 border border-indigo-200'
-      case 'entregado': return 'bg-emerald-100 text-emerald-800 border border-emerald-200'
-      case 'cancelado': return 'bg-rose-100 text-rose-800 border border-rose-200'
-      default: return 'bg-gray-100 text-gray-800 border border-gray-200'
+      case 'recibido': return 'bg-amber-100 text-amber-800 border border-amber-200';
+      case 'preparando': return 'bg-sky-100 text-sky-800 border border-sky-200';
+      case 'enviado': return 'bg-indigo-100 text-indigo-800 border border-indigo-200';
+      case 'entregado': return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+      case 'cancelado': return 'bg-rose-100 text-rose-800 border border-rose-200';
+      default: return 'bg-gray-100 text-gray-800 border border-gray-200';
     }
-  }
+  };
 
   return (
     <div className="space-y-8 print:p-0 print:space-y-0">
@@ -270,7 +271,7 @@ export default function PedidosDashboard() {
           { label: 'Recibidos', value: kpis.recibidos, color: 'border-l-4 border-amber-400 bg-amber-50/20' },
           { label: 'Preparando', value: kpis.preparando, color: 'border-l-4 border-sky-400 bg-sky-50/20' },
           { label: 'Enviados', value: kpis.enviados, color: 'border-l-4 border-indigo-400 bg-indigo-50/20' },
-          { label: 'Entregados', value: kpis.entregados, color: 'border-l-4 border-emerald-400 bg-emerald-50/20' }
+          { label: 'Entregados', value: kpis.entregados, color: 'border-l-4 border-emerald-400 bg-emerald-50/20' },
         ].map((kpi, idx) => (
           <div key={idx} className={`p-5 rounded-2xl border border-gray-100 shadow-sm ${kpi.color}`}>
             <p className="text-xs text-gray-400 font-semibold uppercase tracking-wider">{kpi.label}</p>
@@ -422,7 +423,7 @@ export default function PedidosDashboard() {
                         alt="Comprobante de transferencia"
                         style={{
                           transform: `scale(${zoom}) rotate(${rotation}deg)`,
-                          transition: 'transform 0.2s ease'
+                          transition: 'transform 0.2s ease',
                         }}
                         className="max-w-full max-h-full object-contain cursor-grab active:cursor-grabbing"
                       />
@@ -781,7 +782,7 @@ export default function PedidosDashboard() {
                       <button
                         onClick={() => {
                           if (window.confirm('¿Estás seguro de cancelar este pedido? Se reestablecerá de inmediato el stock en el catálogo.')) {
-                            handleCambiarEstado('cancelado')
+                            handleCambiarEstado('cancelado');
                           }
                         }}
                         disabled={loadingAccion}
@@ -874,5 +875,5 @@ export default function PedidosDashboard() {
         </div>
       )}
     </div>
-  )
+  );
 }

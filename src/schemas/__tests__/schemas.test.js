@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from 'vitest';
+
 import {
   ProductSchema,
   CheckoutSchema,
@@ -11,8 +12,8 @@ import {
   CierreCajaSchema,
   ReviewSchema,
   ReclamacionSchema,
-  YapePlinSchema
-} from '../index'
+  YapePlinSchema,
+} from '../index';
 
 describe('ProductSchema', () => {
   const validProduct = {
@@ -26,26 +27,26 @@ describe('ProductSchema', () => {
     activo: true,
     imagenes: ['https://example.com/imagen.jpg'],
     variantes: [],
-    tags_busqueda: ['premium']
-  }
+    tags_busqueda: ['premium'],
+  };
 
   it('valida un producto correcto con decimales', () => {
-    const result = ProductSchema.safeParse(validProduct)
-    expect(result.success).toBe(true)
-  })
+    const result = ProductSchema.safeParse(validProduct);
+    expect(result.success).toBe(true);
+  });
 
   it('falla si el precio de oferta es mayor o igual al regular', () => {
-    const invalid = { ...validProduct, precio_oferta: 50.00 }
-    const result = ProductSchema.safeParse(invalid)
-    expect(result.success).toBe(false)
-  })
+    const invalid = { ...validProduct, precio_oferta: 50.00 };
+    const result = ProductSchema.safeParse(invalid);
+    expect(result.success).toBe(false);
+  });
 
   it('falla si no tiene nombre o categorías vacías', () => {
-    const invalid = { ...validProduct, nombre: '', categorias: [] }
-    const result = ProductSchema.safeParse(invalid)
-    expect(result.success).toBe(false)
-  })
-})
+    const invalid = { ...validProduct, nombre: '', categorias: [] };
+    const result = ProductSchema.safeParse(invalid);
+    expect(result.success).toBe(false);
+  });
+});
 
 describe('CheckoutSchema', () => {
   const validCheckout = {
@@ -59,36 +60,36 @@ describe('CheckoutSchema', () => {
     distritoArequipa: 'Cayma',
     direccion: 'Av. Ejército 123',
     nombreMascota: 'Loki',
-    metodoPago: 'yape'
-  }
+    metodoPago: 'yape',
+  };
 
   it('valida un checkout correcto en Arequipa', () => {
-    const result = CheckoutSchema.safeParse(validCheckout)
-    expect(result.success).toBe(true)
-  })
+    const result = CheckoutSchema.safeParse(validCheckout);
+    expect(result.success).toBe(true);
+  });
 
   it('valida un checkout correcto nacional', () => {
     const result = CheckoutSchema.safeParse({
       ...validCheckout,
       departamento: 'Lima',
       distritoArequipa: '',
-      distritoNacional: 'Miraflores'
-    })
-    expect(result.success).toBe(true)
-  })
+      distritoNacional: 'Miraflores',
+    });
+    expect(result.success).toBe(true);
+  });
 
   it('falla si el celular no tiene 9 dígitos', () => {
-    const invalid = { ...validCheckout, celular: '98765432' }
-    const result = CheckoutSchema.safeParse(invalid)
-    expect(result.success).toBe(false)
-  })
+    const invalid = { ...validCheckout, celular: '98765432' };
+    const result = CheckoutSchema.safeParse(invalid);
+    expect(result.success).toBe(false);
+  });
 
   it('falla si el DNI no tiene 8 dígitos', () => {
-    const invalid = { ...validCheckout, numeroDocumento: '1234567' }
-    const result = CheckoutSchema.safeParse(invalid)
-    expect(result.success).toBe(false)
-  })
-})
+    const invalid = { ...validCheckout, numeroDocumento: '1234567' };
+    const result = CheckoutSchema.safeParse(invalid);
+    expect(result.success).toBe(false);
+  });
+});
 
 describe('CartItemSchema y CartStateSchema', () => {
   const validItem = {
@@ -99,19 +100,19 @@ describe('CartItemSchema y CartStateSchema', () => {
     precio_unitario: 2550, // centavos
     imagen: 'https://example.com/cuerda.jpg',
     variante: 'rojo',
-    cantidad: 2
-  }
+    cantidad: 2,
+  };
 
   it('valida un item de carrito con precio entero', () => {
-    const result = CartItemSchema.safeParse(validItem)
-    expect(result.success).toBe(true)
-  })
+    const result = CartItemSchema.safeParse(validItem);
+    expect(result.success).toBe(true);
+  });
 
   it('falla si la cantidad es menor a 1', () => {
-    const invalid = { ...validItem, cantidad: 0 }
-    const result = CartItemSchema.safeParse(invalid)
-    expect(result.success).toBe(false)
-  })
+    const invalid = { ...validItem, cantidad: 0 };
+    const result = CartItemSchema.safeParse(invalid);
+    expect(result.success).toBe(false);
+  });
 
   it('valida el estado completo del carrito', () => {
     const state = {
@@ -120,12 +121,12 @@ describe('CartItemSchema y CartStateSchema', () => {
       couponDiscount: 10,
       subtotal: 5100,
       total: 4590,
-      itemCount: 2
-    }
-    const result = CartStateSchema.safeParse(state)
-    expect(result.success).toBe(true)
-  })
-})
+      itemCount: 2,
+    };
+    const result = CartStateSchema.safeParse(state);
+    expect(result.success).toBe(true);
+  });
+});
 
 describe('ReclamacionSchema', () => {
   const validReclamacion = {
@@ -143,37 +144,37 @@ describe('ReclamacionSchema', () => {
     descripcionBien: 'Comida vencida de perro de 15kg',
     tipoReclamo: 'Reclamo',
     detalleReclamo: 'El producto comprado tenía fecha de vencimiento pasada por un mes.',
-    autorizoNotif: true
-  }
+    autorizoNotif: true,
+  };
 
   it('valida una reclamación con Pasaporte alfanumérico', () => {
-    const result = ReclamacionSchema.safeParse(validReclamacion)
-    expect(result.success).toBe(true)
-  })
+    const result = ReclamacionSchema.safeParse(validReclamacion);
+    expect(result.success).toBe(true);
+  });
 
   it('falla si no se autorizan las notificaciones', () => {
-    const invalid = { ...validReclamacion, autorizoNotif: false }
-    const result = ReclamacionSchema.safeParse(invalid)
-    expect(result.success).toBe(false)
-  })
-})
+    const invalid = { ...validReclamacion, autorizoNotif: false };
+    const result = ReclamacionSchema.safeParse(invalid);
+    expect(result.success).toBe(false);
+  });
+});
 
 describe('YapePlinSchema', () => {
   it('valida una operación correcta con archivo válido', () => {
     const payload = {
       operacion: '1234567',
-      comprobanteFile: { size: 1024 * 1024 } // 1MB mock
-    }
-    const result = YapePlinSchema.safeParse(payload)
-    expect(result.success).toBe(true)
-  })
+      comprobanteFile: { size: 1024 * 1024 }, // 1MB mock
+    };
+    const result = YapePlinSchema.safeParse(payload);
+    expect(result.success).toBe(true);
+  });
 
   it('falla si el archivo es mayor a 2MB', () => {
     const payload = {
       operacion: '1234567',
-      comprobanteFile: { size: 3 * 1024 * 1024 } // 3MB mock
-    }
-    const result = YapePlinSchema.safeParse(payload)
-    expect(result.success).toBe(false)
-  })
-})
+      comprobanteFile: { size: 3 * 1024 * 1024 }, // 3MB mock
+    };
+    const result = YapePlinSchema.safeParse(payload);
+    expect(result.success).toBe(false);
+  });
+});

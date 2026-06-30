@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const CheckoutSchema = z.object({
   nombre: z.string().min(1, 'El nombre es requerido').max(100, 'Nombre demasiado largo').trim(),
@@ -14,32 +14,32 @@ export const CheckoutSchema = z.object({
   referencia: z.string().max(200, 'Referencia demasiado larga').default('').optional(),
   nombreMascota: z.string().min(1, 'El nombre de tu mascota es requerido').max(50, 'Nombre de mascota demasiado largo').trim(),
   metodoPago: z.enum(['yape', 'tarjeta', 'contraentrega']),
-  notas: z.string().max(500, 'Las notas no pueden superar los 500 caracteres').default('').optional()
+  notas: z.string().max(500, 'Las notas no pueden superar los 500 caracteres').default('').optional(),
 }).refine(data => {
   if (data.tipoDocumento === 'DNI') {
-    return /^\d{8}$/.test(data.numeroDocumento)
+    return /^\d{8}$/.test(data.numeroDocumento);
   }
   if (data.tipoDocumento === 'RUC') {
-    return /^\d{11}$/.test(data.numeroDocumento)
+    return /^\d{11}$/.test(data.numeroDocumento);
   }
-  return true
+  return true;
 }, {
   message: 'El DNI debe tener 8 dígitos y el RUC 11 dígitos',
-  path: ['numeroDocumento']
+  path: ['numeroDocumento'],
 }).refine(data => {
   if (data.departamento === 'Arequipa') {
-    return !!data.distritoArequipa && data.distritoArequipa.trim().length > 0
+    return !!data.distritoArequipa && data.distritoArequipa.trim().length > 0;
   }
-  return true
+  return true;
 }, {
   message: 'Debe seleccionar un distrito para Arequipa',
-  path: ['distritoArequipa']
+  path: ['distritoArequipa'],
 }).refine(data => {
   if (data.departamento !== 'Arequipa') {
-    return !!data.distritoNacional && data.distritoNacional.trim().length > 0
+    return !!data.distritoNacional && data.distritoNacional.trim().length > 0;
   }
-  return true
+  return true;
 }, {
   message: 'Debe ingresar un distrito nacional',
-  path: ['distritoNacional']
-})
+  path: ['distritoNacional'],
+});

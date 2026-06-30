@@ -2,7 +2,7 @@
 // Lógica: si no hay precio_oferta, solo muestra precio_regular sin tachar
 
 export default function PriceDisplay({ regular, sale, currency = 'S/.' }) {
-  const hasSale = sale && sale < regular
+  const hasSale = sale && sale < regular;
 
   return (
     <div className="flex items-baseline gap-2 flex-wrap" id="price-display">
@@ -21,5 +21,5 @@ export default function PriceDisplay({ regular, sale, currency = 'S/.' }) {
         </span>
       )}
     </div>
-  )
+  );
 }

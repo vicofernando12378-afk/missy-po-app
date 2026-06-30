@@ -1,111 +1,112 @@
-import { useState, useEffect } from 'react'
-import { obtenerTodosProductosAdmin, actualizarStockProductoAdmin } from '../../services'
+import { useState, useEffect } from 'react';
+
+import { obtenerTodosProductosAdmin, actualizarStockProductoAdmin } from '../../services';
 
 
 export default function InventarioStock() {
-  const [productos, setProductos] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [busqueda, setBusqueda] = useState('')
-  const [bajoStockOnly, setBajoStockOnly] = useState(false)
+  const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [busqueda, setBusqueda] = useState('');
+  const [bajoStockOnly, setBajoStockOnly] = useState(false);
 
   // Estados locales temporales para inputs de stock
   // Clave: 'productId' (para simples) o 'productId-varianteIdx' (para variantes)
-  const [stockInputs, setStockInputs] = useState({})
-  const [loadingUpdates, setLoadingUpdates] = useState({})
-  const [successUpdates, setSuccessUpdates] = useState({})
-  const [errorUpdates, setErrorUpdates] = useState({})
+  const [stockInputs, setStockInputs] = useState({});
+  const [loadingUpdates, setLoadingUpdates] = useState({});
+  const [successUpdates, setSuccessUpdates] = useState({});
+  const [errorUpdates, setErrorUpdates] = useState({});
 
   const cargarProductos = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const prods = await obtenerTodosProductosAdmin()
-      setProductos(prods)
+      const prods = await obtenerTodosProductosAdmin();
+      setProductos(prods);
 
       // Inicializar inputs locales
-      const inputs = {}
+      const inputs = {};
       prods.forEach(p => {
         if (p.variantes && p.variantes.length > 0) {
           p.variantes.forEach((v, idx) => {
-            inputs[`${p.id}-${idx}`] = v.stock
-          })
+            inputs[`${p.id}-${idx}`] = v.stock;
+          });
         } else {
-          inputs[p.id] = p.stock || 0
+          inputs[p.id] = p.stock || 0;
         }
-      })
-      setStockInputs(inputs)
+      });
+      setStockInputs(inputs);
     } catch (e) {
-      console.error('Error al cargar productos para inventario:', e)
+      console.error('Error al cargar productos para inventario:', e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    cargarProductos()
-  }, [])
+    cargarProductos();
+  }, []);
 
   // Modificar input localmente
   const handleInputChange = (key, val) => {
-    const intVal = parseInt(val)
+    const intVal = parseInt(val);
     setStockInputs(prev => ({
       ...prev,
-      [key]: isNaN(intVal) ? '' : Math.max(0, intVal)
-    }))
-  }
+      [key]: isNaN(intVal) ? '' : Math.max(0, intVal),
+    }));
+  };
 
   // Incrementar / Decrementar stock en input local
   const ajustarStockLocal = (key, delta) => {
-    const current = parseInt(stockInputs[key]) || 0
+    const current = parseInt(stockInputs[key]) || 0;
     setStockInputs(prev => ({
       ...prev,
-      [key]: Math.max(0, current + delta)
-    }))
-  }
+      [key]: Math.max(0, current + delta),
+    }));
+  };
 
   // Guardar stock de producto simple
   const handleGuardarStockSimple = async (productId) => {
-    const nuevoStock = stockInputs[productId]
-    if (nuevoStock === '') return
+    const nuevoStock = stockInputs[productId];
+    if (nuevoStock === '') return;
 
-    setLoadingUpdates(prev => ({ ...prev, [productId]: true }))
-    setErrorUpdates(prev => ({ ...prev, [productId]: '' }))
-    setSuccessUpdates(prev => ({ ...prev, [productId]: false }))
+    setLoadingUpdates(prev => ({ ...prev, [productId]: true }));
+    setErrorUpdates(prev => ({ ...prev, [productId]: '' }));
+    setSuccessUpdates(prev => ({ ...prev, [productId]: false }));
 
     try {
-      await actualizarStockProductoAdmin(productId, nuevoStock)
-      setSuccessUpdates(prev => ({ ...prev, [productId]: true }))
-      setTimeout(() => setSuccessUpdates(prev => ({ ...prev, [productId]: false })), 3000)
+      await actualizarStockProductoAdmin(productId, nuevoStock);
+      setSuccessUpdates(prev => ({ ...prev, [productId]: true }));
+      setTimeout(() => setSuccessUpdates(prev => ({ ...prev, [productId]: false })), 3000);
     } catch (e) {
-      console.error(e)
-      setErrorUpdates(prev => ({ ...prev, [productId]: 'Error al guardar.' }))
+      console.error(e);
+      setErrorUpdates(prev => ({ ...prev, [productId]: 'Error al guardar.' }));
     } finally {
-      setLoadingUpdates(prev => ({ ...prev, [productId]: false }))
+      setLoadingUpdates(prev => ({ ...prev, [productId]: false }));
     }
-  }
+  };
 
   // Guardar stock de producto con variantes
   const handleGuardarStockVariante = async (product, varianteIdx) => {
-    const key = `${product.id}-${varianteIdx}`
-    const nuevoStock = stockInputs[key]
-    if (nuevoStock === '') return
+    const key = `${product.id}-${varianteIdx}`;
+    const nuevoStock = stockInputs[key];
+    if (nuevoStock === '') return;
 
-    setLoadingUpdates(prev => ({ ...prev, [key]: true }))
-    setErrorUpdates(prev => ({ ...prev, [key]: '' }))
-    setSuccessUpdates(prev => ({ ...prev, [key]: false }))
+    setLoadingUpdates(prev => ({ ...prev, [key]: true }));
+    setErrorUpdates(prev => ({ ...prev, [key]: '' }));
+    setSuccessUpdates(prev => ({ ...prev, [key]: false }));
 
     try {
       // 1. Clonar variantes y actualizar el stock de la variante modificada
-      const variantesClonadas = [...(product.variantes || [])]
+      const variantesClonadas = [...(product.variantes || [])];
       variantesClonadas[varianteIdx] = {
         ...variantesClonadas[varianteIdx],
-        stock: nuevoStock
-      }
+        stock: nuevoStock,
+      };
 
       // 2. Recalcular el stock general del producto (suma de variantes)
-      const nuevoStockGeneral = variantesClonadas.reduce((sum, v) => sum + (v.stock || 0), 0)
+      const nuevoStockGeneral = variantesClonadas.reduce((sum, v) => sum + (v.stock || 0), 0);
 
       // 3. Guardar en Firestore
-      await actualizarStockProductoAdmin(product.id, nuevoStockGeneral, variantesClonadas)
+      await actualizarStockProductoAdmin(product.id, nuevoStockGeneral, variantesClonadas);
 
       // 4. Actualizar el estado de productos en memoria para reflejar el cambio general
       setProductos(prev => prev.map(p => {
@@ -113,34 +114,34 @@ export default function InventarioStock() {
           return {
             ...p,
             stock: nuevoStockGeneral,
-            variantes: variantesClonadas
-          }
+            variantes: variantesClonadas,
+          };
         }
-        return p
-      }))
+        return p;
+      }));
 
-      setSuccessUpdates(prev => ({ ...prev, [key]: true }))
-      setTimeout(() => setSuccessUpdates(prev => ({ ...prev, [key]: false })), 3000)
+      setSuccessUpdates(prev => ({ ...prev, [key]: true }));
+      setTimeout(() => setSuccessUpdates(prev => ({ ...prev, [key]: false })), 3000);
     } catch (e) {
-      console.error(e)
-      setErrorUpdates(prev => ({ ...prev, [key]: 'Error.' }))
+      console.error(e);
+      setErrorUpdates(prev => ({ ...prev, [key]: 'Error.' }));
     } finally {
-      setLoadingUpdates(prev => ({ ...prev, [key]: false }))
+      setLoadingUpdates(prev => ({ ...prev, [key]: false }));
     }
-  }
+  };
 
   // Filtrado de productos
   const productosFiltrados = productos.filter(p => {
-    const texto = busqueda.toLowerCase().trim()
+    const texto = busqueda.toLowerCase().trim();
     const cumpleTexto = !texto || 
       (p.nombre || '').toLowerCase().includes(texto) ||
-      (p.sku || '').toLowerCase().includes(texto)
+      (p.sku || '').toLowerCase().includes(texto);
 
-    const esBajoStock = p.stock < 5
-    const cumpleBajoStock = !bajoStockOnly || esBajoStock
+    const esBajoStock = p.stock < 5;
+    const cumpleBajoStock = !bajoStockOnly || esBajoStock;
 
-    return cumpleTexto && cumpleBajoStock
-  })
+    return cumpleTexto && cumpleBajoStock;
+  });
 
   return (
     <div className="space-y-6">
@@ -205,7 +206,7 @@ export default function InventarioStock() {
               </thead>
               <tbody className="divide-y divide-gray-50">
                 {productosFiltrados.map((product) => {
-                  const tieneVariantes = product.variantes && product.variantes.length > 0
+                  const tieneVariantes = product.variantes && product.variantes.length > 0;
 
                   return (
                     <tr key={product.id} className="align-top hover:bg-gray-50/10">
@@ -243,7 +244,7 @@ export default function InventarioStock() {
                         ) : (
                           <div className="space-y-4">
                             {product.variantes.map((v, idx) => {
-                              const key = `${product.id}-${idx}`
+                              const key = `${product.id}-${idx}`;
                               return (
                                 <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-1.5 border-b border-dashed border-gray-100 last:border-none">
                                   <div>
@@ -252,7 +253,7 @@ export default function InventarioStock() {
                                     <p className="text-[10px] text-gray-450">Stock actual: <strong>{v.stock}</strong></p>
                                   </div>
                                 </div>
-                              )
+                              );
                             })}
                           </div>
                         )}
@@ -293,7 +294,7 @@ export default function InventarioStock() {
                           // Controles Stock de Variaciones
                           <div className="space-y-4 pt-1">
                             {product.variantes.map((v, idx) => {
-                              const key = `${product.id}-${idx}`
+                              const key = `${product.id}-${idx}`;
                               return (
                                 <div key={idx} className="flex items-center gap-1.5 h-[34px]">
                                   <button
@@ -317,7 +318,7 @@ export default function InventarioStock() {
                                     +
                                   </button>
                                 </div>
-                              )
+                              );
                             })}
                           </div>
                         )}
@@ -340,7 +341,7 @@ export default function InventarioStock() {
                         ) : (
                           <div className="space-y-4 pt-1">
                             {product.variantes.map((v, idx) => {
-                              const key = `${product.id}-${idx}`
+                              const key = `${product.id}-${idx}`;
                               return (
                                 <div key={idx} className="flex flex-col items-center justify-center h-[34px]">
                                   <button
@@ -353,14 +354,14 @@ export default function InventarioStock() {
                                   {successUpdates[key] && <span className="text-[9px] text-emerald-600 font-bold">✓ Ok</span>}
                                   {errorUpdates[key] && <span className="text-[9px] text-rose-600 font-bold">Error</span>}
                                 </div>
-                              )
+                              );
                             })}
                           </div>
                         )}
                       </td>
 
                     </tr>
-                  )
+                  );
                 })}
               </tbody>
             </table>
@@ -368,5 +369,5 @@ export default function InventarioStock() {
         </div>
       )}
     </div>
-  )
+  );
 }

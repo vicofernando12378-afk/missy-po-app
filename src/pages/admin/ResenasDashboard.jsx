@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
-import { obtenerResenas, actualizarEstadoResena, eliminarResena } from '../../services'
+import { useState, useEffect } from 'react';
+
+import { obtenerResenas, actualizarEstadoResena, eliminarResena } from '../../services';
 
 
 // ============================================================
@@ -11,7 +12,7 @@ const ESTADO_CFG = {
   pendiente: { label: 'Pendiente',  bg: 'bg-amber-50',   text: 'text-amber-800',  border: 'border-amber-200' },
   aprobada:  { label: 'Aprobada',   bg: 'bg-emerald-50', text: 'text-emerald-800', border: 'border-emerald-200' },
   rechazada: { label: 'Rechazada',  bg: 'bg-red-50',     text: 'text-red-800',    border: 'border-red-200' },
-}
+};
 
 function Estrellas({ calificacion, size = 'text-base' }) {
   return (
@@ -20,66 +21,66 @@ function Estrellas({ calificacion, size = 'text-base' }) {
         <span key={i} className={i <= calificacion ? 'text-amber-400' : 'text-gray-200'}>★</span>
       ))}
     </div>
-  )
+  );
 }
 
 export default function ResenasDashboard() {
-  const [resenas, setResenas] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [filtro, setFiltro] = useState('todos') // 'todos' | 'pendiente' | 'aprobada' | 'rechazada'
-  const [procesando, setProcesando] = useState({})
+  const [resenas, setResenas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filtro, setFiltro] = useState('todos'); // 'todos' | 'pendiente' | 'aprobada' | 'rechazada'
+  const [procesando, setProcesando] = useState({});
 
   const cargar = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const estado = filtro === 'todos' ? null : filtro
-      const data = await obtenerResenas(estado)
-      setResenas(data)
+      const estado = filtro === 'todos' ? null : filtro;
+      const data = await obtenerResenas(estado);
+      setResenas(data);
     } catch (e) {
-      console.error(e)
+      console.error(e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  useEffect(() => { cargar() }, [filtro])
+  useEffect(() => { cargar(); }, [filtro]);
 
   const handleCambiarEstado = async (id, nuevoEstado) => {
-    setProcesando(prev => ({ ...prev, [id]: true }))
+    setProcesando(prev => ({ ...prev, [id]: true }));
     try {
-      await actualizarEstadoResena(id, nuevoEstado)
-      setResenas(prev => prev.map(r => r.id === id ? { ...r, estado: nuevoEstado } : r))
+      await actualizarEstadoResena(id, nuevoEstado);
+      setResenas(prev => prev.map(r => r.id === id ? { ...r, estado: nuevoEstado } : r));
     } catch (e) {
-      console.error(e)
+      console.error(e);
     } finally {
-      setProcesando(prev => ({ ...prev, [id]: false }))
+      setProcesando(prev => ({ ...prev, [id]: false }));
     }
-  }
+  };
 
   const handleEliminar = async (id, autorNombre) => {
-    if (!window.confirm(`¿Eliminar la reseña de "${autorNombre}"? Esta acción es permanente.`)) return
-    setProcesando(prev => ({ ...prev, [id]: true }))
+    if (!window.confirm(`¿Eliminar la reseña de "${autorNombre}"? Esta acción es permanente.`)) return;
+    setProcesando(prev => ({ ...prev, [id]: true }));
     try {
-      await eliminarResena(id)
-      setResenas(prev => prev.filter(r => r.id !== id))
+      await eliminarResena(id);
+      setResenas(prev => prev.filter(r => r.id !== id));
     } catch (e) {
-      console.error(e)
+      console.error(e);
     } finally {
-      setProcesando(prev => ({ ...prev, [id]: false }))
+      setProcesando(prev => ({ ...prev, [id]: false }));
     }
-  }
+  };
 
   const counts = {
     todos:     resenas.length,
     pendiente: resenas.filter(r => r.estado === 'pendiente').length,
     aprobada:  resenas.filter(r => r.estado === 'aprobada').length,
     rechazada: resenas.filter(r => r.estado === 'rechazada').length,
-  }
+  };
 
   // Stats globales
   const calificacionProm = resenas.length > 0
     ? (resenas.reduce((s, r) => s + (r.calificacion || 0), 0) / resenas.length).toFixed(1)
-    : '—'
+    : '—';
 
   return (
     <div className="space-y-6">
@@ -113,9 +114,9 @@ export default function ResenasDashboard() {
       <div className="flex gap-1.5 bg-gray-100 rounded-2xl p-1 w-fit">
         {[
           ['todos', `Todas (${resenas.length})`],
-          ['pendiente', `Pendientes`],
-          ['aprobada', `Aprobadas`],
-          ['rechazada', `Rechazadas`],
+          ['pendiente', 'Pendientes'],
+          ['aprobada', 'Aprobadas'],
+          ['rechazada', 'Rechazadas'],
         ].map(([val, label]) => (
           <button
             key={val}
@@ -146,8 +147,8 @@ export default function ResenasDashboard() {
       ) : (
         <div className="space-y-3">
           {resenas.map(resena => {
-            const estadoCfg = ESTADO_CFG[resena.estado] || ESTADO_CFG.pendiente
-            const isProcesando = procesando[resena.id]
+            const estadoCfg = ESTADO_CFG[resena.estado] || ESTADO_CFG.pendiente;
+            const isProcesando = procesando[resena.id];
             return (
               <div
                 key={resena.id}
@@ -184,7 +185,7 @@ export default function ResenasDashboard() {
                     </p>
 
                     <p className="text-sm text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-3 mt-2">
-                      "{resena.comentario || 'Sin comentario.'}"
+                      &ldquo;{resena.comentario || 'Sin comentario.'}&rdquo;
                     </p>
                   </div>
 
@@ -227,10 +228,10 @@ export default function ResenasDashboard() {
                   </div>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, doc, getDocs, deleteDoc } from 'firebase/firestore';
 
@@ -94,7 +95,7 @@ async function runBackupAndCleanup() {
           }
         });
         
-        console.log(`📊 Filtro por longitud de descripción (> 1000 caracteres):`);
+        console.log('📊 Filtro por longitud de descripción (> 1000 caracteres):');
         console.log(`   - A eliminar (AliExpress/WordPress importados): ${toDelete.length}`);
         console.log(`   - A conservar (descripción corta o vacía): ${toKeep.length}`);
         

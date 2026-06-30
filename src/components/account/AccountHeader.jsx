@@ -1,8 +1,8 @@
 export default function AccountHeader({ profile, stats = {} }) {
-  const nombre = profile?.nombre || 'Socio'
-  const apellido = profile?.apellido || ''
-  const email = profile?.email || ''
-  const mascota = profile?.mascotas?.[0]?.nombre || null
+  const nombre = profile?.nombre || 'Socio';
+  const apellido = profile?.apellido || '';
+  const email = profile?.email || '';
+  const mascota = profile?.mascotas?.[0]?.nombre || null;
 
   return (
     <div className="relative overflow-hidden rounded-3xl mb-8" style={{ background: 'linear-gradient(135deg, #fff5f5 0%, #fff8ec 50%, #fff5f5 100%)' }}>
@@ -65,5 +65,5 @@ export default function AccountHeader({ profile, stats = {} }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
