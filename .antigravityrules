@@ -22,4 +22,7 @@ El usuario ha concedido explícitamente permisos autónomos permanentes para las
      ```
    - No es necesario usar rutas completas ni `uvx`.
 
+5. **Uso Obligatorio de Engram y Graphify para Tareas de Código:**
+   - Ante cualquier petición de código (arreglar bugs, refactorizar, añadir funcionalidades o revisar módulos), el asistente está **OBLIGADO** a utilizar Engram (`mem_search`/`mem_context`) y Graphify (`query_graph`/`shortest_path`) en primera instancia para mapear el contexto, dependencias y nodos afectados antes de proponer cambios o editar archivos.
+
 
