@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 24,
+      "community": 46,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -1050,7 +1050,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_accountdashboard",
-      "community": 16,
+      "community": 1,
       "norm_label": "accountdashboard.jsx"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_account_accountdashboard_accountdashboard",
-      "community": 16,
+      "community": 1,
       "norm_label": "accountdashboard()"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_accountheader",
-      "community": 16,
+      "community": 1,
       "norm_label": "accountheader.jsx"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_accountheader_accountheader",
-      "community": 16,
+      "community": 1,
       "norm_label": "accountheader()"
     },
     {
@@ -1140,7 +1140,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_addressform",
-      "community": 1,
+      "community": 3,
       "norm_label": "addressform.jsx"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_contentfeed",
-      "community": 16,
+      "community": 1,
       "norm_label": "contentfeed.jsx"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_contentfeed_contentfeed",
-      "community": 16,
+      "community": 1,
       "norm_label": "contentfeed()"
     },
     {
@@ -1180,7 +1180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_ordercard",
-      "community": 16,
+      "community": 1,
       "norm_label": "ordercard.jsx"
     },
     {
@@ -1190,7 +1190,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_ordercard_status_map",
-      "community": 16,
+      "community": 1,
       "norm_label": "status_map"
     },
     {
@@ -1200,7 +1200,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_account_ordercard_ordercard",
-      "community": 16,
+      "community": 1,
       "norm_label": "ordercard()"
     },
     {
@@ -1210,7 +1210,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_ordertimeline",
-      "community": 38,
+      "community": 1,
       "norm_label": "ordertimeline.jsx"
     },
     {
@@ -1220,7 +1220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_ordertimeline_timeline_steps",
-      "community": 38,
+      "community": 1,
       "norm_label": "timeline_steps"
     },
     {
@@ -1230,7 +1230,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_account_ordertimeline_ordertimeline",
-      "community": 38,
+      "community": 1,
       "norm_label": "ordertimeline()"
     },
     {
@@ -1260,7 +1260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_pointsbalance",
-      "community": 16,
+      "community": 1,
       "norm_label": "pointsbalance.jsx"
     },
     {
@@ -1270,7 +1270,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_pointsbalance_pointsbalance",
-      "community": 16,
+      "community": 1,
       "norm_label": "pointsbalance()"
     },
     {
@@ -1280,7 +1280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_smartcta",
-      "community": 16,
+      "community": 1,
       "norm_label": "smartcta.jsx"
     },
     {
@@ -1290,7 +1290,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_account_smartcta_getsmartcta",
-      "community": 16,
+      "community": 1,
       "norm_label": "getsmartcta()"
     },
     {
@@ -1300,7 +1300,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_account_smartcta_smartcta",
-      "community": 16,
+      "community": 1,
       "norm_label": "smartcta()"
     },
     {
@@ -1510,7 +1510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer",
-      "community": 9,
+      "community": 28,
       "norm_label": "cartdrawer.jsx"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_closeicon",
-      "community": 9,
+      "community": 28,
       "norm_label": "closeicon()"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_trashicon",
-      "community": 9,
+      "community": 28,
       "norm_label": "trashicon()"
     },
     {
@@ -1540,7 +1540,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdraweritem",
-      "community": 9,
+      "community": 28,
       "norm_label": "cartdraweritem()"
     },
     {
@@ -1550,7 +1550,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdrawer",
-      "community": 9,
+      "community": 28,
       "norm_label": "cartdrawer()"
     },
     {
@@ -1850,7 +1850,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_checkout_paymentqrculqi_paymentqrculqi",
-      "community": 0,
+      "community": 3,
       "norm_label": "paymentqrculqi()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_cta_ctabanner",
-      "community": 37,
+      "community": 24,
       "norm_label": "ctabanner.jsx"
     },
     {
@@ -1890,7 +1890,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_cta_ctabanner_ctabanner",
-      "community": 37,
+      "community": 24,
       "norm_label": "ctabanner()"
     },
     {
@@ -1920,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_header_livesearch",
-      "community": 37,
+      "community": 38,
       "norm_label": "livesearch.jsx"
     },
     {
@@ -1930,7 +1930,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_header_livesearch_searchspinner",
-      "community": 37,
+      "community": 38,
       "norm_label": "searchspinner()"
     },
     {
@@ -1940,7 +1940,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_header_livesearch_highlight",
-      "community": 37,
+      "community": 38,
       "norm_label": "highlight()"
     },
     {
@@ -1950,7 +1950,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_header_livesearch_livesearch",
-      "community": 37,
+      "community": 38,
       "norm_label": "livesearch()"
     },
     {
@@ -1960,7 +1960,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_animatedtitle",
-      "community": 37,
+      "community": 24,
       "norm_label": "animatedtitle.jsx"
     },
     {
@@ -1970,7 +1970,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_hero_animatedtitle_animatedtitle",
-      "community": 37,
+      "community": 24,
       "norm_label": "animatedtitle()"
     },
     {
@@ -1980,7 +1980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_heroslider",
-      "community": 37,
+      "community": 24,
       "norm_label": "heroslider.jsx"
     },
     {
@@ -1990,7 +1990,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_hero_heroslider_slides",
-      "community": 37,
+      "community": 24,
       "norm_label": "slides"
     },
     {
@@ -2000,7 +2000,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_components_hero_heroslider_heroslider",
-      "community": 37,
+      "community": 24,
       "norm_label": "heroslider()"
     },
     {
@@ -2040,7 +2040,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_footer",
-      "community": 9,
+      "community": 4,
       "norm_label": "footer.jsx"
     },
     {
@@ -2050,7 +2050,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_components_layout_footer_pawicon",
-      "community": 9,
+      "community": 4,
       "norm_label": "pawicon()"
     },
     {
@@ -2060,7 +2060,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_layout_footer_facebookicon",
-      "community": 9,
+      "community": 4,
       "norm_label": "facebookicon()"
     },
     {
@@ -2070,7 +2070,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_components_layout_footer_instagramicon",
-      "community": 9,
+      "community": 4,
       "norm_label": "instagramicon()"
     },
     {
@@ -2080,7 +2080,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_layout_footer_tiktokicon",
-      "community": 9,
+      "community": 4,
       "norm_label": "tiktokicon()"
     },
     {
@@ -2090,7 +2090,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_layout_footer_footer_links",
-      "community": 9,
+      "community": 4,
       "norm_label": "footer_links"
     },
     {
@@ -2100,7 +2100,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_components_layout_footer_footer",
-      "community": 9,
+      "community": 4,
       "norm_label": "footer()"
     },
     {
@@ -2110,7 +2110,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_layout",
-      "community": 9,
+      "community": 4,
       "norm_label": "layout.jsx"
     },
     {
@@ -2120,7 +2120,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_components_layout_layout_layout",
-      "community": 9,
+      "community": 4,
       "norm_label": "layout()"
     },
     {
@@ -2220,7 +2220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat",
-      "community": 9,
+      "community": 4,
       "norm_label": "cartfloat.jsx"
     },
     {
@@ -2230,7 +2230,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_carticon",
-      "community": 9,
+      "community": 4,
       "norm_label": "carticon()"
     },
     {
@@ -2240,7 +2240,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_cartfloat",
-      "community": 9,
+      "community": 4,
       "norm_label": "cartfloat()"
     },
     {
@@ -2250,7 +2250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat",
-      "community": 9,
+      "community": 4,
       "norm_label": "whatsappfloat.jsx"
     },
     {
@@ -2260,7 +2260,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat_whatsapp_message",
-      "community": 9,
+      "community": 4,
       "norm_label": "whatsapp_message"
     },
     {
@@ -2270,7 +2270,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat_whatsappfloat",
-      "community": 9,
+      "community": 4,
       "norm_label": "whatsappfloat()"
     },
     {
@@ -2280,7 +2280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_blog_posts",
-      "community": 8,
+      "community": 16,
       "norm_label": "blog-posts.js"
     },
     {
@@ -2290,7 +2290,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_blog_posts_articulosblog",
-      "community": 8,
+      "community": 16,
       "norm_label": "articulosblog"
     },
     {
@@ -2360,7 +2360,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usecheckoutform",
-      "community": 3,
+      "community": 0,
       "norm_label": "usecheckoutform.js"
     },
     {
@@ -2400,7 +2400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usedebounce",
-      "community": 37,
+      "community": 38,
       "norm_label": "usedebounce.js"
     },
     {
@@ -2410,7 +2410,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_hooks_usedebounce_usedebounce",
-      "community": 37,
+      "community": 38,
       "norm_label": "usedebounce()"
     },
     {
@@ -2551,7 +2551,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "astro_assets",
-      "community": 8,
+      "community": 36,
       "norm_label": "astro:assets"
     },
     {
@@ -2581,7 +2581,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_404",
-      "community": 4,
+      "community": 8,
       "norm_label": "404.astro"
     },
     {
@@ -2591,7 +2591,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_notfoundpage_tsx",
-      "community": 4,
+      "community": 8,
       "norm_label": "./notfoundpage.jsx"
     },
     {
@@ -2671,7 +2671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_homepage",
-      "community": 37,
+      "community": 24,
       "norm_label": "homepage.jsx"
     },
     {
@@ -2681,7 +2681,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_homepage_homepage",
-      "community": 37,
+      "community": 24,
       "norm_label": "homepage()"
     },
     {
@@ -2711,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_notfoundpage",
-      "community": 4,
+      "community": 33,
       "norm_label": "notfoundpage.jsx"
     },
     {
@@ -2721,7 +2721,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_pages_notfoundpage_notfoundpage",
-      "community": 4,
+      "community": 33,
       "norm_label": "notfoundpage()"
     },
     {
@@ -2731,7 +2731,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage",
-      "community": 33,
+      "community": 46,
       "norm_label": "orderconfirmationpage.jsx"
     },
     {
@@ -2741,7 +2741,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage_orderconfirmationpage",
-      "community": 33,
+      "community": 46,
       "norm_label": "orderconfirmationpage()"
     },
     {
@@ -2791,7 +2791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_storepage",
-      "community": 37,
+      "community": 28,
       "norm_label": "storepage.jsx"
     },
     {
@@ -2801,7 +2801,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_storepage_storepage",
-      "community": 37,
+      "community": 28,
       "norm_label": "storepage()"
     },
     {
@@ -2851,7 +2851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 24,
+      "community": 46,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2861,7 +2861,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 24,
+      "community": 46,
       "norm_label": "tabs"
     },
     {
@@ -2871,7 +2871,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 24,
+      "community": 46,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -2941,7 +2941,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard",
-      "community": 28,
+      "community": 46,
       "norm_label": "pedidosdashboard.jsx"
     },
     {
@@ -2951,7 +2951,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard_pedidosdashboard",
-      "community": 28,
+      "community": 46,
       "norm_label": "pedidosdashboard()"
     },
     {
@@ -2981,7 +2981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard",
-      "community": 37,
+      "community": 46,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -2991,7 +2991,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estado_cfg",
-      "community": 37,
+      "community": 46,
       "norm_label": "estado_cfg"
     },
     {
@@ -3001,7 +3001,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estrellas",
-      "community": 37,
+      "community": 46,
       "norm_label": "estrellas()"
     },
     {
@@ -3011,7 +3011,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_resenasdashboard",
-      "community": 37,
+      "community": 46,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -3021,7 +3021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard",
-      "community": 36,
+      "community": 46,
       "norm_label": "ventasdashboard.jsx"
     },
     {
@@ -3031,7 +3031,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_estados_color",
-      "community": 36,
+      "community": 46,
       "norm_label": "estados_color"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_rangos",
-      "community": 36,
+      "community": 46,
       "norm_label": "rangos"
     },
     {
@@ -3051,7 +3051,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_barchart",
-      "community": 36,
+      "community": 46,
       "norm_label": "barchart()"
     },
     {
@@ -3061,7 +3061,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_ventasdashboard",
-      "community": 36,
+      "community": 46,
       "norm_label": "ventasdashboard()"
     },
     {
@@ -3101,7 +3101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_blog",
-      "community": 8,
+      "community": 16,
       "norm_label": "blog.astro"
     },
     {
@@ -3111,7 +3111,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_blog_categorias",
-      "community": 8,
+      "community": 16,
       "norm_label": "categorias"
     },
     {
@@ -3121,7 +3121,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_blog_articulos",
-      "community": 8,
+      "community": 16,
       "norm_label": "articulos"
     },
     {
@@ -3131,7 +3131,7 @@
       "source_location": "L308",
       "_origin": "ast",
       "id": "src_pages_blog_emptystate",
-      "community": 8,
+      "community": 16,
       "norm_label": "emptystate"
     },
     {
@@ -3141,7 +3141,7 @@
       "source_location": "L313",
       "_origin": "ast",
       "id": "src_pages_blog_applyfilters",
-      "community": 8,
+      "community": 16,
       "norm_label": "applyfilters()"
     },
     {
@@ -3151,7 +3151,7 @@
       "source_location": "L350",
       "_origin": "ast",
       "id": "src_pages_blog_searchinput",
-      "community": 8,
+      "community": 16,
       "norm_label": "searchinput"
     },
     {
@@ -3161,7 +3161,7 @@
       "source_location": "L357",
       "_origin": "ast",
       "id": "src_pages_blog_form",
-      "community": 8,
+      "community": 16,
       "norm_label": "form"
     },
     {
@@ -3171,7 +3171,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts_ts",
-      "community": 8,
+      "community": 16,
       "norm_label": "../data/blog-posts.js"
     },
     {
@@ -3181,7 +3181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_blog_slug",
-      "community": 8,
+      "community": 16,
       "norm_label": "[slug].astro"
     },
     {
@@ -3191,7 +3191,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_blog_slug_getstaticpaths",
-      "community": 8,
+      "community": 16,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3201,7 +3201,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts",
-      "community": 8,
+      "community": 16,
       "norm_label": "../../data/blog-posts"
     },
     {
@@ -3231,7 +3231,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkout",
-      "community": 8,
+      "community": 44,
       "norm_label": "checkout.astro"
     },
     {
@@ -3241,7 +3241,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 8,
+      "community": 44,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -3251,7 +3251,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_club_missypo",
-      "community": 8,
+      "community": 36,
       "norm_label": "club-missypo.astro"
     },
     {
@@ -3261,7 +3261,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_mypo_puntos_jpeg",
-      "community": 8,
+      "community": 36,
       "norm_label": "../assets/club/mypo_puntos.jpeg"
     },
     {
@@ -3271,7 +3271,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_descuentos_jpeg",
-      "community": 8,
+      "community": 36,
       "norm_label": "../assets/club/descuentos.jpeg"
     },
     {
@@ -3281,7 +3281,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_cumple_jpeg",
-      "community": 8,
+      "community": 36,
       "norm_label": "../assets/club/cumple.jpeg"
     },
     {
@@ -3291,7 +3291,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_exclusivo_jpeg",
-      "community": 8,
+      "community": 36,
       "norm_label": "../assets/club/exclusivo.jpeg"
     },
     {
@@ -3301,7 +3301,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_youtube_jpeg",
-      "community": 8,
+      "community": 36,
       "norm_label": "../assets/club/youtube.jpeg"
     },
     {
@@ -3311,7 +3311,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_enviorapido_jpeg",
-      "community": 8,
+      "community": 36,
       "norm_label": "../assets/club/enviorapido.jpeg"
     },
     {
@@ -3331,7 +3331,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 24,
+      "community": 46,
       "norm_label": "firebase/firestore"
     },
     {
@@ -3351,7 +3351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 37,
+      "community": 24,
       "norm_label": "index.astro"
     },
     {
@@ -3361,7 +3361,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 37,
+      "community": 24,
       "norm_label": "../pages/homepage"
     },
     {
@@ -3415,24 +3415,14 @@
       "norm_label": "club.astro"
     },
     {
-      "label": "../../../layouts/Layout.astro",
+      "label": "./club/ClubPage.jsx",
       "file_type": "code",
-      "source_file": "layouts/Layout.astro",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.tsx",
       "confidence": "EXTRACTED",
       "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_club_clubpage_tsx",
       "community": 6,
-      "norm_label": "../../../layouts/layout.astro"
-    },
-    {
-      "label": "./ClubPage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/ClubPage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_clubpage_tsx",
-      "community": 6,
-      "norm_label": "./clubpage.jsx"
+      "norm_label": "./club/clubpage.jsx"
     },
     {
       "label": "ClubPage.jsx",
@@ -3461,18 +3451,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_direcciones",
-      "community": 6,
+      "community": 47,
       "norm_label": "direcciones.astro"
     },
     {
-      "label": "./AddressesPage.jsx",
+      "label": "./direcciones/AddressesPage.jsx",
       "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/AddressesPage.tsx",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.tsx",
       "confidence": "EXTRACTED",
       "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_addressespage_tsx",
-      "community": 6,
-      "norm_label": "./addressespage.jsx"
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_direcciones_addressespage_tsx",
+      "community": 47,
+      "norm_label": "./direcciones/addressespage.jsx"
     },
     {
       "label": "AddressesPage.jsx",
@@ -3501,18 +3491,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_mascotas",
-      "community": 6,
+      "community": 48,
       "norm_label": "mascotas.astro"
     },
     {
-      "label": "./PetsPage.jsx",
+      "label": "./mascotas/PetsPage.jsx",
       "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/PetsPage.tsx",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.tsx",
       "confidence": "EXTRACTED",
       "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_petspage_tsx",
-      "community": 6,
-      "norm_label": "./petspage.jsx"
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_mascotas_petspage_tsx",
+      "community": 48,
+      "norm_label": "./mascotas/petspage.jsx"
     },
     {
       "label": "PetsPage.jsx",
@@ -3551,7 +3541,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_pedidos_orderdetailpage",
-      "community": 6,
+      "community": 1,
       "norm_label": "orderdetailpage.jsx"
     },
     {
@@ -3561,7 +3551,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_pedidos_orderdetailpage_status_map",
-      "community": 6,
+      "community": 1,
       "norm_label": "status_map"
     },
     {
@@ -3571,7 +3561,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_pedidos_orderdetailpage_orderdetailpage",
-      "community": 6,
+      "community": 1,
       "norm_label": "orderdetailpage()"
     },
     {
@@ -3635,14 +3625,14 @@
       "norm_label": "orderspage()"
     },
     {
-      "label": "[id].astro",
+      "label": "detalle.astro",
       "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
+      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_pages_mi_cuenta_pedidos_id",
-      "community": 6,
-      "norm_label": "[id].astro"
+      "id": "src_pages_mi_cuenta_pedidos_detalle",
+      "community": 1,
+      "norm_label": "detalle.astro"
     },
     {
       "label": "./OrderDetailPage.jsx",
@@ -3651,7 +3641,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderdetailpage_tsx",
-      "community": 6,
+      "community": 1,
       "norm_label": "./orderdetailpage.jsx"
     },
     {
@@ -3661,7 +3651,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_pedidos_index",
-      "community": 8,
+      "community": 49,
       "norm_label": "index.astro"
     },
     {
@@ -3671,7 +3661,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderspage_tsx",
-      "community": 8,
+      "community": 49,
       "norm_label": "./orderspage.jsx"
     },
     {
@@ -3681,18 +3671,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_mi_cuenta_perfil",
-      "community": 6,
+      "community": 50,
       "norm_label": "perfil.astro"
     },
     {
-      "label": "./ProfilePage.jsx",
+      "label": "./perfil/ProfilePage.jsx",
       "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/ProfilePage.tsx",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.tsx",
       "confidence": "EXTRACTED",
       "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_profilepage_tsx",
-      "community": 6,
-      "norm_label": "./profilepage.jsx"
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_perfil_profilepage_tsx",
+      "community": 50,
+      "norm_label": "./perfil/profilepage.jsx"
     },
     {
       "label": "ProfilePage.jsx",
@@ -3721,7 +3711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_missypo_tv",
-      "community": 8,
+      "community": 40,
       "norm_label": "missypo-tv.astro"
     },
     {
@@ -3731,7 +3721,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_featuredvideo",
-      "community": 8,
+      "community": 40,
       "norm_label": "featuredvideo"
     },
     {
@@ -3741,7 +3731,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_episodios",
-      "community": 8,
+      "community": 40,
       "norm_label": "episodios"
     },
     {
@@ -3751,7 +3741,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_string",
-      "community": 8,
+      "community": 40,
       "norm_label": "string"
     },
     {
@@ -3761,7 +3751,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_orden_confirmada_orderid",
-      "community": 33,
+      "community": 41,
       "norm_label": "[...orderid].astro"
     },
     {
@@ -3771,7 +3761,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_orden_confirmada_orderid_getstaticpaths",
-      "community": 33,
+      "community": 41,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3781,7 +3771,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_orderconfirmationpage_tsx",
-      "community": 33,
+      "community": 41,
       "norm_label": "../../pages/orderconfirmationpage.jsx"
     },
     {
@@ -3801,7 +3791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_producto_slug",
-      "community": 37,
+      "community": 39,
       "norm_label": "[slug].astro"
     },
     {
@@ -3811,7 +3801,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_producto_slug_getstaticpaths",
-      "community": 37,
+      "community": 39,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3821,7 +3811,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 37,
+      "community": 39,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -3831,7 +3821,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services",
-      "community": 37,
+      "community": 39,
       "norm_label": "../services"
     },
     {
@@ -3841,7 +3831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_reclamaciones",
-      "community": 0,
+      "community": 42,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -3851,7 +3841,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 0,
+      "community": 42,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -3871,7 +3861,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_tienda",
-      "community": 37,
+      "community": 39,
       "norm_label": "tienda.astro"
     },
     {
@@ -3881,7 +3871,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 37,
+      "community": 39,
       "norm_label": "./storepage.jsx"
     },
     {
@@ -4381,7 +4371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_config",
-      "community": 24,
+      "community": 46,
       "norm_label": "config.js"
     },
     {
@@ -4401,7 +4391,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_services_config_guardarconfiguracionenvio",
-      "community": 24,
+      "community": 46,
       "norm_label": "guardarconfiguracionenvio()"
     },
     {
@@ -4411,7 +4401,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_services_config_obtenercategoryslugmap",
-      "community": 24,
+      "community": 46,
       "norm_label": "obtenercategoryslugmap()"
     },
     {
@@ -4481,7 +4471,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_firebase",
-      "community": 24,
+      "community": 46,
       "norm_label": "firebase.js"
     },
     {
@@ -4491,7 +4481,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_services_firebase_firebaseconfig",
-      "community": 24,
+      "community": 46,
       "norm_label": "firebaseconfig"
     },
     {
@@ -4511,7 +4501,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_firebase_auth",
-      "community": 24,
+      "community": 1,
       "norm_label": "auth"
     },
     {
@@ -4521,7 +4511,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 37,
+      "community": 46,
       "norm_label": "index.js"
     },
     {
@@ -4531,7 +4521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_orders",
-      "community": 28,
+      "community": 46,
       "norm_label": "orders.js"
     },
     {
@@ -4541,7 +4531,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_services_orders_crearpedidocontransaccion",
-      "community": 28,
+      "community": 46,
       "norm_label": "crearpedidocontransaccion()"
     },
     {
@@ -4551,7 +4541,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosadmin",
-      "community": 28,
+      "community": 46,
       "norm_label": "obtenerpedidosadmin()"
     },
     {
@@ -4561,7 +4551,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "src_services_orders_actualizarestadopedido",
-      "community": 28,
+      "community": 46,
       "norm_label": "actualizarestadopedido()"
     },
     {
@@ -4571,7 +4561,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "src_services_orders_reestablecerstockpedidocontransaccion",
-      "community": 28,
+      "community": 46,
       "norm_label": "reestablecerstockpedidocontransaccion()"
     },
     {
@@ -4581,7 +4571,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "src_services_orders_asignarrepartidorpedido",
-      "community": 28,
+      "community": 46,
       "norm_label": "asignarrepartidorpedido()"
     },
     {
@@ -4591,7 +4581,7 @@
       "source_location": "L265",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosrango",
-      "community": 36,
+      "community": 46,
       "norm_label": "obtenerpedidosrango()"
     },
     {
@@ -4631,7 +4621,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductos",
-      "community": 46,
+      "community": 28,
       "norm_label": "obtenerproductos()"
     },
     {
@@ -4721,7 +4711,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductosmasvendidos",
-      "community": 9,
+      "community": 28,
       "norm_label": "obtenerproductosmasvendidos()"
     },
     {
@@ -4731,7 +4721,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 37,
+      "community": 46,
       "norm_label": "reviews.js"
     },
     {
@@ -4741,7 +4731,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenas",
-      "community": 37,
+      "community": 46,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -4751,7 +4741,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_services_reviews_actualizarestadoresena",
-      "community": 37,
+      "community": 46,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -4761,7 +4751,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_services_reviews_eliminarresena",
-      "community": 37,
+      "community": 46,
       "norm_label": "eliminarresena()"
     },
     {
@@ -4941,7 +4931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_catalogstore",
-      "community": 37,
+      "community": 28,
       "norm_label": "catalogstore.js"
     },
     {
@@ -4951,7 +4941,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_store_catalogstore_usecatalogstore",
-      "community": 37,
+      "community": 28,
       "norm_label": "usecatalogstore"
     },
     {
@@ -4961,7 +4951,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_searchstore",
-      "community": 37,
+      "community": 38,
       "norm_label": "searchstore.js"
     },
     {
@@ -4971,7 +4961,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_store_searchstore_usesearchstore",
-      "community": 37,
+      "community": 38,
       "norm_label": "usesearchstore"
     },
     {
@@ -5011,7 +5001,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 24,
+      "community": 46,
       "norm_label": "vitest.config.js"
     },
     {
@@ -5108,7 +5098,7 @@
       "label": "Archivos Creados / Modificados",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L31",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "ai_context_archivos_creados_modificados",
       "community": 21,
@@ -5118,7 +5108,7 @@
       "label": "Siguientes Pasos",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L42",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "ai_context_siguientes_pasos",
       "community": 21,
@@ -8696,6 +8686,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
       "source_location": "L5",
       "weight": 1.0,
@@ -8755,6 +8756,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
       "target": "src_components_account_accountlayout_accountlayout",
       "confidence_score": 1.0
     },
@@ -8841,6 +8853,28 @@
       "weight": 1.0,
       "source": "src_components_account_addressform",
       "target": "src_data_locations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AddressForm.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_addressform",
+      "target": "src_data_locations_arequipa_districts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AddressForm.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_addressform",
+      "target": "src_data_locations_lima_regions",
       "confidence_score": 1.0
     },
     {
@@ -8935,6 +8969,28 @@
       "weight": 1.0,
       "source": "src_components_account_ordertimeline",
       "target": "src_components_account_ordertimeline_timeline_steps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_components_account_ordertimeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_components_account_ordertimeline_ordertimeline",
       "confidence_score": 1.0
     },
     {
@@ -11716,8 +11772,48 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club.astro",
+      "source": "src_pages_mi_cuenta_club",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones.astro",
+      "source": "src_pages_mi_cuenta_direcciones",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas.astro",
+      "source": "src_pages_mi_cuenta_mascotas",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
+      "source": "src_pages_mi_cuenta_pedidos_detalle",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
       "source": "src_pages_mi_cuenta_pedidos_index",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil.astro",
+      "source": "src_pages_mi_cuenta_perfil",
       "target": "src_layouts_layout",
       "confidence_score": 1.0
     },
@@ -13547,47 +13643,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/club.astro",
       "source": "src_pages_mi_cuenta_club",
-      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_club_clubpage_tsx",
       "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/club.astro",
+      "source_location": "L3",
+      "weight": 1.0,
       "source": "src_pages_mi_cuenta_club",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_clubpage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/direcciones.astro",
-      "source": "src_pages_mi_cuenta_direcciones",
-      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/mascotas.astro",
-      "source": "src_pages_mi_cuenta_mascotas",
-      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
-      "source": "src_pages_mi_cuenta_pedidos_id",
-      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/perfil.astro",
-      "source": "src_pages_mi_cuenta_perfil",
-      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "target": "src_pages_mi_cuenta_club_clubpage",
       "confidence_score": 1.0
     },
     {
@@ -13638,7 +13705,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/direcciones.astro",
       "source": "src_pages_mi_cuenta_direcciones",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_addressespage_tsx",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_direcciones_addressespage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones",
+      "target": "src_pages_mi_cuenta_direcciones_addressespage",
       "confidence_score": 1.0
     },
     {
@@ -13711,7 +13789,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/mascotas.astro",
       "source": "src_pages_mi_cuenta_mascotas",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_petspage_tsx",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_mascotas_petspage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas",
+      "target": "src_pages_mi_cuenta_mascotas_petspage",
       "confidence_score": 1.0
     },
     {
@@ -13793,10 +13882,10 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
+      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
       "source_location": "L3",
       "weight": 1.0,
-      "source": "src_pages_mi_cuenta_pedidos_id",
+      "source": "src_pages_mi_cuenta_pedidos_detalle",
       "target": "src_pages_mi_cuenta_pedidos_orderdetailpage",
       "confidence_score": 1.0
     },
@@ -13818,6 +13907,39 @@
       "weight": 1.0,
       "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
       "target": "src_pages_mi_cuenta_pedidos_orderdetailpage_status_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -13906,8 +14028,8 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
-      "source": "src_pages_mi_cuenta_pedidos_id",
+      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
+      "source": "src_pages_mi_cuenta_pedidos_detalle",
       "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderdetailpage_tsx",
       "confidence_score": 1.0
     },
@@ -13924,7 +14046,18 @@
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/perfil.astro",
       "source": "src_pages_mi_cuenta_perfil",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_profilepage_tsx",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_perfil_profilepage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil",
+      "target": "src_pages_mi_cuenta_perfil_profilepage",
       "confidence_score": 1.0
     },
     {
@@ -16178,7 +16311,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".ai-context.md",
-      "source_location": "L31",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "ai_context_missy_po_pet_shop_ai_context",
       "target": "ai_context_archivos_creados_modificados",
@@ -16208,7 +16341,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".ai-context.md",
-      "source_location": "L42",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "ai_context_missy_po_pet_shop_ai_context",
       "target": "ai_context_siguientes_pasos",
@@ -18106,5 +18239,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ea53f362e7f3a8f7744680c52d0da3d48f0447c1"
+  "built_at_commit": "9696fbadbf1e4b13ec0070aceea8aad17356650f"
 }

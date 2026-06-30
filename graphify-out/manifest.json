@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   ".ai-context.md": {
-    "mtime": 1782778675.128029,
-    "ast_hash": "af30047b68458b27c7a548ed51cd0a37",
+    "mtime": 1782788137.5318027,
+    "ast_hash": "14733b8a21b6f29807d461695e16d57e",
     "semantic_hash": ""
   },
   ".github/copilot-instructions.md": {
@@ -740,8 +740,8 @@
     "semantic_hash": ""
   },
   "src/components/account/AddressForm.jsx": {
-    "mtime": 1782786536.1570475,
-    "ast_hash": "ffb7115a0df50ba94bc091677ec839fd",
+    "mtime": 1782787943.71744,
+    "ast_hash": "922758c0867852c5e54bc774f59048f4",
     "semantic_hash": ""
   },
   "src/components/account/ContentFeed.jsx": {
@@ -750,8 +750,8 @@
     "semantic_hash": ""
   },
   "src/components/account/OrderCard.jsx": {
-    "mtime": 1782786140.561254,
-    "ast_hash": "e18d991351cd77172768e545e516554f",
+    "mtime": 1782788011.421731,
+    "ast_hash": "422fd2f40377d594d123e647cc262005",
     "semantic_hash": ""
   },
   "src/components/account/OrderTimeline.jsx": {
@@ -795,8 +795,8 @@
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/club.astro": {
-    "mtime": 1782786598.1703987,
-    "ast_hash": "65d85cce4fa054f984b18388f84ea8ca",
+    "mtime": 1782787833.9376588,
+    "ast_hash": "1c9e9259e7dd820f378ff440242abe98",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/club/ClubPage.jsx": {
@@ -805,8 +805,8 @@
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/direcciones.astro": {
-    "mtime": 1782786495.0757813,
-    "ast_hash": "af03792317db991fe482f80b43888307",
+    "mtime": 1782787839.4249942,
+    "ast_hash": "c7b4bc086d32d652fc67af98d1592ca6",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/direcciones/AddressesPage.jsx": {
@@ -815,8 +815,8 @@
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/mascotas.astro": {
-    "mtime": 1782786551.135821,
-    "ast_hash": "79d3a5f954dcdeaf92f4b2617a3f837c",
+    "mtime": 1782787844.879252,
+    "ast_hash": "5178920bc49fb72fcab581a1e63bf689",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/mascotas/PetsPage.jsx": {
@@ -825,18 +825,13 @@
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx": {
-    "mtime": 1782786464.254024,
-    "ast_hash": "29863462b05463951d8a84b3da97dc16",
+    "mtime": 1782788021.4816985,
+    "ast_hash": "6dd9a1657f3fef2169daf62968747855",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/pedidos/OrdersPage.jsx": {
     "mtime": 1782786420.8955688,
     "ast_hash": "d753e52c5028f8198e710a2e172def05",
-    "semantic_hash": ""
-  },
-  "src/pages/mi-cuenta/pedidos/[id].astro": {
-    "mtime": 1782786435.8286507,
-    "ast_hash": "2ab247f9fb909306b01a35a8d8c6a530",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/pedidos/index.astro": {
@@ -845,8 +840,8 @@
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/perfil.astro": {
-    "mtime": 1782786638.2725716,
-    "ast_hash": "0ba73893fa46379521bc71a066cd19ca",
+    "mtime": 1782787850.2144012,
+    "ast_hash": "dd260bb34f0c5491fb203caacad90a6d",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta/perfil/ProfilePage.jsx": {
@@ -877,6 +872,11 @@
   "src/store/userStore.js": {
     "mtime": 1782785675.3469596,
     "ast_hash": "83ebc1a45a44ae964e172d26a9194b0b",
+    "semantic_hash": ""
+  },
+  "src/pages/mi-cuenta/pedidos/detalle.astro": {
+    "mtime": 1782787992.852497,
+    "ast_hash": "a4d6b50d57f8454c8f78f46f62b938ce",
     "semantic_hash": ""
   }
 }
