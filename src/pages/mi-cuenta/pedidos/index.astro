@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import OrdersPage from './OrdersPage.jsx';
+---
+
+<Layout
+  title="Mis Pedidos | Missy & Po Pet Shop"
+  description="Revisa el historial de tus pedidos en Missy & Po Pet Shop."
+>
+  <OrdersPage client:load />
+</Layout>

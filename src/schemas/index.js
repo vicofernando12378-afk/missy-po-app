@@ -8,3 +8,4 @@ export { AperturaCajaSchema, MovimientoSchema, CierreCajaSchema } from './cajaDi
 export { ReviewSchema } from './review'
 export { ReclamacionSchema } from './reclamacion'
 export { YapePlinSchema } from './payment'
+export { UserProfileSchema, AddressSchema, PetSchema, AddressFormSchema, PetFormSchema } from './userProfile'

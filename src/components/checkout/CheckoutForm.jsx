@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { collection, doc, addDoc, updateDoc, query, where, getDocs, serverTimestamp } from 'firebase/firestore'
 import { db } from '../../services/firebase'
+import { auth } from '../../services/firebase'
 import { crearPedidoConTransaccion } from '../../services'
 
 import useCheckoutForm from '../../hooks/useCheckoutForm'
@@ -31,6 +32,14 @@ export default function CheckoutForm({
 }) {
   const form = useCheckoutForm()
   const club = useClubMembership()
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setCurrentUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
 
   const subtotalSoles = subtotal / 100
   const pointsDiscountCents = club.pointsApplied
@@ -102,6 +111,7 @@ export default function CheckoutForm({
     form.setErrorMsg('')
     
     const orderData = {
+      userId: currentUser?.uid || null,
       cliente: {
         nombre: form.nombre,
         apellido: form.apellido,

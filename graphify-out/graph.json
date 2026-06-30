@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 3,
+      "community": 24,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -590,7 +590,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_inspect_categories",
-      "community": 3,
+      "community": 35,
       "norm_label": "inspect-categories.js"
     },
     {
@@ -600,7 +600,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "scripts_inspect_categories_loadenv",
-      "community": 3,
+      "community": 35,
       "norm_label": "loadenv()"
     },
     {
@@ -610,7 +610,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "scripts_inspect_categories_firebaseconfig",
-      "community": 3,
+      "community": 35,
       "norm_label": "firebaseconfig"
     },
     {
@@ -620,7 +620,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "scripts_inspect_categories_app",
-      "community": 3,
+      "community": 35,
       "norm_label": "app"
     },
     {
@@ -630,7 +630,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_inspect_categories_db",
-      "community": 3,
+      "community": 35,
       "norm_label": "db"
     },
     {
@@ -640,7 +640,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "scripts_inspect_categories_run",
-      "community": 3,
+      "community": 35,
       "norm_label": "run()"
     },
     {
@@ -940,7 +940,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_app",
-      "community": 37,
+      "community": 33,
       "norm_label": "app.jsx"
     },
     {
@@ -950,7 +950,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_app_adminlayout",
-      "community": 37,
+      "community": 33,
       "norm_label": "adminlayout"
     },
     {
@@ -960,7 +960,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_app_pedidosdashboard",
-      "community": 37,
+      "community": 33,
       "norm_label": "pedidosdashboard"
     },
     {
@@ -970,7 +970,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_app_cajadiaria",
-      "community": 37,
+      "community": 33,
       "norm_label": "cajadiaria"
     },
     {
@@ -980,7 +980,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_app_inventariostock",
-      "community": 37,
+      "community": 33,
       "norm_label": "inventariostock"
     },
     {
@@ -990,7 +990,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_app_configuracionenvioscupones",
-      "community": 37,
+      "community": 33,
       "norm_label": "configuracionenvioscupones"
     },
     {
@@ -1000,7 +1000,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_app_productoscrud",
-      "community": 37,
+      "community": 33,
       "norm_label": "productoscrud"
     },
     {
@@ -1010,7 +1010,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_app_ventasdashboard",
-      "community": 37,
+      "community": 33,
       "norm_label": "ventasdashboard"
     },
     {
@@ -1020,7 +1020,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_app_resenasdashboard",
-      "community": 37,
+      "community": 33,
       "norm_label": "resenasdashboard"
     },
     {
@@ -1030,7 +1030,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_app_adminloader",
-      "community": 37,
+      "community": 33,
       "norm_label": "adminloader()"
     },
     {
@@ -1040,8 +1040,268 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 43,
+      "community": 33,
       "norm_label": "app()"
+    },
+    {
+      "label": "AccountDashboard.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_accountdashboard",
+      "community": 16,
+      "norm_label": "accountdashboard.jsx"
+    },
+    {
+      "label": "AccountDashboard()",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_components_account_accountdashboard_accountdashboard",
+      "community": 16,
+      "norm_label": "accountdashboard()"
+    },
+    {
+      "label": "AccountHeader.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountHeader.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_accountheader",
+      "community": 16,
+      "norm_label": "accountheader.jsx"
+    },
+    {
+      "label": "AccountHeader()",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountHeader.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_accountheader_accountheader",
+      "community": 16,
+      "norm_label": "accountheader()"
+    },
+    {
+      "label": "AccountLayout.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountLayout.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_accountlayout",
+      "community": 1,
+      "norm_label": "accountlayout.jsx"
+    },
+    {
+      "label": "AccountLayout()",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountLayout.jsx",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_components_account_accountlayout_accountlayout",
+      "community": 1,
+      "norm_label": "accountlayout()"
+    },
+    {
+      "label": "AccountSidebar.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_accountsidebar",
+      "community": 1,
+      "norm_label": "accountsidebar.jsx"
+    },
+    {
+      "label": "NAV_ITEMS",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_components_account_accountsidebar_nav_items",
+      "community": 1,
+      "norm_label": "nav_items"
+    },
+    {
+      "label": "AccountSidebar()",
+      "file_type": "code",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "src_components_account_accountsidebar_accountsidebar",
+      "community": 1,
+      "norm_label": "accountsidebar()"
+    },
+    {
+      "label": "AddressForm.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/AddressForm.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_addressform",
+      "community": 1,
+      "norm_label": "addressform.jsx"
+    },
+    {
+      "label": "AddressForm()",
+      "file_type": "code",
+      "source_file": "src/components/account/AddressForm.jsx",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_components_account_addressform_addressform",
+      "community": 1,
+      "norm_label": "addressform()"
+    },
+    {
+      "label": "ContentFeed.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/ContentFeed.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_contentfeed",
+      "community": 16,
+      "norm_label": "contentfeed.jsx"
+    },
+    {
+      "label": "ContentFeed()",
+      "file_type": "code",
+      "source_file": "src/components/account/ContentFeed.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_contentfeed_contentfeed",
+      "community": 16,
+      "norm_label": "contentfeed()"
+    },
+    {
+      "label": "OrderCard.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/OrderCard.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_ordercard",
+      "community": 16,
+      "norm_label": "ordercard.jsx"
+    },
+    {
+      "label": "STATUS_MAP",
+      "file_type": "code",
+      "source_file": "src/components/account/OrderCard.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_ordercard_status_map",
+      "community": 16,
+      "norm_label": "status_map"
+    },
+    {
+      "label": "OrderCard()",
+      "file_type": "code",
+      "source_file": "src/components/account/OrderCard.jsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_components_account_ordercard_ordercard",
+      "community": 16,
+      "norm_label": "ordercard()"
+    },
+    {
+      "label": "OrderTimeline.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/OrderTimeline.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_ordertimeline",
+      "community": 38,
+      "norm_label": "ordertimeline.jsx"
+    },
+    {
+      "label": "TIMELINE_STEPS",
+      "file_type": "code",
+      "source_file": "src/components/account/OrderTimeline.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_ordertimeline_timeline_steps",
+      "community": 38,
+      "norm_label": "timeline_steps"
+    },
+    {
+      "label": "OrderTimeline()",
+      "file_type": "code",
+      "source_file": "src/components/account/OrderTimeline.jsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_components_account_ordertimeline_ordertimeline",
+      "community": 38,
+      "norm_label": "ordertimeline()"
+    },
+    {
+      "label": "PetForm.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/PetForm.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_petform",
+      "community": 1,
+      "norm_label": "petform.jsx"
+    },
+    {
+      "label": "PetForm()",
+      "file_type": "code",
+      "source_file": "src/components/account/PetForm.jsx",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_components_account_petform_petform",
+      "community": 1,
+      "norm_label": "petform()"
+    },
+    {
+      "label": "PointsBalance.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/PointsBalance.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_pointsbalance",
+      "community": 16,
+      "norm_label": "pointsbalance.jsx"
+    },
+    {
+      "label": "PointsBalance()",
+      "file_type": "code",
+      "source_file": "src/components/account/PointsBalance.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_pointsbalance_pointsbalance",
+      "community": 16,
+      "norm_label": "pointsbalance()"
+    },
+    {
+      "label": "SmartCTA.jsx",
+      "file_type": "code",
+      "source_file": "src/components/account/SmartCTA.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_components_account_smartcta",
+      "community": 16,
+      "norm_label": "smartcta.jsx"
+    },
+    {
+      "label": "getSmartCTA()",
+      "file_type": "code",
+      "source_file": "src/components/account/SmartCTA.jsx",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_components_account_smartcta_getsmartcta",
+      "community": 16,
+      "norm_label": "getsmartcta()"
+    },
+    {
+      "label": "SmartCTA()",
+      "file_type": "code",
+      "source_file": "src/components/account/SmartCTA.jsx",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "src_components_account_smartcta_smartcta",
+      "community": 16,
+      "norm_label": "smartcta()"
     },
     {
       "label": "AdminApp.jsx",
@@ -1250,7 +1510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartdrawer.jsx"
     },
     {
@@ -1260,7 +1520,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_closeicon",
-      "community": 37,
+      "community": 9,
       "norm_label": "closeicon()"
     },
     {
@@ -1270,7 +1530,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_trashicon",
-      "community": 37,
+      "community": 9,
       "norm_label": "trashicon()"
     },
     {
@@ -1280,7 +1540,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdraweritem",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartdraweritem()"
     },
     {
@@ -1290,7 +1550,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdrawer",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartdrawer()"
     },
     {
@@ -1427,7 +1687,7 @@
       "label": "CheckoutForm()",
       "file_type": "code",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_checkout_checkoutform_checkoutform",
       "community": 3,
@@ -1590,7 +1850,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_checkout_paymentqrculqi_paymentqrculqi",
-      "community": 3,
+      "community": 0,
       "norm_label": "paymentqrculqi()"
     },
     {
@@ -1640,7 +1900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_header_carthoverpopup",
-      "community": 37,
+      "community": 9,
       "norm_label": "carthoverpopup.jsx"
     },
     {
@@ -1650,7 +1910,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_header_carthoverpopup_carthoverpopup",
-      "community": 37,
+      "community": 9,
       "norm_label": "carthoverpopup()"
     },
     {
@@ -1660,7 +1920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_header_livesearch",
-      "community": 6,
+      "community": 37,
       "norm_label": "livesearch.jsx"
     },
     {
@@ -1670,7 +1930,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_header_livesearch_searchspinner",
-      "community": 6,
+      "community": 37,
       "norm_label": "searchspinner()"
     },
     {
@@ -1680,7 +1940,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_header_livesearch_highlight",
-      "community": 6,
+      "community": 37,
       "norm_label": "highlight()"
     },
     {
@@ -1690,7 +1950,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_header_livesearch_livesearch",
-      "community": 6,
+      "community": 37,
       "norm_label": "livesearch()"
     },
     {
@@ -1750,7 +2010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner",
-      "community": 6,
+      "community": 9,
       "norm_label": "marqueebanner.jsx"
     },
     {
@@ -1760,7 +2020,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner_marquee_items",
-      "community": 6,
+      "community": 9,
       "norm_label": "marquee_items"
     },
     {
@@ -1770,7 +2030,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner_marqueebanner",
-      "community": 6,
+      "community": 9,
       "norm_label": "marqueebanner()"
     },
     {
@@ -1870,74 +2130,74 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_navbar",
-      "community": 6,
+      "community": 9,
       "norm_label": "navbar.jsx"
     },
     {
       "label": "SearchIcon()",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_layout_navbar_searchicon",
-      "community": 6,
+      "community": 9,
       "norm_label": "searchicon()"
     },
     {
       "label": "CartIcon()",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_layout_navbar_carticon",
-      "community": 6,
+      "community": 9,
       "norm_label": "carticon()"
     },
     {
       "label": "UserIcon()",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_layout_navbar_usericon",
-      "community": 6,
+      "community": 9,
       "norm_label": "usericon()"
     },
     {
       "label": "MenuIcon()",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_layout_navbar_menuicon",
-      "community": 6,
+      "community": 9,
       "norm_label": "menuicon()"
     },
     {
       "label": "CloseIcon()",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "src_components_layout_navbar_closeicon",
-      "community": 6,
+      "community": 9,
       "norm_label": "closeicon()"
     },
     {
       "label": "NAV_CATEGORIES",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "src_components_layout_navbar_nav_categories",
-      "community": 6,
+      "community": 9,
       "norm_label": "nav_categories"
     },
     {
       "label": "Navbar()",
       "file_type": "code",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "src_components_layout_navbar_navbar",
       "community": 9,
@@ -1990,7 +2250,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat",
-      "community": 28,
+      "community": 9,
       "norm_label": "whatsappfloat.jsx"
     },
     {
@@ -2000,7 +2260,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat_whatsapp_message",
-      "community": 28,
+      "community": 9,
       "norm_label": "whatsapp_message"
     },
     {
@@ -2010,7 +2270,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_shared_whatsappfloat_whatsappfloat",
-      "community": 28,
+      "community": 9,
       "norm_label": "whatsappfloat()"
     },
     {
@@ -2140,7 +2400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usedebounce",
-      "community": 6,
+      "community": 37,
       "norm_label": "usedebounce.js"
     },
     {
@@ -2150,8 +2410,28 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_hooks_usedebounce_usedebounce",
-      "community": 6,
+      "community": 37,
       "norm_label": "usedebounce()"
+    },
+    {
+      "label": "useOrdersByUser.js",
+      "file_type": "code",
+      "source_file": "src/hooks/useOrdersByUser.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_hooks_useordersbyuser",
+      "community": 1,
+      "norm_label": "useordersbyuser.js"
+    },
+    {
+      "label": "useOrdersByUser()",
+      "file_type": "code",
+      "source_file": "src/hooks/useOrdersByUser.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_hooks_useordersbyuser_useordersbyuser",
+      "community": 1,
+      "norm_label": "useordersbyuser()"
     },
     {
       "label": "useShippingCalc.js",
@@ -2174,6 +2454,26 @@
       "norm_label": "useshippingcalc()"
     },
     {
+      "label": "useUserProfile.js",
+      "file_type": "code",
+      "source_file": "src/hooks/useUserProfile.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_hooks_useuserprofile",
+      "community": 1,
+      "norm_label": "useuserprofile.js"
+    },
+    {
+      "label": "useUserProfile()",
+      "file_type": "code",
+      "source_file": "src/hooks/useUserProfile.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "src_hooks_useuserprofile_useuserprofile",
+      "community": 1,
+      "norm_label": "useuserprofile()"
+    },
+    {
       "label": "../layouts/Layout.astro",
       "file_type": "code",
       "source_file": "src/layouts/Layout.astro",
@@ -2181,7 +2481,7 @@
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "id": "src_layouts_layout",
-      "community": 4,
+      "community": 8,
       "norm_label": "../layouts/layout.astro"
     },
     {
@@ -2191,7 +2491,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_index_css",
-      "community": 43,
+      "community": 33,
       "norm_label": "../../index.css"
     },
     {
@@ -2201,7 +2501,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_layout_navbar",
-      "community": 4,
+      "community": 8,
       "norm_label": "../components/layout/navbar"
     },
     {
@@ -2211,7 +2511,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_layout_footer",
-      "community": 4,
+      "community": 8,
       "norm_label": "../components/layout/footer"
     },
     {
@@ -2221,7 +2521,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_shared_whatsappfloat",
-      "community": 4,
+      "community": 8,
       "norm_label": "../components/shared/whatsappfloat"
     },
     {
@@ -2231,7 +2531,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_shared_cartfloat",
-      "community": 4,
+      "community": 8,
       "norm_label": "../components/shared/cartfloat"
     },
     {
@@ -2241,7 +2541,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_cart_cartdrawer",
-      "community": 4,
+      "community": 8,
       "norm_label": "../components/cart/cartdrawer"
     },
     {
@@ -2251,7 +2551,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "astro_assets",
-      "community": 16,
+      "community": 8,
       "norm_label": "astro:assets"
     },
     {
@@ -2261,7 +2561,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_logoheader_jpeg",
-      "community": 4,
+      "community": 8,
       "norm_label": "../assets/logoheader.jpeg"
     },
     {
@@ -2271,7 +2571,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 43,
+      "community": 33,
       "norm_label": "main.jsx"
     },
     {
@@ -2295,13 +2595,33 @@
       "norm_label": "./notfoundpage.jsx"
     },
     {
+      "label": "AccountPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_accountpage",
+      "community": 1,
+      "norm_label": "accountpage.jsx"
+    },
+    {
+      "label": "AccountPage()",
+      "file_type": "code",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_pages_accountpage_accountpage",
+      "community": 1,
+      "norm_label": "accountpage()"
+    },
+    {
       "label": "CartPage.jsx",
       "file_type": "code",
       "source_file": "src/pages/CartPage.jsx",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_cartpage",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartpage.jsx"
     },
     {
@@ -2311,7 +2631,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_pages_cartpage_trashicon",
-      "community": 37,
+      "community": 9,
       "norm_label": "trashicon()"
     },
     {
@@ -2321,7 +2641,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_cartpage_cartpage",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartpage()"
     },
     {
@@ -2331,7 +2651,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkoutpage",
-      "community": 37,
+      "community": 9,
       "norm_label": "checkoutpage.jsx"
     },
     {
@@ -2341,7 +2661,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_checkoutpage_checkoutpage",
-      "community": 37,
+      "community": 9,
       "norm_label": "checkoutpage()"
     },
     {
@@ -2391,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_notfoundpage",
-      "community": 37,
+      "community": 4,
       "norm_label": "notfoundpage.jsx"
     },
     {
@@ -2401,7 +2721,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_pages_notfoundpage_notfoundpage",
-      "community": 37,
+      "community": 4,
       "norm_label": "notfoundpage()"
     },
     {
@@ -2411,7 +2731,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage",
-      "community": 3,
+      "community": 33,
       "norm_label": "orderconfirmationpage.jsx"
     },
     {
@@ -2421,7 +2741,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage_orderconfirmationpage",
-      "community": 37,
+      "community": 33,
       "norm_label": "orderconfirmationpage()"
     },
     {
@@ -2531,7 +2851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 3,
+      "community": 24,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2541,7 +2861,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 3,
+      "community": 24,
       "norm_label": "tabs"
     },
     {
@@ -2551,7 +2871,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 3,
+      "community": 24,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -2621,7 +2941,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard",
-      "community": 3,
+      "community": 28,
       "norm_label": "pedidosdashboard.jsx"
     },
     {
@@ -2631,7 +2951,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard_pedidosdashboard",
-      "community": 3,
+      "community": 28,
       "norm_label": "pedidosdashboard()"
     },
     {
@@ -2661,7 +2981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard",
-      "community": 46,
+      "community": 37,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -2671,7 +2991,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estado_cfg",
-      "community": 46,
+      "community": 37,
       "norm_label": "estado_cfg"
     },
     {
@@ -2681,7 +3001,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estrellas",
-      "community": 46,
+      "community": 37,
       "norm_label": "estrellas()"
     },
     {
@@ -2691,7 +3011,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_resenasdashboard",
-      "community": 46,
+      "community": 37,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -2701,7 +3021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard",
-      "community": 46,
+      "community": 36,
       "norm_label": "ventasdashboard.jsx"
     },
     {
@@ -2711,7 +3031,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_estados_color",
-      "community": 46,
+      "community": 36,
       "norm_label": "estados_color"
     },
     {
@@ -2721,7 +3041,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_rangos",
-      "community": 46,
+      "community": 36,
       "norm_label": "rangos"
     },
     {
@@ -2731,7 +3051,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_barchart",
-      "community": 46,
+      "community": 36,
       "norm_label": "barchart()"
     },
     {
@@ -2741,7 +3061,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_ventasdashboard",
-      "community": 46,
+      "community": 36,
       "norm_label": "ventasdashboard()"
     },
     {
@@ -2891,7 +3211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_carrito",
-      "community": 4,
+      "community": 8,
       "norm_label": "carrito.astro"
     },
     {
@@ -2901,7 +3221,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_cartpage_tsx",
-      "community": 4,
+      "community": 8,
       "norm_label": "./cartpage.jsx"
     },
     {
@@ -2911,7 +3231,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkout",
-      "community": 35,
+      "community": 8,
       "norm_label": "checkout.astro"
     },
     {
@@ -2921,7 +3241,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 35,
+      "community": 8,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -2931,7 +3251,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_club_missypo",
-      "community": 16,
+      "community": 8,
       "norm_label": "club-missypo.astro"
     },
     {
@@ -2941,7 +3261,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_mypo_puntos_jpeg",
-      "community": 16,
+      "community": 8,
       "norm_label": "../assets/club/mypo_puntos.jpeg"
     },
     {
@@ -2951,7 +3271,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_descuentos_jpeg",
-      "community": 16,
+      "community": 8,
       "norm_label": "../assets/club/descuentos.jpeg"
     },
     {
@@ -2961,7 +3281,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_cumple_jpeg",
-      "community": 16,
+      "community": 8,
       "norm_label": "../assets/club/cumple.jpeg"
     },
     {
@@ -2971,7 +3291,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_exclusivo_jpeg",
-      "community": 16,
+      "community": 8,
       "norm_label": "../assets/club/exclusivo.jpeg"
     },
     {
@@ -2981,7 +3301,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_youtube_jpeg",
-      "community": 16,
+      "community": 8,
       "norm_label": "../assets/club/youtube.jpeg"
     },
     {
@@ -2991,7 +3311,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_assets_club_enviorapido_jpeg",
-      "community": 16,
+      "community": 8,
       "norm_label": "../assets/club/enviorapido.jpeg"
     },
     {
@@ -3011,7 +3331,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 3,
+      "community": 24,
       "norm_label": "firebase/firestore"
     },
     {
@@ -3021,7 +3341,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_envios",
-      "community": 4,
+      "community": 8,
       "norm_label": "envios.astro"
     },
     {
@@ -3031,7 +3351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 4,
+      "community": 37,
       "norm_label": "index.astro"
     },
     {
@@ -3041,7 +3361,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 4,
+      "community": 37,
       "norm_label": "../pages/homepage"
     },
     {
@@ -3051,7 +3371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 1,
+      "community": 8,
       "norm_label": "login.astro"
     },
     {
@@ -3061,8 +3381,338 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 1,
+      "community": 8,
       "norm_label": "./loginpage.jsx"
+    },
+    {
+      "label": "mi-cuenta.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta",
+      "community": 8,
+      "norm_label": "mi-cuenta.astro"
+    },
+    {
+      "label": "./AccountPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/AccountPage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_accountpage_tsx",
+      "community": 8,
+      "norm_label": "./accountpage.jsx"
+    },
+    {
+      "label": "club.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/club.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_club",
+      "community": 6,
+      "norm_label": "club.astro"
+    },
+    {
+      "label": "../../../layouts/Layout.astro",
+      "file_type": "code",
+      "source_file": "layouts/Layout.astro",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "community": 6,
+      "norm_label": "../../../layouts/layout.astro"
+    },
+    {
+      "label": "./ClubPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/ClubPage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_clubpage_tsx",
+      "community": 6,
+      "norm_label": "./clubpage.jsx"
+    },
+    {
+      "label": "ClubPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_club_clubpage",
+      "community": 1,
+      "norm_label": "clubpage.jsx"
+    },
+    {
+      "label": "ClubPage()",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_club_clubpage_clubpage",
+      "community": 1,
+      "norm_label": "clubpage()"
+    },
+    {
+      "label": "direcciones.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/direcciones.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_direcciones",
+      "community": 6,
+      "norm_label": "direcciones.astro"
+    },
+    {
+      "label": "./AddressesPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/AddressesPage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_addressespage_tsx",
+      "community": 6,
+      "norm_label": "./addressespage.jsx"
+    },
+    {
+      "label": "AddressesPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_direcciones_addressespage",
+      "community": 1,
+      "norm_label": "addressespage.jsx"
+    },
+    {
+      "label": "AddressesPage()",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_direcciones_addressespage_addressespage",
+      "community": 1,
+      "norm_label": "addressespage()"
+    },
+    {
+      "label": "mascotas.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/mascotas.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_mascotas",
+      "community": 6,
+      "norm_label": "mascotas.astro"
+    },
+    {
+      "label": "./PetsPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/PetsPage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_petspage_tsx",
+      "community": 6,
+      "norm_label": "./petspage.jsx"
+    },
+    {
+      "label": "PetsPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_mascotas_petspage",
+      "community": 1,
+      "norm_label": "petspage.jsx"
+    },
+    {
+      "label": "ESPECIE_EMOJI",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_mascotas_petspage_especie_emoji",
+      "community": 1,
+      "norm_label": "especie_emoji"
+    },
+    {
+      "label": "PetsPage()",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_mascotas_petspage_petspage",
+      "community": 1,
+      "norm_label": "petspage()"
+    },
+    {
+      "label": "OrderDetailPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "community": 6,
+      "norm_label": "orderdetailpage.jsx"
+    },
+    {
+      "label": "STATUS_MAP",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderdetailpage_status_map",
+      "community": 6,
+      "norm_label": "status_map"
+    },
+    {
+      "label": "OrderDetailPage()",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderdetailpage_orderdetailpage",
+      "community": 6,
+      "norm_label": "orderdetailpage()"
+    },
+    {
+      "label": "OrdersPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderspage",
+      "community": 1,
+      "norm_label": "orderspage.jsx"
+    },
+    {
+      "label": "FILTERS",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderspage_filters",
+      "community": 1,
+      "norm_label": "filters"
+    },
+    {
+      "label": "ACTIVE_STATES",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderspage_active_states",
+      "community": 1,
+      "norm_label": "active_states"
+    },
+    {
+      "label": "COMPLETED_STATES",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderspage_completed_states",
+      "community": 1,
+      "norm_label": "completed_states"
+    },
+    {
+      "label": "CANCELLED_STATES",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderspage_cancelled_states",
+      "community": 1,
+      "norm_label": "cancelled_states"
+    },
+    {
+      "label": "OrdersPage()",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_orderspage_orderspage",
+      "community": 1,
+      "norm_label": "orderspage()"
+    },
+    {
+      "label": "[id].astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_id",
+      "community": 6,
+      "norm_label": "[id].astro"
+    },
+    {
+      "label": "./OrderDetailPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderdetailpage_tsx",
+      "community": 6,
+      "norm_label": "./orderdetailpage.jsx"
+    },
+    {
+      "label": "index.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_pedidos_index",
+      "community": 8,
+      "norm_label": "index.astro"
+    },
+    {
+      "label": "./OrdersPage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderspage_tsx",
+      "community": 8,
+      "norm_label": "./orderspage.jsx"
+    },
+    {
+      "label": "perfil.astro",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/perfil.astro",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_perfil",
+      "community": 6,
+      "norm_label": "perfil.astro"
+    },
+    {
+      "label": "./ProfilePage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/ProfilePage.tsx",
+      "confidence": "EXTRACTED",
+      "_origin": "ast",
+      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_profilepage_tsx",
+      "community": 6,
+      "norm_label": "./profilepage.jsx"
+    },
+    {
+      "label": "ProfilePage.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_perfil_profilepage",
+      "community": 1,
+      "norm_label": "profilepage.jsx"
+    },
+    {
+      "label": "ProfilePage()",
+      "file_type": "code",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "src_pages_mi_cuenta_perfil_profilepage_profilepage",
+      "community": 1,
+      "norm_label": "profilepage()"
     },
     {
       "label": "missypo-tv.astro",
@@ -3071,7 +3721,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_missypo_tv",
-      "community": 24,
+      "community": 8,
       "norm_label": "missypo-tv.astro"
     },
     {
@@ -3081,7 +3731,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_featuredvideo",
-      "community": 24,
+      "community": 8,
       "norm_label": "featuredvideo"
     },
     {
@@ -3091,7 +3741,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_episodios",
-      "community": 24,
+      "community": 8,
       "norm_label": "episodios"
     },
     {
@@ -3101,7 +3751,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "src_pages_missypo_tv_string",
-      "community": 24,
+      "community": 8,
       "norm_label": "string"
     },
     {
@@ -3141,7 +3791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_privacidad",
-      "community": 4,
+      "community": 8,
       "norm_label": "privacidad.astro"
     },
     {
@@ -3151,7 +3801,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_producto_slug",
-      "community": 46,
+      "community": 37,
       "norm_label": "[slug].astro"
     },
     {
@@ -3161,7 +3811,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_producto_slug_getstaticpaths",
-      "community": 46,
+      "community": 37,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3171,7 +3821,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 46,
+      "community": 37,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -3181,7 +3831,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services",
-      "community": 46,
+      "community": 37,
       "norm_label": "../services"
     },
     {
@@ -3191,7 +3841,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_reclamaciones",
-      "community": 36,
+      "community": 0,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -3201,7 +3851,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 36,
+      "community": 0,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -3211,7 +3861,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_terminos",
-      "community": 4,
+      "community": 8,
       "norm_label": "terminos.astro"
     },
     {
@@ -3221,7 +3871,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_tienda",
-      "community": 46,
+      "community": 37,
       "norm_label": "tienda.astro"
     },
     {
@@ -3231,7 +3881,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 46,
+      "community": 37,
       "norm_label": "./storepage.jsx"
     },
     {
@@ -3243,6 +3893,16 @@
       "id": "src_schemas_tests_schemas_test",
       "community": 0,
       "norm_label": "schemas.test.js"
+    },
+    {
+      "label": "userProfile.test.js",
+      "file_type": "code",
+      "source_file": "src/schemas/__tests__/userProfile.test.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_schemas_tests_userprofile_test",
+      "community": 0,
+      "norm_label": "userprofile.test.js"
     },
     {
       "label": "cajaDiaria.js",
@@ -3475,6 +4135,66 @@
       "norm_label": "shippingconfigschema"
     },
     {
+      "label": "userProfile.js",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile",
+      "community": 0,
+      "norm_label": "userprofile.js"
+    },
+    {
+      "label": "AddressSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile_addressschema",
+      "community": 0,
+      "norm_label": "addressschema"
+    },
+    {
+      "label": "PetSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile_petschema",
+      "community": 0,
+      "norm_label": "petschema"
+    },
+    {
+      "label": "UserPreferencesSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile_userpreferencesschema",
+      "community": 0,
+      "norm_label": "userpreferencesschema"
+    },
+    {
+      "label": "UserProfileSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile_userprofileschema",
+      "community": 0,
+      "norm_label": "userprofileschema"
+    },
+    {
+      "label": "PetFormSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile_petformschema",
+      "community": 0,
+      "norm_label": "petformschema"
+    },
+    {
       "label": "validate.js",
       "file_type": "code",
       "source_file": "src/schemas/validate.js",
@@ -3661,7 +4381,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_config",
-      "community": 3,
+      "community": 24,
       "norm_label": "config.js"
     },
     {
@@ -3681,7 +4401,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_services_config_guardarconfiguracionenvio",
-      "community": 3,
+      "community": 24,
       "norm_label": "guardarconfiguracionenvio()"
     },
     {
@@ -3691,7 +4411,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_services_config_obtenercategoryslugmap",
-      "community": 3,
+      "community": 24,
       "norm_label": "obtenercategoryslugmap()"
     },
     {
@@ -3761,7 +4481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_firebase",
-      "community": 3,
+      "community": 24,
       "norm_label": "firebase.js"
     },
     {
@@ -3771,7 +4491,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_services_firebase_firebaseconfig",
-      "community": 3,
+      "community": 24,
       "norm_label": "firebaseconfig"
     },
     {
@@ -3791,7 +4511,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_firebase_auth",
-      "community": 0,
+      "community": 24,
       "norm_label": "auth"
     },
     {
@@ -3801,7 +4521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 46,
+      "community": 37,
       "norm_label": "index.js"
     },
     {
@@ -3811,7 +4531,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_orders",
-      "community": 3,
+      "community": 28,
       "norm_label": "orders.js"
     },
     {
@@ -3821,7 +4541,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_services_orders_crearpedidocontransaccion",
-      "community": 3,
+      "community": 28,
       "norm_label": "crearpedidocontransaccion()"
     },
     {
@@ -3831,7 +4551,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosadmin",
-      "community": 3,
+      "community": 28,
       "norm_label": "obtenerpedidosadmin()"
     },
     {
@@ -3841,7 +4561,7 @@
       "source_location": "L125",
       "_origin": "ast",
       "id": "src_services_orders_actualizarestadopedido",
-      "community": 3,
+      "community": 28,
       "norm_label": "actualizarestadopedido()"
     },
     {
@@ -3851,7 +4571,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "src_services_orders_reestablecerstockpedidocontransaccion",
-      "community": 3,
+      "community": 28,
       "norm_label": "reestablecerstockpedidocontransaccion()"
     },
     {
@@ -3861,7 +4581,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "src_services_orders_asignarrepartidorpedido",
-      "community": 3,
+      "community": 28,
       "norm_label": "asignarrepartidorpedido()"
     },
     {
@@ -3871,7 +4591,7 @@
       "source_location": "L265",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosrango",
-      "community": 46,
+      "community": 36,
       "norm_label": "obtenerpedidosrango()"
     },
     {
@@ -4001,7 +4721,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductosmasvendidos",
-      "community": 46,
+      "community": 9,
       "norm_label": "obtenerproductosmasvendidos()"
     },
     {
@@ -4011,7 +4731,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 46,
+      "community": 37,
       "norm_label": "reviews.js"
     },
     {
@@ -4021,7 +4741,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenas",
-      "community": 46,
+      "community": 37,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -4031,7 +4751,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_services_reviews_actualizarestadoresena",
-      "community": 46,
+      "community": 37,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -4041,7 +4761,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "src_services_reviews_eliminarresena",
-      "community": 46,
+      "community": 37,
       "norm_label": "eliminarresena()"
     },
     {
@@ -4065,6 +4785,96 @@
       "norm_label": "obtenerresenasporproducto()"
     },
     {
+      "label": "userProfile.js",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_services_userprofile",
+      "community": 1,
+      "norm_label": "userprofile.js"
+    },
+    {
+      "label": "getUserProfile()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "src_services_userprofile_getuserprofile",
+      "community": 1,
+      "norm_label": "getuserprofile()"
+    },
+    {
+      "label": "upsertUserProfile()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "src_services_userprofile_upsertuserprofile",
+      "community": 1,
+      "norm_label": "upsertuserprofile()"
+    },
+    {
+      "label": "updateUserProfile()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L57",
+      "_origin": "ast",
+      "id": "src_services_userprofile_updateuserprofile",
+      "community": 1,
+      "norm_label": "updateuserprofile()"
+    },
+    {
+      "label": "addAddress()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "src_services_userprofile_addaddress",
+      "community": 1,
+      "norm_label": "addaddress()"
+    },
+    {
+      "label": "removeAddress()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "src_services_userprofile_removeaddress",
+      "community": 1,
+      "norm_label": "removeaddress()"
+    },
+    {
+      "label": "addPet()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L96",
+      "_origin": "ast",
+      "id": "src_services_userprofile_addpet",
+      "community": 1,
+      "norm_label": "addpet()"
+    },
+    {
+      "label": "removePet()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L109",
+      "_origin": "ast",
+      "id": "src_services_userprofile_removepet",
+      "community": 1,
+      "norm_label": "removepet()"
+    },
+    {
+      "label": "getOrdersByUser()",
+      "file_type": "code",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L120",
+      "_origin": "ast",
+      "id": "src_services_userprofile_getordersbyuser",
+      "community": 1,
+      "norm_label": "getordersbyuser()"
+    },
+    {
       "label": "setupTests.js",
       "file_type": "code",
       "source_file": "src/setupTests.js",
@@ -4081,8 +4891,18 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_tests_cartstore_test",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartstore.test.js"
+    },
+    {
+      "label": "userStore.test.js",
+      "file_type": "code",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_store_tests_userstore_test",
+      "community": 1,
+      "norm_label": "userstore.test.js"
     },
     {
       "label": "cartStore.js",
@@ -4091,7 +4911,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_cartstore",
-      "community": 37,
+      "community": 9,
       "norm_label": "cartstore.js"
     },
     {
@@ -4101,7 +4921,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_store_cartstore_recalculatetotals",
-      "community": 37,
+      "community": 9,
       "norm_label": "recalculatetotals()"
     },
     {
@@ -4111,7 +4931,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_store_cartstore_usecartstore",
-      "community": 37,
+      "community": 9,
       "norm_label": "usecartstore"
     },
     {
@@ -4141,7 +4961,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_searchstore",
-      "community": 6,
+      "community": 37,
       "norm_label": "searchstore.js"
     },
     {
@@ -4151,8 +4971,28 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_store_searchstore_usesearchstore",
-      "community": 6,
+      "community": 37,
       "norm_label": "usesearchstore"
+    },
+    {
+      "label": "userStore.js",
+      "file_type": "code",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "src_store_userstore",
+      "community": 1,
+      "norm_label": "userstore.js"
+    },
+    {
+      "label": "useUserStore",
+      "file_type": "code",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "src_store_userstore_useuserstore",
+      "community": 1,
+      "norm_label": "useuserstore"
     },
     {
       "label": "tailwind.config.js",
@@ -4171,7 +5011,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 3,
+      "community": 24,
       "norm_label": "vitest.config.js"
     },
     {
@@ -4338,7 +5178,7 @@
       "label": "Loading protocol",
       "file_type": "document",
       "source_file": ".atl/skill-registry.md",
-      "source_location": "L63",
+      "source_location": "L64",
       "_origin": "ast",
       "id": "atl_skill_registry_loading_protocol",
       "community": 45,
@@ -6273,6 +7113,16 @@
       "id": "src_assets_readme_naming_convention",
       "community": 22,
       "norm_label": "naming convention"
+    },
+    {
+      "label": "AddressFormSchema",
+      "file_type": "code",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "src_schemas_userprofile_addressformschema",
+      "community": 0,
+      "norm_label": "addressformschema"
     }
   ],
   "links": [
@@ -7617,6 +8467,541 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_accountdashboard_accountdashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_accountheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_accountheader_accountheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_contentfeed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_contentfeed_contentfeed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_ordercard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_ordercard_ordercard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_pointsbalance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_pointsbalance_pointsbalance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_smartcta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountDashboard.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_account_accountdashboard",
+      "target": "src_components_account_smartcta_smartcta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_components_account_accountdashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_components_account_accountdashboard_accountdashboard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountHeader.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_accountheader",
+      "target": "src_components_account_accountheader_accountheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountLayout.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_account_accountlayout",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountLayout.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_accountlayout",
+      "target": "src_components_account_accountsidebar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountLayout.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_accountlayout",
+      "target": "src_components_account_accountsidebar_accountsidebar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_components_account_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_components_account_accountlayout_accountlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "src_components_account_accountsidebar",
+      "target": "src_components_account_accountsidebar_accountsidebar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_account_accountsidebar",
+      "target": "src_components_account_accountsidebar_nav_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_accountsidebar",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AccountSidebar.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_accountsidebar",
+      "target": "src_services_auth_logout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AddressForm.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_components_account_addressform",
+      "target": "src_components_account_addressform_addressform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/AddressForm.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_components_account_addressform",
+      "target": "src_data_locations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_components_account_addressform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_components_account_addressform_addressform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/ContentFeed.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_contentfeed",
+      "target": "src_components_account_contentfeed_contentfeed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/OrderCard.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_components_account_ordercard",
+      "target": "src_components_account_ordercard_ordercard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/OrderCard.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_ordercard",
+      "target": "src_components_account_ordercard_status_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_components_account_ordercard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_components_account_ordercard_ordercard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/OrderTimeline.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_account_ordertimeline",
+      "target": "src_components_account_ordertimeline_ordertimeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/OrderTimeline.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_ordertimeline",
+      "target": "src_components_account_ordertimeline_timeline_steps",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/PetForm.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_account_petform",
+      "target": "src_components_account_petform_petform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_components_account_petform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_components_account_petform_petform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/PointsBalance.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_components_account_pointsbalance",
+      "target": "src_components_account_pointsbalance_pointsbalance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/SmartCTA.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_components_account_smartcta",
+      "target": "src_components_account_smartcta_getsmartcta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/account/SmartCTA.jsx",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "src_components_account_smartcta",
+      "target": "src_components_account_smartcta_smartcta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L22",
       "weight": 1.0,
@@ -8403,7 +9788,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_checkoutform_checkoutform",
@@ -8414,7 +9799,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_clubsection",
@@ -8425,7 +9810,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_clubsection_clubsection",
@@ -8436,7 +9821,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_contactfields",
@@ -8447,7 +9832,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_contactfields_contactfields",
@@ -8458,7 +9843,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_couponsection",
@@ -8469,7 +9854,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_couponsection_couponsection",
@@ -8480,7 +9865,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_documentfields",
@@ -8491,7 +9876,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_documentfields_documentfields",
@@ -8502,7 +9887,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_ordersummary",
@@ -8513,7 +9898,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_ordersummary_ordersummary",
@@ -8524,7 +9909,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmethods",
@@ -8535,7 +9920,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmethods_paymentmethods",
@@ -8546,7 +9931,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmpbrick",
@@ -8557,7 +9942,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmpbrick_paymentmpbrick",
@@ -8568,7 +9953,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentqrculqi",
@@ -8579,7 +9964,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentqrculqi_paymentqrculqi",
@@ -8590,7 +9975,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_shippingfields",
@@ -8601,7 +9986,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_shippingfields_shippingfields",
@@ -8612,7 +9997,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_hooks_usecheckoutform",
@@ -8623,7 +10008,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_hooks_usecheckoutform_usecheckoutform",
@@ -8634,7 +10019,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_hooks_useclubmembership",
@@ -8645,7 +10030,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_hooks_useclubmembership_useclubmembership",
@@ -8656,7 +10041,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_hooks_useshippingcalc",
@@ -8667,7 +10052,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_hooks_useshippingcalc_useshippingcalc",
@@ -8678,10 +10063,21 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_firebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/checkout/CheckoutForm.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_checkout_checkoutform",
+      "target": "src_services_firebase_auth",
       "confidence_score": 1.0
     },
     {
@@ -8689,7 +10085,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_index",
@@ -8700,7 +10096,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_orders_crearpedidocontransaccion",
@@ -8723,7 +10119,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform_checkoutform",
       "target": "src_hooks_usecheckoutform_usecheckoutform"
@@ -8734,7 +10130,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform_checkoutform",
       "target": "src_hooks_useclubmembership_useclubmembership"
@@ -8745,7 +10141,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L45",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform_checkoutform",
       "target": "src_hooks_useshippingcalc_useshippingcalc"
@@ -9454,7 +10850,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_carticon",
@@ -9464,7 +10860,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_closeicon",
@@ -9474,7 +10870,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_menuicon",
@@ -9484,7 +10880,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_nav_categories",
@@ -9494,7 +10890,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_navbar",
@@ -9504,7 +10900,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_searchicon",
@@ -9514,10 +10910,32 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "src_components_layout_navbar",
       "target": "src_components_layout_navbar_usericon",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/layout/Navbar.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_components_layout_navbar",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/layout/Navbar.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_components_layout_navbar",
+      "target": "src_services_auth_listenauth",
       "confidence_score": 1.0
     },
     {
@@ -9559,7 +10977,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/layout/Navbar.jsx",
-      "source_location": "L56",
+      "source_location": "L65",
       "weight": 1.0,
       "source": "src_components_layout_navbar_navbar",
       "target": "src_store_cartstore_usecartstore"
@@ -9975,6 +11393,104 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useOrdersByUser.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_hooks_useordersbyuser",
+      "target": "src_hooks_useordersbyuser_useordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useOrdersByUser.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_hooks_useordersbyuser",
+      "target": "src_services_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useOrdersByUser.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_hooks_useordersbyuser",
+      "target": "src_services_userprofile_getordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_hooks_useordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_hooks_useordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_hooks_useordersbyuser_useordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_pages_accountpage_accountpage",
+      "target": "src_hooks_useordersbyuser_useordersbyuser"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_hooks_useordersbyuser_useordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage_orderspage",
+      "target": "src_hooks_useordersbyuser_useordersbyuser"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "src/hooks/useShippingCalc.js",
       "source_location": "L4",
       "weight": 1.0,
@@ -10003,6 +11519,49 @@
       "source": "src_hooks_useshippingcalc",
       "target": "src_services_index",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useUserProfile.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_hooks_useuserprofile",
+      "target": "src_hooks_useuserprofile_useuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useUserProfile.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_hooks_useuserprofile",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/hooks/useUserProfile.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_hooks_useuserprofile",
+      "target": "src_store_userstore_useuserstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/hooks/useUserProfile.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_hooks_useuserprofile_useuserprofile",
+      "target": "src_store_userstore_useuserstore"
     },
     {
       "relation": "imports_from",
@@ -10149,6 +11708,22 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta.astro",
+      "source": "src_pages_mi_cuenta",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
+      "source": "src_pages_mi_cuenta_pedidos_index",
+      "target": "src_layouts_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
       "source_file": "src/pages/missypo-tv.astro",
       "source": "src_pages_missypo_tv",
       "target": "src_layouts_layout",
@@ -10250,6 +11825,82 @@
       "source": "src_pages_404",
       "target": "src_pages_notfoundpage",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_accountpage_accountpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_store_userstore_useuserstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta",
+      "target": "src_pages_accountpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_pages_accountpage_accountpage",
+      "target": "src_store_userstore_useuserstore"
     },
     {
       "relation": "imports_from",
@@ -11761,6 +13412,28 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "src/services/cashRegister.js",
       "source_location": "L1",
       "weight": 1.0,
@@ -11836,6 +13509,17 @@
     },
     {
       "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/index.astro",
       "source": "src_pages_index",
@@ -11849,6 +13533,464 @@
       "source": "src_pages_login",
       "target": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta.astro",
+      "source": "src_pages_mi_cuenta",
+      "target": "c_mis_proyectos_missy_po_src_pages_accountpage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club.astro",
+      "source": "src_pages_mi_cuenta_club",
+      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club.astro",
+      "source": "src_pages_mi_cuenta_club",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_clubpage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones.astro",
+      "source": "src_pages_mi_cuenta_direcciones",
+      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas.astro",
+      "source": "src_pages_mi_cuenta_mascotas",
+      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
+      "source": "src_pages_mi_cuenta_pedidos_id",
+      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil.astro",
+      "source": "src_pages_mi_cuenta_perfil",
+      "target": "c_mis_proyectos_missy_po_layouts_layout_astro",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "src_pages_mi_cuenta_club_clubpage_clubpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_club_clubpage",
+      "target": "src_services_firebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones.astro",
+      "source": "src_pages_mi_cuenta_direcciones",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_addressespage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_pages_mi_cuenta_direcciones_addressespage_addressespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage",
+      "target": "src_store_userstore_useuserstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_direcciones_addressespage_addressespage",
+      "target": "src_store_userstore_useuserstore"
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas.astro",
+      "source": "src_pages_mi_cuenta_mascotas",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_petspage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_pages_mi_cuenta_mascotas_petspage_especie_emoji",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_pages_mi_cuenta_mascotas_petspage_petspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage",
+      "target": "src_store_userstore_useuserstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.jsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_mascotas_petspage_petspage",
+      "target": "src_store_userstore_useuserstore"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_id",
+      "target": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_pages_mi_cuenta_pedidos_orderdetailpage_orderdetailpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "target": "src_pages_mi_cuenta_pedidos_orderdetailpage_status_map",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_index",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage_active_states",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage_cancelled_states",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage_completed_states",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage_filters",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage_orderspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_pedidos_orderspage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/[id].astro",
+      "source": "src_pages_mi_cuenta_pedidos_id",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderdetailpage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
+      "source": "src_pages_mi_cuenta_pedidos_index",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderspage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil.astro",
+      "source": "src_pages_mi_cuenta_perfil",
+      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_profilepage_tsx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_pages_mi_cuenta_perfil_profilepage_profilepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage",
+      "target": "src_store_userstore_useuserstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_pages_mi_cuenta_perfil_profilepage_profilepage",
+      "target": "src_store_userstore_useuserstore"
     },
     {
       "relation": "contains",
@@ -12111,6 +14253,50 @@
       "weight": 1.0,
       "source": "src_schemas_tests_schemas_test",
       "target": "src_schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/userProfile.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_schemas_tests_userprofile_test",
+      "target": "src_schemas_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/userProfile.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_schemas_tests_userprofile_test",
+      "target": "src_schemas_userprofile_addressschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/userProfile.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_schemas_tests_userprofile_test",
+      "target": "src_schemas_userprofile_petschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/__tests__/userProfile.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_schemas_tests_userprofile_test",
+      "target": "src_schemas_userprofile_userprofileschema",
       "confidence_score": 1.0
     },
     {
@@ -12463,6 +14649,72 @@
       "context": "export",
       "confidence": "EXTRACTED",
       "source_file": "src/schemas/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_schemas_index",
+      "target": "src_schemas_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_schemas_index",
+      "target": "src_schemas_userprofile_addressformschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_schemas_index",
+      "target": "src_schemas_userprofile_addressschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_schemas_index",
+      "target": "src_schemas_userprofile_petformschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_schemas_index",
+      "target": "src_schemas_userprofile_petschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "re-export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_schemas_index",
+      "target": "src_schemas_userprofile_userprofileschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/index.js",
       "source_location": "L1",
       "weight": 1.0,
       "source": "src_schemas_index",
@@ -12532,6 +14784,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_services_reviews",
+      "target": "src_schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
       "target": "src_schemas_index",
       "confidence_score": 1.0
     },
@@ -12637,6 +14900,67 @@
       "weight": 1.0,
       "source": "src_services_config",
       "target": "src_schemas_shippingconfig_shippingconfigschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_schemas_userprofile",
+      "target": "src_schemas_userprofile_addressschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "src_schemas_userprofile",
+      "target": "src_schemas_userprofile_petformschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_schemas_userprofile",
+      "target": "src_schemas_userprofile_petschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "src_schemas_userprofile",
+      "target": "src_schemas_userprofile_userpreferencesschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/schemas/userProfile.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "src_schemas_userprofile",
+      "target": "src_schemas_userprofile_userprofileschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_schemas_userprofile_userprofileschema",
       "confidence_score": 1.0
     },
     {
@@ -13054,6 +15378,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_firebase",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "re_exports",
       "context": "export",
       "confidence": "EXTRACTED",
@@ -13084,6 +15419,17 @@
       "weight": 1.0,
       "source": "src_services_index",
       "target": "src_services_reviews",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/index.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_services_index",
+      "target": "src_services_userprofile",
       "confidence_score": 1.0
     },
     {
@@ -13361,6 +15707,350 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_addaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L96",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_addpet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L120",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_getordersbyuser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_removeaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L109",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_removepet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "src_services_userprofile",
+      "target": "src_services_userprofile_upsertuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "src_services_userprofile_addaddress",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "src_services_userprofile_addpet",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "src_services_userprofile_removeaddress",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "src_services_userprofile_removepet",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_getuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_upsertuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_upsertuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "src_services_userprofile_addaddress",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "src_services_userprofile_addpet",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "src_services_userprofile_removeaddress",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/userProfile.js",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "src_services_userprofile_removepet",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_updateuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_addaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_addaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_removeaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_removeaddress",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_addpet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_addpet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_services_userprofile_removepet",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_services_userprofile_removepet",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -13380,6 +16070,28 @@
       "weight": 1.0,
       "source": "src_store_tests_cartstore_test",
       "target": "src_store_cartstore_usecartstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/__tests__/userStore.test.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "src_store_tests_userstore_test",
+      "target": "src_store_userstore_useuserstore",
       "confidence_score": 1.0
     },
     {
@@ -13420,6 +16132,16 @@
       "weight": 1.0,
       "source": "src_store_searchstore",
       "target": "src_store_searchstore_usesearchstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/store/userStore.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_store_userstore",
+      "target": "src_store_userstore_useuserstore",
       "confidence_score": 1.0
     },
     {
@@ -13526,7 +16248,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": ".atl/skill-registry.md",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "atl_skill_registry_skill_registry_missy_po",
       "target": "atl_skill_registry_loading_protocol",
@@ -15384,5 +18106,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5dd954c3030b35e816b7431fba19136adee1f8e7"
+  "built_at_commit": "ea53f362e7f3a8f7744680c52d0da3d48f0447c1"
 }

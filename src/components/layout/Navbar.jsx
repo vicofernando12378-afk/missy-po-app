@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LiveSearch from '../header/LiveSearch'
 import CartHoverPopup from '../header/CartHoverPopup'
 import useCartStore from '../../store/cartStore'
 import MarqueeBanner from '../hero/MarqueeBanner'
+import { listenAuth } from '../../services/auth'
 
 // Íconos inline SVG para evitar dependencia extra
 const SearchIcon = () => (
@@ -52,6 +53,14 @@ const NAV_CATEGORIES = [
 export default function Navbar({ logoUrl }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [cartHoverOpen, setCartHoverOpen] = useState(false)
+  const [authUser, setAuthUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = listenAuth((user) => {
+      setAuthUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
 
   const cartCount = useCartStore(s => s.items.reduce((sum, i) => sum + i.cantidad, 0))
   const cartTotal = useCartStore(s => s.items.reduce((sum, i) => sum + i.precio_unitario * i.cantidad, 0))
@@ -102,7 +111,7 @@ export default function Navbar({ logoUrl }) {
 
               {/* Mi Cuenta */}
               <a
-                href="/login"
+                href={authUser ? '/mi-cuenta' : '/login'}
                 className="hidden md:flex items-center gap-1.5 text-white/90 hover:text-white
                            transition-colors text-xs font-ui"
                 id="nav-account"
@@ -191,7 +200,7 @@ export default function Navbar({ logoUrl }) {
               ))}
               <div className="border-t border-white/20 mt-2 pt-2">
                 <a
-                  href="/login"
+                  href={authUser ? '/mi-cuenta' : '/login'}
                   className="py-2.5 px-3 rounded-lg text-white font-ui text-sm font-medium
                              hover:bg-white/10 transition-colors flex items-center gap-2"
                   onClick={() => setMobileMenuOpen(false)}
