@@ -14,7 +14,7 @@ export const PetSchema = z.object({
   especie: z.enum(['perro', 'gato', 'otro'], { required_error: 'Selecciona una especie' }),
   raza: z.string().max(50, 'Raza demasiado larga').default('').optional(),
   fecha_nacimiento: z.string().default('').optional(),
-  foto_url: z.string().url('URL inválida').default('').optional()
+  foto_url: z.string().url('URL inválida').or(z.literal('')).default('').optional()
 })
 
 export const UserPreferencesSchema = z.object({

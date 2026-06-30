@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import {
   getUserProfile, upsertUserProfile, updateUserProfile,
-  addAddress, removeAddress, addPet, removePet
+  addAddress, removeAddress, addPet, removePet, initializeUserProfile
 } from '../services/userProfile'
 
 const useUserStore = create(
@@ -12,7 +12,7 @@ const useUserStore = create(
       isLoading: false,
       error: null,
 
-      fetchProfile: async (uid) => {
+      fetchProfile: async (uid, email) => {
         if (!uid) return null
         const { isLoading } = get()
         if (isLoading) return get().profile
@@ -20,7 +20,10 @@ const useUserStore = create(
         set({ isLoading: true, error: null })
         try {
           let profile = await getUserProfile(uid)
-          if (!profile) {
+          if (!profile && email) {
+            // Inicializar/migrar perfil de forma persistida en Firestore
+            profile = await initializeUserProfile(uid, email)
+          } else if (!profile) {
             profile = { uid, direcciones: [], mascotas: [], preferencias: {} }
           }
           set({ profile, isLoading: false })

@@ -7,6 +7,96 @@ import { UserProfileSchema } from '../schemas'
 
 const COLECCION = 'myp_user_profiles'
 
+// ── INITIALIZE USER PROFILE (MIGRATE FROM CLUB) ──────────────
+export async function initializeUserProfile(uid, email) {
+  try {
+    const ref = doc(db, COLECCION, uid)
+    
+    // 1. Intentar buscar si hay miembros en el club con este correo
+    const q = query(collection(db, 'myp_club_miembros'), where('email', '==', email.trim().toLowerCase()))
+    const snap = await getDocs(q)
+    
+    let nombre = 'Socio'
+    let apellido = 'Missy & Po'
+    let telefono = ''
+    let documento_tipo = 'DNI'
+    let documento_number = ''
+    let direcciones = []
+    let mascotas = []
+    
+    if (!snap.empty) {
+      // Tomar datos del primer miembro encontrado para el tutor
+      const firstMember = snap.docs[0].data()
+      if (firstMember.nombre_tutor) {
+        const parts = firstMember.nombre_tutor.split(' ')
+        nombre = parts[0] || 'Socio'
+        apellido = parts.slice(1).join(' ') || 'Missy & Po'
+      }
+      telefono = firstMember.celular || ''
+      documento_tipo = firstMember.documento_tipo || 'DNI'
+      documento_number = firstMember.documento_numero || ''
+      
+      if (firstMember.direccion) {
+        direcciones.push({
+          alias: 'Dirección Club',
+          departamento: firstMember.departamento || 'Arequipa',
+          distrito: firstMember.distrito || '',
+          direccion: firstMember.direccion,
+          referencia: '',
+          es_default: true
+        })
+      }
+      
+      // Añadir todas las mascotas registradas bajo este mismo correo
+      snap.docs.forEach(docSnap => {
+        const memberData = docSnap.data()
+        if (memberData.nombre_mascota) {
+          mascotas.push({
+            nombre: memberData.nombre_mascota.trim(),
+            especie: 'perro',
+            raza: memberData.mascota_raza || '',
+            fecha_nacimiento: '',
+            foto_url: ''
+          })
+        }
+      })
+    }
+    
+    const initialProfile = {
+      uid,
+      email,
+      nombre,
+      apellido,
+      telefono,
+      documento_tipo,
+      documento_numero: documento_number,
+      direcciones,
+      mascotas,
+      preferencias: {
+        notificaciones_email: true,
+        notificaciones_whatsapp: false,
+        idioma: 'es'
+      }
+    }
+    
+    const validation = UserProfileSchema.safeParse(initialProfile)
+    if (!validation.success) {
+      console.warn('Fallo de validación de perfil inicial:', validation.error)
+    }
+    
+    await setDoc(ref, {
+      ...(validation.success ? validation.data : initialProfile),
+      creado_en: serverTimestamp(),
+      actualizado_en: serverTimestamp()
+    })
+    
+    return { id: uid, ...(validation.success ? validation.data : initialProfile) }
+  } catch (e) {
+    console.error('Error al inicializar user profile:', e)
+    throw e
+  }
+}
+
 // ── OBTENER PROFILE POR UID ─────────────────────────────────
 export async function getUserProfile(uid) {
   try {

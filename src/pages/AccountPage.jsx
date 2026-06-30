@@ -45,7 +45,7 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (authUser?.uid) {
-      fetchProfile(authUser.uid)
+      fetchProfile(authUser.uid, authUser.email)
     }
   }, [authUser?.uid])
 
