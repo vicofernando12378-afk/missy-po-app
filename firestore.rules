@@ -113,6 +113,15 @@ service cloud.firestore {
         request.auth.token.email == 'victorchavezd@gmail.com'
       );
     }
+
+    // Reclamaciones: Creación pública, administración (read, update, delete) restringida a administradores
+    match /myp_reclamaciones/{reclamacionId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
   }
 }
 
