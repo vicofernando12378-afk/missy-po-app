@@ -4248,7 +4248,7 @@
       "label": "Stack Actual",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "ai_context_stack_actual",
       "community": 21,
@@ -4258,7 +4258,7 @@
       "label": "Decisiones T\u00e9cnicas Tomadas",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L24",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "ai_context_decisiones_t\u00e9cnicas_tomadas",
       "community": 21,
@@ -4268,7 +4268,7 @@
       "label": "Archivos Creados / Modificados",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L32",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "ai_context_archivos_creados_modificados",
       "community": 21,
@@ -4278,7 +4278,7 @@
       "label": "Siguientes Pasos",
       "file_type": "document",
       "source_file": ".ai-context.md",
-      "source_location": "L40",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "ai_context_siguientes_pasos",
       "community": 21,
@@ -7575,9 +7575,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_adminlayout",
-      "confidence_score": 1.0
+      "target": "src_app_adminlayout"
     },
     {
       "relation": "contains",
@@ -7585,9 +7585,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_adminloader",
-      "confidence_score": 1.0
+      "target": "src_app_adminloader"
     },
     {
       "relation": "contains",
@@ -7605,9 +7605,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_cajadiaria",
-      "confidence_score": 1.0
+      "target": "src_app_cajadiaria"
     },
     {
       "relation": "contains",
@@ -7615,9 +7615,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_configuracionenvioscupones",
-      "confidence_score": 1.0
+      "target": "src_app_configuracionenvioscupones"
     },
     {
       "relation": "contains",
@@ -7625,9 +7625,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_inventariostock",
-      "confidence_score": 1.0
+      "target": "src_app_inventariostock"
     },
     {
       "relation": "contains",
@@ -7635,9 +7635,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_pedidosdashboard",
-      "confidence_score": 1.0
+      "target": "src_app_pedidosdashboard"
     },
     {
       "relation": "contains",
@@ -7645,9 +7645,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_productoscrud",
-      "confidence_score": 1.0
+      "target": "src_app_productoscrud"
     },
     {
       "relation": "contains",
@@ -7655,9 +7655,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_resenasdashboard",
-      "confidence_score": 1.0
+      "target": "src_app_resenasdashboard"
     },
     {
       "relation": "contains",
@@ -7665,9 +7665,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_ventasdashboard",
-      "confidence_score": 1.0
+      "target": "src_app_ventasdashboard"
     },
     {
       "relation": "imports_from",
@@ -7707,9 +7707,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_adminlayout",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_adminlayout"
     },
     {
       "relation": "contains",
@@ -7717,9 +7717,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_adminloader",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_adminloader"
     },
     {
       "relation": "contains",
@@ -7727,9 +7727,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_adminloginpage",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_adminloginpage"
     },
     {
       "relation": "contains",
@@ -7737,9 +7737,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_cajadiaria",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_cajadiaria"
     },
     {
       "relation": "contains",
@@ -7747,9 +7747,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_configuracionenvioscupones",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_configuracionenvioscupones"
     },
     {
       "relation": "contains",
@@ -7757,9 +7757,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_cvrmdashboard",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_cvrmdashboard"
     },
     {
       "relation": "contains",
@@ -7767,9 +7767,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_inventariostock",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_inventariostock"
     },
     {
       "relation": "contains",
@@ -7777,9 +7777,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_pedidosdashboard",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_pedidosdashboard"
     },
     {
       "relation": "contains",
@@ -7787,9 +7787,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_productoscrud",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_productoscrud"
     },
     {
       "relation": "contains",
@@ -7797,9 +7797,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_resenasdashboard",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_resenasdashboard"
     },
     {
       "relation": "contains",
@@ -7807,9 +7807,9 @@
       "source_file": "src/components/admin/AdminApp.jsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminapp",
-      "target": "admin_adminapp_ventasdashboard",
-      "confidence_score": 1.0
+      "target": "admin_adminapp_ventasdashboard"
     },
     {
       "relation": "imports_from",
@@ -8049,9 +8049,9 @@
       "source_file": "src/pages/admin/AdminLayout.jsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminlayout",
-      "target": "admin_adminsidebar",
-      "confidence_score": 1.0
+      "target": "admin_adminsidebar"
     },
     {
       "relation": "contains",
@@ -8059,9 +8059,9 @@
       "source_file": "src/components/admin/AdminSidebar.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminsidebar",
-      "target": "admin_adminsidebar_adminsidebar",
-      "confidence_score": 1.0
+      "target": "admin_adminsidebar_adminsidebar"
     },
     {
       "relation": "imports",
@@ -8070,9 +8070,9 @@
       "source_file": "src/pages/admin/AdminLayout.jsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_adminlayout",
-      "target": "admin_adminsidebar_adminsidebar",
-      "confidence_score": 1.0
+      "target": "admin_adminsidebar_adminsidebar"
     },
     {
       "relation": "contains",
@@ -8176,9 +8176,9 @@
       "source_file": "src/components/admin/ProductoFormModal.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_productoformmodal",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -8187,9 +8187,9 @@
       "source_file": "src/components/admin/ProductoFormModal.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_productoformmodal",
-      "target": "services_products_actualizarproducto",
-      "confidence_score": 1.0
+      "target": "services_products_actualizarproducto"
     },
     {
       "relation": "imports",
@@ -8198,9 +8198,9 @@
       "source_file": "src/components/admin/ProductoFormModal.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_productoformmodal",
-      "target": "services_products_crearproducto",
-      "confidence_score": 1.0
+      "target": "services_products_crearproducto"
     },
     {
       "relation": "imports_from",
@@ -8271,9 +8271,9 @@
       "source_file": "src/components/cart/CartDrawer.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cart_cartdrawer",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -8282,9 +8282,9 @@
       "source_file": "src/components/cart/CartDrawer.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "cart_cartdrawer",
-      "target": "services_products_obtenerproductosmasvendidos",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerproductosmasvendidos"
     },
     {
       "relation": "imports_from",
@@ -8691,9 +8691,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_checkoutform_checkoutform",
-      "confidence_score": 1.0
+      "target": "checkout_checkoutform_checkoutform"
     },
     {
       "relation": "imports_from",
@@ -8702,9 +8702,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_clubsection",
-      "confidence_score": 1.0
+      "target": "checkout_clubsection"
     },
     {
       "relation": "imports",
@@ -8713,9 +8713,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_clubsection_clubsection",
-      "confidence_score": 1.0
+      "target": "checkout_clubsection_clubsection"
     },
     {
       "relation": "imports_from",
@@ -8724,9 +8724,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_contactfields",
-      "confidence_score": 1.0
+      "target": "checkout_contactfields"
     },
     {
       "relation": "imports",
@@ -8735,9 +8735,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_contactfields_contactfields",
-      "confidence_score": 1.0
+      "target": "checkout_contactfields_contactfields"
     },
     {
       "relation": "imports_from",
@@ -8746,9 +8746,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_couponsection",
-      "confidence_score": 1.0
+      "target": "checkout_couponsection"
     },
     {
       "relation": "imports",
@@ -8757,9 +8757,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_couponsection_couponsection",
-      "confidence_score": 1.0
+      "target": "checkout_couponsection_couponsection"
     },
     {
       "relation": "imports_from",
@@ -8768,9 +8768,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_documentfields",
-      "confidence_score": 1.0
+      "target": "checkout_documentfields"
     },
     {
       "relation": "imports",
@@ -8779,9 +8779,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_documentfields_documentfields",
-      "confidence_score": 1.0
+      "target": "checkout_documentfields_documentfields"
     },
     {
       "relation": "imports_from",
@@ -8790,9 +8790,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_ordersummary",
-      "confidence_score": 1.0
+      "target": "checkout_ordersummary"
     },
     {
       "relation": "imports",
@@ -8801,9 +8801,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_ordersummary_ordersummary",
-      "confidence_score": 1.0
+      "target": "checkout_ordersummary_ordersummary"
     },
     {
       "relation": "imports_from",
@@ -8812,9 +8812,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_paymentmethods",
-      "confidence_score": 1.0
+      "target": "checkout_paymentmethods"
     },
     {
       "relation": "imports",
@@ -8823,9 +8823,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_paymentmethods_paymentmethods",
-      "confidence_score": 1.0
+      "target": "checkout_paymentmethods_paymentmethods"
     },
     {
       "relation": "imports_from",
@@ -8834,9 +8834,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_paymentmpbrick",
-      "confidence_score": 1.0
+      "target": "checkout_paymentmpbrick"
     },
     {
       "relation": "imports",
@@ -8845,9 +8845,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_paymentmpbrick_paymentmpbrick",
-      "confidence_score": 1.0
+      "target": "checkout_paymentmpbrick_paymentmpbrick"
     },
     {
       "relation": "imports_from",
@@ -8856,9 +8856,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_paymentqrculqi",
-      "confidence_score": 1.0
+      "target": "checkout_paymentqrculqi"
     },
     {
       "relation": "imports",
@@ -8867,9 +8867,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_paymentqrculqi_paymentqrculqi",
-      "confidence_score": 1.0
+      "target": "checkout_paymentqrculqi_paymentqrculqi"
     },
     {
       "relation": "imports_from",
@@ -8878,9 +8878,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_shippingfields",
-      "confidence_score": 1.0
+      "target": "checkout_shippingfields"
     },
     {
       "relation": "imports",
@@ -8889,9 +8889,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "checkout_shippingfields_shippingfields",
-      "confidence_score": 1.0
+      "target": "checkout_shippingfields_shippingfields"
     },
     {
       "relation": "imports_from",
@@ -8900,9 +8900,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -8911,9 +8911,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "hooks_usecheckoutform",
-      "confidence_score": 1.0
+      "target": "hooks_usecheckoutform"
     },
     {
       "relation": "imports",
@@ -8922,9 +8922,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "hooks_usecheckoutform_usecheckoutform",
-      "confidence_score": 1.0
+      "target": "hooks_usecheckoutform_usecheckoutform"
     },
     {
       "relation": "imports_from",
@@ -8933,9 +8933,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "hooks_useclubmembership",
-      "confidence_score": 1.0
+      "target": "hooks_useclubmembership"
     },
     {
       "relation": "imports",
@@ -8944,9 +8944,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "hooks_useclubmembership_useclubmembership",
-      "confidence_score": 1.0
+      "target": "hooks_useclubmembership_useclubmembership"
     },
     {
       "relation": "imports_from",
@@ -8955,9 +8955,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "hooks_useshippingcalc",
-      "confidence_score": 1.0
+      "target": "hooks_useshippingcalc"
     },
     {
       "relation": "imports",
@@ -8966,9 +8966,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "hooks_useshippingcalc_useshippingcalc",
-      "confidence_score": 1.0
+      "target": "hooks_useshippingcalc_useshippingcalc"
     },
     {
       "relation": "imports_from",
@@ -8977,9 +8977,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "imports_from",
@@ -8988,9 +8988,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -8999,9 +8999,9 @@
       "source_file": "src/components/checkout/CheckoutForm.jsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_checkoutform",
-      "target": "services_orders_crearpedidocontransaccion",
-      "confidence_score": 1.0
+      "target": "services_orders_crearpedidocontransaccion"
     },
     {
       "relation": "imports_from",
@@ -9010,9 +9010,9 @@
       "source_file": "src/pages/CheckoutPage.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_checkoutpage",
-      "target": "checkout_checkoutform",
-      "confidence_score": 1.0
+      "target": "checkout_checkoutform"
     },
     {
       "relation": "calls",
@@ -9054,9 +9054,9 @@
       "source_file": "src/pages/CheckoutPage.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_checkoutpage",
-      "target": "checkout_checkoutform_checkoutform",
-      "confidence_score": 1.0
+      "target": "checkout_checkoutform_checkoutform"
     },
     {
       "relation": "contains",
@@ -9064,9 +9064,9 @@
       "source_file": "src/components/checkout/ClubSection.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_clubsection",
-      "target": "checkout_clubsection_clubsection",
-      "confidence_score": 1.0
+      "target": "checkout_clubsection_clubsection"
     },
     {
       "relation": "contains",
@@ -9074,9 +9074,9 @@
       "source_file": "src/components/checkout/ContactFields.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_contactfields",
-      "target": "checkout_contactfields_contactfields",
-      "confidence_score": 1.0
+      "target": "checkout_contactfields_contactfields"
     },
     {
       "relation": "contains",
@@ -9084,9 +9084,9 @@
       "source_file": "src/components/checkout/CouponSection.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_couponsection",
-      "target": "checkout_couponsection_couponsection",
-      "confidence_score": 1.0
+      "target": "checkout_couponsection_couponsection"
     },
     {
       "relation": "contains",
@@ -9094,9 +9094,9 @@
       "source_file": "src/components/checkout/DocumentFields.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_documentfields",
-      "target": "checkout_documentfields_documentfields",
-      "confidence_score": 1.0
+      "target": "checkout_documentfields_documentfields"
     },
     {
       "relation": "contains",
@@ -9104,9 +9104,9 @@
       "source_file": "src/components/checkout/OrderSummary.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_ordersummary",
-      "target": "checkout_ordersummary_ordersummary",
-      "confidence_score": 1.0
+      "target": "checkout_ordersummary_ordersummary"
     },
     {
       "relation": "contains",
@@ -9114,9 +9114,9 @@
       "source_file": "src/components/checkout/PaymentMethods.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_paymentmethods",
-      "target": "checkout_paymentmethods_paymentmethods",
-      "confidence_score": 1.0
+      "target": "checkout_paymentmethods_paymentmethods"
     },
     {
       "relation": "contains",
@@ -9221,9 +9221,9 @@
       "source_file": "src/components/checkout/ShippingFields.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_shippingfields",
-      "target": "checkout_shippingfields_shippingfields",
-      "confidence_score": 1.0
+      "target": "checkout_shippingfields_shippingfields"
     },
     {
       "relation": "imports_from",
@@ -9232,9 +9232,9 @@
       "source_file": "src/components/checkout/ShippingFields.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_shippingfields",
-      "target": "data_locations",
-      "confidence_score": 1.0
+      "target": "data_locations"
     },
     {
       "relation": "imports",
@@ -9243,9 +9243,9 @@
       "source_file": "src/components/checkout/ShippingFields.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_shippingfields",
-      "target": "data_locations_arequipa_districts",
-      "confidence_score": 1.0
+      "target": "data_locations_arequipa_districts"
     },
     {
       "relation": "imports",
@@ -9254,9 +9254,9 @@
       "source_file": "src/components/checkout/ShippingFields.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "checkout_shippingfields",
-      "target": "data_locations_lima_regions",
-      "confidence_score": 1.0
+      "target": "data_locations_lima_regions"
     },
     {
       "relation": "contains",
@@ -10126,9 +10126,9 @@
       "source_file": "src/data/locations.js",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_locations",
-      "target": "data_locations_arequipa_districts",
-      "confidence_score": 1.0
+      "target": "data_locations_arequipa_districts"
     },
     {
       "relation": "contains",
@@ -10136,9 +10136,9 @@
       "source_file": "src/data/locations.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "data_locations",
-      "target": "data_locations_lima_regions",
-      "confidence_score": 1.0
+      "target": "data_locations_lima_regions"
     },
     {
       "relation": "imports_from",
@@ -10147,9 +10147,9 @@
       "source_file": "src/hooks/useCheckoutForm.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_usecheckoutform",
-      "target": "data_locations",
-      "confidence_score": 1.0
+      "target": "data_locations"
     },
     {
       "relation": "imports",
@@ -10158,9 +10158,9 @@
       "source_file": "src/hooks/useCheckoutForm.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_usecheckoutform",
-      "target": "data_locations_arequipa_districts",
-      "confidence_score": 1.0
+      "target": "data_locations_arequipa_districts"
     },
     {
       "relation": "imports_from",
@@ -10169,9 +10169,9 @@
       "source_file": "src/hooks/__tests__/useCheckoutForm.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_usecheckoutform_test",
-      "target": "hooks_usecheckoutform",
-      "confidence_score": 1.0
+      "target": "hooks_usecheckoutform"
     },
     {
       "relation": "imports",
@@ -10180,9 +10180,9 @@
       "source_file": "src/hooks/__tests__/useCheckoutForm.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_usecheckoutform_test",
-      "target": "hooks_usecheckoutform_usecheckoutform",
-      "confidence_score": 1.0
+      "target": "hooks_usecheckoutform_usecheckoutform"
     },
     {
       "relation": "imports_from",
@@ -10191,9 +10191,9 @@
       "source_file": "src/hooks/__tests__/useClubMembership.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_useclubmembership_test",
-      "target": "hooks_useclubmembership",
-      "confidence_score": 1.0
+      "target": "hooks_useclubmembership"
     },
     {
       "relation": "imports",
@@ -10202,9 +10202,9 @@
       "source_file": "src/hooks/__tests__/useClubMembership.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_useclubmembership_test",
-      "target": "hooks_useclubmembership_useclubmembership",
-      "confidence_score": 1.0
+      "target": "hooks_useclubmembership_useclubmembership"
     },
     {
       "relation": "imports_from",
@@ -10213,9 +10213,9 @@
       "source_file": "src/hooks/__tests__/useShippingCalc.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_useshippingcalc_test",
-      "target": "hooks_useshippingcalc",
-      "confidence_score": 1.0
+      "target": "hooks_useshippingcalc"
     },
     {
       "relation": "imports",
@@ -10224,9 +10224,9 @@
       "source_file": "src/hooks/__tests__/useShippingCalc.test.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_useshippingcalc_test",
-      "target": "hooks_useshippingcalc_useshippingcalc",
-      "confidence_score": 1.0
+      "target": "hooks_useshippingcalc_useshippingcalc"
     },
     {
       "relation": "contains",
@@ -10234,9 +10234,9 @@
       "source_file": "src/hooks/useCheckoutForm.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_usecheckoutform",
-      "target": "hooks_usecheckoutform_usecheckoutform",
-      "confidence_score": 1.0
+      "target": "hooks_usecheckoutform_usecheckoutform"
     },
     {
       "relation": "imports",
@@ -10245,9 +10245,9 @@
       "source_file": "src/hooks/useCheckoutForm.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_usecheckoutform",
-      "target": "schemas_checkout_checkoutschema",
-      "confidence_score": 1.0
+      "target": "schemas_checkout_checkoutschema"
     },
     {
       "relation": "imports_from",
@@ -10256,9 +10256,9 @@
       "source_file": "src/hooks/useCheckoutForm.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_usecheckoutform",
-      "target": "schemas_index",
-      "confidence_score": 1.0
+      "target": "schemas_index"
     },
     {
       "relation": "imports",
@@ -10267,9 +10267,9 @@
       "source_file": "src/hooks/useCheckoutForm.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_usecheckoutform",
-      "target": "schemas_validate_validate",
-      "confidence_score": 1.0
+      "target": "schemas_validate_validate"
     },
     {
       "relation": "imports_from",
@@ -10278,9 +10278,9 @@
       "source_file": "src/hooks/useClubMembership.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_useclubmembership",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "contains",
@@ -10288,9 +10288,9 @@
       "source_file": "src/hooks/useClubMembership.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_useclubmembership",
-      "target": "hooks_useclubmembership_useclubmembership",
-      "confidence_score": 1.0
+      "target": "hooks_useclubmembership_useclubmembership"
     },
     {
       "relation": "imports_from",
@@ -10299,9 +10299,9 @@
       "source_file": "src/hooks/useClubMembership.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_useclubmembership",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "contains",
@@ -10319,9 +10319,9 @@
       "source_file": "src/hooks/useShippingCalc.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_useshippingcalc",
-      "target": "hooks_useshippingcalc_useshippingcalc",
-      "confidence_score": 1.0
+      "target": "hooks_useshippingcalc_useshippingcalc"
     },
     {
       "relation": "imports",
@@ -10330,9 +10330,9 @@
       "source_file": "src/hooks/useShippingCalc.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_useshippingcalc",
-      "target": "services_config_obtenerconfiguracionenvio",
-      "confidence_score": 1.0
+      "target": "services_config_obtenerconfiguracionenvio"
     },
     {
       "relation": "imports_from",
@@ -10341,9 +10341,9 @@
       "source_file": "src/hooks/useShippingCalc.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "hooks_useshippingcalc",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports_from",
@@ -11040,9 +11040,9 @@
       "source_file": "src/pages/ProductPage.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_productpage",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -11051,9 +11051,9 @@
       "source_file": "src/pages/ProductPage.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_productpage",
-      "target": "services_reviews_crearresena",
-      "confidence_score": 1.0
+      "target": "services_reviews_crearresena"
     },
     {
       "relation": "imports",
@@ -11062,9 +11062,9 @@
       "source_file": "src/pages/ProductPage.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_productpage",
-      "target": "services_reviews_obtenerresenasporproducto",
-      "confidence_score": 1.0
+      "target": "services_reviews_obtenerresenasporproducto"
     },
     {
       "relation": "imports_from",
@@ -11474,9 +11474,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_cashregister_abrircajadiaria",
-      "confidence_score": 1.0
+      "target": "services_cashregister_abrircajadiaria"
     },
     {
       "relation": "imports",
@@ -11485,9 +11485,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_cashregister_cerrarcajadiaria",
-      "confidence_score": 1.0
+      "target": "services_cashregister_cerrarcajadiaria"
     },
     {
       "relation": "imports",
@@ -11496,9 +11496,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_cashregister_obtenercajaactiva",
-      "confidence_score": 1.0
+      "target": "services_cashregister_obtenercajaactiva"
     },
     {
       "relation": "imports",
@@ -11507,9 +11507,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_cashregister_obtenerhistorialcajas",
-      "confidence_score": 1.0
+      "target": "services_cashregister_obtenerhistorialcajas"
     },
     {
       "relation": "imports",
@@ -11518,9 +11518,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_cashregister_obtenerventasconfirmadasdia",
-      "confidence_score": 1.0
+      "target": "services_cashregister_obtenerventasconfirmadasdia"
     },
     {
       "relation": "imports",
@@ -11529,9 +11529,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_cashregister_registrartransaccionmanual",
-      "confidence_score": 1.0
+      "target": "services_cashregister_registrartransaccionmanual"
     },
     {
       "relation": "imports_from",
@@ -11562,9 +11562,9 @@
       "source_file": "src/pages/admin/CajaDiaria.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_cajadiaria",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "contains",
@@ -11627,9 +11627,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_config_guardarconfiguracionenvio",
-      "confidence_score": 1.0
+      "target": "services_config_guardarconfiguracionenvio"
     },
     {
       "relation": "imports",
@@ -11638,9 +11638,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_config_obtenerconfiguracionenvio",
-      "confidence_score": 1.0
+      "target": "services_config_obtenerconfiguracionenvio"
     },
     {
       "relation": "imports",
@@ -11649,9 +11649,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_coupons_actualizarestadocupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_actualizarestadocupon"
     },
     {
       "relation": "imports",
@@ -11660,9 +11660,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_coupons_crearcupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_crearcupon"
     },
     {
       "relation": "imports",
@@ -11671,9 +11671,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_coupons_eliminarcupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_eliminarcupon"
     },
     {
       "relation": "imports",
@@ -11682,9 +11682,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_coupons_obtenercupones",
-      "confidence_score": 1.0
+      "target": "services_coupons_obtenercupones"
     },
     {
       "relation": "imports_from",
@@ -11693,9 +11693,9 @@
       "source_file": "src/pages/admin/ConfiguracionEnviosCupones.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_configuracionenvioscupones",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "contains",
@@ -11714,9 +11714,9 @@
       "source_file": "src/pages/admin/InventarioStock.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_inventariostock",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -11725,9 +11725,9 @@
       "source_file": "src/pages/admin/InventarioStock.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_inventariostock",
-      "target": "services_products_actualizarstockproductoadmin",
-      "confidence_score": 1.0
+      "target": "services_products_actualizarstockproductoadmin"
     },
     {
       "relation": "imports",
@@ -11736,9 +11736,9 @@
       "source_file": "src/pages/admin/InventarioStock.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_inventariostock",
-      "target": "services_products_obtenertodosproductosadmin",
-      "confidence_score": 1.0
+      "target": "services_products_obtenertodosproductosadmin"
     },
     {
       "relation": "contains",
@@ -11779,9 +11779,9 @@
       "source_file": "src/pages/admin/PedidosDashboard.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_pedidosdashboard",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -11790,9 +11790,9 @@
       "source_file": "src/pages/admin/PedidosDashboard.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_pedidosdashboard",
-      "target": "services_orders_actualizarestadopedido",
-      "confidence_score": 1.0
+      "target": "services_orders_actualizarestadopedido"
     },
     {
       "relation": "imports",
@@ -11801,9 +11801,9 @@
       "source_file": "src/pages/admin/PedidosDashboard.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_pedidosdashboard",
-      "target": "services_orders_asignarrepartidorpedido",
-      "confidence_score": 1.0
+      "target": "services_orders_asignarrepartidorpedido"
     },
     {
       "relation": "contains",
@@ -11822,9 +11822,9 @@
       "source_file": "src/pages/admin/ProductosCRUD.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_productoscrud",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -11833,9 +11833,9 @@
       "source_file": "src/pages/admin/ProductosCRUD.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_productoscrud",
-      "target": "services_products_eliminarproducto",
-      "confidence_score": 1.0
+      "target": "services_products_eliminarproducto"
     },
     {
       "relation": "imports",
@@ -11844,9 +11844,9 @@
       "source_file": "src/pages/admin/ProductosCRUD.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_productoscrud",
-      "target": "services_products_obtenertodosproductosadmin",
-      "confidence_score": 1.0
+      "target": "services_products_obtenertodosproductosadmin"
     },
     {
       "relation": "contains",
@@ -11885,9 +11885,9 @@
       "source_file": "src/pages/admin/ResenasDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_resenasdashboard",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -11896,9 +11896,9 @@
       "source_file": "src/pages/admin/ResenasDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_resenasdashboard",
-      "target": "services_reviews_actualizarestadoresena",
-      "confidence_score": 1.0
+      "target": "services_reviews_actualizarestadoresena"
     },
     {
       "relation": "imports",
@@ -11907,9 +11907,9 @@
       "source_file": "src/pages/admin/ResenasDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_resenasdashboard",
-      "target": "services_reviews_eliminarresena",
-      "confidence_score": 1.0
+      "target": "services_reviews_eliminarresena"
     },
     {
       "relation": "imports",
@@ -11918,9 +11918,9 @@
       "source_file": "src/pages/admin/ResenasDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_resenasdashboard",
-      "target": "services_reviews_obtenerresenas",
-      "confidence_score": 1.0
+      "target": "services_reviews_obtenerresenas"
     },
     {
       "relation": "contains",
@@ -11969,9 +11969,9 @@
       "source_file": "src/pages/admin/VentasDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_ventasdashboard",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -11980,9 +11980,9 @@
       "source_file": "src/pages/admin/VentasDashboard.jsx",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "admin_ventasdashboard",
-      "target": "services_orders_obtenerpedidosrango",
-      "confidence_score": 1.0
+      "target": "services_orders_obtenerpedidosrango"
     },
     {
       "relation": "contains",
@@ -12193,9 +12193,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -12204,9 +12204,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -12215,9 +12215,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -12237,9 +12237,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -12248,9 +12248,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -12259,9 +12259,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "firestore",
-      "confidence_score": 1.0
+      "target": "firestore"
     },
     {
       "relation": "imports_from",
@@ -12339,9 +12339,9 @@
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/producto/[slug].astro",
+      "confidence_score": 1.0,
       "source": "producto_slug",
-      "target": "c_mis_proyectos_missy_po_src_services",
-      "confidence_score": 1.0
+      "target": "c_mis_proyectos_missy_po_src_services"
     },
     {
       "relation": "contains",
@@ -12360,17 +12360,17 @@
       "source_file": "src/pages/producto/[slug].astro",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "producto_slug",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/tienda.astro",
+      "confidence_score": 1.0,
       "source": "pages_tienda",
-      "target": "c_mis_proyectos_missy_po_src_services",
-      "confidence_score": 1.0
+      "target": "c_mis_proyectos_missy_po_src_services"
     },
     {
       "relation": "imports_from",
@@ -12395,9 +12395,9 @@
       "source_file": "src/pages/tienda.astro",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "pages_tienda",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports",
@@ -12612,9 +12612,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "schemas_cajadiaria_movimientoschema",
-      "confidence_score": 1.0
+      "target": "schemas_cajadiaria_movimientoschema"
     },
     {
       "relation": "re_exports",
@@ -12762,9 +12762,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "schemas_coupon_couponschema",
-      "confidence_score": 1.0
+      "target": "schemas_coupon_couponschema"
     },
     {
       "relation": "re_exports",
@@ -12916,9 +12916,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "schemas_index",
-      "confidence_score": 1.0
+      "target": "schemas_index"
     },
     {
       "relation": "imports_from",
@@ -12927,9 +12927,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "schemas_index",
-      "confidence_score": 1.0
+      "target": "schemas_index"
     },
     {
       "relation": "imports_from",
@@ -12938,9 +12938,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "schemas_index",
-      "confidence_score": 1.0
+      "target": "schemas_index"
     },
     {
       "relation": "imports_from",
@@ -12949,9 +12949,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "schemas_index",
-      "confidence_score": 1.0
+      "target": "schemas_index"
     },
     {
       "relation": "imports_from",
@@ -12960,9 +12960,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "schemas_index",
-      "confidence_score": 1.0
+      "target": "schemas_index"
     },
     {
       "relation": "imports_from",
@@ -13012,9 +13012,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "schemas_product_productschema",
-      "confidence_score": 1.0
+      "target": "schemas_product_productschema"
     },
     {
       "relation": "contains",
@@ -13043,9 +13043,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "schemas_review_reviewschema",
-      "confidence_score": 1.0
+      "target": "schemas_review_reviewschema"
     },
     {
       "relation": "contains",
@@ -13064,9 +13064,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "schemas_shippingconfig_shippingconfigschema",
-      "confidence_score": 1.0
+      "target": "schemas_shippingconfig_shippingconfigschema"
     },
     {
       "relation": "contains",
@@ -13186,9 +13186,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_cashregister_abrircajadiaria",
-      "confidence_score": 1.0
+      "target": "services_cashregister_abrircajadiaria"
     },
     {
       "relation": "contains",
@@ -13196,9 +13196,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L117",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_cashregister_cerrarcajadiaria",
-      "confidence_score": 1.0
+      "target": "services_cashregister_cerrarcajadiaria"
     },
     {
       "relation": "contains",
@@ -13206,9 +13206,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_cashregister_obtenercajaactiva",
-      "confidence_score": 1.0
+      "target": "services_cashregister_obtenercajaactiva"
     },
     {
       "relation": "contains",
@@ -13216,9 +13216,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L143",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_cashregister_obtenerhistorialcajas",
-      "confidence_score": 1.0
+      "target": "services_cashregister_obtenerhistorialcajas"
     },
     {
       "relation": "contains",
@@ -13226,9 +13226,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L159",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_cashregister_obtenerventasconfirmadasdia",
-      "confidence_score": 1.0
+      "target": "services_cashregister_obtenerventasconfirmadasdia"
     },
     {
       "relation": "contains",
@@ -13236,9 +13236,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_cashregister_registrartransaccionmanual",
-      "confidence_score": 1.0
+      "target": "services_cashregister_registrartransaccionmanual"
     },
     {
       "relation": "imports_from",
@@ -13247,9 +13247,9 @@
       "source_file": "src/services/cashRegister.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_cashregister",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "re_exports",
@@ -13258,9 +13258,9 @@
       "source_file": "src/services/index.js",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_index",
-      "target": "services_cashregister",
-      "confidence_score": 1.0
+      "target": "services_cashregister"
     },
     {
       "relation": "contains",
@@ -13268,9 +13268,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "services_config_guardarconfiguracionenvio",
-      "confidence_score": 1.0
+      "target": "services_config_guardarconfiguracionenvio"
     },
     {
       "relation": "contains",
@@ -13278,9 +13278,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "services_config_obtenercategoryslugmap",
-      "confidence_score": 1.0
+      "target": "services_config_obtenercategoryslugmap"
     },
     {
       "relation": "contains",
@@ -13288,9 +13288,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "services_config_obtenerconfiguracionenvio",
-      "confidence_score": 1.0
+      "target": "services_config_obtenerconfiguracionenvio"
     },
     {
       "relation": "imports_from",
@@ -13299,9 +13299,9 @@
       "source_file": "src/services/config.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_config",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "re_exports",
@@ -13310,9 +13310,9 @@
       "source_file": "src/services/index.js",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_index",
-      "target": "services_config",
-      "confidence_score": 1.0
+      "target": "services_config"
     },
     {
       "relation": "contains",
@@ -13320,9 +13320,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "services_coupons_actualizarestadocupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_actualizarestadocupon"
     },
     {
       "relation": "contains",
@@ -13330,9 +13330,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "services_coupons_crearcupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_crearcupon"
     },
     {
       "relation": "contains",
@@ -13340,9 +13340,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "services_coupons_eliminarcupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_eliminarcupon"
     },
     {
       "relation": "contains",
@@ -13350,9 +13350,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "services_coupons_obtenercupones",
-      "confidence_score": 1.0
+      "target": "services_coupons_obtenercupones"
     },
     {
       "relation": "contains",
@@ -13360,9 +13360,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L73",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "services_coupons_validarcupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_validarcupon"
     },
     {
       "relation": "imports_from",
@@ -13371,9 +13371,9 @@
       "source_file": "src/services/coupons.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_coupons",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "re_exports",
@@ -13382,9 +13382,9 @@
       "source_file": "src/services/index.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_index",
-      "target": "services_coupons",
-      "confidence_score": 1.0
+      "target": "services_coupons"
     },
     {
       "relation": "imports",
@@ -13393,9 +13393,9 @@
       "source_file": "src/store/cartStore.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_cartstore",
-      "target": "services_coupons_validarcupon",
-      "confidence_score": 1.0
+      "target": "services_coupons_validarcupon"
     },
     {
       "relation": "contains",
@@ -13434,9 +13434,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "imports_from",
@@ -13445,9 +13445,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "imports_from",
@@ -13456,9 +13456,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "services_firebase",
-      "confidence_score": 1.0
+      "target": "services_firebase"
     },
     {
       "relation": "re_exports",
@@ -13467,9 +13467,9 @@
       "source_file": "src/services/index.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_index",
-      "target": "services_orders",
-      "confidence_score": 1.0
+      "target": "services_orders"
     },
     {
       "relation": "re_exports",
@@ -13478,9 +13478,9 @@
       "source_file": "src/services/index.js",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_index",
-      "target": "services_products",
-      "confidence_score": 1.0
+      "target": "services_products"
     },
     {
       "relation": "re_exports",
@@ -13489,9 +13489,9 @@
       "source_file": "src/services/index.js",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_index",
-      "target": "services_reviews",
-      "confidence_score": 1.0
+      "target": "services_reviews"
     },
     {
       "relation": "imports_from",
@@ -13500,9 +13500,9 @@
       "source_file": "src/store/cartStore.js",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_cartstore",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "imports_from",
@@ -13511,9 +13511,9 @@
       "source_file": "src/store/catalogStore.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_catalogstore",
-      "target": "services_index",
-      "confidence_score": 1.0
+      "target": "services_index"
     },
     {
       "relation": "contains",
@@ -13521,9 +13521,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_orders_actualizarestadopedido",
-      "confidence_score": 1.0
+      "target": "services_orders_actualizarestadopedido"
     },
     {
       "relation": "contains",
@@ -13531,9 +13531,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L246",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_orders_asignarrepartidorpedido",
-      "confidence_score": 1.0
+      "target": "services_orders_asignarrepartidorpedido"
     },
     {
       "relation": "contains",
@@ -13541,9 +13541,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_orders_crearpedidocontransaccion",
-      "confidence_score": 1.0
+      "target": "services_orders_crearpedidocontransaccion"
     },
     {
       "relation": "contains",
@@ -13551,9 +13551,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_orders_obtenerpedidosadmin",
-      "confidence_score": 1.0
+      "target": "services_orders_obtenerpedidosadmin"
     },
     {
       "relation": "contains",
@@ -13561,9 +13561,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L265",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_orders_obtenerpedidosrango",
-      "confidence_score": 1.0
+      "target": "services_orders_obtenerpedidosrango"
     },
     {
       "relation": "contains",
@@ -13571,9 +13571,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L179",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders",
-      "target": "services_orders_reestablecerstockpedidocontransaccion",
-      "confidence_score": 1.0
+      "target": "services_orders_reestablecerstockpedidocontransaccion"
     },
     {
       "relation": "calls",
@@ -13582,9 +13582,9 @@
       "source_file": "src/services/orders.js",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_orders_actualizarestadopedido",
-      "target": "services_orders_reestablecerstockpedidocontransaccion",
-      "confidence_score": 1.0
+      "target": "services_orders_reestablecerstockpedidocontransaccion"
     },
     {
       "relation": "contains",
@@ -13592,9 +13592,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L152",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_actualizarproducto",
-      "confidence_score": 1.0
+      "target": "services_products_actualizarproducto"
     },
     {
       "relation": "contains",
@@ -13602,9 +13602,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L195",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_actualizarstockproductoadmin",
-      "confidence_score": 1.0
+      "target": "services_products_actualizarstockproductoadmin"
     },
     {
       "relation": "contains",
@@ -13612,9 +13612,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_buscarproductos",
-      "confidence_score": 1.0
+      "target": "services_products_buscarproductos"
     },
     {
       "relation": "contains",
@@ -13622,9 +13622,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L130",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_crearproducto",
-      "confidence_score": 1.0
+      "target": "services_products_crearproducto"
     },
     {
       "relation": "contains",
@@ -13632,9 +13632,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_eliminarproducto",
-      "confidence_score": 1.0
+      "target": "services_products_eliminarproducto"
     },
     {
       "relation": "contains",
@@ -13642,9 +13642,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_generarslug",
-      "confidence_score": 1.0
+      "target": "services_products_generarslug"
     },
     {
       "relation": "contains",
@@ -13652,9 +13652,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L102",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_obtenerproductoporid",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerproductoporid"
     },
     {
       "relation": "contains",
@@ -13662,9 +13662,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_obtenerproductoporslug",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerproductoporslug"
     },
     {
       "relation": "contains",
@@ -13672,9 +13672,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_obtenerproductos",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerproductos"
     },
     {
       "relation": "contains",
@@ -13682,9 +13682,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L216",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_obtenerproductosmasvendidos",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerproductosmasvendidos"
     },
     {
       "relation": "contains",
@@ -13692,9 +13692,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L111",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_obtenerrelacionados",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerrelacionados"
     },
     {
       "relation": "contains",
@@ -13702,9 +13702,9 @@
       "source_file": "src/services/products.js",
       "source_location": "L180",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_products",
-      "target": "services_products_obtenertodosproductosadmin",
-      "confidence_score": 1.0
+      "target": "services_products_obtenertodosproductosadmin"
     },
     {
       "relation": "imports",
@@ -13713,9 +13713,9 @@
       "source_file": "src/store/catalogStore.js",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "store_catalogstore",
-      "target": "services_products_obtenerproductos",
-      "confidence_score": 1.0
+      "target": "services_products_obtenerproductos"
     },
     {
       "relation": "contains",
@@ -13723,9 +13723,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "services_reviews_actualizarestadoresena",
-      "confidence_score": 1.0
+      "target": "services_reviews_actualizarestadoresena"
     },
     {
       "relation": "contains",
@@ -13733,9 +13733,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "services_reviews_crearresena",
-      "confidence_score": 1.0
+      "target": "services_reviews_crearresena"
     },
     {
       "relation": "contains",
@@ -13743,9 +13743,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "services_reviews_eliminarresena",
-      "confidence_score": 1.0
+      "target": "services_reviews_eliminarresena"
     },
     {
       "relation": "contains",
@@ -13753,9 +13753,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "services_reviews_obtenerresenas",
-      "confidence_score": 1.0
+      "target": "services_reviews_obtenerresenas"
     },
     {
       "relation": "contains",
@@ -13763,9 +13763,9 @@
       "source_file": "src/services/reviews.js",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "services_reviews",
-      "target": "services_reviews_obtenerresenasporproducto",
-      "confidence_score": 1.0
+      "target": "services_reviews_obtenerresenasporproducto"
     },
     {
       "relation": "imports_from",
@@ -13915,9 +13915,9 @@
       "source_file": ".atl/skill-registry.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "atl_skill_registry",
-      "target": "atl_skill_registry_skill_registry_missy_po",
-      "confidence_score": 1.0
+      "target": "atl_skill_registry_skill_registry_missy_po"
     },
     {
       "relation": "contains",
@@ -13925,9 +13925,9 @@
       "source_file": ".atl/skill-registry.md",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "atl_skill_registry_skill_registry_missy_po",
-      "target": "atl_skill_registry_contract",
-      "confidence_score": 1.0
+      "target": "atl_skill_registry_contract"
     },
     {
       "relation": "contains",
@@ -13935,9 +13935,9 @@
       "source_file": ".atl/skill-registry.md",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "atl_skill_registry_skill_registry_missy_po",
-      "target": "atl_skill_registry_loading_protocol",
-      "confidence_score": 1.0
+      "target": "atl_skill_registry_loading_protocol"
     },
     {
       "relation": "contains",
@@ -13945,9 +13945,9 @@
       "source_file": ".atl/skill-registry.md",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "atl_skill_registry_skill_registry_missy_po",
-      "target": "atl_skill_registry_skills",
-      "confidence_score": 1.0
+      "target": "atl_skill_registry_skills"
     },
     {
       "relation": "contains",
@@ -13955,9 +13955,9 @@
       "source_file": ".atl/skill-registry.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "atl_skill_registry_skill_registry_missy_po",
-      "target": "atl_skill_registry_sources_scanned",
-      "confidence_score": 1.0
+      "target": "atl_skill_registry_sources_scanned"
     },
     {
       "relation": "contains",
@@ -13965,9 +13965,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura",
-      "target": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop"
     },
     {
       "relation": "contains",
@@ -13975,9 +13975,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop",
-      "target": "plan_refactor_arquitectura_cr\u00edticos_impacto_alto_hacer_primero",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_cr\u00edticos_impacto_alto_hacer_primero"
     },
     {
       "relation": "contains",
@@ -13985,9 +13985,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L471",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop",
-      "target": "plan_refactor_arquitectura_low_impacto_bajo_hacer_cuando_haya_tiempo",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_low_impacto_bajo_hacer_cuando_haya_tiempo"
     },
     {
       "relation": "contains",
@@ -13995,9 +13995,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L300",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop",
-      "target": "plan_refactor_arquitectura_medium_impacto_medio_hacer_despu\u00e9s",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_medium_impacto_medio_hacer_despu\u00e9s"
     },
     {
       "relation": "contains",
@@ -14005,9 +14005,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L551",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop",
-      "target": "plan_refactor_arquitectura_orden_de_ejecuci\u00f3n",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_orden_de_ejecuci\u00f3n"
     },
     {
       "relation": "contains",
@@ -14015,9 +14015,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L570",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_plan_de_refactorizaci\u00f3n_missy_po_pet_shop",
-      "target": "plan_refactor_arquitectura_reglas_durante_la_refactorizaci\u00f3n",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_reglas_durante_la_refactorizaci\u00f3n"
     },
     {
       "relation": "contains",
@@ -14025,9 +14025,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_cr\u00edticos_impacto_alto_hacer_primero",
-      "target": "plan_refactor_arquitectura_1_1_separar_firestore_js_en_m\u00f3dulos_domain_oriented",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_1_1_separar_firestore_js_en_m\u00f3dulos_domain_oriented"
     },
     {
       "relation": "contains",
@@ -14035,9 +14035,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L110",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_cr\u00edticos_impacto_alto_hacer_primero",
-      "target": "plan_refactor_arquitectura_1_2_descomponer_checkoutpage_jsx_en_componentes_y_hooks",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_1_2_descomponer_checkoutpage_jsx_en_componentes_y_hooks"
     },
     {
       "relation": "contains",
@@ -14045,9 +14045,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L200",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_cr\u00edticos_impacto_alto_hacer_primero",
-      "target": "plan_refactor_arquitectura_1_3_code_splitting_con_react_lazy_para_rutas_admin",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_1_3_code_splitting_con_react_lazy_para_rutas_admin"
     },
     {
       "relation": "contains",
@@ -14055,9 +14055,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L302",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_medium_impacto_medio_hacer_despu\u00e9s",
-      "target": "plan_refactor_arquitectura_2_1_extraer_sidebar_admin_reutilizable",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_2_1_extraer_sidebar_admin_reutilizable"
     },
     {
       "relation": "contains",
@@ -14065,9 +14065,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L342",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_medium_impacto_medio_hacer_despu\u00e9s",
-      "target": "plan_refactor_arquitectura_2_2_limpiar_dynamic_imports_en_cartstore",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_2_2_limpiar_dynamic_imports_en_cartstore"
     },
     {
       "relation": "contains",
@@ -14075,9 +14075,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L376",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_medium_impacto_medio_hacer_despu\u00e9s",
-      "target": "plan_refactor_arquitectura_2_3_unificar_campo_de_estado_en_pedidos",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_2_3_unificar_campo_de_estado_en_pedidos"
     },
     {
       "relation": "contains",
@@ -14085,9 +14085,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L424",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_medium_impacto_medio_hacer_despu\u00e9s",
-      "target": "plan_refactor_arquitectura_2_4_mapeo_de_categor\u00edas_desde_firestore",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_2_4_mapeo_de_categor\u00edas_desde_firestore"
     },
     {
       "relation": "contains",
@@ -14095,9 +14095,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L473",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_low_impacto_bajo_hacer_cuando_haya_tiempo",
-      "target": "plan_refactor_arquitectura_3_1_extraer_constantes_hardcodeadas_de_checkoutpage",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_3_1_extraer_constantes_hardcodeadas_de_checkoutpage"
     },
     {
       "relation": "contains",
@@ -14105,9 +14105,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L498",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_low_impacto_bajo_hacer_cuando_haya_tiempo",
-      "target": "plan_refactor_arquitectura_3_2_agregar_jsdoc_a_funciones_de_services",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_3_2_agregar_jsdoc_a_funciones_de_services"
     },
     {
       "relation": "contains",
@@ -14115,9 +14115,9 @@
       "source_file": "PLAN-REFactor-ARQUITECTURA.md",
       "source_location": "L524",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "plan_refactor_arquitectura_low_impacto_bajo_hacer_cuando_haya_tiempo",
-      "target": "plan_refactor_arquitectura_3_3_agregar_test_unitarios_para_hooks_nuevos",
-      "confidence_score": 1.0
+      "target": "plan_refactor_arquitectura_3_3_agregar_test_unitarios_para_hooks_nuevos"
     },
     {
       "relation": "contains",
@@ -14815,9 +14815,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura",
-      "target": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop"
     },
     {
       "relation": "contains",
@@ -14825,9 +14825,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L644",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_criterios_de_aceptaci\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_criterios_de_aceptaci\u00f3n"
     },
     {
       "relation": "contains",
@@ -14835,9 +14835,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical"
     },
     {
       "relation": "contains",
@@ -14845,9 +14845,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L352",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical"
     },
     {
       "relation": "contains",
@@ -14855,9 +14855,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L394",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high"
     },
     {
       "relation": "contains",
@@ -14865,9 +14865,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L443",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium"
     },
     {
       "relation": "contains",
@@ -14875,9 +14875,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L499",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s6_eliminar_l\u00f3gica_duplicada_de_cupones_low",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s6_eliminar_l\u00f3gica_duplicada_de_cupones_low"
     },
     {
       "relation": "contains",
@@ -14885,9 +14885,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L540",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low"
     },
     {
       "relation": "contains",
@@ -14895,9 +14895,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L606",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_fase_s8_env_example_actualizado_low",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_fase_s8_env_example_actualizado_low"
     },
     {
       "relation": "contains",
@@ -14905,9 +14905,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L682",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n"
     },
     {
       "relation": "contains",
@@ -14915,9 +14915,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L623",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n_recomendado",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n_recomendado"
     },
     {
       "relation": "contains",
@@ -14925,9 +14925,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L663",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_relaci\u00f3n_con_plan_zod_md",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_relaci\u00f3n_con_plan_zod_md"
     },
     {
       "relation": "contains",
@@ -14935,9 +14935,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_plan_de_acci\u00f3n_seguridad_arquitectura_y_deuda_t\u00e9cnica_missy_po_pet_shop",
-      "target": "legacy_plan_seguridad_y_arquitectura_tabla_de_hallazgos_y_acciones",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_tabla_de_hallazgos_y_acciones"
     },
     {
       "relation": "contains",
@@ -14945,9 +14945,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L324",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_archivos_modificados_resumidos",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_archivos_modificados_resumidos"
     },
     {
       "relation": "contains",
@@ -14955,9 +14955,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_arquitectura_propuesta_dos_flujos_de_auth_separados",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_arquitectura_propuesta_dos_flujos_de_auth_separados"
     },
     {
       "relation": "contains",
@@ -14965,9 +14965,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L114",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo"
     },
     {
       "relation": "contains",
@@ -14975,9 +14975,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L336",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n"
     },
     {
       "relation": "contains",
@@ -14985,9 +14985,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L66",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_prerequisito_custom_claim_admin",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_prerequisito_custom_claim_admin"
     },
     {
       "relation": "contains",
@@ -14995,9 +14995,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s1_redise\u00f1ar_auth_admin_google_oauth_clientes_email_password_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_problema_actual",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_problema_actual"
     },
     {
       "relation": "contains",
@@ -15005,9 +15005,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "target": "legacy_plan_seguridad_y_arquitectura_1_nuevo_archivo_src_services_auth_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_1_nuevo_archivo_src_services_auth_js"
     },
     {
       "relation": "contains",
@@ -15015,9 +15015,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L163",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "target": "legacy_plan_seguridad_y_arquitectura_2_nuevo_archivo_src_pages_adminloginpage_jsx",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_2_nuevo_archivo_src_pages_adminloginpage_jsx"
     },
     {
       "relation": "contains",
@@ -15025,9 +15025,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L244",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "target": "legacy_plan_seguridad_y_arquitectura_3_modificar_src_pages_loginpage_jsx_solo_clientes",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_3_modificar_src_pages_loginpage_jsx_solo_clientes"
     },
     {
       "relation": "contains",
@@ -15035,9 +15035,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L256",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "target": "legacy_plan_seguridad_y_arquitectura_4_modificar_src_pages_admin_adminlayout_jsx",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_4_modificar_src_pages_admin_adminlayout_jsx"
     },
     {
       "relation": "contains",
@@ -15045,9 +15045,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L294",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "target": "legacy_plan_seguridad_y_arquitectura_5_actualizar_rutas_en_src_pages_admin_all_astro_y_src_components_admin_adminapp_jsx",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_5_actualizar_rutas_en_src_pages_admin_all_astro_y_src_components_admin_adminapp_jsx"
     },
     {
       "relation": "contains",
@@ -15055,9 +15055,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L310",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_cambios_de_c\u00f3digo",
-      "target": "legacy_plan_seguridad_y_arquitectura_6_actualizar_src_pages_admin_adminlayout_jsx",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_6_actualizar_src_pages_admin_adminlayout_jsx"
     },
     {
       "relation": "contains",
@@ -15065,9 +15065,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L359",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_cambios_en_firestore_rules",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_cambios_en_firestore_rules"
     },
     {
       "relation": "contains",
@@ -15075,9 +15075,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L388",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s2_firestore_rules_eliminar_bypass_temporal_critical",
-      "target": "legacy_plan_seguridad_y_arquitectura_post_deploy",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_post_deploy"
     },
     {
       "relation": "contains",
@@ -15085,9 +15085,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L411",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
-      "target": "legacy_plan_seguridad_y_arquitectura_archivos_a_crear_src_utils_sanitize_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_archivos_a_crear_src_utils_sanitize_js"
     },
     {
       "relation": "contains",
@@ -15095,9 +15095,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L429",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
-      "target": "legacy_plan_seguridad_y_arquitectura_archivos_a_modificar",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_archivos_a_modificar"
     },
     {
       "relation": "contains",
@@ -15105,9 +15105,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L403",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s3_sanitizaci\u00f3n_xss_high",
-      "target": "legacy_plan_seguridad_y_arquitectura_instalaci\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_instalaci\u00f3n"
     },
     {
       "relation": "contains",
@@ -15115,9 +15115,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L486",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
-      "target": "legacy_plan_seguridad_y_arquitectura_beneficio_imports_existentes_no_rompen",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_beneficio_imports_existentes_no_rompen"
     },
     {
       "relation": "contains",
@@ -15125,9 +15125,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L447",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
-      "target": "legacy_plan_seguridad_y_arquitectura_estrategia_separar_por_dominio_de_negocio",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_estrategia_separar_por_dominio_de_negocio"
     },
     {
       "relation": "contains",
@@ -15135,9 +15135,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L475",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
-      "target": "legacy_plan_seguridad_y_arquitectura_firestore_js_como_barrel",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_firestore_js_como_barrel"
     },
     {
       "relation": "contains",
@@ -15145,9 +15145,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L464",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
-      "target": "legacy_plan_seguridad_y_arquitectura_mapeo_de_funciones_a_m\u00f3dulos",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_mapeo_de_funciones_a_m\u00f3dulos"
     },
     {
       "relation": "contains",
@@ -15155,9 +15155,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L490",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s5_refactor_de_firestore_js_medium",
-      "target": "legacy_plan_seguridad_y_arquitectura_orden_de_migraci\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_orden_de_migraci\u00f3n"
     },
     {
       "relation": "contains",
@@ -15165,9 +15165,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L513",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s6_eliminar_l\u00f3gica_duplicada_de_cupones_low",
-      "target": "legacy_plan_seguridad_y_arquitectura_cambios_en_src_store_cartstore_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_cambios_en_src_store_cartstore_js"
     },
     {
       "relation": "contains",
@@ -15175,9 +15175,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L594",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
-      "target": "legacy_plan_seguridad_y_arquitectura_deploy",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_deploy"
     },
     {
       "relation": "contains",
@@ -15185,9 +15185,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L600",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
-      "target": "legacy_plan_seguridad_y_arquitectura_optimizaci\u00f3n_posterior_opcional",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_optimizaci\u00f3n_posterior_opcional"
     },
     {
       "relation": "contains",
@@ -15195,9 +15195,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L544",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_fase_s7_\u00edndices_firestore_compuestos_low",
-      "target": "legacy_plan_seguridad_y_arquitectura_\u00edndices_a_crear_en_firestore_indexes_json",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_\u00edndices_a_crear_en_firestore_indexes_json"
     },
     {
       "relation": "contains",
@@ -15205,9 +15205,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L636",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_orden_de_ejecuci\u00f3n_recomendado",
-      "target": "legacy_plan_seguridad_y_arquitectura_nota_de_dependencia_con_plan_zod",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_nota_de_dependencia_con_plan_zod"
     },
     {
       "relation": "contains",
@@ -15215,9 +15215,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L684",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n",
-      "target": "legacy_plan_seguridad_y_arquitectura_es_la_decisi\u00f3n_correcta",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_es_la_decisi\u00f3n_correcta"
     },
     {
       "relation": "contains",
@@ -15225,9 +15225,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L711",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n",
-      "target": "legacy_plan_seguridad_y_arquitectura_por_qu\u00e9_no_google_oauth_para_clientes_tambi\u00e9n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_por_qu\u00e9_no_google_oauth_para_clientes_tambi\u00e9n"
     },
     {
       "relation": "contains",
@@ -15235,9 +15235,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L703",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n",
-      "target": "legacy_plan_seguridad_y_arquitectura_por_qu\u00e9_no_solo_email_password_para_admin",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_por_qu\u00e9_no_solo_email_password_para_admin"
     },
     {
       "relation": "contains",
@@ -15245,9 +15245,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L696",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n",
-      "target": "legacy_plan_seguridad_y_arquitectura_riesgo_a_vigilar",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_riesgo_a_vigilar"
     },
     {
       "relation": "contains",
@@ -15255,9 +15255,9 @@
       "source_file": "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md",
       "source_location": "L719",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_seguridad_y_arquitectura_opini\u00f3n",
-      "target": "legacy_plan_seguridad_y_arquitectura_veredicto",
-      "confidence_score": 1.0
+      "target": "legacy_plan_seguridad_y_arquitectura_veredicto"
     },
     {
       "relation": "contains",
@@ -15265,9 +15265,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod",
-      "target": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop"
     },
     {
       "relation": "contains",
@@ -15275,9 +15275,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L437",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_criterios_de_aceptaci\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_criterios_de_aceptaci\u00f3n"
     },
     {
       "relation": "contains",
@@ -15285,9 +15285,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L446",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_estimaci\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_estimaci\u00f3n"
     },
     {
       "relation": "contains",
@@ -15295,9 +15295,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_fase_0_setup",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_fase_0_setup"
     },
     {
       "relation": "contains",
@@ -15305,9 +15305,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos"
     },
     {
       "relation": "contains",
@@ -15315,9 +15315,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L285",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_fase_2_helper_de_utilidad",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_fase_2_helper_de_utilidad"
     },
     {
       "relation": "contains",
@@ -15325,9 +15325,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L327",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_fase_3_integraci\u00f3n_por_archivo",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_fase_3_integraci\u00f3n_por_archivo"
     },
     {
       "relation": "contains",
@@ -15335,9 +15335,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_fase_4_tests",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_fase_4_tests"
     },
     {
       "relation": "contains",
@@ -15345,9 +15345,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L404",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_fase_5_limpieza",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_fase_5_limpieza"
     },
     {
       "relation": "contains",
@@ -15355,9 +15355,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_objetivo",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_objetivo"
     },
     {
       "relation": "contains",
@@ -15365,9 +15365,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L426",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_plan_de_acci\u00f3n_implementaci\u00f3n_de_zod_en_missy_po_pet_shop",
-      "target": "legacy_plan_zod_resumen_de_entregables",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_resumen_de_entregables"
     },
     {
       "relation": "contains",
@@ -15375,9 +15375,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_0_setup",
-      "target": "legacy_plan_zod_0_1_instalar_dependencia",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_0_1_instalar_dependencia"
     },
     {
       "relation": "contains",
@@ -15385,9 +15385,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_0_setup",
-      "target": "legacy_plan_zod_0_2_crear_estructura_de_schemas",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_0_2_crear_estructura_de_schemas"
     },
     {
       "relation": "contains",
@@ -15395,9 +15395,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L269",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_10_src_schemas_index_js_barrel",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_10_src_schemas_index_js_barrel"
     },
     {
       "relation": "contains",
@@ -15405,9 +15405,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_1_src_schemas_product_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_1_src_schemas_product_js"
     },
     {
       "relation": "contains",
@@ -15415,9 +15415,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L79",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_2_src_schemas_checkout_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_2_src_schemas_checkout_js"
     },
     {
       "relation": "contains",
@@ -15425,9 +15425,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_3_src_schemas_cart_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_3_src_schemas_cart_js"
     },
     {
       "relation": "contains",
@@ -15435,9 +15435,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L161",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_4_src_schemas_coupon_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_4_src_schemas_coupon_js"
     },
     {
       "relation": "contains",
@@ -15445,9 +15445,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L174",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_5_src_schemas_shippingconfig_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_5_src_schemas_shippingconfig_js"
     },
     {
       "relation": "contains",
@@ -15455,9 +15455,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L189",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_6_src_schemas_cajadiaria_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_6_src_schemas_cajadiaria_js"
     },
     {
       "relation": "contains",
@@ -15465,9 +15465,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L216",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_7_src_schemas_review_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_7_src_schemas_review_js"
     },
     {
       "relation": "contains",
@@ -15475,9 +15475,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L231",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_8_src_schemas_reclamacion_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_8_src_schemas_reclamacion_js"
     },
     {
       "relation": "contains",
@@ -15485,9 +15485,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L256",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_1_schemas_base_archivos_nuevos",
-      "target": "legacy_plan_zod_1_9_src_schemas_payment_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_1_9_src_schemas_payment_js"
     },
     {
       "relation": "contains",
@@ -15495,9 +15495,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L287",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_2_helper_de_utilidad",
-      "target": "legacy_plan_zod_2_1_src_schemas_validate_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_2_1_src_schemas_validate_js"
     },
     {
       "relation": "contains",
@@ -15505,9 +15505,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L329",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_3_integraci\u00f3n_por_archivo",
-      "target": "legacy_plan_zod_orden_de_implementaci\u00f3n_de_menor_a_mayor_riesgo_de_regressi\u00f3n",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_orden_de_implementaci\u00f3n_de_menor_a_mayor_riesgo_de_regressi\u00f3n"
     },
     {
       "relation": "contains",
@@ -15515,9 +15515,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L347",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_4_tests",
-      "target": "legacy_plan_zod_4_1_archivo_src_schemas_tests_schemas_test_js",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_4_1_archivo_src_schemas_tests_schemas_test_js"
     },
     {
       "relation": "contains",
@@ -15525,9 +15525,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L394",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_4_tests",
-      "target": "legacy_plan_zod_4_2_verificar_que_los_tests_existentes_pasan",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_4_2_verificar_que_los_tests_existentes_pasan"
     },
     {
       "relation": "contains",
@@ -15535,9 +15535,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L406",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_5_limpieza",
-      "target": "legacy_plan_zod_5_1_eliminar_c\u00f3digo_de_validaci\u00f3n_redundante",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_5_1_eliminar_c\u00f3digo_de_validaci\u00f3n_redundante"
     },
     {
       "relation": "contains",
@@ -15545,9 +15545,9 @@
       "source_file": "legacy/PLAN-ZOD.md",
       "source_location": "L420",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "legacy_plan_zod_fase_5_limpieza",
-      "target": "legacy_plan_zod_5_2_opcional_eliminar_fallback_local_de_cupones",
-      "confidence_score": 1.0
+      "target": "legacy_plan_zod_5_2_opcional_eliminar_fallback_local_de_cupones"
     },
     {
       "relation": "contains",
@@ -15791,5 +15791,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3fd4559b76bae6567545739c17e28cbc25c039de"
+  "built_at_commit": "cd30e29690327b95e6d3e4e7451d6ed874c3a2ca"
 }

@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminLayout.jsx": {
-    "mtime": 1782778548.6886573,
-    "ast_hash": "b09e3d6efad270ec2d209b52fd103663",
+    "mtime": 1782779035.1226661,
+    "ast_hash": "f2a0a03ec6819a9941d79c75d7d174f5",
     "semantic_hash": ""
   },
   "src/pages/admin/CajaDiaria.jsx": {
@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   ".ai-context.md": {
-    "mtime": 1782602923.8630934,
-    "ast_hash": "07b98425b75233b3a662990f5edb8d2c",
+    "mtime": 1782778675.128029,
+    "ast_hash": "af30047b68458b27c7a548ed51cd0a37",
     "semantic_hash": ""
   },
   ".github/copilot-instructions.md": {
