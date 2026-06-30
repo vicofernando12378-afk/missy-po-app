@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const CartItemSchema = z.object({
-  id: z.coerce.number().int().positive('ID de producto inválido'),
+  id: z.union([z.string(), z.number()]),
   sku: z.string().trim().default(''),
   slug: z.string().trim().default(''),
   nombre: z.string().min(1, 'El nombre del item es requerido').trim(),

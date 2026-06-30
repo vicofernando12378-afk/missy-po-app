@@ -65,6 +65,29 @@ export default function CheckoutForm({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const orderCompletedRef = useRef(false)
 
+  // Estados locales para manejo de cupones
+  const [couponInput, setCouponInput] = useState('')
+  const [couponMsg, setCouponMsg] = useState(null)
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false)
+
+  const handleApplyCoupon = async () => {
+    if (!couponInput.trim()) return
+    setIsApplyingCoupon(true)
+    setCouponMsg(null)
+    try {
+      const res = await applyCoupon(couponInput)
+      if (res.success) {
+        setCouponMsg({ success: true })
+      } else {
+        setCouponMsg({ success: false, message: res.message })
+      }
+    } catch (err) {
+      setCouponMsg({ success: false, message: 'Error al aplicar cupón' })
+    } finally {
+      setIsApplyingCoupon(false)
+    }
+  }
+
   // Autocompletar alias de mascota si se verificó socio
   useEffect(() => {
     if (club.clubMember && club.clubMember.nombre_mascota) {
@@ -325,11 +348,11 @@ export default function CheckoutForm({
             igvCalculadoSoles={igvCalculadoSoles}
           />
           <CouponSection
-            couponInput={form.couponInput}
-            setCouponInput={form.setCouponInput}
-            couponMsg={form.couponMsg}
-            isApplyingCoupon={form.isApplyingCoupon}
-            handleApplyCoupon={form.handleApplyCoupon}
+            couponInput={couponInput}
+            setCouponInput={setCouponInput}
+            couponMsg={couponMsg}
+            isApplyingCoupon={isApplyingCoupon}
+            handleApplyCoupon={handleApplyCoupon}
             couponCode={couponCode}
             removeCoupon={removeCoupon}
             couponDiscount={couponDiscount}
