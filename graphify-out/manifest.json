@@ -715,8 +715,8 @@
     "semantic_hash": ""
   },
   "src/components/account/AccountDashboard.jsx": {
-    "mtime": 1782848915.0766816,
-    "ast_hash": "859e98e43bd686bd228d21d52a4bdf06",
+    "mtime": 1782850979.3605938,
+    "ast_hash": "0724c8c3406f90f99df970565a74970a",
     "semantic_hash": ""
   },
   "src/components/account/AccountHeader.jsx": {
@@ -760,8 +760,8 @@
     "semantic_hash": ""
   },
   "src/components/account/PointsBalance.jsx": {
-    "mtime": 1782848915.0776827,
-    "ast_hash": "6dd482c6767b35a91f0716e86a698d4c",
+    "mtime": 1782850969.1635897,
+    "ast_hash": "7e7bfdff32c6075fceee2f7baadc2a25",
     "semantic_hash": ""
   },
   "src/components/account/SmartCTA.jsx": {

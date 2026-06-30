@@ -79,27 +79,6 @@ export default function AccountDashboard({ profile, orders = [], points = 0, poi
         <div className="space-y-6">
           {/* Puntos del Club */}
           <PointsBalance points={points} history={pointsHistory} />
-
-          {/* Quick links */}
-          <div className="bg-white rounded-2xl border p-5" style={{ borderColor: 'var(--color-border)' }}>
-            <h3 className="font-ui font-bold text-sm mb-3" style={{ color: 'var(--color-text-dark)' }}>
-              Accesos Rápidos
-            </h3>
-            <div className="space-y-2">
-              <a href="/mi-cuenta/direcciones" className="flex items-center gap-3 py-2 px-3 rounded-xl text-sm font-ui font-medium text-gray-600 hover:bg-gray-50 transition-colors">
-                <span>🏠</span> Mis Direcciones
-              </a>
-              <a href="/mi-cuenta/mascotas" className="flex items-center gap-3 py-2 px-3 rounded-xl text-sm font-ui font-medium text-gray-600 hover:bg-gray-50 transition-colors">
-                <span>🐾</span> Mis Mascotas
-              </a>
-              <a href="/mi-cuenta/perfil" className="flex items-center gap-3 py-2 px-3 rounded-xl text-sm font-ui font-medium text-gray-600 hover:bg-gray-50 transition-colors">
-                <span>👤</span> Editar Perfil
-              </a>
-              <a href="/club-missypo" className="flex items-center gap-3 py-2 px-3 rounded-xl text-sm font-ui font-medium text-gray-600 hover:bg-gray-50 transition-colors">
-                <span>⭐</span> Club de Beneficios
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>

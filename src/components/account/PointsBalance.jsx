@@ -68,7 +68,7 @@ export default function PointsBalance({ points = 0, history = [] }) {
       {/* CTA */}
       <div className="px-4 pb-4">
         <a
-          href="/mi-cuenta/club"
+          href="#club"
           className="block w-full text-center py-2.5 rounded-xl text-sm font-ui font-bold transition-all hover:opacity-90"
           style={{ color: 'var(--color-coral)', backgroundColor: '#fff5f5' }}
         >
