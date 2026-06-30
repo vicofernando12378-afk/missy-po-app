@@ -55,24 +55,24 @@
     "semantic_hash": "31dd4ccef5e6eb09309df2913a2fa986"
   },
   "src/App.jsx": {
-    "mtime": 1779996656.3438733,
-    "ast_hash": "6bc39db7183dcfebbe1d20974e161854",
-    "semantic_hash": "6bc39db7183dcfebbe1d20974e161854"
+    "mtime": 1782778576.6510081,
+    "ast_hash": "a9e42111322bd9fce646a7ce69a14215",
+    "semantic_hash": ""
   },
   "src/components/admin/AdminApp.jsx": {
-    "mtime": 1782756148.5163493,
-    "ast_hash": "d3fdb133b4f7989e12f134d56a400632",
+    "mtime": 1782778570.3200426,
+    "ast_hash": "80aeab89437d067faa7642b100bdd70e",
     "semantic_hash": ""
   },
   "src/components/admin/ProductoFormModal.jsx": {
-    "mtime": 1782756852.1021316,
-    "ast_hash": "e544d62afb108b3a1d0e31830db8a1ac",
+    "mtime": 1782778337.367249,
+    "ast_hash": "a3315cc2c57437ec4f0f75eee62cdb2f",
     "semantic_hash": ""
   },
   "src/components/cart/CartDrawer.jsx": {
-    "mtime": 1782270684.8405473,
-    "ast_hash": "0b5a7ad7f0a1643cfaa4328d1dd37e02",
-    "semantic_hash": "0b5a7ad7f0a1643cfaa4328d1dd37e02"
+    "mtime": 1782778328.7946284,
+    "ast_hash": "d67e6d062628a6ab49e44879b2d3c261",
+    "semantic_hash": ""
   },
   "src/components/catalog/PriceDisplay.jsx": {
     "mtime": 1779921217.5813563,
@@ -185,8 +185,8 @@
     "semantic_hash": ""
   },
   "src/pages/CheckoutPage.jsx": {
-    "mtime": 1782756903.4078813,
-    "ast_hash": "62f1e1f50be8e749545573d541a55efa",
+    "mtime": 1782778467.753654,
+    "ast_hash": "890b00b4e2464d3e5f879c92a50707f3",
     "semantic_hash": ""
   },
   "src/pages/HomePage.jsx": {
@@ -210,8 +210,8 @@
     "semantic_hash": "8a8906d16136c168758dcc0d53684fa9"
   },
   "src/pages/ProductPage.jsx": {
-    "mtime": 1782756944.0818424,
-    "ast_hash": "5717687ffbbc581ec9e242c265a5ea2f",
+    "mtime": 1782778273.316787,
+    "ast_hash": "47db26ea795857c389caf8a1483b387c",
     "semantic_hash": ""
   },
   "src/pages/StorePage.jsx": {
@@ -220,44 +220,44 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminLayout.jsx": {
-    "mtime": 1782756180.6657712,
-    "ast_hash": "e35e416376939de1cceec37234fc5819",
+    "mtime": 1782778548.6886573,
+    "ast_hash": "b09e3d6efad270ec2d209b52fd103663",
     "semantic_hash": ""
   },
   "src/pages/admin/CajaDiaria.jsx": {
-    "mtime": 1782756801.671838,
-    "ast_hash": "03ae14f05a90c24daccbc3485a756fe0",
+    "mtime": 1782778181.307799,
+    "ast_hash": "df65c652dd9ae27f487360f1596c612c",
     "semantic_hash": ""
   },
   "src/pages/admin/ConfiguracionEnviosCupones.jsx": {
-    "mtime": 1782756826.852934,
-    "ast_hash": "54e08c584bbdbf4502be8f1659bbded4",
+    "mtime": 1782778217.8881426,
+    "ast_hash": "c78391e91c6fe3e33103da9dbcc401fe",
     "semantic_hash": ""
   },
   "src/pages/admin/InventarioStock.jsx": {
-    "mtime": 1782217872.0209353,
-    "ast_hash": "a31c1d829537db43d2fb8135865881f9",
-    "semantic_hash": "a31c1d829537db43d2fb8135865881f9"
+    "mtime": 1782778199.2099915,
+    "ast_hash": "ffc654d07cb118c7838e835446f14c30",
+    "semantic_hash": ""
   },
   "src/pages/admin/PedidosDashboard.jsx": {
-    "mtime": 1779997062.4946845,
-    "ast_hash": "c24aa5d4a7852127041a1d32d57703d3",
-    "semantic_hash": "c24aa5d4a7852127041a1d32d57703d3"
+    "mtime": 1782778161.3966126,
+    "ast_hash": "684fc484c4043c5a8cbe7d4027c63e5d",
+    "semantic_hash": ""
   },
   "src/pages/admin/ProductosCRUD.jsx": {
-    "mtime": 1782438886.2034955,
-    "ast_hash": "1dfa8aed5bfbf89bcd83c5a131cd307e",
-    "semantic_hash": "1dfa8aed5bfbf89bcd83c5a131cd307e"
+    "mtime": 1782778235.7724245,
+    "ast_hash": "02011114d2da2ca8301bceeb8323e201",
+    "semantic_hash": ""
   },
   "src/pages/admin/ResenasDashboard.jsx": {
-    "mtime": 1779996636.8900795,
-    "ast_hash": "53c4d7c61a1844c128f1e41d3b217cc5",
-    "semantic_hash": "53c4d7c61a1844c128f1e41d3b217cc5"
+    "mtime": 1782778256.1826043,
+    "ast_hash": "af13f5245c29f9d7066aacaf54860269",
+    "semantic_hash": ""
   },
   "src/pages/admin/VentasDashboard.jsx": {
-    "mtime": 1779997055.4762156,
-    "ast_hash": "e4bf1447bc869d883b9ef1070ee4fce2",
-    "semantic_hash": "e4bf1447bc869d883b9ef1070ee4fce2"
+    "mtime": 1782778248.810503,
+    "ast_hash": "2f1ce57362ed2882fd10aee1108a31f0",
+    "semantic_hash": ""
   },
   "src/pages/admin/[...all].astro": {
     "mtime": 1782756153.732936,
@@ -290,13 +290,13 @@
     "semantic_hash": "81ddad8c3886ec47c3472a1b8332323d"
   },
   "src/pages/producto/[slug].astro": {
-    "mtime": 1782274325.1450222,
-    "ast_hash": "c3e2ed2c389e9a6bd8f8f70fe180c550",
-    "semantic_hash": "c3e2ed2c389e9a6bd8f8f70fe180c550"
+    "mtime": 1782778320.1289258,
+    "ast_hash": "54307517edaa11e93c9cfb52cddf99ff",
+    "semantic_hash": ""
   },
   "src/pages/tienda.astro": {
-    "mtime": 1782620467.2658756,
-    "ast_hash": "7ded177efe0c20f07774305c92242ca8",
+    "mtime": 1782778311.3680518,
+    "ast_hash": "2f1efc036ded08c62c352560fafd8e2c",
     "semantic_hash": ""
   },
   "src/services/firebase.js": {
@@ -304,30 +304,25 @@
     "ast_hash": "8a099d30b194a2746513edb92a892a92",
     "semantic_hash": "8a099d30b194a2746513edb92a892a92"
   },
-  "src/services/firestore.js": {
-    "mtime": 1782758589.2750695,
-    "ast_hash": "f147fe109590f8fcb8b35d4a89ec0d24",
-    "semantic_hash": ""
-  },
   "src/setupTests.js": {
     "mtime": 1782189908.333647,
     "ast_hash": "39529208dfc584ff87969cf460d5f8e5",
     "semantic_hash": "39529208dfc584ff87969cf460d5f8e5"
   },
   "src/store/__tests/cartStore.test.js": {
-    "mtime": 1782189908.3346455,
-    "ast_hash": "ed79b37d32323dab178888aaf2614f80",
-    "semantic_hash": "ed79b37d32323dab178888aaf2614f80"
+    "mtime": 1782778361.275716,
+    "ast_hash": "e036feda0c49cf6ffff5906785216e96",
+    "semantic_hash": ""
   },
   "src/store/cartStore.js": {
-    "mtime": 1782757020.0282502,
-    "ast_hash": "626c33c78518b68b725aa76883dac48b",
+    "mtime": 1782778300.347262,
+    "ast_hash": "32be61767107dff6544e0b012b1313e3",
     "semantic_hash": ""
   },
   "src/store/catalogStore.js": {
-    "mtime": 1779928968.6319788,
-    "ast_hash": "cc0a4568396c91d9d4e745a24be3d648",
-    "semantic_hash": "cc0a4568396c91d9d4e745a24be3d648"
+    "mtime": 1782778284.3194938,
+    "ast_hash": "22934f28cbad9e800d851937eff92180",
+    "semantic_hash": ""
   },
   "src/store/searchStore.js": {
     "mtime": 1779924294.2115753,
@@ -584,12 +579,142 @@
     "ast_hash": "ccc8d02272fafcf4c8f0bfe63d17c4b1",
     "semantic_hash": ""
   },
-  "PLAN-SEGURIDAD-Y-ARQUITECTURA.md": {
+  ".atl/.skill-registry.cache.json": {
+    "mtime": 1782761215.1207707,
+    "ast_hash": "cdb3ff0c9db8230739ecf8b59382fe30",
+    "semantic_hash": ""
+  },
+  "src/components/admin/AdminSidebar.jsx": {
+    "mtime": 1782778540.2800195,
+    "ast_hash": "d1ef5765a144a42de3f073a216a39798",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/CheckoutForm.jsx": {
+    "mtime": 1782778461.3414037,
+    "ast_hash": "db935fa736affc11fa6c3bf338d84f57",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/ClubSection.jsx": {
+    "mtime": 1782778439.668964,
+    "ast_hash": "0ab446928edf4e835570e3668a080694",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/ContactFields.jsx": {
+    "mtime": 1782778409.1087732,
+    "ast_hash": "0b324c715dbabeae8b020b8f8cbd63bb",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/CouponSection.jsx": {
+    "mtime": 1782778432.8724244,
+    "ast_hash": "6c265e74a1e038928a74a52084d527fc",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/DocumentFields.jsx": {
+    "mtime": 1782778420.5168014,
+    "ast_hash": "215492efaca52a17c6475f237d0c19f4",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/OrderSummary.jsx": {
+    "mtime": 1782778427.0415971,
+    "ast_hash": "f32018261894e94195d61c82ab50619b",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/PaymentMethods.jsx": {
+    "mtime": 1782778445.6604197,
+    "ast_hash": "a95cb7fedbb8c200d93b5634389aec16",
+    "semantic_hash": ""
+  },
+  "src/components/checkout/ShippingFields.jsx": {
+    "mtime": 1782778415.017413,
+    "ast_hash": "4afcf5ea3bdf5cf03a8edf2441586737",
+    "semantic_hash": ""
+  },
+  "src/data/locations.js": {
+    "mtime": 1782778379.9254146,
+    "ast_hash": "e17d1d45ff9319f977c85474e92288b6",
+    "semantic_hash": ""
+  },
+  "src/hooks/__tests__/useCheckoutForm.test.js": {
+    "mtime": 1782778481.7710507,
+    "ast_hash": "aa7ca500ada5ab278e85b2627f2938e8",
+    "semantic_hash": ""
+  },
+  "src/hooks/__tests__/useClubMembership.test.js": {
+    "mtime": 1782778487.4149292,
+    "ast_hash": "1adca9107346dbca4dd5a76633dbb0d7",
+    "semantic_hash": ""
+  },
+  "src/hooks/__tests__/useShippingCalc.test.js": {
+    "mtime": 1782778515.3127027,
+    "ast_hash": "a03cd098dd2c86ab4b6ed6e387a6afc6",
+    "semantic_hash": ""
+  },
+  "src/hooks/useCheckoutForm.js": {
+    "mtime": 1782778392.0630214,
+    "ast_hash": "97847df54e861566512e391866f157c2",
+    "semantic_hash": ""
+  },
+  "src/hooks/useClubMembership.js": {
+    "mtime": 1782778397.6578932,
+    "ast_hash": "e061ddb7f585060cb4b1c2681405b775",
+    "semantic_hash": ""
+  },
+  "src/hooks/useShippingCalc.js": {
+    "mtime": 1782778403.377027,
+    "ast_hash": "779c139e719af08ce0dd1381c2c30193",
+    "semantic_hash": ""
+  },
+  "src/services/cashRegister.js": {
+    "mtime": 1782778088.0295305,
+    "ast_hash": "225870702f1df62eb56d22a6e79e4b57",
+    "semantic_hash": ""
+  },
+  "src/services/config.js": {
+    "mtime": 1782778131.5327055,
+    "ast_hash": "9fe7cc3967dc6de8d21285f8e316a43b",
+    "semantic_hash": ""
+  },
+  "src/services/coupons.js": {
+    "mtime": 1782778108.97849,
+    "ast_hash": "9d925eb1129207587cc658d0e0b7ca5f",
+    "semantic_hash": ""
+  },
+  "src/services/index.js": {
+    "mtime": 1782778142.1678765,
+    "ast_hash": "821e6298c3929cf658bd44aa493d7cce",
+    "semantic_hash": ""
+  },
+  "src/services/orders.js": {
+    "mtime": 1782778076.0178626,
+    "ast_hash": "6d36aa4cfa10431f7691ff23768b6a20",
+    "semantic_hash": ""
+  },
+  "src/services/products.js": {
+    "mtime": 1782778030.6630561,
+    "ast_hash": "ffd2ecaf7f5432d9d14a6e48018c1c8b",
+    "semantic_hash": ""
+  },
+  "src/services/reviews.js": {
+    "mtime": 1782778120.2364705,
+    "ast_hash": "8c6783b2bbd6ee06e93cc31d3ea9d255",
+    "semantic_hash": ""
+  },
+  ".atl/skill-registry.md": {
+    "mtime": 1782761215.1167707,
+    "ast_hash": "b17a691f549b2f6401ba3576349859df",
+    "semantic_hash": ""
+  },
+  "PLAN-REFactor-ARQUITECTURA.md": {
+    "mtime": 1782772627.708047,
+    "ast_hash": "0fdaf1090b0ef5ae8eda859c031a92a9",
+    "semantic_hash": ""
+  },
+  "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md": {
     "mtime": 1782704378.7472775,
     "ast_hash": "7ca2e6a169a3afd3e13d03ea6547dddc",
     "semantic_hash": ""
   },
-  "PLAN-ZOD.md": {
+  "legacy/PLAN-ZOD.md": {
     "mtime": 1782703287.8692238,
     "ast_hash": "5771ae8d0e7c688f7d365e749fd21015",
     "semantic_hash": ""
