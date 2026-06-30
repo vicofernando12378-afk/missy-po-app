@@ -530,8 +530,8 @@
     "semantic_hash": ""
   },
   "src/schemas/checkout.js": {
-    "mtime": 1782756700.5041783,
-    "ast_hash": "50cc5bc64f6c04b847e79666e25526ba",
+    "mtime": 1782795501.3834045,
+    "ast_hash": "16ac56605d91152fa99f8cc5ee94b971",
     "semantic_hash": ""
   },
   "src/schemas/coupon.js": {

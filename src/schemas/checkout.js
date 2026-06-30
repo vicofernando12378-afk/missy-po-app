@@ -13,7 +13,7 @@ export const CheckoutSchema = z.object({
   direccion: z.string().min(5, 'La dirección debe tener al menos 5 caracteres').max(300, 'Dirección demasiado larga').trim(),
   referencia: z.string().max(200, 'Referencia demasiado larga').default('').optional(),
   nombreMascota: z.string().min(1, 'El nombre de tu mascota es requerido').max(50, 'Nombre de mascota demasiado largo').trim(),
-  metodoPago: z.enum(['yape', 'tarjeta', 'contraEntrega']),
+  metodoPago: z.enum(['yape', 'tarjeta', 'contraentrega']),
   notas: z.string().max(500, 'Las notas no pueden superar los 500 caracteres').default('').optional()
 }).refine(data => {
   if (data.tipoDocumento === 'DNI') {
