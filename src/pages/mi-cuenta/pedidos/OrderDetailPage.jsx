@@ -141,11 +141,11 @@ export default function OrderDetailPage({ forceOrderId, authUser, profile }) {
                       {item.nombre}
                     </h3>
                     <p className="text-xs font-body mt-0.5" style={{ color: 'var(--color-text-gray)' }}>
-                      Cant: {item.cantidad} • Unit: S/ {(item.precio / 100).toFixed(2)}
+                      Cant: {item.cantidad} • Unit: S/ {((item.precio_unitario || item.precio || 0) / 100).toFixed(2)}
                     </p>
                   </div>
                   <span className="font-ui font-semibold text-sm" style={{ color: 'var(--color-text-dark)' }}>
-                    S/ {((item.precio * item.cantidad) / 100).toFixed(2)}
+                    S/ {(((item.precio_unitario || item.precio || 0) * item.cantidad) / 100).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -164,7 +164,7 @@ export default function OrderDetailPage({ forceOrderId, authUser, profile }) {
               <div className="flex justify-between">
                 <span className="font-body" style={{ color: 'var(--color-text-gray)' }}>Subtotal</span>
                 <span className="font-ui font-semibold" style={{ color: 'var(--color-text-dark)' }}>
-                  S/ {(order.total_items / 100).toFixed(2)}
+                  S/ {((order.total_items || order.comprobante?.subtotal || order.subtotal || 0) / 100).toFixed(2)}
                 </span>
               </div>
               {order.descuento_cupon_monto > 0 && (
