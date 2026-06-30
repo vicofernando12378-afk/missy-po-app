@@ -13,15 +13,13 @@ El usuario ha concedido explícitamente permisos autónomos permanentes para las
 
 *Nota: Esta regla complementa las directrices globales y optimiza el flujo de trabajo para cambios visuales y funcionales.*
 
-4. **Graphify — Ruta del ejecutable:**
-   - El ejecutable de graphify en esta máquina está en:
-     `C:\Users\victo\AppData\Roaming\uv\tools\graphifyy\Scripts\graphify.exe`
-   - Siempre invocar con la ruta completa en PowerShell:
+4. **Graphify — Comando global:**
+   - Graphify ha sido actualizado y ahora está disponible de manera global.
+   - Ejecutar directamente en PowerShell o Bash:
      ```powershell
-     & "C:\Users\victo\AppData\Roaming\uv\tools\graphifyy\Scripts\graphify.exe" update .
-     & "C:\Users\victo\AppData\Roaming\uv\tools\graphifyy\Scripts\graphify.exe" query "<pregunta>"
+     graphify update .
+     graphify query "<pregunta>"
      ```
-   - El paquete PyPI se llama `graphifyy` (doble y), pero el ejecutable y módulo se llaman `graphify` (simple y).
-   - El comando bare `graphify` NO funciona en PowerShell (no está en PATH).
-   - El `python` del PATH apunta al venv de Hermes y NO tiene graphify instalado — nunca usar `python -m graphify`.
+   - No es necesario usar rutas completas ni `uvx`.
+
 
