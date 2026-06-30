@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 46,
+      "community": 0,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -1050,7 +1050,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_accountdashboard",
-      "community": 1,
+      "community": 28,
       "norm_label": "accountdashboard.jsx"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_account_accountdashboard_accountdashboard",
-      "community": 1,
+      "community": 28,
       "norm_label": "accountdashboard()"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_accountheader",
-      "community": 1,
+      "community": 28,
       "norm_label": "accountheader.jsx"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_accountheader_accountheader",
-      "community": 1,
+      "community": 28,
       "norm_label": "accountheader()"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_contentfeed",
-      "community": 1,
+      "community": 28,
       "norm_label": "contentfeed.jsx"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_contentfeed_contentfeed",
-      "community": 1,
+      "community": 28,
       "norm_label": "contentfeed()"
     },
     {
@@ -1180,7 +1180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_ordercard",
-      "community": 1,
+      "community": 28,
       "norm_label": "ordercard.jsx"
     },
     {
@@ -1190,7 +1190,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_ordercard_status_map",
-      "community": 1,
+      "community": 28,
       "norm_label": "status_map"
     },
     {
@@ -1200,7 +1200,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_account_ordercard_ordercard",
-      "community": 1,
+      "community": 28,
       "norm_label": "ordercard()"
     },
     {
@@ -1260,7 +1260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_pointsbalance",
-      "community": 1,
+      "community": 28,
       "norm_label": "pointsbalance.jsx"
     },
     {
@@ -1270,7 +1270,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_pointsbalance_pointsbalance",
-      "community": 1,
+      "community": 28,
       "norm_label": "pointsbalance()"
     },
     {
@@ -1280,7 +1280,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_account_smartcta",
-      "community": 1,
+      "community": 28,
       "norm_label": "smartcta.jsx"
     },
     {
@@ -1290,7 +1290,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_account_smartcta_getsmartcta",
-      "community": 1,
+      "community": 28,
       "norm_label": "getsmartcta()"
     },
     {
@@ -1300,7 +1300,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_components_account_smartcta_smartcta",
-      "community": 1,
+      "community": 28,
       "norm_label": "smartcta()"
     },
     {
@@ -1510,7 +1510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer",
-      "community": 28,
+      "community": 9,
       "norm_label": "cartdrawer.jsx"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_closeicon",
-      "community": 28,
+      "community": 9,
       "norm_label": "closeicon()"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_trashicon",
-      "community": 28,
+      "community": 9,
       "norm_label": "trashicon()"
     },
     {
@@ -1540,7 +1540,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdraweritem",
-      "community": 28,
+      "community": 9,
       "norm_label": "cartdraweritem()"
     },
     {
@@ -1550,7 +1550,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "src_components_cart_cartdrawer_cartdrawer",
-      "community": 28,
+      "community": 9,
       "norm_label": "cartdrawer()"
     },
     {
@@ -2010,7 +2010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner",
-      "community": 9,
+      "community": 42,
       "norm_label": "marqueebanner.jsx"
     },
     {
@@ -2020,7 +2020,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner_marquee_items",
-      "community": 9,
+      "community": 42,
       "norm_label": "marquee_items"
     },
     {
@@ -2030,7 +2030,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_hero_marqueebanner_marqueebanner",
-      "community": 9,
+      "community": 42,
       "norm_label": "marqueebanner()"
     },
     {
@@ -2130,7 +2130,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_layout_navbar",
-      "community": 9,
+      "community": 42,
       "norm_label": "navbar.jsx"
     },
     {
@@ -2140,7 +2140,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_layout_navbar_searchicon",
-      "community": 9,
+      "community": 42,
       "norm_label": "searchicon()"
     },
     {
@@ -2150,7 +2150,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_layout_navbar_carticon",
-      "community": 9,
+      "community": 42,
       "norm_label": "carticon()"
     },
     {
@@ -2160,7 +2160,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_layout_navbar_usericon",
-      "community": 9,
+      "community": 42,
       "norm_label": "usericon()"
     },
     {
@@ -2170,7 +2170,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_components_layout_navbar_menuicon",
-      "community": 9,
+      "community": 42,
       "norm_label": "menuicon()"
     },
     {
@@ -2180,7 +2180,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_components_layout_navbar_closeicon",
-      "community": 9,
+      "community": 42,
       "norm_label": "closeicon()"
     },
     {
@@ -2190,7 +2190,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_components_layout_navbar_nav_categories",
-      "community": 9,
+      "community": 42,
       "norm_label": "nav_categories"
     },
     {
@@ -2200,7 +2200,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_components_layout_navbar_navbar",
-      "community": 9,
+      "community": 4,
       "norm_label": "navbar()"
     },
     {
@@ -2581,7 +2581,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_404",
-      "community": 8,
+      "community": 47,
       "norm_label": "404.astro"
     },
     {
@@ -2591,7 +2591,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_notfoundpage_tsx",
-      "community": 8,
+      "community": 47,
       "norm_label": "./notfoundpage.jsx"
     },
     {
@@ -2608,7 +2608,7 @@
       "label": "AccountPage()",
       "file_type": "code",
       "source_file": "src/pages/AccountPage.jsx",
-      "source_location": "L9",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_accountpage_accountpage",
       "community": 1,
@@ -2711,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_notfoundpage",
-      "community": 33,
+      "community": 47,
       "norm_label": "notfoundpage.jsx"
     },
     {
@@ -2721,7 +2721,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "src_pages_notfoundpage_notfoundpage",
-      "community": 33,
+      "community": 47,
       "norm_label": "notfoundpage()"
     },
     {
@@ -2731,7 +2731,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage",
-      "community": 46,
+      "community": 41,
       "norm_label": "orderconfirmationpage.jsx"
     },
     {
@@ -2741,7 +2741,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_orderconfirmationpage_orderconfirmationpage",
-      "community": 46,
+      "community": 41,
       "norm_label": "orderconfirmationpage()"
     },
     {
@@ -2791,7 +2791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_storepage",
-      "community": 28,
+      "community": 38,
       "norm_label": "storepage.jsx"
     },
     {
@@ -2801,7 +2801,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_storepage_storepage",
-      "community": 28,
+      "community": 38,
       "norm_label": "storepage()"
     },
     {
@@ -2851,7 +2851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 46,
+      "community": 48,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2861,7 +2861,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 46,
+      "community": 48,
       "norm_label": "tabs"
     },
     {
@@ -2871,7 +2871,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 46,
+      "community": 48,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -3321,7 +3321,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firebase",
-      "community": 2,
+      "community": 36,
       "norm_label": "../services/firebase"
     },
     {
@@ -3331,7 +3331,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 46,
+      "community": 48,
       "norm_label": "firebase/firestore"
     },
     {
@@ -3371,7 +3371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 8,
+      "community": 49,
       "norm_label": "login.astro"
     },
     {
@@ -3381,7 +3381,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 8,
+      "community": 49,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -3405,26 +3405,6 @@
       "norm_label": "./accountpage.jsx"
     },
     {
-      "label": "club.astro",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/club.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_pages_mi_cuenta_club",
-      "community": 6,
-      "norm_label": "club.astro"
-    },
-    {
-      "label": "./club/ClubPage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/club/ClubPage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_club_clubpage_tsx",
-      "community": 6,
-      "norm_label": "./club/clubpage.jsx"
-    },
-    {
       "label": "ClubPage.jsx",
       "file_type": "code",
       "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
@@ -3445,26 +3425,6 @@
       "norm_label": "clubpage()"
     },
     {
-      "label": "direcciones.astro",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/direcciones.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_pages_mi_cuenta_direcciones",
-      "community": 47,
-      "norm_label": "direcciones.astro"
-    },
-    {
-      "label": "./direcciones/AddressesPage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_direcciones_addressespage_tsx",
-      "community": 47,
-      "norm_label": "./direcciones/addressespage.jsx"
-    },
-    {
       "label": "AddressesPage.jsx",
       "file_type": "code",
       "source_file": "src/pages/mi-cuenta/direcciones/AddressesPage.jsx",
@@ -3483,26 +3443,6 @@
       "id": "src_pages_mi_cuenta_direcciones_addressespage_addressespage",
       "community": 1,
       "norm_label": "addressespage()"
-    },
-    {
-      "label": "mascotas.astro",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/mascotas.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_pages_mi_cuenta_mascotas",
-      "community": 48,
-      "norm_label": "mascotas.astro"
-    },
-    {
-      "label": "./mascotas/PetsPage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/mascotas/PetsPage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_mascotas_petspage_tsx",
-      "community": 48,
-      "norm_label": "./mascotas/petspage.jsx"
     },
     {
       "label": "PetsPage.jsx",
@@ -3623,66 +3563,6 @@
       "id": "src_pages_mi_cuenta_pedidos_orderspage_orderspage",
       "community": 1,
       "norm_label": "orderspage()"
-    },
-    {
-      "label": "detalle.astro",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_pages_mi_cuenta_pedidos_detalle",
-      "community": 1,
-      "norm_label": "detalle.astro"
-    },
-    {
-      "label": "./OrderDetailPage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderdetailpage_tsx",
-      "community": 1,
-      "norm_label": "./orderdetailpage.jsx"
-    },
-    {
-      "label": "index.astro",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_pages_mi_cuenta_pedidos_index",
-      "community": 49,
-      "norm_label": "index.astro"
-    },
-    {
-      "label": "./OrdersPage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/pedidos/OrdersPage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderspage_tsx",
-      "community": 49,
-      "norm_label": "./orderspage.jsx"
-    },
-    {
-      "label": "perfil.astro",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/perfil.astro",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "src_pages_mi_cuenta_perfil",
-      "community": 50,
-      "norm_label": "perfil.astro"
-    },
-    {
-      "label": "./perfil/ProfilePage.jsx",
-      "file_type": "code",
-      "source_file": "src/pages/mi-cuenta/perfil/ProfilePage.tsx",
-      "confidence": "EXTRACTED",
-      "_origin": "ast",
-      "id": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_perfil_profilepage_tsx",
-      "community": 50,
-      "norm_label": "./perfil/profilepage.jsx"
     },
     {
       "label": "ProfilePage.jsx",
@@ -3831,7 +3711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_reclamaciones",
-      "community": 42,
+      "community": 8,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -3841,7 +3721,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 42,
+      "community": 8,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -3891,7 +3771,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_tests_userprofile_test",
-      "community": 0,
+      "community": 6,
       "norm_label": "userprofile.test.js"
     },
     {
@@ -4131,7 +4011,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_userprofile",
-      "community": 0,
+      "community": 6,
       "norm_label": "userprofile.js"
     },
     {
@@ -4141,7 +4021,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_userprofile_addressschema",
-      "community": 0,
+      "community": 6,
       "norm_label": "addressschema"
     },
     {
@@ -4151,7 +4031,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petschema",
-      "community": 0,
+      "community": 6,
       "norm_label": "petschema"
     },
     {
@@ -4161,7 +4041,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userpreferencesschema",
-      "community": 0,
+      "community": 6,
       "norm_label": "userpreferencesschema"
     },
     {
@@ -4171,7 +4051,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userprofileschema",
-      "community": 0,
+      "community": 6,
       "norm_label": "userprofileschema"
     },
     {
@@ -4181,7 +4061,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petformschema",
-      "community": 0,
+      "community": 6,
       "norm_label": "petformschema"
     },
     {
@@ -4371,7 +4251,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_config",
-      "community": 46,
+      "community": 0,
       "norm_label": "config.js"
     },
     {
@@ -4391,7 +4271,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_services_config_guardarconfiguracionenvio",
-      "community": 46,
+      "community": 0,
       "norm_label": "guardarconfiguracionenvio()"
     },
     {
@@ -4401,7 +4281,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "src_services_config_obtenercategoryslugmap",
-      "community": 46,
+      "community": 0,
       "norm_label": "obtenercategoryslugmap()"
     },
     {
@@ -4501,7 +4381,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_firebase_auth",
-      "community": 1,
+      "community": 3,
       "norm_label": "auth"
     },
     {
@@ -4621,7 +4501,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductos",
-      "community": 28,
+      "community": 38,
       "norm_label": "obtenerproductos()"
     },
     {
@@ -4711,7 +4591,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductosmasvendidos",
-      "community": 28,
+      "community": 9,
       "norm_label": "obtenerproductosmasvendidos()"
     },
     {
@@ -4781,7 +4661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_userprofile",
-      "community": 1,
+      "community": 6,
       "norm_label": "userprofile.js"
     },
     {
@@ -4791,7 +4671,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_services_userprofile_getuserprofile",
-      "community": 1,
+      "community": 6,
       "norm_label": "getuserprofile()"
     },
     {
@@ -4801,7 +4681,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_services_userprofile_upsertuserprofile",
-      "community": 1,
+      "community": 6,
       "norm_label": "upsertuserprofile()"
     },
     {
@@ -4811,7 +4691,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_services_userprofile_updateuserprofile",
-      "community": 1,
+      "community": 6,
       "norm_label": "updateuserprofile()"
     },
     {
@@ -4821,7 +4701,7 @@
       "source_location": "L68",
       "_origin": "ast",
       "id": "src_services_userprofile_addaddress",
-      "community": 1,
+      "community": 6,
       "norm_label": "addaddress()"
     },
     {
@@ -4831,7 +4711,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "src_services_userprofile_removeaddress",
-      "community": 1,
+      "community": 6,
       "norm_label": "removeaddress()"
     },
     {
@@ -4841,7 +4721,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "src_services_userprofile_addpet",
-      "community": 1,
+      "community": 6,
       "norm_label": "addpet()"
     },
     {
@@ -4851,7 +4731,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "src_services_userprofile_removepet",
-      "community": 1,
+      "community": 6,
       "norm_label": "removepet()"
     },
     {
@@ -4891,7 +4771,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_tests_userstore_test",
-      "community": 1,
+      "community": 6,
       "norm_label": "userstore.test.js"
     },
     {
@@ -4931,7 +4811,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_catalogstore",
-      "community": 28,
+      "community": 38,
       "norm_label": "catalogstore.js"
     },
     {
@@ -4941,7 +4821,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_store_catalogstore_usecatalogstore",
-      "community": 28,
+      "community": 38,
       "norm_label": "usecatalogstore"
     },
     {
@@ -4971,7 +4851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_userstore",
-      "community": 1,
+      "community": 6,
       "norm_label": "userstore.js"
     },
     {
@@ -5001,7 +4881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 46,
+      "community": 0,
       "norm_label": "vitest.config.js"
     },
     {
@@ -7395,7 +7275,7 @@
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_firebase",
-      "target": "c_mis_proyectos_missy_po_src_services_firebase",
+      "target": "src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -11517,7 +11397,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/AccountPage.jsx",
-      "source_location": "L14",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "src_pages_accountpage_accountpage",
       "target": "src_hooks_useordersbyuser_useordersbyuser"
@@ -11772,54 +11652,6 @@
     {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/club.astro",
-      "source": "src_pages_mi_cuenta_club",
-      "target": "src_layouts_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/direcciones.astro",
-      "source": "src_pages_mi_cuenta_direcciones",
-      "target": "src_layouts_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/mascotas.astro",
-      "source": "src_pages_mi_cuenta_mascotas",
-      "target": "src_layouts_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
-      "source": "src_pages_mi_cuenta_pedidos_detalle",
-      "target": "src_layouts_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
-      "source": "src_pages_mi_cuenta_pedidos_index",
-      "target": "src_layouts_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/perfil.astro",
-      "source": "src_pages_mi_cuenta_perfil",
-      "target": "src_layouts_layout",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
       "source_file": "src/pages/missypo-tv.astro",
       "source": "src_pages_missypo_tv",
       "target": "src_layouts_layout",
@@ -11926,10 +11758,142 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/AccountPage.jsx",
-      "source_location": "L9",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_pages_accountpage",
       "target": "src_pages_accountpage_accountpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_club_clubpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_club_clubpage_clubpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_direcciones_addressespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_direcciones_addressespage_addressespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_mascotas_petspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_mascotas_petspage_petspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_pedidos_orderdetailpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_pedidos_orderdetailpage_orderdetailpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_pedidos_orderspage_orderspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_perfil_profilepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/AccountPage.jsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "src_pages_accountpage",
+      "target": "src_pages_mi_cuenta_perfil_profilepage_profilepage",
       "confidence_score": 1.0
     },
     {
@@ -11993,7 +11957,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/pages/AccountPage.jsx",
-      "source_location": "L13",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "src_pages_accountpage_accountpage",
       "target": "src_store_userstore_useuserstore"
@@ -13639,25 +13603,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/club.astro",
-      "source": "src_pages_mi_cuenta_club",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_club_clubpage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/club.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_mi_cuenta_club",
-      "target": "src_pages_mi_cuenta_club_clubpage",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/club/ClubPage.jsx",
@@ -13698,25 +13643,6 @@
       "weight": 1.0,
       "source": "src_pages_mi_cuenta_club_clubpage",
       "target": "src_services_firebase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/direcciones.astro",
-      "source": "src_pages_mi_cuenta_direcciones",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_direcciones_addressespage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/direcciones.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_mi_cuenta_direcciones",
-      "target": "src_pages_mi_cuenta_direcciones_addressespage",
       "confidence_score": 1.0
     },
     {
@@ -13783,25 +13709,6 @@
       "weight": 1.0,
       "source": "src_pages_mi_cuenta_direcciones_addressespage_addressespage",
       "target": "src_store_userstore_useuserstore"
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/mascotas.astro",
-      "source": "src_pages_mi_cuenta_mascotas",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_mascotas_petspage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/mascotas.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_mi_cuenta_mascotas",
-      "target": "src_pages_mi_cuenta_mascotas_petspage",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -13879,17 +13786,6 @@
       "target": "src_store_userstore_useuserstore"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_mi_cuenta_pedidos_detalle",
-      "target": "src_pages_mi_cuenta_pedidos_orderdetailpage",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/mi-cuenta/pedidos/OrderDetailPage.jsx",
@@ -13940,17 +13836,6 @@
       "weight": 1.0,
       "source": "src_pages_mi_cuenta_pedidos_orderdetailpage",
       "target": "src_services_firebase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_mi_cuenta_pedidos_index",
-      "target": "src_pages_mi_cuenta_pedidos_orderspage",
       "confidence_score": 1.0
     },
     {
@@ -14023,41 +13908,6 @@
       "weight": 1.0,
       "source": "src_pages_mi_cuenta_pedidos_orderspage",
       "target": "src_services_auth_listenauth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/detalle.astro",
-      "source": "src_pages_mi_cuenta_pedidos_detalle",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderdetailpage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/pedidos/index.astro",
-      "source": "src_pages_mi_cuenta_pedidos_index",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_pedidos_orderspage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/perfil.astro",
-      "source": "src_pages_mi_cuenta_perfil",
-      "target": "c_mis_proyectos_missy_po_src_pages_mi_cuenta_perfil_profilepage_tsx",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/mi-cuenta/perfil.astro",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "src_pages_mi_cuenta_perfil",
-      "target": "src_pages_mi_cuenta_perfil_profilepage",
       "confidence_score": 1.0
     },
     {
@@ -18239,5 +18089,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9696fbadbf1e4b13ec0070aceea8aad17356650f"
+  "built_at_commit": "41484af3b1429b2634007e9020a8f4e3259ca390"
 }
