@@ -55,13 +55,13 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1782848915.0766816,
-    "ast_hash": "79eff7e39dedd1cee253cca054fb2546",
+    "mtime": 1782855946.8448603,
+    "ast_hash": "47a5183bde41b1e43c6d32346a73f494",
     "semantic_hash": ""
   },
   "src/components/admin/AdminApp.jsx": {
-    "mtime": 1782848915.0776827,
-    "ast_hash": "a0e49d7ea8ba54dd9fb3c7d143fc2918",
+    "mtime": 1782856242.618478,
+    "ast_hash": "08538e9e3950d7588ed591e740637bc7",
     "semantic_hash": ""
   },
   "src/components/admin/ProductoFormModal.jsx": {
@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminLayout.jsx": {
-    "mtime": 1782848915.0796812,
-    "ast_hash": "6939b5f56468b6cd4973219782fe9d62",
+    "mtime": 1782855918.9860733,
+    "ast_hash": "e59e91eb3bceecb831cfecebda45cdd5",
     "semantic_hash": ""
   },
   "src/pages/admin/CajaDiaria.jsx": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/[...all].astro": {
-    "mtime": 1782756153.732936,
-    "ast_hash": "d6d444ba14973b6848bfbe9b091c8e2d",
+    "mtime": 1782856231.4209068,
+    "ast_hash": "7a0ec706bff9e86e87051e909aadee5a",
     "semantic_hash": ""
   },
   "src/pages/carrito.astro": {
@@ -680,8 +680,8 @@
     "semantic_hash": ""
   },
   "src/services/index.js": {
-    "mtime": 1782848915.081682,
-    "ast_hash": "88f1f75b90d98439ea7db73eedb4912d",
+    "mtime": 1782855907.903517,
+    "ast_hash": "338b26b56f968ed39e24fd52f931662f",
     "semantic_hash": ""
   },
   "src/services/orders.js": {
@@ -862,6 +862,16 @@
   "legacy/PLAN-REFactor-ARQUITECTURA.md": {
     "mtime": 1782772627.708047,
     "ast_hash": "0fdaf1090b0ef5ae8eda859c031a92a9",
+    "semantic_hash": ""
+  },
+  "src/pages/admin/ReclamacionesDashboard.jsx": {
+    "mtime": 1782855900.896465,
+    "ast_hash": "7add30e20fabec5568a888b0fb57a5c7",
+    "semantic_hash": ""
+  },
+  "src/services/reclamaciones.js": {
+    "mtime": 1782856269.1045468,
+    "ast_hash": "a20b05a162619790c2c1c8127ebb1359",
     "semantic_hash": ""
   }
 }

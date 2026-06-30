@@ -20,6 +20,7 @@ const ConfiguracionEnviosCupones = lazy(() => import('./pages/admin/Configuracio
 const ProductosCRUD = lazy(() => import('./pages/admin/ProductosCRUD'));
 const VentasDashboard = lazy(() => import('./pages/admin/VentasDashboard'));
 const ResenasDashboard = lazy(() => import('./pages/admin/ResenasDashboard'));
+const ReclamacionesDashboard = lazy(() => import('./pages/admin/ReclamacionesDashboard'));
 
 const AdminLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -56,6 +57,7 @@ function App() {
           <Route path="productos" element={<Suspense fallback={<AdminLoader />}><ProductosCRUD /></Suspense>} />
           <Route path="ventas" element={<Suspense fallback={<AdminLoader />}><VentasDashboard /></Suspense>} />
           <Route path="resenas" element={<Suspense fallback={<AdminLoader />}><ResenasDashboard /></Suspense>} />
+          <Route path="reclamaciones" element={<Suspense fallback={<AdminLoader />}><ReclamacionesDashboard /></Suspense>} />
         </Route>
       </Routes>
     </BrowserRouter>

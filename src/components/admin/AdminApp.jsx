@@ -11,6 +11,7 @@ const ConfiguracionEnviosCupones = lazy(() => import('../../pages/admin/Configur
 const ProductosCRUD = lazy(() => import('../../pages/admin/ProductosCRUD'));
 const VentasDashboard = lazy(() => import('../../pages/admin/VentasDashboard'));
 const ResenasDashboard = lazy(() => import('../../pages/admin/ResenasDashboard'));
+const ReclamacionesDashboard = lazy(() => import('../../pages/admin/ReclamacionesDashboard'));
 const CVRMDashboard = lazy(() => import('../../pages/admin/CVRMDashboard'));
 
 const AdminLoader = () => (
@@ -33,6 +34,7 @@ export default function AdminApp() {
             <Route path="productos" element={<ProductosCRUD />} />
             <Route path="ventas" element={<VentasDashboard />} />
             <Route path="resenas" element={<ResenasDashboard />} />
+            <Route path="reclamaciones" element={<ReclamacionesDashboard />} />
             <Route path="cvrm" element={<CVRMDashboard />} />
           </Route>
         </Routes>
