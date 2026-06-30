@@ -20,7 +20,7 @@ export default function AccountPage() {
   const [currentHash, setCurrentHash] = useState('')
 
   const { profile, isLoading: profileLoading, fetchProfile } = useUserStore()
-  const { orders, isLoading: ordersLoading } = useOrdersByUser(authUser?.uid)
+  const { orders, isLoading: ordersLoading } = useOrdersByUser(authUser?.uid, authUser?.email)
 
   // Sincronizar hash de la URL
   useEffect(() => {

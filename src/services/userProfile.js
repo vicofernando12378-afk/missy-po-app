@@ -1,6 +1,6 @@
 import {
   doc, getDoc, setDoc, updateDoc, collection, query, where, orderBy,
-  getDocs, limit as firestoreLimit, serverTimestamp
+  getDocs, limit as firestoreLimit, serverTimestamp, or
 } from 'firebase/firestore'
 import { db } from './firebase'
 import { UserProfileSchema } from '../schemas'
@@ -207,11 +207,21 @@ export async function removePet(uid, index) {
 }
 
 // ── OBTENER PEDIDOS POR USUARIO ─────────────────────────────
-export async function getOrdersByUser(uid, { limite = 20 } = {}) {
+export async function getOrdersByUser(uid, email, { limite = 20 } = {}) {
   try {
+    let qFilter
+    if (email) {
+      qFilter = or(
+        where('userId', '==', uid),
+        where('cliente.email', '==', email.trim().toLowerCase())
+      )
+    } else {
+      qFilter = where('userId', '==', uid)
+    }
+
     const q = query(
       collection(db, 'myp_pedidos'),
-      where('userId', '==', uid),
+      qFilter,
       orderBy('creado_en', 'desc'),
       firestoreLimit(limite)
     )

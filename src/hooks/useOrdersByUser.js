@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { getOrdersByUser } from '../services/userProfile'
 
-export default function useOrdersByUser(uid, { limite = 20 } = {}) {
+export default function useOrdersByUser(uid, email, { limite = 20 } = {}) {
   const [orders, setOrders] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -11,7 +11,7 @@ export default function useOrdersByUser(uid, { limite = 20 } = {}) {
     setIsLoading(true)
     setError(null)
     try {
-      const data = await getOrdersByUser(uid, { limite })
+      const data = await getOrdersByUser(uid, email, { limite })
       setOrders(data)
     } catch (err) {
       console.error('Error fetching orders:', err)
@@ -19,7 +19,7 @@ export default function useOrdersByUser(uid, { limite = 20 } = {}) {
     } finally {
       setIsLoading(false)
     }
-  }, [uid, limite])
+  }, [uid, email, limite])
 
   useEffect(() => {
     fetchOrders()

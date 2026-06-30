@@ -775,8 +775,8 @@
     "semantic_hash": ""
   },
   "src/hooks/useOrdersByUser.js": {
-    "mtime": 1782785697.8939104,
-    "ast_hash": "fac875b11e2b727d2ec805c90c8e3d84",
+    "mtime": 1782793514.723113,
+    "ast_hash": "9e1dd568a92c624f2f428d8e2b17594a",
     "semantic_hash": ""
   },
   "src/hooks/useUserProfile.js": {
@@ -785,8 +785,8 @@
     "semantic_hash": ""
   },
   "src/pages/AccountPage.jsx": {
-    "mtime": 1782793049.3017864,
-    "ast_hash": "b3b6587d32cbd0369674fcdd75158b33",
+    "mtime": 1782793526.6250818,
+    "ast_hash": "67833b3260bd7391252a531bb18d89fc",
     "semantic_hash": ""
   },
   "src/pages/mi-cuenta.astro": {
@@ -835,8 +835,8 @@
     "semantic_hash": ""
   },
   "src/services/userProfile.js": {
-    "mtime": 1782792008.6621926,
-    "ast_hash": "a6e6964df1cf7101c18848c437d7a84b",
+    "mtime": 1782793504.3371272,
+    "ast_hash": "187c4a8555d683b7bcd56dafbc31dee4",
     "semantic_hash": ""
   },
   "src/store/__tests__/userStore.test.js": {
