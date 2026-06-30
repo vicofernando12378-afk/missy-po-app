@@ -114,14 +114,14 @@ export default function AdminLayout() {
   }
 
   const menuItems = [
-    { path: '/admin',          label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
-    { path: '/admin/ventas',   label: 'Ventas / KPIs',    icon: '📊' },
-    { path: '/admin/productos', label: 'Catálogo',          icon: '🛍️' },
-    { path: '/admin/caja',     label: 'Caja Diaria',       icon: '💰' },
-    { path: '/admin/inventario', label: 'Inventario',      icon: '🗂️' },
-    { path: '/admin/resenas',  label: 'Reseñas',           icon: '⭐' },
-    { path: '/admin/cvrm',     label: 'Club (CVRM)',       icon: '👥' },
-    { path: '/admin/configuracion', label: 'Configuración', icon: '⚙️' },
+    { path: '/',               label: 'Pedidos',           icon: '📦', end: true, badge: pedidosNuevos },
+    { path: '/ventas',         label: 'Ventas / KPIs',    icon: '📊' },
+    { path: '/productos',      label: 'Catálogo',          icon: '🛍️' },
+    { path: '/caja',           label: 'Caja Diaria',       icon: '💰' },
+    { path: '/inventario',     label: 'Inventario',      icon: '🗂️' },
+    { path: '/resenas',        label: 'Reseñas',           icon: '⭐' },
+    { path: '/cvrm',           label: 'Club (CVRM)',       icon: '👥' },
+    { path: '/configuracion',  label: 'Configuración', icon: '⚙️' },
   ]
 
   return (
