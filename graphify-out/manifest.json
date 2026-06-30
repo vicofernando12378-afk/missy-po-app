@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/VentasDashboard.jsx": {
-    "mtime": 1782778248.810503,
-    "ast_hash": "2f1ce57362ed2882fd10aee1108a31f0",
+    "mtime": 1782780320.267387,
+    "ast_hash": "56c18c3f7a3dd0ee3dd64ec9967923d7",
     "semantic_hash": ""
   },
   "src/pages/admin/[...all].astro": {
