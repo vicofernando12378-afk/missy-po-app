@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { loginWithEmail, registerWithEmail, listenAuth, logout } from '../services/auth'
+import { loginWithEmail, registerWithEmail, listenAuth, logout, resetPassword } from '../services/auth'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isRegister, setIsRegister] = useState(false)
+  const [isForgotPassword, setIsForgotPassword] = useState(false)
+  const [resetEmailSent, setResetEmailSent] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState(null)
@@ -49,6 +51,34 @@ export default function LoginPage() {
     }
   }
 
+  const handleResetPassword = async (e) => {
+    e.preventDefault()
+    setError('')
+    setResetEmailSent(false)
+
+    if (!email.trim()) {
+      setError('Por favor, ingresa tu correo electrónico.')
+      return
+    }
+
+    setLoading(true)
+    try {
+      await resetPassword(email.trim())
+      setResetEmailSent(true)
+    } catch (err) {
+      console.error(err)
+      if (err.code === 'auth/user-not-found') {
+        setError('El correo electrónico ingresado no está registrado en el Club.')
+      } else if (err.code === 'auth/invalid-email') {
+        setError('El formato del correo electrónico es incorrecto.')
+      } else {
+        setError('Ocurrió un error al enviar el correo. Inténtalo de nuevo más tarde.')
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const handleLogout = async () => {
     try {
       await logout()
@@ -69,14 +99,24 @@ export default function LoginPage() {
             🐶
           </div>
           <h1 className="font-brand text-3xl text-gray-800">
-            {checkingAuth ? 'Cargando...' : user ? 'Tu Cuenta' : isRegister ? 'Crear Cuenta' : 'Inicia Sesión'}
+            {checkingAuth
+              ? 'Cargando...'
+              : user
+                ? 'Tu Cuenta'
+                : isForgotPassword
+                  ? 'Recuperar Contraseña'
+                  : isRegister
+                    ? 'Crear Cuenta'
+                    : 'Inicia Sesión'}
           </h1>
           <p className="text-gray-500 text-sm mt-2 leading-relaxed">
-            {user 
+            {user
               ? 'Gestiona tu sesión y tus datos de socio'
-              : isRegister 
-                ? 'Regístrate en el Club Missy & Po para acumular puntos en todas tus compras'
-                : 'Ingresa para ver tus puntos acumulados y tus pedidos'}
+              : isForgotPassword
+                ? 'Ingresa tu correo para enviarte un enlace de restablecimiento'
+                : isRegister
+                  ? 'Regístrate en el Club Missy & Po para acumular puntos en todas tus compras'
+                  : 'Ingresa para ver tus puntos acumulados y tus pedidos'}
           </p>
         </div>
 
@@ -109,6 +149,66 @@ export default function LoginPage() {
               Cerrar Sesión
             </button>
           </div>
+        ) : isForgotPassword ? (
+          <form onSubmit={handleResetPassword} className="space-y-5">
+            {error && (
+              <div className="p-4 bg-red-50 text-red-700 text-sm rounded-2xl border border-red-100 flex items-start gap-2">
+                <span className="text-base mt-0.5">⚠️</span>
+                <span>{error}</span>
+              </div>
+            )}
+
+            {resetEmailSent && (
+              <div className="p-4 bg-emerald-50 text-emerald-850 text-sm rounded-2xl border border-emerald-100 flex items-start gap-2">
+                <span className="text-base mt-0.5">✓</span>
+                <span>¡Listo! Te hemos enviado un correo con instrucciones para restablecer tu contraseña.</span>
+              </div>
+            )}
+
+            <div>
+              <label className="block text-gray-700 font-semibold text-sm mb-1.5" htmlFor="reset-email">
+                Correo Electrónico
+              </label>
+              <input
+                id="reset-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="ejemplo@correo.com"
+                className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all text-gray-850"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full mt-2 py-3.5 px-4 bg-coral hover:bg-coral-dark disabled:bg-gray-250 text-white rounded-2xl font-semibold shadow-md shadow-coral/10 hover:shadow-coral/25 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+            >
+              {loading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Enviando correo...</span>
+                </>
+              ) : (
+                <span>Enviar Correo</span>
+              )}
+            </button>
+
+            <div className="text-center mt-6 pt-4 border-t border-gray-50">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsForgotPassword(false)
+                  setError('')
+                  setResetEmailSent(false)
+                }}
+                className="text-sm font-semibold text-coral hover:text-coral-dark transition-colors duration-200"
+              >
+                Volver al inicio de sesión
+              </button>
+            </div>
+          </form>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-5">
             {error && (
@@ -146,6 +246,20 @@ export default function LoginPage() {
                 placeholder="Mínimo 6 caracteres"
                 className="w-full px-4 py-3 rounded-2xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-coral/20 focus:border-coral transition-all text-gray-850"
               />
+            </div>
+
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsForgotPassword(true)
+                  setError('')
+                  setResetEmailSent(false)
+                }}
+                className="text-xs font-semibold text-coral hover:text-coral-dark transition-colors"
+              >
+                ¿Olvidaste tu contraseña?
+              </button>
             </div>
 
             <button
