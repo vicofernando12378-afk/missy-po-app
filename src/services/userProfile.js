@@ -208,20 +208,24 @@ export async function removePet(uid, index) {
 
 // ── OBTENER PEDIDOS POR USUARIO ─────────────────────────────
 export async function getOrdersByUser(uid, email, { limite = 20 } = {}) {
+  if (!uid || typeof uid !== 'string' || uid.trim() === '') {
+    return []
+  }
+
   try {
     let ordersUid = []
     let ordersEmail = []
 
-    // 1. Consulta por UID
+    // 1. Consulta por UID (solo si es válido y no vacío)
     const qUid = query(
       collection(db, 'myp_pedidos'),
-      where('userId', '==', uid)
+      where('userId', '==', uid.trim())
     )
     const snapUid = await getDocs(qUid)
     ordersUid = snapUid.docs.map(d => ({ id: d.id, ...d.data() }))
 
-    // 2. Consulta por Email (si se proporciona)
-    if (email) {
+    // 2. Consulta por Email (solo si es válido y no vacío)
+    if (email && typeof email === 'string' && email.trim() !== '') {
       const qEmail = query(
         collection(db, 'myp_pedidos'),
         where('cliente.email', '==', email.trim().toLowerCase())
