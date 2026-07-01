@@ -12,6 +12,7 @@ export default function AdminLayout() {
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [pedidosNuevos, setPedidosNuevos] = useState(0);
+  const [reclamacionesNuevas, setReclamacionesNuevas] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -64,6 +65,21 @@ export default function AdminLayout() {
       setPedidosNuevos(snap.size);
     }, (err) => {
       console.error('Error en listener de pedidos:', err);
+    });
+    return () => unsub();
+  }, [isAdmin]);
+
+  // ── BADGE: Escucha reclamaciones en estado 'recibido' ──
+  useEffect(() => {
+    if (!isAdmin) return;
+    const q = query(
+      collection(db, 'myp_reclamaciones'),
+      where('estado', '==', 'recibido'),
+    );
+    const unsub = onSnapshot(q, (snap) => {
+      setReclamacionesNuevas(snap.size);
+    }, (err) => {
+      console.error('Error en listener de reclamaciones:', err);
     });
     return () => unsub();
   }, [isAdmin]);
@@ -121,7 +137,7 @@ export default function AdminLayout() {
     { path: '/caja',           label: 'Caja Diaria',       icon: '💰' },
     { path: '/inventario',     label: 'Inventario',      icon: '🗂️' },
     { path: '/resenas',        label: 'Reseñas',           icon: '⭐' },
-    { path: '/reclamaciones',  label: 'Reclamos',         icon: '📬' },
+    { path: '/reclamaciones',  label: 'Reclamos',         icon: '📬', badge: reclamacionesNuevas },
     { path: '/cvrm',           label: 'Club (CVRM)',       icon: '👥' },
     { path: '/configuracion',  label: 'Configuración', icon: '⚙️' },
   ];

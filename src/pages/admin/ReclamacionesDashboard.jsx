@@ -1,8 +1,11 @@
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { collection, addDoc, serverTimestamp, query, where, orderBy, onSnapshot, limit, doc, updateDoc } from 'firebase/firestore';
+import { useState, useEffect, useMemo } from 'react';
 
-import { obtenerReclamaciones, resolverReclamacion } from '../../services';
+import { resolverReclamacion, cerrarReclamacion } from '../../services';
 import { db, auth } from '../../services/firebase';
+import { SLA_DIAS_HABILES, calcularSLA, SLA_CFG } from '../../utils/sla';
+
+
 
 const ESTADOS_CFG = {
   recibido:    { label: 'Recibido',     bg: 'bg-blue-50',    text: 'text-blue-800',    border: 'border-blue-200' },
@@ -11,10 +14,19 @@ const ESTADOS_CFG = {
   cerrado:     { label: 'Cerrado',      bg: 'bg-gray-100',   text: 'text-gray-700',    border: 'border-gray-200' },
 };
 
+const PRIORIDAD_CFG = {
+  baja:     { label: 'Baja',     bg: 'bg-gray-50',   text: 'text-gray-600',   border: 'border-gray-200',   icon: '🟢' },
+  normal:   { label: 'Normal',   bg: 'bg-blue-50',   text: 'text-blue-600',   border: 'border-blue-200',   icon: '🔵' },
+  alta:     { label: 'Alta',     bg: 'bg-amber-50',  text: 'text-amber-600',  border: 'border-amber-200',  icon: '🟡' },
+  urgente:  { label: 'Urgente',  bg: 'bg-red-50',    text: 'text-red-600',    border: 'border-red-200',    icon: '🔴' },
+};
+
 export default function ReclamacionesDashboard() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState('todos');
+  const [filtroPrioridad, setFiltroPrioridad] = useState('todas');
+  const [busqueda, setBusqueda] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
   const [resolviendo, setResolviendo] = useState(false);
   const [tabResolucion, setTabResolucion] = useState('devolucion'); // 'devolucion' | 'cambio' | 'personalizado'
@@ -22,28 +34,136 @@ export default function ReclamacionesDashboard() {
   const [toastMessage, setToastMessage] = useState(null);
   const [error, setError] = useState(null);
 
-  const cargar = async () => {
+  // ── ESCUCHA EN TIEMPO REAL ──────────────────────────────────
+  useEffect(() => {
     setLoading(true);
     setError(null);
-    try {
-      const estado = filtro === 'todos' ? null : filtro;
-      const data = await obtenerReclamaciones({ estado, limite: 50 });
-      setItems(data);
-    } catch (e) {
-      console.error(e);
-      setError('No se pudo cargar el listado de reclamos.');
-    } finally {
-      setLoading(false);
+    const base = collection(db, 'myp_reclamaciones');
+    let q;
+    if (filtro && filtro !== 'todos') {
+      q = query(base, where('estado', '==', filtro), orderBy('creado_en', 'desc'), limit(100));
+    } else {
+      q = query(base, orderBy('creado_en', 'desc'), limit(100));
     }
-  };
 
-  useEffect(() => {
-    cargar();
+    const unsubscribe = onSnapshot(q, (snap) => {
+      const docs = snap.docs.map(d => {
+        const data = d.data();
+        return {
+          id: d.id,
+          ...data,
+          creado_en: data.creado_en?.toDate ? data.creado_en.toDate() : new Date(data.creado_en),
+        };
+      });
+      setItems(docs);
+      setLoading(false);
+    }, (err) => {
+      console.error('Error al escuchar reclamaciones:', err);
+      setError('No se pudo cargar el listado de reclamos.');
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, [filtro]);
+
+  // ── KPIs calculados en tiempo real ──────────────────────────
+  const kpis = useMemo(() => {
+    const activos = items.filter(i => i.estado !== 'cerrado' && i.estado !== 'respondido');
+    const sla = activos.map(i => calcularSLA(i.creado_en, i.estado));
+    return {
+      total: items.length,
+      recibidos: items.filter(i => i.estado === 'recibido').length,
+      enRevision: items.filter(i => i.estado === 'en_revision').length,
+      respondidos: items.filter(i => i.estado === 'respondido').length,
+      cerrados: items.filter(i => i.estado === 'cerrado').length,
+      vencidos: sla.filter(s => s.tipo === 'vencido').length,
+      porVencer: sla.filter(s => s.tipo === 'por_vencer' || s.tipo === 'critico').length,
+    };
+  }, [items]);
+
+  // ── FILTRADO POR BÚSQUEDA, PRIORIDAD Y ESTADO ──────────────
+  const itemsFiltrados = useMemo(() => {
+    let filtered = items;
+    // Excluir cerrados del panel principal (solo se ven en tab "Cerrados")
+    if (filtro === 'cerrado') {
+      filtered = filtered.filter(r => r.estado === 'cerrado');
+    } else if (filtro === 'todos') {
+      filtered = filtered.filter(r => r.estado !== 'cerrado');
+    }
+    if (filtroPrioridad !== 'todas') {
+      filtered = filtered.filter(r => (r.prioridad || 'normal') === filtroPrioridad);
+    }
+    const texto = busqueda.toLowerCase().trim();
+    if (!texto) return filtered;
+    return filtered.filter(r => {
+      const codigo = (r.codigo || r.id || '').toLowerCase();
+      const nombre = (r.cliente?.nombre || '').toLowerCase();
+      const apellido = (r.cliente?.apellido || '').toLowerCase();
+      const email = (r.cliente?.email || '').toLowerCase();
+      const telefono = (r.cliente?.telefono || '').toLowerCase();
+      const desc = (r.detalle?.descripcion || '').toLowerCase();
+      const agente = (r.asignado_a || '').toLowerCase();
+      return codigo.includes(texto) || nombre.includes(texto) || apellido.includes(texto)
+        || email.includes(texto) || telefono.includes(texto) || desc.includes(texto) || agente.includes(texto);
+    });
+  }, [items, busqueda, filtroPrioridad]);
 
   const showToast = (msg) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
+  };
+
+  const handleUpdatePrioridad = async (id, prioridad) => {
+    try {
+      const ref = doc(db, 'myp_reclamaciones', id);
+      await updateDoc(ref, { prioridad, actualizado_en: serverTimestamp() });
+      showToast(`Prioridad actualizada a ${PRIORIDAD_CFG[prioridad]?.label || prioridad}`);
+    } catch (err) {
+      console.error('Error al actualizar prioridad:', err);
+    }
+  };
+
+  const handleAsignarAgente = async (id, agente) => {
+    try {
+      const ref = doc(db, 'myp_reclamaciones', id);
+      await updateDoc(ref, { asignado_a: agente, actualizado_en: serverTimestamp() });
+      showToast(agente ? `Asignado a ${agente}` : 'Asignación removida');
+    } catch (err) {
+      console.error('Error al asignar agente:', err);
+    }
+  };
+
+  const handleExportCSV = () => {
+    const headers = ['Código', 'Estado', 'Prioridad', 'Cliente', 'Email', 'Teléfono', 'Tipo Bien', 'Monto', 'Tipo Reclamo', 'Descripción', 'Agente', 'Fecha Creación', 'SLA'];
+    const rows = itemsFiltrados.map(r => {
+      const sla = calcularSLA(r.creado_en, r.estado);
+      const slaLabel = sla.tipo === 'cumplido' ? 'Cumplido' : sla.tipo === 'vencido' ? `Vencido (${Math.abs(sla.diasRestantes)}d)` : `${sla.diasRestantes}d restantes`;
+      return [
+        r.codigo || r.id,
+        ESTADOS_CFG[r.estado]?.label || r.estado,
+        PRIORIDAD_CFG[r.prioridad]?.label || 'Normal',
+        `${r.cliente?.nombre || ''} ${r.cliente?.apellido || ''}`.trim(),
+        r.cliente?.email || '',
+        r.cliente?.telefono || '',
+        r.bien?.tipo || 'Producto',
+        r.bien?.monto || '0',
+        r.detalle?.tipo || 'Reclamo',
+        (r.detalle?.descripcion || '').replace(/"/g, '""'),
+        r.asignado_a || '',
+        r.creado_en ? new Date(r.creado_en).toLocaleDateString('es-PE') : '',
+        slaLabel,
+      ];
+    });
+
+    const csvContent = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `reclamaciones_${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+    showToast(`Exportadas ${rows.length} reclamaciones`);
   };
 
   const handleProcesarResolucion = async (e) => {
@@ -68,10 +188,18 @@ export default function ReclamacionesDashboard() {
     };
 
     try {
-      // 1. Actualizar el estado y resolución en Firestore
+      // 1. Determinar estado según tipo de resolución
+      const requiereConfirmacion = tabResolucion === 'devolucion' || tabResolucion === 'cambio';
+      const estadoFinal = requiereConfirmacion ? 'respondido' : 'cerrado';
+
+      // 2. Actualizar el estado y resolución en Firestore
       await resolverReclamacion(selectedItem.id, {
-        estado: 'respondido',
-        resolution: resolutionData,
+        estado: estadoFinal,
+        resolution: {
+          ...resolutionData,
+          requiereConfirmacion,
+          confirmadoPorCliente: !requiereConfirmacion,
+        },
       });
 
       // 2. Componer e Inyectar correo HTML según la pestaña seleccionada
@@ -131,7 +259,7 @@ export default function ReclamacionesDashboard() {
       showToast('Resolución procesada y correo enviado con éxito');
       setSelectedItem(null);
       setAdminNotes('');
-      cargar();
+      // onSnapshot actualiza la lista automáticamente
     } catch (err) {
       console.error(err);
       alert('Ocurrió un error al guardar la resolución.');
@@ -162,35 +290,85 @@ export default function ReclamacionesDashboard() {
             Atención de solicitudes registradas desde el Libro de Reclamaciones virtual.
           </p>
         </div>
-        <button
-          onClick={cargar}
-          className="self-start sm:self-auto px-4 py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-600 hover:bg-gray-50 transition-colors"
-        >
-          Actualizar
-        </button>
       </div>
 
-      {/* Filtros */}
-      <div className="flex flex-wrap gap-2">
+      {/* KPIs */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
         {[
-          ['todos', 'Todos'],
-          ['recibido', 'Recibidos'],
-          ['en_revision', 'En Revisión'],
-          ['respondido', 'Respondidos'],
-          ['cerrado', 'Cerrados'],
-        ].map(([valor, label]) => (
-          <button
-            key={valor}
-            onClick={() => setFiltro(valor)}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
-              filtro === valor
-                ? 'bg-white text-gray-800 shadow-sm border-gray-200'
-                : 'text-gray-500 hover:text-gray-700 border-transparent hover:border-gray-100'
-            }`}
-          >
-            {label}
-          </button>
+          { label: 'Total',     value: kpis.total,      color: 'text-gray-800',   bg: 'bg-white' },
+          { label: 'Recibidos', value: kpis.recibidos,   color: 'text-blue-700',   bg: 'bg-blue-50' },
+          { label: 'En Revisión', value: kpis.enRevision, color: 'text-amber-700', bg: 'bg-amber-50' },
+          { label: 'Respondidos', value: kpis.respondidos, color: 'text-emerald-700', bg: 'bg-emerald-50' },
+          { label: 'Cerrados',  value: kpis.cerrados,    color: 'text-gray-500',   bg: 'bg-gray-100' },
+          { label: 'Vencidos',  value: kpis.vencidos,    color: 'text-red-700',    bg: 'bg-red-50' },
+          { label: 'Por Vencer', value: kpis.porVencer,  color: 'text-orange-700', bg: 'bg-orange-50' },
+        ].map(kpi => (
+          <div key={kpi.label} className={`${kpi.bg} rounded-2xl border border-gray-100 p-4 text-center`}>
+            <p className={`text-2xl font-bold ${kpi.color}`}>{kpi.value}</p>
+            <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mt-1">{kpi.label}</p>
+          </div>
         ))}
+      </div>
+
+      {/* Filtros + Búsqueda + Export */}
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+          <input
+            type="text"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            placeholder="Buscar por código, nombre, email, teléfono, agente..."
+            className="w-full h-10 pl-9 pr-4 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-coral bg-white"
+          />
+        </div>
+        <button
+          onClick={handleExportCSV}
+          className="h-10 px-4 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center gap-2 shrink-0"
+        >
+          📥 Exportar CSV
+        </button>
+        <div className="flex flex-wrap gap-2">
+          {[
+            ['todos', 'Todos'],
+            ['recibido', 'Recibidos'],
+            ['en_revision', 'En Revisión'],
+            ['respondido', 'Respondidos'],
+            ['cerrado', 'Cerrados'],
+          ].map(([valor, label]) => (
+            <button
+              key={valor}
+              onClick={() => setFiltro(valor)}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                filtro === valor
+                  ? 'bg-white text-gray-800 shadow-sm border-gray-200'
+                  : 'text-gray-500 hover:text-gray-700 border-transparent hover:border-gray-100'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+          <span className="text-gray-300 mx-1">|</span>
+          {[
+            ['todas', 'Todas'],
+            ['urgente', '🔴 Urgente'],
+            ['alta', '🟡 Alta'],
+            ['normal', '🔵 Normal'],
+            ['baja', '🟢 Baja'],
+          ].map(([valor, label]) => (
+            <button
+              key={valor}
+              onClick={() => setFiltroPrioridad(valor)}
+              className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
+                filtroPrioridad === valor
+                  ? 'bg-white text-gray-800 shadow-sm border-gray-200'
+                  : 'text-gray-500 hover:text-gray-700 border-transparent hover:border-gray-100'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {error && (
@@ -214,11 +392,13 @@ export default function ReclamacionesDashboard() {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4">
-          {items.map(r => {
+          {itemsFiltrados.map(r => {
             const estadoCfg = ESTADOS_CFG[r.estado] || ESTADOS_CFG.recibido;
             const cliente = r.cliente || {};
             const detalle = r.detalle || {};
             const bien = r.bien || {};
+            const sla = calcularSLA(r.creado_en, r.estado);
+            const slaCfg = SLA_CFG[sla.tipo] || SLA_CFG.al_dia;
 
             return (
               <div
@@ -239,6 +419,21 @@ export default function ReclamacionesDashboard() {
                       <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${estadoCfg.bg} ${estadoCfg.text} ${estadoCfg.border}`}>
                         {estadoCfg.label}
                       </span>
+                      {/* Badge Prioridad */}
+                      {r.prioridad && r.prioridad !== 'normal' && (
+                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${PRIORIDAD_CFG[r.prioridad]?.bg || 'bg-gray-50'} ${PRIORIDAD_CFG[r.prioridad]?.text || 'text-gray-600'} ${PRIORIDAD_CFG[r.prioridad]?.border || 'border-gray-200'}`}>
+                          {PRIORIDAD_CFG[r.prioridad]?.icon} {PRIORIDAD_CFG[r.prioridad]?.label}
+                        </span>
+                      )}
+                      {/* Badge SLA */}
+                      {r.estado !== 'cerrado' && r.estado !== 'respondido' && (
+                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${slaCfg.bg} ${slaCfg.text} ${slaCfg.border}`}>
+                          {slaCfg.icon} {sla.tipo === 'vencido' ? `Vencido (${Math.abs(sla.diasRestantes)}d)` : sla.tipo === 'critico' ? `${sla.diasRestantes}d restantes` : sla.tipo === 'por_vencer' ? `${sla.diasRestantes}d restantes` : `${sla.diasTranscurridos}/${SLA_DIAS_HABILES}d`}
+                        </span>
+                      )}
+                      {r.asignado_a && (
+                        <span className="text-[10px] text-gray-400">👤 {r.asignado_a}</span>
+                      )}
                       <span className="text-[10px] text-gray-400 font-mono">
                         #{r.codigo || r.id}
                       </span>
@@ -257,6 +452,11 @@ export default function ReclamacionesDashboard() {
                       <p className="truncate text-gray-700 font-medium">
                         📌 {detalle.tipo || 'Reclamo'}: {detalle.descripcion || 'Sin detalle.'}
                       </p>
+                      {r.estado === 'respondido' && (
+                        <p className="text-amber-600 font-semibold text-[11px]">
+                          ⏳ Esperando confirmación del cliente
+                        </p>
+                      )}
                     </div>
                   </div>
                   <span className="text-gray-300 self-center hidden sm:inline">➡️</span>
@@ -316,6 +516,37 @@ export default function ReclamacionesDashboard() {
                   </div>
                 </div>
 
+                {/* Bloque SLA */}
+                {selectedItem.estado !== 'cerrado' && selectedItem.estado !== 'respondido' && (() => {
+                  const sla = calcularSLA(selectedItem.creado_en, selectedItem.estado);
+                  const slaCfg = SLA_CFG[sla.tipo] || SLA_CFG.al_dia;
+                  return (
+                    <div>
+                      <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">⚖️ Control SLA (15 días hábiles)</h4>
+                      <div className={`rounded-2xl p-4 border ${slaCfg.bg} ${slaCfg.border} text-sm`}>
+                        <div className="flex items-center justify-between">
+                          <span className={`font-bold ${slaCfg.text}`}>{slaCfg.icon} {slaCfg.label}</span>
+                          <span className={`text-xs font-mono ${slaCfg.text}`}>{sla.diasTranscurridos} / {SLA_DIAS_HABILES} días hábiles</span>
+                        </div>
+                        <div className="mt-2 w-full bg-white rounded-full h-2 overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all ${
+                              sla.tipo === 'vencido' ? 'bg-red-500' : sla.tipo === 'critico' ? 'bg-orange-500' : sla.tipo === 'por_vencer' ? 'bg-amber-400' : 'bg-emerald-400'
+                            }`}
+                            style={{ width: `${Math.min((sla.diasTranscurridos / SLA_DIAS_HABILES) * 100, 100)}%` }}
+                          />
+                        </div>
+                        <p className="text-[10px] text-gray-500 mt-2">
+                          {sla.tipo === 'vencido'
+                            ? `Vencido hace ${Math.abs(sla.diasRestantes)} día${Math.abs(sla.diasRestantes) !== 1 ? 's' : ''} hábil${Math.abs(sla.diasRestantes) !== 1 ? 'es' : ''}. Responder a la brevedad.`
+                            : `Faltan ${sla.diasRestantes} día${sla.diasRestantes !== 1 ? 's' : ''} hábil${sla.diasRestantes !== 1 ? 'es' : ''} para el vencimiento.`
+                          }
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 {/* Bloque Comercial del Bien */}
                 <div>
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">2. Detalle del Bien Contratado</h4>
@@ -341,18 +572,108 @@ export default function ReclamacionesDashboard() {
                   </div>
                 </div>
 
-                {/* Galería de Evidencias (Placeholder) */}
+                {/* Galería de Evidencias */}
                 <div>
                   <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">4. Evidencias y Adjuntos</h4>
-                  <div className="border-2 border-dashed border-gray-150 rounded-2xl p-6 text-center text-gray-400 text-xs">
-                    📷 No se subieron evidencias fotográficas para este reclamo.
-                  </div>
+                  {selectedItem.evidencias && selectedItem.evidencias.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      {selectedItem.evidencias.map((ev, idx) => (
+                        <a key={idx} href={ev.url} target="_blank" rel="noopener noreferrer" className="block group">
+                          <img
+                            src={ev.url}
+                            alt={ev.nombre || `Evidencia ${idx + 1}`}
+                            className="w-full h-24 object-cover rounded-lg border border-gray-200 group-hover:border-coral transition-colors"
+                          />
+                          <p className="text-[10px] text-gray-400 truncate mt-1 group-hover:text-coral">{ev.nombre || `Evidencia ${idx + 1}`}</p>
+                        </a>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="border-2 border-dashed border-gray-150 rounded-2xl p-6 text-center text-gray-400 text-xs">
+                      📷 No se subieron evidencias fotográficas para este reclamo.
+                    </div>
+                  )}
+                </div>
+
+                {/* Historial de Cambios de Estado */}
+                <div>
+                  <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">📋 Historial de Cambios</h4>
+                  {selectedItem.historial_estados && selectedItem.historial_estados.length > 0 ? (
+                    <div className="space-y-2">
+                      {selectedItem.historial_estados.map((h, idx) => {
+                        const cfg = ESTADOS_CFG[h.estado] || ESTADOS_CFG.recibido;
+                        const fecha = h.fecha ? new Date(h.fecha) : null;
+                        const fechaStr = fecha ? fecha.toLocaleDateString('es-PE', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '';
+                        return (
+                          <div key={idx} className="flex items-start gap-3 p-2 rounded-lg bg-gray-50 border border-gray-100">
+                            <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold ${cfg.bg} ${cfg.text} border ${cfg.border} shrink-0`}>
+                              {cfg.label}
+                            </span>
+                            <div className="min-w-0">
+                              <p className="text-[10px] text-gray-400">{fechaStr}</p>
+                              {h.nota && <p className="text-xs text-gray-500 mt-0.5">{h.nota}</p>}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-xs text-gray-400 italic">Sin cambios de estado registrados.</div>
+                  )}
                 </div>
               </div>
 
               {/* Columna Derecha (40%) */}
               <div className="md:col-span-4 p-6 bg-gray-50/50 flex flex-col justify-between">
                 <div>
+                  {/* Asignación y Prioridad */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div>
+                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5">Prioridad</label>
+                      <select
+                        value={selectedItem.prioridad || 'normal'}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          handleUpdatePrioridad(selectedItem.id, val);
+                          setSelectedItem(prev => ({ ...prev, prioridad: val }));
+                        }}
+                        className="w-full h-9 px-2 rounded-lg border border-gray-200 text-xs bg-white focus:outline-none focus:border-coral"
+                      >
+                        {Object.entries(PRIORIDAD_CFG).map(([key, cfg]) => (
+                          <option key={key} value={key}>{cfg.icon} {cfg.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5">Agente Asignado</label>
+                      <input
+                        type="text"
+                        value={selectedItem.asignado_a || ''}
+                        onChange={(e) => setSelectedItem(prev => ({ ...prev, asignado_a: e.target.value }))}
+                        onBlur={(e) => handleAsignarAgente(selectedItem.id, e.target.value.trim())}
+                        placeholder="Nombre del agente..."
+                        className="w-full h-9 px-2 rounded-lg border border-gray-200 text-xs bg-white focus:outline-none focus:border-coral"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Notas Internas (no visibles para el cliente) */}
+                  <div className="mb-4">
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-1.5">🔒 Notas Internas (solo admin)</label>
+                    <textarea
+                      rows={2}
+                      value={selectedItem.admin_notes || ''}
+                      onChange={(e) => setSelectedItem(prev => ({ ...prev, admin_notes: e.target.value }))}
+                      onBlur={(e) => {
+                        const val = e.target.value.trim();
+                        const ref = doc(db, 'myp_reclamaciones', selectedItem.id);
+                        updateDoc(ref, { admin_notes: val, actualizado_en: serverTimestamp() });
+                      }}
+                      placeholder="Notas internas, contexto adicional, seguimiento..."
+                      className="w-full p-2 rounded-lg border border-gray-200 text-xs bg-white focus:outline-none focus:border-coral resize-none"
+                    />
+                  </div>
+
                   <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide mb-4">⚙️ Procesar Resolución</h3>
                   
                   {/* Selector de Pestañas de Solución */}
@@ -416,28 +737,78 @@ export default function ReclamacionesDashboard() {
 
                 {/* Botón de Confirmación */}
                 <div className="pt-6 border-t border-gray-150">
-                  <button
-                    type="button"
-                    onClick={handleProcesarResolucion}
-                    disabled={resolviendo}
-                    className="w-full h-11 bg-gray-800 hover:bg-gray-900 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 disabled:opacity-50"
-                  >
-                    {resolviendo ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span>Procesando...</span>
-                      </>
-                    ) : (
-                      <>
-                        <span>✅</span>
-                        <span>
-                          {tabResolucion === 'devolucion' && 'Confirmar y Procesar Reembolso'}
-                          {tabResolucion === 'cambio' && 'Confirmar y Coordinar Cambio'}
-                          {tabResolucion === 'personalizado' && 'Enviar Respuesta Personalizada'}
-                        </span>
-                      </>
-                    )}
-                  </button>
+                  {selectedItem.estado === 'respondido' ? (
+                    /* ── BARRA DE CONFIRMACIÓN PARA RESPONDIDOS ── */
+                    <div className="space-y-3">
+                      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-800 leading-relaxed">
+                        ⏳ <strong>Esperando confirmación del cliente.</strong> Este caso requiere que el cliente confirme que recibió la devolución o cambio.
+                      </div>
+                      <div className="flex gap-3">
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            setResolviendo(true);
+                            try {
+                              await cerrarReclamacion(selectedItem.id, { motivo: 'confirmacion' });
+                              showToast('Caso cerrado - confirmación recibida');
+                              setSelectedItem(null);
+                            } catch (err) {
+                              console.error(err);
+                            } finally {
+                              setResolviendo(false);
+                            }
+                          }}
+                          disabled={resolviendo}
+                          className="flex-1 h-11 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                        >
+                          ✅ Confirmar y Cerrar
+                        </button>
+                        <button
+                          type="button"
+                          onClick={async () => {
+                            setResolviendo(true);
+                            try {
+                              await cerrarReclamacion(selectedItem.id, { motivo: 'sin_confirmacion' });
+                              showToast('Caso cerrado sin confirmación');
+                              setSelectedItem(null);
+                            } catch (err) {
+                              console.error(err);
+                            } finally {
+                              setResolviendo(false);
+                            }
+                          }}
+                          disabled={resolviendo}
+                          className="flex-1 h-11 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                        >
+                          🔒 Cerrar sin respuesta
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    /* ── BOTÓN NORMAL DE RESOLUCIÓN ── */
+                    <button
+                      type="button"
+                      onClick={handleProcesarResolucion}
+                      disabled={resolviendo}
+                      className="w-full h-11 bg-gray-800 hover:bg-gray-900 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 disabled:opacity-50"
+                    >
+                      {resolviendo ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          <span>Procesando...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>✅</span>
+                          <span>
+                            {tabResolucion === 'devolucion' && 'Confirmar y Procesar Reembolso'}
+                            {tabResolucion === 'cambio' && 'Confirmar y Coordinar Cambio'}
+                            {tabResolucion === 'personalizado' && 'Enviar Respuesta y Cerrar'}
+                          </span>
+                        </>
+                      )}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

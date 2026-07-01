@@ -9,6 +9,7 @@ import {
   orderBy,
   serverTimestamp,
   limit,
+  arrayUnion,
 } from 'firebase/firestore';
 
 import { db } from './firebase';
@@ -65,6 +66,11 @@ export async function actualizarEstadoReclamacion(id, estado, nota = null) {
     const ref = doc(db, COLECCION, id);
     const payload = {
       estado,
+      historial_estados: arrayUnion({
+        estado,
+        fecha: new Date().toISOString(),
+        nota: nota || null,
+      }),
       actualizado_en: serverTimestamp(),
     };
     if (nota) payload.nota_respuesta = nota;
@@ -86,10 +92,39 @@ export async function resolverReclamacion(id, { estado, resolution }) {
         ...resolution,
         resolvedAt: serverTimestamp(),
       },
+      historial_estados: arrayUnion({
+        estado,
+        fecha: new Date().toISOString(),
+        nota: resolution?.nota || null,
+      }),
       actualizado_en: serverTimestamp(),
     });
   } catch (e) {
     console.error('Error al resolver reclamacion con auditoría:', e);
+    throw e;
+  }
+}
+
+// ── ADMIN: CERRAR RECLAMACION (confirmación o cierre directo) ─
+export async function cerrarReclamacion(id, { motivo = 'confirmacion', nota = null } = {}) {
+  try {
+    const ref = doc(db, COLECCION, id);
+    await updateDoc(ref, {
+      estado: 'cerrado',
+      resolution: {
+        confirmadoPorCliente: motivo === 'confirmacion',
+        cerradoEn: serverTimestamp(),
+        motivoCierre: motivo,
+      },
+      historial_estados: arrayUnion({
+        estado: 'cerrado',
+        fecha: new Date().toISOString(),
+        nota: nota || (motivo === 'confirmacion' ? 'Confirmado por cliente' : 'Cerrado sin confirmación'),
+      }),
+      actualizado_en: serverTimestamp(),
+    });
+  } catch (e) {
+    console.error('Error al cerrar reclamacion:', e);
     throw e;
   }
 }

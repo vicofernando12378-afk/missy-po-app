@@ -1,5 +1,6 @@
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import React, { useState, useEffect } from 'react';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import React, { useState, useEffect, useRef } from 'react';
 
 import useOrdersByUser from '../../hooks/useOrdersByUser';
 import { validate, ReclamacionSchema } from '../../schemas';
@@ -87,6 +88,9 @@ export default function ReclamacionesForm() {
   const [ticketId, setTicketId] = useState(null);
   const [error, setError] = useState(null);
   const [copiado, setCopiado] = useState(false);
+  const [evidenciaFiles, setEvidenciaFiles] = useState([]);
+  const [evidenciaPreviews, setEvidenciaPreviews] = useState([]);
+  const fileInputRef = useRef(null);
 
   // Estados de Sesión y Pedidos
   const [authUser, setAuthUser] = useState(null);
@@ -231,6 +235,59 @@ export default function ReclamacionesForm() {
     }
   };
 
+  const handleEvidenciaChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (evidenciaFiles.length + files.length > 5) {
+      setError('Máximo 5 evidencias permitidas');
+      return;
+    }
+
+    const validFiles = files.filter(file => {
+      if (file.size > 5 * 1024 * 1024) {
+        setError(`Archivo ${file.name} excede 5MB`);
+        return false;
+      }
+      if (!file.type.startsWith('image/')) {
+        setError(`Archivo ${file.name} no es una imagen`);
+        return false;
+      }
+      return true;
+    });
+
+    setEvidenciaFiles(prev => [...prev, ...validFiles]);
+
+    validFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        setEvidenciaPreviews(prev => [...prev, { url: ev.target.result, name: file.name }]);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const removeEvidencia = (index) => {
+    setEvidenciaFiles(prev => prev.filter((_, i) => i !== index));
+    setEvidenciaPreviews(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const subirEvidencias = async (codigo) => {
+    const urls = [];
+    const storage = getStorage();
+    for (let i = 0; i < evidenciaFiles.length; i++) {
+      const file = evidenciaFiles[i];
+      const ext = file.name.split('.').pop();
+      const storageRef = ref(storage, `myp/evidencias/${codigo}/${Date.now()}_${i}.${ext}`);
+      await uploadBytes(storageRef, file);
+      const downloadUrl = await getDownloadURL(storageRef);
+      urls.push({ url: downloadUrl, nombre: file.name });
+    }
+    return urls;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -303,13 +360,20 @@ export default function ReclamacionesForm() {
     };
 
     try {
-      // 1. Guardar reclamo
+      // 1. Subir evidencias a Firebase Storage
+      let evidenciasUrls = [];
+      if (evidenciaFiles.length > 0) {
+        evidenciasUrls = await subirEvidencias(code);
+      }
+
+      // 2. Guardar reclamo
       await addDoc(collection(db, 'myp_reclamaciones'), {
         ...payload,
+        evidencias: evidenciasUrls,
         creado_en: serverTimestamp(),
       });
 
-      // 2. Insertar correo de constancia en myp_correos para Trigger Email
+      // 3. Insertar correo de constancia en myp_correos para Trigger Email
       await addDoc(collection(db, 'myp_correos'), {
         to: validatedData.email,
         message: {
@@ -769,6 +833,49 @@ export default function ReclamacionesForm() {
             )}
           </div>
         </div>
+      </div>
+
+      {/* EVIDENCIAS FOTOGRÁFICAS */}
+      <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 space-y-3">
+        <div className="flex items-center justify-between">
+          <div>
+            <h4 className="text-xs font-bold text-gray-600 uppercase tracking-wider">Evidencias Fotográficas</h4>
+            <p className="text-[11px] text-gray-400 mt-0.5">Sube fotos del producto dañado o evidencia del problema (máx. 5 imágenes, 5MB c/u)</p>
+          </div>
+          <label className="cursor-pointer bg-white border border-gray-200 text-gray-600 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-all">
+            📷 Agregar
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handleEvidenciaChange}
+              className="hidden"
+            />
+          </label>
+        </div>
+
+        {evidenciaPreviews.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {evidenciaPreviews.map((preview, index) => (
+              <div key={index} className="relative group">
+                <img
+                  src={preview.url}
+                  alt={preview.name}
+                  className="w-full h-24 object-cover rounded-lg border border-gray-200"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeEvidencia(index)}
+                  className="absolute top-1 right-1 bg-red-500 text-white w-5 h-5 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                >
+                  ×
+                </button>
+                <p className="text-[10px] text-gray-400 truncate mt-1">{preview.name}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* TÉRMINOS LEGALES DE PROTECCIÓN */}

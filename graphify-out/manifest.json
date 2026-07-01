@@ -220,8 +220,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/AdminLayout.jsx": {
-    "mtime": 1782855918.9860733,
-    "ast_hash": "e59e91eb3bceecb831cfecebda45cdd5",
+    "mtime": 1782931543.9717524,
+    "ast_hash": "cf9fc4cad77363f72e54ce9f7a92a2ac",
     "semantic_hash": ""
   },
   "src/pages/admin/CajaDiaria.jsx": {
@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "src/components/legal/ReclamacionesForm.jsx": {
-    "mtime": 1782879359.9465065,
-    "ast_hash": "5d5e492e23707ab1e1aa8a45eec93dbb",
+    "mtime": 1782930618.1655202,
+    "ast_hash": "b218ab66f269692cb68fc6e805b39384",
     "semantic_hash": ""
   },
   "src/pages/blog.astro": {
@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "src/schemas/reclamacion.js": {
-    "mtime": 1782848915.081682,
-    "ast_hash": "bebc7c3967e3c63fa87af79d8f10c0ee",
+    "mtime": 1782930562.3855553,
+    "ast_hash": "1554251e1efc7088ef2fd020f90d99dd",
     "semantic_hash": ""
   },
   "src/schemas/review.js": {
@@ -854,24 +854,39 @@
     "ast_hash": "14eec0dd0cde0aba793fe6937143946d",
     "semantic_hash": ""
   },
-  "IMPLEMENTATION_PLAN_UPDATED.md": {
-    "mtime": 1782829102.0192752,
-    "ast_hash": "320e68edc26be0e0e08c993e5526cbbf",
-    "semantic_hash": ""
-  },
   "legacy/PLAN-REFactor-ARQUITECTURA.md": {
     "mtime": 1782772627.708047,
     "ast_hash": "0fdaf1090b0ef5ae8eda859c031a92a9",
     "semantic_hash": ""
   },
   "src/pages/admin/ReclamacionesDashboard.jsx": {
-    "mtime": 1782855900.896465,
-    "ast_hash": "7add30e20fabec5568a888b0fb57a5c7",
+    "mtime": 1782948827.9712727,
+    "ast_hash": "95b432e57bf82e7c0ff1c1faa9fd4871",
     "semantic_hash": ""
   },
   "src/services/reclamaciones.js": {
-    "mtime": 1782856269.1045468,
-    "ast_hash": "a20b05a162619790c2c1c8127ebb1359",
+    "mtime": 1782948580.6467648,
+    "ast_hash": "e6e80c6b302d3c2c27b8e39a6e63d75b",
+    "semantic_hash": ""
+  },
+  "src/utils/__tests__/sla.test.js": {
+    "mtime": 1782948877.8600512,
+    "ast_hash": "87ed46c8e9efc9c32d6c341a2c5d9587",
+    "semantic_hash": ""
+  },
+  "src/utils/sla.js": {
+    "mtime": 1782931647.2769303,
+    "ast_hash": "f317547c7c847fe7af10d3507ecaf499",
+    "semantic_hash": ""
+  },
+  "legacy/IMPLEMENTATION_PLAN_UPDATED.md": {
+    "mtime": 1782829102.0192752,
+    "ast_hash": "320e68edc26be0e0e08c993e5526cbbf",
+    "semantic_hash": ""
+  },
+  "legacy/moduloreclamos.md": {
+    "mtime": 1782882689.0590005,
+    "ast_hash": "31c88478dcaf58cb507f43f3aff3cafd",
     "semantic_hash": ""
   }
 }

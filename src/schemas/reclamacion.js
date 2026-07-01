@@ -19,6 +19,10 @@ export const ReclamacionSchema = z.object({
   autorizoNotif: z.literal(true, {
     errorMap: () => ({ message: 'Debes autorizar el envío de notificaciones para proceder' }),
   }),
+  evidencias: z.array(z.object({
+    url: z.string().url('URL de evidencia inválida'),
+    nombre: z.string().max(200).optional(),
+  })).max(5, 'Máximo 5 evidencias').optional().default([]),
 }).refine(data => {
   if (data.tipoDoc === 'DNI') {
     return /^\d{8}$/.test(data.numDoc);
