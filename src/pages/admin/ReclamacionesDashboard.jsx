@@ -39,12 +39,7 @@ export default function ReclamacionesDashboard() {
     setLoading(true);
     setError(null);
     const base = collection(db, 'myp_reclamaciones');
-    let q;
-    if (filtro && filtro !== 'todos') {
-      q = query(base, where('estado', '==', filtro), orderBy('creado_en', 'desc'), limit(100));
-    } else {
-      q = query(base, orderBy('creado_en', 'desc'), limit(100));
-    }
+    const q = query(base, orderBy('creado_en', 'desc'), limit(200));
 
     const unsubscribe = onSnapshot(q, (snap) => {
       const docs = snap.docs.map(d => {
@@ -64,7 +59,7 @@ export default function ReclamacionesDashboard() {
     });
 
     return () => unsubscribe();
-  }, [filtro]);
+  }, []);
 
   // ── KPIs calculados en tiempo real ──────────────────────────
   const kpis = useMemo(() => {
@@ -84,12 +79,14 @@ export default function ReclamacionesDashboard() {
   // ── FILTRADO POR BÚSQUEDA, PRIORIDAD Y ESTADO ──────────────
   const itemsFiltrados = useMemo(() => {
     let filtered = items;
-    // Excluir cerrados del panel principal (solo se ven en tab "Cerrados")
-    if (filtro === 'cerrado') {
-      filtered = filtered.filter(r => r.estado === 'cerrado');
+    
+    // Filtrado por Estado en Frontend
+    if (filtro && filtro !== 'todos') {
+      filtered = filtered.filter(r => r.estado === filtro);
     } else if (filtro === 'todos') {
       filtered = filtered.filter(r => r.estado !== 'cerrado');
     }
+
     if (filtroPrioridad !== 'todas') {
       filtered = filtered.filter(r => (r.prioridad || 'normal') === filtroPrioridad);
     }
@@ -106,7 +103,7 @@ export default function ReclamacionesDashboard() {
       return codigo.includes(texto) || nombre.includes(texto) || apellido.includes(texto)
         || email.includes(texto) || telefono.includes(texto) || desc.includes(texto) || agente.includes(texto);
     });
-  }, [items, busqueda, filtroPrioridad]);
+  }, [items, filtro, busqueda, filtroPrioridad]);
 
   const showToast = (msg) => {
     setToastMessage(msg);
