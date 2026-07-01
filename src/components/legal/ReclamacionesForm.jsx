@@ -83,6 +83,7 @@ export default function ReclamacionesForm() {
   const [loading, setLoading] = useState(false);
   const [ticketId, setTicketId] = useState(null);
   const [error, setError] = useState(null);
+  const [copiado, setCopiado] = useState(false);
 
   // Manejar cambio de departamento
   useEffect(() => {
@@ -114,6 +115,14 @@ export default function ReclamacionesForm() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
+  };
+
+  const copyToClipboard = () => {
+    if (ticketId) {
+      navigator.clipboard.writeText(ticketId);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2000);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -163,7 +172,7 @@ export default function ReclamacionesForm() {
       cliente: {
         nombre: validatedData.nombre,
         apellido: validatedData.apellido,
-        tipoDoc: formData.tipoDoc, // Mantenemos el formato original para persistencia en base de datos
+        tipoDoc: formData.tipoDoc,
         numDoc: validatedData.numDoc,
         telefono: validatedData.telefono,
         email: validatedData.email,
@@ -188,10 +197,40 @@ export default function ReclamacionesForm() {
     };
 
     try {
+      // 1. Guardar reclamo
       await addDoc(collection(db, 'myp_reclamaciones'), {
         ...payload,
         creado_en: serverTimestamp(),
       });
+
+      // 2. Insertar correo de constancia en myp_correos para Trigger Email
+      await addDoc(collection(db, 'myp_correos'), {
+        to: validatedData.email,
+        message: {
+          subject: `Constancia de Recepción de Reclamación - ${code}`,
+          html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 12px;">
+              <h2 style="color: #f43f5e; text-align: center;">Missy & Po Pet Shop</h2>
+              <h3 style="text-align: center; color: #374151;">Constancia de Recepción de Reclamación</h3>
+              <p>Hola <strong>${validatedData.nombre} ${validatedData.apellido}</strong>,</p>
+              <p>Confirmamos la recepción de tu reclamación registrada el día de hoy en nuestro Libro de Reclamaciones Virtual.</p>
+              
+              <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #f3f4f6;">
+                <p style="margin: 0 0 8px 0;"><strong>Código de Ticket:</strong> <span style="font-family: monospace; color: #f43f5e; font-weight: bold;">${code}</span></p>
+                <p style="margin: 0 0 8px 0;"><strong>Tipo de Reclamación:</strong> ${validatedData.tipoReclamo}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Bien Reclamado:</strong> ${validatedData.tipoBien} (Monto: S/ ${Number(validatedData.montoReclamado).toFixed(2)})</p>
+                <p style="margin: 0;"><strong>Detalle:</strong> ${validatedData.detalleReclamo}</p>
+              </div>
+
+              <p>De acuerdo con la normativa peruana, el plazo legal para la atención y respuesta de tu reclamo es de un máximo de <strong>15 días hábiles</strong>.</p>
+              <p>Para hacer seguimiento de tu solicitud, puedes responder a este correo o escribirnos a nuestro WhatsApp de soporte oficial indicando tu número de ticket.</p>
+              <p style="text-align: center; margin-top: 30px; font-size: 11px; color: #9ca3af;">Missy & Po Pet Shop - Coop. Universitaria i-1 Dpto 3, Arequipa, Perú</p>
+            </div>
+          `,
+        },
+        creado_en: serverTimestamp(),
+      });
+
       setTicketId(code);
     } catch (err) {
       console.error('Error al guardar reclamo:', err);
@@ -202,22 +241,56 @@ export default function ReclamacionesForm() {
   };
 
   if (ticketId) {
+    const waText = encodeURIComponent(`Hola soporte de Missy & Po, deseo consultar el estado de mi reclamación con código ${ticketId}`);
+    const waUrl = `https://wa.me/51999999999?text=${waText}`;
+
     return (
-      <div className="text-center py-12 px-4 bg-green-50/50 rounded-2xl border border-green-100 max-w-2xl mx-auto">
+      <div className="text-center py-12 px-6 bg-green-50/40 rounded-3xl border border-green-100 max-w-2xl mx-auto shadow-sm">
         <div className="text-5xl mb-4">✅</div>
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">Reclamo Registrado Exitosamente</h2>
-        <p className="text-gray-600 mb-6">
-          Tu reclamación ha sido registrada. De acuerdo a ley peruana, te responderemos en un plazo máximo de 15 días hábiles.
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">Reclamación Registrada con Éxito</h2>
+        <p className="text-gray-600 mb-6 text-sm leading-relaxed max-w-md mx-auto">
+          Hemos recibido tu solicitud. Conforme a la normativa peruana, te responderemos en un plazo máximo de <strong>15 días hábiles</strong>.
         </p>
-        <div className="bg-white p-4 rounded-xl border border-gray-100 inline-block mb-6 shadow-sm">
-          <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Código de Reclamo</p>
-          <p className="text-lg font-mono font-bold text-coral">{ticketId}</p>
+        
+        {/* Ticket interactivo */}
+        <div className="bg-white p-5 rounded-2xl border border-gray-100 inline-flex flex-col items-center mb-8 shadow-sm">
+          <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Código de Reclamo</p>
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-mono font-bold text-coral">{ticketId}</span>
+            <button
+              onClick={copyToClipboard}
+              className="p-1.5 hover:bg-gray-50 rounded-lg text-gray-400 hover:text-gray-600 transition-all active:scale-90"
+              title="Copiar Código"
+            >
+              {copiado ? (
+                <span className="text-xs font-semibold text-emerald-600">¡Copiado!</span>
+              ) : (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
-        <div>
+
+        <div className="bg-white rounded-2xl border border-gray-100 p-5 mb-8 text-left text-xs text-gray-500 space-y-2 max-w-lg mx-auto">
+          <p className="font-semibold text-gray-700 text-sm mb-2">📌 Canales de atención y seguimiento:</p>
+          <p>📧 Se ha enviado una constancia digital con el detalle de tu reclamo a: <strong>{formData.email}</strong>.</p>
+          <p>💬 Puedes hacerle seguimiento rápido a tu trámite escribiéndonos a nuestro canal de soporte técnico.</p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 text-white font-ui font-semibold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md"
+          >
+            💬 Consultar por WhatsApp
+          </a>
           <a
             href="/"
-            className="inline-flex items-center gap-2 bg-coral text-white font-ui font-semibold px-6 py-2.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-md"
-            style="background-color: var(--color-coral)"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-250 text-gray-700 font-ui font-semibold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all"
           >
             Volver al Inicio
           </a>
