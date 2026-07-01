@@ -75,3 +75,21 @@ export async function actualizarEstadoReclamacion(id, estado, nota = null) {
     throw e;
   }
 }
+
+// ── ADMIN: RESOLVER RECLAMACION CON AUDITORIA ────────────────
+export async function resolverReclamacion(id, { estado, resolution }) {
+  try {
+    const ref = doc(db, COLECCION, id);
+    await updateDoc(ref, {
+      estado,
+      resolution: {
+        ...resolution,
+        resolvedAt: serverTimestamp(),
+      },
+      actualizado_en: serverTimestamp(),
+    });
+  } catch (e) {
+    console.error('Error al resolver reclamacion con auditoría:', e);
+    throw e;
+  }
+}
