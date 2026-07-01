@@ -1520,7 +1520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_productoformmodal",
-      "community": 46,
+      "community": 15,
       "norm_label": "productoformmodal.jsx"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_components_admin_productoformmodal_categorias",
-      "community": 46,
+      "community": 15,
       "norm_label": "categorias"
     },
     {
@@ -1540,7 +1540,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_admin_productoformmodal_productovacio",
-      "community": 46,
+      "community": 15,
       "norm_label": "productovacio"
     },
     {
@@ -1550,7 +1550,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "src_components_admin_productoformmodal_generarslug",
-      "community": 46,
+      "community": 15,
       "norm_label": "generarslug()"
     },
     {
@@ -1560,7 +1560,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "src_components_admin_productoformmodal_productoformmodal",
-      "community": 46,
+      "community": 15,
       "norm_label": "productoformmodal()"
     },
     {
@@ -2360,7 +2360,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_blog_posts",
-      "community": 15,
+      "community": 12,
       "norm_label": "blog-posts.js"
     },
     {
@@ -2370,7 +2370,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_data_blog_posts_articulosblog",
-      "community": 15,
+      "community": 12,
       "norm_label": "articulosblog"
     },
     {
@@ -2931,7 +2931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 46,
+      "community": 38,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -2941,7 +2941,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 46,
+      "community": 38,
       "norm_label": "tabs"
     },
     {
@@ -2951,7 +2951,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 46,
+      "community": 38,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -3021,7 +3021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard",
-      "community": 46,
+      "community": 16,
       "norm_label": "pedidosdashboard.jsx"
     },
     {
@@ -3031,7 +3031,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard_pedidosdashboard",
-      "community": 46,
+      "community": 16,
       "norm_label": "pedidosdashboard()"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_productoscrud",
-      "community": 46,
+      "community": 15,
       "norm_label": "productoscrud.jsx"
     },
     {
@@ -3051,7 +3051,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_pages_admin_productoscrud_productoscrud",
-      "community": 46,
+      "community": 15,
       "norm_label": "productoscrud()"
     },
     {
@@ -3061,7 +3061,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_reclamacionesdashboard",
-      "community": 37,
+      "community": 34,
       "norm_label": "reclamacionesdashboard.jsx"
     },
     {
@@ -3071,7 +3071,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_admin_reclamacionesdashboard_estados_cfg",
-      "community": 37,
+      "community": 34,
       "norm_label": "estados_cfg"
     },
     {
@@ -3081,7 +3081,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_pages_admin_reclamacionesdashboard_reclamacionesdashboard",
-      "community": 37,
+      "community": 34,
       "norm_label": "reclamacionesdashboard()"
     },
     {
@@ -3091,7 +3091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard",
-      "community": 37,
+      "community": 24,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -3101,7 +3101,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estado_cfg",
-      "community": 37,
+      "community": 24,
       "norm_label": "estado_cfg"
     },
     {
@@ -3111,7 +3111,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estrellas",
-      "community": 37,
+      "community": 24,
       "norm_label": "estrellas()"
     },
     {
@@ -3121,7 +3121,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_resenasdashboard",
-      "community": 37,
+      "community": 24,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -3131,7 +3131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard",
-      "community": 46,
+      "community": 39,
       "norm_label": "ventasdashboard.jsx"
     },
     {
@@ -3141,7 +3141,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_estados_color",
-      "community": 46,
+      "community": 39,
       "norm_label": "estados_color"
     },
     {
@@ -3151,7 +3151,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_rangos",
-      "community": 46,
+      "community": 39,
       "norm_label": "rangos"
     },
     {
@@ -3161,7 +3161,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_barchart",
-      "community": 46,
+      "community": 39,
       "norm_label": "barchart()"
     },
     {
@@ -3171,7 +3171,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_ventasdashboard",
-      "community": 46,
+      "community": 39,
       "norm_label": "ventasdashboard()"
     },
     {
@@ -3291,7 +3291,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_blog_slug",
-      "community": 15,
+      "community": 12,
       "norm_label": "[slug].astro"
     },
     {
@@ -3301,7 +3301,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_pages_blog_slug_getstaticpaths",
-      "community": 15,
+      "community": 12,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3311,7 +3311,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_data_blog_posts",
-      "community": 15,
+      "community": 12,
       "norm_label": "../../data/blog-posts"
     },
     {
@@ -3341,7 +3341,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkout",
-      "community": 16,
+      "community": 8,
       "norm_label": "checkout.astro"
     },
     {
@@ -3351,7 +3351,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 16,
+      "community": 8,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -3431,7 +3431,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firebase",
-      "community": 35,
+      "community": 2,
       "norm_label": "../services/firebase"
     },
     {
@@ -3461,7 +3461,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 24,
+      "community": 8,
       "norm_label": "index.astro"
     },
     {
@@ -3471,7 +3471,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 24,
+      "community": 8,
       "norm_label": "../pages/homepage"
     },
     {
@@ -3791,7 +3791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_producto_slug",
-      "community": 37,
+      "community": 36,
       "norm_label": "[slug].astro"
     },
     {
@@ -3801,7 +3801,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_producto_slug_getstaticpaths",
-      "community": 37,
+      "community": 36,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3811,7 +3811,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 37,
+      "community": 36,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -3821,7 +3821,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services",
-      "community": 37,
+      "community": 36,
       "norm_label": "../services"
     },
     {
@@ -3831,7 +3831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_reclamaciones",
-      "community": 8,
+      "community": 40,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -3841,7 +3841,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 8,
+      "community": 40,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -3861,7 +3861,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_tienda",
-      "community": 37,
+      "community": 36,
       "norm_label": "tienda.astro"
     },
     {
@@ -3871,7 +3871,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 37,
+      "community": 36,
       "norm_label": "./storepage.jsx"
     },
     {
@@ -4491,7 +4491,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_firebase",
-      "community": 46,
+      "community": 38,
       "norm_label": "firebase.js"
     },
     {
@@ -4501,7 +4501,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_services_firebase_firebaseconfig",
-      "community": 46,
+      "community": 38,
       "norm_label": "firebaseconfig"
     },
     {
@@ -4511,7 +4511,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_services_firebase_storage",
-      "community": 46,
+      "community": 38,
       "norm_label": "storage"
     },
     {
@@ -4531,7 +4531,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 37,
+      "community": 16,
       "norm_label": "index.js"
     },
     {
@@ -4541,7 +4541,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_orders",
-      "community": 46,
+      "community": 16,
       "norm_label": "orders.js"
     },
     {
@@ -4551,7 +4551,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_orders_crearpedidocontransaccion",
-      "community": 46,
+      "community": 16,
       "norm_label": "crearpedidocontransaccion()"
     },
     {
@@ -4561,7 +4561,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosadmin",
-      "community": 46,
+      "community": 16,
       "norm_label": "obtenerpedidosadmin()"
     },
     {
@@ -4571,7 +4571,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "src_services_orders_actualizarestadopedido",
-      "community": 46,
+      "community": 16,
       "norm_label": "actualizarestadopedido()"
     },
     {
@@ -4581,7 +4581,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "src_services_orders_reestablecerstockpedidocontransaccion",
-      "community": 46,
+      "community": 16,
       "norm_label": "reestablecerstockpedidocontransaccion()"
     },
     {
@@ -4591,7 +4591,7 @@
       "source_location": "L247",
       "_origin": "ast",
       "id": "src_services_orders_asignarrepartidorpedido",
-      "community": 46,
+      "community": 16,
       "norm_label": "asignarrepartidorpedido()"
     },
     {
@@ -4601,7 +4601,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosrango",
-      "community": 46,
+      "community": 39,
       "norm_label": "obtenerpedidosrango()"
     },
     {
@@ -4681,7 +4681,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "src_services_products_crearproducto",
-      "community": 46,
+      "community": 15,
       "norm_label": "crearproducto()"
     },
     {
@@ -4691,7 +4691,7 @@
       "source_location": "L154",
       "_origin": "ast",
       "id": "src_services_products_actualizarproducto",
-      "community": 46,
+      "community": 15,
       "norm_label": "actualizarproducto()"
     },
     {
@@ -4701,7 +4701,7 @@
       "source_location": "L171",
       "_origin": "ast",
       "id": "src_services_products_eliminarproducto",
-      "community": 46,
+      "community": 15,
       "norm_label": "eliminarproducto()"
     },
     {
@@ -4741,7 +4741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reclamaciones",
-      "community": 37,
+      "community": 34,
       "norm_label": "reclamaciones.js"
     },
     {
@@ -4751,7 +4751,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_services_reclamaciones_obtenerreclamaciones",
-      "community": 37,
+      "community": 34,
       "norm_label": "obtenerreclamaciones()"
     },
     {
@@ -4761,7 +4761,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "src_services_reclamaciones_obtenerreclamacionporid",
-      "community": 37,
+      "community": 34,
       "norm_label": "obtenerreclamacionporid()"
     },
     {
@@ -4771,7 +4771,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "src_services_reclamaciones_actualizarestadoreclamacion",
-      "community": 37,
+      "community": 34,
       "norm_label": "actualizarestadoreclamacion()"
     },
     {
@@ -4781,7 +4781,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 37,
+      "community": 24,
       "norm_label": "reviews.js"
     },
     {
@@ -4791,7 +4791,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenas",
-      "community": 37,
+      "community": 24,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -4801,7 +4801,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_services_reviews_actualizarestadoresena",
-      "community": 37,
+      "community": 24,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -4811,7 +4811,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_reviews_eliminarresena",
-      "community": 37,
+      "community": 24,
       "norm_label": "eliminarresena()"
     },
     {
@@ -7725,7 +7725,7 @@
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_firebase",
-      "target": "src_services_firebase",
+      "target": "c_mis_proyectos_missy_po_src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -18785,5 +18785,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7f938242e3f405f1c0b27488e8f2048da3b285d2"
+  "built_at_commit": "395b532ae21a93b512432e7c70b416bd365a244c"
 }

@@ -122,6 +122,15 @@ service cloud.firestore {
         request.auth.token.email == 'victorchavezd@gmail.com'
       );
     }
+
+    // Correos de salida (Trigger Email): Creación pública, administración restringida a administradores
+    match /myp_correos/{correoId} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
   }
 }
 
