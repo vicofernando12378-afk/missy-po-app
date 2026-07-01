@@ -321,11 +321,14 @@ export default function ReclamacionesForm() {
               <p>Hola <strong>${validatedData.nombre} ${validatedData.apellido}</strong>,</p>
               <p>Confirmamos la recepción de tu reclamación registrada el día de hoy en nuestro Libro de Reclamaciones Virtual.</p>
               
-              <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #f3f4f6;">
+              <div style="background-color: #f9fafb; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid #f3f4f6; font-size: 14px; color: #374151; line-height: 1.5;">
                 <p style="margin: 0 0 8px 0;"><strong>Código de Ticket:</strong> <span style="font-family: monospace; color: #f43f5e; font-weight: bold;">${code}</span></p>
                 <p style="margin: 0 0 8px 0;"><strong>Tipo de Reclamación:</strong> ${validatedData.tipoReclamo}</p>
-                <p style="margin: 0 0 8px 0;"><strong>Bien Reclamado:</strong> ${validatedData.tipoBien} (Monto: S/ ${Number(validatedData.montoReclamado).toFixed(2)})</p>
-                <p style="margin: 0;"><strong>Detalle:</strong> ${validatedData.detalleReclamo}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Bien Reclamado:</strong> ${validatedData.tipoBien}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Monto Reclamado:</strong> S/ ${Number(validatedData.montoReclamado).toFixed(2)}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Descripción del Bien:</strong> ${validatedData.descripcionBien}</p>
+                <p style="margin: 0 0 8px 0;"><strong>Detalle del Reclamo/Queja:</strong> ${validatedData.detalleReclamo}</p>
+                <p style="margin: 0;"><strong>Solución Solicitada (Pedido):</strong> ${validatedData.pedidoConsumidor}</p>
               </div>
 
               <p>De acuerdo con la normativa peruana, el plazo legal para la atención y respuesta de tu reclamo es de un máximo de <strong>15 días hábiles</strong>.</p>
