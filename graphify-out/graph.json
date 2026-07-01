@@ -500,7 +500,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_backup_and_cleanup",
-      "community": 33,
+      "community": 48,
       "norm_label": "backup-and-cleanup.js"
     },
     {
@@ -510,7 +510,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "scripts_backup_and_cleanup_loadenv",
-      "community": 33,
+      "community": 48,
       "norm_label": "loadenv()"
     },
     {
@@ -520,7 +520,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "scripts_backup_and_cleanup_firebaseconfig",
-      "community": 33,
+      "community": 48,
       "norm_label": "firebaseconfig"
     },
     {
@@ -530,7 +530,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "scripts_backup_and_cleanup_app",
-      "community": 33,
+      "community": 48,
       "norm_label": "app"
     },
     {
@@ -540,7 +540,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "scripts_backup_and_cleanup_db",
-      "community": 33,
+      "community": 48,
       "norm_label": "db"
     },
     {
@@ -550,7 +550,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "scripts_backup_and_cleanup_runbackupandcleanup",
-      "community": 33,
+      "community": 48,
       "norm_label": "runbackupandcleanup()"
     },
     {
@@ -560,7 +560,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories",
-      "community": 33,
+      "community": 50,
       "norm_label": "clean-firestore-categories.js"
     },
     {
@@ -570,7 +570,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_loadenv",
-      "community": 33,
+      "community": 50,
       "norm_label": "loadenv()"
     },
     {
@@ -580,7 +580,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_firebaseconfig",
-      "community": 33,
+      "community": 50,
       "norm_label": "firebaseconfig"
     },
     {
@@ -590,7 +590,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_app",
-      "community": 33,
+      "community": 50,
       "norm_label": "app"
     },
     {
@@ -600,7 +600,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_db",
-      "community": 33,
+      "community": 50,
       "norm_label": "db"
     },
     {
@@ -610,7 +610,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_decodehtmlentities",
-      "community": 33,
+      "community": 50,
       "norm_label": "decodehtmlentities()"
     },
     {
@@ -620,7 +620,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "scripts_clean_firestore_categories_run",
-      "community": 33,
+      "community": 50,
       "norm_label": "run()"
     },
     {
@@ -630,7 +630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_inspect_categories",
-      "community": 33,
+      "community": 48,
       "norm_label": "inspect-categories.js"
     },
     {
@@ -640,7 +640,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "scripts_inspect_categories_loadenv",
-      "community": 33,
+      "community": 48,
       "norm_label": "loadenv()"
     },
     {
@@ -650,7 +650,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "scripts_inspect_categories_firebaseconfig",
-      "community": 33,
+      "community": 48,
       "norm_label": "firebaseconfig"
     },
     {
@@ -660,7 +660,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_inspect_categories_app",
-      "community": 33,
+      "community": 48,
       "norm_label": "app"
     },
     {
@@ -670,7 +670,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "scripts_inspect_categories_db",
-      "community": 33,
+      "community": 48,
       "norm_label": "db"
     },
     {
@@ -680,7 +680,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "scripts_inspect_categories_run",
-      "community": 33,
+      "community": 48,
       "norm_label": "run()"
     },
     {
@@ -690,7 +690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_inspect_sku",
-      "community": 33,
+      "community": 51,
       "norm_label": "inspect-sku.js"
     },
     {
@@ -700,7 +700,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "scripts_inspect_sku_loadenv",
-      "community": 33,
+      "community": 51,
       "norm_label": "loadenv()"
     },
     {
@@ -710,7 +710,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "scripts_inspect_sku_firebaseconfig",
-      "community": 33,
+      "community": 51,
       "norm_label": "firebaseconfig"
     },
     {
@@ -720,7 +720,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_inspect_sku_app",
-      "community": 33,
+      "community": 51,
       "norm_label": "app"
     },
     {
@@ -730,7 +730,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "scripts_inspect_sku_db",
-      "community": 33,
+      "community": 51,
       "norm_label": "db"
     },
     {
@@ -740,7 +740,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "scripts_inspect_sku_run",
-      "community": 33,
+      "community": 51,
       "norm_label": "run()"
     },
     {
@@ -750,7 +750,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price",
-      "community": 33,
+      "community": 52,
       "norm_label": "migrate-purchase-price.js"
     },
     {
@@ -760,7 +760,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_loadenv",
-      "community": 33,
+      "community": 52,
       "norm_label": "loadenv()"
     },
     {
@@ -770,7 +770,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_firebaseconfig",
-      "community": 33,
+      "community": 52,
       "norm_label": "firebaseconfig"
     },
     {
@@ -780,7 +780,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_app",
-      "community": 33,
+      "community": 52,
       "norm_label": "app"
     },
     {
@@ -790,7 +790,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_db",
-      "community": 33,
+      "community": 52,
       "norm_label": "db"
     },
     {
@@ -800,7 +800,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "scripts_migrate_purchase_price_run",
-      "community": 33,
+      "community": 52,
       "norm_label": "run()"
     },
     {
@@ -1620,7 +1620,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_catalog_pricedisplay",
-      "community": 37,
+      "community": 47,
       "norm_label": "pricedisplay.jsx"
     },
     {
@@ -1630,7 +1630,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_catalog_pricedisplay_pricedisplay",
-      "community": 37,
+      "community": 47,
       "norm_label": "pricedisplay()"
     },
     {
@@ -1640,7 +1640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_catalog_productcard",
-      "community": 37,
+      "community": 47,
       "norm_label": "productcard.jsx"
     },
     {
@@ -1650,7 +1650,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_catalog_productcard_staricon",
-      "community": 37,
+      "community": 47,
       "norm_label": "staricon()"
     },
     {
@@ -1660,7 +1660,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_catalog_productcard_carticon",
-      "community": 37,
+      "community": 47,
       "norm_label": "carticon()"
     },
     {
@@ -1670,7 +1670,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "src_components_catalog_productcard_eyeicon",
-      "community": 37,
+      "community": 47,
       "norm_label": "eyeicon()"
     },
     {
@@ -1680,7 +1680,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_components_catalog_productcard_productcard",
-      "community": 37,
+      "community": 47,
       "norm_label": "productcard()"
     },
     {
@@ -1720,7 +1720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_catalog_salebadge",
-      "community": 37,
+      "community": 47,
       "norm_label": "salebadge.jsx"
     },
     {
@@ -1730,7 +1730,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_catalog_salebadge_salebadge",
-      "community": 37,
+      "community": 47,
       "norm_label": "salebadge()"
     },
     {
@@ -1980,7 +1980,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_header_livesearch",
-      "community": 37,
+      "community": 49,
       "norm_label": "livesearch.jsx"
     },
     {
@@ -1990,7 +1990,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_header_livesearch_searchspinner",
-      "community": 37,
+      "community": 49,
       "norm_label": "searchspinner()"
     },
     {
@@ -2000,7 +2000,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_components_header_livesearch_highlight",
-      "community": 37,
+      "community": 49,
       "norm_label": "highlight()"
     },
     {
@@ -2010,7 +2010,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "src_components_header_livesearch_livesearch",
-      "community": 37,
+      "community": 49,
       "norm_label": "livesearch()"
     },
     {
@@ -2270,27 +2270,27 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_legal_reclamacionesform",
-      "community": 0,
+      "community": 1,
       "norm_label": "reclamacionesform.jsx"
     },
     {
       "label": "DEPARTAMENTOS_DATA",
       "file_type": "code",
       "source_file": "src/components/legal/ReclamacionesForm.jsx",
-      "source_location": "L8",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_legal_reclamacionesform_departamentos_data",
-      "community": 0,
+      "community": 1,
       "norm_label": "departamentos_data"
     },
     {
       "label": "ReclamacionesForm()",
       "file_type": "code",
       "source_file": "src/components/legal/ReclamacionesForm.jsx",
-      "source_location": "L58",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "src_components_legal_reclamacionesform_reclamacionesform",
-      "community": 0,
+      "community": 1,
       "norm_label": "reclamacionesform()"
     },
     {
@@ -2480,7 +2480,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usedebounce",
-      "community": 37,
+      "community": 49,
       "norm_label": "usedebounce.js"
     },
     {
@@ -2490,7 +2490,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_hooks_usedebounce_usedebounce",
-      "community": 37,
+      "community": 49,
       "norm_label": "usedebounce()"
     },
     {
@@ -2831,7 +2831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_productpage",
-      "community": 37,
+      "community": 47,
       "norm_label": "productpage.jsx"
     },
     {
@@ -2841,7 +2841,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_pages_productpage_cleandescription",
-      "community": 37,
+      "community": 47,
       "norm_label": "cleandescription()"
     },
     {
@@ -2851,7 +2851,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "src_pages_productpage_staricon",
-      "community": 37,
+      "community": 47,
       "norm_label": "staricon()"
     },
     {
@@ -2861,7 +2861,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "src_pages_productpage_productpage",
-      "community": 37,
+      "community": 47,
       "norm_label": "productpage()"
     },
     {
@@ -4821,7 +4821,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_services_reviews_crearresena",
-      "community": 37,
+      "community": 47,
       "norm_label": "crearresena()"
     },
     {
@@ -4831,7 +4831,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenasporproducto",
-      "community": 37,
+      "community": 47,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -5021,7 +5021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_store_searchstore",
-      "community": 37,
+      "community": 49,
       "norm_label": "searchstore.js"
     },
     {
@@ -5031,7 +5031,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_store_searchstore_usesearchstore",
-      "community": 37,
+      "community": 49,
       "norm_label": "usesearchstore"
     },
     {
@@ -11311,7 +11311,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/legal/ReclamacionesForm.jsx",
-      "source_location": "L8",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_components_legal_reclamacionesform",
       "target": "src_components_legal_reclamacionesform_departamentos_data",
@@ -11321,7 +11321,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/legal/ReclamacionesForm.jsx",
-      "source_location": "L58",
+      "source_location": "L61",
       "weight": 1.0,
       "source": "src_components_legal_reclamacionesform",
       "target": "src_components_legal_reclamacionesform_reclamacionesform",
@@ -11335,7 +11335,7 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_legal_reclamacionesform",
-      "target": "src_schemas_index",
+      "target": "src_hooks_useordersbyuser",
       "confidence_score": 1.0
     },
     {
@@ -11346,18 +11346,7 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_components_legal_reclamacionesform",
-      "target": "src_schemas_reclamacion_reclamacionschema",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/legal/ReclamacionesForm.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "src_components_legal_reclamacionesform",
-      "target": "src_schemas_validate_validate",
+      "target": "src_hooks_useordersbyuser_useordersbyuser",
       "confidence_score": 1.0
     },
     {
@@ -11368,7 +11357,84 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_components_legal_reclamacionesform",
+      "target": "src_schemas_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
+      "target": "src_schemas_reclamacion_reclamacionschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
+      "target": "src_schemas_validate_validate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
+      "target": "src_services_auth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
+      "target": "src_services_auth_listenauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
       "target": "src_services_firebase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
+      "target": "src_store_userstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform",
+      "target": "src_store_userstore_useuserstore",
       "confidence_score": 1.0
     },
     {
@@ -11381,6 +11447,28 @@
       "source": "src_pages_reclamaciones",
       "target": "src_components_legal_reclamacionesform",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L94",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform_reclamacionesform",
+      "target": "src_hooks_useordersbyuser_useordersbyuser"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/legal/ReclamacionesForm.jsx",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "src_components_legal_reclamacionesform_reclamacionesform",
+      "target": "src_store_userstore_useuserstore"
     },
     {
       "relation": "contains",
@@ -18785,5 +18873,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "395b532ae21a93b512432e7c70b416bd365a244c"
+  "built_at_commit": "43cf09f1198463f8b629d210355b2b37c803d933"
 }

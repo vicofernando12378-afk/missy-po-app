@@ -1,8 +1,11 @@
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 
+import useOrdersByUser from '../../hooks/useOrdersByUser';
 import { validate, ReclamacionSchema } from '../../schemas';
+import { listenAuth } from '../../services/auth';
 import { db } from '../../services/firebase';
+import useUserStore from '../../store/userStore';
 
 
 const DEPARTAMENTOS_DATA = {
@@ -85,6 +88,73 @@ export default function ReclamacionesForm() {
   const [error, setError] = useState(null);
   const [copiado, setCopiado] = useState(false);
 
+  // Estados de Sesión y Pedidos
+  const [authUser, setAuthUser] = useState(null);
+  const { profile } = useUserStore();
+  const { orders } = useOrdersByUser(authUser?.uid, authUser?.email);
+
+  const [selectedProductKey, setSelectedProductKey] = useState('');
+  const [accionPredefinida, setAccionPredefinida] = useState('');
+
+  // Suscribirse a la autenticación de Firebase
+  useEffect(() => {
+    const unsubscribe = listenAuth((user) => {
+      setAuthUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Autocompletar datos del perfil del cliente autenticado
+  useEffect(() => {
+    if (profile) {
+      setFormData(prev => ({
+        ...prev,
+        nombre: prev.nombre || profile.nombre || '',
+        apellido: prev.apellido || profile.apellido || '',
+        telefono: prev.telefono || profile.telefono || '',
+        email: prev.email || profile.email || '',
+        tipoDoc: prev.tipoDoc || profile.tipoDoc || 'DNI',
+        numDoc: prev.numDoc || profile.numDoc || '',
+        departamento: prev.departamento || profile.ubigeo?.departamento || '',
+        provincia: prev.provincia || profile.ubigeo?.provincia || '',
+        distrito: prev.distrito || profile.ubigeo?.distrito || '',
+      }));
+    }
+  }, [profile]);
+
+  // Aplanar productos comprados de los pedidos del usuario
+  const productosComprados = React.useMemo(() => {
+    if (!orders || orders.length === 0) return [];
+    const items = [];
+    orders.forEach(order => {
+      if (order.items && Array.isArray(order.items)) {
+        order.items.forEach(item => {
+          items.push({
+            id: `${order.codigo || order.id}-${item.id || item.nombre}`,
+            pedidoCodigo: order.codigo || order.id,
+            nombre: item.nombre,
+            precio: (item.precio_unitario || item.precio || 0) / 100,
+            cantidad: item.cantidad,
+          });
+        });
+      }
+    });
+    return items;
+  }, [orders]);
+
+  // Limpiar campos relacionados si el usuario cambia el tipo de bien a Servicio
+  useEffect(() => {
+    if (formData.tipoBien === 'Servicio') {
+      setSelectedProductKey('');
+      setAccionPredefinida('');
+      setFormData(prev => ({
+        ...prev,
+        montoReclamado: '',
+        descripcionBien: '',
+      }));
+    }
+  }, [formData.tipoBien]);
+
   // Manejar cambio de departamento
   useEffect(() => {
     if (formData.departamento && formData.departamento !== 'Otro') {
@@ -115,6 +185,42 @@ export default function ReclamacionesForm() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
+  };
+
+  const handleProductChange = (e) => {
+    const key = e.target.value;
+    setSelectedProductKey(key);
+    if (key) {
+      const prod = productosComprados.find(p => p.id === key);
+      if (prod) {
+        setFormData(prev => ({
+          ...prev,
+          montoReclamado: prod.precio.toFixed(2),
+          descripcionBien: `Producto: ${prod.nombre} (Cantidad: ${prod.cantidad}) comprado en Pedido con Código: ${prod.pedidoCodigo}. `,
+        }));
+      }
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        montoReclamado: '',
+        descripcionBien: '',
+      }));
+    }
+  };
+
+  const handleAccionPredefinidaChange = (accion) => {
+    setAccionPredefinida(accion);
+    if (accion !== 'Otro') {
+      setFormData(prev => ({
+        ...prev,
+        pedidoConsumidor: accion,
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        pedidoConsumidor: '',
+      }));
+    }
   };
 
   const copyToClipboard = () => {
@@ -499,6 +605,24 @@ export default function ReclamacionesForm() {
               </label>
             </div>
           </div>
+
+          {authUser && formData.tipoBien === 'Producto' && productosComprados.length > 0 && (
+            <div className="sm:col-span-3">
+              <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Selecciona un producto de tus compras</label>
+              <select
+                value={selectedProductKey}
+                onChange={handleProductChange}
+                className="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white"
+              >
+                <option value="">-- Seleccionar producto comprado --</option>
+                {productosComprados.map(p => (
+                  <option key={p.id} value={p.id}>
+                    [Pedido {p.pedidoCodigo}] {p.nombre} (S/ {p.precio.toFixed(2)})
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="sm:col-span-2">
             <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Monto Reclamado (S/.)</label>
             <input
@@ -573,16 +697,73 @@ export default function ReclamacionesForm() {
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Pedido del Consumidor</label>
-            <textarea
-              name="pedidoConsumidor"
-              required
-              rows="3"
-              value={formData.pedidoConsumidor}
-              onChange={handleChange}
-              className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
-              placeholder="¿Qué solución solicitas? (Ej: Cambio de producto, devolución del dinero)..."
-            ></textarea>
+            {formData.tipoBien === 'Producto' ? (
+              <div className="space-y-3">
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Acción Solicitada (Pedido del Consumidor)</label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => handleAccionPredefinidaChange('Devolución de dinero')}
+                    className={`p-3 rounded-xl border text-sm font-semibold text-center transition-all ${
+                      accionPredefinida === 'Devolución de dinero'
+                        ? 'border-coral bg-coral/5 text-coral shadow-sm font-bold'
+                        : 'border-gray-200 hover:bg-gray-50 text-gray-700'
+                    }`}
+                  >
+                    💰 Devolución de dinero
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleAccionPredefinidaChange('Cambio de producto')}
+                    className={`p-3 rounded-xl border text-sm font-semibold text-center transition-all ${
+                      accionPredefinida === 'Cambio de producto'
+                        ? 'border-coral bg-coral/5 text-coral shadow-sm font-bold'
+                        : 'border-gray-200 hover:bg-gray-50 text-gray-700'
+                    }`}
+                  >
+                    🔄 Cambio de producto
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleAccionPredefinidaChange('Otro')}
+                    className={`p-3 rounded-xl border text-sm font-semibold text-center transition-all ${
+                      accionPredefinida === 'Otro'
+                        ? 'border-coral bg-coral/5 text-coral shadow-sm font-bold'
+                        : 'border-gray-200 hover:bg-gray-50 text-gray-700'
+                    }`}
+                  >
+                    ✏️ Especificar otra opción
+                  </button>
+                </div>
+
+                {(accionPredefinida === 'Otro' || !accionPredefinida) && (
+                  <div className="mt-2">
+                    <textarea
+                      name="pedidoConsumidor"
+                      required
+                      rows="3"
+                      value={formData.pedidoConsumidor}
+                      onChange={handleChange}
+                      className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+                      placeholder="Especifica detalladamente la solución que solicitas..."
+                    ></textarea>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div>
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Pedido del Consumidor</label>
+                <textarea
+                  name="pedidoConsumidor"
+                  required
+                  rows="3"
+                  value={formData.pedidoConsumidor}
+                  onChange={handleChange}
+                  className="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:border-amber-400 text-sm"
+                  placeholder="Describe la solución o pedido solicitado para el servicio..."
+                ></textarea>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,16 +1,16 @@
 # Graph Report - missy-po  (2026-06-30)
 
 ## Corpus Check
-- 164 files · ~275,045 words
+- 164 files · ~275,617 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 744 nodes · 1092 edges · 47 communities (40 shown, 7 thin omitted)
+- 744 nodes · 1100 edges · 53 communities (46 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `395b532a`
+- Built from commit: `43cf09f1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -57,14 +57,20 @@
 - [[_COMMUNITY_Community 44|Community 44]]
 - [[_COMMUNITY_Community 45|Community 45]]
 - [[_COMMUNITY_Community 46|Community 46]]
+- [[_COMMUNITY_Community 47|Community 47]]
+- [[_COMMUNITY_Community 48|Community 48]]
+- [[_COMMUNITY_Community 49|Community 49]]
+- [[_COMMUNITY_Community 50|Community 50]]
+- [[_COMMUNITY_Community 51|Community 51]]
+- [[_COMMUNITY_Community 52|Community 52]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `../layouts/Layout.astro` - 30 edges
 2. `useCartStore` - 19 edges
 3. `🧩 COMPONENTES UI — ESPECIFICACIONES EXACTAS` - 17 edges
-4. `3. BUGS CRÍTICOS ENCONTRADOS` - 13 edges
-5. `Plan de Acción: Seguridad, Arquitectura y Deuda Técnica — Missy & Po Pet Shop` - 13 edges
-6. `useUserStore` - 12 edges
+4. `useUserStore` - 14 edges
+5. `3. BUGS CRÍTICOS ENCONTRADOS` - 13 edges
+6. `Plan de Acción: Seguridad, Arquitectura y Deuda Técnica — Missy & Po Pet Shop` - 13 edges
 7. `🐾 MISSY & PO PET SHOP — MASTER CONTEXT FILE` - 12 edges
 8. `useCatalogStore` - 11 edges
 9. `Plan de Acción: Implementación de Zod en Missy & Po Pet Shop` - 11 edges
@@ -77,36 +83,36 @@
   src/components/cart/CartDrawer.jsx → src/store/catalogStore.js
 - `ProductCard()` --calls--> `useCartStore`  [EXTRACTED]
   src/components/catalog/ProductCard.jsx → src/store/cartStore.js
+- `LiveSearch()` --calls--> `useCatalogStore`  [EXTRACTED]
+  src/components/header/LiveSearch.jsx → src/store/catalogStore.js
 - `useUserProfile()` --calls--> `useUserStore`  [EXTRACTED]
   src/hooks/useUserProfile.js → src/store/userStore.js
-- `ProductPage()` --calls--> `useCartStore`  [EXTRACTED]
-  src/pages/ProductPage.jsx → src/store/cartStore.js
 
 ## Import Cycles
 - 1-file cycle: `src/services/auth.js -> src/services/auth.js`
 - 3-file cycle: `src/App.jsx -> src/pages/OrderConfirmationPage.jsx -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/LoginPage.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/coupons.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/components/layout/Layout.jsx -> src/components/layout/Navbar.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/cashRegister.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/config.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/coupons.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/orders.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/products.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reclamaciones.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reviews.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/userProfile.js -> src/services/firebase.js -> src/App.jsx`
 
-## Communities (47 total, 7 thin omitted)
+## Communities (53 total, 7 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.07
-Nodes (32): DEPARTAMENTOS_DATA, AperturaCajaSchema, CierreCajaSchema, MovimientoSchema, CartItemSchema, CartStateSchema, CheckoutSchema, CouponSchema (+24 more)
+Nodes (31): AperturaCajaSchema, CierreCajaSchema, MovimientoSchema, CartItemSchema, CartStateSchema, CheckoutSchema, CouponSchema, YapePlinSchema (+23 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.12
-Nodes (26): firebase/firestore, AddressForm(), OrderTimeline(), TIMELINE_STEPS, PetForm(), useOrdersByUser(), useUserProfile(), AccountPage() (+18 more)
+Cohesion: 0.11
+Nodes (28): firebase/firestore, AddressForm(), OrderTimeline(), TIMELINE_STEPS, PetForm(), DEPARTAMENTOS_DATA, ReclamacionesForm(), useOrdersByUser() (+20 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.04
@@ -197,8 +203,8 @@ Cohesion: 0.13
 Nodes (12): AccountDashboard(), AccountHeader(), ContentFeed(), OrderCard(), STATUS_MAP, PointsBalance(), SmartCTA(), ACTIVE_STATES (+4 more)
 
 ### Community 33 - "Community 33"
-Cohesion: 0.04
-Nodes (28): ../../index.css, app, db, firebaseConfig, app, db, firebaseConfig, app (+20 more)
+Cohesion: 0.13
+Nodes (13): ../../index.css, AdminLayout, App(), CajaDiaria, ConfiguracionEnviosCupones, InventarioStock, PedidosDashboard, ProductosCRUD (+5 more)
 
 ### Community 34 - "Community 34"
 Cohesion: 0.33
@@ -213,8 +219,8 @@ Cohesion: 0.33
 Nodes (3): ../../pages/ProductPage.jsx, ./StorePage.jsx, ../services
 
 ### Community 37 - "Community 37"
-Cohesion: 0.09
-Nodes (19): PriceDisplay(), ProductCard(), MOCK_PRODUCTS, ProductGrid(), SaleBadge(), CTABanner(), LiveSearch(), AnimatedTitle() (+11 more)
+Cohesion: 0.21
+Nodes (9): MOCK_PRODUCTS, ProductGrid(), CTABanner(), AnimatedTitle(), HeroSlider(), SLIDES, HomePage(), StorePage() (+1 more)
 
 ### Community 38 - "Community 38"
 Cohesion: 0.33
@@ -240,6 +246,30 @@ Nodes (5): Contract, Loading protocol, Skill Registry — missy-po, Skills, Sour
 Cohesion: 0.20
 Nodes (3): actualizarStockProductoAdmin(), obtenerProductos(), obtenerTodosProductosAdmin()
 
+### Community 47 - "Community 47"
+Cohesion: 0.21
+Nodes (7): PriceDisplay(), ProductCard(), SaleBadge(), cleanDescription(), ProductPage(), crearResena(), obtenerResenasPorProducto()
+
+### Community 48 - "Community 48"
+Cohesion: 0.15
+Nodes (6): app, db, firebaseConfig, app, db, firebaseConfig
+
+### Community 49 - "Community 49"
+Cohesion: 0.39
+Nodes (3): LiveSearch(), useDebounce(), useSearchStore
+
+### Community 50 - "Community 50"
+Cohesion: 0.29
+Nodes (3): app, db, firebaseConfig
+
+### Community 51 - "Community 51"
+Cohesion: 0.33
+Nodes (3): app, db, firebaseConfig
+
+### Community 52 - "Community 52"
+Cohesion: 0.33
+Nodes (3): app, db, firebaseConfig
+
 ## Knowledge Gaps
 - **310 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+305 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -249,13 +279,13 @@ Nodes (3): actualizarStockProductoAdmin(), obtenerProductos(), obtenerTodosProdu
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `../layouts/Layout.astro` connect `Community 8` to `Community 33`, `Community 35`, `Community 4`, `Community 36`, `Community 40`, `Community 9`, `Community 41`, `Community 42`, `Community 12`, `Community 44`, `Community 19`?**
-  _High betweenness centrality (0.113) - this node is a cross-community bridge._
+  _High betweenness centrality (0.112) - this node is a cross-community bridge._
 - **What connects `name`, `private`, `version` to the rest of the system?**
   _310 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.0672316384180791 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.11794871794871795 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.11184939091915837 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.0425531914893617 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
