@@ -23,6 +23,12 @@ export const ReclamacionSchema = z.object({
     url: z.string().url('URL de evidencia inválida'),
     nombre: z.string().max(200).optional(),
   })).max(5, 'Máximo 5 evidencias').optional().default([]),
+  prueba_conformidad: z.object({
+    tipo: z.enum(['whatsapp', 'foto_entrega', 'verbal']),
+    url: z.string().url().optional().nullable(),
+    observaciones: z.string().max(500).optional().nullable(),
+    fecha: z.string().optional(),
+  }).optional().nullable(),
 }).refine(data => {
   if (data.tipoDoc === 'DNI') {
     return /^\d{8}$/.test(data.numDoc);

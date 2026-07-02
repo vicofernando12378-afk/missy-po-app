@@ -1,7 +1,8 @@
-import { collection, addDoc, serverTimestamp, query, where, orderBy, onSnapshot, limit, doc, updateDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, limit, doc, updateDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState, useEffect, useMemo } from 'react';
 
-import { resolverReclamacion, cerrarReclamacion } from '../../services';
+import { resolverReclamacion, cerrarReclamacion, reabrirReclamacion } from '../../services';
 import { db, auth } from '../../services/firebase';
 import { SLA_DIAS_HABILES, calcularSLA, SLA_CFG } from '../../utils/sla';
 
@@ -33,6 +34,10 @@ export default function ReclamacionesDashboard() {
   const [adminNotes, setAdminNotes] = useState('');
   const [toastMessage, setToastMessage] = useState(null);
   const [error, setError] = useState(null);
+  const [tipoConformidad, setTipoConformidad] = useState(null); // 'whatsapp' | 'foto_entrega' | 'verbal'
+  const [conformidadObservaciones, setConformidadObservaciones] = useState('');
+  const [subiendoConformidad, setSubiendoConformidad] = useState(false);
+  const [conformidadUrl, setConformidadUrl] = useState(null);
 
   // ── ESCUCHA EN TIEMPO REAL ──────────────────────────────────
   useEffect(() => {
@@ -404,6 +409,9 @@ export default function ReclamacionesDashboard() {
                   setSelectedItem(r);
                   setTabResolucion('devolucion');
                   setAdminNotes('');
+                  setTipoConformidad(null);
+                  setConformidadObservaciones('');
+                  setConformidadUrl(null);
                 }}
                 className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 hover:shadow-md hover:border-gray-200 transition-all cursor-pointer hover:scale-[1.005] active:scale-[0.995]"
               >
@@ -671,140 +679,295 @@ export default function ReclamacionesDashboard() {
                     />
                   </div>
 
-                  <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide mb-4">⚙️ Procesar Resolución</h3>
+                  {/* ── SECCIÓN DE RESOLUCIÓN (solo para casos abiertos) ── */}
+                  {selectedItem.estado !== 'cerrado' && (
+                    <div>
+                      <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide mb-4">⚙️ Procesar Resolución</h3>
                   
-                  {/* Selector de Pestañas de Solución */}
-                  <div className="flex border-b border-gray-200 mb-4 bg-gray-100 p-1 rounded-xl">
-                    <button
-                      type="button"
-                      onClick={() => setTabResolucion('devolucion')}
-                      className={`flex-1 py-1.5 text-center rounded-lg text-xs font-semibold transition-all ${
-                        tabResolucion === 'devolucion' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
-                      }`}
-                    >
-                      💰 Reembolso
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTabResolucion('cambio')}
-                      className={`flex-1 py-1.5 text-center rounded-lg text-xs font-semibold transition-all ${
-                        tabResolucion === 'cambio' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
-                      }`}
-                    >
-                      🔄 Cambio
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setTabResolucion('personalizado')}
-                      className={`flex-1 py-1.5 text-center rounded-lg text-xs font-semibold transition-all ${
-                        tabResolucion === 'personalizado' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
-                      }`}
-                    >
-                      ✏️ Personalizar
-                    </button>
-                  </div>
-
-                  {/* Informaciones de flujo */}
-                  {tabResolucion === 'devolucion' && (
-                    <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 text-xs text-blue-800 leading-relaxed mb-4">
-                      💡 <strong>Reembolso:</strong> Se enviará un correo electrónico al cliente indicando que se procederá con la devolución del dinero previa entrega del bien al repartidor.
-                    </div>
-                  )}
-
-                  {tabResolucion === 'cambio' && (
-                    <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 text-xs text-amber-850 leading-relaxed mb-4">
-                      💡 <strong>Cambio físico:</strong> Se notificará al cliente que un asesor de Missy & Po se comunicará para coordinar la logística del cambio de producto en su dirección.
-                    </div>
-                  )}
-
-                  {tabResolucion === 'personalizado' && (
-                    <div className="space-y-3 mb-4">
-                      <label className="block text-xs font-semibold text-gray-600 uppercase">Respuesta Formal al Cliente</label>
-                      <textarea
-                        required
-                        rows="6"
-                        value={adminNotes}
-                        onChange={(e) => setAdminNotes(e.target.value)}
-                        placeholder="Escriba aquí los fundamentos técnicos o la solución alternativa basada en las evidencias..."
-                        className="w-full p-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-coral text-xs bg-white resize-none shadow-inner"
-                      ></textarea>
-                    </div>
-                  )}
-                </div>
-
-                {/* Botón de Confirmación */}
-                <div className="pt-6 border-t border-gray-150">
-                  {selectedItem.estado === 'respondido' ? (
-                    /* ── BARRA DE CONFIRMACIÓN PARA RESPONDIDOS ── */
-                    <div className="space-y-3">
-                      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-800 leading-relaxed">
-                        ⏳ <strong>Esperando confirmación del cliente.</strong> Este caso requiere que el cliente confirme que recibió la devolución o cambio.
-                      </div>
-                      <div className="flex gap-3">
+                      {/* Selector de Pestañas de Solución */}
+                      <div className="flex border-b border-gray-200 mb-4 bg-gray-100 p-1 rounded-xl">
                         <button
                           type="button"
-                          onClick={async () => {
-                            setResolviendo(true);
-                            try {
-                              await cerrarReclamacion(selectedItem.id, { motivo: 'confirmacion' });
-                              showToast('Caso cerrado - confirmación recibida');
-                              setSelectedItem(null);
-                            } catch (err) {
-                              console.error(err);
-                            } finally {
-                              setResolviendo(false);
-                            }
-                          }}
-                          disabled={resolviendo}
-                          className="flex-1 h-11 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                          onClick={() => setTabResolucion('devolucion')}
+                          className={`flex-1 py-1.5 text-center rounded-lg text-xs font-semibold transition-all ${
+                            tabResolucion === 'devolucion' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
+                          }`}
                         >
-                          ✅ Confirmar y Cerrar
+                          💰 Reembolso
                         </button>
                         <button
                           type="button"
-                          onClick={async () => {
-                            setResolviendo(true);
-                            try {
-                              await cerrarReclamacion(selectedItem.id, { motivo: 'sin_confirmacion' });
-                              showToast('Caso cerrado sin confirmación');
-                              setSelectedItem(null);
-                            } catch (err) {
-                              console.error(err);
-                            } finally {
-                              setResolviendo(false);
-                            }
-                          }}
-                          disabled={resolviendo}
-                          className="flex-1 h-11 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                          onClick={() => setTabResolucion('cambio')}
+                          className={`flex-1 py-1.5 text-center rounded-lg text-xs font-semibold transition-all ${
+                            tabResolucion === 'cambio' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
+                          }`}
                         >
-                          🔒 Cerrar sin respuesta
+                          🔄 Cambio
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setTabResolucion('personalizado')}
+                          className={`flex-1 py-1.5 text-center rounded-lg text-xs font-semibold transition-all ${
+                            tabResolucion === 'personalizado' ? 'bg-white text-gray-800 shadow-sm' : 'text-gray-500'
+                          }`}
+                        >
+                          ✏️ Personalizar
                         </button>
                       </div>
-                    </div>
-                  ) : (
-                    /* ── BOTÓN NORMAL DE RESOLUCIÓN ── */
-                    <button
-                      type="button"
-                      onClick={handleProcesarResolucion}
-                      disabled={resolviendo}
-                      className="w-full h-11 bg-gray-800 hover:bg-gray-900 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 disabled:opacity-50"
-                    >
-                      {resolviendo ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>Procesando...</span>
-                        </>
-                      ) : (
-                        <>
-                          <span>✅</span>
-                          <span>
-                            {tabResolucion === 'devolucion' && 'Confirmar y Procesar Reembolso'}
-                            {tabResolucion === 'cambio' && 'Confirmar y Coordinar Cambio'}
-                            {tabResolucion === 'personalizado' && 'Enviar Respuesta y Cerrar'}
-                          </span>
-                        </>
+
+                      {/* Informaciones de flujo */}
+                      {tabResolucion === 'devolucion' && (
+                        <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 text-xs text-blue-800 leading-relaxed mb-4">
+                          💡 <strong>Reembolso:</strong> Se enviará un correo electrónico al cliente indicando que se procederá con la devolución del dinero previa entrega del bien al repartidor.
+                        </div>
                       )}
-                    </button>
+
+                      {tabResolucion === 'cambio' && (
+                        <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 text-xs text-amber-850 leading-relaxed mb-4">
+                          💡 <strong>Cambio físico:</strong> Se notificará al cliente que un asesor de Missy & Po se comunicará para coordinar la logística del cambio de producto en su dirección.
+                        </div>
+                      )}
+
+                      {tabResolucion === 'personalizado' && (
+                        <div className="space-y-3 mb-4">
+                          <label className="block text-xs font-semibold text-gray-600 uppercase">Respuesta Formal al Cliente</label>
+                          <textarea
+                            required
+                            rows="6"
+                            value={adminNotes}
+                            onChange={(e) => setAdminNotes(e.target.value)}
+                            placeholder="Escriba aquí los fundamentos técnicos o la solución alternativa basada en las evidencias..."
+                            className="w-full p-3 rounded-2xl border border-gray-200 focus:outline-none focus:border-coral text-xs bg-white resize-none shadow-inner"
+                          ></textarea>
+                        </div>
+                      )}
+
+                      {/* ── PRUEBA DE CONFORMIDAD DEL CLIENTE ── */}
+                      <div className="mb-4">
+                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">📋 Prueba de Conformidad del Cliente</h4>
+                        <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 space-y-3">
+                          <p className="text-[11px] text-gray-500 leading-relaxed">
+                            Seleccione el tipo de prueba de conformidad del cliente antes de cerrar el caso.
+                          </p>
+                          
+                          <div className="flex gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setTipoConformidad(tipoConformidad === 'whatsapp' ? null : 'whatsapp')}
+                              className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold transition-all border ${
+                                tipoConformidad === 'whatsapp'
+                                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
+                                  : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                              }`}
+                            >
+                              💬 WhatsApp
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setTipoConformidad(tipoConformidad === 'foto_entrega' ? null : 'foto_entrega')}
+                              className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold transition-all border ${
+                                tipoConformidad === 'foto_entrega'
+                                  ? 'bg-blue-50 border-blue-300 text-blue-700'
+                                  : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                              }`}
+                            >
+                              📸 Foto Entrega
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setTipoConformidad(tipoConformidad === 'verbal' ? null : 'verbal')}
+                              className={`flex-1 py-2 px-3 rounded-xl text-xs font-semibold transition-all border ${
+                                tipoConformidad === 'verbal'
+                                  ? 'bg-amber-50 border-amber-300 text-amber-700'
+                                  : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                              }`}
+                            >
+                              📞 Verbal
+                            </button>
+                          </div>
+
+                          {/* Upload para WhatsApp o Foto */}
+                          {tipoConformidad && tipoConformidad !== 'verbal' && (
+                            <div className="space-y-2">
+                              <label className="block text-[11px] font-semibold text-gray-600 uppercase">
+                                {tipoConformidad === 'whatsapp' ? 'Screenshot del chat de WhatsApp' : 'Foto de cargo de entrega'}
+                              </label>
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={async (e) => {
+                                  const file = e.target.files?.[0];
+                                  if (!file) return;
+                                  if (file.size > 5 * 1024 * 1024) {
+                                    showToast('Archivo muy grande. Máximo 5MB.');
+                                    return;
+                                  }
+                                  setSubiendoConformidad(true);
+                                  try {
+                                    const codigo = selectedItem.codigo || selectedItem.id;
+                                    const path = `myp/conformidad/${codigo}/${tipoConformidad}_${Date.now()}_${file.name}`;
+                                    const fileRef = ref(getStorage(), path);
+                                    await uploadBytes(fileRef, file);
+                                    const url = await getDownloadURL(fileRef);
+                                    setConformidadUrl(url);
+                                    showToast('Archivo subido correctamente');
+                                  } catch (err) {
+                                    console.error('Error al subir archivo:', err);
+                                    showToast('Error al subir archivo');
+                                  } finally {
+                                    setSubiendoConformidad(false);
+                                  }
+                                }}
+                                disabled={subiendoConformidad}
+                                className="w-full text-xs text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-gray-200 file:text-gray-700 hover:file:bg-gray-300 disabled:opacity-50"
+                              />
+                              {subiendoConformidad && (
+                                <p className="text-[10px] text-gray-400 flex items-center gap-1">
+                                  <div className="w-3 h-3 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                                  Subiendo...
+                                </p>
+                              )}
+                              {conformidadUrl && (
+                                <p className="text-[10px] text-emerald-600">✅ Archivo subido</p>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Observaciones para Verbal */}
+                          {tipoConformidad === 'verbal' && (
+                            <div className="space-y-2">
+                              <label className="block text-[11px] font-semibold text-gray-600 uppercase">
+                                Observaciones de la conformidad verbal
+                              </label>
+                              <textarea
+                                rows={2}
+                                value={conformidadObservaciones}
+                                onChange={(e) => setConformidadObservaciones(e.target.value)}
+                                placeholder="Ej: Cliente confirmó vía llamada telefónica el día XX/XX/XXXX a las XX:XX..."
+                                className="w-full p-2 rounded-lg border border-gray-200 text-xs bg-white focus:outline-none focus:border-coral resize-none"
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Botón de Confirmación */}
+                      <div className="pt-6 border-t border-gray-150">
+                        {selectedItem.estado === 'respondido' ? (
+                          /* ── BARRA DE CONFIRMACIÓN PARA RESPONDIDOS ── */
+                          <div className="space-y-3">
+                            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-800 leading-relaxed">
+                              ⏳ <strong>Esperando confirmación del cliente.</strong> Este caso requiere que el cliente confirme que recibió la devolución o cambio.
+                            </div>
+                            <div className="flex gap-3">
+                              <button
+                                type="button"
+                                onClick={async () => {
+                                  setResolviendo(true);
+                                  try {
+                                    const prueba = tipoConformidad ? {
+                                      tipo: tipoConformidad,
+                                      url: conformidadUrl || null,
+                                      observaciones: tipoConformidad === 'verbal' ? conformidadObservaciones : null,
+                                      fecha: new Date().toISOString(),
+                                    } : null;
+                                    await cerrarReclamacion(selectedItem.id, { motivo: 'confirmacion', prueba_conformidad: prueba });
+                                    showToast('Caso cerrado - confirmación recibida');
+                                    setSelectedItem(null);
+                                  } catch (err) {
+                                    console.error(err);
+                                  } finally {
+                                    setResolviendo(false);
+                                  }
+                                }}
+                                disabled={resolviendo}
+                                className="flex-1 h-11 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md disabled:opacity-50"
+                              >
+                                ✅ Confirmar y Cerrar
+                              </button>
+                              <button
+                                type="button"
+                                onClick={async () => {
+                                  setResolviendo(true);
+                                  try {
+                                    const prueba = tipoConformidad ? {
+                                      tipo: tipoConformidad,
+                                      url: conformidadUrl || null,
+                                      observaciones: tipoConformidad === 'verbal' ? conformidadObservaciones : null,
+                                      fecha: new Date().toISOString(),
+                                    } : null;
+                                    await cerrarReclamacion(selectedItem.id, { motivo: 'sin_confirmacion', prueba_conformidad: prueba });
+                                    showToast('Caso cerrado sin confirmación');
+                                    setSelectedItem(null);
+                                  } catch (err) {
+                                    console.error(err);
+                                  } finally {
+                                    setResolviendo(false);
+                                  }
+                                }}
+                                disabled={resolviendo}
+                                className="flex-1 h-11 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                              >
+                                🔒 Cerrar sin respuesta
+                              </button>
+                            </div>
+                          </div>
+                        ) : (
+                          /* ── BOTÓN NORMAL DE RESOLUCIÓN ── */
+                          <button
+                            type="button"
+                            onClick={handleProcesarResolucion}
+                            disabled={resolviendo}
+                            className="w-full h-11 bg-gray-800 hover:bg-gray-900 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 disabled:opacity-50"
+                          >
+                            {resolviendo ? (
+                              <>
+                                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                <span>Procesando...</span>
+                              </>
+                            ) : (
+                              <>
+                                <span>✅</span>
+                                <span>
+                                  {tabResolucion === 'devolucion' && 'Confirmar y Procesar Reembolso'}
+                                  {tabResolucion === 'cambio' && 'Confirmar y Coordinar Cambio'}
+                                  {tabResolucion === 'personalizado' && 'Enviar Respuesta y Cerrar'}
+                                </span>
+                              </>
+                            )}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ── BOTÓN REABRIR (solo para casos cerrados) ── */}
+                  {selectedItem.estado === 'cerrado' && (
+                    <div className="pt-6 border-t border-gray-150">
+                      <div className="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-xs text-gray-600 leading-relaxed mb-4">
+                        📋 <strong>Caso cerrado.</strong> Si es necesario reabrir este caso para realizar ajustes o seguimiento adicional, utilize la opción de reabrir.
+                      </div>
+                      <button
+                        type="button"
+                        onClick={async () => {
+                          if (!window.confirm('¿Está seguro de reabrir este caso? El caso volverá a estado "En Revisión".')) return;
+                          setResolviendo(true);
+                          try {
+                            await reabrirReclamacion(selectedItem.id);
+                            showToast('Caso reabierto correctamente');
+                            setSelectedItem(null);
+                          } catch (err) {
+                            console.error(err);
+                          } finally {
+                            setResolviendo(false);
+                          }
+                        }}
+                        disabled={resolviendo}
+                        className="w-full h-11 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 disabled:opacity-50"
+                      >
+                        🔄 Reabrir Caso
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>

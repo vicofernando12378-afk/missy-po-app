@@ -106,10 +106,10 @@ export async function resolverReclamacion(id, { estado, resolution }) {
 }
 
 // ── ADMIN: CERRAR RECLAMACION (confirmación o cierre directo) ─
-export async function cerrarReclamacion(id, { motivo = 'confirmacion', nota = null } = {}) {
+export async function cerrarReclamacion(id, { motivo = 'confirmacion', nota = null, prueba_conformidad = null } = {}) {
   try {
     const ref = doc(db, COLECCION, id);
-    await updateDoc(ref, {
+    const payload = {
       estado: 'cerrado',
       resolution: {
         confirmadoPorCliente: motivo === 'confirmacion',
@@ -122,9 +122,34 @@ export async function cerrarReclamacion(id, { motivo = 'confirmacion', nota = nu
         nota: nota || (motivo === 'confirmacion' ? 'Confirmado por cliente' : 'Cerrado sin confirmación'),
       }),
       actualizado_en: serverTimestamp(),
-    });
+    };
+    if (prueba_conformidad) {
+      payload.prueba_conformidad = prueba_conformidad;
+    }
+    await updateDoc(ref, payload);
   } catch (e) {
     console.error('Error al cerrar reclamacion:', e);
+    throw e;
+  }
+}
+
+// ── ADMIN: REABRIR RECLAMACION CERRADA ────────────────────────
+export async function reabrirReclamacion(id, nota = null) {
+  try {
+    const ref = doc(db, COLECCION, id);
+    await updateDoc(ref, {
+      estado: 'en_revision',
+      reabiertoEn: serverTimestamp(),
+      reabiertoPor: 'admin',
+      historial_estados: arrayUnion({
+        estado: 'en_revision',
+        fecha: new Date().toISOString(),
+        nota: nota || 'Caso reabierto por administrador',
+      }),
+      actualizado_en: serverTimestamp(),
+    });
+  } catch (e) {
+    console.error('Error al reabrir reclamacion:', e);
     throw e;
   }
 }

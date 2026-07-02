@@ -555,8 +555,8 @@
     "semantic_hash": ""
   },
   "src/schemas/reclamacion.js": {
-    "mtime": 1782930562.3855553,
-    "ast_hash": "1554251e1efc7088ef2fd020f90d99dd",
+    "mtime": 1782953756.5935607,
+    "ast_hash": "c464ffc8563ed1c786519ad8a4c97bfd",
     "semantic_hash": ""
   },
   "src/schemas/review.js": {
@@ -860,13 +860,13 @@
     "semantic_hash": ""
   },
   "src/pages/admin/ReclamacionesDashboard.jsx": {
-    "mtime": 1782949995.4242764,
-    "ast_hash": "69ca34ccc09e4eba7ca164f65d4fb9d6",
+    "mtime": 1782954533.626302,
+    "ast_hash": "eac49ff5d918c7bf38cd50f87b12f83f",
     "semantic_hash": ""
   },
   "src/services/reclamaciones.js": {
-    "mtime": 1782948580.6467648,
-    "ast_hash": "e6e80c6b302d3c2c27b8e39a6e63d75b",
+    "mtime": 1782953591.844181,
+    "ast_hash": "df68b7e842210be629223166163dca7c",
     "semantic_hash": ""
   },
   "src/utils/__tests__/sla.test.js": {

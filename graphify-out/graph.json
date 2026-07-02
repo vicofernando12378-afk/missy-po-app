@@ -2440,7 +2440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usecheckoutform",
-      "community": 0,
+      "community": 3,
       "norm_label": "usecheckoutform.js"
     },
     {
@@ -2661,7 +2661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_404",
-      "community": 24,
+      "community": 8,
       "norm_label": "404.astro"
     },
     {
@@ -2671,7 +2671,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_notfoundpage_tsx",
-      "community": 24,
+      "community": 8,
       "norm_label": "./notfoundpage.jsx"
     },
     {
@@ -3068,7 +3068,7 @@
       "label": "ESTADOS_CFG",
       "file_type": "code",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_admin_reclamacionesdashboard_estados_cfg",
       "community": 46,
@@ -3078,7 +3078,7 @@
       "label": "PRIORIDAD_CFG",
       "file_type": "code",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "src_pages_admin_reclamacionesdashboard_prioridad_cfg",
       "community": 46,
@@ -3088,7 +3088,7 @@
       "label": "ReclamacionesDashboard()",
       "file_type": "code",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L24",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "src_pages_admin_reclamacionesdashboard_reclamacionesdashboard",
       "community": 46,
@@ -3101,7 +3101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard",
-      "community": 37,
+      "community": 0,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -3111,7 +3111,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estado_cfg",
-      "community": 37,
+      "community": 0,
       "norm_label": "estado_cfg"
     },
     {
@@ -3121,7 +3121,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estrellas",
-      "community": 37,
+      "community": 0,
       "norm_label": "estrellas()"
     },
     {
@@ -3131,7 +3131,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_resenasdashboard",
-      "community": 37,
+      "community": 0,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -3331,7 +3331,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_carrito",
-      "community": 8,
+      "community": 24,
       "norm_label": "carrito.astro"
     },
     {
@@ -3341,7 +3341,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_cartpage_tsx",
-      "community": 8,
+      "community": 24,
       "norm_label": "./cartpage.jsx"
     },
     {
@@ -3351,7 +3351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkout",
-      "community": 15,
+      "community": 9,
       "norm_label": "checkout.astro"
     },
     {
@@ -3361,7 +3361,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_checkoutpage_tsx",
-      "community": 15,
+      "community": 9,
       "norm_label": "./checkoutpage.jsx"
     },
     {
@@ -3471,7 +3471,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 8,
+      "community": 34,
       "norm_label": "index.astro"
     },
     {
@@ -3481,7 +3481,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 8,
+      "community": 34,
       "norm_label": "../pages/homepage"
     },
     {
@@ -3491,7 +3491,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 19,
+      "community": 8,
       "norm_label": "login.astro"
     },
     {
@@ -3501,7 +3501,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 19,
+      "community": 8,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -3801,7 +3801,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_producto_slug",
-      "community": 37,
+      "community": 15,
       "norm_label": "[slug].astro"
     },
     {
@@ -3811,7 +3811,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_pages_producto_slug_getstaticpaths",
-      "community": 37,
+      "community": 15,
       "norm_label": "getstaticpaths()"
     },
     {
@@ -3821,7 +3821,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_productpage_tsx",
-      "community": 37,
+      "community": 15,
       "norm_label": "../../pages/productpage.jsx"
     },
     {
@@ -3831,7 +3831,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services",
-      "community": 37,
+      "community": 15,
       "norm_label": "../services"
     },
     {
@@ -3841,7 +3841,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_reclamaciones",
-      "community": 40,
+      "community": 8,
       "norm_label": "reclamaciones.astro"
     },
     {
@@ -3851,7 +3851,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_components_legal_reclamacionesform_tsx",
-      "community": 40,
+      "community": 8,
       "norm_label": "../components/legal/reclamacionesform.jsx"
     },
     {
@@ -3871,7 +3871,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_tienda",
-      "community": 37,
+      "community": 15,
       "norm_label": "tienda.astro"
     },
     {
@@ -3881,7 +3881,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_storepage_tsx",
-      "community": 37,
+      "community": 15,
       "norm_label": "./storepage.jsx"
     },
     {
@@ -4491,7 +4491,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_services_coupons_validarcupon",
-      "community": 9,
+      "community": 0,
       "norm_label": "validarcupon()"
     },
     {
@@ -4541,7 +4541,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 37,
+      "community": 0,
       "norm_label": "index.js"
     },
     {
@@ -4805,13 +4805,23 @@
       "norm_label": "cerrarreclamacion()"
     },
     {
+      "label": "reabrirReclamacion()",
+      "file_type": "code",
+      "source_file": "src/services/reclamaciones.js",
+      "source_location": "L137",
+      "_origin": "ast",
+      "id": "src_services_reclamaciones_reabrirreclamacion",
+      "community": 46,
+      "norm_label": "reabrirreclamacion()"
+    },
+    {
       "label": "reviews.js",
       "file_type": "code",
       "source_file": "src/services/reviews.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 37,
+      "community": 0,
       "norm_label": "reviews.js"
     },
     {
@@ -4821,7 +4831,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenas",
-      "community": 37,
+      "community": 0,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -4831,7 +4841,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_services_reviews_actualizarestadoresena",
-      "community": 37,
+      "community": 0,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -4841,7 +4851,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_reviews_eliminarresena",
-      "community": 37,
+      "community": 0,
       "norm_label": "eliminarresena()"
     },
     {
@@ -4851,7 +4861,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_services_reviews_crearresena",
-      "community": 37,
+      "community": 0,
       "norm_label": "crearresena()"
     },
     {
@@ -4861,7 +4871,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenasporproducto",
-      "community": 37,
+      "community": 0,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -13809,7 +13819,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_pages_admin_reclamacionesdashboard_estados_cfg",
@@ -13819,7 +13829,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_pages_admin_reclamacionesdashboard_prioridad_cfg",
@@ -13829,7 +13839,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L24",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_pages_admin_reclamacionesdashboard_reclamacionesdashboard",
@@ -13840,7 +13850,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_services_firebase",
@@ -13851,7 +13861,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_services_firebase_auth",
@@ -13862,7 +13872,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_services_index",
@@ -13873,7 +13883,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_services_reclamaciones_cerrarreclamacion",
@@ -13884,7 +13894,18 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L4",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "src_pages_admin_reclamacionesdashboard",
+      "target": "src_services_reclamaciones_reabrirreclamacion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_services_reclamaciones_resolverreclamacion",
@@ -13895,7 +13916,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_utils_sla",
@@ -13906,7 +13927,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_utils_sla_calcularsla",
@@ -13917,7 +13938,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/admin/ReclamacionesDashboard.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "src_pages_admin_reclamacionesdashboard",
       "target": "src_utils_sla_sla_cfg",
@@ -16436,6 +16457,16 @@
       "weight": 1.0,
       "source": "src_services_reclamaciones",
       "target": "src_services_reclamaciones_obtenerreclamacionporid",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/services/reclamaciones.js",
+      "source_location": "L137",
+      "weight": 1.0,
+      "source": "src_services_reclamaciones",
+      "target": "src_services_reclamaciones_reabrirreclamacion",
       "confidence_score": 1.0
     },
     {
@@ -19353,5 +19384,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0ce735bcd77a47061a826a37c5e5d8b9f0995df8"
+  "built_at_commit": "23b6131b193eae3ba82f1cf75d34e36c50664916"
 }
