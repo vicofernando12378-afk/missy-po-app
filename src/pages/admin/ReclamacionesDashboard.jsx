@@ -1,6 +1,7 @@
 import { collection, addDoc, serverTimestamp, query, orderBy, onSnapshot, limit, doc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useState, useEffect, useMemo } from 'react';
+import * as XLSX from 'xlsx';
 
 import { resolverReclamacion, cerrarReclamacion, reabrirReclamacion } from '../../services';
 import { db, auth } from '../../services/firebase';
@@ -22,6 +23,59 @@ const PRIORIDAD_CFG = {
   urgente:  { label: 'Urgente',  bg: 'bg-red-50',    text: 'text-red-600',    border: 'border-red-200',    icon: '🔴' },
 };
 
+// ── PIE CHART SVG ─────────────────────────────────────────────
+function PieChart({ data, size = 120, thickness = 24 }) {
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+  const total = data.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return null;
+
+  const radius = (size - thickness) / 2;
+  const circumference = 2 * Math.PI * radius;
+  let accumulated = 0;
+
+  return (
+    <div className="relative inline-block">
+      <svg width={size} height={size} className="transform -rotate-90">
+        {data.map((d, i) => {
+          const pct = d.value / total;
+          const dashLen = pct * circumference;
+          const dashOffset = accumulated * circumference;
+          accumulated += pct;
+          return (
+            <circle
+              key={d.label}
+              cx={size / 2}
+              cy={size / 2}
+              r={radius}
+              fill="none"
+              stroke={d.color}
+              strokeWidth={thickness}
+              strokeDasharray={`${dashLen} ${circumference - dashLen}`}
+              strokeDashoffset={-dashOffset}
+              className="transition-all duration-300 cursor-pointer"
+              style={{ opacity: hoveredIdx !== null && hoveredIdx !== i ? 0.4 : 1 }}
+              onMouseEnter={() => setHoveredIdx(i)}
+              onMouseLeave={() => setHoveredIdx(null)}
+            />
+          );
+        })}
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        <span className="text-lg font-bold text-gray-800">{total}</span>
+        <span className="text-[8px] text-gray-400 uppercase">Total</span>
+      </div>
+      {hoveredIdx !== null && (
+        <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] px-2.5 py-1.5 rounded-lg whitespace-nowrap z-20 shadow-lg pointer-events-none">
+          {data[hoveredIdx].label}: {data[hoveredIdx].value} ({(data[hoveredIdx].value / total * 100).toFixed(1)}%)
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── PIE CHART COLORS ──────────────────────────────────────────
+const PIE_COLORS = { Devoluciones: '#3b82f6', Cambios: '#f97316', Quejas: '#ef4444', Otros: '#9ca3af' };
+
 export default function ReclamacionesDashboard() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +92,11 @@ export default function ReclamacionesDashboard() {
   const [conformidadObservaciones, setConformidadObservaciones] = useState('');
   const [subiendoConformidad, setSubiendoConformidad] = useState(false);
   const [conformidadUrl, setConformidadUrl] = useState(null);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [exportFormato, setExportFormato] = useState('xlsx');
+  const [exportRango, setExportRango] = useState('todos');
+  const [exportFechaInicio, setExportFechaInicio] = useState('');
+  const [exportFechaFin, setExportFechaFin] = useState('');
 
   // ── ESCUCHA EN TIEMPO REAL ──────────────────────────────────
   useEffect(() => {
@@ -79,6 +138,20 @@ export default function ReclamacionesDashboard() {
       vencidos: sla.filter(s => s.tipo === 'vencido').length,
       porVencer: sla.filter(s => s.tipo === 'por_vencer' || s.tipo === 'critico').length,
     };
+  }, [items]);
+
+  // ── PIE CHART: Distribución por tipo de reclamo ────────────
+  const distribucion = useMemo(() => {
+    const counts = { Devoluciones: 0, Cambios: 0, Quejas: 0, Otros: 0 };
+    items.forEach(r => {
+      if (r.resolution?.type === 'devolucion') counts.Devoluciones++;
+      else if (r.resolution?.type === 'cambio') counts.Cambios++;
+      else if (r.detalle?.tipo === 'Queja') counts.Quejas++;
+      else counts.Otros++;
+    });
+    return Object.entries(counts)
+      .filter(([, v]) => v > 0)
+      .map(([label, value]) => ({ label, value, color: PIE_COLORS[label] }));
   }, [items]);
 
   // ── FILTRADO POR BÚSQUEDA, PRIORIDAD Y ESTADO ──────────────
@@ -135,37 +208,76 @@ export default function ReclamacionesDashboard() {
     }
   };
 
-  const handleExportCSV = () => {
-    const headers = ['Código', 'Estado', 'Prioridad', 'Cliente', 'Email', 'Teléfono', 'Tipo Bien', 'Monto', 'Tipo Reclamo', 'Descripción', 'Agente', 'Fecha Creación', 'SLA'];
-    const rows = itemsFiltrados.map(r => {
+  const handleExportLibro = () => {
+    let dataToExport = items;
+
+    if (exportRango === 'rango' && exportFechaInicio && exportFechaFin) {
+      const inicio = new Date(exportFechaInicio);
+      const fin = new Date(exportFechaFin);
+      fin.setHours(23, 59, 59, 999);
+      dataToExport = items.filter(r => {
+        const fecha = r.creado_en instanceof Date ? r.creado_en : new Date(r.creado_en);
+        return fecha >= inicio && fecha <= fin;
+      });
+    }
+
+    const rows = dataToExport.map(r => {
       const sla = calcularSLA(r.creado_en, r.estado);
       const slaLabel = sla.tipo === 'cumplido' ? 'Cumplido' : sla.tipo === 'vencido' ? `Vencido (${Math.abs(sla.diasRestantes)}d)` : `${sla.diasRestantes}d restantes`;
-      return [
-        r.codigo || r.id,
-        ESTADOS_CFG[r.estado]?.label || r.estado,
-        PRIORIDAD_CFG[r.prioridad]?.label || 'Normal',
-        `${r.cliente?.nombre || ''} ${r.cliente?.apellido || ''}`.trim(),
-        r.cliente?.email || '',
-        r.cliente?.telefono || '',
-        r.bien?.tipo || 'Producto',
-        r.bien?.monto || '0',
-        r.detalle?.tipo || 'Reclamo',
-        (r.detalle?.descripcion || '').replace(/"/g, '""'),
-        r.asignado_a || '',
-        r.creado_en ? new Date(r.creado_en).toLocaleDateString('es-PE') : '',
-        slaLabel,
-      ];
+      return {
+        'Código': r.codigo || r.id,
+        'Estado': ESTADOS_CFG[r.estado]?.label || r.estado,
+        'Prioridad': PRIORIDAD_CFG[r.prioridad]?.label || 'Normal',
+        'Fecha Creación': r.creado_en ? new Date(r.creado_en).toLocaleDateString('es-PE') : '',
+        'Última Actualización': r.actualizado_en ? new Date(r.actualizado_en?.toDate ? r.actualizado_en.toDate() : r.actualizado_en).toLocaleDateString('es-PE') : '',
+        'Nombre Cliente': `${r.cliente?.nombre || ''} ${r.cliente?.apellido || ''}`.trim(),
+        'Tipo Documento': r.cliente?.tipoDoc || '',
+        'N° Documento': r.cliente?.numDoc || '',
+        'Email': r.cliente?.email || '',
+        'Teléfono': r.cliente?.telefono || '',
+        'Departamento': r.cliente?.departamento || '',
+        'Provincia': r.cliente?.provincia || '',
+        'Distrito': r.cliente?.distrito || '',
+        'Tipo Bien': r.bien?.tipo || 'Producto',
+        'Descripción Bien': r.bien?.descripcion || '',
+        'Monto Reclamado': r.bien?.monto || '0',
+        'Tipo Reclamo': r.detalle?.tipo || 'Reclamo',
+        'Descripción Reclamo': r.detalle?.descripcion || '',
+        'Pedido Consumidor': r.detalle?.pedido || '',
+        'Agente Asignado': r.asignado_a || '',
+        'Notas Admin': r.admin_notes || '',
+        'Evidencias': (r.evidencias || []).map(e => e.url).join('; '),
+        'Prueba Conformidad': r.prueba_conformidad ? `${r.prueba_conformidad.tipo}${r.prueba_conformidad.observaciones ? ' - ' + r.prueba_conformidad.observaciones : ''}` : '',
+        'Motivo Cierre': r.resolution?.motivoCierre || '',
+        'SLA Estado': slaLabel,
+        'Días Transcurridos': sla.diasTranscurridos,
+        'Fecha Respuesta': r.resolution?.resolvedAt ? new Date(r.resolution.resolvedAt?.toDate ? r.resolution.resolvedAt.toDate() : r.resolution.resolvedAt).toLocaleDateString('es-PE') : '',
+        'Fecha Cierre': r.resolution?.cerradoEn ? new Date(r.resolution.cerradoEn?.toDate ? r.resolution.cerradoEn.toDate() : r.resolution.cerradoEn).toLocaleDateString('es-PE') : '',
+      };
     });
 
-    const csvContent = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
-    const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `reclamaciones_${new Date().toISOString().slice(0, 10)}.csv`;
-    link.click();
-    URL.revokeObjectURL(url);
-    showToast(`Exportadas ${rows.length} reclamaciones`);
+    const fechaHoy = new Date().toISOString().slice(0, 10);
+    const nombreArchivo = `libro_reclamaciones_${fechaHoy}`;
+
+    if (exportFormato === 'xlsx') {
+      const ws = XLSX.utils.json_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Libro Reclamaciones');
+      XLSX.writeFile(wb, `${nombreArchivo}.xlsx`);
+    } else {
+      const headers = Object.keys(rows[0] || {});
+      const csvContent = [headers, ...rows.map(r => headers.map(h => `"${(r[h] || '').toString().replace(/"/g, '""')}"`))].map(row => row.join(',')).join('\n');
+      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${nombreArchivo}.csv`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    showToast(`Exportadas ${rows.length} reclamaciones (${exportFormato.toUpperCase()})`);
+    setShowExportModal(false);
   };
 
   const handleProcesarResolucion = async (e) => {
@@ -312,6 +424,28 @@ export default function ReclamacionesDashboard() {
         ))}
       </div>
 
+      {/* Pie Chart Distribución */}
+      {distribucion.length > 0 && (
+        <div className="bg-white rounded-2xl border border-gray-100 p-5 flex flex-col sm:flex-row items-center gap-6">
+          <PieChart data={distribucion} size={120} thickness={24} />
+          <div className="flex-1 space-y-2">
+            <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider">Distribución por Tipo</h4>
+            <div className="grid grid-cols-2 gap-2">
+              {distribucion.map(d => {
+                const pct = items.length > 0 ? (d.value / items.length * 100).toFixed(1) : 0;
+                return (
+                  <div key={d.label} className="flex items-center gap-2 text-xs">
+                    <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: d.color }} />
+                    <span className="text-gray-600 font-medium">{d.label}</span>
+                    <span className="text-gray-400 ml-auto">{d.value} ({pct}%)</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Filtros + Búsqueda + Export */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
@@ -325,10 +459,10 @@ export default function ReclamacionesDashboard() {
           />
         </div>
         <button
-          onClick={handleExportCSV}
+          onClick={() => setShowExportModal(true)}
           className="h-10 px-4 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-600 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center gap-2 shrink-0"
         >
-          📥 Exportar CSV
+          📥 Exportar Libro Reclamaciones
         </button>
         <div className="flex flex-wrap gap-2">
           {[
@@ -971,6 +1105,122 @@ export default function ReclamacionesDashboard() {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── MODAL EXPORTAR LIBRO RECLAMACIONES ── */}
+      {showExportModal && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-gray-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 max-w-md w-full p-6 animate-scaleUp">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-bold text-gray-800">📥 Exportar Libro de Reclamaciones</h3>
+              <button
+                onClick={() => setShowExportModal(false)}
+                className="w-8 h-8 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-450 hover:text-gray-700 transition-colors flex items-center justify-center font-bold"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-5">
+              {/* Formato */}
+              <div>
+                <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2">Formato</label>
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setExportFormato('xlsx')}
+                    className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                      exportFormato === 'xlsx'
+                        ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                    }`}
+                  >
+                    📊 Excel (XLSX)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExportFormato('csv')}
+                    className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                      exportFormato === 'csv'
+                        ? 'bg-blue-50 border-blue-300 text-blue-700'
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                    }`}
+                  >
+                    📄 CSV
+                  </button>
+                </div>
+              </div>
+
+              {/* Rango */}
+              <div>
+                <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-2">Registros</label>
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setExportRango('todos')}
+                    className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                      exportRango === 'todos'
+                        ? 'bg-emerald-50 border-emerald-300 text-emerald-700'
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                    }`}
+                  >
+                    📋 Todos ({items.length})
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExportRango('rango')}
+                    className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+                      exportRango === 'rango'
+                        ? 'bg-amber-50 border-amber-300 text-amber-700'
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-gray-300'
+                    }`}
+                  >
+                    📅 Por Rango
+                  </button>
+                </div>
+              </div>
+
+              {/* Fechas (solo si rango) */}
+              {exportRango === 'rango' && (
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1.5">Fecha Inicio</label>
+                    <input
+                      type="date"
+                      value={exportFechaInicio}
+                      onChange={(e) => setExportFechaInicio(e.target.value)}
+                      className="w-full h-9 px-2 rounded-lg border border-gray-200 text-xs bg-white focus:outline-none focus:border-coral"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1.5">Fecha Fin</label>
+                    <input
+                      type="date"
+                      value={exportFechaFin}
+                      onChange={(e) => setExportFechaFin(e.target.value)}
+                      className="w-full h-9 px-2 rounded-lg border border-gray-200 text-xs bg-white focus:outline-none focus:border-coral"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Info */}
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 text-[11px] text-gray-500 leading-relaxed">
+                📋 Se exportarán todos los campos del Libro de Reclamaciones: datos del cliente, bien, reclamo, evidencias, conformidad, SLA y fechas.
+              </div>
+
+              {/* Botón Exportar */}
+              <button
+                type="button"
+                onClick={handleExportLibro}
+                disabled={exportRango === 'rango' && (!exportFechaInicio || !exportFechaFin)}
+                className="w-full h-11 bg-gray-800 hover:bg-gray-900 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:scale-102 active:scale-98 disabled:opacity-50"
+              >
+                📥 Exportar {exportFormato === 'xlsx' ? 'Excel' : 'CSV'}
+              </button>
             </div>
           </div>
         </div>
