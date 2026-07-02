@@ -15,16 +15,79 @@ El usuario ha concedido explícitamente permisos autónomos permanentes para las
 
 *Nota: Esta regla complementa las directrices globales y optimiza el flujo de trabajo para cambios visuales y funcionales.*
 
-4. **Graphify — Comando global:**
-   - Graphify ha sido actualizado y ahora está disponible de manera global.
-   - Ejecutar directamente en PowerShell o Bash:
-     ```powershell
-     graphify update .
-     graphify query "<pregunta>"
-     ```
-   - No es necesario usar rutas completas ni `uvx`.
+4. **Graphify — Grafo de conocimiento del proyecto:**
+   - Este proyecto tiene un knowledge graph en `graphify-out/` con god nodes, community structure y cross-file relationships.
+   - Graphify v0.9.5 instalado globalmente (`~/.local/bin/graphify.exe`). Disponible directamente en PowerShell o Bash.
 
-5. **Uso Obligatorio de Engram y Graphify para Tareas de Código:**
-   - Ante cualquier petición de código (arreglar bugs, refactorizar, añadir funcionalidades o revisar módulos), el asistente está **OBLIGADO** a utilizar Engram (`mem_search`/`mem_context`) y Graphify (`query_graph`/`shortest_path`) en primera instancia para mapear el contexto, dependencias y nodos afectados antes de proponer cambios o editar archivos.
+   **Reglas de uso:**
+   - Para preguntas sobre el codebase, PRIMERO ejecutar `graphify query "<pregunta>"` cuando `graphify-out/graph.json` existe.
+   - Para relaciones entre módulos: `graphify path "<A>" "<B>"`.
+   - Para explicaciones focused de un concepto: `graphify explain "<concepto>"`.
+   - Si `graphify-out/wiki/index.md` existe, usarlo para navegación general en vez de leer archivos raw.
+   - Leer `graphify-out/GRAPH_REPORT.md` solo para arquitectura broad o cuando query/path/explain no dan suficiente contexto.
+   - Archivos sucios en `graphify-out/` son normales después de hooks o updates incrementales; no son razón para skippear graphify.
+   - Solo skippear graphify si la tarea es sobre graph output stale/incorrecto, o el usuario dice explícitamente no usarlo.
+   - Después de modificar código, ejecutar `graphify update .` para mantener el grafo actualizado (AST-only, sin costo de API).
+
+5. **Engram — Memoria persistente (OBLIGATORIO):**
+   - Engram es un sistema de memoria persistente entre sesiones. Este protocolo es **MANDATORY y ALWAYS ACTIVE**.
+
+   **Guardado proactivo (NO esperar a que el usuario pida):**
+   Llamar `mem_save` INMEDIATAMENTE después de cualquiera de estos eventos:
+   - Decisión de arquitectura o diseño tomada
+   - Convención de equipo documentada o establecida
+   - Cambio de workflow acordado
+   - Elección de tool/librería con tradeoffs
+   - Bug fix completado (incluir root cause)
+   - Feature implementada con approach no obvio
+   - Cambio de configuración o setup de entorno
+   - Descubrimiento no obvio del codebase
+   - Gotcha, edge case o comportamiento inesperado encontrado
+   - Patrón establecido (naming, estructura, convención)
+   - Preferencia o constraint del usuario aprendido
+
+   Auto-check después de CADA tarea: "¿Hice una decisión, fixié un bug, aprendí algo no obvio, o establecí una convención? Si sí, llamar `mem_save` AHORA."
+
+   Formato de `mem_save`:
+   - **title**: Verbo + qué — corto, buscable (ej: "Fixed N+1 query in UserList")
+   - **type**: bugfix | decision | architecture | discovery | pattern | config | preference
+   - **scope**: `project` (default) | `personal`
+   - **topic_key** (recomendado para topics evolutivos): key estable como `architecture/auth-model`
+   - **content**:
+     - **What**: Una frase — qué se hizo
+     - **Why**: Qué motivó la acción
+     - **Where**: Archivos o paths afectados
+     - **Learned**: Gotchas, edge cases, cosas sorprendentes
+
+   **Cuándo buscar memoria:**
+   1. En cualquier variación de "recordar", "qué hicimos", "cómo resolvimos", o referencias a trabajo previo:
+      - Llamar `mem_context` primero (histórico reciente, rápido)
+      - Si no se encuentra, `mem_search` con keywords relevantes
+      - Si se encuentra, `mem_get_observation` para contenido completo
+   2. También buscar PROACTIVAMENTE cuando:
+      - Empezar algo que podría haberse hecho antes
+      - El usuario menciona un topic sin contexto previo
+      - PRIMER mensaje del usuario referencia el proyecto, feature o problema
+
+   **Protocolo de cierre de sesión (MANDATORY):**
+   Antes de terminar una sesión o decir "listo"/"eso es todo", llamar `mem_session_summary` con:
+   - Goal: Qué estuvimos haciendo
+   - Instructions: Preferencias del usuario descubiertas
+   - Discoveries: Hallazgos técnicos, gotchas
+   - Accomplished: Items completados con detalles clave
+   - Next Steps: Qué queda pendiente
+   - Relevant Files: Archivos cambiados o relevantes
+
+   **Después de compacción:**
+   Si aparece un mensaje de compacción o "FIRST ACTION REQUIRED":
+   1. LLAMAR `mem_session_summary` INMEDIATAMENTE
+   2. Llamar `mem_context` para recuperar contexto
+   3. Recién ahí continuar trabajando
+
+6. **Uso Obligatorio de Engram y Graphify para Tareas de Código:**
+   - Ante cualquier petición de código (arreglar bugs, refactorizar, añadir funcionalidades o revisar módulos), el asistente está **OBLIGADO** a:
+     1. Buscar en Engram (`mem_context`/`mem_search`) para verificar decisiones previas, configuraciones y preferencias del usuario.
+     2. Consultar Graphify (`graphify query`/`graphify path`/`graphify explain`) para mapear contexto, dependencias y nodos afectados.
+     3. Formular la respuesta incorporando este contexto local para mantener coherencia estricta con las decisiones existentes del proyecto.
 
 
