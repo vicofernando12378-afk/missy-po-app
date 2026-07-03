@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import ApiKeysSection from '../../components/admin/crm/ApiKeysSection';
+import KnowledgeBaseSection from '../../components/admin/crm/KnowledgeBaseSection';
 import { validate, CouponSchema, ShippingConfigSchema } from '../../schemas';
 import {
   obtenerConfiguracionEnvio,
@@ -14,6 +15,7 @@ import {
 const CONFIG_TABS = [
   { id: 'general', label: 'Envíos y Cupones', icon: '📦' },
   { id: 'integraciones', label: 'Integraciones', icon: '🔗' },
+  { id: 'knowledge', label: 'Knowledge Base', icon: '📚' },
 ];
 
 export default function ConfiguracionEnviosCupones() {
@@ -182,6 +184,14 @@ export default function ConfiguracionEnviosCupones() {
             Configura las credenciales de servicios externos. Haz clic en &quot;¿Cómo obtener?&quot; para ver guías paso a paso.
           </p>
           <ApiKeysSection />
+        </div>
+      ) : configTab === 'knowledge' ? (
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+          <h2 className="font-brand text-xl text-gray-850 mb-1">Knowledge Base del Bot</h2>
+          <p className="text-gray-400 text-xs mb-6">
+            Configura la información que el bot de Telegram usa para responder a los clientes.
+          </p>
+          <KnowledgeBaseSection />
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

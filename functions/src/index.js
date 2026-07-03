@@ -15,6 +15,8 @@ export { recomputeSegments } from './crm/recomputeSegments.js';
 export { unsubscribeLead } from './crm/unsubscribeLead.js';
 export { saveApiKeys } from './crm/saveApiKeys.js';
 export { getApiKeysStatus } from './crm/getApiKeysStatus.js';
+export { saveKnowledge } from './crm/saveKnowledge.js';
+export { getKnowledge } from './crm/getKnowledge.js';
 
 // campaigns
 export { sendCampaign } from './campaigns/sendCampaign.js';

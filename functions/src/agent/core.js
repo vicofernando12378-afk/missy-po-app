@@ -8,13 +8,13 @@ const CRM_TOOLS = [
     type: 'function',
     function: {
       name: 'buscarProducto',
-      description: 'Busca productos del catálogo de Missy & Po Pet Shop por nombre o categoría.',
+      description: 'Busca productos del catálogo de Missy & Po Pet Shop por nombre, categoría o descripción. Retorna nombre, precio, stock, categorías y URL.',
       parameters: {
         type: 'object',
         properties: {
           query: {
             type: 'string',
-            description: 'El nombre o tipo de producto a buscar (ej: comida para perros, juguetes, shampoo).',
+            description: 'El nombre, tipo o descripción del producto a buscar (ej: "arnes para perro grande", "comida húmeda gato", "juguete interactivo").',
           },
         },
         required: ['query'],
@@ -24,8 +24,35 @@ const CRM_TOOLS = [
   {
     type: 'function',
     function: {
+      name: 'recomendarProductos',
+      description: 'Recomienda productos similares o complementarios basándose en categorías o necesidades del cliente.',
+      parameters: {
+        type: 'object',
+        properties: {
+          categorias: {
+            type: 'array',
+            items: { type: 'string' },
+            description: 'Categorías de interés (ej: ["alimentos", "juguetes"]).',
+          },
+          precioMaximo: {
+            type: 'number',
+            description: 'Presupuesto máximo en soles.',
+          },
+          tipo: {
+            type: 'string',
+            enum: ['similares', 'complementarios', 'ofertas'],
+            description: 'Tipo de recomendación.',
+          },
+        },
+        required: ['tipo'],
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
       name: 'consultarPedido',
-      description: 'Consulta el estado de un pedido en la tienda utilizando el número de pedido o el email del cliente.',
+      description: 'Consulta el estado de un pedido utilizando el número de pedido o el email del cliente.',
       parameters: {
         type: 'object',
         properties: {
@@ -44,6 +71,62 @@ const CRM_TOOLS = [
   {
     type: 'function',
     function: {
+      name: 'consultarEnvios',
+      description: 'Consulta opciones de envío, costos y tiempos de entrega para una zona específica.',
+      parameters: {
+        type: 'object',
+        properties: {
+          zona: {
+            type: 'string',
+            description: 'La zona de entrega: "Lima", "Callao" o "Provincia".',
+          },
+        },
+        required: ['zona'],
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'consultarMediosPago',
+      description: 'Consulta los métodos de pago aceptados por la tienda.',
+      parameters: {
+        type: 'object',
+        properties: {},
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'obtenerInfoNegocio',
+      description: 'Consulta información general del negocio: horarios, dirección, teléfono, redes sociales.',
+      parameters: {
+        type: 'object',
+        properties: {},
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'unirseAlClub',
+      description: 'Registra al cliente para unirse al Club Missy & Po. Captura nombre, teléfono, email y nombre de mascota.',
+      parameters: {
+        type: 'object',
+        properties: {
+          name: { type: 'string', description: 'Nombre completo del cliente.' },
+          phone: { type: 'string', description: 'Número de celular.' },
+          email: { type: 'string', description: 'Correo electrónico.' },
+          petName: { type: 'string', description: 'Nombre de su mascota.' },
+        },
+        required: ['name', 'phone'],
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
       name: 'crearLead',
       description: 'Registra o actualiza al cliente actual en la base de datos de leads.',
       parameters: {
@@ -52,7 +135,7 @@ const CRM_TOOLS = [
           name: { type: 'string', description: 'Nombre completo del cliente.' },
           phone: { type: 'string', description: 'Número de celular o teléfono.' },
           email: { type: 'string', description: 'Correo electrónico.' },
-          petName: { type: 'string', description: 'Nombre de su mascota (perro, gato, etc).' },
+          petName: { type: 'string', description: 'Nombre de su mascota.' },
         },
         required: ['name'],
       },
@@ -66,10 +149,10 @@ const CRM_TOOLS = [
       parameters: {
         type: 'object',
         properties: {
-          title: { type: 'string', description: 'Descripción de la tarea (ej: Llamar para cotizar alimento).' },
+          title: { type: 'string', description: 'Descripción de la tarea.' },
           dueDateString: {
             type: 'string',
-            description: 'Fecha límite de la tarea en formato AAAA-MM-DD.',
+            description: 'Fecha límite en formato AAAA-MM-DD.',
           },
         },
         required: ['title', 'dueDateString'],
@@ -80,7 +163,7 @@ const CRM_TOOLS = [
     type: 'function',
     function: {
       name: 'transferirAHumano',
-      description: 'Detiene la conversación con la IA y transfiere al cliente con un agente de soporte humano real.',
+      description: 'Detiene la conversación con la IA y transfiere al cliente con un agente humano.',
       parameters: {
         type: 'object',
         properties: {},
@@ -89,7 +172,7 @@ const CRM_TOOLS = [
   },
 ];
 
-// ── TOOLS RESOLVERS (FIRESTORE READ/WRITE) ────────────────────────────────────
+// ── TOOL RESOLVERS ────────────────────────────────────────────────────────────
 
 async function resolverBuscarProducto(args) {
   const db = getFirestore();
@@ -97,35 +180,122 @@ async function resolverBuscarProducto(args) {
   if (!queryText) return JSON.stringify({ error: 'Búsqueda vacía.' });
 
   try {
-    // Basic prefix matching or categories in myp_productos
-    const snap = await db.collection('myp_productos')
-      .limit(10)
+    let results = [];
+
+    // 1. Try tags_busqueda (array-contains)
+    const tagsSnap = await db.collection('myp_productos')
+      .where('activo', '==', true)
+      .where('tags_busqueda', 'array-contains-any', queryText.split(/\s+/).filter(w => w.length > 2))
+      .limit(5)
       .get();
 
-    const allProd = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    if (!tagsSnap.empty) {
+      results = tagsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+    }
 
-    // Filter in-memory for basic search
-    const results = allProd.filter(p =>
-      (p.nombre || '').toLowerCase().includes(queryText) ||
-      (p.categoria || '').toLowerCase().includes(queryText) ||
-      (p.descripcion || '').toLowerCase().includes(queryText),
-    );
+    // 2. Fallback: prefix match on nombre
+    if (results.length === 0) {
+      const nameSnap = await db.collection('myp_productos')
+        .where('activo', '==', true)
+        .orderBy('nombre')
+        .startAt(queryText)
+        .endAt(queryText + '\uf8ff')
+        .limit(5)
+        .get();
+
+      if (!nameSnap.empty) {
+        results = nameSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+      }
+    }
+
+    // 3. Fallback: in-memory filter on larger set
+    if (results.length === 0) {
+      const allSnap = await db.collection('myp_productos')
+        .where('activo', '==', true)
+        .limit(50)
+        .get();
+
+      results = allSnap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter(p => {
+          const search = queryText;
+          return (p.nombre || '').toLowerCase().includes(search)
+            || (p.categorias || []).some(c => c.toLowerCase().includes(search))
+            || (p.descripcion || '').toLowerCase().includes(search)
+            || (p.tags_busqueda || []).some(t => t.toLowerCase().includes(search));
+        })
+        .slice(0, 5);
+    }
 
     if (results.length === 0) {
-      return JSON.stringify({ message: 'No encontramos productos que coincidan con tu búsqueda.' });
+      return JSON.stringify({ message: 'No encontramos productos que coincidan con tu búsqueda. ¿Podrías decirme qué tipo de producto buscas?' });
     }
 
     const formatted = results.map(p => ({
+      id: p.id,
       nombre: p.nombre,
-      precio: p.precio,
+      precio: p.precio_oferta || p.precio_regular || p.precio,
+      precioRegular: p.precio_oferta ? (p.precio_regular || p.precio) : null,
+      enOferta: !!p.precio_oferta,
       stock: p.stock ?? 0,
-      url: `https://missypo.com/producto/${p.id}`,
+      categorias: p.categorias || [],
+      url: `https://missypoapp.com/producto/${p.slug || p.id}`,
     }));
 
     return JSON.stringify({ productos: formatted });
   } catch (err) {
-    console.error('Error in buscarProducto resolver:', err);
-    return JSON.stringify({ error: 'Error interno del servidor al consultar el catálogo.' });
+    console.error('Error in buscarProducto:', err);
+    return JSON.stringify({ error: 'Error al consultar el catálogo.' });
+  }
+}
+
+async function resolverRecomendarProductos(args) {
+  const db = getFirestore();
+  const { categorias = [], precioMaximo, tipo } = args;
+
+  try {
+    let q = db.collection('myp_productos').where('activo', '==', true);
+
+    // Filter by categories if provided
+    if (categorias.length > 0) {
+      q = q.where('categorias', 'array-contains-any', categorias);
+    }
+
+    // Sort by destaque or recent
+    q = q.orderBy('destacado', 'desc').limit(10);
+
+    const snap = await q.get();
+    let results = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+    // Filter by price if specified
+    if (precioMaximo) {
+      results = results.filter(p => {
+        const price = p.precio_oferta || p.precio_regular || p.precio || 0;
+        return price <= precioMaximo;
+      });
+    }
+
+    // Type-based filtering
+    if (tipo === 'ofertas') {
+      results = results.filter(p => p.precio_oferta);
+    }
+
+    if (results.length === 0) {
+      return JSON.stringify({ message: 'No encontré productos que coincidan con esos criterios.' });
+    }
+
+    const formatted = results.slice(0, 5).map(p => ({
+      nombre: p.nombre,
+      precio: p.precio_oferta || p.precio_regular || p.precio,
+      enOferta: !!p.precio_oferta,
+      categorias: p.categorias || [],
+      url: `https://missypoapp.com/producto/${p.slug || p.id}`,
+    }));
+
+    return JSON.stringify({ recomendaciones: formatted });
+  } catch (err) {
+    console.error('Error in recomendarProductos:', err);
+    return JSON.stringify({ error: 'Error al recomendar productos.' });
   }
 }
 
@@ -144,7 +314,7 @@ async function resolverConsultarPedido(args) {
           estado: p.estado || 'Recibido',
           total: p.total,
           items: p.items || [],
-          creado_en: p.creado_en?.toDate().toLocaleDateString('es-PE'),
+          creado_en: p.creado_en?.toDate?.()?.toLocaleDateString('es-PE') || '',
         });
       }
     }
@@ -153,25 +323,140 @@ async function resolverConsultarPedido(args) {
       const emailSnap = await q
         .where('email', '==', email.trim().toLowerCase())
         .orderBy('creado_en', 'desc')
-        .limit(1)
+        .limit(3)
         .get();
 
       if (!emailSnap.empty) {
-        const p = emailSnap.docs[0].data();
-        return JSON.stringify({
-          pedidoId: emailSnap.docs[0].id,
-          estado: p.estado || 'Recibido',
-          total: p.total,
-          items: p.items || [],
-          creado_en: p.creado_en?.toDate().toLocaleDateString('es-PE'),
+        const orders = emailSnap.docs.map(d => {
+          const p = d.data();
+          return {
+            pedidoId: d.id,
+            estado: p.estado || 'Recibido',
+            total: p.total,
+            items: p.items || [],
+            creado_en: p.creado_en?.toDate?.()?.toLocaleDateString('es-PE') || '',
+          };
         });
+        return JSON.stringify({ pedidos: orders });
       }
     }
 
     return JSON.stringify({ message: 'No se encontró ningún pedido con esos datos.' });
   } catch (err) {
-    console.error('Error in consultarPedido resolver:', err);
-    return JSON.stringify({ error: 'Error al consultar estado de pedidos.' });
+    console.error('Error in consultarPedido:', err);
+    return JSON.stringify({ error: 'Error al consultar pedidos.' });
+  }
+}
+
+async function resolverConsultarEnvios(args) {
+  const kb = await import('../lib/knowledge.js').then(m => m.loadKnowledge());
+  const envios = kb.policies?.envios || {};
+
+  const zona = (args.zona || '').toLowerCase();
+  let response = {};
+
+  if (zona.includes('lima') || zona.includes('callao')) {
+    response = {
+      zona: 'Lima/Callao',
+      info: envios.Lima || 'Envío gratis en compras +S/150. Delivery same-day antes de 2pm.',
+      costo: envios.costoLima || 'Gratis en compras +S/150',
+      tiempo: envios.tiempoLima || 'Same-day (pedidos antes de 2pm) o siguiente día',
+    };
+  } else if (zona.includes('provincia')) {
+    response = {
+      zona: 'Provincia',
+      info: envios.Provincia || 'Envío por Olva/Chazki. 2-5 días hábiles.',
+      costo: envios.costoProvincia || 'Desde S/15 según destino',
+      tiempo: envios.tiempoProvincia || '2-5 días hábiles',
+    };
+  } else {
+    response = {
+      opciones: [
+        { zona: 'Lima/Callao', resumen: envios.Lima || 'Envío gratis +S/150, same-day' },
+        { zona: 'Provincia', resumen: envios.Provincia || 'Olva/Chazki, 2-5 días' },
+      ],
+    };
+  }
+
+  return JSON.stringify(response);
+}
+
+async function resolverConsultarMediosPago() {
+  const kb = await import('../lib/knowledge.js').then(m => m.loadKnowledge());
+  const pagos = kb.policies?.pagos || {};
+
+  return JSON.stringify({
+    metodos: pagos.metodos || ['Yape', 'Plin', 'Transferencia BCP', 'Visa/Mastercard', 'Efectivo contraentrega'],
+    cuotas: pagos.cuotas || 'Hasta 3 cuotas sin interés con tarjetas Visa/Mastercard',
+    anticipo: pagos.anticipo || '',
+  });
+}
+
+async function resolverObtenerInfoNegocio() {
+  const kb = await import('../lib/knowledge.js').then(m => m.loadKnowledge());
+  const b = kb.businessInfo || {};
+
+  return JSON.stringify({
+    nombre: b.nombreNegocio || 'Missy & Po Pet Shop',
+    horario: b.horario || 'Lunes a Sábado 9am-7pm, Domingos 10am-5pm',
+    direccion: b.direccion || '',
+    telefono: b.telefono || '',
+    whatsapp: b.whatsapp || '',
+    email: b.email || '',
+    redes: b.redes || {},
+  });
+}
+
+async function resolverUnirseAlClub(args, leadId, platform) {
+  const db = getFirestore();
+  try {
+    const payload = {
+      name: args.name.trim(),
+      phone: args.phone.trim(),
+      updatedAt: new Date(),
+    };
+    if (args.email) payload.email = args.email.trim().toLowerCase();
+    if (args.petName) payload.petName = args.petName.trim();
+
+    if (leadId) {
+      // Update existing lead with club interest
+      await db.collection('crm_leads').doc(leadId).update({
+        ...payload,
+        tags: FieldValue.arrayUnion('club-interest'),
+        clubStatus: 'interested',
+      });
+      return JSON.stringify({
+        success: true,
+        message: `${args.name}, te hemos registrado para el Club Missy & Po. Pronto recibirás beneficios exclusivos.`,
+      });
+    } else {
+      // Create new lead with club tag
+      const leadRef = db.collection('crm_leads').doc();
+      await leadRef.set({
+        ...payload,
+        source: platform || 'telegram',
+        sourceDetail: {},
+        stage: 'nuevo',
+        score: 15,
+        tags: [`${platform || 'telegram'}-lead`, 'bot-capture', 'club-interest'],
+        clubStatus: 'interested',
+        segmentIds: [],
+        consent: { whatsapp: false, email: false, telegram: true },
+        assignedTo: null,
+        points: 0,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        lastInteractionAt: new Date(),
+      });
+      return JSON.stringify({
+        success: true,
+        message: `${args.name}, te hemos registrado para el Club Missy & Po. Pronto recibirás beneficios exclusivos.`,
+        leadId: leadRef.id,
+      });
+    }
+  } catch (err) {
+    console.error('Error in unirseAlClub:', err);
+    return JSON.stringify({ error: 'Error al registrar en el club.' });
   }
 }
 
@@ -187,31 +472,29 @@ async function resolverCrearLead(args, leadId, platform) {
     if (args.petName) payload.petName = args.petName.trim();
 
     if (leadId) {
-      // Update existing lead
       await db.collection('crm_leads').doc(leadId).update(payload);
-      return JSON.stringify({ success: true, message: 'Lead actualizado correctamente.', leadId });
-    } else {
-      // Create new lead
-      const leadRef = db.collection('crm_leads').doc();
-      const newLead = {
-        ...payload,
-        source: platform || 'telegram',
-        stage: 'nuevo',
-        score: 10,
-        tags: [`${platform || 'telegram'}-lead`, 'bot-capture'],
-        segmentIds: [],
-        consent: { whatsapp: false, email: false, telegram: true },
-        assignedTo: null,
-        points: 0,
-        createdAt: new Date(),
-        lastInteractionAt: new Date(),
-      };
-      await leadRef.set(newLead);
-      return JSON.stringify({ success: true, message: 'Nuevo lead registrado.', leadId: leadRef.id });
+      return JSON.stringify({ success: true, message: 'Lead actualizado.', leadId });
     }
+
+    const leadRef = db.collection('crm_leads').doc();
+    await leadRef.set({
+      ...payload,
+      source: platform || 'telegram',
+      stage: 'nuevo',
+      score: 10,
+      tags: [`${platform || 'telegram'}-lead`, 'bot-capture'],
+      segmentIds: [],
+      consent: { whatsapp: false, email: false, telegram: true },
+      assignedTo: null,
+      points: 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      lastInteractionAt: new Date(),
+    });
+    return JSON.stringify({ success: true, message: 'Lead registrado.', leadId: leadRef.id });
   } catch (err) {
-    console.error('Error in crearLead resolver:', err);
-    return JSON.stringify({ error: 'Error al registrar ficha de lead.' });
+    console.error('Error in crearLead:', err);
+    return JSON.stringify({ error: 'Error al registrar lead.' });
   }
 }
 
@@ -220,9 +503,8 @@ async function resolverAgendarSeguimiento(args, leadId) {
   const db = getFirestore();
 
   try {
-    const dueDate = args.dueDateString ? new Date(args.dueDateString) : new Date(Date.now() + 86400000); // 1 day default
-    const taskRef = db.collection('crm_tasks').doc();
-    await taskRef.set({
+    const dueDate = args.dueDateString ? new Date(args.dueDateString) : new Date(Date.now() + 86400000);
+    await db.collection('crm_tasks').add({
       leadId,
       title: args.title.trim(),
       dueDate: Timestamp.fromDate(dueDate),
@@ -230,11 +512,10 @@ async function resolverAgendarSeguimiento(args, leadId) {
       assignedTo: null,
       createdAt: Timestamp.fromDate(new Date()),
     });
-
     return JSON.stringify({ success: true, message: 'Tarea de seguimiento agendada.' });
   } catch (err) {
-    console.error('Error in agendarSeguimiento resolver:', err);
-    return JSON.stringify({ error: 'Error al agendar tarea de seguimiento.' });
+    console.error('Error in agendarSeguimiento:', err);
+    return JSON.stringify({ error: 'Error al agendar tarea.' });
   }
 }
 
@@ -242,7 +523,6 @@ async function resolverTransferirAHumano(leadId, conversationId) {
   const db = getFirestore();
   try {
     const now = new Date();
-    // 1. Update conversation status to awaiting human attention
     if (conversationId) {
       await db.collection('crm_conversations').doc(conversationId).update({
         status: 'esperando_humano',
@@ -250,34 +530,90 @@ async function resolverTransferirAHumano(leadId, conversationId) {
         updatedAt: Timestamp.fromDate(now),
       });
     }
-
-    // 2. Add flag or tag to lead
     if (leadId) {
       await db.collection('crm_leads').doc(leadId).update({
         tags: FieldValue.arrayUnion('esperando-soporte'),
         updatedAt: Timestamp.fromDate(now),
       });
     }
-
     return JSON.stringify({ success: true, message: 'Conversación transferida a soporte humano.' });
   } catch (err) {
-    console.error('Error in transferirAHumano resolver:', err);
-    return JSON.stringify({ error: 'Error al transferir a un agente humano.' });
+    console.error('Error in transferirAHumano:', err);
+    return JSON.stringify({ error: 'Error al transferir.' });
   }
 }
 
-// ── MAIN ORCHESTRATOR / CONVERSATION LOOP ─────────────────────────────────────
+// ── TOOL DISPATCH ─────────────────────────────────────────────────────────────
+
+const TOOL_RESOLVERS = {
+  buscarProducto: (args) => resolverBuscarProducto(args),
+  recomendarProductos: (args) => resolverRecomendarProductos(args),
+  consultarPedido: (args) => resolverConsultarPedido(args),
+  consultarEnvios: (args) => resolverConsultarEnvios(args),
+  consultarMediosPago: () => resolverConsultarMediosPago(),
+  obtenerInfoNegocio: () => resolverObtenerInfoNegocio(),
+  unirseAlClub: (args, leadId, platform) => resolverUnirseAlClub(args, leadId, platform),
+  crearLead: (args, leadId, platform) => resolverCrearLead(args, leadId, platform),
+  agendarSeguimiento: (args, leadId) => resolverAgendarSeguimiento(args, leadId),
+  transferirAHumano: () => resolverTransferirAHumano(),
+};
+
+// ── ENHANCED SYSTEM PROMPT BUILDER ───────────────────────────────────────────
 
 /**
- * Runs the AI bot completion cycle. Resolves any requested tools up to 3 recursions.
- * 
- * @param {object} params
- * @param {string} params.systemPrompt
- * @param {Array} params.messages
- * @param {string} params.leadId
- * @param {string} params.conversationId
- * @param {string} params.platform - 'telegram' | 'whatsapp'
- * @returns {Promise<{ replyText: string, escalated: boolean }>}
+ * Builds an enhanced system prompt with knowledge context and personality.
+ */
+export function buildSystemPrompt({ botConfig, knowledgeContext }) {
+  const personality = botConfig?.personality || {};
+  const name = personality.name || 'Missy';
+  const description = personality.description || 'Asistente de ventas amigable y experta en mascotas.';
+  const tone = personality.tone || 'cálido-profesional';
+  const rules = personality.rules?.length > 0
+    ? personality.rules.map(r => `- ${r}`).join('\n')
+    : '- Sé amigable pero profesional\n- Recomienda productos cuando sea natural\n- Nunca inventes precios o disponibilidad';
+
+  const greeting = personality.greeting || `¡Hola! Soy ${name}, tu asesora de mascotas de Missy & Po Pet Shop. ¿En qué puedo ayudarte hoy?`;
+  const fallback = personality.fallback || 'Déjame consultar con el equipo para darte la mejor respuesta.';
+
+  return `# Identidad
+Eres ${name}, asistente de ventas de Missy & Po Pet Shop.
+Tono: ${tone}
+Descripción: ${description}
+
+# Personalidad
+${rules}
+
+# Saludo inicial
+Cuando el usuario inicie conversación por primera vez, saluda con: "${greeting}"
+
+# Fallback
+Cuando no puedas resolver algo: "${fallback}"
+
+${knowledgeContext}
+
+# Reglas de Conducta
+- SIEMPRE usa el nombre del cliente si lo conoces
+- Cuando un cliente muestre interés en un producto, sugiere productos complementarios
+- Si menciona un problema con su mascota, recomienda productos que lo solucionen
+- Si pregunta por un producto agotado, sugiere alternativas similares
+- Sé específica con precios — nunca generalices
+- Si el cliente duda, ofrece información adicional
+- Usa emojis con moderación (1-2 por máximo)
+- Respuestas concisas (2-4 párrafos máximo)
+- Usa bullets para listar opciones
+- Incluye links a productos cuando sea relevante
+
+# Escalación
+- Si el cliente pide hablar con alguien → transfiere inmediatamente
+- Si expresa frustración → transfiere sin resistencia
+- Si no puedes resolver algo → usa el fallback
+- Nunca intentes retener al cliente si pide un humano`;
+}
+
+// ── MAIN ORCHESTRATOR ─────────────────────────────────────────────────────────
+
+/**
+ * Runs the AI bot completion cycle with tool calling (max 3 iterations).
  */
 export async function runAgentCycle({
   systemPrompt,
@@ -290,7 +626,6 @@ export async function runAgentCycle({
   let response = null;
   let escalated = false;
 
-  // Maximum 3 iterations of tool calling to prevent infinite recursion
   for (let i = 0; i < 3; i++) {
     response = await callLLM({
       systemPrompt,
@@ -299,14 +634,11 @@ export async function runAgentCycle({
     });
 
     if (!response.toolCalls || response.toolCalls.length === 0) {
-      // Completed, return the text response
       return { replyText: response.text, escalated };
     }
 
-    // Process tool calls
-    console.log(`🤖 Bot requested ${response.toolCalls.length} tool calls (Iteration ${i + 1})`);
-    
-    // Add LLM's assistant response (with tool calls) to message history
+    console.log(`🤖 Bot requested ${response.toolCalls.length} tool calls (iteration ${i + 1})`);
+
     activeMessages.push({
       role: 'assistant',
       content: response.text || null,
@@ -322,32 +654,32 @@ export async function runAgentCycle({
         console.warn(`⚠️ Failed to parse tool arguments: ${argsString}`);
       }
 
-      let resultString = '';
+      const resolver = TOOL_RESOLVERS[name];
+      let resultString;
 
-      // Execute appropriate resolver
-      if (name === 'buscarProducto') {
-        resultString = await resolverBuscarProducto(args);
-      } else if (name === 'consultarPedido') {
-        resultString = await resolverConsultarPedido(args);
-      } else if (name === 'crearLead') {
-        resultString = await resolverCrearLead(args, leadId, platform);
-        // If lead was created, try to grab its ID from response json
-        try {
-          const parsed = JSON.parse(resultString);
-          if (parsed.leadId) leadId = parsed.leadId;
-        } catch (err) {
-          console.warn('Failed to parse leadId from createLead tool result:', err);
+      if (resolver) {
+        if (name === 'crearLead' || name === 'unirseAlClub') {
+          resultString = await resolver(args, leadId, platform);
+        } else if (name === 'agendarSeguimiento') {
+          resultString = await resolver(args, leadId);
+        } else if (name === 'transferirAHumano') {
+          resultString = await resolver(args, leadId, conversationId);
+          escalated = true;
+        } else {
+          resultString = await resolver(args);
         }
-      } else if (name === 'agendarSeguimiento') {
-        resultString = await resolverAgendarSeguimiento(args, leadId);
-      } else if (name === 'transferirAHumano') {
-        resultString = await resolverTransferirAHumano(leadId, conversationId);
-        escalated = true;
+
+        // Capture leadId from crearLead/unirseAlClub
+        if (name === 'crearLead' || name === 'unirseAlClub') {
+          try {
+            const parsed = JSON.parse(resultString);
+            if (parsed.leadId) leadId = parsed.leadId;
+          } catch { /* ignore */ }
+        }
       } else {
         resultString = JSON.stringify({ error: `Tool ${name} not found.` });
       }
 
-      // Add tool response to history
       activeMessages.push({
         role: 'tool',
         tool_call_id: toolCall.id,
@@ -357,9 +689,8 @@ export async function runAgentCycle({
     }
   }
 
-  // If reached recursion limit, fall back to last text or a generic message
   return {
-    replyText: response?.text || 'Disculpa las molestias, voy a transferirte con un agente humano para que te ayude mejor.',
+    replyText: response?.text || 'Disculpa las molestias, voy a transferirte con un agente humano.',
     escalated: true,
   };
 }

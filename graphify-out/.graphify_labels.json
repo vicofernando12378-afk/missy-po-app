@@ -75,5 +75,6 @@
   "73": "dependencies",
   "74": "scripts",
   "75": "package.json",
-  "76": "carrito.astro"
+  "76": "carrito.astro",
+  "77": "seedKnowledge.js"
 }

@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/ConfiguracionEnviosCupones.jsx": {
-    "mtime": 1783045566.33988,
-    "ast_hash": "231cbb83da5e9fbdde1d8629c8ff3de6",
+    "mtime": 1783049790.976095,
+    "ast_hash": "a23beffe20c4152709a41b14606fbe64",
     "semantic_hash": ""
   },
   "src/pages/admin/InventarioStock.jsx": {
@@ -915,8 +915,8 @@
     "semantic_hash": ""
   },
   "functions/src/index.js": {
-    "mtime": 1783044955.0491543,
-    "ast_hash": "3617dcfe8604c8543adca7ab07a09dfe",
+    "mtime": 1783049641.382949,
+    "ast_hash": "4205972f987916f70553b32b8eaf1eae",
     "semantic_hash": ""
   },
   "functions/src/lib/firebaseAdmin.js": {
@@ -1095,8 +1095,8 @@
     "semantic_hash": ""
   },
   "functions/src/agent/core.js": {
-    "mtime": 1783042396.414654,
-    "ast_hash": "87b03abb5d9a0faf04cceae7255d716c",
+    "mtime": 1783050062.2263255,
+    "ast_hash": "42996663ea3aa698ca29b86dee15a9a6",
     "semantic_hash": ""
   },
   "functions/src/agent/llmProviders/deepseek.js": {
@@ -1110,13 +1110,13 @@
     "semantic_hash": ""
   },
   "functions/src/telegram/processMessage.js": {
-    "mtime": 1783045240.0391157,
-    "ast_hash": "f08450a870f1bbcb3cfcffbb9423588d",
+    "mtime": 1783050005.7155533,
+    "ast_hash": "dcd7cb8adb7f6746c5f9527af62e4efc",
     "semantic_hash": ""
   },
   "src/components/admin/crm/TelegramAgentPanel.jsx": {
-    "mtime": 1783042332.3523748,
-    "ast_hash": "f5ffd6aae34cf7a265a27004d4af6f8f",
+    "mtime": 1783049865.7891047,
+    "ast_hash": "b16e419d1dabda02eb060d6cd3edf260",
     "semantic_hash": ""
   },
   "functions/src/crm/getApiKeysStatus.js": {
@@ -1142,6 +1142,36 @@
   "src/components/admin/crm/GuideModal.jsx": {
     "mtime": 1783045534.3744261,
     "ast_hash": "311f79cb557959bf43ff0edbc5931022",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/getKnowledge.js": {
+    "mtime": 1783049628.2729812,
+    "ast_hash": "114788c769e8325487b2db9ce8f42520",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/saveKnowledge.js": {
+    "mtime": 1783049619.2711122,
+    "ast_hash": "b8035b3fe166343dff7d305943a60da2",
+    "semantic_hash": ""
+  },
+  "functions/src/lib/escalation.js": {
+    "mtime": 1783050062.2263255,
+    "ast_hash": "342212670e40b0022bdf123ed7bf960d",
+    "semantic_hash": ""
+  },
+  "functions/src/lib/knowledge.js": {
+    "mtime": 1783049448.2219918,
+    "ast_hash": "b048b0d90b15facd2259778bdd08329d",
+    "semantic_hash": ""
+  },
+  "functions/src/scripts/seedKnowledge.js": {
+    "mtime": 1783049579.106625,
+    "ast_hash": "fd8b46efe94d28ce4c6a018bb987cfb8",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/KnowledgeBaseSection.jsx": {
+    "mtime": 1783049689.6708133,
+    "ast_hash": "8baee41a02f031cb58f1289b37a7bd3b",
     "semantic_hash": ""
   }
 }

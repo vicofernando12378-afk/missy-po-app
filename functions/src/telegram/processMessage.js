@@ -1,15 +1,13 @@
 import axios from 'axios';
-import { getFirestore, Timestamp } from 'firebase-admin/firestore';
+import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 
-import { runAgentCycle } from '../agent/core.js';
+import { runAgentCycle, buildSystemPrompt } from '../agent/core.js';
 import { getApiKeys } from '../lib/config.js';
+import { detectFrustration, isBusinessHours, notifyAdminEscalation } from '../lib/escalation.js';
+import { getKnowledgeContext } from '../lib/knowledge.js';
 
 // ── ALIBABA QWEN ASR (Voz a Texto) ───────────────────────────────────────────
 
-/**
- * Transcribes audio from a URL using Qwen3 ASR (DashScope API).
- * Falls back gracefully if API is not configured.
- */
 async function transcribeAudio(fileUrl) {
   const keys = await getApiKeys();
   const apiKey = keys.QWEN_API_KEY;
@@ -21,18 +19,14 @@ async function transcribeAudio(fileUrl) {
   const model = keys.QWEN_ASR_MODEL || 'qwen3-asr-flash-filetrans';
 
   try {
-    // Download audio file from Telegram
     const audioResponse = await axios.get(fileUrl, { responseType: 'arraybuffer' });
     const audioBase64 = Buffer.from(audioResponse.data).toString('base64');
 
-    // Call Qwen3 ASR API (file transcription mode)
     const apiResponse = await axios.post(
       'https://dashscope-intl.aliyuncs.com/api/v1/services/audio/asr/transcription',
       {
         model,
-        input: {
-          file_url: `data:audio/ogg;base64,${audioBase64}`,
-        },
+        input: { file_url: `data:audio/ogg;base64,${audioBase64}` },
       },
       {
         headers: {
@@ -48,8 +42,6 @@ async function transcribeAudio(fileUrl) {
       console.log(`🎙️ [ASR] Transcribed: "${result.substring(0, 80)}..."`);
       return result;
     }
-
-    console.warn('⚠️ [ASR] Empty transcription result.');
     return null;
   } catch (err) {
     console.error('❌ [ASR] Transcription failed:', err.response?.data || err.message);
@@ -59,21 +51,12 @@ async function transcribeAudio(fileUrl) {
 
 // ── ALIBABA QWEN TTS (Texto a Voz) ───────────────────────────────────────────
 
-/**
- * Generates speech audio from text using Qwen3 TTS (DashScope API).
- * Returns an audio buffer or null on failure.
- */
 async function textToSpeech(text) {
   const keys = await getApiKeys();
   const apiKey = keys.QWEN_API_KEY;
-  if (!apiKey) {
-    console.warn('⚠️ QWEN_API_KEY not configured — cannot generate speech.');
-    return null;
-  }
+  if (!apiKey) return null;
 
   const model = keys.QWEN_TTS_MODEL || 'qwen3-tts-flash';
-
-  // Limit text length for TTS (max ~2000 chars for cost control)
   const truncatedText = text.length > 2000 ? text.substring(0, 2000) + '...' : text;
 
   try {
@@ -81,12 +64,8 @@ async function textToSpeech(text) {
       'https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation',
       {
         model,
-        input: {
-          text: truncatedText,
-        },
-        parameters: {
-          text_type: 'PlainText',
-        },
+        input: { text: truncatedText },
+        parameters: { text_type: 'PlainText' },
       },
       {
         headers: {
@@ -99,28 +78,20 @@ async function textToSpeech(text) {
       },
     );
 
-    // Parse SSE response to extract audio data
     const responseText = Buffer.from(apiResponse.data).toString('utf-8');
     const audioMatch = responseText.match(/"audio":\s*\{[^}]*"url":\s*"([^"]+)"/);
     if (audioMatch) {
-      const audioUrl = audioMatch[1];
-      const audioDownload = await axios.get(audioUrl, { responseType: 'arraybuffer' });
-      console.log(`🔊 [TTS] Generated audio for ${truncatedText.length} chars`);
+      const audioDownload = await axios.get(audioMatch[1], { responseType: 'arraybuffer' });
       return Buffer.from(audioDownload.data);
     }
 
-    // Fallback: try to extract base64 audio from response
     const base64Match = responseText.match(/"data":\s*"([A-Za-z0-9+/=]+)"/);
     if (base64Match) {
-      const audioBuffer = Buffer.from(base64Match[1], 'base64');
-      console.log(`🔊 [TTS] Generated audio (base64) for ${truncatedText.length} chars`);
-      return audioBuffer;
+      return Buffer.from(base64Match[1], 'base64');
     }
-
-    console.warn('⚠️ [TTS] No audio data in response.');
     return null;
   } catch (err) {
-    console.error('❌ [TTS] Speech generation failed:', err.response?.data || err.message);
+    console.error('❌ [TTS] Failed:', err.response?.data || err.message);
     return null;
   }
 }
@@ -179,9 +150,6 @@ async function getTelegramFileUrl(fileId) {
 
 // ── MAIN TELEGRAM PROCESSOR ───────────────────────────────────────────────────
 
-/**
- * Processes an incoming Telegram message or voice note.
- */
 export async function processTelegramMessage({
   chatId,
   text,
@@ -227,7 +195,6 @@ export async function processTelegramMessage({
       leadId = leadDoc.id;
       lead = leadDoc.data();
     } else {
-      // Create new lead from Telegram
       const leadRef = db.collection('crm_leads').doc();
       leadId = leadRef.id;
       lead = {
@@ -235,14 +202,13 @@ export async function processTelegramMessage({
         phone: null,
         email: null,
         petName: null,
-        petAlias: null,
         source: 'telegram',
         sourceDetail: {
           telegramChatId: String(chatId),
           telegramUsername: fromUser.username,
         },
         stage: 'nuevo',
-        score: 10, // initial interaction score
+        score: 10,
         tags: ['telegram-lead', 'bot-capture'],
         segmentIds: [],
         consent: { whatsapp: false, email: false, telegram: true },
@@ -253,10 +219,9 @@ export async function processTelegramMessage({
         lastInteractionAt: Timestamp.fromDate(now),
       };
       await leadRef.set(lead);
-      console.log(`✅ Registered new lead ${leadId} from Telegram chat ${chatId}`);
     }
 
-    // 3. Process voice to text (ASR) if voiceFileId is provided
+    // 3. Process voice to text
     let messageContent = text;
     if (voiceFileId) {
       const fileUrl = await getTelegramFileUrl(voiceFileId);
@@ -265,16 +230,13 @@ export async function processTelegramMessage({
       }
     }
 
-    if (!messageContent) {
-      console.log('ℹ️ Telegram message payload has no text or voice content. Skipped.');
-      return;
-    }
+    if (!messageContent) return;
 
     // 4. Register inbound interaction
     await db.collection('crm_interactions').add({
       leadId,
       channel: 'telegram',
-      type: voiceFileId ? 'message' : 'message',
+      type: 'message',
       direction: 'inbound',
       content: messageContent,
       mediaUrl: null,
@@ -282,45 +244,93 @@ export async function processTelegramMessage({
       createdAt: Timestamp.fromDate(now),
     });
 
-    // 5. Rate limiting check (max 20 messages in the last hour)
+    // 5. Rate limiting (max 20 messages/hour)
     const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
-    const interactionsCountSnap = await db.collection('crm_interactions')
+    const rateSnap = await db.collection('crm_interactions')
       .where('leadId', '==', leadId)
       .where('channel', '==', 'telegram')
       .where('createdAt', '>=', Timestamp.fromDate(oneHourAgo))
       .get();
 
-    if (interactionsCountSnap.size > 20) {
-      console.warn(`⚠️ Rate limit exceeded for lead ${leadId} on Telegram.`);
-      await sendTelegramMessage(chatId, 'Has enviado demasiados mensajes en poco tiempo. Por favor espera unos minutos para continuar chateando.');
+    if (rateSnap.size > 20) {
+      await sendTelegramMessage(chatId, 'Has enviado demasiados mensajes. Por favor espera unos minutos.');
       return;
     }
 
-    // 6. If conversation status is human-only, do not respond with AI (just log interaction)
+    // 6. Skip AI if human mode
     if (conversation.status === 'esperando_humano' || conversation.status === 'humano') {
-      console.log(`ℹ️ Conversation ${conversationId} is in human mode. AI response skipped.`);
       return;
     }
 
-    // 7. Load prompt configuration and dynamic personality
+    // 7. Load bot config
     const configSnap = await db.collection('crm_bot_config').doc('telegram').get();
-    let systemPrompt = 'Eres un asistente de Missy & Po Pet Shop. Ayuda a los tutores a buscar productos y consultar sus pedidos.';
-    let voiceEnabled = false;
+    const botConfig = configSnap.exists ? configSnap.data() : {};
 
-    if (configSnap.exists) {
-      const botConfig = configSnap.data();
-      if (botConfig.systemPrompt) systemPrompt = botConfig.systemPrompt;
-      if (botConfig.voiceEnabled) voiceEnabled = botConfig.voiceEnabled;
+    // 8. Smart escalation checks
+    const frustration = detectFrustration(messageContent);
+    const businessHoursConfig = botConfig.escalation?.businessHours || botConfig.businessHours;
+    const outsideHours = !isBusinessHours(businessHoursConfig);
+
+    if (frustration.isFrustrated || outsideHours) {
+      // Escalate to human
+      const reason = frustration.isFrustrated ? 'frustration' : 'business_hours';
+
+      // Update conversation
+      await convRef.update({
+        status: 'esperando_humano',
+        lastMessageAt: Timestamp.fromDate(new Date()),
+        updatedAt: Timestamp.fromDate(new Date()),
+      });
+
+      // Update lead
+      await db.collection('crm_leads').doc(leadId).update({
+        tags: FieldValue.arrayUnion('esperando-soporte'),
+        updatedAt: Timestamp.fromDate(new Date()),
+      });
+
+      // Notify admin
+      await notifyAdminEscalation({
+        chatId,
+        leadName: lead?.name || fromUser.firstName,
+        reason,
+        lastMessage: messageContent,
+        conversationId,
+      });
+
+      // Send response to user
+      const responseMsg = frustration.isFrustrated
+        ? 'Veo que necesitas atención personalizada. Voy a transferirte con un agente humano que te ayudará mejor. Un momento por favor.'
+        : 'Estamos fuera de horario de atención. Un agente te contactará mañana durante nuestro horario laboral. ¿Hay algo que pueda ayudar mientras tanto?';
+
+      await sendTelegramMessage(chatId, responseMsg);
+
+      // Log outbound
+      await db.collection('crm_interactions').add({
+        leadId,
+        channel: 'telegram',
+        type: 'message',
+        direction: 'outbound',
+        content: responseMsg,
+        mediaUrl: null,
+        aiHandled: true,
+        createdAt: Timestamp.fromDate(new Date()),
+      });
+      return;
     }
 
-    // 8. Fetch last 10 messages for short memory context
+    // 9. Load knowledge context
+    const knowledgeContext = await getKnowledgeContext(messageContent);
+
+    // 10. Build enhanced system prompt
+    const systemPrompt = buildSystemPrompt({ botConfig, knowledgeContext });
+
+    // 11. Fetch last 10 messages for chat history
     const histSnap = await db.collection('crm_interactions')
       .where('leadId', '==', leadId)
       .orderBy('createdAt', 'desc')
       .limit(10)
       .get();
 
-    // Map to OpenAI completion format
     const chatHistory = histSnap.docs
       .map(d => {
         const item = d.data();
@@ -331,7 +341,7 @@ export async function processTelegramMessage({
       })
       .reverse();
 
-    // 9. Run AI cycle
+    // 12. Run AI cycle
     const { replyText, escalated } = await runAgentCycle({
       systemPrompt,
       messages: chatHistory,
@@ -340,7 +350,8 @@ export async function processTelegramMessage({
       platform: 'telegram',
     });
 
-    // 10. Generate audio response (TTS) if voiceEnabled is active
+    // 13. TTS if enabled
+    const voiceEnabled = botConfig.voiceEnabled || false;
     let voiceSent = false;
     if (voiceEnabled && replyText) {
       const voiceBuffer = await textToSpeech(replyText);
@@ -350,29 +361,29 @@ export async function processTelegramMessage({
       }
     }
 
-    // Default to text response if voice was not generated or disabled
+    // 14. Send text response
     if (!voiceSent && replyText) {
       await sendTelegramMessage(chatId, replyText);
     }
 
-    // 11. Register outbound interaction
+    // 15. Register outbound interaction
     await db.collection('crm_interactions').add({
       leadId,
       channel: 'telegram',
-      type: voiceSent ? 'message' : 'message',
+      type: 'message',
       direction: 'outbound',
-      content: replyText || 'Disculpa las molestias, no pude procesar la consulta.',
+      content: replyText || 'Disculpa las molestias, no pude procesar tu consulta.',
       mediaUrl: null,
       aiHandled: true,
       createdAt: Timestamp.fromDate(new Date()),
     });
 
-    // Update conversation timestamp
+    // 16. Update conversation timestamp
     await convRef.update({
       lastMessageAt: Timestamp.fromDate(new Date()),
       updatedAt: Timestamp.fromDate(new Date()),
     });
   } catch (err) {
-    console.error('❌ Error processing message flow:', err);
+    console.error('❌ Error processing message:', err);
   }
 }
