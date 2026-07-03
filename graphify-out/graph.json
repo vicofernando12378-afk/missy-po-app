@@ -930,7 +930,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "package",
-      "community": 2,
+      "community": 75,
       "norm_label": "package.json"
     },
     {
@@ -940,7 +940,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "package_name",
-      "community": 2,
+      "community": 75,
       "norm_label": "name"
     },
     {
@@ -950,7 +950,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "package_private",
-      "community": 2,
+      "community": 75,
       "norm_label": "private"
     },
     {
@@ -960,7 +960,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "package_version",
-      "community": 2,
+      "community": 75,
       "norm_label": "version"
     },
     {
@@ -970,7 +970,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "package_type",
-      "community": 2,
+      "community": 75,
       "norm_label": "type"
     },
     {
@@ -980,7 +980,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "package_scripts",
-      "community": 2,
+      "community": 74,
       "norm_label": "scripts"
     },
     {
@@ -990,7 +990,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "package_scripts_dev",
-      "community": 2,
+      "community": 74,
       "norm_label": "dev"
     },
     {
@@ -1000,7 +1000,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "package_scripts_start",
-      "community": 2,
+      "community": 74,
       "norm_label": "start"
     },
     {
@@ -1010,7 +1010,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "package_scripts_build",
-      "community": 2,
+      "community": 74,
       "norm_label": "build"
     },
     {
@@ -1020,7 +1020,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "package_scripts_preview",
-      "community": 2,
+      "community": 74,
       "norm_label": "preview"
     },
     {
@@ -1030,7 +1030,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "package_scripts_astro",
-      "community": 2,
+      "community": 74,
       "norm_label": "astro"
     },
     {
@@ -1040,7 +1040,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "package_scripts_lint",
-      "community": 2,
+      "community": 74,
       "norm_label": "lint"
     },
     {
@@ -1050,7 +1050,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "package_scripts_test",
-      "community": 2,
+      "community": 74,
       "norm_label": "test"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "package_scripts_test_watch",
-      "community": 2,
+      "community": 74,
       "norm_label": "test:watch"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "package_dependencies",
-      "community": 2,
+      "community": 73,
       "norm_label": "dependencies"
     },
     {
@@ -1080,7 +1080,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "package_dependencies_astrojs_react",
-      "community": 2,
+      "community": 73,
       "norm_label": "@astrojs/react"
     },
     {
@@ -1090,7 +1090,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "package_dependencies_dnd_kit_core",
-      "community": 2,
+      "community": 73,
       "norm_label": "@dnd-kit/core"
     },
     {
@@ -1100,7 +1100,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "package_dependencies_dnd_kit_sortable",
-      "community": 2,
+      "community": 73,
       "norm_label": "@dnd-kit/sortable"
     },
     {
@@ -1110,7 +1110,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "package_dependencies_dnd_kit_utilities",
-      "community": 2,
+      "community": 73,
       "norm_label": "@dnd-kit/utilities"
     },
     {
@@ -1120,7 +1120,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "package_dependencies_astro",
-      "community": 2,
+      "community": 73,
       "norm_label": "astro"
     },
     {
@@ -1130,7 +1130,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "package_dependencies_firebase",
-      "community": 35,
+      "community": 73,
       "norm_label": "firebase"
     },
     {
@@ -1140,7 +1140,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "package_dependencies_html2canvas",
-      "community": 2,
+      "community": 73,
       "norm_label": "html2canvas"
     },
     {
@@ -1150,7 +1150,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "package_dependencies_jspdf",
-      "community": 2,
+      "community": 73,
       "norm_label": "jspdf"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "package_dependencies_react",
-      "community": 2,
+      "community": 73,
       "norm_label": "react"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "package_dependencies_react_dom",
-      "community": 2,
+      "community": 73,
       "norm_label": "react-dom"
     },
     {
@@ -1180,7 +1180,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "package_dependencies_react_helmet_async",
-      "community": 2,
+      "community": 73,
       "norm_label": "react-helmet-async"
     },
     {
@@ -1190,7 +1190,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "package_dependencies_react_router_dom",
-      "community": 2,
+      "community": 73,
       "norm_label": "react-router-dom"
     },
     {
@@ -1200,7 +1200,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "package_dependencies_xlsx",
-      "community": 2,
+      "community": 73,
       "norm_label": "xlsx"
     },
     {
@@ -1210,7 +1210,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "package_dependencies_zod",
-      "community": 2,
+      "community": 73,
       "norm_label": "zod"
     },
     {
@@ -1220,7 +1220,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "package_dependencies_zustand",
-      "community": 2,
+      "community": 73,
       "norm_label": "zustand"
     },
     {
@@ -4831,7 +4831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_carrito",
-      "community": 8,
+      "community": 76,
       "norm_label": "carrito.astro"
     },
     {
@@ -4841,7 +4841,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_cartpage_tsx",
-      "community": 8,
+      "community": 76,
       "norm_label": "./cartpage.jsx"
     },
     {
@@ -12348,7 +12348,7 @@
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_firebase",
-      "target": "c_mis_proyectos_missy_po_src_services_firebase",
+      "target": "src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -26355,5 +26355,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "82ec13f7f84b869de4f0bfa7e295db9d8ed721ca"
+  "built_at_commit": "e369a3d61863e10fe790bf20465c32eb349e6d25"
 }

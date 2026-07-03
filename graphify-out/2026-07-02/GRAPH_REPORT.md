@@ -5,7 +5,7 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1034 nodes · 1538 edges · 72 communities (66 shown, 6 thin omitted)
+- 1034 nodes · 1538 edges · 73 communities (66 shown, 7 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -82,6 +82,7 @@
 - [[_COMMUNITY_LeadsKanban.jsx|LeadsKanban.jsx]]
 - [[_COMMUNITY_reclamaciones.astro|reclamaciones.astro]]
 - [[_COMMUNITY_mi-cuenta.astro|mi-cuenta.astro]]
+- [[_COMMUNITY_config.js|config.js]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `../layouts/Layout.astro` - 30 edges
@@ -112,8 +113,9 @@
 - 3-file cycle: `src/App.jsx -> src/pages/OrderConfirmationPage.jsx -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/LoginPage.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/orders.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/userProfile.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/orders.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/cashRegister.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/config.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/coupons.js -> src/services/firebase.js -> src/App.jsx`
@@ -121,13 +123,12 @@
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reclamaciones.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reviews.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/components/layout/Layout.jsx -> src/components/layout/Navbar.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
 
-## Communities (72 total, 6 thin omitted)
+## Communities (73 total, 7 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.16
-Nodes (12): PaymentQrCulqi(), CartItemSchema, CartStateSchema, CheckoutSchema, YapePlinSchema, ProductSchema, VarianteSchema, ReclamacionSchema (+4 more)
+Nodes (14): PaymentQrCulqi(), AperturaCajaSchema, CierreCajaSchema, MovimientoSchema, CartItemSchema, CartStateSchema, CheckoutSchema, YapePlinSchema (+6 more)
 
 ### Community 1 - "Community 1"
 Cohesion: 0.07
@@ -218,8 +219,8 @@ Cohesion: 0.40
 Nodes (4): ¿Cómo usarlas en páginas Astro?, Estructura de carpetas, Naming convention, 📁 src/assets — Imágenes Optimizadas por Astro
 
 ### Community 24 - "Community 24"
-Cohesion: 0.21
-Nodes (8): CONFIG_TABS, CouponSchema, guardarConfiguracionEnvio(), actualizarEstadoCupon(), crearCupon(), eliminarCupon(), obtenerCupones(), validarCupon()
+Cohesion: 0.25
+Nodes (7): CONFIG_TABS, CouponSchema, actualizarEstadoCupon(), crearCupon(), eliminarCupon(), obtenerCupones(), validarCupon()
 
 ### Community 28 - "Community 28"
 Cohesion: 0.06
@@ -310,8 +311,8 @@ Cohesion: 0.33
 Nodes (3): app, db, firebaseConfig
 
 ### Community 55 - "processSocialEvent.js"
-Cohesion: 0.26
-Nodes (9): AperturaCajaSchema, CierreCajaSchema, MovimientoSchema, abrirCajaDiaria(), cerrarCajaDiaria(), obtenerCajaActiva(), obtenerHistorialCajas(), obtenerVentasConfirmadasDia() (+1 more)
+Cohesion: 0.33
+Nodes (6): abrirCajaDiaria(), cerrarCajaDiaria(), obtenerCajaActiva(), obtenerHistorialCajas(), obtenerVentasConfirmadasDia(), registrarTransaccionManual()
 
 ### Community 56 - "firebase/firestore"
 Cohesion: 0.22
@@ -372,7 +373,7 @@ Nodes (6): LeadCard(), relativeTime(), scoreColor(), SOURCE_ICONS, COLUMNS, Lead
 ## Knowledge Gaps
 - **428 isolated node(s):** `name`, `description`, `serve`, `shell`, `start` (+423 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -382,7 +383,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `firebase` connect `Community 35` to `Community 2`?**
   _High betweenness centrality (0.069) - this node is a cross-community bridge._
 - **Why does `../layouts/Layout.astro` connect `Community 8` to `Community 33`, `Community 35`, `reclamaciones.astro`, `mi-cuenta.astro`, `Community 9`, `Community 41`, `Community 42`, `Community 12`, `Community 15`, `Community 48`, `Community 50`, `Community 19`?**
-  _High betweenness centrality (0.060) - this node is a cross-community bridge._
+  _High betweenness centrality (0.059) - this node is a cross-community bridge._
 - **What connects `name`, `description`, `serve` to the rest of the system?**
   _428 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 1` be split into smaller, more focused modules?**
