@@ -8,6 +8,7 @@
  *   telegram/  — Telegram AI bot webhook + worker
  *   agent/     — LLM routing core (provider-agnostic)
  */
+import './lib/firebaseAdmin.js';
 
 // crm
 export { recomputeLeadScores } from './crm/recomputeScores.js';

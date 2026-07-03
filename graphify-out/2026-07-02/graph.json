@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 0,
+      "community": 67,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -1230,7 +1230,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "functions_vitest_config",
-      "community": 0,
+      "community": 67,
       "norm_label": "vitest.config.js"
     },
     {
@@ -4581,7 +4581,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_404",
-      "community": 8,
+      "community": 76,
       "norm_label": "404.astro"
     },
     {
@@ -4591,7 +4591,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_notfoundpage_tsx",
-      "community": 8,
+      "community": 76,
       "norm_label": "./notfoundpage.jsx"
     },
     {
@@ -5281,7 +5281,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_carrito",
-      "community": 76,
+      "community": 8,
       "norm_label": "carrito.astro"
     },
     {
@@ -5291,7 +5291,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_cartpage_tsx",
-      "community": 76,
+      "community": 8,
       "norm_label": "./cartpage.jsx"
     },
     {
@@ -7471,7 +7471,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 0,
+      "community": 67,
       "norm_label": "vitest.config.js"
     },
     {
@@ -10804,7 +10804,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "astro_config",
-      "target": "src_services_config",
+      "target": "functions_src_lib_config",
       "confidence_score": 1.0
     },
     {
@@ -12123,6 +12123,28 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/vitest.config.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "functions_vitest_config",
+      "target": "functions_src_lib_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "vitest.config.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "vitest_config",
+      "target": "functions_src_lib_config",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -13066,17 +13088,6 @@
       "weight": 1.0,
       "source": "functions_src_telegram_webhook",
       "target": "functions_src_telegram_webhook_telegramwebhook",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "functions/vitest.config.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "functions_vitest_config",
-      "target": "src_services_config",
       "confidence_score": 1.0
     },
     {
@@ -22980,17 +22991,6 @@
       "source_location": "L7",
       "weight": 1.0,
       "source": "src_services_index",
-      "target": "src_services_config",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "vitest.config.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "vitest_config",
       "target": "src_services_config",
       "confidence_score": 1.0
     },
