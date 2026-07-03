@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/ConfiguracionEnviosCupones.jsx": {
-    "mtime": 1782848915.0806816,
-    "ast_hash": "f6781b46663aff4b72039179fda234f8",
+    "mtime": 1783045566.33988,
+    "ast_hash": "231cbb83da5e9fbdde1d8629c8ff3de6",
     "semantic_hash": ""
   },
   "src/pages/admin/InventarioStock.jsx": {
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "src/services/firebase.js": {
-    "mtime": 1782848915.081682,
-    "ast_hash": "e757327182a6fa8ff93f67f02e4cfd99",
+    "mtime": 1783046349.823403,
+    "ast_hash": "b24563d0879edd3bc8fd2d9a12f213da",
     "semantic_hash": ""
   },
   "src/setupTests.js": {
@@ -500,8 +500,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/CVRMDashboard.jsx": {
-    "mtime": 1783029335.2619982,
-    "ast_hash": "44d6526ec4920a4be4d86db111670781",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "d8b31bd8782ee6416dc8926a7e370a38",
     "semantic_hash": ""
   },
   "src/assets/logoheader.jpeg": {
@@ -890,33 +890,33 @@
     "semantic_hash": ""
   },
   "functions/package.json": {
-    "mtime": 1783027191.1673357,
-    "ast_hash": "fa2f07ade1e6b617d900457b74ebb21f",
+    "mtime": 1783041974.9644098,
+    "ast_hash": "2e4a1d00dd6fbb2eb7d35e6f6f9483cd",
     "semantic_hash": ""
   },
   "functions/src/campaigns/emailWebhook.js": {
-    "mtime": 1783029152.1919925,
-    "ast_hash": "1472604eb30a228f64eb4daa0a979cc2",
+    "mtime": 1783042332.3513741,
+    "ast_hash": "13431e9b56a0a6ae89b334d4a570af62",
     "semantic_hash": ""
   },
   "functions/src/campaigns/sendCampaign.js": {
-    "mtime": 1783029144.2018507,
-    "ast_hash": "f8b606f067c4d561551f588273595641",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "0b51fe2ef7ec6ab1a76e6cbb6e1ee502",
     "semantic_hash": ""
   },
   "functions/src/crm/recomputeScores.js": {
-    "mtime": 1783027226.115261,
-    "ast_hash": "d503d828ab8151aa6d131bcff92628ed",
+    "mtime": 1783042332.3513741,
+    "ast_hash": "14b4f0d73f050254f039fdabd43c352e",
     "semantic_hash": ""
   },
   "functions/src/crm/recomputeSegments.js": {
-    "mtime": 1783029137.3842998,
-    "ast_hash": "976ee0db6895a8485a8d2476eb7a9471",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "6321a37843477b8cc25702dc1c6d1de1",
     "semantic_hash": ""
   },
   "functions/src/index.js": {
-    "mtime": 1783030112.7568188,
-    "ast_hash": "cbd14b90e101501cd8755291cf270bb3",
+    "mtime": 1783044955.0491543,
+    "ast_hash": "3617dcfe8604c8543adca7ab07a09dfe",
     "semantic_hash": ""
   },
   "functions/src/lib/firebaseAdmin.js": {
@@ -925,13 +925,13 @@
     "semantic_hash": ""
   },
   "functions/src/social/metaWebhook.js": {
-    "mtime": 1783030093.4002604,
-    "ast_hash": "f66493369a6b6f75371f8235b3641774",
+    "mtime": 1783045623.5644307,
+    "ast_hash": "29ec594f615611e294466f14d058cb7b",
     "semantic_hash": ""
   },
   "functions/src/telegram/webhook.js": {
-    "mtime": 1783027244.871897,
-    "ast_hash": "9acd683a5c4ff4574b6038784dbcf5f1",
+    "mtime": 1783045623.5644307,
+    "ast_hash": "a2e6c07eeef8bd1bb0169d35c932d1a0",
     "semantic_hash": ""
   },
   "scripts/backfill-checkout-leads.js": {
@@ -960,28 +960,28 @@
     "semantic_hash": ""
   },
   "src/components/admin/crm/LeadDetailDrawer.jsx": {
-    "mtime": 1783028263.6117158,
-    "ast_hash": "0bbcac656859b2ad6decc5be8b6ba9c6",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "ef38eeadaa13e72685e63b1c4fd7cc76",
     "semantic_hash": ""
   },
   "src/components/admin/crm/LeadsKanban.jsx": {
-    "mtime": 1783028213.8592303,
-    "ast_hash": "aab1fcbffb33203353e91ce644306ace",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "76a0462080d870b42851b71a7db709be",
     "semantic_hash": ""
   },
   "src/services/__tests__/crmLeads.test.js": {
-    "mtime": 1783028398.837524,
-    "ast_hash": "297d44cf77f47adca77fb4e349689ec5",
+    "mtime": 1783042349.415259,
+    "ast_hash": "11c84582a8e78b823e638565c3617927",
     "semantic_hash": ""
   },
   "src/services/crmInteractions.js": {
-    "mtime": 1783027302.8433025,
-    "ast_hash": "10cf6f9b6ac7ce041be67176e74ef9a4",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "01b8f45506abea90c964f227817102d8",
     "semantic_hash": ""
   },
   "src/services/crmLeads.js": {
-    "mtime": 1783028442.4619727,
-    "ast_hash": "aa9959ceee380426f8383156b53fa95a",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "0f66b14404ed307848302fe58d2e0d96",
     "semantic_hash": ""
   },
   "IMPLEMENTACION_CRM_360.md": {
@@ -1015,48 +1015,48 @@
     "semantic_hash": ""
   },
   "functions/src/crm/unsubscribeLead.js": {
-    "mtime": 1783029125.8302493,
-    "ast_hash": "04931b06a6da29ea76b3e333aeae4f18",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "647b5b60a45bfb96427783f60022f86c",
     "semantic_hash": ""
   },
   "src/components/admin/crm/CampaignBuilder.jsx": {
-    "mtime": 1783029193.3593974,
-    "ast_hash": "73c98c3d05c3ebe49348075b98444b45",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "4b57fc5791fb87e78fda683de4a5704a",
     "semantic_hash": ""
   },
   "src/components/admin/crm/CampaignList.jsx": {
-    "mtime": 1783029205.0780163,
-    "ast_hash": "ea01b421528c9c304487c52b08b33a19",
+    "mtime": 1783042407.3443985,
+    "ast_hash": "22666ad06b28c1e79778cf4ffa448f2a",
     "semantic_hash": ""
   },
   "src/components/admin/crm/SegmentBuilder.jsx": {
-    "mtime": 1783029177.8376744,
-    "ast_hash": "47ff4ac62587b87c31c3e3d660e23ac9",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "15110d0b5dacaf5d87c80c9e66209f00",
     "semantic_hash": ""
   },
   "src/components/admin/crm/SegmentList.jsx": {
-    "mtime": 1783029185.1331224,
-    "ast_hash": "a9665b67b45be84af9bf67725de67237",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "8801da05d634bee494debe6c2aaec2d5",
     "semantic_hash": ""
   },
   "src/services/__tests__/crmSegments.test.js": {
-    "mtime": 1783029084.7208934,
-    "ast_hash": "57f5b7a7f3f117dacc37136c72451099",
+    "mtime": 1783042355.081105,
+    "ast_hash": "05232cd68db496ac83c3c042695634ed",
     "semantic_hash": ""
   },
   "src/services/crmSegments.js": {
-    "mtime": 1783029077.8859065,
-    "ast_hash": "2ec75efd219f249feff586e34ab3291e",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "a4a2441d3ca49cf2e0db6c8b98c5d2f6",
     "semantic_hash": ""
   },
   "src/services/emailProvider.js": {
-    "mtime": 1783029110.1549094,
-    "ast_hash": "eec9dd65a52b51eda1184d1a6076263a",
+    "mtime": 1783042332.3533733,
+    "ast_hash": "259df2640e49c909f7e4a8bf060a5292",
     "semantic_hash": ""
   },
   "functions/src/social/__tests__/intentDictionary.test.js": {
-    "mtime": 1783030013.5680802,
-    "ast_hash": "9de7f35528b44400d2022d522860f003",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "8a75ac9e123ccb0abd8b3defdb255320",
     "semantic_hash": ""
   },
   "functions/src/social/__tests__/processSocialEvent.test.js": {
@@ -1070,13 +1070,13 @@
     "semantic_hash": ""
   },
   "functions/src/social/processSocialEvent.js": {
-    "mtime": 1783030068.6656358,
-    "ast_hash": "8ca5df796a4d87fd2640d79047a41ce1",
+    "mtime": 1783042332.3523748,
+    "ast_hash": "828d588dcc21ed2053c49b88b8c121e7",
     "semantic_hash": ""
   },
   "functions/src/social/youtubePoll.js": {
-    "mtime": 1783030101.7011342,
-    "ast_hash": "e82d60d0d45f233444a7f1022440ad0d",
+    "mtime": 1783045623.5644307,
+    "ast_hash": "9d20814d42b9bcd25e4819857cdf36dc",
     "semantic_hash": ""
   },
   "functions/vitest.config.js": {
@@ -1087,6 +1087,61 @@
   "docs/social-setup.md": {
     "mtime": 1783030145.4060836,
     "ast_hash": "d7a6262019a8c64f442b995c542ebcd2",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/__tests__/llmRouter.test.js": {
+    "mtime": 1783042111.7946136,
+    "ast_hash": "3dbbfe04f29429b7b72e7baf4e1db024",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/core.js": {
+    "mtime": 1783042396.414654,
+    "ast_hash": "87b03abb5d9a0faf04cceae7255d716c",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/llmProviders/deepseek.js": {
+    "mtime": 1783045252.4631085,
+    "ast_hash": "fc115a9c9a26d9931948b766fdb8b758",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/llmRouter.js": {
+    "mtime": 1783042033.0405154,
+    "ast_hash": "6034e753ecdbb9da5e5814ca59704eb7",
+    "semantic_hash": ""
+  },
+  "functions/src/telegram/processMessage.js": {
+    "mtime": 1783045240.0391157,
+    "ast_hash": "f08450a870f1bbcb3cfcffbb9423588d",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/TelegramAgentPanel.jsx": {
+    "mtime": 1783042332.3523748,
+    "ast_hash": "f5ffd6aae34cf7a265a27004d4af6f8f",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/getApiKeysStatus.js": {
+    "mtime": 1783044948.029537,
+    "ast_hash": "6f2400126d15912dee9a1d6f20dbc2e9",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/saveApiKeys.js": {
+    "mtime": 1783044935.5240264,
+    "ast_hash": "6fb1de682982128ddbfb88dd68ff95bf",
+    "semantic_hash": ""
+  },
+  "functions/src/lib/config.js": {
+    "mtime": 1783046104.961109,
+    "ast_hash": "ea0f8bc5e24969473bd387f060b41c41",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/ApiKeysSection.jsx": {
+    "mtime": 1783045623.5644307,
+    "ast_hash": "345be6f980052ee13bb6e48bbc7280c6",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/GuideModal.jsx": {
+    "mtime": 1783045534.3744261,
+    "ast_hash": "311f79cb557959bf43ff0edbc5931022",
     "semantic_hash": ""
   }
 }

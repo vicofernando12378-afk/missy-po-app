@@ -2,33 +2,134 @@ import axios from 'axios';
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
 
 import { runAgentCycle } from '../agent/core.js';
+import { getApiKeys } from '../lib/config.js';
 
-// ── MOCKS/STUBS FOR ALIBABA QWEN ASR & TTS (TO BE CONFIGURED AT THE END BY USER) ──
+// ── ALIBABA QWEN ASR (Voz a Texto) ───────────────────────────────────────────
 
 /**
- * Stub for Alibaba Qwen ASR (Voz a Texto).
- * Updates automatically when API is configured.
+ * Transcribes audio from a URL using Qwen3 ASR (DashScope API).
+ * Falls back gracefully if API is not configured.
  */
-async function transcribeAudioStub(fileUrl) {
-  console.log(`🎙️ [ASR Stub] Simulating transcription for file: ${fileUrl}`);
-  // In simulation, we return a mock text showing voice detection
-  return 'Quiero saber el precio del alimento premium para perros y si tienen delivery.';
+async function transcribeAudio(fileUrl) {
+  const keys = await getApiKeys();
+  const apiKey = keys.QWEN_API_KEY;
+  if (!apiKey) {
+    console.warn('⚠️ QWEN_API_KEY not configured — cannot transcribe audio.');
+    return null;
+  }
+
+  const model = keys.QWEN_ASR_MODEL || 'qwen3-asr-flash-filetrans';
+
+  try {
+    // Download audio file from Telegram
+    const audioResponse = await axios.get(fileUrl, { responseType: 'arraybuffer' });
+    const audioBase64 = Buffer.from(audioResponse.data).toString('base64');
+
+    // Call Qwen3 ASR API (file transcription mode)
+    const apiResponse = await axios.post(
+      'https://dashscope-intl.aliyuncs.com/api/v1/services/audio/asr/transcription',
+      {
+        model,
+        input: {
+          file_url: `data:audio/ogg;base64,${audioBase64}`,
+        },
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        timeout: 30000,
+      },
+    );
+
+    const result = apiResponse.data?.output?.results?.[0]?.transcription;
+    if (result) {
+      console.log(`🎙️ [ASR] Transcribed: "${result.substring(0, 80)}..."`);
+      return result;
+    }
+
+    console.warn('⚠️ [ASR] Empty transcription result.');
+    return null;
+  } catch (err) {
+    console.error('❌ [ASR] Transcription failed:', err.response?.data || err.message);
+    return null;
+  }
 }
 
+// ── ALIBABA QWEN TTS (Texto a Voz) ───────────────────────────────────────────
+
 /**
- * Stub for Alibaba Qwen TTS (Texto a Voz).
- * Returns a mock voice buffer or URL.
+ * Generates speech audio from text using Qwen3 TTS (DashScope API).
+ * Returns an audio buffer or null on failure.
  */
-async function textToSpeechStub(text) {
-  console.log(`🔊 [TTS Stub] Simulating voice generation for: "${text}"`);
-  // Returns null in simulation to fallback to text response
-  return null;
+async function textToSpeech(text) {
+  const keys = await getApiKeys();
+  const apiKey = keys.QWEN_API_KEY;
+  if (!apiKey) {
+    console.warn('⚠️ QWEN_API_KEY not configured — cannot generate speech.');
+    return null;
+  }
+
+  const model = keys.QWEN_TTS_MODEL || 'qwen3-tts-flash';
+
+  // Limit text length for TTS (max ~2000 chars for cost control)
+  const truncatedText = text.length > 2000 ? text.substring(0, 2000) + '...' : text;
+
+  try {
+    const apiResponse = await axios.post(
+      'https://dashscope-intl.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation',
+      {
+        model,
+        input: {
+          text: truncatedText,
+        },
+        parameters: {
+          text_type: 'PlainText',
+        },
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+          'X-DashScope-SSE': 'enable',
+        },
+        timeout: 30000,
+        responseType: 'arraybuffer',
+      },
+    );
+
+    // Parse SSE response to extract audio data
+    const responseText = Buffer.from(apiResponse.data).toString('utf-8');
+    const audioMatch = responseText.match(/"audio":\s*\{[^}]*"url":\s*"([^"]+)"/);
+    if (audioMatch) {
+      const audioUrl = audioMatch[1];
+      const audioDownload = await axios.get(audioUrl, { responseType: 'arraybuffer' });
+      console.log(`🔊 [TTS] Generated audio for ${truncatedText.length} chars`);
+      return Buffer.from(audioDownload.data);
+    }
+
+    // Fallback: try to extract base64 audio from response
+    const base64Match = responseText.match(/"data":\s*"([A-Za-z0-9+/=]+)"/);
+    if (base64Match) {
+      const audioBuffer = Buffer.from(base64Match[1], 'base64');
+      console.log(`🔊 [TTS] Generated audio (base64) for ${truncatedText.length} chars`);
+      return audioBuffer;
+    }
+
+    console.warn('⚠️ [TTS] No audio data in response.');
+    return null;
+  } catch (err) {
+    console.error('❌ [TTS] Speech generation failed:', err.response?.data || err.message);
+    return null;
+  }
 }
 
 // ── TELEGRAM API HELPERS ──────────────────────────────────────────────────────
 
 async function sendTelegramMessage(chatId, text) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const keys = await getApiKeys();
+  const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token) return;
   try {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -41,14 +142,29 @@ async function sendTelegramMessage(chatId, text) {
 }
 
 async function sendTelegramVoice(chatId, voiceBuffer) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const keys = await getApiKeys();
+  const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token || !voiceBuffer) return;
-  // Fallback to text if buffer is not fully simulated
-  console.log(`🔊 [sendTelegramVoice] Would send voice note to chat ${chatId}`);
+  try {
+    await axios.post(
+      `https://api.telegram.org/bot${token}/sendVoice`,
+      {
+        chat_id: chatId,
+        voice: {
+          value: voiceBuffer,
+          options: { filename: 'response.ogg', contentType: 'audio/ogg' },
+        },
+      },
+      { headers: { 'Content-Type': 'multipart/form-data' }, timeout: 30000 },
+    );
+  } catch (err) {
+    console.error('Error sending Telegram voice:', err.response?.data || err.message);
+  }
 }
 
 async function getTelegramFileUrl(fileId) {
-  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const keys = await getApiKeys();
+  const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token) return null;
   try {
     const res = await axios.get(`https://api.telegram.org/bot${token}/getFile?file_id=${fileId}`);
@@ -145,7 +261,7 @@ export async function processTelegramMessage({
     if (voiceFileId) {
       const fileUrl = await getTelegramFileUrl(voiceFileId);
       if (fileUrl) {
-        messageContent = await transcribeAudioStub(fileUrl);
+        messageContent = await transcribeAudio(fileUrl);
       }
     }
 
@@ -227,7 +343,7 @@ export async function processTelegramMessage({
     // 10. Generate audio response (TTS) if voiceEnabled is active
     let voiceSent = false;
     if (voiceEnabled && replyText) {
-      const voiceBuffer = await textToSpeechStub(replyText);
+      const voiceBuffer = await textToSpeech(replyText);
       if (voiceBuffer) {
         await sendTelegramVoice(chatId, voiceBuffer);
         voiceSent = true;

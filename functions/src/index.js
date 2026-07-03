@@ -13,6 +13,8 @@
 export { recomputeLeadScores } from './crm/recomputeScores.js';
 export { recomputeSegments } from './crm/recomputeSegments.js';
 export { unsubscribeLead } from './crm/unsubscribeLead.js';
+export { saveApiKeys } from './crm/saveApiKeys.js';
+export { getApiKeysStatus } from './crm/getApiKeysStatus.js';
 
 // campaigns
 export { sendCampaign } from './campaigns/sendCampaign.js';

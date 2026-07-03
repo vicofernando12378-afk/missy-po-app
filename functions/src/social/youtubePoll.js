@@ -1,6 +1,8 @@
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 
+import { getApiKeys } from '../lib/config.js';
+
 import { processSocialEvent } from './processSocialEvent.js';
 
 export const youtubePoll = onSchedule({
@@ -11,9 +13,10 @@ export const youtubePoll = onSchedule({
   const db = getFirestore();
   console.log('🏁 Starting YouTube comments polling job...');
 
-  const apiKey = process.env.YOUTUBE_API_KEY;
+  const keys = await getApiKeys();
+  const apiKey = keys.YOUTUBE_API_KEY;
   if (!apiKey) {
-    console.warn('⚠️ YOUTUBE_API_KEY is not configured in process.env. YouTube polling skipped.');
+    console.warn('⚠️ YOUTUBE_API_KEY is not configured. YouTube polling skipped.');
     return;
   }
 

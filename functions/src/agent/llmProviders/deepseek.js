@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { getApiKeys } from '../../lib/config.js';
+
 /**
  * Adapter for DeepSeek Chat API (compatible with OpenAI format)
  * 
@@ -10,10 +12,13 @@ import axios from 'axios';
  * @returns {Promise<{ text: string, toolCalls: Array | null }>}
  */
 export async function callDeepSeek({ systemPrompt, messages, tools }) {
-  const apiKey = process.env.DEEPSEEK_API_KEY;
+  const keys = await getApiKeys();
+  const apiKey = keys.DEEPSEEK_API_KEY;
   if (!apiKey) {
-    throw new Error('DEEPSEEK_API_KEY is not configured in process.env');
+    throw new Error('DEEPSEEK_API_KEY is not configured.');
   }
+
+  const model = keys.DEEPSEEK_MODEL || 'deepseek-chat';
 
   // Build payload
   const apiMessages = [
@@ -22,7 +27,7 @@ export async function callDeepSeek({ systemPrompt, messages, tools }) {
   ];
 
   const payload = {
-    model: 'deepseek-chat',
+    model,
     messages: apiMessages,
     temperature: 0.1, // low temperature for precise tool execution and business responses
   };

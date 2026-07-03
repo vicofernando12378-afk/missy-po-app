@@ -1,5 +1,7 @@
 import { onRequest } from 'firebase-functions/v2/https';
 
+import { getApiKeys } from '../lib/config.js';
+
 import { processTelegramMessage } from './processMessage.js';
 
 export const telegramWebhook = onRequest({ cors: true }, async (req, res) => {
@@ -8,8 +10,9 @@ export const telegramWebhook = onRequest({ cors: true }, async (req, res) => {
     return;
   }
 
+  const keys = await getApiKeys();
   const token = req.query.token;
-  const expectedToken = process.env.TELEGRAM_BOT_TOKEN;
+  const expectedToken = keys.TELEGRAM_BOT_TOKEN;
 
   // Simple token authentication to secure the webhook
   if (!expectedToken || token !== expectedToken) {

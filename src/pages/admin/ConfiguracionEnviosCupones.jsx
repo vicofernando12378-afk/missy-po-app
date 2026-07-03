@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import ApiKeysSection from '../../components/admin/crm/ApiKeysSection';
 import { validate, CouponSchema, ShippingConfigSchema } from '../../schemas';
 import {
   obtenerConfiguracionEnvio,
@@ -10,8 +11,13 @@ import {
   eliminarCupon,
 } from '../../services';
 
+const CONFIG_TABS = [
+  { id: 'general', label: 'Envíos y Cupones', icon: '📦' },
+  { id: 'integraciones', label: 'Integraciones', icon: '🔗' },
+];
 
 export default function ConfiguracionEnviosCupones() {
+  const [configTab, setConfigTab] = useState('general');
   // Configuración de envíos
   const [shippingConfig, setShippingConfig] = useState({
     arequipaFee: '',
@@ -147,11 +153,38 @@ export default function ConfiguracionEnviosCupones() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="font-brand text-3xl text-gray-850">Configuraciones Comerciales</h1>
-        <p className="text-gray-450 text-sm mt-1">Ajusta los costos de envío a nivel nacional y crea cupones de descuento promocionales.</p>
+        <h1 className="font-brand text-3xl text-gray-850">Configuraciones</h1>
+        <p className="text-gray-450 text-sm mt-1">Ajusta envíos, cupones e integra servicios externos.</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Tab selector */}
+      <div className="flex gap-1 bg-gray-100 p-1 rounded-2xl w-fit">
+        {CONFIG_TABS.map(tab => (
+          <button
+            key={tab.id}
+            onClick={() => setConfigTab(tab.id)}
+            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+              configTab === tab.id
+                ? 'bg-white text-coral shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            {tab.icon} {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Tab content */}
+      {configTab === 'integraciones' ? (
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6">
+          <h2 className="font-brand text-xl text-gray-850 mb-1">API Keys e Integraciones</h2>
+          <p className="text-gray-400 text-xs mb-6">
+            Configura las credenciales de servicios externos. Haz clic en &quot;¿Cómo obtener?&quot; para ver guías paso a paso.
+          </p>
+          <ApiKeysSection />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Columna Izquierda: Configuración de Envíos */}
         <div className="lg:col-span-1 bg-white rounded-3xl border border-gray-100 shadow-sm p-6 self-start">
@@ -401,6 +434,8 @@ export default function ConfiguracionEnviosCupones() {
         </div>
 
       </div>
+
+      )}
     </div>
   );
 }

@@ -2,12 +2,15 @@ import crypto from 'crypto';
 
 import { onRequest } from 'firebase-functions/v2/https';
 
+import { getApiKeys } from '../lib/config.js';
+
 import { processSocialEvent } from './processSocialEvent.js';
 
 // Helper to verify X-Hub-Signature-256 from Meta
-function verifyMetaSignature(req, rawBody) {
+async function verifyMetaSignature(req, rawBody) {
+  const keys = await getApiKeys();
   const signature = req.headers['x-hub-signature-256'];
-  const appSecret = process.env.META_APP_SECRET;
+  const appSecret = keys.META_APP_SECRET;
 
   if (!appSecret) {
     console.warn('⚠️ META_APP_SECRET is not configured. Signature verification skipped.');
@@ -33,7 +36,8 @@ export const socialWebhookHandler = onRequest({ cors: true }, async (req, res) =
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
 
-    const expectedToken = process.env.META_VERIFY_TOKEN;
+    const keys = await getApiKeys();
+    const expectedToken = keys.META_VERIFY_TOKEN;
 
     if (mode && token) {
       if (mode === 'subscribe' && token === expectedToken) {
@@ -53,7 +57,7 @@ export const socialWebhookHandler = onRequest({ cors: true }, async (req, res) =
   if (req.method === 'POST') {
     // Validate Signature
     const rawBody = req.rawBody; // Express raw body
-    if (rawBody && !verifyMetaSignature(req, rawBody)) {
+    if (rawBody && !await verifyMetaSignature(req, rawBody)) {
       console.warn('❌ Invalid Meta Webhook Signature.');
       res.status(403).send('Invalid signature');
       return;
