@@ -87,7 +87,11 @@ ${formatDevoluciones(p.devoluciones)}`);
     const relevantFaq = filterFaq(kb.faq.preguntas, userMessage);
     if (relevantFaq.length > 0) {
       sections.push(`## Preguntas Frecuentes Relevantes
-${relevantFaq.map(f => `- P: ${f.q}\n  R: ${f.a}`).join('\n')}`);
+${relevantFaq.map(f => {
+        const q = f.q || f.pregunta || '';
+        const a = f.a || f.respuesta || '';
+        return `- P: ${q}\n  R: ${a}`;
+      }).join('\n')}`);
     }
   }
 
@@ -148,8 +152,10 @@ function filterFaq(faqs, userMessage) {
 
   const lower = userMessage.toLowerCase();
   const scored = faqs.map(f => {
-    const qLower = f.q.toLowerCase();
-    const aLower = f.a.toLowerCase();
+    const qVal = f.q || f.pregunta || '';
+    const aVal = f.a || f.respuesta || '';
+    const qLower = qVal.toLowerCase();
+    const aLower = aVal.toLowerCase();
     let score = 0;
 
     // Exact word match in question
