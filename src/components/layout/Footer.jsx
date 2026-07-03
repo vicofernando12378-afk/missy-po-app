@@ -38,7 +38,7 @@ const FOOTER_LINKS = {
   legal: [
     { label: 'Política de Privacidad', href: '/privacidad' },
     { label: 'Términos y Condiciones', href: '/terminos' },
-    { label: 'Política de Envíos', href: '/envios' },
+    { label: 'Política de Envíos y Devoluciones', href: '/envios' },
     { label: 'Libro de Reclamaciones', href: '/reclamaciones' },
   ],
 };

@@ -6,6 +6,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import useCheckoutForm from '../../hooks/useCheckoutForm';
 import useClubMembership from '../../hooks/useClubMembership';
 import useShippingCalc from '../../hooks/useShippingCalc';
+import useUserProfile from '../../hooks/useUserProfile';
 import { crearPedidoConTransaccion } from '../../services';
 import { db } from '../../services/firebase';
 import { auth } from '../../services/firebase';
@@ -33,6 +34,7 @@ export default function CheckoutForm({
   const form = useCheckoutForm();
   const club = useClubMembership();
   const [currentUser, setCurrentUser] = useState(null);
+  const { profile } = useUserProfile(currentUser?.uid);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
@@ -94,6 +96,40 @@ export default function CheckoutForm({
       form.setNombreMascota(club.clubMember.nombre_mascota);
     }
   }, [club.clubMember]);
+
+  // Auto-fill desde perfil de usuario logueado (misma lógica que verificación manual)
+  useEffect(() => {
+    if (!profile) return;
+
+    if (profile.clubMember) {
+      handleAutocomplete(profile.clubMember);
+    } else {
+      if (profile.nombre && !form.nombre) form.setNombre(profile.nombre);
+      if (profile.apellido && !form.apellido) form.setApellido(profile.apellido);
+      if (profile.email && !form.email) form.setEmail(profile.email);
+      if (profile.telefono && !form.celular) form.setCelular(profile.telefono);
+      if (profile.documento_tipo) form.setTipoDocumento(profile.documento_tipo);
+      if (profile.documento_numero && !form.numeroDocumento) form.setNumeroDocumento(profile.documento_numero);
+
+      const defaultAddr = profile.direcciones?.find(d => d.es_default) || profile.direcciones?.[0];
+      if (defaultAddr) {
+        if (defaultAddr.departamento && !form.departamento) form.setDepartamento(defaultAddr.departamento);
+        if (defaultAddr.distrito) {
+          if ((defaultAddr.departamento || form.departamento) === 'Arequipa') {
+            form.setDistritoArequipa(defaultAddr.distrito);
+          } else {
+            form.setDistritoNacional(defaultAddr.distrito);
+          }
+        }
+        if (defaultAddr.direccion && !form.direccion) form.setDireccion(defaultAddr.direccion);
+        if (defaultAddr.referencia && !form.referencia) form.setReferencia(defaultAddr.referencia);
+      }
+
+      const firstPet = profile.mascotas?.[0];
+      if (firstPet?.nombre && !form.nombreMascota) form.setNombreMascota(firstPet.nombre);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile]);
 
   const handleAutocomplete = (mData) => {
     if (mData.nombre_tutor) {

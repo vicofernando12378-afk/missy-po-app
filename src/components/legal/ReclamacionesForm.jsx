@@ -1,4 +1,4 @@
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -99,6 +99,7 @@ export default function ReclamacionesForm() {
 
   const [selectedProductKey, setSelectedProductKey] = useState('');
   const [accionPredefinida, setAccionPredefinida] = useState('');
+  const [reclamoExistente, setReclamoExistente] = useState(null);
 
   // Suscribirse a la autenticación de Firebase
   useEffect(() => {
@@ -139,6 +140,7 @@ export default function ReclamacionesForm() {
             nombre: item.nombre,
             precio: (item.precio_unitario || item.precio || 0) / 100,
             cantidad: item.cantidad,
+            fechaCompra: order.creado_en,
           });
         });
       }
@@ -191,9 +193,10 @@ export default function ReclamacionesForm() {
     }));
   };
 
-  const handleProductChange = (e) => {
+  const handleProductChange = async (e) => {
     const key = e.target.value;
     setSelectedProductKey(key);
+    setReclamoExistente(null);
     if (key) {
       const prod = productosComprados.find(p => p.id === key);
       if (prod) {
@@ -202,6 +205,22 @@ export default function ReclamacionesForm() {
           montoReclamado: prod.precio.toFixed(2),
           descripcionBien: `Producto: ${prod.nombre} (Cantidad: ${prod.cantidad}) comprado en Pedido con Código: ${prod.pedidoCodigo}. `,
         }));
+
+        // Verificar reclamo existente para este producto
+        try {
+          const q = query(
+            collection(db, 'myp_reclamaciones'),
+            where('cliente.email', '==', authUser.email),
+            where('bien.producto_id', '==', prod.id),
+            where('estado', 'in', ['recibido', 'en_revision']),
+          );
+          const snap = await getDocs(q);
+          if (!snap.empty) {
+            setReclamoExistente({ id: snap.docs[0].id, ...snap.docs[0].data() });
+          }
+        } catch (err) {
+          console.warn('Error verificando reclamo existente:', err);
+        }
       }
     } else {
       setFormData(prev => ({
@@ -349,6 +368,8 @@ export default function ReclamacionesForm() {
         tipo: validatedData.tipoBien,
         monto: validatedData.montoReclamado,
         descripcion: validatedData.descripcionBien,
+        producto_id: selectedProductKey || null,
+        pedido_codigo: selectedProductKey ? (productosComprados.find(p => p.id === selectedProductKey)?.pedidoCodigo || null) : null,
       },
       detalle: {
         tipo: validatedData.tipoReclamo,
@@ -360,6 +381,23 @@ export default function ReclamacionesForm() {
     };
 
     try {
+      // 0. Verificar reclamo duplicado para el mismo producto
+      if (payload.bien.producto_id) {
+        const qDup = query(
+          collection(db, 'myp_reclamaciones'),
+          where('cliente.email', '==', validatedData.email),
+          where('bien.producto_id', '==', payload.bien.producto_id),
+          where('estado', 'in', ['recibido', 'en_revision']),
+        );
+        const snapDup = await getDocs(qDup);
+        if (!snapDup.empty) {
+          const existente = snapDup.docs[0].data();
+          setError(`Ya existe un reclamo abierto para este producto (${existente.codigo}, estado: ${existente.estado}).`);
+          setLoading(false);
+          return;
+        }
+      }
+
       // 1. Subir evidencias a Firebase Storage
       let evidenciasUrls = [];
       if (evidenciaFiles.length > 0) {
@@ -682,12 +720,25 @@ export default function ReclamacionesForm() {
                 className="w-full h-10 px-2 rounded-lg border border-gray-200 focus:outline-none text-sm bg-white"
               >
                 <option value="">-- Seleccionar producto comprado --</option>
-                {productosComprados.map(p => (
-                  <option key={p.id} value={p.id}>
-                    [Pedido {p.pedidoCodigo}] {p.nombre} (S/ {p.precio.toFixed(2)})
-                  </option>
-                ))}
+                {productosComprados.map(p => {
+                  const fecha = p.fechaCompra?.toDate ? p.fechaCompra.toDate() : p.fechaCompra ? new Date(p.fechaCompra) : null;
+                  const fechaStr = fecha ? fecha.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '';
+                  return (
+                    <option key={p.id} value={p.id}>
+                      [Pedido {p.pedidoCodigo}] {p.nombre} (S/ {p.precio.toFixed(2)}){fechaStr ? ` — ${fechaStr}` : ''}
+                    </option>
+                  );
+                })}
               </select>
+              {reclamoExistente && (
+                <div className="mt-2 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-800">
+                  <strong>⚠️ Ya existe un reclamo abierto para este producto</strong>
+                  <span className="ml-1">
+                    ({reclamoExistente.codigo}, estado: {reclamoExistente.estado}).
+                    Si deseas agregar más detalles, contacta a atención al cliente.
+                  </span>
+                </div>
+              )}
             </div>
           )}
           <div className="sm:col-span-2">
