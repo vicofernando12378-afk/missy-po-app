@@ -1165,13 +1165,13 @@
     "semantic_hash": ""
   },
   "functions/src/scripts/seedKnowledge.js": {
-    "mtime": 1783051683.0241077,
-    "ast_hash": "1217a5836150edfd1f02cf8e6bd21d04",
+    "mtime": 1783053771.496598,
+    "ast_hash": "e73871bcf55cfc1338da4dbd7ae8b59f",
     "semantic_hash": ""
   },
   "src/components/admin/crm/KnowledgeBaseSection.jsx": {
-    "mtime": 1783049689.6708133,
-    "ast_hash": "8baee41a02f031cb58f1289b37a7bd3b",
+    "mtime": 1783053815.8393805,
+    "ast_hash": "a32f343b3c701325ff64ce538a8632d8",
     "semantic_hash": ""
   }
 }

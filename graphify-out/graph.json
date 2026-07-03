@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 0,
+      "community": 67,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -967,7 +967,7 @@
       "label": "seed()",
       "file_type": "code",
       "source_file": "functions/src/scripts/seedKnowledge.js",
-      "source_location": "L162",
+      "source_location": "L84",
       "_origin": "ast",
       "id": "functions_src_scripts_seedknowledge_seed",
       "community": 77,
@@ -1130,7 +1130,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "functions_src_social_youtubepoll_youtubepoll",
-      "community": 55,
+      "community": 28,
       "norm_label": "youtubepoll"
     },
     {
@@ -1230,7 +1230,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "functions_vitest_config",
-      "community": 0,
+      "community": 67,
       "norm_label": "vitest.config.js"
     },
     {
@@ -3187,7 +3187,7 @@
       "label": "Input()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L232",
+      "source_location": "L290",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_input",
       "community": 38,
@@ -3197,7 +3197,7 @@
       "label": "Section()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L257",
+      "source_location": "L315",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_section",
       "community": 38,
@@ -3207,7 +3207,7 @@
       "label": "SaveBtn()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L268",
+      "source_location": "L326",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_savebtn",
       "community": 38,
@@ -7471,7 +7471,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 0,
+      "community": 67,
       "norm_label": "vitest.config.js"
     },
     {
@@ -10804,7 +10804,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "astro_config",
-      "target": "src_services_config",
+      "target": "functions_src_lib_config",
       "confidence_score": 1.0
     },
     {
@@ -12134,6 +12134,28 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/vitest.config.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "functions_vitest_config",
+      "target": "functions_src_lib_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "vitest.config.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "vitest_config",
+      "target": "functions_src_lib_config",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -12629,7 +12651,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "functions/src/scripts/seedKnowledge.js",
-      "source_location": "L162",
+      "source_location": "L84",
       "weight": 1.0,
       "source": "functions_src_scripts_seedknowledge",
       "target": "functions_src_scripts_seedknowledge_seed",
@@ -13066,17 +13088,6 @@
       "weight": 1.0,
       "source": "functions_src_telegram_webhook",
       "target": "functions_src_telegram_webhook_telegramwebhook",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "functions/vitest.config.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "functions_vitest_config",
-      "target": "src_services_config",
       "confidence_score": 1.0
     },
     {
@@ -15860,7 +15871,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L232",
+      "source_location": "L290",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_input",
@@ -15880,7 +15891,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L268",
+      "source_location": "L326",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_savebtn",
@@ -15890,7 +15901,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L257",
+      "source_location": "L315",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_section",
@@ -22984,17 +22995,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "vitest.config.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "vitest_config",
-      "target": "src_services_config",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/services/coupons.js",
@@ -27558,5 +27558,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f4c9b573f7a4e6b4ad2a22c8a47175a303cb8415"
+  "built_at_commit": "1b4eb4d4540944f7fc2f56dc451f994959416d02"
 }

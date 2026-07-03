@@ -1,7 +1,7 @@
 # Graph Report - missy-po  (2026-07-02)
 
 ## Corpus Check
-- 224 files · ~316,486 words
+- 224 files · ~316,598 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f4c9b573`
+- Built from commit: `1b4eb4d4`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -118,16 +118,16 @@
 - 3-file cycle: `src/App.jsx -> src/pages/OrderConfirmationPage.jsx -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/LoginPage.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/coupons.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/components/layout/Layout.jsx -> src/components/layout/Navbar.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/orders.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/cashRegister.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/config.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/coupons.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/orders.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/products.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reclamaciones.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reviews.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/userProfile.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/components/layout/Layout.jsx -> src/components/layout/Navbar.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
 
 ## Communities (78 total, 8 thin omitted)
 
@@ -228,8 +228,8 @@ Cohesion: 0.26
 Nodes (14): buildSystemPrompt(), runAgentCycle(), getApiKeys(), detectFrustration(), FRUSTRATION_KEYWORDS, FRUSTRATION_PATTERNS, isBusinessHours(), notifyAdminEscalation() (+6 more)
 
 ### Community 28 - "Community 28"
-Cohesion: 0.21
-Nodes (9): hasCommercialIntent(), KEYWORDS, normalizeText(), socialWebhookHandler, verifyMetaSignature(), processSocialEvent(), mockGet, mockSet (+1 more)
+Cohesion: 0.19
+Nodes (10): hasCommercialIntent(), KEYWORDS, normalizeText(), socialWebhookHandler, verifyMetaSignature(), processSocialEvent(), mockGet, mockSet (+2 more)
 
 ### Community 33 - "Community 33"
 Cohesion: 0.13
@@ -316,8 +316,8 @@ Cohesion: 0.33
 Nodes (3): app, db, firebaseConfig
 
 ### Community 55 - "processSocialEvent.js"
-Cohesion: 0.15
-Nodes (8): emailWebhook, sendCampaign, getKnowledge, recomputeLeadScores, recomputeSegments, unsubscribeLead, youtubePoll, telegramWebhook
+Cohesion: 0.16
+Nodes (7): emailWebhook, sendCampaign, getKnowledge, recomputeLeadScores, recomputeSegments, unsubscribeLead, telegramWebhook
 
 ### Community 56 - "firebase/firestore"
 Cohesion: 0.25
@@ -364,7 +364,7 @@ Cohesion: 0.40
 Nodes (3): db, __dirname, DRY_RUN
 
 ### Community 67 - "reclamaciones.astro"
-Cohesion: 0.24
+Cohesion: 0.18
 Nodes (6): getApiKeysStatus, ALLOWED_FIELDS, saveApiKeys, clearConfigCache(), ENV_DEFAULTS, getMaskedKeys()
 
 ### Community 68 - "CVRMDashboard.jsx"
@@ -408,7 +408,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `name`, `description`, `serve` to the rest of the system?**
   _443 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.06662770309760374 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07207792207792207 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.06610259122157588 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

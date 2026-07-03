@@ -4,9 +4,10 @@
  */
 
 import { httpsCallable } from 'firebase/functions';
+import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
-import { functions } from '../../../services/firebase';
+import { functions, db } from '../../../services/firebase';
 
 const EMPTY_BIZ = {
   nombreNegocio: 'Missy & Po Pet Shop',
@@ -50,30 +51,40 @@ export default function KnowledgeBaseSection() {
 
   async function loadKnowledge() {
     setLoading(true);
+    setError('');
     try {
-      const getKnowledge = httpsCallable(functions, 'getKnowledge');
-      const result = await getKnowledge();
-      const data = result.data?.data || {};
+      // Read directly from Firestore — bypasses the callable auth check
+      const [bizSnap, polSnap, faqSnap, clubSnap] = await Promise.all([
+        getDoc(doc(db, 'crm_knowledge', 'business_info')),
+        getDoc(doc(db, 'crm_knowledge', 'policies')),
+        getDoc(doc(db, 'crm_knowledge', 'faq')),
+        getDoc(doc(db, 'crm_knowledge', 'club')),
+      ]);
 
-      // Business Info normalization
-      if (data.business_info) {
+      // Business Info
+      if (bizSnap.exists()) {
+        const bi = bizSnap.data();
         setBiz({
           ...EMPTY_BIZ,
-          ...data.business_info,
-          redes: { ...EMPTY_BIZ.redes, ...data.business_info.redes }
+          ...bi,
+          redes: { ...EMPTY_BIZ.redes, ...bi.redes }
         });
       }
 
       // Policies normalization
-      if (data.policies) {
-        const rawPol = data.policies;
+      if (polSnap.exists()) {
+        const rawPol = polSnap.data();
         const normalizedEnvios = typeof rawPol.envios === 'string'
           ? { Lima: rawPol.envios, Provincia: '', zonas: [] }
           : { ...EMPTY_POLICIES.envios, ...rawPol.envios };
 
         const normalizedPagos = typeof rawPol.pagos === 'string'
           ? { metodos: [rawPol.pagos], cuotas: '', anticipo: '' }
-          : { ...EMPTY_POLICIES.pagos, ...rawPol.pagos };
+          : {
+              ...EMPTY_POLICIES.pagos,
+              ...rawPol.pagos,
+              metodos: Array.isArray(rawPol.pagos?.metodos) ? rawPol.pagos.metodos : EMPTY_POLICIES.pagos.metodos
+            };
 
         const normalizedDevoluciones = typeof rawPol.devoluciones === 'string'
           ? { plazo: rawPol.devoluciones, condiciones: '', proceso: '' }
@@ -89,8 +100,8 @@ export default function KnowledgeBaseSection() {
       }
 
       // FAQ normalization
-      if (data.faq) {
-        const rawPreguntas = data.faq.preguntas || [];
+      if (faqSnap.exists()) {
+        const rawPreguntas = faqSnap.data().preguntas || [];
         const normalizedPreguntas = rawPreguntas.map(p => ({
           q: p.q || p.pregunta || '',
           a: p.a || p.respuesta || ''
@@ -99,8 +110,8 @@ export default function KnowledgeBaseSection() {
       }
 
       // Club normalization
-      if (data.club) {
-        const rawClub = data.club;
+      if (clubSnap.exists()) {
+        const rawClub = clubSnap.data();
         setClub({
           beneficios: Array.isArray(rawClub.beneficios) ? rawClub.beneficios.join('\n') : (rawClub.beneficios || ''),
           puntos: rawClub.puntos || '',
@@ -109,8 +120,8 @@ export default function KnowledgeBaseSection() {
         });
       }
     } catch (err) {
-      console.error('[KnowledgeBase] Load error:', err);
-      setError('Error al cargar knowledge base.');
+      console.error('[KnowledgeBase] Load error:', err.code, err.message);
+      setError(`Error al cargar: ${err.code || err.message}`);
     } finally {
       setLoading(false);
     }
