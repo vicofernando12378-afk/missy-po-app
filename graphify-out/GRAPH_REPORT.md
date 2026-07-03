@@ -1,7 +1,7 @@
 # Graph Report - missy-po  (2026-07-02)
 
 ## Corpus Check
-- 224 files · ~316,490 words
+- 224 files · ~316,486 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c3335091`
+- Built from commit: `f4c9b573`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -116,14 +116,14 @@
 ## Import Cycles
 - 1-file cycle: `src/services/auth.js -> src/services/auth.js`
 - 3-file cycle: `src/App.jsx -> src/pages/OrderConfirmationPage.jsx -> src/services/firebase.js -> src/App.jsx`
-- 4-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/services/firebase.js -> src/App.jsx`
 - 4-file cycle: `src/App.jsx -> src/pages/LoginPage.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/cashRegister.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/config.js -> src/services/firebase.js -> src/App.jsx`
-- 5-file cycle: `src/App.jsx -> src/components/layout/Layout.jsx -> src/components/layout/Navbar.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
+- 4-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/coupons.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/components/layout/Layout.jsx -> src/components/layout/Navbar.jsx -> src/services/auth.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/orders.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/CheckoutPage.jsx -> src/components/checkout/CheckoutForm.jsx -> src/hooks/useClubMembership.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/cashRegister.js -> src/services/firebase.js -> src/App.jsx`
+- 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/config.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/products.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reclamaciones.js -> src/services/firebase.js -> src/App.jsx`
 - 5-file cycle: `src/App.jsx -> src/pages/ProductPage.jsx -> src/services/index.js -> src/services/reviews.js -> src/services/firebase.js -> src/App.jsx`
@@ -228,11 +228,11 @@ Cohesion: 0.26
 Nodes (14): buildSystemPrompt(), runAgentCycle(), getApiKeys(), detectFrustration(), FRUSTRATION_KEYWORDS, FRUSTRATION_PATTERNS, isBusinessHours(), notifyAdminEscalation() (+6 more)
 
 ### Community 28 - "Community 28"
-Cohesion: 0.19
-Nodes (10): hasCommercialIntent(), KEYWORDS, normalizeText(), socialWebhookHandler, verifyMetaSignature(), processSocialEvent(), mockGet, mockSet (+2 more)
+Cohesion: 0.21
+Nodes (9): hasCommercialIntent(), KEYWORDS, normalizeText(), socialWebhookHandler, verifyMetaSignature(), processSocialEvent(), mockGet, mockSet (+1 more)
 
 ### Community 33 - "Community 33"
-Cohesion: 0.12
+Cohesion: 0.13
 Nodes (13): ../../index.css, AdminLayout, App(), CajaDiaria, ConfiguracionEnviosCupones, InventarioStock, PedidosDashboard, ProductosCRUD (+5 more)
 
 ### Community 34 - "Community 34"
@@ -316,8 +316,8 @@ Cohesion: 0.33
 Nodes (3): app, db, firebaseConfig
 
 ### Community 55 - "processSocialEvent.js"
-Cohesion: 0.17
-Nodes (7): emailWebhook, sendCampaign, getKnowledge, recomputeLeadScores, recomputeSegments, unsubscribeLead, telegramWebhook
+Cohesion: 0.15
+Nodes (8): emailWebhook, sendCampaign, getKnowledge, recomputeLeadScores, recomputeSegments, unsubscribeLead, youtubePoll, telegramWebhook
 
 ### Community 56 - "firebase/firestore"
 Cohesion: 0.25
@@ -400,7 +400,7 @@ Nodes (4): name, private, type, version
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `../layouts/Layout.astro` connect `Community 8` to `Community 33`, `Community 35`, `reclamaciones.astro`, `mi-cuenta.astro`, `Community 9`, `Community 41`, `Community 42`, `Community 12`, `carrito.astro`, `Community 15`, `Community 48`, `Community 50`, `Community 19`?**
-  _High betweenness centrality (0.082) - this node is a cross-community bridge._
+  _High betweenness centrality (0.081) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `dependencies` to `package.json`?**
   _High betweenness centrality (0.070) - this node is a cross-community bridge._
 - **Why does `firebase` connect `dependencies` to `firebase/firestore`?**

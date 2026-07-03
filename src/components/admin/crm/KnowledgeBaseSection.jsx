@@ -54,10 +54,60 @@ export default function KnowledgeBaseSection() {
       const getKnowledge = httpsCallable(functions, 'getKnowledge');
       const result = await getKnowledge();
       const data = result.data?.data || {};
-      if (data.business_info) setBiz({ ...EMPTY_BIZ, ...data.business_info, redes: { ...EMPTY_BIZ.redes, ...data.business_info.redes } });
-      if (data.policies) setPolicies({ ...EMPTY_POLICIES, ...data.policies });
-      if (data.faq) setFaq(data.faq);
-      if (data.club) setClub({ ...EMPTY_CLUB, ...data.club });
+
+      // Business Info normalization
+      if (data.business_info) {
+        setBiz({
+          ...EMPTY_BIZ,
+          ...data.business_info,
+          redes: { ...EMPTY_BIZ.redes, ...data.business_info.redes }
+        });
+      }
+
+      // Policies normalization
+      if (data.policies) {
+        const rawPol = data.policies;
+        const normalizedEnvios = typeof rawPol.envios === 'string'
+          ? { Lima: rawPol.envios, Provincia: '', zonas: [] }
+          : { ...EMPTY_POLICIES.envios, ...rawPol.envios };
+
+        const normalizedPagos = typeof rawPol.pagos === 'string'
+          ? { metodos: [rawPol.pagos], cuotas: '', anticipo: '' }
+          : { ...EMPTY_POLICIES.pagos, ...rawPol.pagos };
+
+        const normalizedDevoluciones = typeof rawPol.devoluciones === 'string'
+          ? { plazo: rawPol.devoluciones, condiciones: '', proceso: '' }
+          : { ...EMPTY_POLICIES.devoluciones, ...rawPol.devoluciones };
+
+        setPolicies({
+          ...EMPTY_POLICIES,
+          ...rawPol,
+          envios: normalizedEnvios,
+          pagos: normalizedPagos,
+          devoluciones: normalizedDevoluciones
+        });
+      }
+
+      // FAQ normalization
+      if (data.faq) {
+        const rawPreguntas = data.faq.preguntas || [];
+        const normalizedPreguntas = rawPreguntas.map(p => ({
+          q: p.q || p.pregunta || '',
+          a: p.a || p.respuesta || ''
+        }));
+        setFaq({ preguntas: normalizedPreguntas });
+      }
+
+      // Club normalization
+      if (data.club) {
+        const rawClub = data.club;
+        setClub({
+          beneficios: Array.isArray(rawClub.beneficios) ? rawClub.beneficios.join('\n') : (rawClub.beneficios || ''),
+          puntos: rawClub.puntos || '',
+          requisitos: rawClub.requisitos || '',
+          promociones: Array.isArray(rawClub.promociones) ? rawClub.promociones.join('\n') : (rawClub.promociones || '')
+        });
+      }
     } catch (err) {
       console.error('[KnowledgeBase] Load error:', err);
       setError('Error al cargar knowledge base.');
@@ -209,7 +259,15 @@ export default function KnowledgeBaseSection() {
           >
             + Agregar pregunta
           </button>
-          <SaveBtn onClick={() => handleSave('faq', faq)} saving={saving} />
+          <SaveBtn onClick={() => {
+            const normalizedPreguntas = faq.preguntas.map(p => ({
+              q: p.q,
+              a: p.a,
+              pregunta: p.q,
+              respuesta: p.a
+            }));
+            handleSave('faq', { preguntas: normalizedPreguntas });
+          }} saving={saving} />
         </div>
       )}
 
