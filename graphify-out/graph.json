@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 67,
+      "community": 78,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -1130,7 +1130,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "functions_src_social_youtubepoll_youtubepoll",
-      "community": 28,
+      "community": 55,
       "norm_label": "youtubepoll"
     },
     {
@@ -1230,7 +1230,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "functions_vitest_config",
-      "community": 67,
+      "community": 78,
       "norm_label": "vitest.config.js"
     },
     {
@@ -2580,7 +2580,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_components_account_addressform_addressform",
-      "community": 1,
+      "community": 3,
       "norm_label": "addressform()"
     },
     {
@@ -2900,7 +2900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_clubmemberstab",
-      "community": 34,
+      "community": 79,
       "norm_label": "clubmemberstab.jsx"
     },
     {
@@ -2910,7 +2910,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_clubmemberstab_clubmemberstab",
-      "community": 34,
+      "community": 79,
       "norm_label": "clubmemberstab()"
     },
     {
@@ -2920,7 +2920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_pointstab",
-      "community": 34,
+      "community": 79,
       "norm_label": "pointstab.jsx"
     },
     {
@@ -2930,7 +2930,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_pointstab_pointstab",
-      "community": 34,
+      "community": 79,
       "norm_label": "pointstab()"
     },
     {
@@ -3040,7 +3040,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_campaignbuilder",
-      "community": 34,
+      "community": 56,
       "norm_label": "campaignbuilder.jsx"
     },
     {
@@ -3050,7 +3050,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_components_admin_crm_campaignbuilder_campaignbuilder",
-      "community": 34,
+      "community": 56,
       "norm_label": "campaignbuilder()"
     },
     {
@@ -3060,7 +3060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_campaignlist",
-      "community": 34,
+      "community": 56,
       "norm_label": "campaignlist.jsx"
     },
     {
@@ -3070,7 +3070,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_components_admin_crm_campaignlist_formatdate",
-      "community": 34,
+      "community": 56,
       "norm_label": "formatdate()"
     },
     {
@@ -3080,7 +3080,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_components_admin_crm_campaignlist_campaignlist",
-      "community": 34,
+      "community": 79,
       "norm_label": "campaignlist()"
     },
     {
@@ -3127,7 +3127,7 @@
       "label": "EMPTY_BIZ",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_empty_biz",
       "community": 38,
@@ -3137,7 +3137,7 @@
       "label": "EMPTY_POLICIES",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_empty_policies",
       "community": 38,
@@ -3147,7 +3147,7 @@
       "label": "EMPTY_FAQ",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_empty_faq",
       "community": 38,
@@ -3157,7 +3157,7 @@
       "label": "EMPTY_CLUB",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_empty_club",
       "community": 38,
@@ -3167,7 +3167,7 @@
       "label": "FAQ_TEMPLATE",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_faq_template",
       "community": 38,
@@ -3177,7 +3177,7 @@
       "label": "KnowledgeBaseSection()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_knowledgebasesection",
       "community": 38,
@@ -3187,7 +3187,7 @@
       "label": "Input()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L290",
+      "source_location": "L301",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_input",
       "community": 38,
@@ -3197,7 +3197,7 @@
       "label": "Section()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L315",
+      "source_location": "L326",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_section",
       "community": 38,
@@ -3207,7 +3207,7 @@
       "label": "SaveBtn()",
       "file_type": "code",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L326",
+      "source_location": "L337",
       "_origin": "ast",
       "id": "src_components_admin_crm_knowledgebasesection_savebtn",
       "community": 38,
@@ -3220,7 +3220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard",
-      "community": 34,
+      "community": 81,
       "norm_label": "leadcard.jsx"
     },
     {
@@ -3230,7 +3230,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_source_icons",
-      "community": 34,
+      "community": 81,
       "norm_label": "source_icons"
     },
     {
@@ -3240,7 +3240,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_scorecolor",
-      "community": 34,
+      "community": 81,
       "norm_label": "scorecolor()"
     },
     {
@@ -3250,7 +3250,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_relativetime",
-      "community": 34,
+      "community": 81,
       "norm_label": "relativetime()"
     },
     {
@@ -3260,7 +3260,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_leadcard",
-      "community": 34,
+      "community": 81,
       "norm_label": "leadcard()"
     },
     {
@@ -3320,7 +3320,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban",
-      "community": 34,
+      "community": 81,
       "norm_label": "leadskanban.jsx"
     },
     {
@@ -3330,7 +3330,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban_columns",
-      "community": 34,
+      "community": 81,
       "norm_label": "columns"
     },
     {
@@ -3340,7 +3340,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban_kanbancolumn",
-      "community": 34,
+      "community": 81,
       "norm_label": "kanbancolumn()"
     },
     {
@@ -3350,7 +3350,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban_leadskanban",
-      "community": 34,
+      "community": 81,
       "norm_label": "leadskanban()"
     },
     {
@@ -3360,7 +3360,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder",
-      "community": 34,
+      "community": 72,
       "norm_label": "segmentbuilder.jsx"
     },
     {
@@ -3370,7 +3370,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder_fields",
-      "community": 34,
+      "community": 72,
       "norm_label": "fields"
     },
     {
@@ -3380,7 +3380,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder_operators",
-      "community": 34,
+      "community": 72,
       "norm_label": "operators"
     },
     {
@@ -3390,7 +3390,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder_segmentbuilder",
-      "community": 34,
+      "community": 72,
       "norm_label": "segmentbuilder()"
     },
     {
@@ -3400,7 +3400,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentlist",
-      "community": 34,
+      "community": 72,
       "norm_label": "segmentlist.jsx"
     },
     {
@@ -3410,7 +3410,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentlist_formatrulessummary",
-      "community": 34,
+      "community": 72,
       "norm_label": "formatrulessummary()"
     },
     {
@@ -3420,7 +3420,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentlist_formatdate",
-      "community": 34,
+      "community": 72,
       "norm_label": "formatdate()"
     },
     {
@@ -3430,7 +3430,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentlist_segmentlist",
-      "community": 34,
+      "community": 72,
       "norm_label": "segmentlist()"
     },
     {
@@ -3440,7 +3440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_telegramagentpanel",
-      "community": 34,
+      "community": 79,
       "norm_label": "telegramagentpanel.jsx"
     },
     {
@@ -3450,7 +3450,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_admin_crm_telegramagentpanel_tone_options",
-      "community": 34,
+      "community": 79,
       "norm_label": "tone_options"
     },
     {
@@ -3460,7 +3460,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_components_admin_crm_telegramagentpanel_default_personality",
-      "community": 34,
+      "community": 79,
       "norm_label": "default_personality"
     },
     {
@@ -3470,7 +3470,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_admin_crm_telegramagentpanel_default_escalation",
-      "community": 34,
+      "community": 79,
       "norm_label": "default_escalation"
     },
     {
@@ -3480,7 +3480,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_components_admin_crm_telegramagentpanel_formatdate",
-      "community": 34,
+      "community": 79,
       "norm_label": "formatdate()"
     },
     {
@@ -3490,7 +3490,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_components_admin_crm_telegramagentpanel_telegramagentpanel",
-      "community": 34,
+      "community": 79,
       "norm_label": "telegramagentpanel()"
     },
     {
@@ -3677,7 +3677,7 @@
       "label": "CheckoutForm()",
       "file_type": "code",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "src_components_checkout_checkoutform_checkoutform",
       "community": 3,
@@ -4460,7 +4460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_useuserprofile",
-      "community": 1,
+      "community": 3,
       "norm_label": "useuserprofile.js"
     },
     {
@@ -4470,7 +4470,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_hooks_useuserprofile_useuserprofile",
-      "community": 1,
+      "community": 3,
       "norm_label": "useuserprofile()"
     },
     {
@@ -4651,7 +4651,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_checkoutpage",
-      "community": 3,
+      "community": 9,
       "norm_label": "checkoutpage.jsx"
     },
     {
@@ -4661,7 +4661,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "src_pages_checkoutpage_checkoutpage",
-      "community": 3,
+      "community": 9,
       "norm_label": "checkoutpage()"
     },
     {
@@ -4851,7 +4851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 34,
+      "community": 79,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -4861,7 +4861,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 34,
+      "community": 79,
       "norm_label": "tabs"
     },
     {
@@ -4871,7 +4871,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 34,
+      "community": 79,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -4881,7 +4881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cajadiaria",
-      "community": 0,
+      "community": 80,
       "norm_label": "cajadiaria.jsx"
     },
     {
@@ -4891,7 +4891,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_pages_admin_cajadiaria_cajadiaria",
-      "community": 0,
+      "community": 80,
       "norm_label": "cajadiaria()"
     },
     {
@@ -4901,7 +4901,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_configuracionenvioscupones",
-      "community": 0,
+      "community": 78,
       "norm_label": "configuracionenvioscupones.jsx"
     },
     {
@@ -4911,7 +4911,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_pages_admin_configuracionenvioscupones_config_tabs",
-      "community": 0,
+      "community": 78,
       "norm_label": "config_tabs"
     },
     {
@@ -4921,7 +4921,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "src_pages_admin_configuracionenvioscupones_configuracionenvioscupones",
-      "community": 0,
+      "community": 78,
       "norm_label": "configuracionenvioscupones()"
     },
     {
@@ -5391,7 +5391,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_services_firebase",
-      "community": 35,
+      "community": 73,
       "norm_label": "../services/firebase"
     },
     {
@@ -5401,7 +5401,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 34,
+      "community": 56,
       "norm_label": "firebase/firestore"
     },
     {
@@ -5421,7 +5421,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 8,
+      "community": 37,
       "norm_label": "index.astro"
     },
     {
@@ -5431,7 +5431,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 8,
+      "community": 37,
       "norm_label": "../pages/homepage"
     },
     {
@@ -5441,7 +5441,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 19,
+      "community": 8,
       "norm_label": "login.astro"
     },
     {
@@ -5451,7 +5451,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 19,
+      "community": 8,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -5851,7 +5851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_tests_userprofile_test",
-      "community": 0,
+      "community": 82,
       "norm_label": "userprofile.test.js"
     },
     {
@@ -5861,7 +5861,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_cajadiaria",
-      "community": 0,
+      "community": 80,
       "norm_label": "cajadiaria.js"
     },
     {
@@ -5871,7 +5871,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_cajadiaria_aperturacajaschema",
-      "community": 0,
+      "community": 80,
       "norm_label": "aperturacajaschema"
     },
     {
@@ -5881,7 +5881,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_schemas_cajadiaria_movimientoschema",
-      "community": 0,
+      "community": 80,
       "norm_label": "movimientoschema"
     },
     {
@@ -5891,7 +5891,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "src_schemas_cajadiaria_cierrecajaschema",
-      "community": 0,
+      "community": 80,
       "norm_label": "cierrecajaschema"
     },
     {
@@ -5951,7 +5951,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_coupon",
-      "community": 0,
+      "community": 78,
       "norm_label": "coupon.js"
     },
     {
@@ -5961,7 +5961,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_coupon_couponschema",
-      "community": 0,
+      "community": 78,
       "norm_label": "couponschema"
     },
     {
@@ -6091,7 +6091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_userprofile",
-      "community": 0,
+      "community": 82,
       "norm_label": "userprofile.js"
     },
     {
@@ -6101,7 +6101,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_userprofile_addressschema",
-      "community": 0,
+      "community": 82,
       "norm_label": "addressschema"
     },
     {
@@ -6111,7 +6111,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petschema",
-      "community": 0,
+      "community": 82,
       "norm_label": "petschema"
     },
     {
@@ -6121,7 +6121,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userpreferencesschema",
-      "community": 0,
+      "community": 82,
       "norm_label": "userpreferencesschema"
     },
     {
@@ -6131,7 +6131,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userprofileschema",
-      "community": 0,
+      "community": 82,
       "norm_label": "userprofileschema"
     },
     {
@@ -6141,7 +6141,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petformschema",
-      "community": 0,
+      "community": 82,
       "norm_label": "petformschema"
     },
     {
@@ -6211,7 +6211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_tests_crmsegments_test",
-      "community": 34,
+      "community": 72,
       "norm_label": "crmsegments.test.js"
     },
     {
@@ -6221,7 +6221,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_services_tests_crmsegments_test_constructor",
-      "community": 34,
+      "community": 72,
       "norm_label": "constructor()"
     },
     {
@@ -6231,7 +6231,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_services_tests_crmsegments_test_todate",
-      "community": 34,
+      "community": 72,
       "norm_label": "todate()"
     },
     {
@@ -6341,7 +6341,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_cashregister",
-      "community": 0,
+      "community": 80,
       "norm_label": "cashregister.js"
     },
     {
@@ -6351,7 +6351,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_services_cashregister_obtenercajaactiva",
-      "community": 0,
+      "community": 80,
       "norm_label": "obtenercajaactiva()"
     },
     {
@@ -6361,7 +6361,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_services_cashregister_abrircajadiaria",
-      "community": 0,
+      "community": 80,
       "norm_label": "abrircajadiaria()"
     },
     {
@@ -6371,7 +6371,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "src_services_cashregister_registrartransaccionmanual",
-      "community": 0,
+      "community": 80,
       "norm_label": "registrartransaccionmanual()"
     },
     {
@@ -6381,7 +6381,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "src_services_cashregister_cerrarcajadiaria",
-      "community": 0,
+      "community": 80,
       "norm_label": "cerrarcajadiaria()"
     },
     {
@@ -6391,7 +6391,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "src_services_cashregister_obtenerhistorialcajas",
-      "community": 0,
+      "community": 80,
       "norm_label": "obtenerhistorialcajas()"
     },
     {
@@ -6401,7 +6401,7 @@
       "source_location": "L161",
       "_origin": "ast",
       "id": "src_services_cashregister_obtenerventasconfirmadasdia",
-      "community": 0,
+      "community": 80,
       "norm_label": "obtenerventasconfirmadasdia()"
     },
     {
@@ -6411,7 +6411,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_config",
-      "community": 0,
+      "community": 78,
       "norm_label": "config.js"
     },
     {
@@ -6431,7 +6431,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_services_config_guardarconfiguracionenvio",
-      "community": 0,
+      "community": 78,
       "norm_label": "guardarconfiguracionenvio()"
     },
     {
@@ -6441,7 +6441,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_services_config_obtenercategoryslugmap",
-      "community": 0,
+      "community": 78,
       "norm_label": "obtenercategoryslugmap()"
     },
     {
@@ -6451,7 +6451,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_coupons",
-      "community": 0,
+      "community": 78,
       "norm_label": "coupons.js"
     },
     {
@@ -6461,7 +6461,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_services_coupons_obtenercupones",
-      "community": 0,
+      "community": 78,
       "norm_label": "obtenercupones()"
     },
     {
@@ -6471,7 +6471,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_services_coupons_crearcupon",
-      "community": 0,
+      "community": 78,
       "norm_label": "crearcupon()"
     },
     {
@@ -6481,7 +6481,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_services_coupons_actualizarestadocupon",
-      "community": 0,
+      "community": 78,
       "norm_label": "actualizarestadocupon()"
     },
     {
@@ -6491,7 +6491,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_services_coupons_eliminarcupon",
-      "community": 0,
+      "community": 78,
       "norm_label": "eliminarcupon()"
     },
     {
@@ -6621,7 +6621,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_services_crmleads_listleads",
-      "community": 34,
+      "community": 72,
       "norm_label": "listleads()"
     },
     {
@@ -6681,7 +6681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_crmsegments",
-      "community": 34,
+      "community": 72,
       "norm_label": "crmsegments.js"
     },
     {
@@ -6691,7 +6691,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_services_crmsegments_evaluaterule",
-      "community": 34,
+      "community": 72,
       "norm_label": "evaluaterule()"
     },
     {
@@ -6701,7 +6701,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "src_services_crmsegments_evaluatesegment",
-      "community": 34,
+      "community": 72,
       "norm_label": "evaluatesegment()"
     },
     {
@@ -6711,7 +6711,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "src_services_crmsegments_createsegment",
-      "community": 34,
+      "community": 72,
       "norm_label": "createsegment()"
     },
     {
@@ -6721,7 +6721,7 @@
       "source_location": "L151",
       "_origin": "ast",
       "id": "src_services_crmsegments_getsegmentbyid",
-      "community": 34,
+      "community": 72,
       "norm_label": "getsegmentbyid()"
     },
     {
@@ -6731,7 +6731,7 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "src_services_crmsegments_listsegments",
-      "community": 34,
+      "community": 56,
       "norm_label": "listsegments()"
     },
     {
@@ -6741,7 +6741,7 @@
       "source_location": "L174",
       "_origin": "ast",
       "id": "src_services_crmsegments_deletesegment",
-      "community": 34,
+      "community": 72,
       "norm_label": "deletesegment()"
     },
     {
@@ -6751,7 +6751,7 @@
       "source_location": "L185",
       "_origin": "ast",
       "id": "src_services_crmsegments_updatesegment",
-      "community": 34,
+      "community": 72,
       "norm_label": "updatesegment()"
     },
     {
@@ -6821,7 +6821,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_firebase_storage",
-      "community": 56,
+      "community": 46,
       "norm_label": "storage"
     },
     {
@@ -6851,7 +6851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 40,
+      "community": 78,
       "norm_label": "index.js"
     },
     {
@@ -7171,7 +7171,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_services_reviews_crearresena",
-      "community": 16,
+      "community": 57,
       "norm_label": "crearresena()"
     },
     {
@@ -7181,7 +7181,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenasporproducto",
-      "community": 16,
+      "community": 57,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -7411,7 +7411,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_utils_tests_sla_test",
-      "community": 72,
+      "community": 39,
       "norm_label": "sla.test.js"
     },
     {
@@ -7421,7 +7421,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_utils_sla",
-      "community": 72,
+      "community": 39,
       "norm_label": "sla.js"
     },
     {
@@ -7431,7 +7431,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_utils_sla_contardiashabiles",
-      "community": 72,
+      "community": 39,
       "norm_label": "contardiashabiles()"
     },
     {
@@ -7441,7 +7441,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_utils_sla_calcularsla",
-      "community": 72,
+      "community": 39,
       "norm_label": "calcularsla()"
     },
     {
@@ -7451,7 +7451,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_utils_sla_sla_cfg",
-      "community": 72,
+      "community": 39,
       "norm_label": "sla_cfg"
     },
     {
@@ -7471,7 +7471,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 67,
+      "community": 78,
       "norm_label": "vitest.config.js"
     },
     {
@@ -10804,7 +10804,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "astro_config",
-      "target": "functions_src_lib_config",
+      "target": "src_services_config",
       "confidence_score": 1.0
     },
     {
@@ -12134,28 +12134,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "functions/vitest.config.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "functions_vitest_config",
-      "target": "functions_src_lib_config",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "vitest.config.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "vitest_config",
-      "target": "functions_src_lib_config",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -13091,6 +13069,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/vitest.config.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "functions_vitest_config",
+      "target": "src_services_config",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "package.json",
@@ -13398,7 +13387,7 @@
       "weight": 1.0,
       "context": "import",
       "source": "package_dependencies_firebase",
-      "target": "src_services_firebase",
+      "target": "c_mis_proyectos_missy_po_src_services_firebase",
       "confidence_score": 1.0
     },
     {
@@ -15818,10 +15807,21 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "src_components_admin_crm_knowledgebasesection",
+      "target": "firestore",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_empty_biz",
@@ -15831,7 +15831,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_empty_club",
@@ -15841,7 +15841,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_empty_faq",
@@ -15851,7 +15851,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_empty_policies",
@@ -15861,7 +15861,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_faq_template",
@@ -15871,7 +15871,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L290",
+      "source_location": "L301",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_input",
@@ -15881,7 +15881,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_knowledgebasesection",
@@ -15891,7 +15891,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L326",
+      "source_location": "L337",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_savebtn",
@@ -15901,7 +15901,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L315",
+      "source_location": "L326",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_components_admin_crm_knowledgebasesection_section",
@@ -15912,7 +15912,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_services_firebase",
@@ -15923,7 +15923,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/admin/crm/KnowledgeBaseSection.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_components_admin_crm_knowledgebasesection",
       "target": "src_services_firebase_functions",
@@ -17109,7 +17109,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_checkoutform_checkoutform",
@@ -17120,7 +17120,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_clubsection",
@@ -17131,7 +17131,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_clubsection_clubsection",
@@ -17142,7 +17142,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_contactfields",
@@ -17153,7 +17153,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_contactfields_contactfields",
@@ -17164,7 +17164,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_couponsection",
@@ -17175,7 +17175,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_couponsection_couponsection",
@@ -17186,7 +17186,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_documentfields",
@@ -17197,7 +17197,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_documentfields_documentfields",
@@ -17208,7 +17208,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_ordersummary",
@@ -17219,7 +17219,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_ordersummary_ordersummary",
@@ -17230,7 +17230,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmethods",
@@ -17241,7 +17241,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmethods_paymentmethods",
@@ -17252,7 +17252,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmpbrick",
@@ -17263,7 +17263,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentmpbrick_paymentmpbrick",
@@ -17274,7 +17274,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentqrculqi",
@@ -17285,7 +17285,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_paymentqrculqi_paymentqrculqi",
@@ -17296,7 +17296,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_shippingfields",
@@ -17307,7 +17307,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_components_checkout_shippingfields_shippingfields",
@@ -17384,7 +17384,29 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L11",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_components_checkout_checkoutform",
+      "target": "src_hooks_useuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/checkout/CheckoutForm.jsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "src_components_checkout_checkoutform",
+      "target": "src_hooks_useuserprofile_useuserprofile",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/checkout/CheckoutForm.jsx",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_firebase",
@@ -17395,7 +17417,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_firebase_auth",
@@ -17406,7 +17428,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_index",
@@ -17417,7 +17439,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform",
       "target": "src_services_orders_crearpedidocontransaccion",
@@ -17440,7 +17462,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform_checkoutform",
       "target": "src_hooks_usecheckoutform_usecheckoutform"
@@ -17451,7 +17473,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform_checkoutform",
       "target": "src_hooks_useclubmembership_useclubmembership"
@@ -17462,10 +17484,21 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "src/components/checkout/CheckoutForm.jsx",
-      "source_location": "L54",
+      "source_location": "L56",
       "weight": 1.0,
       "source": "src_components_checkout_checkoutform_checkoutform",
       "target": "src_hooks_useshippingcalc_useshippingcalc"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/checkout/CheckoutForm.jsx",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "src_components_checkout_checkoutform_checkoutform",
+      "target": "src_hooks_useuserprofile_useuserprofile"
     },
     {
       "relation": "imports",
@@ -22995,6 +23028,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "vitest.config.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "vitest_config",
+      "target": "src_services_config",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/services/coupons.js",
@@ -27558,5 +27602,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1b4eb4d4540944f7fc2f56dc451f994959416d02"
+  "built_at_commit": "6cb80bc612342fff8ea7df99d9b3cdb54c816248"
 }

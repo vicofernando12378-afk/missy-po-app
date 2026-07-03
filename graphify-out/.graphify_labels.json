@@ -76,5 +76,10 @@
   "74": "scripts",
   "75": "package.json",
   "76": "carrito.astro",
-  "77": "seedKnowledge.js"
+  "77": "seedKnowledge.js",
+  "78": "index.js",
+  "79": "CVRMDashboard.jsx",
+  "80": "CajaDiaria.jsx",
+  "81": "LeadsKanban.jsx",
+  "82": "userProfile.js"
 }
