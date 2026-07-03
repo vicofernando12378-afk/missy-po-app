@@ -5,18 +5,18 @@
     "semantic_hash": "42a3dfdc7e50295ab7239ebb3cbb598f"
   },
   "firebase.json": {
-    "mtime": 1782189908.2840881,
-    "ast_hash": "11ad92bf74e514ce6de7f0730f8c1735",
-    "semantic_hash": "11ad92bf74e514ce6de7f0730f8c1735"
+    "mtime": 1783027253.329496,
+    "ast_hash": "f51b105a869074c35f304d18036f2d31",
+    "semantic_hash": ""
   },
   "firestore.indexes.json": {
-    "mtime": 1779926307.3867235,
-    "ast_hash": "6c1369bcee45fa3baebaaf77f2dc3ae3",
-    "semantic_hash": "6c1369bcee45fa3baebaaf77f2dc3ae3"
+    "mtime": 1783027894.8917606,
+    "ast_hash": "0d0f1c30ce523567ecd8bf468ec44f1f",
+    "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1782956671.9565134,
-    "ast_hash": "6bc4b9bb8b7dc5963c6abaaea14d5d3d",
+    "mtime": 1783027684.3250983,
+    "ast_hash": "78304ea589dd8329d2fe2d244105271b",
     "semantic_hash": ""
   },
   "postcss.config.js": {
@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/WhatsAppFloat.jsx": {
-    "mtime": 1782848915.0796812,
-    "ast_hash": "a16f64c2bd1f6421579f93a39cfd682c",
+    "mtime": 1783030136.574639,
+    "ast_hash": "acd4ea5b0e7912c28acc59688e75afc1",
     "semantic_hash": ""
   },
   "src/hooks/useDebounce.js": {
@@ -335,8 +335,8 @@
     "semantic_hash": ""
   },
   "vitest.config.js": {
-    "mtime": 1782848915.0826812,
-    "ast_hash": "b4f0921af480e0e5b03369b201e69810",
+    "mtime": 1783030199.4561784,
+    "ast_hash": "626a244c9560536036516dedd4586230",
     "semantic_hash": ""
   },
   "scripts/migrate-purchase-price.js": {
@@ -500,8 +500,8 @@
     "semantic_hash": ""
   },
   "src/pages/admin/CVRMDashboard.jsx": {
-    "mtime": 1782848915.0806816,
-    "ast_hash": "d6d6d44522f8bff773e4dd3f64fac25e",
+    "mtime": 1783042105.8082888,
+    "ast_hash": "952c6d0ec6cd7e4b91011f7bc419a478",
     "semantic_hash": ""
   },
   "src/assets/logoheader.jpeg": {
@@ -580,8 +580,8 @@
     "semantic_hash": ""
   },
   ".atl/.skill-registry.cache.json": {
-    "mtime": 1782781383.1914825,
-    "ast_hash": "f5e408ec58effb04d1345efe64426103",
+    "mtime": 1783003738.7830799,
+    "ast_hash": "b4e209073448890fd58c7fa131f27b45",
     "semantic_hash": ""
   },
   "src/components/admin/AdminSidebar.jsx": {
@@ -700,8 +700,8 @@
     "semantic_hash": ""
   },
   ".atl/skill-registry.md": {
-    "mtime": 1782781383.1892734,
-    "ast_hash": "13ddb35380fd76f82410a5b825bee1e6",
+    "mtime": 1783003738.7776933,
+    "ast_hash": "390a9b52e97d8d31e885b36183508070",
     "semantic_hash": ""
   },
   "legacy/PLAN-SEGURIDAD-Y-ARQUITECTURA.md": {
@@ -887,6 +887,236 @@
   "legacy/moduloreclamos.md": {
     "mtime": 1782882689.0590005,
     "ast_hash": "31c88478dcaf58cb507f43f3aff3cafd",
+    "semantic_hash": ""
+  },
+  "functions/package.json": {
+    "mtime": 1783041974.9644098,
+    "ast_hash": "2e4a1d00dd6fbb2eb7d35e6f6f9483cd",
+    "semantic_hash": ""
+  },
+  "functions/src/campaigns/emailWebhook.js": {
+    "mtime": 1783029152.1919925,
+    "ast_hash": "1472604eb30a228f64eb4daa0a979cc2",
+    "semantic_hash": ""
+  },
+  "functions/src/campaigns/sendCampaign.js": {
+    "mtime": 1783029144.2018507,
+    "ast_hash": "f8b606f067c4d561551f588273595641",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/recomputeScores.js": {
+    "mtime": 1783027226.115261,
+    "ast_hash": "d503d828ab8151aa6d131bcff92628ed",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/recomputeSegments.js": {
+    "mtime": 1783029137.3842998,
+    "ast_hash": "976ee0db6895a8485a8d2476eb7a9471",
+    "semantic_hash": ""
+  },
+  "functions/src/index.js": {
+    "mtime": 1783030112.7568188,
+    "ast_hash": "cbd14b90e101501cd8755291cf270bb3",
+    "semantic_hash": ""
+  },
+  "functions/src/lib/firebaseAdmin.js": {
+    "mtime": 1783027212.4455414,
+    "ast_hash": "7ebb36b3195a2ba58ec4c514b67d3e9e",
+    "semantic_hash": ""
+  },
+  "functions/src/social/metaWebhook.js": {
+    "mtime": 1783030093.4002604,
+    "ast_hash": "f66493369a6b6f75371f8235b3641774",
+    "semantic_hash": ""
+  },
+  "functions/src/telegram/webhook.js": {
+    "mtime": 1783042064.5428858,
+    "ast_hash": "a2029aaa75ddc1f04af487d916501d37",
+    "semantic_hash": ""
+  },
+  "scripts/backfill-checkout-leads.js": {
+    "mtime": 1783028113.7975295,
+    "ast_hash": "a812de9f83199ee21795421f4884595e",
+    "semantic_hash": ""
+  },
+  "scripts/migrate-club-to-leads.js": {
+    "mtime": 1783028076.0437553,
+    "ast_hash": "ccb037b7c554790c6fad43f554f46391",
+    "semantic_hash": ""
+  },
+  "src/components/admin/CVRMTabs/ClubMembersTab.jsx": {
+    "mtime": 1783027545.3031218,
+    "ast_hash": "298d0e39ea2d5f224a88ec7a30876d08",
+    "semantic_hash": ""
+  },
+  "src/components/admin/CVRMTabs/PointsTab.jsx": {
+    "mtime": 1783027602.6368792,
+    "ast_hash": "8a32f2aed92a4674b1db03451cd804b9",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/LeadCard.jsx": {
+    "mtime": 1783028163.3093412,
+    "ast_hash": "f2b9e5ca40ba6d7f70fa7f7b5e8eae30",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/LeadDetailDrawer.jsx": {
+    "mtime": 1783028263.6117158,
+    "ast_hash": "0bbcac656859b2ad6decc5be8b6ba9c6",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/LeadsKanban.jsx": {
+    "mtime": 1783028213.8592303,
+    "ast_hash": "aab1fcbffb33203353e91ce644306ace",
+    "semantic_hash": ""
+  },
+  "src/services/__tests__/crmLeads.test.js": {
+    "mtime": 1783028398.837524,
+    "ast_hash": "297d44cf77f47adca77fb4e349689ec5",
+    "semantic_hash": ""
+  },
+  "src/services/crmInteractions.js": {
+    "mtime": 1783027302.8433025,
+    "ast_hash": "10cf6f9b6ac7ce041be67176e74ef9a4",
+    "semantic_hash": ""
+  },
+  "src/services/crmLeads.js": {
+    "mtime": 1783028442.4619727,
+    "ast_hash": "aa9959ceee380426f8383156b53fa95a",
+    "semantic_hash": ""
+  },
+  "IMPLEMENTACION_CRM_360.md": {
+    "mtime": 1783025792.8823516,
+    "ast_hash": "9bb603ae9a36a9bfae5cb2a296de5ebd",
+    "semantic_hash": ""
+  },
+  "specs/crm-campaigns.spec.md": {
+    "mtime": 1783027374.3626766,
+    "ast_hash": "cc0813d37da4e6d0f19240e0e020e187",
+    "semantic_hash": ""
+  },
+  "specs/crm-leads.spec.md": {
+    "mtime": 1783027359.7807264,
+    "ast_hash": "d02e35db22dbfa892b1fe1f4dec2bd3c",
+    "semantic_hash": ""
+  },
+  "specs/crm-segments.spec.md": {
+    "mtime": 1783027366.4917514,
+    "ast_hash": "199fca06baf7b5bc728cdec7645c116f",
+    "semantic_hash": ""
+  },
+  "specs/social-leads.spec.md": {
+    "mtime": 1783027388.149148,
+    "ast_hash": "1895d6805de95edabc6a6f24e03b4dc9",
+    "semantic_hash": ""
+  },
+  "specs/telegram-agent.spec.md": {
+    "mtime": 1783027403.0305684,
+    "ast_hash": "13c55789d5cae3e452ff0067aaf4ede1",
+    "semantic_hash": ""
+  },
+  "functions/src/crm/unsubscribeLead.js": {
+    "mtime": 1783029125.8302493,
+    "ast_hash": "04931b06a6da29ea76b3e333aeae4f18",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/CampaignBuilder.jsx": {
+    "mtime": 1783029193.3593974,
+    "ast_hash": "73c98c3d05c3ebe49348075b98444b45",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/CampaignList.jsx": {
+    "mtime": 1783029205.0780163,
+    "ast_hash": "ea01b421528c9c304487c52b08b33a19",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/SegmentBuilder.jsx": {
+    "mtime": 1783029177.8376744,
+    "ast_hash": "47ff4ac62587b87c31c3e3d660e23ac9",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/SegmentList.jsx": {
+    "mtime": 1783029185.1331224,
+    "ast_hash": "a9665b67b45be84af9bf67725de67237",
+    "semantic_hash": ""
+  },
+  "src/services/__tests__/crmSegments.test.js": {
+    "mtime": 1783029084.7208934,
+    "ast_hash": "57f5b7a7f3f117dacc37136c72451099",
+    "semantic_hash": ""
+  },
+  "src/services/crmSegments.js": {
+    "mtime": 1783029077.8859065,
+    "ast_hash": "2ec75efd219f249feff586e34ab3291e",
+    "semantic_hash": ""
+  },
+  "src/services/emailProvider.js": {
+    "mtime": 1783029110.1549094,
+    "ast_hash": "eec9dd65a52b51eda1184d1a6076263a",
+    "semantic_hash": ""
+  },
+  "functions/src/social/__tests__/intentDictionary.test.js": {
+    "mtime": 1783030013.5680802,
+    "ast_hash": "9de7f35528b44400d2022d522860f003",
+    "semantic_hash": ""
+  },
+  "functions/src/social/__tests__/processSocialEvent.test.js": {
+    "mtime": 1783030076.5622513,
+    "ast_hash": "0bbb93b4c766ebae997f00a14ae43c44",
+    "semantic_hash": ""
+  },
+  "functions/src/social/intentDictionary.js": {
+    "mtime": 1783030052.8562431,
+    "ast_hash": "ce743a513291d0a34ba5e5387dd2cf99",
+    "semantic_hash": ""
+  },
+  "functions/src/social/processSocialEvent.js": {
+    "mtime": 1783030068.6656358,
+    "ast_hash": "8ca5df796a4d87fd2640d79047a41ce1",
+    "semantic_hash": ""
+  },
+  "functions/src/social/youtubePoll.js": {
+    "mtime": 1783030101.7011342,
+    "ast_hash": "e82d60d0d45f233444a7f1022440ad0d",
+    "semantic_hash": ""
+  },
+  "functions/vitest.config.js": {
+    "mtime": 1783030038.9722545,
+    "ast_hash": "edc178ca3b7d99e0bd7ca36ff7e8cd4b",
+    "semantic_hash": ""
+  },
+  "docs/social-setup.md": {
+    "mtime": 1783030145.4060836,
+    "ast_hash": "d7a6262019a8c64f442b995c542ebcd2",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/__tests__/llmRouter.test.js": {
+    "mtime": 1783042111.7946136,
+    "ast_hash": "3dbbfe04f29429b7b72e7baf4e1db024",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/core.js": {
+    "mtime": 1783042049.384215,
+    "ast_hash": "27b479c85faa6c1d73062e08a0d8517b",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/llmProviders/deepseek.js": {
+    "mtime": 1783042026.636789,
+    "ast_hash": "2f5b0b0db4889664f6c7a2c8408216ae",
+    "semantic_hash": ""
+  },
+  "functions/src/agent/llmRouter.js": {
+    "mtime": 1783042033.0405154,
+    "ast_hash": "6034e753ecdbb9da5e5814ca59704eb7",
+    "semantic_hash": ""
+  },
+  "functions/src/telegram/processMessage.js": {
+    "mtime": 1783042075.1913986,
+    "ast_hash": "4080d57fd8b860b0899993f6049d78ad",
+    "semantic_hash": ""
+  },
+  "src/components/admin/crm/TelegramAgentPanel.jsx": {
+    "mtime": 1783042083.3757346,
+    "ast_hash": "a6bd890598c30659d9d937162fe9d46d",
     "semantic_hash": ""
   }
 }

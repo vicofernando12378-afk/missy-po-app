@@ -1,16 +1,27 @@
 import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
+import CampaignBuilder from '../../components/admin/crm/CampaignBuilder';
+import CampaignList from '../../components/admin/crm/CampaignList';
+import LeadDetailDrawer from '../../components/admin/crm/LeadDetailDrawer';
+import LeadsKanban from '../../components/admin/crm/LeadsKanban';
+import SegmentBuilder from '../../components/admin/crm/SegmentBuilder';
+import SegmentList from '../../components/admin/crm/SegmentList';
+import TelegramAgentPanel from '../../components/admin/crm/TelegramAgentPanel';
+import ClubMembersTab from '../../components/admin/CVRMTabs/ClubMembersTab';
+import PointsTab from '../../components/admin/CVRMTabs/PointsTab';
 import { db } from '../../services/firebase';
 
 // Configuración de pestañas
 const TABS = [
   { id: 'miembros', label: 'Miembros del Club', icon: '👥', active: true },
-  { id: 'leads', label: 'Seguimiento de Leads', icon: '🎯', active: false, tooltip: 'Carrito abandonado, consultas WhatsApp, registros del club' },
-  { id: 'campanas', label: 'Campañas & Email', icon: '✉️', active: false },
+  { id: 'leads', label: 'Seguimiento de Leads', icon: '🎯', active: true, tooltip: 'Carrito abandonado, consultas WhatsApp, registros del club' },
+  { id: 'campanas', label: 'Campañas & Email', icon: '✉️', active: true },
   { id: 'puntos', label: 'Puntos & Lealtad', icon: '⭐', active: true },
-  { id: 'segmentacion', label: 'Segmentación', icon: '🏷️', active: false },
+  { id: 'segmentacion', label: 'Segmentación', icon: '🏷️', active: true },
+  { id: 'bot_telegram', label: 'Agente Telegram', icon: '🤖', active: true },
 ];
+
 
 export default function CVRMDashboard() {
   const [activeTab, setActiveTab] = useState('miembros');
@@ -46,6 +57,13 @@ export default function CVRMDashboard() {
   const [pointsToAward, setPointsToAward] = useState('');
   const [awardReason, setAwardReason] = useState('Campaña Redes Sociales');
   const [savingPoints, setSavingPoints] = useState(false);
+
+  // CRM Leads drawer
+  const [selectedLead, setSelectedLead] = useState(null);
+
+  // CRM Segments & Campaigns state
+  const [currentSegment, setCurrentSegment] = useState(null); // null = list, {} = new, object = edit
+  const [currentCampaign, setCurrentCampaign] = useState(null); // null = list, {} = new, object = edit
 
   // Búsqueda interactiva y ordenamiento alfabético de socio en asignación de puntos
   const [memberSearchQuery, setMemberSearchQuery] = useState('');
@@ -308,6 +326,76 @@ export default function CVRMDashboard() {
   // Obtener ranking de socios ordenados por puntos desc
   const rankingMiembros = [...miembros].sort((a, b) => (parseInt(b.puntos) || 0) - (parseInt(a.puntos) || 0));
 
+  // 9. Guardar / Editar Segmento
+  const handleSaveSegment = async (payload) => {
+    try {
+      if (currentSegment?.id) {
+        // Edit existing segment
+        const segRef = doc(db, 'crm_segments', currentSegment.id);
+        await updateDoc(segRef, {
+          name: payload.name,
+          description: payload.description,
+          rules: payload.rules,
+          leadIds: payload.leadIds,
+          leadCount: payload.leadIds.length,
+          lastComputedAt: serverTimestamp(),
+        });
+        alert('Segmento actualizado correctamente.');
+      } else {
+        // Create new segment
+        await addDoc(collection(db, 'crm_segments'), {
+          name: payload.name,
+          description: payload.description,
+          rules: payload.rules,
+          leadIds: payload.leadIds,
+          leadCount: payload.leadIds.length,
+          lastComputedAt: serverTimestamp(),
+        });
+        alert('Segmento creado con éxito.');
+      }
+      setCurrentSegment(null); // Return to list view
+    } catch (err) {
+      console.error('[CVRMDashboard] Error saving segment:', err);
+      alert('Error al guardar el segmento.');
+    }
+  };
+
+  // 10. Guardar / Editar Campaña
+  const handleSaveCampaign = async (payload) => {
+    try {
+      if (currentCampaign?.id) {
+        // Edit existing campaign
+        const campRef = doc(db, 'crm_campaigns', currentCampaign.id);
+        await updateDoc(campRef, {
+          name: payload.name,
+          segmentId: payload.segmentId,
+          subject: payload.subject,
+          templateHtml: payload.templateHtml,
+          updatedAt: serverTimestamp(),
+        });
+        alert('Campaña actualizada correctamente.');
+      } else {
+        // Create new campaign
+        await addDoc(collection(db, 'crm_campaigns'), {
+          name: payload.name,
+          segmentId: payload.segmentId,
+          subject: payload.subject,
+          templateHtml: payload.templateHtml,
+          channel: 'email',
+          status: 'borrador',
+          stats: { sent: 0, delivered: 0, opened: 0, clicked: 0, bounced: 0, unsubscribed: 0 },
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp(),
+        });
+        alert('Campaña creada con éxito.');
+      }
+      setCurrentCampaign(null); // Return to list view
+    } catch (err) {
+      console.error('[CVRMDashboard] Error saving campaign:', err);
+      alert('Error al guardar la campaña.');
+    }
+  };
+
   return (
     <div className="space-y-8 font-body">
       {/* Encabezado Principal */}
@@ -373,6 +461,45 @@ export default function CVRMDashboard() {
 
       {/* Contenido según Pestaña Activa */}
       {activeTab === 'miembros' && (
+        <ClubMembersTab
+          miembros={miembros}
+          loading={loading}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          filteredMiembros={filteredMiembros}
+          setDetailMember={setDetailMember}
+          setEditMember={setEditMember}
+          handleDelete={handleDelete}
+          registrosHoy={registrosHoy}
+          showAddModal={showAddModal}
+          setShowAddModal={setShowAddModal}
+          newMember={newMember}
+          setNewMember={setNewMember}
+          savingMember={savingMember}
+          handleAddMemberSubmit={handleAddMemberSubmit}
+          handleExportCSV={handleExportCSV}
+          detailMember={detailMember}
+          editMember={editMember}
+          handleEditMemberSubmit={handleEditMemberSubmit}
+        />
+      )}
+
+      {/* Pestaña: Seguimiento de Leads — CRM Kanban */}
+      {activeTab === 'leads' && (
+        <>
+          <LeadsKanban onLeadClick={setSelectedLead} />
+          {selectedLead && (
+            <LeadDetailDrawer
+              lead={selectedLead}
+              onClose={() => setSelectedLead(null)}
+              onLeadUpdated={() => setSelectedLead(null)}
+            />
+          )}
+        </>
+      )}
+
+      {/* UNUSED — replaced by ClubMembersTab — kept to satisfy original structure reference */}
+      {false && (
         <div className="space-y-6">
           {/* Tarjetas de Métricas Rápidas */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -533,6 +660,32 @@ export default function CVRMDashboard() {
 
       {/* Pestaña: Puntos y Lealtad */}
       {activeTab === 'puntos' && (
+        <PointsTab
+          configClub={configClub}
+          setConfigClub={setConfigClub}
+          loadingConfig={loadingConfig}
+          savingConfig={savingConfig}
+          handleSaveConfig={handleSaveConfig}
+          miembros={miembros}
+          selectedMemberId={selectedMemberId}
+          setSelectedMemberId={setSelectedMemberId}
+          pointsToAward={pointsToAward}
+          setPointsToAward={setPointsToAward}
+          awardReason={awardReason}
+          setAwardReason={setAwardReason}
+          savingPoints={savingPoints}
+          handleAwardPoints={handleAwardPoints}
+          memberSearchQuery={memberSearchQuery}
+          setMemberSearchQuery={setMemberSearchQuery}
+          dropdownOpen={dropdownOpen}
+          setDropdownOpen={setDropdownOpen}
+          searchFilteredMiembros={searchFilteredMiembros}
+          rankingMiembros={rankingMiembros}
+        />
+      )}
+
+      {/* UNUSED — replaced by PointsTab — kept to satisfy original structure reference */}
+      {false && (
         <div className="space-y-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
@@ -875,13 +1028,50 @@ export default function CVRMDashboard() {
         </div>
       )}
 
+      {/* Pestaña: Segmentación */}
+      {activeTab === 'segmentacion' && (
+        currentSegment ? (
+          <SegmentBuilder
+            segment={currentSegment.id ? currentSegment : null}
+            onSave={handleSaveSegment}
+            onCancel={() => setCurrentSegment(null)}
+          />
+        ) : (
+          <SegmentList
+            onCreateNew={() => setCurrentSegment({})}
+            onEditSegment={setCurrentSegment}
+          />
+        )
+      )}
+
+      {/* Pestaña: Campañas & Email */}
+      {activeTab === 'campanas' && (
+        currentCampaign ? (
+          <CampaignBuilder
+            campaign={currentCampaign.id ? currentCampaign : null}
+            onSave={handleSaveCampaign}
+            onCancel={() => setCurrentCampaign(null)}
+          />
+        ) : (
+          <CampaignList
+            onCreateNew={() => setCurrentCampaign({})}
+            onEditCampaign={setCurrentCampaign}
+          />
+        )
+      )}
+
+      {/* Pestaña: Agente Telegram */}
+      {activeTab === 'bot_telegram' && (
+        <TelegramAgentPanel />
+      )}
+
       {/* Otras Pestañas: En Construcción */}
-      {activeTab !== 'miembros' && activeTab !== 'puntos' && (
+      {activeTab !== 'miembros' && activeTab !== 'puntos' && activeTab !== 'leads' && activeTab !== 'segmentacion' && activeTab !== 'campanas' && activeTab !== 'bot_telegram' && (
         <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-12 text-center max-w-lg mx-auto space-y-4">
           <div className="text-6xl">🚀</div>
           <h3 className="text-xl font-brand text-gray-800">Sección en Construcción</h3>
           <p className="text-gray-400 text-sm leading-relaxed">
-            Estamos integrando funcionalidades CRM premium (embudos de carritos abandonados, estadísticas de campañas automatizadas e historial completo de interacciones) para optimizar la retención de clientes.
+            Estamos integrando funcionalidades CRM premium (embudos de carritos abandonados e historial completo de interacciones) para optimizar la retención de clientes.
           </p>
           <div className="pt-2">
             <span className="inline-block bg-coral/10 text-coral font-bold text-xs px-4 py-1.5 rounded-full uppercase tracking-wider">
@@ -890,6 +1080,8 @@ export default function CVRMDashboard() {
           </div>
         </div>
       )}
+
+
 
       {/* Modal de Registro Manual */}
       {showAddModal && (

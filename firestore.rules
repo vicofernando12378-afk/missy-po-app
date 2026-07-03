@@ -79,11 +79,20 @@ service cloud.firestore {
       );
     }
 
-    // Miembros del Club: Creación, lectura y actualización públicas para permitir registro y canje en checkout
+    // Miembros del Club:
+    //   - read/create: public (checkout registration + public display)
+    //   - update: authenticated users (for point redemption in checkout) OR admin
+    //   - delete: admin only
     match /myp_club_miembros/{miembroId} {
-      allow read, create, update: if true;
+      allow read, create: if true;
+      allow update: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com' ||
+        // Allow checkout to update points/canjes for authenticated users
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['puntos', 'actualizado_en'])
+      );
       allow delete: if request.auth != null && (
-        request.auth.token.admin == true || 
+        request.auth.token.admin == true ||
         request.auth.token.email == 'victorchavezd@gmail.com'
       );
 
@@ -92,6 +101,68 @@ service cloud.firestore {
         allow read, write: if true;
       }
     }
+
+    // ============================================================
+    // CRM 360° — Colecciones privadas (crm_)
+    // Acceso exclusivo admin. Los Cloud Functions usan firebase-admin (bypasses rules).
+    // ============================================================
+
+    // CRM Leads: Admin only
+    match /crm_leads/{leadId} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
+    // CRM Interactions: Admin only
+    match /crm_interactions/{interactionId} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
+    // CRM Tasks: Admin only
+    match /crm_tasks/{taskId} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
+    // CRM Segments: Admin only
+    match /crm_segments/{segmentId} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
+    // CRM Campaigns: Admin only
+    match /crm_campaigns/{campaignId} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
+    // CRM Bot Config: Admin only
+    match /crm_bot_config/{channel} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
+    // CRM Conversations: Admin only
+    match /crm_conversations/{conversationId} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.admin == true ||
+        request.auth.token.email == 'victorchavezd@gmail.com'
+      );
+    }
+
 
     // Configuración general (envíos, club, etc.): Lectura pública, escritura admin
     match /myp_config/{configId} {

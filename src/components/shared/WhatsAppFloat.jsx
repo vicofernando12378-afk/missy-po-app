@@ -1,13 +1,23 @@
 // Botón flotante WhatsApp — esquina inferior derecha
 // #25D366 según design system, z-index máximo
 
+import { useState, useEffect } from 'react';
+
 const WHATSAPP_NUMBER = '51999999999'; // TODO: Reemplazar con número real de Missy & Po
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  '¡Hola! Vi su tienda Missy & Po y me gustaría consultar sobre un producto 🐾',
-);
 
 export default function WhatsAppFloat() {
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
+  const [whatsappUrl, setWhatsappUrl] = useState(`https://wa.me/${WHATSAPP_NUMBER}`);
+
+  useEffect(() => {
+    // Client-side only to access window
+    const currentPath = window.location.pathname;
+    const baseMessage = '¡Hola! Vi su tienda Missy & Po y me gustaría consultar sobre un producto 🐾';
+    const trackingSuffix = ` (Origen: Web Float Button | Sección: ${currentPath})`;
+    const fullMessage = encodeURIComponent(baseMessage + trackingSuffix);
+    
+    setWhatsappUrl(`https://wa.me/${WHATSAPP_NUMBER}?text=${fullMessage}`);
+  }, []);
+
 
   return (
     <a
