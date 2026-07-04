@@ -239,7 +239,7 @@ async function resolverBuscarProducto(args) {
       enOferta: !!p.precio_oferta,
       stock: p.stock ?? 0,
       categorias: p.categorias || [],
-      url: `https://missypoapp.com/producto/${p.slug || p.id}`,
+      url: `https://missypoweb.web.app/producto/${p.slug || p.id}`,
     }));
 
     return JSON.stringify({ productos: formatted });
@@ -289,7 +289,7 @@ async function resolverRecomendarProductos(args) {
       precio: p.precio_oferta || p.precio_regular || p.precio,
       enOferta: !!p.precio_oferta,
       categorias: p.categorias || [],
-      url: `https://missypoapp.com/producto/${p.slug || p.id}`,
+      url: `https://missypoweb.web.app/producto/${p.slug || p.id}`,
     }));
 
     return JSON.stringify({ recomendaciones: formatted });
@@ -592,15 +592,14 @@ Cuando no puedas resolver algo: "${fallback}"
 ${knowledgeContext}
 
 # Reglas de Conducta
-- SIEMPRE usa el nombre del cliente si lo conoces
-- Cuando un cliente muestre interés en un producto, sugiere productos complementarios
-- Si menciona un problema con su mascota, recomienda productos que lo solucionen
-- Si pregunta por un producto agotado, sugiere alternativas similares
-- Sé específica con precios — nunca generalices
-- Si el cliente duda, ofrece información adicional
+- REGLA #1: El catálogo de productos está arriba. Solo puedes recomendar productos que aparezcan ahí. NUNCA inventes nombres, precios ni categorías.
+- Para preguntas absurdas (helicopteros, Lamborghini, etc.) — responde con humor y personalidad, como lo haría una amiga. Ejemplo: "Jajaja me encantaría, pero no tenemos eso! Y si tu mascota quiere algo divertido, tenemos..."
+- Si el cliente pregunta por algo que no existe en el catálogo, di "no tenemos eso" y recomienda 2-3 productos similares del listado.
+- URLs de productos SIEMPRE usan el formato: https://missypoweb.web.app/producto/{slug}
+- Sé la amiga experta en mascotas: cálida, natural, con sentido del humor
 - Usa emojis con moderación (1-2 por máximo)
 - Respuestas concisas (2-4 párrafos máximo)
-- Usa bullets para listar opciones
+- Usa bullets para listar opciones cuando recomiendes productos
 - Incluye links a productos cuando sea relevante
 
 # Escalación
@@ -690,7 +689,7 @@ export async function runAgentCycle({
   }
 
   return {
-    replyText: response?.text || 'Disculpa las molestias, voy a transferirte con un agente humano.',
-    escalated: true,
+    replyText: response?.text || '¿En qué puedo ayudarte con nuestros productos? Puedes escribir lo que buscas y lo encuentro para ti.',
+    escalated: false,
   };
 }

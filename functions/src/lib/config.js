@@ -16,8 +16,10 @@ let cacheExpiry = 0;
 
 const ENV_DEFAULTS = {
   TELEGRAM_BOT_TOKEN: '',
+  TELEGRAM_BOT_USERNAME: '',
   DEEPSEEK_API_KEY: '',
-  DEEPSEEK_MODEL: 'deepseek-chat',
+  DEEPSEEK_MODEL: 'deepseek-v4-flash',
+  DEEPSEEK_THINKING: 'disabled',
   QWEN_API_KEY: '',
   QWEN_ASR_MODEL: 'qwen3-asr-flash-filetrans',
   QWEN_TTS_MODEL: 'qwen3-tts-flash',

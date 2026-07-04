@@ -1,11 +1,12 @@
 /**
  * TelegramAgentPanel.jsx — Admin UI for managing Telegram AI bot.
- * Features: personality config, voice toggle, conversation controls.
+ * Features: personality config, voice toggle, conversation controls, chat interface.
  */
-import { doc, getDoc, setDoc, collection, query, orderBy, onSnapshot, updateDoc } from 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { doc, getDoc, setDoc, collection, query, orderBy, onSnapshot, updateDoc, where, getDocs, limit } from 'firebase/firestore';
+import { useState, useEffect, useRef } from 'react';
 
-import { db } from '../../../services/firebase';
+import { db, functions } from '../../../services/firebase';
+import { httpsCallable } from 'firebase/functions';
 
 const TONE_OPTIONS = [
   { value: 'casual', label: 'Casual — Amigable, informal' },
@@ -35,6 +36,12 @@ function formatDate(ts) {
   });
 }
 
+function formatTime(ts) {
+  if (!ts) return '';
+  const d = ts?.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+}
+
 export default function TelegramAgentPanel() {
   const [config, setConfig] = useState({
     systemPrompt: '',
@@ -48,6 +55,14 @@ export default function TelegramAgentPanel() {
   const [saving, setSaving] = useState(false);
   const [newRule, setNewRule] = useState('');
 
+  // Chat interface state
+  const [selectedConversation, setSelectedConversation] = useState(null);
+  const [chatMessages, setChatMessages] = useState([]);
+  const [loadingMessages, setLoadingMessages] = useState(false);
+  const [newMessage, setNewMessage] = useState('');
+  const [sendingMessage, setSendingMessage] = useState(false);
+  const chatEndRef = useRef(null);
+
   useEffect(() => {
     loadBotConfig();
     const q = query(collection(db, 'crm_conversations'), orderBy('lastMessageAt', 'desc'));
@@ -57,6 +72,63 @@ export default function TelegramAgentPanel() {
     }, () => setLoadingChats(false));
     return unsubscribe;
   }, []);
+
+  // Load chat messages when conversation is selected
+  useEffect(() => {
+    if (!selectedConversation) {
+      setChatMessages([]);
+      return;
+    }
+    setLoadingMessages(true);
+
+    async function loadMessages() {
+      try {
+        let leadId = selectedConversation.leadId;
+
+        // If conversation doesn't have leadId yet, find it from the lead
+        if (!leadId) {
+          const leadsSnap = await getDocs(query(
+            collection(db, 'crm_leads'),
+            where('source', '==', 'telegram'),
+            where('sourceDetail.telegramChatId', '==', selectedConversation.externalId),
+            limit(1)
+          ));
+          if (!leadsSnap.empty) {
+            leadId = leadsSnap.docs[0].id;
+            // Backfill leadId into conversation
+            await updateDoc(doc(db, 'crm_conversations', selectedConversation.id), {
+              leadId,
+              updatedAt: new Date(),
+            });
+          }
+        }
+
+        if (!leadId) {
+          setLoadingMessages(false);
+          return;
+        }
+
+        const q = query(
+          collection(db, 'crm_interactions'),
+          where('leadId', '==', leadId),
+          where('channel', '==', 'telegram'),
+          orderBy('createdAt', 'asc')
+        );
+        const unsubscribe = onSnapshot(q, (snap) => {
+          setChatMessages(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+          setLoadingMessages(false);
+          setTimeout(() => chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
+        }, () => setLoadingMessages(false));
+        return unsubscribe;
+      } catch (err) {
+        console.error('[Chat] Error loading messages:', err);
+        setLoadingMessages(false);
+      }
+    }
+
+    const unsubPromise = loadMessages();
+    return () => { unsubPromise.then(unsub => unsub && unsub()); };
+  }, [selectedConversation]);
 
   async function loadBotConfig() {
     setLoadingConfig(true);
@@ -109,6 +181,28 @@ export default function TelegramAgentPanel() {
     }
   }
 
+  async function handleSendMessage(e) {
+    e.preventDefault();
+    if (!newMessage.trim() || !selectedConversation) return;
+    setSendingMessage(true);
+    try {
+      await fetch('https://us-central1-missypoweb.cloudfunctions.net/sendHumanMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          conversationId: selectedConversation.id,
+          text: newMessage.trim(),
+        }),
+      });
+      setNewMessage('');
+    } catch (err) {
+      console.error('[TelegramAgentPanel] Error sending message:', err);
+      alert('Error al enviar mensaje.');
+    } finally {
+      setSendingMessage(false);
+    }
+  }
+
   function updatePersonality(field, value) {
     setConfig(p => ({
       ...p,
@@ -138,6 +232,117 @@ export default function TelegramAgentPanel() {
     }));
   }
 
+  // ── CHAT VIEW ─────────────────────────────────────────────────────────────
+  if (selectedConversation) {
+    return (
+      <div className="bg-white rounded-3xl border border-gray-150 shadow-sm flex flex-col h-[700px] animate-fade-in">
+        {/* Header */}
+        <div className="flex items-center gap-4 p-4 border-b border-gray-100">
+          <button
+            onClick={() => setSelectedConversation(null)}
+            className="p-2 hover:bg-gray-100 rounded-xl transition-all cursor-pointer border-none bg-transparent"
+          >
+            ← Volver
+          </button>
+          <div className="flex-1">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-sm text-gray-800">
+                Chat #{selectedConversation.externalId}
+              </span>
+              <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
+                selectedConversation.status === 'bot' ? 'bg-purple-50 text-purple-600 border border-purple-100' :
+                selectedConversation.status === 'esperando_humano' ? 'bg-amber-50 text-amber-600 border border-amber-100 animate-pulse' :
+                'bg-green-50 text-green-600 border border-green-100'
+              }`}>
+                {selectedConversation.status === 'bot' ? '🤖 IA' :
+                 selectedConversation.status === 'esperando_humano' ? '⏳ Ayuda' : '👤 Humano'}
+              </span>
+            </div>
+            <p className="text-[10px] text-gray-400 mt-0.5">
+              Último mensaje: {formatDate(selectedConversation.lastMessageAt)}
+            </p>
+          </div>
+          {selectedConversation.status === 'bot' || selectedConversation.status === 'esperando_humano' ? (
+            <button
+              onClick={() => {
+                handleStatusChange(selectedConversation.id, 'humano');
+                setSelectedConversation(prev => ({ ...prev, status: 'humano' }));
+              }}
+              className="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-xs font-bold cursor-pointer border-none shadow transition-all"
+            >
+              👤 Atender
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                handleStatusChange(selectedConversation.id, 'bot');
+                setSelectedConversation(prev => ({ ...prev, status: 'bot' }));
+              }}
+              className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold cursor-pointer border-none shadow transition-all"
+            >
+              🤖 Devolver
+            </button>
+          )}
+        </div>
+
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50/50">
+          {loadingMessages ? (
+            <div className="py-12 text-center">
+              <div className="w-8 h-8 border-3 border-coral border-t-transparent rounded-full animate-spin mx-auto" />
+            </div>
+          ) : chatMessages.length === 0 ? (
+            <div className="py-16 text-center text-gray-300 italic text-sm">
+              Sin mensajes aún.
+            </div>
+          ) : (
+            chatMessages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${msg.direction === 'inbound' ? 'justify-start' : 'justify-end'}`}
+              >
+                <div
+                  className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                    msg.direction === 'inbound'
+                      ? 'bg-white border border-gray-150 text-gray-800 rounded-bl-md'
+                      : 'bg-coral text-white rounded-br-md'
+                  }`}
+                >
+                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                  <p className={`text-[9px] mt-1 ${msg.direction === 'inbound' ? 'text-gray-300' : 'text-white/60'}`}>
+                    {formatTime(msg.createdAt)}
+                    {msg.metadata?.sentBy === 'human' && ' · 👤'}
+                  </p>
+                </div>
+              </div>
+            ))
+          )}
+          <div ref={chatEndRef} />
+        </div>
+
+        {/* Input */}
+        <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-100 flex gap-3">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={e => setNewMessage(e.target.value)}
+            placeholder="Escribí un mensaje como humano..."
+            className="flex-1 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-coral/20"
+            disabled={sendingMessage}
+          />
+          <button
+            type="submit"
+            disabled={!newMessage.trim() || sendingMessage}
+            className="px-5 py-2.5 bg-coral hover:bg-coral-dark disabled:opacity-50 text-white rounded-2xl font-bold text-sm cursor-pointer border-none shadow transition-all"
+          >
+            {sendingMessage ? '...' : 'Enviar'}
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  // ── MAIN VIEW (Config + Conversations) ────────────────────────────────────
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-in">
       {/* Left: Config */}
@@ -343,7 +548,10 @@ export default function TelegramAgentPanel() {
               <div className="divide-y divide-gray-50 max-h-[450px] overflow-y-auto pr-1">
                 {conversations.map((chat) => (
                   <div key={chat.id} className="py-4 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
-                    <div className="flex-1 min-w-0">
+                    <div
+                      className="flex-1 min-w-0 cursor-pointer hover:bg-gray-50 p-2 rounded-xl transition-all"
+                      onClick={() => setSelectedConversation(chat)}
+                    >
                       <div className="flex items-center gap-2">
                         <span className="font-semibold text-sm text-gray-800">Chat #{chat.externalId}</span>
                         <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
@@ -360,14 +568,20 @@ export default function TelegramAgentPanel() {
                     <div className="flex gap-2 flex-shrink-0">
                       {chat.status === 'bot' || chat.status === 'esperando_humano' ? (
                         <button
-                          onClick={() => handleStatusChange(chat.id, 'humano')}
+                          onClick={() => {
+                            handleStatusChange(chat.id, 'humano');
+                            setSelectedConversation({ ...chat, status: 'humano' });
+                          }}
                           className="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-xs font-bold cursor-pointer border-none shadow transition-all"
                         >
                           👤 Atender
                         </button>
                       ) : (
                         <button
-                          onClick={() => handleStatusChange(chat.id, 'bot')}
+                          onClick={() => {
+                            handleStatusChange(chat.id, 'bot');
+                            setSelectedConversation({ ...chat, status: 'bot' });
+                          }}
                           className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-bold cursor-pointer border-none shadow transition-all"
                         >
                           🤖 Devolver

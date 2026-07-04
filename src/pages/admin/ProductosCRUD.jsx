@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 
 import ProductoFormModal from '../../components/admin/ProductoFormModal';
 import { obtenerTodosProductosAdmin, eliminarProducto } from '../../services';
+import { functions } from '../../services/firebase';
+import { httpsCallable } from 'firebase/functions';
 
 
 // ============================================================
@@ -20,6 +22,10 @@ export default function ProductosCRUD() {
   const [productoEditar, setProductoEditar] = useState(null); // null = crear nuevo
   const [eliminandoId, setEliminandoId] = useState(null);
 
+  // Catalog status
+  const [catalogStatus, setCatalogStatus] = useState(null);
+  const [refreshingCatalog, setRefreshingCatalog] = useState(false);
+
   const cargarProductos = useCallback(async () => {
     setLoading(true);
     try {
@@ -33,6 +39,63 @@ export default function ProductosCRUD() {
   }, []);
 
   useEffect(() => { cargarProductos(); }, [cargarProductos]);
+
+  // Check catalog status
+  useEffect(() => {
+    async function checkCatalog() {
+      try {
+        const res = await fetch('https://us-central1-missypoweb.cloudfunctions.net/getApiKeysStatus');
+        // We'll use a simpler approach - just check if catalog exists
+      } catch (e) {
+        // Silent fail
+      }
+    }
+    checkCatalog();
+  }, []);
+
+  // Refresh catalog for bot
+  const handleRefreshCatalog = async () => {
+    setRefreshingCatalog(true);
+    try {
+      const res = await fetch('https://us-central1-missypoweb.cloudfunctions.net/refreshProductCatalog', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (data.success) {
+        setCatalogStatus({ outdated: false, productCount: data.productCount });
+        alert(`✅ Catálogo actualizado: ${data.productCount} productos`);
+      } else {
+        alert('Error al actualizar catálogo');
+      }
+    } catch (e) {
+      console.error('Error refreshing catalog:', e);
+      alert('Error al actualizar catálogo');
+    } finally {
+      setRefreshingCatalog(false);
+    }
+  };
+
+  // Download CSV for Google/Meta
+  const handleDownloadCSV = async () => {
+    try {
+      const res = await fetch('https://us-central1-missypoweb.cloudfunctions.net/refreshProductCatalog', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (data.csv) {
+        const blob = new Blob([data.csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `missypo-productos-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+    } catch (e) {
+      console.error('Error downloading CSV:', e);
+      alert('Error al descargar CSV');
+    }
+  };
 
   // Categorías únicas detectadas en el catálogo
   const categoriasUnicas = [...new Set(productos.flatMap(p => p.categorias || []))].sort();
@@ -86,6 +149,28 @@ export default function ProductosCRUD() {
 
   return (
     <div className="space-y-6">
+      {/* Catalog Status Banner */}
+      {catalogStatus?.outdated && (
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">⚠️</span>
+            <div>
+              <p className="text-sm font-semibold text-amber-800">Catálogo del bot desactualizado</p>
+              <p className="text-xs text-amber-600">
+                Hay {catalogStatus.activeCount} productos activos pero el catálogo del bot tiene {catalogStatus.catalogCount}.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={handleRefreshCatalog}
+            disabled={refreshingCatalog}
+            className="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+          >
+            {refreshingCatalog ? 'Actualizando...' : 'Actualizar ahora'}
+          </button>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
@@ -94,12 +179,27 @@ export default function ProductosCRUD() {
             Crea, edita y gestiona todos los productos de la tienda.
           </p>
         </div>
-        <button
-          onClick={handleNuevoProducto}
-          className="flex items-center gap-2 px-5 py-2.5 bg-coral text-white rounded-2xl font-semibold text-sm shadow-md shadow-coral/20 hover:bg-coral-dark transition-all active:scale-[0.98] self-start md:self-auto"
-        >
-          ✨ Nuevo Producto
-        </button>
+        <div className="flex gap-2 self-start md:self-auto">
+          <button
+            onClick={handleDownloadCSV}
+            className="flex items-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold text-sm transition-all"
+          >
+            📥 CSV Google/Meta
+          </button>
+          <button
+            onClick={handleRefreshCatalog}
+            disabled={refreshingCatalog}
+            className="flex items-center gap-2 px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold text-sm transition-all disabled:opacity-50"
+          >
+            {refreshingCatalog ? '...' : '🔄 Actualizar Bot'}
+          </button>
+          <button
+            onClick={handleNuevoProducto}
+            className="flex items-center gap-2 px-5 py-2.5 bg-coral text-white rounded-2xl font-semibold text-sm shadow-md shadow-coral/20 hover:bg-coral-dark transition-all active:scale-[0.98]"
+          >
+            ✨ Nuevo Producto
+          </button>
+        </div>
       </div>
 
       {/* KPI Pills */}

@@ -22,10 +22,12 @@ const TABS = [
 const FIELDS = {
   agent: [
     { key: 'TELEGRAM_BOT_TOKEN', label: 'Telegram Bot Token', type: 'password', guide: 'TELEGRAM_BOT_TOKEN', placeholder: '1234567890:ABCdefGHIjklMNOpqrsTUVwxyz' },
-    { key: 'DEEPSEEK_API_KEY', label: 'DeepSeek API Key', type: 'password', guide: 'DEEPSEEK_API_KEY', placeholder: 'sk-...' },
-    { key: 'DEEPSEEK_MODEL', label: 'Modelo DeepSeek', type: 'select', options: [
-      { value: 'deepseek-chat', label: 'DeepSeek V3 (deepseek-chat) — Recomendado' },
-      { value: 'deepseek-reasoner', label: 'DeepSeek R1 (deepseek-reasoner) — Razonamiento avanzado' },
+    { key: 'TELEGRAM_BOT_USERNAME', label: 'Username del Bot Telegram', type: 'text', guide: 'TELEGRAM_BOT_USERNAME', placeholder: 'Missypo_bot' },
+    { key: 'DEEPSEEK_API_KEY', label: 'TokenHub API Key', type: 'password', guide: 'DEEPSEEK_API_KEY', placeholder: 'sk-...' },
+    { key: 'DEEPSEEK_MODEL', label: 'Modelo de IA', type: 'select', options: [
+      { value: 'deepseek-v4-flash', label: 'DeepSeek V4 Flash — Recomendado (1M contexto, costo-beneficio)' },
+      { value: 'deepseek-v4-pro', label: 'DeepSeek V4 Pro — Potente (1M contexto, tareas complejas)' },
+      { value: 'deepseek-v3.2', label: 'DeepSeek V3.2 — Estable (128K contexto, probado)' },
     ]},
     { key: 'QWEN_API_KEY', label: 'Qwen Cloud API Key (Voz)', type: 'password', guide: 'QWEN_API_KEY', placeholder: 'sk-...' },
     { key: 'QWEN_ASR_MODEL', label: 'Modelo ASR (Voz → Texto)', type: 'select', options: [

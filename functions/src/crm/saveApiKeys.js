@@ -16,6 +16,7 @@ import { clearConfigCache } from '../lib/config.js';
  */
 const ALLOWED_FIELDS = new Set([
   'TELEGRAM_BOT_TOKEN',
+  'TELEGRAM_BOT_USERNAME',
   'DEEPSEEK_API_KEY',
   'DEEPSEEK_MODEL',
   'QWEN_API_KEY',
@@ -35,6 +36,7 @@ const ALLOWED_FIELDS = new Set([
 
 /**
  * Sanitize: strip empty strings (don't overwrite existing key with blank).
+ * Also skip masked values (••••••••) — user didn't change the key.
  */
 function sanitize(data) {
   const out = {};
@@ -42,7 +44,7 @@ function sanitize(data) {
     if (!ALLOWED_FIELDS.has(k)) continue;
     if (typeof v !== 'string') continue;
     const trimmed = v.trim();
-    if (trimmed.length > 0) {
+    if (trimmed.length > 0 && !trimmed.startsWith('••••••••')) {
       out[k] = trimmed;
     }
   }

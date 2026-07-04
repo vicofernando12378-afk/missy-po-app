@@ -3,8 +3,8 @@ import axios from 'axios';
 import { getApiKeys } from '../../lib/config.js';
 
 /**
- * Adapter for DeepSeek Chat API (compatible with OpenAI format)
- * 
+ * Adapter for LLM Chat API via TokenHub (OpenAI-compatible format)
+ *
  * @param {object} params
  * @param {string} params.systemPrompt
  * @param {Array} params.messages
@@ -15,10 +15,10 @@ export async function callDeepSeek({ systemPrompt, messages, tools }) {
   const keys = await getApiKeys();
   const apiKey = keys.DEEPSEEK_API_KEY;
   if (!apiKey) {
-    throw new Error('DEEPSEEK_API_KEY is not configured.');
+    throw new Error('DEEPSEEK_API_KEY (TokenHub) is not configured.');
   }
 
-  const model = keys.DEEPSEEK_MODEL || 'deepseek-chat';
+  const model = keys.DEEPSEEK_MODEL || 'deepseek-v4-flash';
 
   // Build payload
   const apiMessages = [
@@ -29,8 +29,10 @@ export async function callDeepSeek({ systemPrompt, messages, tools }) {
   const payload = {
     model,
     messages: apiMessages,
-    temperature: 0.1, // low temperature for precise tool execution and business responses
+    temperature: 0.1,
   };
+
+  // Thinking mode disabled — causes excessive latency (60s+) on simple chat
 
   if (Array.isArray(tools) && tools.length > 0) {
     payload.tools = tools;
@@ -38,19 +40,19 @@ export async function callDeepSeek({ systemPrompt, messages, tools }) {
   }
 
   try {
-    const response = await axios.post('https://api.deepseek.com/v1/chat/completions', payload, {
+    const response = await axios.post('https://tokenhub.link/v1/chat/completions', payload, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
       },
-      timeout: 30000, // 30 seconds timeout
+      timeout: 30000,
     });
 
     const choice = response.data?.choices?.[0];
     const message = choice?.message;
 
     if (!message) {
-      throw new Error('Empty response from DeepSeek API');
+      throw new Error('Empty response from LLM API');
     }
 
     return {
@@ -58,7 +60,7 @@ export async function callDeepSeek({ systemPrompt, messages, tools }) {
       toolCalls: message.tool_calls || null,
     };
   } catch (error) {
-    console.error('❌ DeepSeek API call failed:', error.response?.data || error.message);
-    throw new Error(`DeepSeek API error: ${error.response?.data?.error?.message || error.message}`);
+    console.error('❌ LLM API call failed:', error.response?.data || error.message);
+    throw new Error(`LLM API error: ${error.response?.data?.error?.message || error.message}`);
   }
 }

@@ -20,17 +20,18 @@ const GUIDES = {
     docsUrl: 'https://core.telegram.org/bots/tutorial',
   },
   DEEPSEEK_API_KEY: {
-    title: 'DeepSeek API Key',
+    title: 'TokenHub API Key',
     icon: '🧠',
     steps: [
-      { text: 'Crea una cuenta en platform.deepseek.com', link: 'https://platform.deepseek.com' },
-      { text: 'Ve a "API Keys" en el menú lateral' },
+      { text: 'Crea una cuenta en tokenhub.tencentmaas.com', link: 'https://tokenhub.tencentmaas.com' },
+      { text: 'Ve a "API Keys" o "Dashboard" en el menú' },
       { text: 'Haz clic en "Create new API key"' },
       { text: 'Dale un nombre descriptivo (ej: "MissyPo-Bot")' },
       { text: 'Copia la key generada. Solo se muestra una vez.', highlight: true },
-      { text: 'Modelo recomendado: deepseek-chat (DeepSeek V3). deepseek-reasoner (R1) disponible para tareas complejas.' },
+      { text: 'Modelos: deepseek-v4-flash (recomendado), deepseek-v4-pro (potente), deepseek-v3.2 (estable).' },
+      { text: 'Crédito inicial: $1 USD. V4 Flash: ~$0.20/M tokens entrada, ~$0.40/M tokens salida.' },
     ],
-    docsUrl: 'https://platform.deepseek.com/api-docs',
+    docsUrl: 'https://tokenhub.tencentmaas.com',
   },
   QWEN_API_KEY: {
     title: 'Qwen Cloud API Key (ASR + TTS)',

@@ -1,11 +1,12 @@
 /**
  * knowledge.js — Knowledge base loader for the Telegram sales assistant.
  *
- * Loads business info, policies, FAQ, and club data from Firestore crm_knowledge.
- * Cached 10 minutes to avoid hammering Firestore on every message.
+ * Loads business info, policies, FAQ, club data, and product catalog
+ * from Firestore. Cached 10 minutes to avoid hammering Firestore on every message.
  */
 
 import { getFirestore } from 'firebase-admin/firestore';
+import { getCatalogJSON } from './productCatalog.js';
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
 let cache = null;
@@ -101,7 +102,55 @@ ${relevantFaq.map(f => {
 ${formatClub(kb.club)}`);
   }
 
+  // Product catalog
+  const catalogSection = await getProductCatalogContext();
+  if (catalogSection) {
+    sections.push(catalogSection);
+  }
+
   return sections.join('\n\n');
+}
+
+/**
+ * Builds product catalog context for the system prompt.
+ * Returns formatted markdown with all active products + anti-hallucination rules.
+ */
+async function getProductCatalogContext() {
+  try {
+    const products = await getCatalogJSON();
+    if (!products || products.length === 0) return null;
+
+    // Group by category
+    const byCategory = {};
+    for (const p of products) {
+      const cats = p.categorias?.length > 0 ? p.categorias : ['Sin categoría'];
+      for (const cat of cats) {
+        if (!byCategory[cat]) byCategory[cat] = [];
+        byCategory[cat].push(p);
+      }
+    }
+
+    const lines = ['# Catálogo de Productos (Missy & Po)'];
+    lines.push('REGLA CRÍTICA: Solo puedes recomendar productos que aparecen en este listado.');
+    lines.push('Si el cliente pregunta por algo que no existe, di "no tenemos eso" y recomienda del listado.');
+    lines.push('NUNCA inventes nombres, precios, categorías o productos.\n');
+
+    for (const [cat, items] of Object.entries(byCategory)) {
+      lines.push(`## ${cat}`);
+      for (const p of items) {
+        const priceStr = p.enOferta
+          ? `S/.${p.precio} (oferta, antes S/.${p.precioRegular})`
+          : `S/.${p.precio}`;
+        const stockStr = p.stock > 0 ? `Stock: ${p.stock}` : 'AGOTADO';
+        lines.push(`- ${p.nombre} — ${priceStr} — ${stockStr} — /producto/${p.slug}`);
+      }
+    }
+
+    return lines.join('\n');
+  } catch (err) {
+    console.error('[knowledge] Error loading product catalog:', err.message);
+    return null;
+  }
 }
 
 /**

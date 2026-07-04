@@ -18,6 +18,8 @@ export { saveApiKeys } from './crm/saveApiKeys.js';
 export { getApiKeysStatus } from './crm/getApiKeysStatus.js';
 export { saveKnowledge } from './crm/saveKnowledge.js';
 export { getKnowledge } from './crm/getKnowledge.js';
+export { sendHumanMessage } from './crm/sendHumanMessage.js';
+export { refreshProductCatalog } from './crm/refreshProductCatalog.js';
 
 // campaigns
 export { sendCampaign } from './campaigns/sendCampaign.js';
@@ -29,3 +31,6 @@ export { youtubePoll } from './social/youtubePoll.js';
 
 // telegram
 export { telegramWebhook } from './telegram/webhook.js';
+
+// cron
+export { generateProductCatalog } from './cron/generateProductCatalog.js';

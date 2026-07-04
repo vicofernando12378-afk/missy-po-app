@@ -103,12 +103,32 @@ async function sendTelegramMessage(chatId, text) {
   const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token) return;
   try {
+    // Escape HTML chars, then let Telegram auto-link URLs
+    const safe = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
-      text,
+      text: safe,
+      parse_mode: 'HTML',
     });
   } catch (err) {
     console.error('Error sending Telegram message:', err.response?.data || err.message);
+  }
+}
+
+async function sendChatAction(chatId, action = 'typing') {
+  const keys = await getApiKeys();
+  const token = keys.TELEGRAM_BOT_TOKEN;
+  if (!token) return;
+  try {
+    await axios.post(`https://api.telegram.org/bot${token}/sendChatAction`, {
+      chat_id: chatId,
+      action,
+    });
+  } catch (err) {
+    console.error('Error sending chat action:', err.response?.data || err.message);
   }
 }
 
@@ -160,6 +180,9 @@ export async function processTelegramMessage({
   const now = new Date();
   const conversationId = `telegram_${chatId}`;
 
+  // Show "typing..." indicator immediately
+  sendChatAction(chatId, 'typing');
+
   try {
     // 1. Fetch or create conversation
     const convRef = db.collection('crm_conversations').doc(conversationId);
@@ -194,6 +217,8 @@ export async function processTelegramMessage({
       const leadDoc = leadsSnap.docs[0];
       leadId = leadDoc.id;
       lead = leadDoc.data();
+      // Store leadId in conversation for CRM chat UI
+      await convRef.update({ leadId, updatedAt: Timestamp.fromDate(now) });
     } else {
       const leadRef = db.collection('crm_leads').doc();
       leadId = leadRef.id;
@@ -219,6 +244,8 @@ export async function processTelegramMessage({
         lastInteractionAt: Timestamp.fromDate(now),
       };
       await leadRef.set(lead);
+      // Store leadId in conversation for CRM chat UI
+      await convRef.update({ leadId, updatedAt: Timestamp.fromDate(now) });
     }
 
     // 3. Process voice to text
@@ -244,11 +271,12 @@ export async function processTelegramMessage({
       createdAt: Timestamp.fromDate(now),
     });
 
-    // 5. Rate limiting (max 20 messages/hour)
+    // 5. Rate limiting (max 20 messages/hour — inbound only)
     const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
     const rateSnap = await db.collection('crm_interactions')
       .where('leadId', '==', leadId)
       .where('channel', '==', 'telegram')
+      .where('direction', '==', 'inbound')
       .where('createdAt', '>=', Timestamp.fromDate(oneHourAgo))
       .get();
 
@@ -342,6 +370,7 @@ export async function processTelegramMessage({
       .reverse();
 
     // 12. Run AI cycle
+    sendChatAction(chatId, 'typing');
     const { replyText, escalated } = await runAgentCycle({
       systemPrompt,
       messages: chatHistory,
