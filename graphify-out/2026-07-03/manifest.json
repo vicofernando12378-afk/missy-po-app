@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "src/components/layout/Footer.jsx": {
-    "mtime": 1782848915.0796812,
-    "ast_hash": "40d573a13ae2ac083125a686e94600e3",
+    "mtime": 1783057334.6164854,
+    "ast_hash": "edc843ed8f5c0f983e3a4710601a3702",
     "semantic_hash": ""
   },
   "src/components/layout/Layout.jsx": {
@@ -345,8 +345,8 @@
     "semantic_hash": ""
   },
   "src/components/legal/ReclamacionesForm.jsx": {
-    "mtime": 1782930618.1655202,
-    "ast_hash": "b218ab66f269692cb68fc6e805b39384",
+    "mtime": 1783057160.83321,
+    "ast_hash": "378650541c12c453f05034974dce0692",
     "semantic_hash": ""
   },
   "src/pages/blog.astro": {
@@ -590,8 +590,8 @@
     "semantic_hash": ""
   },
   "src/components/checkout/CheckoutForm.jsx": {
-    "mtime": 1782848915.0786812,
-    "ast_hash": "ab0b69d69d00c6cf9c66e04bdd9c0f02",
+    "mtime": 1783056238.853621,
+    "ast_hash": "ce7e76d8047cf68d142deae5917b7e3e",
     "semantic_hash": ""
   },
   "src/components/checkout/ClubSection.jsx": {
@@ -1170,8 +1170,8 @@
     "semantic_hash": ""
   },
   "src/components/admin/crm/KnowledgeBaseSection.jsx": {
-    "mtime": 1783053815.8393805,
-    "ast_hash": "a32f343b3c701325ff64ce538a8632d8",
+    "mtime": 1783055083.1722171,
+    "ast_hash": "890901e7b3e69eb5f6d22e1e0608731d",
     "semantic_hash": ""
   }
 }

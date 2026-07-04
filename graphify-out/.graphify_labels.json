@@ -81,5 +81,11 @@
   "79": "CVRMDashboard.jsx",
   "80": "CajaDiaria.jsx",
   "81": "LeadsKanban.jsx",
-  "82": "userProfile.js"
+  "82": "userProfile.js",
+  "83": "ApiKeysSection.jsx",
+  "84": "TelegramAgentPanel.jsx",
+  "85": "functions",
+  "86": "SegmentBuilder.jsx",
+  "87": "devDependencies",
+  "88": "../../index.css"
 }

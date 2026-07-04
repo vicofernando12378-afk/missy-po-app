@@ -103,15 +103,10 @@ async function sendTelegramMessage(chatId, text) {
   const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token) return;
   try {
-    // Escape HTML chars, then let Telegram auto-link URLs
-    const safe = text
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
-      text: safe,
-      parse_mode: 'HTML',
+      text,
+      disable_web_page_preview: true,
     });
   } catch (err) {
     console.error('Error sending Telegram message:', err.response?.data || err.message);

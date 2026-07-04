@@ -11,14 +11,10 @@ async function sendTelegramMessage(chatId, text) {
   const keys = await getApiKeys();
   const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token) throw new Error('TELEGRAM_BOT_TOKEN not configured');
-  const safe = text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
   await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
     chat_id: chatId,
-    text: safe,
-    parse_mode: 'HTML',
+    text,
+    disable_web_page_preview: true,
   });
 }
 
