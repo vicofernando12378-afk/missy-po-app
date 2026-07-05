@@ -114,36 +114,26 @@ ${formatClub(kb.club)}`);
 
 /**
  * Builds product catalog context for the system prompt.
- * Returns a lightweight index (categories + count) — NOT the full catalog.
- * The LLM uses buscarProducto tool for specific product queries.
+ * Returns the full catalog with prices and stock — the LLM needs this
+ * to answer product questions without extra tool calls.
  */
 async function getProductCatalogContext() {
   try {
     const products = await getCatalogJSON();
     if (!products || products.length === 0) return null;
 
-    // Group by category
-    const byCategory = {};
-    for (const p of products) {
-      const cats = p.categorias?.length > 0 ? p.categorias : ['Sin categoría'];
-      for (const cat of cats) {
-        if (!byCategory[cat]) byCategory[cat] = [];
-        byCategory[cat].push(p);
-      }
-    }
-
     const lines = ['# Catálogo de Productos (Missy & Po)'];
-    lines.push('Tenemos los siguientes productos organizados por categoría:\n');
+    lines.push('Tu catálogo actual con precios y stock:\n');
 
-    for (const [cat, items] of Object.entries(byCategory)) {
-      const available = items.filter(p => p.stock > 0);
-      const featured = available.slice(0, 3).map(p => p.nombre).join(', ');
-      const count = items.length;
-      lines.push(`- ${cat}: ${count} productos. Destacados: ${featured || 'consultar disponibilidad'}`);
+    for (const p of products) {
+      const stock = p.stock ?? 0;
+      const stockLabel = stock > 0 ? `Stock: ${stock}` : 'Sin stock';
+      const price = p.precio_oferta || p.precio_regular || p.precio || 0;
+      const cats = p.categorias?.length > 0 ? p.categorias.join(', ') : 'Sin categoría';
+      lines.push(`- ${p.nombre}: S/. ${price} (${stockLabel}) — Categorías: ${cats} — ID: ${p.id}`);
     }
 
     lines.push(`\nTotal: ${products.length} productos activos.`);
-    lines.push('Para preguntas por productos específicos, usa la herramienta buscarProducto.');
     lines.push('NUNCA inventes nombres, precios ni categorías.');
 
     return lines.join('\n');

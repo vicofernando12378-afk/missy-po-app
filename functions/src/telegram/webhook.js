@@ -155,6 +155,167 @@ export const telegramWebhook = onRequest({
             chat_id: chatId,
             text: 'Pedido cancelado. Si cambias de opinión, aquí estoy 🐾',
           });
+        } else if (data.startsWith('checkout_dept:')) {
+          const dept = data.replace('checkout_dept:', '');
+          const db = getFirestore();
+          const conversationId = `telegram_${chatId}`;
+          const convRef = db.collection('crm_conversations').doc(conversationId);
+          const convSnap = await convRef.get();
+
+          if (convSnap.exists && convSnap.data().status === 'checkout') {
+            const deptFinal = dept === 'otro' ? '' : dept;
+            if (dept === 'otro') {
+              await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+                chat_id: chatId,
+                text: '¿En qué departamento estás? Escríbelo:',
+              });
+            } else {
+              await convRef.update({
+                'checkout.datos.departamento': deptFinal,
+                'checkout.step': 'distrito',
+                updatedAt: Timestamp.fromDate(new Date()),
+              });
+              await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+                chat_id: chatId,
+                text: `Departamento: ${deptFinal}. ¿Distrito?`,
+              });
+            }
+          }
+        } else if (data.startsWith('checkout_pago:')) {
+          const pago = data.replace('checkout_pago:', '');
+          const db = getFirestore();
+          const conversationId = `telegram_${chatId}`;
+          const convRef = db.collection('crm_conversations').doc(conversationId);
+          const convSnap = await convRef.get();
+
+          if (convSnap.exists && convSnap.data().status === 'checkout') {
+            const checkout = convSnap.data().checkout;
+            const datos = checkout.datos || {};
+            const items = checkout.productos || [];
+            const total = items.reduce((sum, i) => sum + ((i.precio || 0) * 100 * (i.cantidad || 1)), 0);
+
+            await convRef.update({
+              'checkout.datos.metodoPago': pago === 'yape' ? 'Yape/Plin' : 'Contra Entrega',
+              'checkout.step': 'confirmacion',
+              updatedAt: Timestamp.fromDate(new Date()),
+            });
+
+            const resumen = items.map(i => `• ${i.nombre} x${i.cantidad || 1} — S/ ${((i.precio || 0) * (i.cantidad || 1)).toFixed(2)}`).join('\n');
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: `Resumen de tu pedido:\n\n${resumen}\n\nDirección: ${datos.direccion || ''}, ${datos.distrito || ''}, ${datos.departamento || ''}\nPago: ${pago === 'yape' ? 'Yape/Plin' : 'Contra Entrega'}\nTotal: S/ ${(total / 100).toFixed(2)}\n\n¿Confirmas tu pedido?`,
+              reply_markup: {
+                inline_keyboard: [
+                  [{ text: '✅ Confirmar Pedido', callback_data: 'checkout_confirm:si' }],
+                  [{ text: '❌ Cancelar', callback_data: 'checkout_confirm:no' }],
+                ],
+              },
+            });
+          }
+        } else if (data === 'checkout_confirm:si') {
+          // Trigger confirmation via text
+          const db = getFirestore();
+          const conversationId = `telegram_${chatId}`;
+          const convRef = db.collection('crm_conversations').doc(conversationId);
+          const convSnap = await convRef.get();
+
+          if (convSnap.exists && convSnap.data().status === 'checkout') {
+            const checkout = convSnap.data().checkout;
+            const datos = checkout.datos || {};
+            const items = (checkout.productos || []).map(p => ({
+              productoId: p.productoId || '',
+              nombre: p.nombre,
+              precio_unitario: Math.round((p.precio || 0) * 100),
+              cantidad: p.cantidad || 1,
+            }));
+            const total = items.reduce((sum, i) => sum + (i.precio_unitario * i.cantidad), 0);
+            const pedidoId = `ped-${Date.now()}`;
+
+            await db.collection('myp_pedidos').doc(pedidoId).set({
+              pedidoId,
+              estado: 'recibido',
+              confirmado: false,
+              canal: 'telegram',
+              leadId: null,
+              cliente: {
+                nombre: datos.clienteNombre || '',
+                celular: datos.telefono || '',
+                email: datos.email || null,
+                documento_tipo: 'DNI',
+                documento_numero: datos.documentoNumero || null,
+              },
+              envio: {
+                nombre: datos.clienteNombre || '',
+                direccion: datos.direccion || '',
+                telefono: datos.telefono || '',
+                departamento: datos.departamento || '',
+                distrito: datos.distrito || '',
+              },
+              items,
+              pago: {
+                metodo: datos.metodoPago || 'contra_entrega',
+                estado: 'pendiente',
+              },
+              total_final: total,
+              creado_en: Timestamp.fromDate(new Date()),
+              notificadoAdmin: false,
+            });
+
+            // Club membership
+            try {
+              const emailNorm = (datos.email || '').trim().toLowerCase();
+              if (emailNorm) {
+                const existSnap = await db.collection('myp_club_miembros')
+                  .where('email', '==', emailNorm).limit(1).get();
+                if (existSnap.empty) {
+                  await db.collection('myp_club_miembros').add({
+                    nombre_tutor: datos.clienteNombre || '',
+                    nombre_mascota: datos.nombreMascota || '',
+                    email: emailNorm,
+                    celular: datos.telefono || '',
+                    direccion: datos.direccion || '',
+                    documento_tipo: 'DNI',
+                    documento_numero: datos.documentoNumero || '',
+                    departamento: datos.departamento || '',
+                    distrito: datos.distrito || '',
+                    benefit_origen: 'Registro Automático Telegram',
+                    puntos: 0,
+                    creado_en: Timestamp.fromDate(new Date()),
+                  });
+                }
+              }
+            } catch (e) {
+              console.warn('⚠️ Club membership error:', e.message);
+            }
+
+            // Admin notification
+            await db.collection('crm_notifications').add({
+              type: 'new_order',
+              channel: 'telegram',
+              pedidoId,
+              chatId: String(chatId),
+              leadName: datos.clienteNombre || '',
+              total: total / 100,
+              read: false,
+              createdAt: Timestamp.fromDate(new Date()),
+            });
+
+            await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: `¡Pedido confirmado! Tu número es: ${pedidoId}\n\nTotal: S/ ${(total / 100).toFixed(2)}\n\nTe contactaremos pronto para coordinar la entrega 🐾`,
+            });
+          }
+        } else if (data === 'checkout_confirm:no') {
+          const db = getFirestore();
+          const conversationId = `telegram_${chatId}`;
+          const convRef = db.collection('crm_conversations').doc(conversationId);
+          await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+          await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+            chat_id: chatId,
+            text: 'Pedido cancelado. Si necesitas algo más, aquí estoy 🐾',
+          });
         }
 
         return;
@@ -181,6 +342,7 @@ export const telegramWebhook = onRequest({
             externalId: String(chatId),
             channel: 'telegram',
             status: 'bot',
+            checkout: null,
             updatedAt: Timestamp.fromDate(new Date()),
           },
           { merge: true },
@@ -196,6 +358,183 @@ export const telegramWebhook = onRequest({
           text: msg,
           disable_web_page_preview: true,
         });
+        return;
+      }
+
+      // ── CHECKOUT STATE MACHINE (pure code, no LLM) ──
+      const conversationId = `telegram_${chatId}`;
+      const db = getFirestore();
+      const convRef = db.collection('crm_conversations').doc(conversationId);
+      const convSnap = await convRef.get();
+
+      if (convSnap.exists && convSnap.data().status === 'checkout' && convSnap.data().checkout) {
+        const checkout = convSnap.data().checkout;
+        const axios = (await import('axios')).default;
+        const token = keys.TELEGRAM_BOT_TOKEN;
+
+        // Cancel checkout
+        if (command === '/cancelar') {
+          await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+          await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+            chat_id: chatId,
+            text: 'Pedido cancelado. Si necesitas algo más, aquí estoy 🐾',
+          });
+          return;
+        }
+
+        const datos = checkout.datos || {};
+        const step = checkout.step;
+
+        // Step: Ask for address
+        if (step === 'direccion') {
+          if (text && !text.startsWith('/')) {
+            await convRef.update({
+              'checkout.datos.direccion': text,
+              'checkout.step': 'departamento',
+              updatedAt: Timestamp.fromDate(new Date()),
+            });
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: '¿Departamento? Presiona el botón o escribe el nombre.',
+              reply_markup: {
+                inline_keyboard: [
+                  [{ text: '📍 Arequipa', callback_data: 'checkout_dept:Arequipa' }],
+                  [{ text: '📍 Lima', callback_data: 'checkout_dept:Lima' }],
+                  [{ text: '📍 Cusco', callback_data: 'checkout_dept:Cusco' }],
+                  [{ text: '📍 Otro', callback_data: 'checkout_dept:otro' }],
+                ],
+              },
+            });
+          }
+          return;
+        }
+
+        // Step: Ask for district
+        if (step === 'distrito') {
+          if (text && !text.startsWith('/')) {
+            await convRef.update({
+              'checkout.datos.distrito': text,
+              'checkout.step': 'pago',
+              updatedAt: Timestamp.fromDate(new Date()),
+            });
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: '¿Cómo deseas pagar?',
+              reply_markup: {
+                inline_keyboard: [
+                  [{ text: '💰 Contra Entrega', callback_data: 'checkout_pago:contra_entrega' }],
+                  [{ text: '📱 Yape / Plin', callback_data: 'checkout_pago:yape' }],
+                ],
+              },
+            });
+          }
+          return;
+        }
+
+        // Step: Confirmation
+        if (step === 'confirmacion') {
+          if (text && text.toLowerCase().includes('confirmar')) {
+            // Create the order in Firestore
+            const pedidoId = `ped-${Date.now()}`;
+            const items = (checkout.productos || []).map(p => ({
+              productoId: p.productoId || '',
+              nombre: p.nombre,
+              precio_unitario: Math.round((p.precio || 0) * 100),
+              cantidad: p.cantidad || 1,
+            }));
+            const total = items.reduce((sum, i) => sum + (i.precio_unitario * i.cantidad), 0);
+
+            await db.collection('myp_pedidos').doc(pedidoId).set({
+              pedidoId,
+              estado: 'recibido',
+              confirmado: false,
+              canal: 'telegram',
+              leadId: null,
+              cliente: {
+                nombre: datos.clienteNombre || '',
+                celular: datos.telefono || '',
+                email: datos.email || null,
+                documento_tipo: 'DNI',
+                documento_numero: datos.documentoNumero || null,
+              },
+              envio: {
+                nombre: datos.clienteNombre || '',
+                direccion: datos.direccion || '',
+                telefono: datos.telefono || '',
+                departamento: datos.departamento || '',
+                distrito: datos.distrito || '',
+              },
+              items,
+              pago: {
+                metodo: datos.metodoPago || 'contra_entrega',
+                estado: 'pendiente',
+              },
+              total_final: total,
+              creado_en: Timestamp.fromDate(new Date()),
+              notificadoAdmin: false,
+            });
+
+            // Club membership
+            try {
+              const emailNorm = (datos.email || '').trim().toLowerCase();
+              if (emailNorm) {
+                const existSnap = await db.collection('myp_club_miembros')
+                  .where('email', '==', emailNorm).limit(1).get();
+                if (existSnap.empty) {
+                  await db.collection('myp_club_miembros').add({
+                    nombre_tutor: datos.clienteNombre || '',
+                    nombre_mascota: datos.nombreMascota || '',
+                    email: emailNorm,
+                    celular: datos.telefono || '',
+                    direccion: datos.direccion || '',
+                    documento_tipo: 'DNI',
+                    documento_numero: datos.documentoNumero || '',
+                    departamento: datos.departamento || '',
+                    distrito: datos.distrito || '',
+                    benefit_origen: 'Registro Automático Telegram',
+                    puntos: 0,
+                    creado_en: Timestamp.fromDate(new Date()),
+                  });
+                }
+              }
+            } catch (e) {
+              console.warn('⚠️ Club membership error:', e.message);
+            }
+
+            // Admin notification
+            await db.collection('crm_notifications').add({
+              type: 'new_order',
+              channel: 'telegram',
+              pedidoId,
+              chatId: String(chatId),
+              leadName: datos.clienteNombre || '',
+              total: total / 100,
+              read: false,
+              createdAt: Timestamp.fromDate(new Date()),
+            });
+
+            // Return to chat mode
+            await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: `¡Pedido confirmado! Tu número es: ${pedidoId}\n\nResumen:\n${items.map(i => `• ${i.nombre} x${i.cantidad} — S/ ${(i.precio_unitario / 100).toFixed(2)}`).join('\n')}\n\nTotal: S/ ${(total / 100).toFixed(2)}\n\nTe contactaremos pronto para coordinar la entrega 🐾`,
+            });
+            return;
+          }
+
+          // User didn't confirm
+          if (text && text.toLowerCase().includes('cancelar')) {
+            await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: 'Pedido cancelado. Si necesitas algo más, aquí estoy 🐾',
+            });
+            return;
+          }
+          return;
+        }
+
         return;
       }
 

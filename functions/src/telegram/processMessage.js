@@ -237,6 +237,11 @@ export async function processTelegramMessage({
       lead = leadDoc.data();
       // Store leadId in conversation for CRM chat UI
       await convRef.update({ leadId, updatedAt: Timestamp.fromDate(now) });
+    }
+
+    // 2b. SKIP LLM IF IN CHECKOUT MODE — webhook.js handles checkout
+    if (conversation.status === 'checkout') {
+      return;
     } else {
       const leadRef = db.collection('crm_leads').doc();
       leadId = leadRef.id;
@@ -433,8 +438,8 @@ export async function processTelegramMessage({
 
       let replyMarkup = null;
 
-      // If a pedido was just created, send confirmation button
-      if (pedidoId) {
+      // If checkout was activated, the webhook.js handles the flow — no button here
+      if (pedidoId && pedidoId !== 'checkout_activated') {
         replyMarkup = {
           inline_keyboard: [
             [{ text: '✅ Confirmar Pedido', callback_data: `confirmar_pedido:${pedidoId}` }],

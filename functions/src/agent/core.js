@@ -7,17 +7,28 @@ const CRM_TOOLS = [
   {
     type: 'function',
     function: {
-      name: 'buscarProducto',
-      description: 'Busca productos del catálogo de Missy & Po Pet Shop por nombre, categoría o descripción. Retorna nombre, precio, stock, categorías y URL.',
+      name: 'iniciarCheckout',
+      description: 'Activa el modo checkout cuando el cliente quiere comprar. La IA solo llama esta herramienta; el backend maneja todo el flujo de recolección de datos con botones nativos de Telegram.',
       parameters: {
         type: 'object',
         properties: {
-          query: {
-            type: 'string',
-            description: 'El nombre, tipo o descripción del producto a buscar (ej: "arnes para perro grande", "comida húmeda gato", "juguete interactivo").',
+          productos: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                productoId: { type: 'string' },
+                nombre: { type: 'string' },
+                precio: { type: 'number' },
+                cantidad: { type: 'number', default: 1 },
+              },
+            },
+            description: 'Lista de productos que el cliente quiere comprar.',
           },
+          clienteNombre: { type: 'string', description: 'Nombre del cliente si ya lo proporcionó.' },
+          email: { type: 'string', description: 'Email del cliente si ya lo proporcionó.' },
         },
-        required: ['query'],
+        required: ['productos'],
       },
     },
   },
@@ -167,32 +178,6 @@ const CRM_TOOLS = [
       parameters: {
         type: 'object',
         properties: {},
-      },
-    },
-  },
-  {
-    type: 'function',
-    function: {
-      name: 'crearPedido',
-      description: 'Crea un pedido contra entrega para el cliente. Recolecta todos los datos: producto, nombre, email, DNI, dirección completa (departamento, distrito, dirección exacta), nombre de mascota y teléfono. Retorna un pedidoId que el bot usa para confirmar.',
-      parameters: {
-        type: 'object',
-        properties: {
-          productoId: { type: 'string', description: 'ID del producto en myp_productos' },
-          productoNombre: { type: 'string', description: 'Nombre del producto' },
-          precio: { type: 'number', description: 'Precio unitario en soles' },
-          cantidad: { type: 'number', description: 'Cantidad (default 1)', default: 1 },
-          clienteNombre: { type: 'string', description: 'Nombre completo del cliente' },
-          email: { type: 'string', description: 'Correo electrónico del cliente' },
-          documentoNumero: { type: 'string', description: 'Número de DNI del cliente' },
-          departamento: { type: 'string', description: 'Departamento de entrega (ej: Arequipa, Lima)' },
-          distrito: { type: 'string', description: 'Distrito de entrega (ej: Cayma, Miraflores)' },
-          direccion: { type: 'string', description: 'Dirección exacta (calle, número, urbanización)' },
-          nombreMascota: { type: 'string', description: 'Nombre de la mascota del cliente' },
-          telefono: { type: 'string', description: 'Teléfono de contacto' },
-          notaEntrega: { type: 'string', description: 'Nota adicional para la entrega (opcional)' },
-        },
-        required: ['productoId', 'productoNombre', 'precio', 'clienteNombre', 'email', 'documentoNumero', 'departamento', 'distrito', 'direccion', 'nombreMascota', 'telefono'],
       },
     },
   },
@@ -886,6 +871,39 @@ async function resolverBuscarCliente(args) {
   }
 }
 
+async function resolverIniciarCheckout(args, conversationId) {
+  const db = getFirestore();
+  const now = new Date();
+
+  // Save checkout state to conversation
+  const convRef = db.collection('crm_conversations').doc(conversationId);
+  await convRef.update({
+    status: 'checkout',
+    checkout: {
+      productos: args.productos || [],
+      step: 'direccion',
+      datos: {
+        clienteNombre: args.clienteNombre || '',
+        email: args.email || '',
+        documentoNumero: '',
+        departamento: '',
+        distrito: '',
+        direccion: '',
+        nombreMascota: '',
+        telefono: '',
+        metodoPago: '',
+      },
+      creadoEn: Timestamp.fromDate(now),
+    },
+    updatedAt: Timestamp.fromDate(now),
+  });
+
+  return JSON.stringify({
+    checkout: true,
+    message: 'Modo checkout activado. El backend ahora maneja la recolección de datos.',
+  });
+}
+
 // ── TOOL DISPATCH ─────────────────────────────────────────────────────────────
 
 const TOOL_RESOLVERS = {
@@ -899,7 +917,7 @@ const TOOL_RESOLVERS = {
   crearLead: (args, leadId, platform) => resolverCrearLead(args, leadId, platform),
   agendarSeguimiento: (args, leadId) => resolverAgendarSeguimiento(args, leadId),
   transferirAHumano: () => resolverTransferirAHumano(),
-  crearPedido: (args, leadId, platform, conversationId) => resolverCrearPedido(args, leadId, platform, conversationId),
+  iniciarCheckout: (args, leadId, platform, conversationId) => resolverIniciarCheckout(args, conversationId),
   sendProductPhoto: (args, leadId, platform, conversationId, chatId) => resolverSendProductPhoto(args, chatId),
   buscarCliente: (args) => resolverBuscarCliente(args),
 };
@@ -951,10 +969,8 @@ ${knowledgeContext}
 
 # Fotos y Links de Productos
 - Cuando recomiendes un producto, USA la herramienta sendProductPhoto para enviar la foto junto con el nombre y precio
-- SIEMPRE incluye el link a la website para que el cliente pueda ver detalles y comprar: https://missypoweb.web.app/producto/{slug}
-- El link debe ser clickable y natural. Ejemplo: "Mira todos los detalles aquí: https://missypoweb.web.app/producto/casaca-po"
-- Si el cliente pide fotos, busca el producto con buscarProducto y luego envía la foto con sendProductPhoto
-- El canal más práctico para que el cliente compre es la website — siempre ofrece el link
+- SIEMPRE incluye el link a la website: https://missypoweb.web.app/producto/{slug}
+- Ejemplo: "Mira todos los detalles aquí: https://missypoweb.web.app/producto/casaca-po"
 
 # Escalación
 - Si el cliente pide hablar con alguien → transfiere inmediatamente
@@ -962,27 +978,17 @@ ${knowledgeContext}
 - Si no puedes resolver algo → usa el fallback
 - Nunca intentes retener al cliente si pide un humano
 
-# Flujo de Venta
-- Cuando un cliente muestre interés en un producto (pregunte por precio, disponibilidad, o diga "quiero esto"), preguntar: "¿Quieres que te lo reserve?"
-- Si dice que sí → iniciar proceso de pedido contra entrega usando la herramienta crearPedido
+# Flujo de Venta (IMPORTANTE: Usa iniciarCheckout, NO crees pedidos directamente)
+- El catálogo completo con precios está en tu contexto. NO necesitas buscar productos — ya los tienes arriba.
+- Cuando un cliente muestre interés en un producto y quiera comprar, pregunta: "¿Quieres que te lo reserve?"
+- Si dice que sí → llama la herramienta iniciarCheckout con los productos que quiere
+- El backend se encarga de recolectar dirección, DNI, pago y confirmación con botones nativos de Telegram
+- TÚ NO recolectes datos de envío ni crees pedidos — eso es trabajo del backend
 - SOLO puedes ofrecer CONTRA ENTREGA como método de pago
-- Para otros métodos (Yape, Plin, transferencia, tarjeta) → responder: "Para otros métodos de pago, te comunico con un asesor que te puede ayudar a coordinar"
-- Si el cliente es existente (buscarCliente lo encontró), usa sus datos registrados y solo pide dirección si es necesario
-- Si es nuevo cliente, recolectar los datos faltantes antes de crear el pedido:
-  1. Nombre completo (si no lo dio antes)
-  2. Número de DNI
-  3. Departamento y distrito (ej: "Arequipa, Cayma")
-  4. Dirección exacta (calle, número, urbanización)
-  5. Nombre de la mascota
-  6. Número de celular
-- Si el cliente no tiene dirección → pedir nombre y teléfono para que un asesor lo contacte
-- Si el cliente ya es socio del Club (email o DNI registrado) → el sistema lo detecta automáticamente y el bot lo saluda por nombre, agradece su preferencia y procede con el pedido
-- Si es nuevo → se registra automáticamente en el Club de Beneficios Missy & Po con puntos de bienvenida
-- Mostrar resumen ANTES de confirmar: producto, precio, dirección, método de pago
-- Si el cliente dice "no", "después", "luego" → no insistir, responder: "Perfecto! Te espero. Si necesitas algo, aquí estoy 🐾"
-- Si el cliente pregunta por algo caro (mayor a S/.200) → sugerir hablar con asesor para coordinar
-- Si el cliente ya tiene un pedido pendiente y quiere otro producto → crearPedido automáticamente agrega el item al pedido existente
-- Si la dirección es diferente a la del pedido existente → informar al cliente y preguntar si quiere crear un pedido nuevo o cambiar la dirección`;
+- Para otros métodos → "Para otros métodos de pago, te comunico con un asesor"
+- Si el cliente dice "no", "después", "luego" → no insistir: "Perfecto! Te espero 🐾"
+- Si pregunta por algo caro (mayor a S/.200) → sugerir hablar con asesor
+- Si el cliente ya tiene pedido pendiente → iniciarCheckout lo maneja automáticamente`;
 }
 
 // ── MAIN ORCHESTRATOR ─────────────────────────────────────────────────────────
@@ -1042,11 +1048,11 @@ export async function runAgentCycle({
         } else if (name === 'transferirAHumano') {
           resultString = await resolver(args, leadId, conversationId);
           escalated = true;
-        } else if (name === 'crearPedido') {
+        } else if (name === 'iniciarCheckout') {
           resultString = await resolver(args, leadId, platform, conversationId);
           try {
             const parsed = JSON.parse(resultString);
-            if (parsed.pedidoId) pedidoId = parsed.pedidoId;
+            if (parsed.checkout) pedidoId = 'checkout_activated';
           } catch { /* ignore */ }
         } else if (name === 'sendProductPhoto') {
           resultString = await resolver(args, leadId, platform, conversationId, chatId);
