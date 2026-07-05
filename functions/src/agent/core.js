@@ -875,13 +875,16 @@ async function resolverIniciarCheckout(args, conversationId) {
   const db = getFirestore();
   const now = new Date();
 
-  // Save checkout state to conversation
+  // Determine starting step based on what data the LLM already collected
+  const hasName = !!(args.clienteNombre || '').trim();
+  const initialStep = hasName ? 'telefono' : 'nombre';
+
   const convRef = db.collection('crm_conversations').doc(conversationId);
   await convRef.update({
     status: 'checkout',
     checkout: {
       productos: args.productos || [],
-      step: 'direccion',
+      step: initialStep,
       datos: {
         clienteNombre: args.clienteNombre || '',
         email: args.email || '',
@@ -900,7 +903,7 @@ async function resolverIniciarCheckout(args, conversationId) {
 
   return JSON.stringify({
     checkout: true,
-    message: 'Modo checkout activado. El backend ahora maneja la recolección de datos.',
+    message: `Modo checkout activado. Iniciando desde step "${initialStep}". El backend ahora maneja la recolección de datos.`,
   });
 }
 
@@ -916,7 +919,7 @@ const TOOL_RESOLVERS = {
   unirseAlClub: (args, leadId, platform) => resolverUnirseAlClub(args, leadId, platform),
   crearLead: (args, leadId, platform) => resolverCrearLead(args, leadId, platform),
   agendarSeguimiento: (args, leadId) => resolverAgendarSeguimiento(args, leadId),
-  transferirAHumano: () => resolverTransferirAHumano(),
+  transferirAHumano: (args, leadId, platform, conversationId) => resolverTransferirAHumano(leadId, conversationId),
   iniciarCheckout: (args, leadId, platform, conversationId) => resolverIniciarCheckout(args, conversationId),
   sendProductPhoto: (args, leadId, platform, conversationId, chatId) => resolverSendProductPhoto(args, chatId),
   buscarCliente: (args) => resolverBuscarCliente(args),
@@ -1046,7 +1049,7 @@ export async function runAgentCycle({
         } else if (name === 'agendarSeguimiento') {
           resultString = await resolver(args, leadId);
         } else if (name === 'transferirAHumano') {
-          resultString = await resolver(args, leadId, conversationId);
+          resultString = await resolver(args, leadId, platform, conversationId);
           escalated = true;
         } else if (name === 'iniciarCheckout') {
           resultString = await resolver(args, leadId, platform, conversationId);

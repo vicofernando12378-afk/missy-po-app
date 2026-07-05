@@ -242,7 +242,10 @@ export async function processTelegramMessage({
     // 2b. SKIP LLM IF IN CHECKOUT MODE — webhook.js handles checkout
     if (conversation.status === 'checkout') {
       return;
-    } else {
+    }
+
+    // 2c. Create lead only if one does not exist for this chatId
+    if (leadsSnap.empty) {
       const leadRef = db.collection('crm_leads').doc();
       leadId = leadRef.id;
       lead = {
@@ -269,6 +272,12 @@ export async function processTelegramMessage({
       await leadRef.set(lead);
       // Store leadId in conversation for CRM chat UI
       await convRef.update({ leadId, updatedAt: Timestamp.fromDate(now) });
+    } else {
+      // Update lastInteractionAt for existing lead
+      await db.collection('crm_leads').doc(leadId).update({
+        lastInteractionAt: Timestamp.fromDate(now),
+        updatedAt: Timestamp.fromDate(now),
+      });
     }
 
     // 3. Process voice to text

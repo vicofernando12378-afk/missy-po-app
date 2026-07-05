@@ -1,4 +1,4 @@
-import { getFirestore, Timestamp } from 'firebase-admin/firestore';
+import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 import { onRequest } from 'firebase-functions/v2/https';
 
 import { getApiKeys } from '../lib/config.js';
@@ -223,17 +223,35 @@ export const telegramWebhook = onRequest({
             const datos = checkout.datos || {};
             const items = checkout.productos || [];
             const total = items.reduce((sum, i) => sum + ((i.precio || 0) * 100 * (i.cantidad || 1)), 0);
+            const isYape = pago === 'yape';
 
             await convRef.update({
-              'checkout.datos.metodoPago': pago === 'yape' ? 'Yape/Plin' : 'Contra Entrega',
+              'checkout.datos.metodoPago': isYape ? 'Yape/Plin' : 'Contra Entrega',
               'checkout.step': 'confirmacion',
               updatedAt: Timestamp.fromDate(new Date()),
             });
 
+            // Load Yape number from knowledge base if needed
+            let yapeInstructions = '';
+            if (isYape) {
+              try {
+                const bizSnap = await db.collection('crm_knowledge').doc('business_info').get();
+                const biz = bizSnap.exists ? bizSnap.data() : {};
+                const yapeNum = biz.whatsapp || biz.telefono || '';
+                if (yapeNum) {
+                  yapeInstructions = `\n\n📲 Para pagar por Yape/Plin:\nNúmero: ${yapeNum}\nMonto exacto: S/ ${(total / 100).toFixed(2)}\n📸 Después de confirmar, envía tu comprobante aquí.`;
+                } else {
+                  yapeInstructions = `\n\n📲 Después de confirmar, te enviamos el número de Yape/Plin para hacer el pago.`;
+                }
+              } catch (e) {
+                console.warn('⚠️ Could not load biz info for Yape:', e.message);
+              }
+            }
+
             const resumen = items.map(i => `• ${i.nombre} x${i.cantidad || 1} — S/ ${((i.precio || 0) * (i.cantidad || 1)).toFixed(2)}`).join('\n');
             await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
               chat_id: chatId,
-              text: `Resumen de tu pedido:\n\n${resumen}\n\nDirección: ${datos.direccion || ''}, ${datos.distrito || ''}, ${datos.departamento || ''}\nPago: ${pago === 'yape' ? 'Yape/Plin' : 'Contra Entrega'}\nTotal: S/ ${(total / 100).toFixed(2)}\n\n¿Confirmas tu pedido?`,
+              text: `Resumen de tu pedido:\n\n${resumen}\n\nCliente: ${datos.clienteNombre || ''}\nTeléfono: ${datos.telefono || ''}\nDirección: ${datos.direccion || ''}, ${datos.distrito || ''}, ${datos.departamento || ''}\nPago: ${isYape ? 'Yape/Plin' : 'Contra Entrega'}\nTotal: S/ ${(total / 100).toFixed(2)}${yapeInstructions}\n\n¿Confirmas tu pedido?`,
               reply_markup: {
                 inline_keyboard: [
                   [{ text: '✅ Confirmar Pedido', callback_data: 'checkout_confirm:si' }],
@@ -243,15 +261,16 @@ export const telegramWebhook = onRequest({
             });
           }
         } else if (data === 'checkout_confirm:si') {
-          // Trigger confirmation via text
           const db = getFirestore();
           const conversationId = `telegram_${chatId}`;
           const convRef = db.collection('crm_conversations').doc(conversationId);
           const convSnap = await convRef.get();
 
           if (convSnap.exists && convSnap.data().status === 'checkout') {
-            const checkout = convSnap.data().checkout;
+            const convData = convSnap.data();
+            const checkout = convData.checkout;
             const datos = checkout.datos || {};
+            const leadId = convData.leadId || null;
             const items = (checkout.productos || []).map(p => ({
               productoId: p.productoId || '',
               nombre: p.nombre,
@@ -259,6 +278,8 @@ export const telegramWebhook = onRequest({
               cantidad: p.cantidad || 1,
             }));
             const total = items.reduce((sum, i) => sum + (i.precio_unitario * i.cantidad), 0);
+            const totalSoles = total / 100;
+            const puntosGanados = Math.floor(totalSoles / 10) * 10;
             const pedidoId = `ped-${Date.now()}`;
 
             await db.collection('myp_pedidos').doc(pedidoId).set({
@@ -266,7 +287,7 @@ export const telegramWebhook = onRequest({
               estado: 'recibido',
               confirmado: false,
               canal: 'telegram',
-              leadId: null,
+              leadId,
               cliente: {
                 nombre: datos.clienteNombre || '',
                 celular: datos.telefono || '',
@@ -291,28 +312,66 @@ export const telegramWebhook = onRequest({
               notificadoAdmin: false,
             });
 
-            // Club membership
+            // Update lead stage and tags
+            if (leadId) {
+              try {
+                await db.collection('crm_leads').doc(leadId).update({
+                  stage: 'calificado',
+                  tags: FieldValue.arrayUnion('compra-interes'),
+                  updatedAt: Timestamp.fromDate(new Date()),
+                });
+              } catch (e) {
+                console.warn('⚠️ Error updating lead stage:', e.message);
+              }
+            }
+
+            // Club membership with real points
             try {
               const emailNorm = (datos.email || '').trim().toLowerCase();
+              const clubPayload = {
+                nombre_tutor: datos.clienteNombre || '',
+                nombre_mascota: datos.nombreMascota || '',
+                celular: datos.telefono || '',
+                direccion: datos.direccion || '',
+                documento_tipo: 'DNI',
+                documento_numero: datos.documentoNumero || '',
+                departamento: datos.departamento || '',
+                distrito: datos.distrito || '',
+                benefit_origen: 'Registro Automático Telegram',
+                puntos: puntosGanados,
+                creado_en: Timestamp.fromDate(new Date()),
+              };
               if (emailNorm) {
+                clubPayload.email = emailNorm;
                 const existSnap = await db.collection('myp_club_miembros')
                   .where('email', '==', emailNorm).limit(1).get();
-                if (existSnap.empty) {
-                  await db.collection('myp_club_miembros').add({
-                    nombre_tutor: datos.clienteNombre || '',
-                    nombre_mascota: datos.nombreMascota || '',
-                    email: emailNorm,
-                    celular: datos.telefono || '',
-                    direccion: datos.direccion || '',
-                    documento_tipo: 'DNI',
-                    documento_numero: datos.documentoNumero || '',
-                    departamento: datos.departamento || '',
-                    distrito: datos.distrito || '',
-                    benefit_origen: 'Registro Automático Telegram',
-                    puntos: 0,
-                    creado_en: Timestamp.fromDate(new Date()),
+                if (!existSnap.empty) {
+                  // Existing member: add points
+                  const memberRef = existSnap.docs[0].ref;
+                  await memberRef.update({
+                    puntos: FieldValue.increment(puntosGanados),
+                    updatedAt: Timestamp.fromDate(new Date()),
                   });
+                  if (puntosGanados > 0) {
+                    await memberRef.collection('puntos_logs').add({
+                      puntos: puntosGanados,
+                      motivo: `Puntos por compra Telegram #${pedidoId}`,
+                      creado_en: Timestamp.fromDate(new Date()),
+                    });
+                  }
+                } else {
+                  const newRef = await db.collection('myp_club_miembros').add(clubPayload);
+                  if (puntosGanados > 0) {
+                    await newRef.collection('puntos_logs').add({
+                      puntos: puntosGanados,
+                      motivo: `Puntos por primera compra Telegram #${pedidoId}`,
+                      creado_en: Timestamp.fromDate(new Date()),
+                    });
+                  }
                 }
+              } else {
+                // No email: create member without email (won't deduplicate, but captures data)
+                await db.collection('myp_club_miembros').add(clubPayload);
               }
             } catch (e) {
               console.warn('⚠️ Club membership error:', e.message);
@@ -325,16 +384,18 @@ export const telegramWebhook = onRequest({
               pedidoId,
               chatId: String(chatId),
               leadName: datos.clienteNombre || '',
-              total: total / 100,
+              total: totalSoles,
               read: false,
               createdAt: Timestamp.fromDate(new Date()),
             });
 
             await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
 
+            const resumenFinal = items.map(i => `• ${i.nombre} x${i.cantidad} — S/ ${(i.precio_unitario / 100).toFixed(2)}`).join('\n');
+            const puntosMsg = puntosGanados > 0 ? `\n🌟 Ganaste ${puntosGanados} puntos Club Missy & Po!` : '';
             await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
               chat_id: chatId,
-              text: `¡Pedido confirmado! Tu número es: ${pedidoId}\n\nTotal: S/ ${(total / 100).toFixed(2)}\n\nTe contactaremos pronto para coordinar la entrega 🐾`,
+              text: `¡Pedido confirmado! 🎉 Tu número es: ${pedidoId}\n\nResumen:\n${resumenFinal}\n\nTotal: S/ ${totalSoles.toFixed(2)}${puntosMsg}\n\nTe contactaremos pronto para coordinar la entrega 🐾`,
             });
           }
         } else if (data === 'checkout_confirm:no') {
@@ -415,6 +476,56 @@ export const telegramWebhook = onRequest({
         const datos = checkout.datos || {};
         const step = checkout.step;
 
+        // Step: Ask for client name
+        if (step === 'nombre') {
+          if (text && !text.startsWith('/')) {
+            const firstName = text.trim().split(' ')[0];
+            await convRef.update({
+              'checkout.datos.clienteNombre': text.trim(),
+              'checkout.step': 'telefono',
+              updatedAt: Timestamp.fromDate(new Date()),
+            });
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: `Perfecto, ${firstName}! 😊 ¿Cuál es tu número de celular para coordinar la entrega?`,
+            });
+          }
+          return;
+        }
+
+        // Step: Ask for phone number
+        if (step === 'telefono') {
+          if (text && !text.startsWith('/')) {
+            await convRef.update({
+              'checkout.datos.telefono': text.trim(),
+              'checkout.step': 'dni',
+              updatedAt: Timestamp.fromDate(new Date()),
+            });
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: 'Tu número de DNI (opcional — escribe "omitir" si prefieres no darlo):',
+            });
+          }
+          return;
+        }
+
+        // Step: Ask for DNI (optional)
+        if (step === 'dni') {
+          if (text && !text.startsWith('/')) {
+            const dni = text.trim().toLowerCase() === 'omitir' ? '' : text.trim();
+            await convRef.update({
+              'checkout.datos.documentoNumero': dni,
+              'checkout.step': 'direccion',
+              updatedAt: Timestamp.fromDate(new Date()),
+            });
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: '¿Cuál es tu dirección de entrega? (calle, número y referencia)',
+            });
+          }
+          return;
+        }
+
         // Step: Ask for address
         if (step === 'direccion') {
           if (text && !text.startsWith('/')) {
@@ -463,105 +574,20 @@ export const telegramWebhook = onRequest({
 
         // Step: Confirmation
         if (step === 'confirmacion') {
-          if (text && text.toLowerCase().includes('confirmar')) {
-            // Create the order in Firestore
-            const pedidoId = `ped-${Date.now()}`;
-            const items = (checkout.productos || []).map(p => ({
-              productoId: p.productoId || '',
-              nombre: p.nombre,
-              precio_unitario: Math.round((p.precio || 0) * 100),
-              cantidad: p.cantidad || 1,
-            }));
-            const total = items.reduce((sum, i) => sum + (i.precio_unitario * i.cantidad), 0);
-
-            await db.collection('myp_pedidos').doc(pedidoId).set({
-              pedidoId,
-              estado: 'recibido',
-              confirmado: false,
-              canal: 'telegram',
-              leadId: null,
-              cliente: {
-                nombre: datos.clienteNombre || '',
-                celular: datos.telefono || '',
-                email: datos.email || null,
-                documento_tipo: 'DNI',
-                documento_numero: datos.documentoNumero || null,
-              },
-              envio: {
-                nombre: datos.clienteNombre || '',
-                direccion: datos.direccion || '',
-                telefono: datos.telefono || '',
-                departamento: datos.departamento || '',
-                distrito: datos.distrito || '',
-              },
-              items,
-              pago: {
-                metodo: datos.metodoPago || 'contra_entrega',
-                estado: 'pendiente',
-              },
-              total_final: total,
-              creado_en: Timestamp.fromDate(new Date()),
-              notificadoAdmin: false,
-            });
-
-            // Club membership
-            try {
-              const emailNorm = (datos.email || '').trim().toLowerCase();
-              if (emailNorm) {
-                const existSnap = await db.collection('myp_club_miembros')
-                  .where('email', '==', emailNorm).limit(1).get();
-                if (existSnap.empty) {
-                  await db.collection('myp_club_miembros').add({
-                    nombre_tutor: datos.clienteNombre || '',
-                    nombre_mascota: datos.nombreMascota || '',
-                    email: emailNorm,
-                    celular: datos.telefono || '',
-                    direccion: datos.direccion || '',
-                    documento_tipo: 'DNI',
-                    documento_numero: datos.documentoNumero || '',
-                    departamento: datos.departamento || '',
-                    distrito: datos.distrito || '',
-                    benefit_origen: 'Registro Automático Telegram',
-                    puntos: 0,
-                    creado_en: Timestamp.fromDate(new Date()),
-                  });
-                }
-              }
-            } catch (e) {
-              console.warn('⚠️ Club membership error:', e.message);
-            }
-
-            // Admin notification
-            await db.collection('crm_notifications').add({
-              type: 'new_order',
-              channel: 'telegram',
-              pedidoId,
-              chatId: String(chatId),
-              leadName: datos.clienteNombre || '',
-              total: total / 100,
-              read: false,
-              createdAt: Timestamp.fromDate(new Date()),
-            });
-
-            // Return to chat mode
-            await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
-
-            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-              chat_id: chatId,
-              text: `¡Pedido confirmado! Tu número es: ${pedidoId}\n\nResumen:\n${items.map(i => `• ${i.nombre} x${i.cantidad} — S/ ${(i.precio_unitario / 100).toFixed(2)}`).join('\n')}\n\nTotal: S/ ${(total / 100).toFixed(2)}\n\nTe contactaremos pronto para coordinar la entrega 🐾`,
-            });
-            return;
-          }
-
-          // User didn't confirm
-          if (text && text.toLowerCase().includes('cancelar')) {
-            await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
-            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-              chat_id: chatId,
-              text: 'Pedido cancelado. Si necesitas algo más, aquí estoy 🐾',
-            });
-            return;
-          }
+          // Re-send the summary with buttons in case the original button is no longer visible
+          const items = checkout.productos || [];
+          const total = items.reduce((sum, i) => sum + ((i.precio || 0) * (i.cantidad || 1)), 0);
+          const resumen = items.map(i => `• ${i.nombre} x${i.cantidad || 1} — S/ ${((i.precio || 0) * (i.cantidad || 1)).toFixed(2)}`).join('\n');
+          await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+            chat_id: chatId,
+            text: `Tu pedido está listo para confirmar:\n\n${resumen}\n\nDirección: ${datos.direccion || ''}, ${datos.distrito || ''}, ${datos.departamento || ''}\nPago: ${datos.metodoPago || 'Contra Entrega'}\nTotal: S/ ${total.toFixed(2)}\n\n¿Confirmas?`,
+            reply_markup: {
+              inline_keyboard: [
+                [{ text: '✅ Confirmar Pedido', callback_data: 'checkout_confirm:si' }],
+                [{ text: '❌ Cancelar', callback_data: 'checkout_confirm:no' }],
+              ],
+            },
+          });
           return;
         }
 

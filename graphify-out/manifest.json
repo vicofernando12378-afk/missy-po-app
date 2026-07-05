@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "firestore.indexes.json": {
-    "mtime": 1783127236.8190918,
-    "ast_hash": "a4e2027252772bd5628be341d81cacb9",
+    "mtime": 1783213867.5674367,
+    "ast_hash": "445e1b2b25f155f576f2fa9588d90430",
     "semantic_hash": ""
   },
   "package.json": {
@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "src/components/shared/WhatsAppFloat.jsx": {
-    "mtime": 1783030136.574639,
-    "ast_hash": "acd4ea5b0e7912c28acc59688e75afc1",
+    "mtime": 1783131804.2903326,
+    "ast_hash": "54ffb596ce26852d569dddf3cd90e0f1",
     "semantic_hash": ""
   },
   "src/hooks/useDebounce.js": {
@@ -915,13 +915,13 @@
     "semantic_hash": ""
   },
   "functions/src/index.js": {
-    "mtime": 1783125025.2314968,
-    "ast_hash": "bd366d27e920592cb50d525191ca827f",
+    "mtime": 1783208523.6922228,
+    "ast_hash": "33615ec91929dfafff13920b97b6487f",
     "semantic_hash": ""
   },
   "functions/src/lib/firebaseAdmin.js": {
-    "mtime": 1783052806.1383028,
-    "ast_hash": "acf678f6207e4f7f4816bd044927af46",
+    "mtime": 1783196144.6180828,
+    "ast_hash": "ed4c5c7ade7781a3ff1f635271b9d6cf",
     "semantic_hash": ""
   },
   "functions/src/social/metaWebhook.js": {
@@ -930,8 +930,8 @@
     "semantic_hash": ""
   },
   "functions/src/telegram/webhook.js": {
-    "mtime": 1783045623.5644307,
-    "ast_hash": "a2e6c07eeef8bd1bb0169d35c932d1a0",
+    "mtime": 1783225040.999684,
+    "ast_hash": "cdd098dfeaf2433d554c0a82ae7bfea3",
     "semantic_hash": ""
   },
   "scripts/backfill-checkout-leads.js": {
@@ -1095,13 +1095,13 @@
     "semantic_hash": ""
   },
   "functions/src/agent/core.js": {
-    "mtime": 1783124959.4361124,
-    "ast_hash": "41a8ae491b58b497ab87aad18ea8ef59",
+    "mtime": 1783224963.0060174,
+    "ast_hash": "d2ed6766b0e9e5e166647d44ec740198",
     "semantic_hash": ""
   },
   "functions/src/agent/llmProviders/deepseek.js": {
-    "mtime": 1783120339.4480903,
-    "ast_hash": "e0a1912fd76dc9c5c46f082e7da85977",
+    "mtime": 1783196114.8918839,
+    "ast_hash": "75cd1f09a35c2a7ec9f728a07f659f29",
     "semantic_hash": ""
   },
   "functions/src/agent/llmRouter.js": {
@@ -1110,8 +1110,8 @@
     "semantic_hash": ""
   },
   "functions/src/telegram/processMessage.js": {
-    "mtime": 1783127842.2577546,
-    "ast_hash": "0e9a431b721027a71eddb899b88d77cd",
+    "mtime": 1783224710.4662592,
+    "ast_hash": "39d4d9e31b4dec64d7774923b736ba24",
     "semantic_hash": ""
   },
   "src/components/admin/crm/TelegramAgentPanel.jsx": {
@@ -1155,18 +1155,18 @@
     "semantic_hash": ""
   },
   "functions/src/lib/escalation.js": {
-    "mtime": 1783050062.2263255,
-    "ast_hash": "342212670e40b0022bdf123ed7bf960d",
+    "mtime": 1783199124.0799162,
+    "ast_hash": "b0b5e5ca9d4ec551cd11e9aa1606dfc9",
     "semantic_hash": ""
   },
   "functions/src/lib/knowledge.js": {
-    "mtime": 1783124930.6025825,
-    "ast_hash": "04bd60e465f33f91620cd981edac656e",
+    "mtime": 1783222592.0844536,
+    "ast_hash": "34b60c128d90f27f8a043faf8d10131e",
     "semantic_hash": ""
   },
   "functions/src/scripts/seedKnowledge.js": {
-    "mtime": 1783053771.496598,
-    "ast_hash": "e73871bcf55cfc1338da4dbd7ae8b59f",
+    "mtime": 1783214233.252946,
+    "ast_hash": "dbcc6897deb9b8c969fcfb9f826a0063",
     "semantic_hash": ""
   },
   "src/components/admin/crm/KnowledgeBaseSection.jsx": {
@@ -1175,23 +1175,28 @@
     "semantic_hash": ""
   },
   "functions/src/crm/refreshProductCatalog.js": {
-    "mtime": 1783125206.4243765,
-    "ast_hash": "944c7a9ae40afe7e9f165d72eed49553",
+    "mtime": 1783214233.252946,
+    "ast_hash": "053b71b4bd394ea408ca17fe9c1955a8",
     "semantic_hash": ""
   },
   "functions/src/crm/sendHumanMessage.js": {
-    "mtime": 1783127860.1145992,
-    "ast_hash": "9f2dddf638e7a42b4ab7c14073044b46",
+    "mtime": 1783214233.252946,
+    "ast_hash": "a38905bacd5905d2b6141cdfaf199918",
     "semantic_hash": ""
   },
   "functions/src/cron/generateProductCatalog.js": {
-    "mtime": 1783125416.8190935,
-    "ast_hash": "5a156774f9abed5021691c601dae236d",
+    "mtime": 1783214233.252946,
+    "ast_hash": "6e8a4d983649c45d6cd58d0433eea0db",
     "semantic_hash": ""
   },
   "functions/src/lib/productCatalog.js": {
-    "mtime": 1783126633.456092,
-    "ast_hash": "0885d2248b43b5c04fc30d2208664237",
+    "mtime": 1783211005.2671342,
+    "ast_hash": "5c4e3ec702c89f191159ac8a0e886e83",
+    "semantic_hash": ""
+  },
+  "functions/src/cron/followUpProcessor.js": {
+    "mtime": 1783214233.252946,
+    "ast_hash": "d6420d2afa7ebfe666e162804969d592",
     "semantic_hash": ""
   }
 }
