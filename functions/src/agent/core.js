@@ -174,7 +174,7 @@ const CRM_TOOLS = [
     type: 'function',
     function: {
       name: 'crearPedido',
-      description: 'Crea un pedido contra entrega para el cliente. Recolecta: producto, nombre, dirección y teléfono. Retorna un pedidoId que el bot usa para confirmar.',
+      description: 'Crea un pedido contra entrega para el cliente. Recolecta todos los datos: producto, nombre, email, DNI, dirección completa (departamento, distrito, dirección exacta), nombre de mascota y teléfono. Retorna un pedidoId que el bot usa para confirmar.',
       parameters: {
         type: 'object',
         properties: {
@@ -183,11 +183,16 @@ const CRM_TOOLS = [
           precio: { type: 'number', description: 'Precio unitario en soles' },
           cantidad: { type: 'number', description: 'Cantidad (default 1)', default: 1 },
           clienteNombre: { type: 'string', description: 'Nombre completo del cliente' },
-          direccion: { type: 'string', description: 'Dirección de entrega completa' },
+          email: { type: 'string', description: 'Correo electrónico del cliente' },
+          documentoNumero: { type: 'string', description: 'Número de DNI del cliente' },
+          departamento: { type: 'string', description: 'Departamento de entrega (ej: Arequipa, Lima)' },
+          distrito: { type: 'string', description: 'Distrito de entrega (ej: Cayma, Miraflores)' },
+          direccion: { type: 'string', description: 'Dirección exacta (calle, número, urbanización)' },
+          nombreMascota: { type: 'string', description: 'Nombre de la mascota del cliente' },
           telefono: { type: 'string', description: 'Teléfono de contacto' },
           notaEntrega: { type: 'string', description: 'Nota adicional para la entrega (opcional)' },
         },
-        required: ['productoId', 'productoNombre', 'precio', 'clienteNombre', 'direccion', 'telefono'],
+        required: ['productoId', 'productoNombre', 'precio', 'clienteNombre', 'email', 'documentoNumero', 'departamento', 'distrito', 'direccion', 'nombreMascota', 'telefono'],
       },
     },
   },
@@ -585,6 +590,37 @@ async function resolverCrearPedido(args, leadId, platform, conversationId) {
   try {
     const now = new Date();
 
+    // ── DUPLICATE CHECK: CLUB MEMBERSHIP ─────────────────────────────────
+    // If email or DNI already exists, greet the customer and skip creation
+    const emailNorm = (args.email || '').trim().toLowerCase();
+    const docNum = (args.documentoNumero || '').trim();
+
+    if (emailNorm || docNum) {
+      let existingMember = null;
+
+      if (emailNorm) {
+        const emailSnap = await db.collection('myp_club_miembros')
+          .where('email', '==', emailNorm).limit(1).get();
+        if (!emailSnap.empty) existingMember = emailSnap.docs[0].data();
+      }
+
+      if (!existingMember && docNum) {
+        const dniSnap = await db.collection('myp_club_miembros')
+          .where('documento_numero', '==', docNum).limit(1).get();
+        if (!dniSnap.empty) existingMember = dniSnap.docs[0].data();
+      }
+
+      if (existingMember) {
+        const nombreTutor = existingMember.nombre_tutor || args.clienteNombre || 'Socio';
+        return JSON.stringify({
+          success: true,
+          clienteExistente: true,
+          nombre: nombreTutor,
+          message: `¡Hola ${nombreTutor}! Ya tengo todos tus datos registrados. ¡Gracias por tu preferencia! 🐾 Pasemos con tu pedido.`,
+        });
+      }
+    }
+
     // ── CHECK FOR EXISTING PENDING ORDER ──────────────────────────────────
     // If the user already has a pending order, add item to it instead of creating new
     if (leadId) {
@@ -619,11 +655,11 @@ async function resolverCrearPedido(args, leadId, platform, conversationId) {
         };
 
         const updatedItems = [...(existingPedido.items || []), newItem];
-        const newTotal = updatedItems.reduce((sum, item) => sum + ((item.precio_unitario || item.precio || 0) * item.cantidad), 0);
+        const newTotal = updatedItems.reduce((sum, item) => sum + ((item.precio_unitario || (item.precio || 0) * 100) * item.cantidad), 0);
 
         await existingDoc.ref.update({
           items: updatedItems,
-          total_final: newTotal * 100,
+          total_final: newTotal,
           actualizado_en: Timestamp.fromDate(now),
         });
 
@@ -660,13 +696,16 @@ async function resolverCrearPedido(args, leadId, platform, conversationId) {
       cliente: {
         nombre: args.clienteNombre,
         celular: args.telefono,
-        email: null,
-        documento_numero: null,
+        email: emailNorm || null,
+        documento_tipo: 'DNI',
+        documento_numero: docNum || null,
       },
       envio: {
         nombre: args.clienteNombre,
         direccion: args.direccion,
         telefono: args.telefono,
+        departamento: args.departamento || null,
+        distrito: args.distrito || null,
         notaEntrega: args.notaEntrega || null,
       },
       items: [{
@@ -685,6 +724,35 @@ async function resolverCrearPedido(args, leadId, platform, conversationId) {
     };
 
     await db.collection('myp_pedidos').doc(pedidoId).set(pedido);
+
+    // ── CLUB MEMBERSHIP: AUTO-REGISTER ───────────────────────────────────
+    try {
+      const puntosGanados = Math.floor((args.precio * (args.cantidad || 1)) / 10) * 10;
+      const newMemberRef = await db.collection('myp_club_miembros').add({
+        nombre_tutor: args.clienteNombre,
+        nombre_mascota: args.nombreMascota || '',
+        email: emailNorm || '',
+        celular: args.telefono,
+        direccion: args.direccion,
+        documento_tipo: 'DNI',
+        documento_numero: docNum || '',
+        departamento: args.departamento || '',
+        distrito: args.distrito || '',
+        benefit_origen: 'Registro Automático Telegram',
+        puntos: puntosGanados,
+        creado_en: Timestamp.fromDate(now),
+      });
+
+      if (puntosGanados > 0) {
+        await db.collection('myp_club_miembros').doc(newMemberRef.id).collection('puntos_logs').add({
+          puntos: puntosGanados,
+          motivo: `Puntos acumulados por primera compra en pedido #${pedidoId}`,
+          creado_en: Timestamp.fromDate(now),
+        });
+      }
+    } catch (clubErr) {
+      console.warn('⚠️ Error registering club membership:', clubErr);
+    }
 
     // Update lead with purchase intent
     if (leadId) {
@@ -850,8 +918,17 @@ ${knowledgeContext}
 - Si dice que sí → iniciar proceso de pedido contra entrega usando la herramienta crearPedido
 - SOLO puedes ofrecer CONTRA ENTREGA como método de pago
 - Para otros métodos (Yape, Plin, transferencia, tarjeta) → responder: "Para otros métodos de pago, te comunico con un asesor que te puede ayudar a coordinar"
-- Recolectar los datos del cliente paso a paso: nombre, dirección, teléfono
+- Recolectar los datos del cliente paso a paso en este orden:
+  1. Nombre completo
+  2. Correo electrónico
+  3. Número de DNI
+  4. Departamento y distrito (ej: "Arequipa, Cayma")
+  5. Dirección exacta (calle, número, urbanización)
+  6. Nombre de la mascota
+  7. Número de celular
 - Si el cliente no tiene dirección → pedir nombre y teléfono para que un asesor lo contacte
+- Si el cliente ya es socio del Club (email o DNI registrado) → el sistema lo detecta automáticamente y el bot lo saluda por nombre, agradece su preferencia y procede con el pedido
+- Si es nuevo → se registra automáticamente en el Club de Beneficios Missy & Po con puntos de bienvenida
 - Mostrar resumen ANTES de confirmar: producto, precio, dirección, método de pago
 - Si el cliente dice "no", "después", "luego" → no insistir, responder: "Perfecto! Te espero. Si necesitas algo, aquí estoy 🐾"
 - Si el cliente pregunta por algo caro (mayor a S/.200) → sugerir hablar con asesor para coordinar
