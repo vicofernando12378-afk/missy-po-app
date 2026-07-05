@@ -211,6 +211,20 @@ const CRM_TOOLS = [
       },
     },
   },
+  {
+    type: 'function',
+    function: {
+      name: 'buscarCliente',
+      description: 'Busca un cliente registrado por correo electrónico en el Club de Missy & Po. Retorna sus datos si existe.',
+      parameters: {
+        type: 'object',
+        properties: {
+          email: { type: 'string', description: 'Correo electrónico del cliente a buscar' },
+        },
+        required: ['email'],
+      },
+    },
+  },
 ];
 
 // ── TOOL RESOLVERS ────────────────────────────────────────────────────────────
@@ -840,6 +854,38 @@ async function resolverSendProductPhoto(args, chatId) {
   }
 }
 
+async function resolverBuscarCliente(args) {
+  const db = getFirestore();
+  const email = (args.email || '').trim().toLowerCase();
+  if (!email) return JSON.stringify({ error: 'Correo vacío.' });
+
+  try {
+    const snap = await db.collection('myp_club_miembros')
+      .where('email', '==', email).limit(1).get();
+
+    if (snap.empty) {
+      return JSON.stringify({ found: false, email });
+    }
+
+    const data = snap.docs[0].data();
+    return JSON.stringify({
+      found: true,
+      nombre: data.nombre_tutor || '',
+      mascota: data.nombre_mascota || '',
+      puntos: data.puntos || 0,
+      email: data.email || email,
+      celular: data.celular || '',
+      direccion: data.direccion || '',
+      departamento: data.departamento || '',
+      distrito: data.distrito || '',
+      documento_numero: data.documento_numero || '',
+    });
+  } catch (err) {
+    console.error('Error in buscarCliente:', err);
+    return JSON.stringify({ error: 'Error al buscar cliente.' });
+  }
+}
+
 // ── TOOL DISPATCH ─────────────────────────────────────────────────────────────
 
 const TOOL_RESOLVERS = {
@@ -855,6 +901,7 @@ const TOOL_RESOLVERS = {
   transferirAHumano: () => resolverTransferirAHumano(),
   crearPedido: (args, leadId, platform, conversationId) => resolverCrearPedido(args, leadId, platform, conversationId),
   sendProductPhoto: (args, leadId, platform, conversationId, chatId) => resolverSendProductPhoto(args, chatId),
+  buscarCliente: (args) => resolverBuscarCliente(args),
 };
 
 // ── ENHANCED SYSTEM PROMPT BUILDER ───────────────────────────────────────────
@@ -871,7 +918,6 @@ export function buildSystemPrompt({ botConfig, knowledgeContext }) {
     ? personality.rules.map(r => `- ${r}`).join('\n')
     : '- Sé amigable pero profesional\n- Recomienda productos cuando sea natural\n- Nunca inventes precios o disponibilidad';
 
-  const greeting = personality.greeting || `¡Hola! Soy ${name}, tu asesora de mascotas de Missy & Po Pet Shop. ¿En qué puedo ayudarte hoy?`;
   const fallback = personality.fallback || 'Déjame consultar con el equipo para darte la mejor respuesta.';
 
   return `# Identidad
@@ -883,7 +929,10 @@ Descripción: ${description}
 ${rules}
 
 # Saludo inicial
-Cuando el usuario inicie conversación por primera vez, saluda con: "${greeting}"
+Cuando el usuario inicie conversación, preséntate brevemente y pregunta: "¿Es tu primera vez comprando en Missy & Po Pet Shop?"
+- Si responde NO (ya es cliente): pide su correo → usa buscarCliente para obtener sus datos → salúdalo por nombre y el de su mascota → ofrece productos
+- Si responde SÍ (nuevo cliente): pide su nombre y correo → ofrece productos → al crear pedido recolecta los demás datos
+- Si no responde directamente, asume que quiere ver productos y muéstrales el catálogo
 
 # Fallback
 Cuando no puedas resolver algo: "${fallback}"
@@ -918,14 +967,14 @@ ${knowledgeContext}
 - Si dice que sí → iniciar proceso de pedido contra entrega usando la herramienta crearPedido
 - SOLO puedes ofrecer CONTRA ENTREGA como método de pago
 - Para otros métodos (Yape, Plin, transferencia, tarjeta) → responder: "Para otros métodos de pago, te comunico con un asesor que te puede ayudar a coordinar"
-- Recolectar los datos del cliente paso a paso en este orden:
-  1. Nombre completo
-  2. Correo electrónico
-  3. Número de DNI
-  4. Departamento y distrito (ej: "Arequipa, Cayma")
-  5. Dirección exacta (calle, número, urbanización)
-  6. Nombre de la mascota
-  7. Número de celular
+- Si el cliente es existente (buscarCliente lo encontró), usa sus datos registrados y solo pide dirección si es necesario
+- Si es nuevo cliente, recolectar los datos faltantes antes de crear el pedido:
+  1. Nombre completo (si no lo dio antes)
+  2. Número de DNI
+  3. Departamento y distrito (ej: "Arequipa, Cayma")
+  4. Dirección exacta (calle, número, urbanización)
+  5. Nombre de la mascota
+  6. Número de celular
 - Si el cliente no tiene dirección → pedir nombre y teléfono para que un asesor lo contacte
 - Si el cliente ya es socio del Club (email o DNI registrado) → el sistema lo detecta automáticamente y el bot lo saluda por nombre, agradece su preferencia y procede con el pedido
 - Si es nuevo → se registra automáticamente en el Club de Beneficios Missy & Po con puntos de bienvenida
