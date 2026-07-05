@@ -56,6 +56,7 @@
   "54": "Community 54",
   "55": "processSocialEvent.js",
   "56": "firebase/firestore",
+  "57": "reviews.js",
   "58": "scripts",
   "59": "Collection: `crm_campaigns`",
   "60": "Collection: `crm_leads`",
@@ -80,6 +81,8 @@
   "79": "CVRMDashboard.jsx",
   "80": "CajaDiaria.jsx",
   "81": "LeadsKanban.jsx",
+  "82": "functions",
   "83": "ApiKeysSection.jsx",
-  "84": "TelegramAgentPanel.jsx"
+  "84": "TelegramAgentPanel.jsx",
+  "85": "emailProvider.js"
 }

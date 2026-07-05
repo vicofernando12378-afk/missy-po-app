@@ -455,6 +455,19 @@ export async function processTelegramMessage({
       await sendTelegramMessage(chatId, replyText, replyMarkup);
     }
 
+    // 14b. If checkout was activated, immediately trigger the first checkout question
+    if (pedidoId === 'checkout_activated') {
+      try {
+        const convSnap = await db.collection('crm_conversations').doc(conversationId).get();
+        if (convSnap.exists && convSnap.data().checkout) {
+          const { sendCheckoutPrompt } = await import('./checkoutHelper.js');
+          await sendCheckoutPrompt(chatId, convSnap.data().checkout, keys.TELEGRAM_BOT_TOKEN);
+        }
+      } catch (chkErr) {
+        console.error('❌ Error sending initial checkout prompt:', chkErr);
+      }
+    }
+
     // 15. Register outbound interaction
     await db.collection('crm_interactions').add({
       leadId,

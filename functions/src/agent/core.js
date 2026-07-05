@@ -875,9 +875,77 @@ async function resolverIniciarCheckout(args, conversationId) {
   const db = getFirestore();
   const now = new Date();
 
-  // Determine starting step based on what data the LLM already collected
-  const hasName = !!(args.clienteNombre || '').trim();
-  const initialStep = hasName ? 'telefono' : 'nombre';
+  // 1. Fetch leadId from conversation
+  let leadId = null;
+  try {
+    const convSnap = await db.collection('crm_conversations').doc(conversationId).get();
+    if (convSnap.exists) {
+      leadId = convSnap.data().leadId || null;
+    }
+  } catch (e) {
+    console.warn('⚠️ Error fetching leadId for checkout autofill:', e.message);
+  }
+
+  // 2. Look up member data
+  let memberData = null;
+  let emailSearch = (args.email || '').trim().toLowerCase();
+
+  if (!emailSearch && leadId) {
+    try {
+      const leadSnap = await db.collection('crm_leads').doc(leadId).get();
+      if (leadSnap.exists) {
+        emailSearch = (leadSnap.data().email || '').trim().toLowerCase();
+        if (!args.clienteNombre && leadSnap.data().name) {
+          args.clienteNombre = leadSnap.data().name;
+        }
+      }
+    } catch (e) {
+      console.warn('⚠️ Error fetching lead details for checkout autofill:', e.message);
+    }
+  }
+
+  if (emailSearch) {
+    try {
+      const clubSnap = await db.collection('myp_club_miembros')
+        .where('email', '==', emailSearch).limit(1).get();
+      if (!clubSnap.empty) {
+        memberData = clubSnap.docs[0].data();
+      }
+    } catch (e) {
+      console.warn('⚠️ Error fetching club member for checkout autofill:', e.message);
+    }
+  }
+
+  // Determine starting step and prefill data
+  let initialStep = 'nombre';
+  const checkoutDatos = {
+    clienteNombre: args.clienteNombre || '',
+    email: args.email || emailSearch || '',
+    documentoNumero: '',
+    departamento: '',
+    distrito: '',
+    direccion: '',
+    nombreMascota: '',
+    telefono: '',
+    metodoPago: '',
+  };
+
+  if (memberData) {
+    checkoutDatos.clienteNombre = memberData.nombre_tutor || checkoutDatos.clienteNombre;
+    checkoutDatos.email = memberData.email || checkoutDatos.email;
+    checkoutDatos.documentoNumero = memberData.documento_numero || '';
+    checkoutDatos.departamento = memberData.departamento || '';
+    checkoutDatos.distrito = memberData.distrito || '';
+    checkoutDatos.direccion = memberData.direccion || '';
+    checkoutDatos.nombreMascota = memberData.nombre_mascota || '';
+    checkoutDatos.telefono = memberData.celular || '';
+
+    // Check if we have enough info to skip straight to data confirmation
+    const hasCompleteInfo = !!checkoutDatos.clienteNombre && !!checkoutDatos.telefono && !!checkoutDatos.direccion;
+    initialStep = hasCompleteInfo ? 'confirmar_datos' : 'telefono';
+  } else if (checkoutDatos.clienteNombre) {
+    initialStep = 'telefono';
+  }
 
   const convRef = db.collection('crm_conversations').doc(conversationId);
   await convRef.update({
@@ -885,17 +953,7 @@ async function resolverIniciarCheckout(args, conversationId) {
     checkout: {
       productos: args.productos || [],
       step: initialStep,
-      datos: {
-        clienteNombre: args.clienteNombre || '',
-        email: args.email || '',
-        documentoNumero: '',
-        departamento: '',
-        distrito: '',
-        direccion: '',
-        nombreMascota: '',
-        telefono: '',
-        metodoPago: '',
-      },
+      datos: checkoutDatos,
       creadoEn: Timestamp.fromDate(now),
     },
     updatedAt: Timestamp.fromDate(now),

@@ -930,8 +930,8 @@
     "semantic_hash": ""
   },
   "functions/src/telegram/webhook.js": {
-    "mtime": 1783225040.999684,
-    "ast_hash": "cdd098dfeaf2433d554c0a82ae7bfea3",
+    "mtime": 1783226703.0557973,
+    "ast_hash": "ad513075583f91853a82e6154d0c9b49",
     "semantic_hash": ""
   },
   "scripts/backfill-checkout-leads.js": {
@@ -1095,8 +1095,8 @@
     "semantic_hash": ""
   },
   "functions/src/agent/core.js": {
-    "mtime": 1783224963.0060174,
-    "ast_hash": "d2ed6766b0e9e5e166647d44ec740198",
+    "mtime": 1783226668.922147,
+    "ast_hash": "a0718b18b19c9357f6400ee8f04cb866",
     "semantic_hash": ""
   },
   "functions/src/agent/llmProviders/deepseek.js": {
@@ -1110,8 +1110,8 @@
     "semantic_hash": ""
   },
   "functions/src/telegram/processMessage.js": {
-    "mtime": 1783224710.4662592,
-    "ast_hash": "39d4d9e31b4dec64d7774923b736ba24",
+    "mtime": 1783226678.3392174,
+    "ast_hash": "f4ceb3c5a3d7a4170951f9bd545aa259",
     "semantic_hash": ""
   },
   "src/components/admin/crm/TelegramAgentPanel.jsx": {
@@ -1197,6 +1197,11 @@
   "functions/src/cron/followUpProcessor.js": {
     "mtime": 1783214233.252946,
     "ast_hash": "d6420d2afa7ebfe666e162804969d592",
+    "semantic_hash": ""
+  },
+  "functions/src/telegram/checkoutHelper.js": {
+    "mtime": 1783226658.720308,
+    "ast_hash": "37fc90c6504f57ff4d28b3b19bcc09a0",
     "semantic_hash": ""
   }
 }

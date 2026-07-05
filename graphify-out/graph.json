@@ -10,7 +10,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "astro_config",
-      "community": 67,
+      "community": 79,
       "norm_label": "astro.config.mjs"
     },
     {
@@ -170,7 +170,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "functions_package_dependencies",
-      "community": 38,
+      "community": 82,
       "norm_label": "dependencies"
     },
     {
@@ -180,7 +180,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "functions_package_dependencies_firebase_admin",
-      "community": 38,
+      "community": 82,
       "norm_label": "firebase-admin"
     },
     {
@@ -190,7 +190,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "functions_package_dependencies_firebase_functions",
-      "community": 38,
+      "community": 82,
       "norm_label": "firebase-functions"
     },
     {
@@ -200,7 +200,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "functions_package_dependencies_telegraf",
-      "community": 38,
+      "community": 82,
       "norm_label": "telegraf"
     },
     {
@@ -210,7 +210,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "functions_package_dependencies_axios",
-      "community": 38,
+      "community": 82,
       "norm_label": "axios"
     },
     {
@@ -447,7 +447,7 @@
       "label": "TOOL_RESOLVERS",
       "file_type": "code",
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L912",
+      "source_location": "L970",
       "_origin": "ast",
       "id": "functions_src_agent_core_tool_resolvers",
       "community": 58,
@@ -457,7 +457,7 @@
       "label": "buildSystemPrompt()",
       "file_type": "code",
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L933",
+      "source_location": "L991",
       "_origin": "ast",
       "id": "functions_src_agent_core_buildsystemprompt",
       "community": 24,
@@ -467,7 +467,7 @@
       "label": "runAgentCycle()",
       "file_type": "code",
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L1002",
+      "source_location": "L1060",
       "_origin": "ast",
       "id": "functions_src_agent_core_runagentcycle",
       "community": 24,
@@ -810,7 +810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "functions_src_cron_followupprocessor",
-      "community": 55,
+      "community": 67,
       "norm_label": "followupprocessor.js"
     },
     {
@@ -820,7 +820,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "functions_src_cron_followupprocessor_sendtelegrammessage",
-      "community": 55,
+      "community": 67,
       "norm_label": "sendtelegrammessage()"
     },
     {
@@ -830,7 +830,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "functions_src_cron_followupprocessor_notifyadmin",
-      "community": 55,
+      "community": 67,
       "norm_label": "notifyadmin()"
     },
     {
@@ -840,7 +840,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "functions_src_cron_followupprocessor_followupprocessor",
-      "community": 55,
+      "community": 67,
       "norm_label": "followupprocessor"
     },
     {
@@ -1400,8 +1400,28 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "functions_src_social_youtubepoll_youtubepoll",
-      "community": 28,
+      "community": 55,
       "norm_label": "youtubepoll"
+    },
+    {
+      "label": "checkoutHelper.js",
+      "file_type": "code",
+      "source_file": "functions/src/telegram/checkoutHelper.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "functions_src_telegram_checkouthelper",
+      "community": 24,
+      "norm_label": "checkouthelper.js"
+    },
+    {
+      "label": "sendCheckoutPrompt()",
+      "file_type": "code",
+      "source_file": "functions/src/telegram/checkoutHelper.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "functions_src_telegram_checkouthelper_sendcheckoutprompt",
+      "community": 24,
+      "norm_label": "sendcheckoutprompt()"
     },
     {
       "label": "processMessage.js",
@@ -1514,13 +1534,23 @@
       "norm_label": "telegramwebhook"
     },
     {
+      "label": "handleUpdateProcessing()",
+      "file_type": "code",
+      "source_file": "functions/src/telegram/webhook.js",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "functions_src_telegram_webhook_handleupdateprocessing",
+      "community": 24,
+      "norm_label": "handleupdateprocessing()"
+    },
+    {
       "label": "vitest.config.js",
       "file_type": "code",
       "source_file": "functions/vitest.config.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "functions_vitest_config",
-      "community": 67,
+      "community": 79,
       "norm_label": "vitest.config.js"
     },
     {
@@ -3190,7 +3220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_clubmemberstab",
-      "community": 79,
+      "community": 56,
       "norm_label": "clubmemberstab.jsx"
     },
     {
@@ -3200,7 +3230,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_clubmemberstab_clubmemberstab",
-      "community": 79,
+      "community": 56,
       "norm_label": "clubmemberstab()"
     },
     {
@@ -3210,7 +3240,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_pointstab",
-      "community": 79,
+      "community": 56,
       "norm_label": "pointstab.jsx"
     },
     {
@@ -3220,7 +3250,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "src_components_admin_cvrmtabs_pointstab_pointstab",
-      "community": 79,
+      "community": 56,
       "norm_label": "pointstab()"
     },
     {
@@ -3510,7 +3540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard",
-      "community": 81,
+      "community": 34,
       "norm_label": "leadcard.jsx"
     },
     {
@@ -3520,7 +3550,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_source_icons",
-      "community": 81,
+      "community": 34,
       "norm_label": "source_icons"
     },
     {
@@ -3530,7 +3560,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_scorecolor",
-      "community": 81,
+      "community": 34,
       "norm_label": "scorecolor()"
     },
     {
@@ -3540,7 +3570,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_relativetime",
-      "community": 81,
+      "community": 34,
       "norm_label": "relativetime()"
     },
     {
@@ -3550,7 +3580,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadcard_leadcard",
-      "community": 81,
+      "community": 34,
       "norm_label": "leadcard()"
     },
     {
@@ -3610,7 +3640,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban",
-      "community": 81,
+      "community": 34,
       "norm_label": "leadskanban.jsx"
     },
     {
@@ -3620,7 +3650,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban_columns",
-      "community": 81,
+      "community": 34,
       "norm_label": "columns"
     },
     {
@@ -3630,7 +3660,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban_kanbancolumn",
-      "community": 81,
+      "community": 34,
       "norm_label": "kanbancolumn()"
     },
     {
@@ -3640,7 +3670,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "src_components_admin_crm_leadskanban_leadskanban",
-      "community": 81,
+      "community": 56,
       "norm_label": "leadskanban()"
     },
     {
@@ -3650,7 +3680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder",
-      "community": 79,
+      "community": 34,
       "norm_label": "segmentbuilder.jsx"
     },
     {
@@ -3660,7 +3690,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder_fields",
-      "community": 79,
+      "community": 34,
       "norm_label": "fields"
     },
     {
@@ -3670,7 +3700,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder_operators",
-      "community": 79,
+      "community": 34,
       "norm_label": "operators"
     },
     {
@@ -3680,7 +3710,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "src_components_admin_crm_segmentbuilder_segmentbuilder",
-      "community": 79,
+      "community": 34,
       "norm_label": "segmentbuilder()"
     },
     {
@@ -3910,7 +3940,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "src_components_catalog_productcard_productcard",
-      "community": 37,
+      "community": 16,
       "norm_label": "productcard()"
     },
     {
@@ -3920,7 +3950,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_catalog_productgrid",
-      "community": 37,
+      "community": 16,
       "norm_label": "productgrid.jsx"
     },
     {
@@ -3930,7 +3960,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "src_components_catalog_productgrid_mock_products",
-      "community": 37,
+      "community": 16,
       "norm_label": "mock_products"
     },
     {
@@ -4130,7 +4160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_checkout_paymentqrculqi",
-      "community": 40,
+      "community": 0,
       "norm_label": "paymentqrculqi.jsx"
     },
     {
@@ -4190,7 +4220,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_header_carthoverpopup",
-      "community": 9,
+      "community": 50,
       "norm_label": "carthoverpopup.jsx"
     },
     {
@@ -4200,7 +4230,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_header_carthoverpopup_carthoverpopup",
-      "community": 9,
+      "community": 50,
       "norm_label": "carthoverpopup()"
     },
     {
@@ -4530,7 +4560,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat",
-      "community": 48,
+      "community": 9,
       "norm_label": "cartfloat.jsx"
     },
     {
@@ -4540,7 +4570,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_carticon",
-      "community": 48,
+      "community": 9,
       "norm_label": "carticon()"
     },
     {
@@ -4550,7 +4580,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_components_shared_cartfloat_cartfloat",
-      "community": 48,
+      "community": 9,
       "norm_label": "cartfloat()"
     },
     {
@@ -4660,7 +4690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_hooks_usecheckoutform",
-      "community": 40,
+      "community": 3,
       "norm_label": "usecheckoutform.js"
     },
     {
@@ -4791,7 +4821,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_index_css",
-      "community": 43,
+      "community": 33,
       "norm_label": "../../index.css"
     },
     {
@@ -5151,7 +5181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard",
-      "community": 79,
+      "community": 56,
       "norm_label": "cvrmdashboard.jsx"
     },
     {
@@ -5161,7 +5191,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_tabs",
-      "community": 79,
+      "community": 56,
       "norm_label": "tabs"
     },
     {
@@ -5171,7 +5201,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_cvrmdashboard_cvrmdashboard",
-      "community": 79,
+      "community": 56,
       "norm_label": "cvrmdashboard()"
     },
     {
@@ -5251,7 +5281,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard",
-      "community": 46,
+      "community": 40,
       "norm_label": "pedidosdashboard.jsx"
     },
     {
@@ -5261,7 +5291,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_pages_admin_pedidosdashboard_pedidosdashboard",
-      "community": 46,
+      "community": 40,
       "norm_label": "pedidosdashboard()"
     },
     {
@@ -5351,7 +5381,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard",
-      "community": 46,
+      "community": 57,
       "norm_label": "resenasdashboard.jsx"
     },
     {
@@ -5361,7 +5391,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estado_cfg",
-      "community": 46,
+      "community": 57,
       "norm_label": "estado_cfg"
     },
     {
@@ -5371,7 +5401,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_estrellas",
-      "community": 46,
+      "community": 57,
       "norm_label": "estrellas()"
     },
     {
@@ -5381,7 +5411,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "src_pages_admin_resenasdashboard_resenasdashboard",
-      "community": 46,
+      "community": 57,
       "norm_label": "resenasdashboard()"
     },
     {
@@ -5391,7 +5421,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard",
-      "community": 46,
+      "community": 40,
       "norm_label": "ventasdashboard.jsx"
     },
     {
@@ -5401,7 +5431,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_estados_color",
-      "community": 46,
+      "community": 40,
       "norm_label": "estados_color"
     },
     {
@@ -5411,7 +5441,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_rangos",
-      "community": 46,
+      "community": 40,
       "norm_label": "rangos"
     },
     {
@@ -5421,7 +5451,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_barchart",
-      "community": 46,
+      "community": 40,
       "norm_label": "barchart()"
     },
     {
@@ -5431,7 +5461,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "src_pages_admin_ventasdashboard_ventasdashboard",
-      "community": 46,
+      "community": 40,
       "norm_label": "ventasdashboard()"
     },
     {
@@ -5701,7 +5731,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "firestore",
-      "community": 56,
+      "community": 28,
       "norm_label": "firebase/firestore"
     },
     {
@@ -5721,7 +5751,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_index",
-      "community": 37,
+      "community": 8,
       "norm_label": "index.astro"
     },
     {
@@ -5731,7 +5761,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_homepage",
-      "community": 37,
+      "community": 8,
       "norm_label": "../pages/homepage"
     },
     {
@@ -5741,7 +5771,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_pages_login",
-      "community": 8,
+      "community": 1,
       "norm_label": "login.astro"
     },
     {
@@ -5751,7 +5781,7 @@
       "confidence": "EXTRACTED",
       "_origin": "ast",
       "id": "c_mis_proyectos_missy_po_src_pages_loginpage_tsx",
-      "community": 8,
+      "community": 1,
       "norm_label": "./loginpage.jsx"
     },
     {
@@ -6151,7 +6181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_tests_userprofile_test",
-      "community": 0,
+      "community": 81,
       "norm_label": "userprofile.test.js"
     },
     {
@@ -6231,7 +6261,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_checkout",
-      "community": 40,
+      "community": 0,
       "norm_label": "checkout.js"
     },
     {
@@ -6241,7 +6271,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_checkout_checkoutschema",
-      "community": 40,
+      "community": 0,
       "norm_label": "checkoutschema"
     },
     {
@@ -6281,7 +6311,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_payment",
-      "community": 40,
+      "community": 0,
       "norm_label": "payment.js"
     },
     {
@@ -6291,7 +6321,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_payment_yapeplinschema",
-      "community": 40,
+      "community": 0,
       "norm_label": "yapeplinschema"
     },
     {
@@ -6371,7 +6401,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_shippingconfig",
-      "community": 78,
+      "community": 79,
       "norm_label": "shippingconfig.js"
     },
     {
@@ -6381,7 +6411,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_shippingconfig_shippingconfigschema",
-      "community": 78,
+      "community": 79,
       "norm_label": "shippingconfigschema"
     },
     {
@@ -6391,7 +6421,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_userprofile",
-      "community": 0,
+      "community": 81,
       "norm_label": "userprofile.js"
     },
     {
@@ -6401,7 +6431,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "src_schemas_userprofile_addressschema",
-      "community": 0,
+      "community": 81,
       "norm_label": "addressschema"
     },
     {
@@ -6411,7 +6441,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petschema",
-      "community": 0,
+      "community": 81,
       "norm_label": "petschema"
     },
     {
@@ -6421,7 +6451,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userpreferencesschema",
-      "community": 0,
+      "community": 81,
       "norm_label": "userpreferencesschema"
     },
     {
@@ -6431,7 +6461,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "src_schemas_userprofile_userprofileschema",
-      "community": 0,
+      "community": 81,
       "norm_label": "userprofileschema"
     },
     {
@@ -6441,7 +6471,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "src_schemas_userprofile_petformschema",
-      "community": 0,
+      "community": 81,
       "norm_label": "petformschema"
     },
     {
@@ -6451,7 +6481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_schemas_validate",
-      "community": 40,
+      "community": 0,
       "norm_label": "validate.js"
     },
     {
@@ -6461,7 +6491,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "src_schemas_validate_validate",
-      "community": 40,
+      "community": 0,
       "norm_label": "validate()"
     },
     {
@@ -6711,7 +6741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_config",
-      "community": 78,
+      "community": 79,
       "norm_label": "config.js"
     },
     {
@@ -6731,7 +6761,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_services_config_guardarconfiguracionenvio",
-      "community": 78,
+      "community": 79,
       "norm_label": "guardarconfiguracionenvio()"
     },
     {
@@ -6741,7 +6771,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "src_services_config_obtenercategoryslugmap",
-      "community": 78,
+      "community": 79,
       "norm_label": "obtenercategoryslugmap()"
     },
     {
@@ -6801,7 +6831,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "src_services_coupons_validarcupon",
-      "community": 78,
+      "community": 9,
       "norm_label": "validarcupon()"
     },
     {
@@ -6921,7 +6951,7 @@
       "source_location": "L120",
       "_origin": "ast",
       "id": "src_services_crmleads_listleads",
-      "community": 81,
+      "community": 34,
       "norm_label": "listleads()"
     },
     {
@@ -7061,7 +7091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_emailprovider",
-      "community": 56,
+      "community": 85,
       "norm_label": "emailprovider.js"
     },
     {
@@ -7071,7 +7101,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_services_emailprovider_getunsubscribelink",
-      "community": 56,
+      "community": 85,
       "norm_label": "getunsubscribelink()"
     },
     {
@@ -7081,7 +7111,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_services_emailprovider_sendsingleemail",
-      "community": 56,
+      "community": 85,
       "norm_label": "sendsingleemail()"
     },
     {
@@ -7091,7 +7121,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_emailprovider_sendbulkcampaignemail",
-      "community": 56,
+      "community": 85,
       "norm_label": "sendbulkcampaignemail()"
     },
     {
@@ -7141,7 +7171,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "src_services_firebase_functions",
-      "community": 38,
+      "community": 82,
       "norm_label": "functions"
     },
     {
@@ -7151,7 +7181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_index",
-      "community": 46,
+      "community": 80,
       "norm_label": "index.js"
     },
     {
@@ -7161,7 +7191,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_orders",
-      "community": 46,
+      "community": 40,
       "norm_label": "orders.js"
     },
     {
@@ -7171,7 +7201,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "src_services_orders_crearpedidocontransaccion",
-      "community": 46,
+      "community": 40,
       "norm_label": "crearpedidocontransaccion()"
     },
     {
@@ -7181,7 +7211,7 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosadmin",
-      "community": 46,
+      "community": 40,
       "norm_label": "obtenerpedidosadmin()"
     },
     {
@@ -7191,7 +7221,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "src_services_orders_actualizarestadopedido",
-      "community": 46,
+      "community": 40,
       "norm_label": "actualizarestadopedido()"
     },
     {
@@ -7201,7 +7231,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "src_services_orders_reestablecerstockpedidocontransaccion",
-      "community": 46,
+      "community": 40,
       "norm_label": "reestablecerstockpedidocontransaccion()"
     },
     {
@@ -7211,7 +7241,7 @@
       "source_location": "L247",
       "_origin": "ast",
       "id": "src_services_orders_asignarrepartidorpedido",
-      "community": 46,
+      "community": 40,
       "norm_label": "asignarrepartidorpedido()"
     },
     {
@@ -7221,7 +7251,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "src_services_orders_obtenerpedidosrango",
-      "community": 46,
+      "community": 40,
       "norm_label": "obtenerpedidosrango()"
     },
     {
@@ -7261,7 +7291,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductos",
-      "community": 37,
+      "community": 46,
       "norm_label": "obtenerproductos()"
     },
     {
@@ -7351,7 +7381,7 @@
       "source_location": "L218",
       "_origin": "ast",
       "id": "src_services_products_obtenerproductosmasvendidos",
-      "community": 9,
+      "community": 46,
       "norm_label": "obtenerproductosmasvendidos()"
     },
     {
@@ -7431,7 +7461,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_services_reviews",
-      "community": 46,
+      "community": 57,
       "norm_label": "reviews.js"
     },
     {
@@ -7441,7 +7471,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenas",
-      "community": 46,
+      "community": 57,
       "norm_label": "obtenerresenas()"
     },
     {
@@ -7451,7 +7481,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_services_reviews_actualizarestadoresena",
-      "community": 46,
+      "community": 57,
       "norm_label": "actualizarestadoresena()"
     },
     {
@@ -7461,7 +7491,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_services_reviews_eliminarresena",
-      "community": 46,
+      "community": 57,
       "norm_label": "eliminarresena()"
     },
     {
@@ -7471,7 +7501,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_services_reviews_crearresena",
-      "community": 46,
+      "community": 57,
       "norm_label": "crearresena()"
     },
     {
@@ -7481,7 +7511,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "src_services_reviews_obtenerresenasporproducto",
-      "community": 46,
+      "community": 57,
       "norm_label": "obtenerresenasporproducto()"
     },
     {
@@ -7771,7 +7801,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "vitest_config",
-      "community": 67,
+      "community": 79,
       "norm_label": "vitest.config.js"
     },
     {
@@ -11104,7 +11134,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "astro_config",
-      "target": "functions_src_lib_config",
+      "target": "src_services_config",
       "confidence_score": 1.0
     },
     {
@@ -11405,7 +11435,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L933",
+      "source_location": "L991",
       "weight": 1.0,
       "source": "functions_src_agent_core",
       "target": "functions_src_agent_core_buildsystemprompt",
@@ -11565,7 +11595,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L1002",
+      "source_location": "L1060",
       "weight": 1.0,
       "source": "functions_src_agent_core",
       "target": "functions_src_agent_core_runagentcycle",
@@ -11575,7 +11605,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L912",
+      "source_location": "L970",
       "weight": 1.0,
       "source": "functions_src_agent_core",
       "target": "functions_src_agent_core_tool_resolvers",
@@ -11730,7 +11760,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "functions/src/agent/core.js",
-      "source_location": "L1016",
+      "source_location": "L1074",
       "weight": 1.0,
       "source": "functions_src_agent_core_runagentcycle",
       "target": "functions_src_agent_llmrouter_callllm"
@@ -12830,28 +12860,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "functions/vitest.config.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "functions_vitest_config",
-      "target": "functions_src_lib_config",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "vitest.config.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "vitest_config",
-      "target": "functions_src_lib_config",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -13871,6 +13879,60 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/src/telegram/checkoutHelper.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "functions_src_telegram_checkouthelper",
+      "target": "functions_src_telegram_checkouthelper_sendcheckoutprompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/src/telegram/processMessage.js",
+      "source_location": "L463",
+      "weight": 1.0,
+      "source": "functions_src_telegram_processmessage_processtelegrammessage",
+      "target": "functions_src_telegram_checkouthelper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/src/telegram/webhook.js",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "functions_src_telegram_webhook_handleupdateprocessing",
+      "target": "functions_src_telegram_checkouthelper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "functions/src/telegram/processMessage.js",
+      "source_location": "L464",
+      "weight": 1.0,
+      "source": "functions_src_telegram_processmessage_processtelegrammessage",
+      "target": "functions_src_telegram_checkouthelper_sendcheckoutprompt"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "functions/src/telegram/webhook.js",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "functions_src_telegram_webhook_handleupdateprocessing",
+      "target": "functions_src_telegram_checkouthelper_sendcheckoutprompt"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -14028,6 +14090,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "functions/src/telegram/webhook.js",
+      "source_location": "L720",
+      "weight": 1.0,
+      "source": "functions_src_telegram_webhook_handleupdateprocessing",
+      "target": "functions_src_telegram_processmessage_processtelegrammessage"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -14042,10 +14115,31 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "functions/src/telegram/webhook.js",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "functions_src_telegram_webhook",
+      "target": "functions_src_telegram_webhook_handleupdateprocessing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/src/telegram/webhook.js",
       "source_location": "L7",
       "weight": 1.0,
       "source": "functions_src_telegram_webhook",
       "target": "functions_src_telegram_webhook_telegramwebhook",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "functions/vitest.config.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "functions_vitest_config",
+      "target": "src_services_config",
       "confidence_score": 1.0
     },
     {
@@ -24051,6 +24145,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "vitest.config.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "vitest_config",
+      "target": "src_services_config",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/services/coupons.js",
@@ -28614,5 +28719,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "4fb7f7b48157739c3c861c8fa936cdba9022e279"
+  "built_at_commit": "191503c33411f9d4fe10eca812aae4d101c2dc43"
 }
