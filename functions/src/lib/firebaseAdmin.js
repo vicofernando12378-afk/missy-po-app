@@ -1,3 +1,5 @@
 import { initializeApp } from 'firebase-admin/app';
+import { initializeFirestore } from 'firebase-admin/firestore';
 
-initializeApp();
+const app = initializeApp();
+initializeFirestore(app, { preferRest: true });

@@ -2,9 +2,10 @@
  * sendHumanMessage.js — Send a message from admin to Telegram user.
  * Called when admin clicks "Enviar" in the CRM chat interface.
  */
-import { onRequest } from 'firebase-functions/v2/https';
-import { getFirestore, Timestamp } from 'firebase-admin/firestore';
 import axios from 'axios';
+import { getFirestore, Timestamp } from 'firebase-admin/firestore';
+import { onRequest } from 'firebase-functions/v2/https';
+
 import { getApiKeys } from '../lib/config.js';
 
 async function sendTelegramMessage(chatId, text) {

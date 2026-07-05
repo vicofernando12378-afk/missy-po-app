@@ -5,8 +5,9 @@
  * Generates JSON (for bot) + CSV (for Google/Meta) from Firestore myp_productos.
  * Creates admin notification if catalog is outdated.
  */
-import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
+
 import { generateCatalog, checkCatalogStatus } from '../lib/productCatalog.js';
 
 export const generateProductCatalog = onSchedule({

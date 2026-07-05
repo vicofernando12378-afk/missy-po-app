@@ -8,18 +8,20 @@
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
 
 const FRUSTRATION_KEYWORDS = [
-  'hablar con alguien', 'persona real', 'humano', 'ayuda real',
+  // Escalation requests (legit)
+  'hablar con alguien', 'persona real', 'quiero hablar con un',
+  'atención al cliente', 'supervisor', 'gerente',
+  // Frustration signals (strong)
   'estoy molesto', 'estoy molesta', 'qué asco', 'terrible', 'pésimo', 'basura',
-  'no me ayuda', 'inútil', 'devolver', 'reclamo', 'defensa al consumidor',
-  'cancelar pedido', 'no comprar', 'borrar cuenta', 'eliminar cuenta',
-  'quiero hablar con un', 'atención al cliente', 'supervisor', 'gerente',
-  'debería saber', 'no sabes nada', 'para qué sirves',
+  'no me ayuda', 'inútil', 'debería saber', 'no sabes nada', 'para qué sirves',
+  // Threats (strong)
+  'defensa al consumidor',
 ];
 
 const FRUSTRATION_PATTERNS = [
-  /[A-ZÁÉÍÓÚ\s]{20,}!/g,   // ALL CAPS with exclamation
-  /(.)\1{4,}/g,              // repeated chars (aaaaa, !!!!)
-  /[?!]{3,}/g,               // multiple ?! combos
+  /[A-ZÁÉÍÓÚ\s]{20,}!/g,   // ALL CAPS with exclamation (20+ chars)
+  /(.)\1{5,}/g,              // repeated chars 6+ times (aaaaaa, !!!!!!)
+  /[?!]{4,}/g,               // 4+ consecutive ?! combos
 ];
 
 /**

@@ -3,6 +3,7 @@
  * Called from admin panel when products change or user clicks "Actualizar catálogo".
  */
 import { onRequest } from 'firebase-functions/v2/https';
+
 import { generateCatalog } from '../lib/productCatalog.js';
 
 export const refreshProductCatalog = onRequest({ cors: true, region: 'us-central1' }, async (req, res) => {

@@ -45,7 +45,7 @@ export async function callDeepSeek({ systemPrompt, messages, tools }) {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
       },
-      timeout: 30000,
+      timeout: 15000,
     });
 
     const choice = response.data?.choices?.[0];

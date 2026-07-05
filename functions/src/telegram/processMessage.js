@@ -3,7 +3,7 @@ import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
 
 import { runAgentCycle, buildSystemPrompt } from '../agent/core.js';
 import { getApiKeys } from '../lib/config.js';
-import { detectFrustration, isBusinessHours, notifyAdminEscalation } from '../lib/escalation.js';
+import { detectFrustration, notifyAdminEscalation } from '../lib/escalation.js';
 import { getKnowledgeContext } from '../lib/knowledge.js';
 
 // ── ALIBABA QWEN ASR (Voz a Texto) ───────────────────────────────────────────
@@ -98,18 +98,40 @@ async function textToSpeech(text) {
 
 // ── TELEGRAM API HELPERS ──────────────────────────────────────────────────────
 
-async function sendTelegramMessage(chatId, text) {
+async function sendTelegramMessage(chatId, text, replyMarkup = null) {
   const keys = await getApiKeys();
   const token = keys.TELEGRAM_BOT_TOKEN;
   if (!token) return;
   try {
-    await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+    const payload = {
       chat_id: chatId,
       text,
       disable_web_page_preview: true,
-    });
+    };
+    if (replyMarkup) {
+      payload.reply_markup = replyMarkup;
+    }
+    await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, payload);
   } catch (err) {
     console.error('Error sending Telegram message:', err.response?.data || err.message);
+  }
+}
+
+async function sendTelegramPhoto(chatId, photoUrl, caption = null) {
+  const keys = await getApiKeys();
+  const token = keys.TELEGRAM_BOT_TOKEN;
+  if (!token || !photoUrl) return;
+  try {
+    const payload = {
+      chat_id: chatId,
+      photo: photoUrl,
+    };
+    if (caption) {
+      payload.caption = caption.substring(0, 1024);
+    }
+    await axios.post(`https://api.telegram.org/bot${token}/sendPhoto`, payload);
+  } catch (err) {
+    console.error('Error sending Telegram photo:', err.response?.data || err.message);
   }
 }
 
@@ -171,6 +193,7 @@ export async function processTelegramMessage({
   voiceFileId,
   fromUser,
 }) {
+  console.log('🤖 [processMessage] START — chatId:', chatId, '| text:', text?.substring(0, 60));
   const db = getFirestore();
   const now = new Date();
   const conversationId = `telegram_${chatId}`;
@@ -280,8 +303,34 @@ export async function processTelegramMessage({
       return;
     }
 
-    // 6. Skip AI if human mode
+    // 6. Handle human mode — recovery keywords + auto-reset after 24h
     if (conversation.status === 'esperando_humano' || conversation.status === 'humano') {
+      const recoveryKeywords = ['bot', 'habla conmigo', 'ayuda de vuelta', 'ya no necesito humano', 'puedes responder'];
+      const wantsBot = recoveryKeywords.some(kw => messageContent.toLowerCase().includes(kw));
+
+      if (wantsBot) {
+        await convRef.update({
+          status: 'bot',
+          lastMessageAt: Timestamp.fromDate(new Date()),
+          updatedAt: Timestamp.fromDate(new Date()),
+        });
+        await sendTelegramMessage(chatId, 'Listo! He vuelto. En qué te puedo ayudar?');
+        return;
+      }
+
+      // Auto-reset after 24h of inactivity
+      const lastMsg = conversation.lastMessageAt?.toDate() || new Date(0);
+      const hoursSince = (Date.now() - lastMsg.getTime()) / (1000 * 60 * 60);
+      if (hoursSince >= 24) {
+        await convRef.update({
+          status: 'bot',
+          lastMessageAt: Timestamp.fromDate(new Date()),
+          updatedAt: Timestamp.fromDate(new Date()),
+        });
+        await sendTelegramMessage(chatId, 'He vuelto! Parece que necesitabas atención personalizada. En qué te puedo ayudar?');
+        return;
+      }
+
       return;
     }
 
@@ -289,45 +338,33 @@ export async function processTelegramMessage({
     const configSnap = await db.collection('crm_bot_config').doc('telegram').get();
     const botConfig = configSnap.exists ? configSnap.data() : {};
 
-    // 8. Smart escalation checks
+    // 8. Frustration check only — bot works 24/7, no business hours block
     const frustration = detectFrustration(messageContent);
-    const businessHoursConfig = botConfig.escalation?.businessHours || botConfig.businessHours;
-    const outsideHours = !isBusinessHours(businessHoursConfig);
 
-    if (frustration.isFrustrated || outsideHours) {
-      // Escalate to human
-      const reason = frustration.isFrustrated ? 'frustration' : 'business_hours';
-
-      // Update conversation
+    if (frustration.isFrustrated) {
+      // Escalate to human on frustration
       await convRef.update({
         status: 'esperando_humano',
         lastMessageAt: Timestamp.fromDate(new Date()),
         updatedAt: Timestamp.fromDate(new Date()),
       });
 
-      // Update lead
       await db.collection('crm_leads').doc(leadId).update({
         tags: FieldValue.arrayUnion('esperando-soporte'),
         updatedAt: Timestamp.fromDate(new Date()),
       });
 
-      // Notify admin
       await notifyAdminEscalation({
         chatId,
         leadName: lead?.name || fromUser.firstName,
-        reason,
+        reason: 'frustration',
         lastMessage: messageContent,
         conversationId,
       });
 
-      // Send response to user
-      const responseMsg = frustration.isFrustrated
-        ? 'Veo que necesitas atención personalizada. Voy a transferirte con un agente humano que te ayudará mejor. Un momento por favor.'
-        : 'Estamos fuera de horario de atención. Un agente te contactará mañana durante nuestro horario laboral. ¿Hay algo que pueda ayudar mientras tanto?';
-
+      const responseMsg = 'Veo que necesitas atención personalizada. Voy a transferirte con un agente humano que te ayudará mejor. Un momento por favor.';
       await sendTelegramMessage(chatId, responseMsg);
 
-      // Log outbound
       await db.collection('crm_interactions').add({
         leadId,
         channel: 'telegram',
@@ -366,11 +403,12 @@ export async function processTelegramMessage({
 
     // 12. Run AI cycle
     sendChatAction(chatId, 'typing');
-    const { replyText, escalated } = await runAgentCycle({
+    const { replyText, escalated, pedidoId } = await runAgentCycle({
       systemPrompt,
       messages: chatHistory,
       leadId,
       conversationId,
+      chatId,
       platform: 'telegram',
     });
 
@@ -385,9 +423,36 @@ export async function processTelegramMessage({
       }
     }
 
-    // 14. Send text response
+    // 14. Send text response with welcome keyboard on first message
     if (!voiceSent && replyText) {
-      await sendTelegramMessage(chatId, replyText);
+      // Check if this is the first outbound message (welcome flow)
+      const outboundCount = await db.collection('crm_interactions')
+        .where('leadId', '==', leadId)
+        .where('direction', '==', 'outbound')
+        .count().get();
+
+      let replyMarkup = null;
+
+      // If a pedido was just created, send confirmation button
+      if (pedidoId) {
+        replyMarkup = {
+          inline_keyboard: [
+            [{ text: '✅ Confirmar Pedido', callback_data: `confirmar_pedido:${pedidoId}` }],
+            [{ text: '❌ Cancelar', callback_data: `cancelar_pedido:${pedidoId}` }],
+          ],
+        };
+      } else if (outboundCount.data().count <= 1) {
+        // First response — show welcome menu
+        replyMarkup = {
+          inline_keyboard: [
+            [{ text: '🛒 Ver Productos', callback_data: 'menu:productos' }],
+            [{ text: '📦 Mis Pedidos', callback_data: 'menu:pedidos' }],
+            [{ text: '💬 Hablar con Asesor', callback_data: 'menu:asesor' }],
+          ],
+        };
+      }
+
+      await sendTelegramMessage(chatId, replyText, replyMarkup);
     }
 
     // 15. Register outbound interaction

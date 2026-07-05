@@ -170,6 +170,42 @@ const CRM_TOOLS = [
       },
     },
   },
+  {
+    type: 'function',
+    function: {
+      name: 'crearPedido',
+      description: 'Crea un pedido contra entrega para el cliente. Recolecta: producto, nombre, dirección y teléfono. Retorna un pedidoId que el bot usa para confirmar.',
+      parameters: {
+        type: 'object',
+        properties: {
+          productoId: { type: 'string', description: 'ID del producto en myp_productos' },
+          productoNombre: { type: 'string', description: 'Nombre del producto' },
+          precio: { type: 'number', description: 'Precio unitario en soles' },
+          cantidad: { type: 'number', description: 'Cantidad (default 1)', default: 1 },
+          clienteNombre: { type: 'string', description: 'Nombre completo del cliente' },
+          direccion: { type: 'string', description: 'Dirección de entrega completa' },
+          telefono: { type: 'string', description: 'Teléfono de contacto' },
+          notaEntrega: { type: 'string', description: 'Nota adicional para la entrega (opcional)' },
+        },
+        required: ['productoId', 'productoNombre', 'precio', 'clienteNombre', 'direccion', 'telefono'],
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'sendProductPhoto',
+      description: 'Envía la foto de un producto al cliente por Telegram. Usa la imagenUrl que viene de buscarProducto.',
+      parameters: {
+        type: 'object',
+        properties: {
+          imagenUrl: { type: 'string', description: 'URL de la imagen del producto (viene de buscarProducto)' },
+          caption: { type: 'string', description: 'Texto descriptivo breve (nombre + precio)' },
+        },
+        required: ['imagenUrl', 'caption'],
+      },
+    },
+  },
 ];
 
 // ── TOOL RESOLVERS ────────────────────────────────────────────────────────────
@@ -240,6 +276,7 @@ async function resolverBuscarProducto(args) {
       stock: p.stock ?? 0,
       categorias: p.categorias || [],
       url: `https://missypoweb.web.app/producto/${p.slug || p.id}`,
+      imagenUrl: p.imagenes?.[0] || null,
     }));
 
     return JSON.stringify({ productos: formatted });
@@ -543,6 +580,198 @@ async function resolverTransferirAHumano(leadId, conversationId) {
   }
 }
 
+async function resolverCrearPedido(args, leadId, platform, conversationId) {
+  const db = getFirestore();
+  try {
+    const now = new Date();
+
+    // ── CHECK FOR EXISTING PENDING ORDER ──────────────────────────────────
+    // If the user already has a pending order, add item to it instead of creating new
+    if (leadId) {
+      const existingOrders = await db.collection('myp_pedidos')
+        .where('leadId', '==', leadId)
+        .where('estado', '==', 'recibido')
+        .where('confirmado', '==', false)
+        .limit(1)
+        .get();
+
+      if (!existingOrders.empty) {
+        const existingDoc = existingOrders.docs[0];
+        const existingPedido = existingDoc.data();
+        const existingPedidoId = existingDoc.id;
+
+        // Check if same address
+        const sameAddress = existingPedido.envio?.direccion === args.direccion;
+        if (!sameAddress) {
+          return JSON.stringify({
+            success: false,
+            needNewPedido: true,
+            message: `Ya tienes un pedido pendiente (${existingPedidoId}) con dirección: ${existingPedido.envio?.direccion}. Si quieres enviar a otra dirección, necesitamos crear un pedido nuevo. ¿Qué prefieres?`,
+          });
+        }
+
+        // Add new item to existing order
+        const newItem = {
+          productoId: args.productoId,
+          nombre: args.productoNombre,
+          precio_unitario: Math.round(args.precio * 100),
+          cantidad: args.cantidad || 1,
+        };
+
+        const updatedItems = [...(existingPedido.items || []), newItem];
+        const newTotal = updatedItems.reduce((sum, item) => sum + ((item.precio_unitario || item.precio || 0) * item.cantidad), 0);
+
+        await existingDoc.ref.update({
+          items: updatedItems,
+          total_final: newTotal * 100,
+          actualizado_en: Timestamp.fromDate(now),
+        });
+
+        // Notify admin
+        await db.collection('crm_notifications').add({
+          type: 'order_modified',
+          channel: 'telegram',
+          pedidoId: existingPedidoId,
+          chatId: conversationId?.replace('telegram_', ''),
+          leadName: args.clienteNombre,
+          message: `Item agregado: ${args.productoNombre} x${args.cantidad || 1}`,
+          read: false,
+          createdAt: Timestamp.fromDate(now),
+        });
+
+        return JSON.stringify({
+          success: true,
+          pedidoId: existingPedidoId,
+          agregado: true,
+          message: `Agregué ${args.productoNombre} a tu pedido existente (${existingPedidoId}). Total actualizado: S/.${newTotal}.`,
+        });
+      }
+    }
+
+    // ── CREATE NEW ORDER ──────────────────────────────────────────────────
+    const pedidoId = `ped-${Date.now()}`;
+
+    const pedido = {
+      pedidoId,
+      estado: 'recibido',
+      confirmado: false,
+      canal: platform || 'telegram',
+      leadId: leadId || null,
+      cliente: {
+        nombre: args.clienteNombre,
+        celular: args.telefono,
+        email: null,
+        documento_numero: null,
+      },
+      envio: {
+        nombre: args.clienteNombre,
+        direccion: args.direccion,
+        telefono: args.telefono,
+        notaEntrega: args.notaEntrega || null,
+      },
+      items: [{
+        productoId: args.productoId,
+        nombre: args.productoNombre,
+        precio_unitario: Math.round(args.precio * 100),
+        cantidad: args.cantidad || 1,
+      }],
+      pago: {
+        metodo: 'contra_entrega',
+        estado: 'pendiente',
+      },
+      total_final: args.precio * (args.cantidad || 1) * 100,
+      creado_en: Timestamp.fromDate(now),
+      notificadoAdmin: false,
+    };
+
+    await db.collection('myp_pedidos').doc(pedidoId).set(pedido);
+
+    // Update lead with purchase intent
+    if (leadId) {
+      await db.collection('crm_leads').doc(leadId).update({
+        stage: 'calificado',
+        tags: FieldValue.arrayUnion('compra-interes'),
+        updatedAt: Timestamp.fromDate(now),
+      });
+    }
+
+    // Notify admin
+    await db.collection('crm_notifications').add({
+      type: 'new_order',
+      channel: 'telegram',
+      pedidoId,
+      chatId: conversationId?.replace('telegram_', ''),
+      leadName: args.clienteNombre,
+      total: args.precio * (args.cantidad || 1),
+      read: false,
+      createdAt: Timestamp.fromDate(now),
+    });
+
+    // Also notify admin via Telegram if configured
+    try {
+      const { getApiKeys } = await import('../lib/config.js');
+      const keys = await getApiKeys();
+      const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID || '';
+      if (adminChatId && keys.TELEGRAM_BOT_TOKEN) {
+        const axios = (await import('axios')).default;
+        const adminMsg = [
+          '🛒 *Nuevo pedido recibido*',
+          `*Pedido:* ${pedidoId}`,
+          `*Cliente:* ${args.clienteNombre}`,
+          `*Producto:* ${args.productoNombre} x${args.cantidad || 1}`,
+          `*Total:* S/.${args.precio * (args.cantidad || 1)}`,
+          `*Dirección:* ${args.direccion}`,
+          `*Teléfono:* ${args.telefono}`,
+          '*Pago:* Contra entrega',
+          '',
+          'Revisa el panel de administración para gestionar.',
+        ].join('\n');
+
+        await axios.post(`https://api.telegram.org/bot${keys.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          chat_id: adminChatId,
+          text: adminMsg,
+          parse_mode: 'Markdown',
+        });
+      }
+    } catch (notifyErr) {
+      console.error('Error notifying admin via Telegram:', notifyErr.message);
+    }
+
+    return JSON.stringify({
+      success: true,
+      pedidoId,
+      message: `Pedido ${pedidoId} creado exitosamente. Total: S/.${args.precio * (args.cantidad || 1)}. Envía el resumen al cliente con el botón de confirmar.`,
+    });
+  } catch (err) {
+    console.error('Error in crearPedido:', err);
+    return JSON.stringify({ error: 'Error al crear pedido.' });
+  }
+}
+
+async function resolverSendProductPhoto(args, chatId) {
+  if (!chatId) return JSON.stringify({ error: 'No chatId disponible.' });
+  if (!args.imagenUrl) return JSON.stringify({ error: 'No se proporcionó imagenUrl.' });
+
+  try {
+    const axios = (await import('axios')).default;
+    const { getApiKeys } = await import('../lib/config.js');
+    const keys = await getApiKeys();
+    const token = keys.TELEGRAM_BOT_TOKEN;
+    if (!token) return JSON.stringify({ error: 'Token no disponible.' });
+
+    await axios.post(`https://api.telegram.org/bot${token}/sendPhoto`, {
+      chat_id: chatId,
+      photo: args.imagenUrl,
+      caption: (args.caption || '').substring(0, 1024),
+    });
+
+    return JSON.stringify({ success: true, message: 'Foto enviada.' });
+  } catch (err) {
+    console.error('Error sending product photo:', err.message);
+    return JSON.stringify({ error: 'Error al enviar foto.' });
+  }
+}
+
 // ── TOOL DISPATCH ─────────────────────────────────────────────────────────────
 
 const TOOL_RESOLVERS = {
@@ -556,6 +785,8 @@ const TOOL_RESOLVERS = {
   crearLead: (args, leadId, platform) => resolverCrearLead(args, leadId, platform),
   agendarSeguimiento: (args, leadId) => resolverAgendarSeguimiento(args, leadId),
   transferirAHumano: () => resolverTransferirAHumano(),
+  crearPedido: (args, leadId, platform, conversationId) => resolverCrearPedido(args, leadId, platform, conversationId),
+  sendProductPhoto: (args, leadId, platform, conversationId, chatId) => resolverSendProductPhoto(args, chatId),
 };
 
 // ── ENHANCED SYSTEM PROMPT BUILDER ───────────────────────────────────────────
@@ -596,17 +827,36 @@ ${knowledgeContext}
 - Para preguntas absurdas (helicopteros, Lamborghini, etc.) — responde con humor y personalidad, como lo haría una amiga. Ejemplo: "Jajaja me encantaría, pero no tenemos eso! Y si tu mascota quiere algo divertido, tenemos..."
 - Si el cliente pregunta por algo que no existe en el catálogo, di "no tenemos eso" y recomienda 2-3 productos similares del listado.
 - NUNCA uses markdown: no **, no *, no [texto](url). Solo texto plano.
-- NUNCA incluyas links ni URLs en tus respuestas. Solo menciona el nombre del producto.
 - Sé la amiga experta en mascotas: cálida, natural, con sentido del humor
 - Usa emojis con moderación (1-2 por máximo)
 - Respuestas concisas (2-4 párrafos máximo)
 - Usa bullets para listar opciones cuando recomiendes productos
 
+# Fotos y Links de Productos
+- Cuando recomiendes un producto, USA la herramienta sendProductPhoto para enviar la foto junto con el nombre y precio
+- SIEMPRE incluye el link a la website para que el cliente pueda ver detalles y comprar: https://missypoweb.web.app/producto/{slug}
+- El link debe ser clickable y natural. Ejemplo: "Mira todos los detalles aquí: https://missypoweb.web.app/producto/casaca-po"
+- Si el cliente pide fotos, busca el producto con buscarProducto y luego envía la foto con sendProductPhoto
+- El canal más práctico para que el cliente compre es la website — siempre ofrece el link
+
 # Escalación
 - Si el cliente pide hablar con alguien → transfiere inmediatamente
 - Si expresa frustración → transfiere sin resistencia
 - Si no puedes resolver algo → usa el fallback
-- Nunca intentes retener al cliente si pide un humano`;
+- Nunca intentes retener al cliente si pide un humano
+
+# Flujo de Venta
+- Cuando un cliente muestre interés en un producto (pregunte por precio, disponibilidad, o diga "quiero esto"), preguntar: "¿Quieres que te lo reserve?"
+- Si dice que sí → iniciar proceso de pedido contra entrega usando la herramienta crearPedido
+- SOLO puedes ofrecer CONTRA ENTREGA como método de pago
+- Para otros métodos (Yape, Plin, transferencia, tarjeta) → responder: "Para otros métodos de pago, te comunico con un asesor que te puede ayudar a coordinar"
+- Recolectar los datos del cliente paso a paso: nombre, dirección, teléfono
+- Si el cliente no tiene dirección → pedir nombre y teléfono para que un asesor lo contacte
+- Mostrar resumen ANTES de confirmar: producto, precio, dirección, método de pago
+- Si el cliente dice "no", "después", "luego" → no insistir, responder: "Perfecto! Te espero. Si necesitas algo, aquí estoy 🐾"
+- Si el cliente pregunta por algo caro (mayor a S/.200) → sugerir hablar con asesor para coordinar
+- Si el cliente ya tiene un pedido pendiente y quiere otro producto → crearPedido automáticamente agrega el item al pedido existente
+- Si la dirección es diferente a la del pedido existente → informar al cliente y preguntar si quiere crear un pedido nuevo o cambiar la dirección`;
 }
 
 // ── MAIN ORCHESTRATOR ─────────────────────────────────────────────────────────
@@ -619,11 +869,13 @@ export async function runAgentCycle({
   messages,
   leadId,
   conversationId,
+  chatId,
   platform = 'telegram',
 }) {
   const activeMessages = [...messages];
   let response = null;
   let escalated = false;
+  let pedidoId = null;
 
   for (let i = 0; i < 3; i++) {
     response = await callLLM({
@@ -664,6 +916,14 @@ export async function runAgentCycle({
         } else if (name === 'transferirAHumano') {
           resultString = await resolver(args, leadId, conversationId);
           escalated = true;
+        } else if (name === 'crearPedido') {
+          resultString = await resolver(args, leadId, platform, conversationId);
+          try {
+            const parsed = JSON.parse(resultString);
+            if (parsed.pedidoId) pedidoId = parsed.pedidoId;
+          } catch { /* ignore */ }
+        } else if (name === 'sendProductPhoto') {
+          resultString = await resolver(args, leadId, platform, conversationId, chatId);
         } else {
           resultString = await resolver(args);
         }
@@ -691,5 +951,6 @@ export async function runAgentCycle({
   return {
     replyText: response?.text || '¿En qué puedo ayudarte con nuestros productos? Puedes escribir lo que buscas y lo encuentro para ti.',
     escalated: false,
+    pedidoId,
   };
 }

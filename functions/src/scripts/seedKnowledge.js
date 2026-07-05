@@ -41,17 +41,17 @@ const SEED_DATA = {
     envios: {
       Lima: 'Delivery Regular: Al día siguiente de la compra, costo S/. 6.00 (gratis en Arequipa/Lima por compras > S/. 45.00). Zonas periféricas: S/. 7.00. Delivery Express: Mismo día, costo S/. 10.00, compra mínima S/. 45.00.',
       Provincia: 'Envíos a todo el Perú vía Courier Shalom con tarifas variables. Provincias de Arequipa: entrega martes y jueves comprando hasta las 4:59 pm.',
-      zonas: ['Arequipa', 'Lima', 'Provincia']
+      zonas: ['Arequipa', 'Lima', 'Provincia'],
     },
     pagos: {
       metodos: ['Yape', 'Plin', 'Mercado Pago', 'Tarjetas de crédito', 'Contra reembolso'],
       cuotas: 'Hasta 3 cuotas sin intereses según banco emisor.',
-      anticipo: 'No requiere anticipo. Delivery contra reembolso disponible en todo el Perú.'
+      anticipo: 'No requiere anticipo. Delivery contra reembolso disponible en todo el Perú.',
     },
     devoluciones: {
       plazo: 'Alimentos: 2 días calendario. Accesorios e Higiene: 3 días calendario.',
       condiciones: 'Alimentos: sellado, completo y sin uso. Accesorios e Higiene: empaque original, con etiquetas y sin uso. Requerida boleta de compra.',
-      proceso: 'Toda devolución se gestiona por el mismo canal de compra. Plazo de reembolso de 10 días hábiles tras recibir e inspeccionar el producto.'
+      proceso: 'Toda devolución se gestiona por el mismo canal de compra. Plazo de reembolso de 10 días hábiles tras recibir e inspeccionar el producto.',
     },
     garantia: 'Los productos se sujetan a las condiciones de despacho y entrega elegidas por el usuario. La información del lugar de envío es de responsabilidad del usuario.',
     club: 'Club de Beneficios Missy & Po: acumulador de puntos en cada compra, descuentos exclusivos en preventas, sorpresas en el mes de cumpleaños de tu mascota, contenido Missy & Po TV, atención prioritaria vía WhatsApp VIP y próximo seguro para mascotas.',
@@ -68,7 +68,7 @@ const SEED_DATA = {
       { q: '¿Tienen tienda física?', a: 'Somos una tienda online con delivery en Lima y oficina de distribución en Arequipa. Puedes comprar online en missypoweb.web.app y te lo enviamos.', pregunta: '¿Tienen tienda física?', respuesta: 'Somos una tienda online con delivery en Lima y oficina de distribución en Arequipa. Puedes comprar online en missypoweb.web.app y te lo enviamos.' },
       { q: '¿Cómo me uno al Club Missy & Po?', a: 'Es gratis. Regístrate en nuestra tienda o escríbenos por WhatsApp. Empiezas a acumular puntos con cada compra.', pregunta: '¿Cómo me uno al Club Missy & Po?', respuesta: 'Es gratis. Regístrate en nuestra tienda o escríbenos por WhatsApp. Empiezas a acumular puntos con cada compra.' },
       { q: '¿Qué beneficios tiene el Club?', a: 'Puntos canjeables por descuentos, ofertas exclusivas, regalo de cumpleaños, acceso anticipado a nuevos productos, contenido exclusivo en Missy & Po TV y atención prioritaria por WhatsApp VIP.', pregunta: '¿Qué beneficios tiene el Club?', respuesta: 'Puntos canjeables por descuentos, ofertas exclusivas, regalo de cumpleaños, acceso anticipado a nuevos productos, contenido exclusivo en Missy & Po TV y atención prioritaria por WhatsApp VIP.' },
-      { q: '¿Tienen seguro para mascotas?', a: 'Próximamente. Estamos cerrando alianzas con aseguradoras peruanas. Planes desde S/ 29/mes con descuento adicional para miembros del Club.', pregunta: '¿Tienen seguro para mascotas?', respuesta: 'Próximamente. Estamos cerrando alianzas con aseguradoras peruanas. Planes desde S/ 29/mes con descuento adicional para miembros del Club.' }
+      { q: '¿Tienen seguro para mascotas?', a: 'Próximamente. Estamos cerrando alianzas con aseguradoras peruanas. Planes desde S/ 29/mes con descuento adicional para miembros del Club.', pregunta: '¿Tienen seguro para mascotas?', respuesta: 'Próximamente. Estamos cerrando alianzas con aseguradoras peruanas. Planes desde S/ 29/mes con descuento adicional para miembros del Club.' },
     ],
   },
 

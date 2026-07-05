@@ -70,6 +70,7 @@
       "fields": [
         { "fieldPath": "leadId", "order": "ASCENDING" },
         { "fieldPath": "channel", "order": "ASCENDING" },
+        { "fieldPath": "direction", "order": "ASCENDING" },
         { "fieldPath": "createdAt", "order": "ASCENDING" }
       ]
     },
@@ -112,6 +113,15 @@
       "fields": [
         { "fieldPath": "status", "order": "ASCENDING" },
         { "fieldPath": "lastMessageAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "myp_pedidos",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "leadId", "order": "ASCENDING" },
+        { "fieldPath": "estado", "order": "ASCENDING" },
+        { "fieldPath": "confirmado", "order": "ASCENDING" }
       ]
     }
   ],

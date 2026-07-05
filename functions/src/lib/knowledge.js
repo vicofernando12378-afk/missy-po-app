@@ -6,6 +6,7 @@
  */
 
 import { getFirestore } from 'firebase-admin/firestore';
+
 import { getCatalogJSON } from './productCatalog.js';
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
@@ -113,7 +114,8 @@ ${formatClub(kb.club)}`);
 
 /**
  * Builds product catalog context for the system prompt.
- * Returns formatted markdown with all active products + anti-hallucination rules.
+ * Returns a lightweight index (categories + count) — NOT the full catalog.
+ * The LLM uses buscarProducto tool for specific product queries.
  */
 async function getProductCatalogContext() {
   try {
@@ -131,20 +133,18 @@ async function getProductCatalogContext() {
     }
 
     const lines = ['# Catálogo de Productos (Missy & Po)'];
-    lines.push('REGLA CRÍTICA: Solo puedes recomendar productos que aparecen en este listado.');
-    lines.push('Si el cliente pregunta por algo que no existe, di "no tenemos eso" y recomienda del listado.');
-    lines.push('NUNCA inventes nombres, precios, categorías o productos.\n');
+    lines.push('Tenemos los siguientes productos organizados por categoría:\n');
 
     for (const [cat, items] of Object.entries(byCategory)) {
-      lines.push(`## ${cat}`);
-      for (const p of items) {
-        const priceStr = p.enOferta
-          ? `S/.${p.precio} (oferta, antes S/.${p.precioRegular})`
-          : `S/.${p.precio}`;
-        const stockStr = p.stock > 0 ? `Stock: ${p.stock}` : 'AGOTADO';
-        lines.push(`- ${p.nombre} — ${priceStr} — ${stockStr} — /producto/${p.slug}`);
-      }
+      const available = items.filter(p => p.stock > 0);
+      const featured = available.slice(0, 3).map(p => p.nombre).join(', ');
+      const count = items.length;
+      lines.push(`- ${cat}: ${count} productos. Destacados: ${featured || 'consultar disponibilidad'}`);
     }
+
+    lines.push(`\nTotal: ${products.length} productos activos.`);
+    lines.push('Para preguntas por productos específicos, usa la herramienta buscarProducto.');
+    lines.push('NUNCA inventes nombres, precios ni categorías.');
 
     return lines.join('\n');
   } catch (err) {

@@ -36,6 +36,7 @@ function buildCatalogJSON(products) {
         categorias: p.categorias || [],
         slug: p.slug || p.id,
         tags: p.tags_busqueda || [],
+        imagenUrl: p.imagenes?.[0] || null,
       };
     });
 }

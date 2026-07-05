@@ -29,8 +29,9 @@ export { emailWebhook } from './campaigns/emailWebhook.js';
 export { socialWebhookHandler } from './social/metaWebhook.js';
 export { youtubePoll } from './social/youtubePoll.js';
 
-// telegram
+// telegram — lazy load to reduce cold start (heavy dependency chain)
 export { telegramWebhook } from './telegram/webhook.js';
 
 // cron
 export { generateProductCatalog } from './cron/generateProductCatalog.js';
+export { followUpProcessor } from './cron/followUpProcessor.js';
