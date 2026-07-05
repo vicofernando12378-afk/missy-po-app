@@ -428,14 +428,8 @@ export async function processTelegramMessage({
       }
     }
 
-    // 14. Send text response with welcome keyboard on first message
+    // 14. Send text response
     if (!voiceSent && replyText) {
-      // Check if this is the first outbound message (welcome flow)
-      const outboundCount = await db.collection('crm_interactions')
-        .where('leadId', '==', leadId)
-        .where('direction', '==', 'outbound')
-        .count().get();
-
       let replyMarkup = null;
 
       // If checkout was activated, the webhook.js handles the flow — no button here
@@ -446,16 +440,8 @@ export async function processTelegramMessage({
             [{ text: '❌ Cancelar', callback_data: `cancelar_pedido:${pedidoId}` }],
           ],
         };
-      } else if (outboundCount.data().count <= 1) {
-        // First response — show welcome menu
-        replyMarkup = {
-          inline_keyboard: [
-            [{ text: '🛒 Ver Productos', callback_data: 'menu:productos' }],
-            [{ text: '📦 Mis Pedidos', callback_data: 'menu:pedidos' }],
-            [{ text: '💬 Hablar con Asesor', callback_data: 'menu:asesor' }],
-          ],
-        };
       }
+      // NO welcome keyboard here — it's handled by webhook.js menu handlers
 
       await sendTelegramMessage(chatId, replyText, replyMarkup);
     }

@@ -80,16 +80,19 @@ export const telegramWebhook = onRequest({
             text: 'Para consultar tu pedido, necesito tu número de pedido o el email con el que lo hiciste.',
           });
         } else if (data === 'menu:asesor') {
-          await processTelegramMessage({
-            chatId,
-            text: 'Necesito hablar con un asesor',
-            voiceFileId: null,
-            fromUser: {
-              id: fromUser.id,
-              username: fromUser.username || null,
-              firstName: fromUser.first_name || '',
-              lastName: fromUser.last_name || '',
-            },
+          await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+            chat_id: chatId,
+            text: 'Voy a conectarte con un asesor humano. Un momento por favor...',
+          });
+          // Notify admin
+          const db = getFirestore();
+          await db.collection('crm_notifications').add({
+            type: 'human_request',
+            channel: 'telegram',
+            chatId: String(chatId),
+            userName: fromUser.first_name || '',
+            read: false,
+            createdAt: Timestamp.fromDate(new Date()),
           });
         } else if (data === 'menu:main') {
           await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -105,17 +108,44 @@ export const telegramWebhook = onRequest({
           });
         } else if (data.startsWith('cat:')) {
           const category = data.replace('cat:', '');
-          await processTelegramMessage({
-            chatId,
-            text: `Quiero ver productos de ${category}`,
-            voiceFileId: null,
-            fromUser: {
-              id: fromUser.id,
-              username: fromUser.username || null,
-              firstName: fromUser.first_name || '',
-              lastName: fromUser.last_name || '',
-            },
-          });
+          const db = getFirestore();
+          let productsSnap;
+
+          if (category === 'todos') {
+            productsSnap = await db.collection('myp_productos')
+              .where('activo', '==', true)
+              .limit(10)
+              .get();
+          } else {
+            productsSnap = await db.collection('myp_productos')
+              .where('activo', '==', true)
+              .where('categorias', 'array-contains', category)
+              .limit(10)
+              .get();
+          }
+
+          if (productsSnap.empty) {
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: 'No encontré productos en esta categoría. ¿Te interesa algo en particular?',
+              reply_markup: { inline_keyboard: [[{ text: '◀️ Volver', callback_data: 'menu:main' }]] },
+            });
+          } else {
+            const lines = productsSnap.docs.map(d => {
+              const p = d.data();
+              const price = p.precio_oferta || p.precio_regular || p.precio || 0;
+              const stock = (p.stock ?? 0) > 0 ? `Stock: ${p.stock}` : 'Sin stock';
+              const slug = p.slug || d.id;
+              return `• ${p.nombre} — S/ ${price} (${stock})\n  https://missypoweb.web.app/producto/${slug}`;
+            });
+
+            await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
+              chat_id: chatId,
+              text: `Productos ${category === 'todos' ? '' : 'para ' + category + ' '}disponibles:\n\n${lines.join('\n\n')}\n\n¿Te interesa alguno? Escríbeme el nombre y te ayudo.`,
+              disable_web_page_preview: true,
+              reply_markup: { inline_keyboard: [[{ text: '◀️ Volver al menú', callback_data: 'menu:main' }]] },
+            });
+          }
         } else if (data.startsWith('confirmar_pedido:')) {
           const pedidoId = data.replace('confirmar_pedido:', '');
           const db = getFirestore();
