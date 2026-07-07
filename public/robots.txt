@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /carrito/
+Disallow: /mi-cuenta/
+Disallow: /login/
+Disallow: /orden-confirmada/
+
+Sitemap: https://missypoweb.web.app/sitemap.xml

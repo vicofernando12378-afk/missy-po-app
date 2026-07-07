@@ -7,7 +7,7 @@ const MARQUEE_ITEMS = [
   '💳 Aceptamos: Yape · Plin · Mercado Pago · Tarjetas de crédito',
   '🎁 ¡Compras desde S/. 50 obtienen envío preferencial!',
   '✨ Nuevos productos todas las semanas',
-  '📞 Atención al cliente: WhatsApp +51 999 999 999',
+  '📞 Atención al cliente: WhatsApp +51 913 249 330',
   '🐕 Ropa, accesorios y juguetes para tus mascotas',
   '💝 Contra reembolso disponible en todo el Perú',
 ];

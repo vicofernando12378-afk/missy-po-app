@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const WHATSAPP_NUMBER = '51999999999';
+const WHATSAPP_NUMBER = '51913249330';
 const TELEGRAM_BOT = 'https://t.me/Missypo_bot';
 
 export default function WhatsAppFloat() {

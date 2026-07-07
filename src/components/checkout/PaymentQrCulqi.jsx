@@ -62,7 +62,7 @@ export default function PaymentQrCulqi({ total, onConfirm, onCancel }) {
 
   // Generamos un QR dinámico con la API de QR Server apuntando a un pago simulado
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=2e0854&data=${encodeURIComponent(
-    `yape://pay?to=999999999&amount=${(total / 100).toFixed(2)}&concept=MissyPoOrder`,
+    `yape://pay?to=51913249330&amount=${(total / 100).toFixed(2)}&concept=MissyPoOrder`,
   )}`;
 
   return (
@@ -85,7 +85,7 @@ export default function PaymentQrCulqi({ total, onConfirm, onCancel }) {
             <div className="relative inline-block p-3 bg-purple-50 rounded-2xl border-2 border-dashed border-purple-200">
               <img src={qrCodeUrl} alt="Código QR Yape/Plin" className="w-44 h-44 mx-auto" />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 bg-purple-950/80 transition-opacity rounded-2xl text-white text-xs font-ui p-4">
-                Celular de contacto:<br /><strong>999 999 999</strong>
+                Celular de contacto:<br /><strong>913 249 330</strong>
               </div>
             </div>
 
