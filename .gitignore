@@ -65,3 +65,5 @@ backups/
 .windsurf/
 AGENTS.md
 
+# ── Graphify (Mapa de Código Autogenerado) ──
+graphify-out/
