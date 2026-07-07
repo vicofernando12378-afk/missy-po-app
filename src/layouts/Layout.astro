@@ -11,12 +11,17 @@ import logoHeaderImg from '../assets/logoheader.jpeg';
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const { 
   title = "Missy & Po — Pet Shop | Accesorios y Ropa para Mascotas en Perú", 
-  description = "Missy & Po, la tienda online #1 de accesorios, ropa y juguetes para mascotas en Perú. Envíos a todo el país con Courier Shalom y Olva Express. ¡Consiéntelos como se merecen!" 
+  description = "Missy & Po, la tienda online #1 de accesorios, ropa y juguetes para mascotas en Perú. Envíos a todo el país con Courier Shalom y Olva Express. ¡Consiéntelos como se merecen!",
+  canonical
 } = Astro.props;
+
+// Canonical URL: usar prop si se provee, si no generar desde la ruta actual
+const canonicalUrl = canonical || `https://missypoweb.web.app${Astro.url.pathname}`;
 
 // Optimizar logo a formato WebP conservando las dimensiones originales
 const optimizedLogo = await getImage({ src: logoHeaderImg, format: 'webp' });
@@ -34,6 +39,7 @@ const logoUrl = optimizedLogo.src;
     <meta name="description" content={description} />
     <meta name="keywords" content="pet shop, tienda mascotas, accesorios mascotas, ropa perros, Perú, envío nacional" />
     <meta name="author" content="Missy & Po Pet Shop" />
+    <link rel="canonical" href={canonicalUrl} />
     
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

@@ -27,7 +27,7 @@ const FOOTER_LINKS = {
   info: [
     { label: 'Sobre Nosotros', href: '/sobre-nosotros' },
     { label: 'Blog Mascotas', href: '/blog' },
-    { label: 'Trabaja con Nosotros', href: '/empleo' },
+    { label: 'Contacto', href: '/contacto' },
   ],
   shop: [
     { label: 'Tienda', href: '/tienda' },

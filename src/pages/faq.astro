@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    categoria: 'Envíos',
+    items: [
+      {
+        q: '¿Cuánto tarda en llegar mi pedido a Arequipa?',
+        a: 'El delivery regular en Arequipa se entrega al día siguiente de la compra, en un horario de 7:00 am a 8:00 pm, de lunes a sábado.'
+      },
+      {
+        q: '¿El envío es gratis?',
+        a: 'En Arequipa, compras mayores a S/. 45.00 tienen envío gratis. Compras menores tienen un costo de S/. 6.00. Para zonas periféricas, el envío es gratis desde S/. 100.00.'
+      },
+      {
+        q: '¿Hacen envíos a todo el Perú?',
+        a: 'Sí, realizamos envíos a todo el Perú a través de Courier Shalom. En Lima contamos con delivery express por Olva Express.'
+      },
+      {
+        q: '¿Qué es el delivery express y cuánto cuesta?',
+        a: 'El delivery express entrega tu pedido el mismo día en el horario que elijas. Tiene un costo de S/. 10.00 y monto mínimo de compra de S/. 45.00. Disponible de lunes a domingo.'
+      },
+      {
+        q: '¿Qué pasa si no estoy en casa cuando entregan?',
+        a: 'Si no hay nadie, nos pondremos en contacto contigo. La reprogramación tiene un costo adicional de S/. 6.00 (regular) o S/. 10.00 (express). Si se requiere una tercera reprogramación, se cobra nuevamente.'
+      }
+    ]
+  },
+  {
+    categoria: 'Pagos',
+    items: [
+      {
+        q: '¿Qué métodos de pago aceptan?',
+        a: 'Aceptamos Yape, Plin, Mercado Pago (tarjetas de crédito y débito), transferencia bancaria y contra reembolso en todo el Perú.'
+      },
+      {
+        q: '¿Puedo pagar con tarjeta de crédito?',
+        a: 'Sí, a través de Mercado Pago aceptamos tarjetas de crédito y débito de las principales redes.'
+      },
+      {
+        q: '¿Qué es el contra reembolso?',
+        a: 'Es pagar en efectivo al momento de recibir tu pedido. Disponible para envíos a todo el Perú. El repartidor te cobrará el monto exacto de tu compra.'
+      }
+    ]
+  },
+  {
+    categoria: 'Devoluciones y Cambios',
+    items: [
+      {
+        q: '¿Puedo devolver un producto?',
+        a: 'Sí, acceptsdevoluciones dentro de los primeros 2 días calendario para alimentos (sellado y sin uso) y 3 días para accesorios (empaque original con etiquetas). Se requiere boleta de compra.'
+      },
+      {
+        q: '¿Cuánto tardan en reembolsar mi dinero?',
+        a: 'El reembolso se procesa dentro de 10 días hábiles tras la confirmación de recepción y validación de los productos.'
+      },
+      {
+        q: '¿Quién paga el envío de la devolución?',
+        a: 'Si es por cambio de opinión o error del cliente, el costo de retorno es a tu cargo. Si el error fue nuestro, el envío de retorno es gratuito.'
+      }
+    ]
+  },
+  {
+    categoria: 'Cuenta y Pedidos',
+    items: [
+      {
+        q: '¿Necesito crear una cuenta para comprar?',
+        a: 'Sí, necesitás una cuenta para realizar compras, accumular puntos del Club Missy & Po y dar seguimiento a tus pedidos.'
+      },
+      {
+        q: '¿Cómo puedo dar seguimiento a mi pedido?',
+        a: 'Ingresá a "Mi Cuenta" > "Mis Pedidos" para ver el estado de tu compra en tiempo real.'
+      },
+      {
+        q: '¿Cómo contacto al servicio al cliente?',
+        a: 'Podés escribirnos por WhatsApp al +51 913 249 330, por Telegram a @Missypo_bot, o usar nuestro formulario de contacto en /contacto.'
+      }
+    ]
+  }
+];
+
+// Schema FAQPage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap(cat => cat.items.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  })))
+};
+---
+
+<Layout
+  title="Preguntas Frecuentes | Missy & Po Pet Shop"
+  description="Resolvé tus dudas sobre envíos, pagos, devoluciones y tu cuenta en Missy & Po Pet Shop. FAQ completa con respuestas rápidas."
+>
+
+  {/* Schema FAQPage */}
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  {/* === HERO === */}
+  <section class="relative overflow-hidden py-16 px-4" style="background: linear-gradient(135deg, #fff5f5 0%, #fff8ec 50%, #fff5f5 100%);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-20" style="background: var(--color-coral);"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto text-center">
+      <h1 class="font-hero text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: var(--color-text-dark);">
+        Preguntas <span style="color: var(--color-coral);">Frecuentes</span>
+      </h1>
+      <p class="font-body text-gray-500 max-w-lg mx-auto">
+        Resolvé tus dudas rápido. Si no encontrás lo que buscás, escribinos.
+      </p>
+    </div>
+  </section>
+
+  {/* === FAQ ACORDEÓN === */}
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-3xl mx-auto space-y-10">
+      {faqs.map((cat) => (
+        <div>
+          <h2 class="font-ui font-bold text-lg mb-4 flex items-center gap-2" style="color: var(--color-text-dark);">
+            <span class="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm" style="background: var(--color-coral);">
+              {cat.items.length}
+            </span>
+            {cat.categoria}
+          </h2>
+          <div class="space-y-3">
+            {cat.items.map((item) => (
+              <details class="group border border-gray-100 rounded-xl overflow-hidden hover:shadow-sm transition-shadow">
+                <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-ui font-semibold text-sm text-gray-800 select-none list-none">
+                  <span>{item.q}</span>
+                  <svg class="w-4 h-4 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div class="px-5 pb-4 text-sm font-body text-gray-600 leading-relaxed border-t border-gray-50">
+                  <p class="pt-3">{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* === CTA === */}
+  <section class="py-12 px-4 bg-gray-50 text-center">
+    <div class="max-w-xl mx-auto">
+      <h2 class="font-ui font-bold text-lg mb-2" style="color: var(--color-text-dark);">
+        ¿No encontraste tu respuesta?
+      </h2>
+      <p class="font-body text-gray-500 text-sm mb-6">Escribinos y te respondemos enseguida.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a
+          href="https://wa.me/51913249330?text=%C2%A1Hola!%20Tengo%20una%20consulta"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 font-ui font-bold text-white px-6 py-3 rounded-full text-sm transition-all hover:scale-105"
+          style="background: #25D366;"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="/contacto"
+          class="inline-flex items-center justify-center gap-2 font-ui font-semibold border-2 px-6 py-3 rounded-full text-sm transition-all hover:shadow-md"
+          style="border-color: var(--color-coral); color: var(--color-coral);"
+        >
+          Formulario de Contacto
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
