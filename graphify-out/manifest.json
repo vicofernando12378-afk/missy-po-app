@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   ".ai-context.md": {
-    "mtime": 1782788137.5318027,
-    "ast_hash": "14733b8a21b6f29807d461695e16d57e",
+    "mtime": 1783387854.412011,
+    "ast_hash": "1229a3bd12a1034f004527fc833b1be2",
     "semantic_hash": ""
   },
   ".github/copilot-instructions.md": {
@@ -930,8 +930,8 @@
     "semantic_hash": ""
   },
   "functions/src/telegram/webhook.js": {
-    "mtime": 1783228278.023381,
-    "ast_hash": "97479de992727a82e1343ff3f971f418",
+    "mtime": 1783387692.7543235,
+    "ast_hash": "3eb2c0647660f13e6b953368b8459359",
     "semantic_hash": ""
   },
   "scripts/backfill-checkout-leads.js": {

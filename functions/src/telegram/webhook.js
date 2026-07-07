@@ -364,35 +364,130 @@ async function handleUpdateProcessing(update, keys, token) {
           const puntosGanados = Math.floor(totalSoles / 10) * 10;
           const pedidoId = `ped-${Date.now()}`;
 
-          await db.collection('myp_pedidos').doc(pedidoId).set({
-            pedidoId,
-            estado: 'recibido',
-            confirmado: false,
-            canal: 'telegram',
-            leadId,
-            cliente: {
-              nombre: datos.clienteNombre || '',
-              celular: datos.telefono || '',
-              email: datos.email || null,
-              documento_tipo: 'DNI',
-              documento_numero: datos.documentoNumero || null,
-            },
-            envio: {
-              nombre: datos.clienteNombre || '',
-              direccion: datos.direccion || '',
-              telefono: datos.telefono || '',
-              departamento: datos.departamento || '',
-              distrito: datos.distrito || '',
-            },
-            items,
-            pago: {
-              metodo: datos.metodoPago || 'contra_entrega',
-              estado: 'pendiente',
-            },
-            total_final: total,
-            creado_en: Timestamp.fromDate(new Date()),
-            notificadoAdmin: false,
-          });
+          try {
+            await db.runTransaction(async (transaction) => {
+              // 1. Read all product documents first
+              const productDocs = {};
+              for (const item of items) {
+                if (item.productoId) {
+                  const prodRef = db.collection('myp_productos').doc(item.productoId);
+                  const prodSnap = await transaction.get(prodRef);
+                  if (prodSnap.exists) {
+                    productDocs[item.productoId] = {
+                      ref: prodRef,
+                      data: prodSnap.data(),
+                    };
+                  }
+                }
+              }
+
+              // 2. Perform updates and calculations
+              for (const item of items) {
+                const prodDoc = productDocs[item.productoId];
+                if (prodDoc) {
+                  const currentData = prodDoc.data;
+                  const stockToDecrement = item.cantidad || 1;
+                  let variantes = currentData.variantes || [];
+                  if (variantes.length > 0) {
+                    let updated = false;
+                    variantes = variantes.map(v => {
+                      if (!updated && v.stock >= stockToDecrement) {
+                        updated = true;
+                        return { ...v, stock: Math.max(0, v.stock - stockToDecrement) };
+                      }
+                      return v;
+                    });
+                    if (!updated) {
+                      variantes = variantes.map((v, index) => {
+                        if (index === 0) {
+                          return { ...v, stock: Math.max(0, v.stock - stockToDecrement) };
+                        }
+                        return v;
+                      });
+                    }
+                    const nuevoStockGeneral = variantes.reduce((sum, v) => sum + v.stock, 0);
+                    currentData.variantes = variantes;
+                    currentData.stock = nuevoStockGeneral;
+                  } else {
+                    currentData.stock = Math.max(0, (currentData.stock || 0) - stockToDecrement);
+                  }
+                }
+              }
+
+              // 3. Write updates to products
+              for (const prodDoc of Object.values(productDocs)) {
+                transaction.update(prodDoc.ref, {
+                  variantes: prodDoc.data.variantes || null,
+                  stock: prodDoc.data.stock,
+                  actualizado_en: Timestamp.fromDate(new Date()),
+                });
+              }
+
+              // 4. Create the order document
+              const orderRef = db.collection('myp_pedidos').doc(pedidoId);
+              transaction.set(orderRef, {
+                pedidoId,
+                estado: 'recibido',
+                confirmado: false,
+                canal: 'telegram',
+                leadId,
+                cliente: {
+                  nombre: datos.clienteNombre || '',
+                  celular: datos.telefono || '',
+                  email: datos.email || null,
+                  documento_tipo: 'DNI',
+                  documento_numero: datos.documentoNumero || null,
+                },
+                envio: {
+                  nombre: datos.clienteNombre || '',
+                  direccion: datos.direccion || '',
+                  telefono: datos.telefono || '',
+                  departamento: datos.departamento || '',
+                  distrito: datos.distrito || '',
+                },
+                items,
+                pago: {
+                  metodo: datos.metodoPago || 'contra_entrega',
+                  estado: 'pendiente',
+                },
+                total_final: total,
+                creado_en: Timestamp.fromDate(new Date()),
+                notificadoAdmin: false,
+              });
+            });
+          } catch (error) {
+            console.error('⚠️ Transactional stock update failed, falling back to direct order creation:', error.message);
+            await db.collection('myp_pedidos').doc(pedidoId).set({
+              pedidoId,
+              estado: 'recibido',
+              confirmado: false,
+              canal: 'telegram',
+              leadId,
+              cliente: {
+                nombre: datos.clienteNombre || '',
+                celular: datos.telefono || '',
+                email: datos.email || null,
+                documento_tipo: 'DNI',
+                documento_numero: datos.documentoNumero || null,
+              },
+              envio: {
+                nombre: datos.clienteNombre || '',
+                direccion: datos.direccion || '',
+                telefono: datos.telefono || '',
+                departamento: datos.departamento || '',
+                distrito: datos.distrito || '',
+              },
+              items,
+              pago: {
+                metodo: datos.metodoPago || 'contra_entrega',
+                estado: 'pendiente',
+              },
+              total_final: total,
+              creado_en: Timestamp.fromDate(new Date()),
+              notificadoAdmin: false,
+              stock_update_failed: true,
+            });
+          }
 
           // Update lead stage and tags
           if (leadId) {
