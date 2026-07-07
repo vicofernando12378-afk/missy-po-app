@@ -39,5 +39,35 @@ const description = product
 ---
 
 <Layout title={title} description={description}>
+  {product && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": product.nombre,
+      "description": product.descripcion?.replace(/<[^>]*>/g, '').substring(0, 500),
+      "image": product.imagenes?.[0],
+      "sku": product.sku,
+      "brand": {
+        "@type": "Brand",
+        "name": "Missy & Po"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": `https://missypoweb.web.app/producto/${product.slug}`,
+        "priceCurrency": "PEN",
+        "price": product.precio_oferta || product.precio_regular,
+        "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Missy & Po Pet Shop"
+        }
+      },
+      "aggregateRating": product.rating ? {
+        "@type": "AggregateRating",
+        "ratingValue": product.rating,
+        "reviewCount": product.reviewCount || 1
+      } : undefined
+    })} />
+  )}
   <ProductPage slug={slug} initialProduct={serializedProduct} client:load />
 </Layout>

@@ -41,6 +41,48 @@ const logoUrl = optimizedLogo.src;
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/assets/og-image.jpg" />
     
+    <!-- Schema LocalBusiness (SEO Local / GEO) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "PetStore",
+      "name": "Missy & Po Pet Shop",
+      "description": "Tienda online de accesorios, ropa y juguetes premium para mascotas en Arequipa, Perú.",
+      "url": "https://missypoweb.web.app",
+      "logo": "https://missypoweb.web.app/assets/logoheader.png",
+      "image": "https://missypoweb.web.app/assets/og-image.jpg",
+      "telephone": "+51913249330",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Diagonal Frente a Promelsa, Cooperativa Universitaria Mz I Lt 1",
+        "addressLocality": "Arequipa",
+        "addressRegion": "Arequipa",
+        "addressCountry": "PE",
+        "postalCode": "04001"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -16.4,
+        "longitude": -71.53
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      ],
+      "priceRange": "$$",
+      "currenciesAccepted": "PEN",
+      "paymentAccepted": "Yape, Plin, Mercado Pago, Credit Card, Cash on Delivery",
+      "hasMap": "https://www.google.com/maps",
+      "sameAs": [
+        "https://www.tiktok.com/@missynpo",
+        "https://www.instagram.com/missynpo.petshop",
+        "https://www.facebook.com/missynpopetshop"
+      ]
+    })} />
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     

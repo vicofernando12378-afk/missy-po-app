@@ -64,6 +64,18 @@ export default function Footer({ logoUrl }) {
               Tu tienda online de confianza para los engreídos de la familia. 
               Accesorios, ropa y juguetes de calidad para mascotas.
             </p>
+            {/* Contacto */}
+            <div className="space-y-1.5 text-xs text-gray-500 max-w-[280px] mt-4">
+              <a href="tel:+51913249330" className="flex items-center gap-2 hover:text-gray-700 transition-colors">
+                <span>📱</span>
+                <span>+51 913 249 330</span>
+              </a>
+              <a href="/contacto" className="flex items-center gap-2 hover:text-gray-700 transition-colors">
+                <span>📍</span>
+                <span>Arequipa, Perú — Ver en mapa</span>
+              </a>
+            </div>
+
             {/* Envíos e Info de Pago con Redes Sociales al lado */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mt-6">
               <div className="space-y-1.5 text-xs text-gray-500 max-w-[280px]">

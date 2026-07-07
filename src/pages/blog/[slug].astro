@@ -21,6 +21,33 @@ const recomendados = articulosBlog
   title={`${article.titulo} | Blog Missy & Po`}
   description={article.metaDescription || article.descripcion}
 >
+  <!-- Schema Article -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.titulo,
+    "description": article.metaDescription || article.descripcion,
+    "image": article.imagen,
+    "author": {
+      "@type": "Person",
+      "name": article.autor
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Missy & Po Pet Shop",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://missypoweb.web.app/assets/logoheader.png"
+      }
+    },
+    "datePublished": "2026-06-20",
+    "dateModified": "2026-06-20",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://missypoweb.web.app/blog/${article.slug}`
+    }
+  })} />
+
   <!-- Barra de progreso de lectura -->
   <div
     id="progress-bar"

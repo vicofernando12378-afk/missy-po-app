@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sobre Nosotros | Missy & Po Pet Shop"
+  description="Conoce la historia de Missy & Po Pet Shop, tu tienda online de confianza para accesorios, ropa y juguetes premium para mascotas en Arequipa y todo el Perú."
+>
+
+  {/* === HERO === */}
+  <section class="relative overflow-hidden py-20 px-4" style="background: linear-gradient(135deg, #fff5f5 0%, #fff8ec 50%, #fff5f5 100%);">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-20" style="background: var(--color-coral);"></div>
+      <div class="absolute -bottom-16 -left-16 w-96 h-96 rounded-full opacity-10" style="background: var(--color-gold);"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-white border text-xs font-ui font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-sm mb-6" style="border-color: var(--color-coral); color: var(--color-coral);">
+        🐾 Nuestra Historia
+      </div>
+
+      <h1 class="font-hero text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight" style="color: var(--color-text-dark);">
+        Con amor para los<br/>
+        <span style="color: var(--color-coral);">más engreídos</span>
+      </h1>
+
+      <p class="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-body" style="color: var(--color-text-gray);">
+        Somos una tienda online de Arequipa nacida del amor por las mascotas. Accesorios, ropa y juguetes premium hechos a mano e importados para que tu peludo reciba lo que merece.
+      </p>
+    </div>
+  </section>
+
+  {/* === NUESTRA HISTORIA === */}
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-hero text-3xl sm:text-4xl mb-6" style="color: var(--color-text-dark);">
+            De Arequipa para todo el Perú
+          </h2>
+          <div class="space-y-4 font-body text-gray-600 leading-relaxed">
+            <p>
+              Missy & Po nació en Arequipa con un sueño claro: ofrecer accesorios y ropa para mascotas que combine calidad, diseño y un precio justo. Lo que empezó como una pequeña tienda local se convirtió en una tienda online con envíos a todo el Perú.
+            </p>
+            <p>
+              Nos especializamos en productos <strong>hechos a mano e importados</strong> que no encontrarás en cualquier tienda. Desde collares artesanales hasta ropa diseñada para que tu mascota luzca única.
+            </p>
+            <p>
+              Creemos que cada mascota merece ser consentida, y cada dueño merece una experiencia de compra fácil, segura y con atención personalizada.
+            </p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-2 rounded-3xl bg-gradient-to-br from-red-200 to-amber-200 opacity-30 blur-lg"></div>
+          <div class="relative bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 p-3">
+            <img
+              src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=800"
+              alt="Mascota feliz con accesorios Missy & Po"
+              class="w-full h-80 sm:h-96 object-cover rounded-2xl"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* === VALORES === */}
+  <section class="py-20 px-4" style="background: var(--color-bg-light, #fafafa);">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="font-hero text-3xl sm:text-4xl mb-4" style="color: var(--color-text-dark);">
+          Nuestros Valores
+        </h2>
+        <p class="font-body text-gray-500 max-w-lg mx-auto">
+          Lo que nos mueve cada día
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { icon: '✨', title: 'Calidad Premium', desc: 'Solo ofrecemos productos que nosotros mismos elegiríamos para nuestras propias mascotas.' },
+          { icon: '🤝', title: 'Hechos a Mano', desc: 'Apoyamos artesanos locales y traemos productos importados únicos que no encontrarás en otro lugar.' },
+          { icon: '📦', title: 'Envío a Todo el Perú', desc: 'Con Courier Shalom y Olva Express, tu pedido llega seguro a donde estés en el país.' },
+          { icon: '💛', title: 'Atención Personalizada', desc: 'Cada cliente es parte de la familia Missy & Po. Respondemos por WhatsApp, Telegram y redes sociales.' },
+        ].map((valor) => (
+          <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center hover:shadow-md transition-shadow duration-200">
+            <div class="text-4xl mb-4">{valor.icon}</div>
+            <h3 class="font-ui font-bold text-gray-800 mb-2">{valor.title}</h3>
+            <p class="text-sm font-body text-gray-500 leading-relaxed">{valor.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* === UBICACIÓN === */}
+  <section class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-hero text-3xl sm:text-4xl mb-6" style="color: var(--color-text-dark);">
+            Encuéntranos en Arequipa
+          </h2>
+          <div class="space-y-3 font-body text-gray-600">
+            <div class="flex items-start gap-3">
+              <span class="text-lg mt-0.5">📍</span>
+              <p><strong> Dirección:</strong> Diagonal Frente a Promelsa, Cooperativa Universitaria Mz I Lt 1, Arequipa 04001</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-lg mt-0.5">📱</span>
+              <p><strong> WhatsApp:</strong> <a href="https://wa.me/51913249330" class="hover:underline" style="color: var(--color-coral);">+51 913 249 330</a></p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-lg mt-0.5">💬</span>
+              <p><strong> Telegram:</strong> <a href="https://t.me/Missypo_bot" class="hover:underline" style="color: var(--color-coral);">@Missypo_bot</a></p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-lg mt-0.5">🕐</span>
+              <p><strong> Horario:</strong> Martes a Sábado, 8:00 AM — 6:00 PM</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 mt-8">
+            <a
+              href="https://wa.me/51913249330"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 font-ui font-bold text-white px-6 py-3 rounded-full text-sm transition-all duration-200 hover:scale-105"
+              style="background: #25D366;"
+            >
+              WhatsApp
+            </a>
+            <a
+              href="/contacto"
+              class="inline-flex items-center gap-2 font-ui font-semibold border-2 px-6 py-3 rounded-full text-sm transition-all duration-200 hover:shadow-md"
+              style="border-color: var(--color-coral); color: var(--color-coral);"
+            >
+              Formulario de Contacto
+            </a>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 h-80">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.5!2d-71.53!3d-16.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDI0JzAwLjAiUyA3McKwMzEnNDguMCJX!5e0!3m2!1ses!2spe!4v1"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Missy & Po Pet Shop Arequipa"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* === REDES SOCIALES === */}
+  <section class="py-16 px-4" style="background: linear-gradient(135deg, #fff5f5 0%, #fff8ec 100%);">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-hero text-2xl sm:text-3xl mb-8" style="color: var(--color-text-dark);">
+        Seguinos en redes sociales
+      </h2>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://www.tiktok.com/@missynpo" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-black text-white font-ui font-bold px-6 py-3 rounded-full text-sm hover:scale-105 transition-transform">
+          TikTok @missynpo
+        </a>
+        <a href="https://www.instagram.com/missynpo.petshop" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-ui font-bold px-6 py-3 rounded-full text-sm hover:scale-105 transition-transform">
+          Instagram @missynpo.petshop
+        </a>
+        <a href="https://www.facebook.com/missynpopetshop" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#1877F2] text-white font-ui font-bold px-6 py-3 rounded-full text-sm hover:scale-105 transition-transform">
+          Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* === CTA FINAL === */}
+  <section class="py-16 px-4 bg-white text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-hero text-2xl sm:text-3xl mb-4" style="color: var(--color-text-dark);">
+        ¿Listo para consentir a tu mascota?
+      </h2>
+      <p class="font-body text-gray-500 mb-8">Explora nuestro catálogo y encontrá el accesorio perfecto.</p>
+      <a
+        href="/tienda"
+        class="inline-flex items-center gap-2 font-ui font-bold text-white px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 text-sm"
+        style="background: linear-gradient(135deg, var(--color-coral), var(--color-coral-dark));"
+      >
+        Visitar Tienda
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  {/* Schema Organization */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Missy & Po Pet Shop",
+    "url": "https://missypoweb.web.app",
+    "logo": "https://missypoweb.web.app/assets/logoheader.png",
+    "description": "Tienda online de accesorios, ropa y juguetes premium para mascotas en Arequipa, Perú.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Diagonal Frente a Promelsa, Cooperativa Universitaria Mz I Lt 1",
+      "addressLocality": "Arequipa",
+      "addressCountry": "PE",
+      "postalCode": "04001"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -16.4,
+      "longitude": -71.53
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+51913249330",
+      "contactType": "customer service",
+      "availableLanguage": "Spanish"
+    },
+    "sameAs": [
+      "https://www.tiktok.com/@missynpo",
+      "https://www.instagram.com/missynpo.petshop",
+      "https://www.facebook.com/missynpopetshop",
+      "https://t.me/Missypo_bot"
+    ]
+  })} />
+</Layout>
