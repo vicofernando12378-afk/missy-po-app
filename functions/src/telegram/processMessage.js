@@ -194,6 +194,7 @@ export async function processTelegramMessage({
   fromUser,
 }) {
   console.log('🤖 [processMessage] START — chatId:', chatId, '| text:', text?.substring(0, 60));
+  const keys = await getApiKeys();
   const db = getFirestore();
   const now = new Date();
   const conversationId = `telegram_${chatId}`;

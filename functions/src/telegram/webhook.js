@@ -67,6 +67,7 @@ export const telegramWebhook = onRequest({
 });
 
 async function handleUpdateProcessing(update, keys, token) {
+  const { processTelegramMessage } = await import('./processMessage.js');
   const message = update.message;
   const callbackQuery = update.callback_query;
 
@@ -273,7 +274,7 @@ async function handleUpdateProcessing(update, keys, token) {
               datos: {
                 ...datos,
                 departamento: deptFinal,
-              }
+              },
             };
             await convRef.update({
               checkout: updatedCheckout,
@@ -304,7 +305,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               metodoPago: isYape ? 'Yape/Plin' : 'Contra Entrega',
-            }
+            },
           };
 
           await convRef.update({
@@ -322,7 +323,7 @@ async function handleUpdateProcessing(update, keys, token) {
               if (yapeNum) {
                 yapeInstructions = `\n\n📲 Para pagar por Yape/Plin:\nNúmero: ${yapeNum}\nMonto exacto: S/ ${(total / 100).toFixed(2)}\n📸 Después de confirmar, envía tu comprobante aquí.`;
               } else {
-                yapeInstructions = `\n\n📲 Después de confirmar, te enviamos el número de Yape/Plin para hacer el pago.`;
+                yapeInstructions = '\n\n📲 Después de confirmar, te enviamos el número de Yape/Plin para hacer el pago.';
               }
             } catch (e) {
               console.warn('⚠️ Could not load biz info for Yape:', e.message);
@@ -572,7 +573,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               clienteNombre: text.trim(),
-            }
+            },
           };
           await convRef.update({
             checkout: updatedCheckout,
@@ -594,7 +595,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               telefono: text.trim(),
-            }
+            },
           };
           await convRef.update({
             checkout: updatedCheckout,
@@ -617,7 +618,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               documentoNumero: dni,
-            }
+            },
           };
           await convRef.update({
             checkout: updatedCheckout,
@@ -639,7 +640,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               direccion: text.trim(),
-            }
+            },
           };
           await convRef.update({
             checkout: updatedCheckout,
@@ -661,7 +662,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               departamento: text.trim(),
-            }
+            },
           };
           await convRef.update({
             checkout: updatedCheckout,
@@ -683,7 +684,7 @@ async function handleUpdateProcessing(update, keys, token) {
             datos: {
               ...datos,
               distrito: text.trim(),
-            }
+            },
           };
           await convRef.update({
             checkout: updatedCheckout,

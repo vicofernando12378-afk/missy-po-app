@@ -15,7 +15,7 @@ export async function sendCheckoutPrompt(chatId, checkout, token) {
       `🪪 *DNI:* ${datos.documentoNumero || 'No registrado'}`,
       `📍 *Dirección:* ${datos.direccion}`,
       `🏢 *Distrito:* ${datos.distrito || '—'}`,
-      `🗺️ *Departamento:* ${datos.departamento || '—'}`
+      `🗺️ *Departamento:* ${datos.departamento || '—'}`,
     ].join('\n');
 
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -25,33 +25,33 @@ export async function sendCheckoutPrompt(chatId, checkout, token) {
       reply_markup: {
         inline_keyboard: [
           [{ text: '✅ Sí, usar estos datos', callback_data: 'checkout_saved:si' }],
-          [{ text: '✏️ No, cambiar datos', callback_data: 'checkout_saved:no' }]
-        ]
-      }
+          [{ text: '✏️ No, cambiar datos', callback_data: 'checkout_saved:no' }],
+        ],
+      },
     });
   } else if (step === 'nombre') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text: 'Por favor, responde a este mensaje escribiendo tu *nombre y apellido completo* para el pedido:',
-      parse_mode: 'Markdown'
+      parse_mode: 'Markdown',
     });
   } else if (step === 'telefono') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text: '¿Cuál es tu *número de celular/teléfono* para coordinar la entrega?',
-      parse_mode: 'Markdown'
+      parse_mode: 'Markdown',
     });
   } else if (step === 'dni') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text: 'Ingresa tu número de *DNI* (opcional — responde *omitir* si prefieres no darlo):',
-      parse_mode: 'Markdown'
+      parse_mode: 'Markdown',
     });
   } else if (step === 'direccion') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text: '¿Cuál es tu *dirección de entrega*? (calle, número, departamento y referencia):',
-      parse_mode: 'Markdown'
+      parse_mode: 'Markdown',
     });
   } else if (step === 'departamento') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -63,15 +63,15 @@ export async function sendCheckoutPrompt(chatId, checkout, token) {
           [{ text: '📍 Arequipa', callback_data: 'checkout_dept:Arequipa' }],
           [{ text: '📍 Lima', callback_data: 'checkout_dept:Lima' }],
           [{ text: '📍 Cusco', callback_data: 'checkout_dept:Cusco' }],
-          [{ text: '📍 Otro (escríbelo)', callback_data: 'checkout_dept:otro' }]
-        ]
-      }
+          [{ text: '📍 Otro (escríbelo)', callback_data: 'checkout_dept:otro' }],
+        ],
+      },
     });
   } else if (step === 'distrito') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text: '¿En qué *distrito* te encuentras?',
-      parse_mode: 'Markdown'
+      parse_mode: 'Markdown',
     });
   } else if (step === 'pago') {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -81,9 +81,9 @@ export async function sendCheckoutPrompt(chatId, checkout, token) {
       reply_markup: {
         inline_keyboard: [
           [{ text: '💰 Contra Entrega', callback_data: 'checkout_pago:contra_entrega' }],
-          [{ text: '📱 Yape / Plin', callback_data: 'checkout_pago:yape' }]
-        ]
-      }
+          [{ text: '📱 Yape / Plin', callback_data: 'checkout_pago:yape' }],
+        ],
+      },
     });
   }
 }

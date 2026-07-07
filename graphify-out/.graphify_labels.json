@@ -78,11 +78,13 @@
   "76": "carrito.astro",
   "77": "seedKnowledge.js",
   "78": "index.js",
-  "79": "CVRMDashboard.jsx",
   "80": "CajaDiaria.jsx",
   "81": "LeadsKanban.jsx",
   "82": "functions",
   "83": "ApiKeysSection.jsx",
   "84": "TelegramAgentPanel.jsx",
-  "85": "emailProvider.js"
+  "85": "emailProvider.js",
+  "86": "LeadsKanban.jsx",
+  "87": "scripts",
+  "88": "devDependencies"
 }

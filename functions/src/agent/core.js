@@ -1078,7 +1078,7 @@ export async function runAgentCycle({
     });
 
     if (!response.toolCalls || response.toolCalls.length === 0) {
-      return { replyText: response.text, escalated };
+      return { replyText: response.text, escalated, pedidoId };
     }
 
     console.log(`🤖 Bot requested ${response.toolCalls.length} tool calls (iteration ${i + 1})`);
