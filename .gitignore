@@ -54,6 +54,7 @@ desktop.ini
 
 # ── Backups Locales ──
 backups/
+BACKUP-*/
 
 # ── Astro ──
 .astro/
