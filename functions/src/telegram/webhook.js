@@ -568,11 +568,42 @@ async function handleUpdateProcessing(update, keys, token) {
 
           await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
 
+          // Create Auth account + send welcome email (fire-and-forget)
+          try {
+            const { crearCuentaAuthAutomatica } = await import('../crm/createAuthAccount.js');
+            await crearCuentaAuthAutomatica({
+              email: datos.email,
+              nombre: datos.clienteNombre,
+              telefono: datos.telefono,
+              leadId,
+              pedidoId,
+            });
+          } catch (authError) {
+            console.error('⚠️ Auth account creation failed (non-blocking):', authError.message);
+          }
+
           const resumenFinal = items.map(i => `• ${i.nombre} x${i.cantidad} — S/ ${(i.precio_unitario / 100).toFixed(2)}`).join('\n');
           const puntosMsg = puntosGanados > 0 ? `\n🌟 Ganaste ${puntosGanados} puntos Club Missy & Po!` : '';
           await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
             chat_id: chatId,
-            text: `¡Pedido confirmado! 🎉 Tu número es: ${pedidoId}\n\nResumen:\n${resumenFinal}\n\nTotal: S/ ${totalSoles.toFixed(2)}${puntosMsg}\n\nTe contactaremos pronto para coordinar la entrega 🐾`,
+            text: [
+              `¡Pedido confirmado! 🎉 Tu número es: ${pedidoId}`,
+              '',
+              'Resumen:',
+              resumenFinal,
+              '',
+              `Total: S/ ${totalSoles.toFixed(2)}`,
+              puntosMsg,
+              '',
+              '━━━━━━━━━━━━━━━━━━━━',
+              '🏆 ¡Ya eres socia del Club Missy & Po!',
+              'Con tu compra acumulaste puntos que puedes canjear por descuentos y beneficios exclusivos.',
+              '',
+              '📦 Consulta tu pedido y tus puntos en:',
+              '👉 https://missypoweb.web.app/mi-cuenta',
+              '',
+              'Te contactaremos pronto para coordinar la entrega 🐾',
+            ].join('\n'),
           });
         }
       } else if (data === 'checkout_confirm:no') {
@@ -633,6 +664,18 @@ async function handleUpdateProcessing(update, keys, token) {
     const convRef = db.collection('crm_conversations').doc(conversationId);
     const convSnap = await convRef.get();
 
+    // ── STALE CHECKOUT GUARD: if checkout > 30min old, reset it ──
+    if (convSnap.exists && convSnap.data().status === 'checkout' && convSnap.data().checkout) {
+      const checkoutAge = convSnap.data().checkout.creadoEn?.toDate?.() || new Date(0);
+      const minutesSince = (Date.now() - checkoutAge.getTime()) / (1000 * 60);
+
+      if (minutesSince > 30) {
+        console.warn(`⚠️ Stale checkout detected (${Math.round(minutesSince)}min). Resetting.`);
+        await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+        // Don't return — let the message flow through to the AI
+      }
+    }
+
     if (convSnap.exists && convSnap.data().status === 'checkout' && convSnap.data().checkout) {
       const checkout = convSnap.data().checkout;
       const axios = (await import('axios')).default;
@@ -644,6 +687,35 @@ async function handleUpdateProcessing(update, keys, token) {
         await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
           chat_id: chatId,
           text: 'Pedido cancelado. Si necesitas algo más, aquí estoy 🐾',
+        });
+        return;
+      }
+
+      // ── REJECTION DETECTION: catch natural language exits ──
+      const rejectionPatterns = [
+        'no quiero', 'no', 'cancelar', 'cancela', 'no comprar',
+        'no estoy seguro', 'después', 'luego', 'ya no',
+        'me arrepentí', 'olvídalо', 'no me interesa',
+      ];
+      const isRejection = rejectionPatterns.some(p => command.includes(p));
+      const isShortNo = /^no$/i.test(command.trim());
+
+      if (isRejection || isShortNo) {
+        console.warn(`⚠️ REJECTION DETECTED: "${command}". Resetting checkout.`);
+        // Reset checkout and hand off to AI for proper response
+        await convRef.update({ status: 'bot', checkout: null, updatedAt: Timestamp.fromDate(new Date()) });
+
+        // Forward the message to the AI so it can respond naturally
+        await processTelegramMessage({
+          chatId,
+          text: text || null,
+          voiceFileId: null,
+          fromUser: {
+            id: fromUser.id,
+            username: fromUser.username || null,
+            firstName: fromUser.first_name || '',
+            lastName: fromUser.last_name || '',
+          },
         });
         return;
       }

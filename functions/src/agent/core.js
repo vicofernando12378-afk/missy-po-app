@@ -122,7 +122,7 @@ const CRM_TOOLS = [
     type: 'function',
     function: {
       name: 'unirseAlClub',
-      description: 'Registra al cliente para unirse al Club Missy & Po. Captura nombre, teléfono, email y nombre de mascota.',
+      description: 'Registra al cliente en el Club Missy & Po. PRIMERO usa buscarCliente para verificar si ya es socio antes de llamar esta herramienta.',
       parameters: {
         type: 'object',
         properties: {
@@ -200,7 +200,7 @@ const CRM_TOOLS = [
     type: 'function',
     function: {
       name: 'buscarCliente',
-      description: 'Busca un cliente registrado por correo electrónico en el Club de Missy & Po. Retorna sus datos si existe.',
+      description: 'Busca un cliente registrado por correo electrónico en el Club de Missy & Po. USA ESTA HERRAMIENTA ANTES de unirseAlClub para verificar si el cliente ya es socio. Retorna sus datos, puntos y estado de membresía.',
       parameters: {
         type: 'object',
         properties: {
@@ -451,27 +451,58 @@ async function resolverObtenerInfoNegocio() {
 async function resolverUnirseAlClub(args, leadId, platform) {
   const db = getFirestore();
   try {
+    const emailNorm = (args.email || '').trim().toLowerCase();
+    const phoneNorm = (args.phone || '').trim();
+
+    // ── VERIFICAR SI YA ES SOCIO ──
+    if (emailNorm) {
+      const existSnap = await db.collection('myp_club_miembros')
+        .where('email', '==', emailNorm).limit(1).get();
+      if (!existSnap.empty) {
+        const member = existSnap.docs[0].data();
+        return JSON.stringify({
+          alreadyMember: true,
+          nombre: member.nombre_tutor,
+          puntos: member.puntos || 0,
+          message: `${member.nombre_tutor}, ¡ya eres socia del Club Missy & Po! Tienes ${member.puntos || 0} puntos acumulados. Puedes ver tus beneficios en https://missypoweb.web.app/mi-cuenta/club`,
+        });
+      }
+    }
+
+    if (phoneNorm && !emailNorm) {
+      const phoneSnap = await db.collection('myp_club_miembros')
+        .where('celular', '==', phoneNorm).limit(1).get();
+      if (!phoneSnap.empty) {
+        const member = phoneSnap.docs[0].data();
+        return JSON.stringify({
+          alreadyMember: true,
+          nombre: member.nombre_tutor,
+          puntos: member.puntos || 0,
+          message: `${member.nombre_tutor}, ¡ya eres socia del Club Missy & Po! Tienes ${member.puntos || 0} puntos.`,
+        });
+      }
+    }
+
+    // ── REGISTRAR NUEVO MIEMBRO ──
     const payload = {
       name: args.name.trim(),
       phone: args.phone.trim(),
       updatedAt: new Date(),
     };
-    if (args.email) payload.email = args.email.trim().toLowerCase();
+    if (emailNorm) payload.email = emailNorm;
     if (args.petName) payload.petName = args.petName.trim();
 
     if (leadId) {
-      // Update existing lead with club interest
       await db.collection('crm_leads').doc(leadId).update({
         ...payload,
         tags: FieldValue.arrayUnion('club-interest'),
-        clubStatus: 'interested',
+        clubStatus: 'registered',
       });
       return JSON.stringify({
         success: true,
-        message: `${args.name}, te hemos registrado para el Club Missy & Po. Pronto recibirás beneficios exclusivos.`,
+        message: `${args.name}, ¡bienvenida al Club Missy & Po! 🎉 Ya eres socia. Puedes ver tus beneficios y puntos en https://missypoweb.web.app/mi-cuenta/club`,
       });
     } else {
-      // Create new lead with club tag
       const leadRef = db.collection('crm_leads').doc();
       await leadRef.set({
         ...payload,
@@ -480,7 +511,7 @@ async function resolverUnirseAlClub(args, leadId, platform) {
         stage: 'nuevo',
         score: 15,
         tags: [`${platform || 'telegram'}-lead`, 'bot-capture', 'club-interest'],
-        clubStatus: 'interested',
+        clubStatus: 'registered',
         segmentIds: [],
         consent: { whatsapp: false, email: false, telegram: true },
         assignedTo: null,
@@ -491,7 +522,7 @@ async function resolverUnirseAlClub(args, leadId, platform) {
       });
       return JSON.stringify({
         success: true,
-        message: `${args.name}, te hemos registrado para el Club Missy & Po. Pronto recibirás beneficios exclusivos.`,
+        message: `${args.name}, ¡bienvenida al Club Missy & Po! 🎉 Ya eres socia. Puedes ver tus beneficios y puntos en https://missypoweb.web.app/mi-cuenta/club`,
         leadId: leadRef.id,
       });
     }
@@ -1009,8 +1040,9 @@ ${rules}
 
 # Saludo inicial
 Cuando el usuario inicie conversación, preséntate brevemente y pregunta: "¿Es tu primera vez comprando en Missy & Po Pet Shop?"
-- Si responde NO (ya es cliente): pide su correo → usa buscarCliente para obtener sus datos → salúdalo por nombre y el de su mascota → ofrece productos
-- Si responde SÍ (nuevo cliente): pide su nombre y correo → ofrece productos → al crear pedido recolecta los demás datos
+- Si responde NO (ya es cliente): pide su correo → usa buscarCliente para obtener sus datos → salúdalo por nombre y el de su mascota → menciona sus puntos del Club y el link /mi-cuenta → ofrece productos
+- Si responde SÍ (nuevo cliente): pide su nombre y correo → ofrece productos → al crear pedido se registra automáticamente en el Club
+- Si pregunta por su pedido: usa consultarPedido o redirige a https://missypoweb.web.app/mi-cuenta
 - Si no responde directamente, asume que quiere ver productos y muéstrales el catálogo
 
 # Fallback
@@ -1048,8 +1080,50 @@ ${knowledgeContext}
 - SOLO puedes ofrecer CONTRA ENTREGA como método de pago
 - Para otros métodos → "Para otros métodos de pago, te comunico con un asesor"
 - Si el cliente dice "no", "después", "luego" → no insistir: "Perfecto! Te espero 🐾"
+- Si el cliente indica que NO quiere comprar (cualquier variación de "no", "después", "ya no"), NUNCA llames iniciarCheckout. Solo responde con empatía.
 - Si pregunta por algo caro (mayor a S/.200) → sugerir hablar con asesor
-- Si el cliente ya tiene pedido pendiente → iniciarCheckout lo maneja automáticamente`;
+- Si el cliente ya tiene pedido pendiente → iniciarCheckout lo maneja automáticamente
+
+# Club Missy & Po
+- Cada cliente que compra se registra AUTOMÁTICAMENTE en el Club Missy & Po y gana puntos
+- Cuando un cliente pregunte por el club, USA buscarCliente PRIMERO para verificar si ya es socio
+  - Si ya es socio: dile sus puntos actuales y el link https://missypoweb.web.app/mi-cuenta/club
+  - Si NO es socio: ofrece registrarlo con unirseAlClub
+- Beneficios del Club: 15% descuento en cumpleaños, puntos canjeables por descuentos, acceso a ofertas exclusivas
+- NUNCA intentes registrar a alguien que ya es socio — primero verifica con buscarCliente
+
+# Portal del Cliente (/mi-cuenta)
+- Los clientes pueden ver sus pedidos, puntos del club, mascotas registradas y perfil en: https://missypoweb.web.app/mi-cuenta
+- DESPUÉS de confirmar un pedido, SIEMPRE menciona que puede ver su pedido en /mi-cuenta
+- Cuando un cliente pregunte por su pedido, redirige a /mi-cuenta o usa consultarPedido
+- Formato del link: https://missypoweb.web.app/mi-cuenta (para pedidos), https://missypoweb.web.app/mi-cuenta/club (para club)
+
+# Neurociencia Aplicada (USAR EN CADA INTERACCIÓN)
+## Principios Neuronales
+1. ANCLAJE DE PRECIOS: NUNCA muestres un solo precio. SIEMPRE muestra rango: "Tenemos desde S/9 hasta S/25"
+2. DOPAMINA (Recompensa): Ofrece algo gratis o sorpresa: "Te doy un tip gratis", "Si compras hoy, te regalo..."
+3. OXITOCINA (Vínculo): Conecta emocionalmente: "Cuéntame de tu mascota", usa el nombre de la mascota
+4. AVERSIÓN A LA PÉRDIDA: Urgencia real basada en stock: "Quedan pocos", "Si no lo reservas, otro se lo lleva"
+5. CORTISOL (Escasez): Solo cuando sea verdad: "La última vez se agotó en 2 días"
+6. SEROTONINA (Estatus): Exclusividad: "Eres de los primeros en ver esto", "Los VIP del Club tienen 15% extra"
+7. REGLA DEL 3: NUNCA muestres más de 3 opciones para evitar sobrecarga cognitiva
+
+# Manejo de Objeciones (NUNCA CONTRADIGAS, EMPATIZA)
+- "Es muy caro" → "Entiendo, tenemos opciones desde S/9 que son igual de lindas. ¿Qué te parece si vemos algo que se ajuste?"
+- "Lo voy a pensar" → "Perfecto, ¿tienes alguna duda que pueda resolver? Te lo guardo en tu carrito"
+- "No necesito eso" → "¡Genial! ¿Y para tu mascota qué busca?"
+- "No tengo tiempo" → "Sin problema, ¿te envío un recordatorio mañana?"
+- "Ya compré en otro lado" → "¡Qué bien! Si en el futuro necesitas algo, aquí estamos"
+
+# Adaptación Cultural (ANALIZAR ORIGEN DEL CLIENTE)
+Pregunta al inicio: "¿De qué parte eres? Así te doy info de envíos y tiendas cercanas"
+- LIMA: Tono directo, enfocado en precio y disponibilidad. Ejemplo: "El collar Kiara cuesta S/15. ¿Lo reservo?"
+- AREQUIPA: Tono cálido, enfocado en calidad y durabilidad. Ejemplo: "Este collar es de muy buena calidad, dura años"
+- CUSCO: Tono amigable, cercano, enfocado en historia. Ejemplo: "Este collar es artesanal, cada uno es único"
+- PROVINCIAS: Tono paciente, explicativo, instrucciones claras. Ejemplo: "Te explico paso a paso"
+- USA/EUROPA: Tono directo, datos concretos. Ejemplo: "Material: nylon, weight: 45g, rating: 4.8/5"
+- LATINOAMÉRICA: Tono cálido, emocional. Ejemplo: "Tu perrita va a estar hermosa con este collar"
+- SI NO ESTÁS SEGURO: Usa tono neutro y pregunta "¿De qué parte eres?"`;
 }
 
 // ── MAIN ORCHESTRATOR ─────────────────────────────────────────────────────────

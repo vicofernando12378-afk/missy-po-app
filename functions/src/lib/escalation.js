@@ -16,6 +16,19 @@ const FRUSTRATION_KEYWORDS = [
   'no me ayuda', 'inútil', 'debería saber', 'no sabes nada', 'para qué sirves',
   // Threats (strong)
   'defensa al consumidor',
+  // Envíos especiales (NUEVO)
+  'envío internacional', 'envio internacional', 'fuera del país',
+  'fuera del peru', 'europa', 'estados unidos', 'enviar a',
+  'envío aéreo', 'envio aereo', 'envío al exterior',
+  // Pedidos especiales (NUEVO)
+  'pedido especial', 'pedido grande', 'mayorista', 'volumen',
+  'compra al por mayor', 'descuento por cantidad',
+  // Reclamaciones (NUEVO)
+  'reclamo', 'reclamación', 'queja', 'defensa del consumidor',
+  'inadecuado', 'defectuoso', 'no funciona',
+  // Información que el bot no debe manejar (NUEVO)
+  'factura', 'ruc', 'constancia', 'certificado',
+  'garantía extendida', 'seguro', 'financiamiento',
 ];
 
 const FRUSTRATION_PATTERNS = [

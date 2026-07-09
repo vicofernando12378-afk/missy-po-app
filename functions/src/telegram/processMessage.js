@@ -6,6 +6,25 @@ import { getApiKeys } from '../lib/config.js';
 import { detectFrustration, notifyAdminEscalation } from '../lib/escalation.js';
 import { getKnowledgeContext } from '../lib/knowledge.js';
 
+// ── KEYWORD-BASED ESCALATION ────────────────────────────────────────────────
+
+/**
+ * Checks if message contains keywords that require immediate human escalation.
+ * @param {string} message
+ * @returns {boolean}
+ */
+function shouldEscalateByKeyword(message) {
+  if (!message) return false;
+  const lower = message.toLowerCase();
+  const escalationKeywords = [
+    'envío internacional', 'envio internacional', 'fuera del país',
+    'fuera del peru', 'europa', 'estados unidos', 'enviar a',
+    'pedido especial', 'mayorista', 'reclamo', 'queja',
+    'factura con ruc', 'constancia', 'garantía extendida',
+  ];
+  return escalationKeywords.some(kw => lower.includes(kw));
+}
+
 // ── ALIBABA QWEN ASR (Voz a Texto) ───────────────────────────────────────────
 
 async function transcribeAudio(fileUrl) {
@@ -355,9 +374,10 @@ export async function processTelegramMessage({
 
     // 8. Frustration check only — bot works 24/7, no business hours block
     const frustration = detectFrustration(messageContent);
+    const keywordEscalation = shouldEscalateByKeyword(messageContent);
 
-    if (frustration.isFrustrated) {
-      // Escalate to human on frustration
+    if (frustration.isFrustrated || keywordEscalation) {
+      // Escalate to human on frustration or keyword match
       await convRef.update({
         status: 'esperando_humano',
         lastMessageAt: Timestamp.fromDate(new Date()),
@@ -369,10 +389,11 @@ export async function processTelegramMessage({
         updatedAt: Timestamp.fromDate(new Date()),
       });
 
+      const reason = frustration.isFrustrated ? frustration.reason : 'keyword match';
       await notifyAdminEscalation({
         chatId,
         leadName: lead?.name || fromUser.firstName,
-        reason: 'frustration',
+        reason,
         lastMessage: messageContent,
         conversationId,
       });
