@@ -60,6 +60,8 @@ BACKUP-*/
 .astro/
 
 # ── Agent & IDE Configs ──
+.agents/
+.atl/
 .clinerules
 .cursor/
 .opencode/

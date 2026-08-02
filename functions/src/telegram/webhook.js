@@ -6,7 +6,7 @@ import '../lib/firebaseAdmin.js';
 
 export const telegramWebhook = onRequest({
   cors: true,
-  minInstances: 1,
+  minInstances: 0,
   memory: '512MiB',
   timeoutSeconds: 60,
 }, async (req, res) => {
