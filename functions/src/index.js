@@ -9,6 +9,14 @@
  *   agent/     — LLM routing core (provider-agnostic)
  */
 import './lib/firebaseAdmin.js';
+import { setGlobalOptions } from 'firebase-functions/v2';
+
+// Global options: enforce zero warm instances to prevent idle billing
+setGlobalOptions({
+  minInstances: 0,
+  maxInstances: 10,
+  region: 'us-central1',
+});
 
 // crm
 export { recomputeLeadScores } from './crm/recomputeScores.js';

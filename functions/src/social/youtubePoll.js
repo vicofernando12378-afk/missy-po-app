@@ -6,7 +6,7 @@ import { getApiKeys } from '../lib/config.js';
 import { processSocialEvent } from './processSocialEvent.js';
 
 export const youtubePoll = onSchedule({
-  schedule: '*/30 * * * *', // every 30 minutes
+  schedule: '0 * * * *', // every 1 hour
   timeZone: 'America/Lima',
   retryCount: 1,
 }, async (event) => {

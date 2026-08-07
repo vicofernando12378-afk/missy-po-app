@@ -52,7 +52,7 @@ async function notifyAdmin({ chatId, leadName, conversationId }) {
 }
 
 export const followUpProcessor = onSchedule({
-  schedule: '*/5 * * * *',
+  schedule: '*/10 * * * *',
   timeZone: 'America/Lima',
   memory: '256MiB',
 }, async () => {
