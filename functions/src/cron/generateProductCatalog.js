@@ -6,16 +6,10 @@
  * Creates admin notification if catalog is outdated.
  */
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
-import { onSchedule } from 'firebase-functions/v2/scheduler';
 
 import { generateCatalog, checkCatalogStatus } from '../lib/productCatalog.js';
 
-export const generateProductCatalog = onSchedule({
-  schedule: '0 4 1,6,11,16,21,26 * *',
-  timezone: 'America/Lima',
-  region: 'us-central1',
-  retryCount: 2,
-}, async () => {
+export async function runCatalogGeneration() {
   console.log('[generateProductCatalog] Starting catalog generation...');
 
   try {
@@ -41,4 +35,4 @@ export const generateProductCatalog = onSchedule({
     console.error('[generateProductCatalog] Error:', err);
     throw err;
   }
-});
+}

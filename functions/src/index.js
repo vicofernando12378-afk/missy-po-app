@@ -19,8 +19,6 @@ setGlobalOptions({
 });
 
 // crm
-export { recomputeLeadScores } from './crm/recomputeScores.js';
-export { recomputeSegments } from './crm/recomputeSegments.js';
 export { unsubscribeLead } from './crm/unsubscribeLead.js';
 export { saveApiKeys } from './crm/saveApiKeys.js';
 export { getApiKeysStatus } from './crm/getApiKeysStatus.js';
@@ -35,11 +33,9 @@ export { emailWebhook } from './campaigns/emailWebhook.js';
 
 // social
 export { socialWebhookHandler } from './social/metaWebhook.js';
-export { youtubePoll } from './social/youtubePoll.js';
 
 // telegram — lazy load to reduce cold start (heavy dependency chain)
 export { telegramWebhook } from './telegram/webhook.js';
 
-// cron
-export { generateProductCatalog } from './cron/generateProductCatalog.js';
-export { followUpProcessor } from './cron/followUpProcessor.js';
+// cron dispatcher (single scheduled Cloud Scheduler job to stay within Free Tier)
+export { cronDispatcher } from './cron/cronDispatcher.js';

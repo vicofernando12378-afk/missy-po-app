@@ -1,23 +1,18 @@
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
-import { onSchedule } from 'firebase-functions/v2/scheduler';
 
 import { getApiKeys } from '../lib/config.js';
 
 import { processSocialEvent } from './processSocialEvent.js';
 
-export const youtubePoll = onSchedule({
-  schedule: '0 * * * *', // every 1 hour
-  timeZone: 'America/Lima',
-  retryCount: 1,
-}, async (event) => {
+export async function runYoutubePoll() {
   const db = getFirestore();
   console.log('🏁 Starting YouTube comments polling job...');
 
   const keys = await getApiKeys();
   const apiKey = keys.YOUTUBE_API_KEY;
   if (!apiKey) {
-    console.warn('⚠️ YOUTUBE_API_KEY is not configured. YouTube polling skipped.');
-    return;
+    console.log('ℹ️ YOUTUBE_API_KEY is not configured. YouTube polling skipped.');
+    return { skipped: true, reason: 'no_api_key' };
   }
 
   try {
@@ -92,7 +87,9 @@ export const youtubePoll = onSchedule({
     });
 
     console.log(`✅ YouTube polling finished. Processed ${processedCount} leads/interactions.`);
+    return { processedCount };
   } catch (err) {
     console.error('❌ Error during YouTube polling:', err);
+    throw err;
   }
-});
+}

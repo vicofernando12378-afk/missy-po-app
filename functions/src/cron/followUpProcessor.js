@@ -1,10 +1,9 @@
 import { getFirestore, Timestamp, FieldValue } from 'firebase-admin/firestore';
-import { onSchedule } from 'firebase-functions/v2/scheduler';
 import '../lib/firebaseAdmin.js';
 
 // ── FOLLOW-UP PROCESSOR ─────────────────────────────────────────────────────
 // Checks for abandoned conversations and sends follow-up messages.
-// Runs every 5 minutes.
+// Orquestado por cronDispatcher.
 //
 // Step 1 (T+10min): "Hey! ¿Sigues ahí?"
 // Step 2 (T+2h): Mark as en_seguimiento + create task + notify admin
@@ -18,14 +17,13 @@ async function sendTelegramMessage(chatId, text) {
     await axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
       chat_id: chatId,
       text,
-      disable_web_page_preview: true,
     });
   } catch (err) {
-    console.error('Error sending follow-up message:', err.response?.data || err.message);
+    console.error('Error sending Telegram follow-up:', err.message);
   }
 }
 
-async function notifyAdmin({ chatId, leadName, conversationId }) {
+async function notifyAdmin({ chatId: _chatId, leadName, conversationId }) {
   const keys = (await import('../lib/config.js')).getApiKeys();
   const token = keys.TELEGRAM_BOT_TOKEN;
   const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID || '';
@@ -37,6 +35,7 @@ async function notifyAdmin({ chatId, leadName, conversationId }) {
       '🔔 *Lead sin respuesta*',
       `*Cliente:* ${leadName || 'Desconocido'}`,
       '*Razón:* No respondió en 2 horas',
+      `*Conversación:* \`${conversationId}\``,
       '',
       'Responde en el panel de CRM para atenderlo.',
     ].join('\n');
@@ -51,11 +50,7 @@ async function notifyAdmin({ chatId, leadName, conversationId }) {
   }
 }
 
-export const followUpProcessor = onSchedule({
-  schedule: '*/10 * * * *',
-  timeZone: 'America/Lima',
-  memory: '256MiB',
-}, async () => {
+export async function runFollowUpProcessor() {
   const db = getFirestore();
   const now = Date.now();
 
@@ -195,4 +190,5 @@ export const followUpProcessor = onSchedule({
   }
 
   console.log('⏰ [followUp] Processor complete.');
-});
+  return { processed: true };
+}

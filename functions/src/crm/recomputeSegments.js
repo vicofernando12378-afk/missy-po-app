@@ -1,5 +1,4 @@
 import { getFirestore, Timestamp } from 'firebase-admin/firestore';
-import { onSchedule } from 'firebase-functions/v2/scheduler';
 
 /**
  * Helper to evaluate a single DSL rule against a lead object.
@@ -81,11 +80,7 @@ function evaluateSegment(lead, rules) {
   return rules.every(rule => evaluateRule(lead, rule));
 }
 
-export const recomputeSegments = onSchedule({
-  schedule: '0 3 * * *', // daily at 3 AM
-  timeZone: 'America/Lima',
-  retryCount: 2,
-}, async (event) => {
+export async function runRecomputeSegments() {
   const db = getFirestore();
   console.log('🏁 Starting nightly segment recomputation...');
 
@@ -94,7 +89,7 @@ export const recomputeSegments = onSchedule({
     const segmentsSnap = await db.collection('crm_segments').get();
     if (segmentsSnap.empty) {
       console.log('ℹ️ No segments found in crm_segments. Exiting.');
-      return;
+      return { recomputed: 0 };
     }
 
     // 2. Fetch all active/valid leads (to avoid querying per segment rule, fetch all in memory)
@@ -107,6 +102,7 @@ export const recomputeSegments = onSchedule({
     const batch = db.batch();
 
     // 3. Evaluate each segment
+    let count = 0;
     segmentsSnap.docs.forEach((segDoc) => {
       const seg = segDoc.data();
       const rules = seg.rules || [];
@@ -128,12 +124,15 @@ export const recomputeSegments = onSchedule({
         lastComputedAt: now,
       });
 
+      count++;
       console.log(`  📊 Segment "${seg.name}" -> ${matchingLeadIds.length} matched leads.`);
     });
 
     await batch.commit();
     console.log('✅ Nightly segment recomputation completed successfully!');
+    return { recomputed: count };
   } catch (err) {
     console.error('❌ Error during segment recomputation:', err);
+    throw err;
   }
-});
+}
