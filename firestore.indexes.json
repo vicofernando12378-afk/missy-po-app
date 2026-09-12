@@ -116,6 +116,14 @@
       ]
     },
     {
+      "collectionGroup": "crm_conversations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "status", "order": "ASCENDING" },
+        { "fieldPath": "lastMessageAt", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "myp_pedidos",
       "queryScope": "COLLECTION",
       "fields": [

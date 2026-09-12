@@ -64,7 +64,7 @@ describe('cronDispatcher — executeScheduledTasks', () => {
     expect(result.hour).toBe(3);
     expect(runFollowUpProcessor).toHaveBeenCalledTimes(1);
     expect(runRecomputeSegments).toHaveBeenCalledTimes(1);
-    expect(runRecomputeLeadScores).not.toHaveBeenCalled();
+    expect(runRecomputeLeadScores).toHaveBeenCalledTimes(1);
   });
 
   it('triggers catalog generation on day 1 at 04:00 AM Lima', async () => {

@@ -60,10 +60,10 @@ export async function executeScheduledTasks(nowDate = new Date()) {
     results.tasks.youtubePoll = { error: err.message };
   }
 
-  // 3. Daily task (01:00 AM Lima): Recompute & decay lead scores
-  if (hour === 1) {
+  // 3. Daily task: Recompute & decay lead scores (at 01:00 AM or 03:00 AM daily cycle)
+  if (hour === 1 || hour === 3) {
     try {
-      console.log('▶️ [cronDispatcher] Running nightly lead score recomputation (01:00 AM)...');
+      console.log('▶️ [cronDispatcher] Running nightly lead score recomputation...');
       results.tasks.recomputeScores = await runRecomputeLeadScores();
     } catch (err) {
       console.error('❌ [cronDispatcher] Error in recomputeLeadScores:', err.message);
@@ -82,11 +82,11 @@ export async function executeScheduledTasks(nowDate = new Date()) {
     }
   }
 
-  // 5. Multi-day task (04:00 AM Lima, days 1, 6, 11, 16, 21, 26): Generate product catalog
+  // 5. Multi-day task (days 1, 6, 11, 16, 21, 26): Generate product catalog
   const catalogDays = [1, 6, 11, 16, 21, 26];
-  if (hour === 4 && catalogDays.includes(day)) {
+  if ((hour === 4 || hour === 3) && catalogDays.includes(day)) {
     try {
-      console.log(`▶️ [cronDispatcher] Running product catalog generation (04:00 AM, day ${day})...`);
+      console.log(`▶️ [cronDispatcher] Running product catalog generation (day ${day})...`);
       results.tasks.generateCatalog = await runCatalogGeneration();
     } catch (err) {
       console.error('❌ [cronDispatcher] Error in generateProductCatalog:', err.message);
@@ -99,7 +99,7 @@ export async function executeScheduledTasks(nowDate = new Date()) {
 }
 
 export const cronDispatcher = onSchedule({
-  schedule: '0 * * * *', // every hour
+  schedule: '0 3 * * *', // Daily at 03:00 AM America/Lima
   timeZone: 'America/Lima',
   memory: '256MiB',
   timeoutSeconds: 300,
